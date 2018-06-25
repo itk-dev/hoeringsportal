@@ -1,0 +1,33 @@
+uuid: e6a0de2f-7d37-4944-ae0c-d47d3d20baa0
+langcode: da
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.static_page.body
+    - field.field.node.static_page.field_image
+    - node.type.static_page
+  module:
+    - text
+    - user
+id: node.static_page.teaser
+targetEntityType: node
+bundle: static_page
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden:
+  field_comments: true
+  field_image: true
+  field_teaser: true
+  langcode: true

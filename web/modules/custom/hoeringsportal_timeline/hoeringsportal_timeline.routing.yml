@@ -1,0 +1,7 @@
+hoeringsportal_timeline.settings:
+  path: '/admin/site-setup/timeline'
+  defaults:
+    _form: '\Drupal\hoeringsportal_timeline\Form\HoeringsportalTimelineConfigForm'
+    _title: 'Hoeringsportal timeline'
+  requirements:
+    _permission: 'access hoeringsportal timeline settings'

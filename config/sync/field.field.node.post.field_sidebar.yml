@@ -1,0 +1,21 @@
+uuid: 0e2af873-7475-430e-9f59-239b9282c518
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sidebar
+    - node.type.post
+  module:
+    - text
+id: node.post.field_sidebar
+field_name: field_sidebar
+entity_type: node
+bundle: post
+label: Sidebar
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

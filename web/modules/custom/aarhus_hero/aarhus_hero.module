@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Contains module hooks.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Add template for block.
+ */
+function aarhus_hero_theme($existing, $type, $theme, $path) {
+  return [
+    'aarhus_hero_block' => [
+      'template' => 'aarhus-hero-block',
+      'variables' => ['config' => NULL, 'image' => NULL],
+    ],
+  ];
+}

@@ -1,0 +1,50 @@
+uuid: 9e05ec68-7b24-4056-bf6c-5446097f9d47
+langcode: da
+status: true
+dependencies:
+  config:
+    - filter.format.filtered_html
+  module:
+    - ckeditor
+format: filtered_html
+editor: ckeditor
+settings:
+  toolbar:
+    rows:
+      -
+        -
+          name: Formatering
+          items:
+            - Bold
+            - Italic
+        -
+          name: Links
+          items:
+            - DrupalLink
+            - DrupalUnlink
+        -
+          name: Format
+          items:
+            - Format
+        -
+          name: Extras
+          items:
+            - Blockquote
+            - DrupalImage
+            - Table
+            - BulletedList
+            - NumberedList
+            - HorizontalRule
+  plugins:
+    stylescombo:
+      styles: ''
+    language:
+      language_list: un
+image_upload:
+  status: true
+  scheme: public
+  directory: images
+  max_size: ''
+  max_dimensions:
+    width: 1460
+    height: null

@@ -1,0 +1,21 @@
+uuid: dcdc6df5-8deb-49e1-a479-9a10552be4b1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_validation_date
+  module:
+    - datetime
+    - user
+id: user.user.field_validation_date
+field_name: field_validation_date
+entity_type: user
+bundle: user
+label: Valideringsdato
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

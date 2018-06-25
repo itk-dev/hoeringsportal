@@ -1,0 +1,44 @@
+.timeline {
+  padding-top: $spacer*2;
+  padding-bottom: $spacer*2;
+  &-points {
+    border-left: 2px solid $gray-800;
+    padding-top: $spacer*2;
+    margin-left: $spacer*1;
+    .row {
+      position: relative;
+      transition: color .4s ease-out;
+      &:before {
+        content: "";
+        width: 10px;
+        height: 2px;
+        background: $gray-800;
+        position: absolute;
+        left: 0;
+        top: 10px;
+      }
+      &.passed {
+        color: $gray-600;
+      }
+      // &:hover {
+      //   color: $gray-800;
+      //   transition: color .2s ease-in;
+      // }
+    }
+    &:before, &:after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $gray-800;
+      position: absolute;
+      left: -6px;
+    }
+    &:before {
+      top: 0;
+    }
+    &:after {
+      bottom: 0;
+    }
+  }
+}

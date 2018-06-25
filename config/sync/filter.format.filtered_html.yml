@@ -1,0 +1,29 @@
+uuid: e6c371bd-3706-417b-b6e5-c4249d5289ee
+langcode: da
+status: true
+dependencies: {  }
+name: 'Filtered html'
+format: filtered_html
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<a href hreflang> <em> <strong> <h3 id> <h4 id> <h5 id> <h6 id> <p> <img src alt data-entity-type data-entity-uuid> <blockquote> <table> <caption> <tbody> <thead> <tfoot> <th> <td> <tr> <ul> <li> <ol> <hr>'
+      filter_html_help: true
+      filter_html_nofollow: false
+  filter_autop:
+    id: filter_autop
+    provider: filter
+    status: true
+    weight: 0
+    settings: {  }
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }

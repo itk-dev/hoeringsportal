@@ -1,0 +1,5 @@
+hoeringsportal_hotness.admin:
+  title: 'Hoeringsportal hotness'
+  description: 'Setup hotness limits.'
+  route_name: hoeringsportal_hotness.settings
+  parent: user.admin_index

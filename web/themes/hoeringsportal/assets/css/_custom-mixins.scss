@@ -1,0 +1,314 @@
+﻿@mixin custom-font() {
+    font-family: $font-family-sans-serif;
+}
+
+@mixin title() {
+    font-size: $font-size-h1-responsive;
+    font-weight: $font-weight-black;
+
+    @include breakpoint(xs){
+        font-size: $font-size-h1;
+    }
+}
+
+@mixin link-with-arrow($link-color: $text-color, $arrow-color: $brand-secondary){
+    position: relative;
+    display: inline-block;
+    color: $link-color;
+    margin-left: $default-spacing*1.5;
+
+    &:before {
+        @include icon-arrow-right-alt;
+        position: absolute;
+        left: 0;
+        display: inline-block;
+        float: left;
+        margin-right: $default-spacing/2;
+        margin-left: -$default-spacing*1.5;
+        color: $arrow-color;
+        text-decoration: none !important;
+    }
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+@mixin equal-height-row() {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin align-vertically() {
+    display: flex;
+    align-items: center;
+}
+
+@mixin material-shadow() {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.19);
+}
+
+@mixin screen-reader-text() {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+//Used to reset umbraco grid bootstrap grid setup, so that element will cover full width.
+//Use on the root class - ex. "grid-element__hero" / "grid-element__hotspots"
+/* @mixin umbraco-grid-full-width() {
+    > .container {
+        width: auto;
+        padding: 0;
+
+        > .row,
+        > .row > .grid-column {
+            margin: 0;
+            padding: 0;
+        }
+    }
+} */
+
+/*Icons*/
+/* @mixin icon-plus() {
+    content: "+";
+}
+
+@mixin icon-circle-plus() {
+    font-family: $icons-font-family;
+    content: "\e904";
+}
+
+@mixin icon-arrow-up() {
+    font-family: $icons-font-family;
+    content: "\e903";
+}
+
+@mixin icon-arrow-down() {
+    font-family: $icons-font-family;
+    content: "\e900";
+}
+
+@mixin icon-arrow-left() {
+    font-family: $icons-font-family;
+    content: "\e901";
+}
+
+@mixin icon-arrow-right() {
+    font-family: $icons-font-family;
+    content: "\e902";
+}
+
+@mixin icon-arrow-right-alt() {
+    font-family: $icons-font-family;
+    content: "\e91c";
+}
+
+@mixin icon-play() {
+    font-family: $icons-font-family;
+    content: "\e90e";
+}
+
+@mixin icon-image() {
+    font-family: $icons-font-family;
+    content: "\e917";
+}
+
+@mixin icon-minus() {
+    font-family: $icons-font-family;
+    content: "\e91e";
+}
+@mixin icon-cross() {
+    font-family: $icons-font-family;
+    content: "\e907";
+}
+@mixin icon-external-link() {
+    font-family: $icons-font-family;
+    content: "\e90a";
+} */
+
+
+@mixin transition-std($target: all, $ease: ease-in-out, $duration: 200ms, $delay: 0ms) {
+    -webkit-transition: $target $ease $duration $delay;
+    -o-transition: $target $ease $duration $delay;
+    transition: $target $ease $duration $delay;
+}
+
+
+@mixin element-theme($full-bg, $light-bg, $text) {
+    color: $text;
+    background: $full-bg;
+
+    .bg-light {
+        color: $black;
+        background: $light-bg;
+    }
+
+    a,
+    .link,
+    .link:before {
+        color: $text;
+
+        span{
+            color: $text;
+        }
+    }
+
+    a:hover {
+        color: $text;
+    }
+
+    .underlined {
+        &:after {
+            background: $text;
+        }
+    }
+}
+
+
+
+/// Mixin printing a linear-gradient
+/// as well as a plain color fallback
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {Keyword | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+    background: $color-stops;
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
+}
+
+
+// (min) Breakpoints
+// @mixin breakpoint($name) {
+//     $lg: "(min-width: " + $breakpoint-lg + ")";
+//     $ipad-landscape: "(min-width: " + $breakpoint-ipad-landscape + ")";
+//     $md: "(min-width: " + $breakpoint-md + ")";
+//     $sm: "(min-width: " + $breakpoint-sm + ")";
+//     $xs: "(min-width: " + $breakpoint-xs + ")";
+//     $xxs: "(min-width: " + $breakpoint-xxs + ")";
+
+//     @if $name == lg {
+//         @media #{$lg} {
+//             @content;
+//         }
+//     }
+//     @else if $name == ipad-landscape {
+//         @media #{$ipad-landscape} {
+//             @content;
+//         }
+//     }
+//     @else if $name == md {
+//         @media #{$md} {
+//             @content;
+//         }
+//     }
+//     @else if $name == sm {
+//         @media #{$sm} {
+//             @content;
+//         }
+//     }
+//     @else if $name == xs {
+//         @media #{$xs} {
+//             @content;
+//         }
+//     }
+//     @else if $name == xxs {
+//         @media #{$xxs} {
+//             @content;
+//         }
+//     }
+// }
+
+// (max) Breakpoints
+// @mixin breakpoint-max($name) {
+//     $lg: "(max-width: " + ($breakpoint-lg - 1px) + ")";
+//     $ipad-landscape: "(max-width: " + ($breakpoint-ipad-landscape - 1px) + ")";
+//     $md: "(max-width: " + ($breakpoint-md - 1px) + ")";
+//     $sm: "(max-width: " + ($breakpoint-sm - 1px) + ")";
+//     $xs: "(max-width: " + ($breakpoint-xs - 1px) + ")";
+//     $xxs: "(max-width: " + ($breakpoint-xxs - 1px) + ")";
+
+//     @if $name == lg {
+//         @media #{$lg} {
+//             @content;
+//         }
+//     }
+//     @else if $name == ipad-landscape {
+//         @media #{$ipad-landscape} {
+//             @content;
+//         }
+//     }
+//     @else if $name == md {
+//         @media #{$md} {
+//             @content;
+//         }
+//     }
+//     @else if $name == sm {
+//         @media #{$sm} {
+//             @content;
+//         }
+//     }
+//     @else if $name == xs {
+//         @media #{$xs} {
+//             @content;
+//         }
+//     }
+//     @else if $name == xxs {
+//         @media #{$xxs} {
+//             @content;
+//         }
+//     }
+// }
+
+/**
+ * Computes a CSS calc function that betweens a value from
+ * A to B over viewport-width A to viewport-width B.
+ * Requires a media query to cap the value at B.
+ */
+
+@function between($to, $from, $toWidth, $fromWidth) {
+    $slope: ($to - $from) / ($toWidth - $fromWidth);
+    $base: $from - $slope * $fromWidth;
+
+    @return calc(#{$base} + #{100vw * $slope});
+}
+
+@mixin hover-animation() {
+    a {
+        @include transition-std(transform, linear, 200ms);
+        display: block;
+        position: relative;
+
+        &:hover {
+            @include move-link-right();
+        }
+    }
+}
+
+@mixin move-link-right(){
+    transform: translateX(10px);
+}
+@mixin move-link-left(){
+    transform: translateX(-10px);
+}
+
+
+/*Theme Mixin - For use in Umbraco Backend Theme Picker*/
+@mixin theme-classes($theme-name){
+    .theme__#{$theme-name}{
+        .primary{
+            color: $brand-primary-bg__text-color;
+            background: $brand-primary;
+        }
+        .secondary{
+            color: $brand-secondary-bg__text-color;
+            background: $brand-secondary;
+        }
+    }
+}

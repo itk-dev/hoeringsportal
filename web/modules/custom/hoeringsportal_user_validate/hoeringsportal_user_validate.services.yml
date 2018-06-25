@@ -1,0 +1,5 @@
+services:
+  hoeringsportal_user_validation_subscriber:
+    class: Drupal\hoeringsportal_user_validate\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

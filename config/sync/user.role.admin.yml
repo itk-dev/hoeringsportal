@@ -1,0 +1,46 @@
+uuid: 7dd9e471-06d7-4d7f-9782-065f31045596
+langcode: da
+status: true
+dependencies: {  }
+id: admin
+label: Admin
+weight: 2
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access hoeringsportal hotness settings'
+  - 'access hoeringsportal timeline settings'
+  - 'access content overview'
+  - 'access hero configuration'
+  - 'access site in maintenance mode'
+  - 'access toolbar'
+  - 'administer account settings'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer site configuration'
+  - 'administer taxonomy'
+  - 'administer users'
+  - 'cancel account'
+  - 'create news content'
+  - 'create post content'
+  - 'create static_page content'
+  - 'create terms in subjects'
+  - 'delete any news content'
+  - 'delete any post content'
+  - 'delete any static_page content'
+  - 'delete own news content'
+  - 'delete own post content'
+  - 'delete own static_page content'
+  - 'delete terms in subjects'
+  - 'edit any news content'
+  - 'edit any post content'
+  - 'edit any static_page content'
+  - 'edit own news content'
+  - 'edit own post content'
+  - 'edit own static_page content'
+  - 'edit terms in subjects'
+  - 'manipulate all entityqueues'
+  - 'manipulate entityqueues'
+  - 'translate interface'
+  - 'use text format filtered_html'
+  - 'view own unpublished content'

@@ -1,0 +1,18 @@
+id: comments
+label: 'Comments by user'
+ui_limit: ''
+properties:
+  block: 'views_block:comments_by_user-block_1'
+  use_block_title: true
+  config:
+    id: 'views_block:comments_by_user-block_1'
+    label: ''
+    provider: views
+    label_display: visible
+    views_label: ''
+    items_per_page: none
+    context_mapping: {  }
+type: block
+type_label: 'Block field'
+entities:
+  user: user

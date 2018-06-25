@@ -1,0 +1,4 @@
+services:
+  hoeringsportal_timeline.settings:
+    class: Drupal\hoeringsportal_timeline\State\HoeringsportalTimelineSettings
+    arguments: ['@serialization.json', '@database']

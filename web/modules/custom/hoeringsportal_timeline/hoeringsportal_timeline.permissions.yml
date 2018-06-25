@@ -1,0 +1,3 @@
+access hoeringsportal timeline settings:
+  title: 'Hoeringsportal timeline settings'
+  restrict access: TRUE

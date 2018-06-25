@@ -1,0 +1,24 @@
+uuid: dfe2d65e-73fb-4fd3-997e-957fce6054bb
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_valid
+  module:
+    - user
+id: user.user.field_valid
+field_name: field_valid
+entity_type: user
+bundle: user
+label: Valideret
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Valideret
+  off_label: 'Ikke valideret'
+field_type: boolean

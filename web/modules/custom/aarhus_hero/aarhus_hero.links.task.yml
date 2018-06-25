@@ -1,0 +1,4 @@
+aarhus_hero.admin:
+  title: 'Hero'
+  route_name: aarhus_hero.settings
+  base_route: system.admin_content

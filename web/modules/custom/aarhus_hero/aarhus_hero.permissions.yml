@@ -1,0 +1,3 @@
+access hero configuration:
+  title: 'Hero settings'
+  restrict access: TRUE

@@ -1,0 +1,15 @@
+.alert {
+  &.fixed {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    margin: 0;
+    top: 95px;
+    left: 0;
+    transition: top .4s ease-out;
+    .scrolled & {
+      top: 62px;
+      transition: top .2s ease-in;
+    }
+  }
+}

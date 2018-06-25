@@ -1,0 +1,142 @@
+﻿//$font-size-root:                    16px !default; //This is the root font-size (always 16px), its used on html to make "rem" work // Change this and all font-sizes change
+//$default-spacing:                   20px !default;
+//$nav-trigger-size:                  70px !default;
+// $rounded-button-size:               50px !default;
+// $rounded-button-size-responsive:    36px !default;
+$underline-width:                   110px !default;
+$underline-width-hover:             130px !default;
+// $header-height:                     100px !default;
+
+// $navigation-breakpoint:             "ipad-landscape";
+
+// /*Type*/
+// $letter-spacing-base:               0.05em;
+
+// /*Z Index*/
+// $z-index-nav-page-overlay:          2000 !default;
+// $z-index-header:                    3000 !default;
+// $z-index-cookiebar:                 4000 !default;
+// $z-index-skiptolink:                5000 !default;
+
+
+// /*COLORS*/
+// $white:                             #ffffff !default;
+// $black:                             #333333 !default;
+// $pink:                              #ee0043 !default;
+// $pink-light:                        #fab2c6 !default;
+// $purple:                            #673ab7 !default;
+// $purple-light:                      #d1c4e9 !default;
+// $blue:                              #3661d8 !default;
+// $blue-light:                        #c2cff3 !default;
+// $navy:                              #2b3ba2 !default;
+// $navy-light:                        #bfc4e3 !default;
+// $petroleum:                         #008486 !default;
+// $petroleum-light:                   #b2dada !default;
+// $green:                             #008850 !default;
+// $green-light:                       #b2dbca !default;
+// $yellow:                            #ffe13d !default;
+// $yellow-light:                      #fff6c4 !default;
+// $orange:                            #ff5f31 !default;
+// $orange-light:                      #ffcfc1 !default;
+// $red:                               #d32f2f !default;
+// $red-light:                         #f2c0c0 !default;
+
+// $gray-darker:                       $black !default;
+// $gray-dark:                         #858585 !default;
+// $gray:                              #d6d6d6 !default;
+// $gray-light:                        #eaeaea !default;
+// $gray-lighter:                      #f6f6f6 !default;
+
+// $brand-error:                       $red !default;
+// $brand-success:                     $green !default;
+
+// $brand-primary:                     $blue !default;
+// $brand-primary-light:               $blue-light !default;
+// $brand-primary-lighter:             lighten($brand-primary, 14%) !default;
+// $brand-primary-dark:                darken($brand-primary, 7%) !default;
+// $brand-primary-darker:              darken($brand-primary, 14%) !default;
+// $brand-primary-bg__text-color:      $white !default;
+
+// $brand-secondary:                   $pink !default;
+// $brand-secondary-light:             $pink-light !default;
+// $brand-secondary-dark:              darken($brand-secondary, 7%) !default;
+// $brand-secondary-darker:            darken($brand-secondary, 14%) !default;
+// $brand-secondary-bg__text-color:    $white !default;
+
+
+$aspect-ratio-padding-1-1:          100%;
+$aspect-ratio-padding-4-3:          75%;
+$aspect-ratio-padding-3-2:          66.66%;
+$aspect-ratio-padding-16-9:         56.25%;
+$aspect-ratio-padding-8-3:          37.50%;
+
+
+// /* Scaffolding*/
+// $body-bg:                           $gray-lighter !default;
+// $text-color:                        $black !default;
+// $link-color:                        $brand-primary !default;
+// $link-hover-color:                  $brand-primary-dark !default;
+// $link-hover-decoration:             underline !default;
+
+
+// $grid-gutter-width:                 $default-spacing !default;
+
+
+// /*FONTS*/
+// $icons-font-family:                 "kicons" !default;
+// $icon-font-path:                    "/Resources/fonts/bootstrap/" !default;
+$font-family-sans-serif:            Arial, sans-serif !default;
+// $font-family-alt:                   Arial, sans-serif !default;
+$font-family-base:                  $font-family-sans-serif !default;
+
+$font-weight-regular:               400 !default;
+$font-weight-black:                 900 !default;
+
+$line-height-base:                  1.5 !default;
+$headings-line-height:              1.4 !default;
+$headings-font-weight:              700 !default;
+
+//$font-size-base:                    17px !default;
+$font-size-large:                   20px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+$font-size-small:                   15px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+$font-size-xs:                      12px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+
+// $font-size-icon:                    20px !default;
+// $font-size-icon-large:              30px !default;
+// $font-size-icon-xlarge:             40px !default;
+// $font-size-icon-small:              16px !default;
+// $font-size-icon-xsmall:             12px !default;
+
+$font-size-title:                   4.0rem !default;
+$font-size-teaser:                  1.625rem !default; //26px
+$font-size-teaser-responsive:       1.25rem !default; //20px
+
+// $font-size-h1:                      2.375rem !default; //38px
+// $font-size-h1-responsive:           1.5rem !default; //25px
+// $font-size-h2:                      1.75rem !default; //28px
+// $font-size-h2-responsive:           1.25rem !default; //20px
+// $font-size-h3:                      1.25rem !default; //20px
+// $font-size-h3-responsive:           1.125rem !default; //18px
+// $font-size-h4:                      1.25rem !default; //20px
+// $font-size-h5:                      0.9375rem !default; //15px
+// $font-size-h6:                      1.0625rem !default; //17px
+
+
+
+// $border-radius-base:                0 !default;
+// $border-radius-large:               0 !default;
+// $border-radius-small:               0 !default;
+
+// // Breakpoints min-widths
+// $breakpoint-lg:                     1200px;
+// $breakpoint-ipad-landscape:         1025px;
+// $breakpoint-md:                     1020px;
+// $breakpoint-sm:                     992px;
+// $breakpoint-xs:                     768px;
+// $breakpoint-xxs:                    480px;
+
+// // Container widths
+// $container-sm:                      740px;
+// $container-md:                      960px;
+// $container-lg:                      1220px;
+

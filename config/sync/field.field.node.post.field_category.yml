@@ -1,0 +1,29 @@
+uuid: 0b0699d2-6a5b-4713-b865-ec1b3ddb1931
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_category
+    - node.type.post
+    - taxonomy.vocabulary.subjects
+id: node.post.field_category
+field_name: field_category
+entity_type: node
+bundle: post
+label: Kategori
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      subjects: subjects
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

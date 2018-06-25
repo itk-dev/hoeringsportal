@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Display of footer
+ *
+ * Available variables:
+ * - config: The available texts
+ * - image: A rendered image
+ */
+#}
+
+<div class="hero-container">
+  <div class="hero hero--image-right">
+    <div class="hero__media-container">
+      <div class="hero__media background-image-holder">
+        {{ image }}
+      </div>
+    </div>
+    <div class="container">
+      <div class="hero__content">
+        <h1 class="title  underlined  hero__title">{{ config.hero_title }}</h1>
+        <p class="hero__text">{{ config.hero_text }}</p>
+      </div>
+    </div>
+  </div>
+</div>

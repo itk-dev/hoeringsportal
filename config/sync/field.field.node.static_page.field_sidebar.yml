@@ -1,0 +1,21 @@
+uuid: 07aa7473-a67c-47ac-b14c-e88fb4ccc95e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sidebar
+    - node.type.static_page
+  module:
+    - text
+id: node.static_page.field_sidebar
+field_name: field_sidebar
+entity_type: node
+bundle: static_page
+label: Sidebar
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

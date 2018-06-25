@@ -1,0 +1,7 @@
+hoeringsportal_user_validate.saml.login:
+  path: '/user/validate'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_user_validate\Controller\HoeringsportalUserValidateSAMLController::login'
+  requirements:
+    _permission: 'access content'
+    _content_type_format: text/html

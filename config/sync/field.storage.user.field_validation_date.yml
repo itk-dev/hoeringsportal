@@ -1,0 +1,20 @@
+uuid: 4c099265-90e2-42d2-a313-52321952f636
+langcode: da
+status: true
+dependencies:
+  module:
+    - datetime
+    - user
+id: user.field_validation_date
+field_name: field_validation_date
+entity_type: user
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

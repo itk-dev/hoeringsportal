@@ -1,0 +1,18 @@
+uuid: 517e4214-985a-4bd5-8544-9d8b3707f3bc
+langcode: da
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_valid
+field_name: field_valid
+entity_type: user
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,10 @@
+name: hero
+label: 'Hero (1440×360)'
+effects:
+  aarhus_hero_large_scale_and_crop:
+    uuid: aarhus_hero_large_scale_and_crop
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 1440
+      height: 360

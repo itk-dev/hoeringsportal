@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ * Display Suite 2 column stacked template.
+ *
+ * Available variables:
+ * - outer_wrapper: outer wrapper element
+ * - header_wrapper: wrapper element around header region
+ * - left_wrapper: wrapper element around left region
+ * - right_wrapper: wrapper element around right region
+ * - footer_wrapper: wrapper element around footer region
+ * - attributes: layout attributes
+ * - header_attributes: attributes for header region
+ * - left_attributes: attributes for left region
+ * - right_attributes: attributes for right region
+ * - footer_attributes: attributes for footer region
+ * - header: content of header region
+ * - left: content of left region
+ * - right: content of right region
+ * - footer: content of footer region
+ */
+#}
+
+<{{ outer_wrapper }}{{ attributes.addClass('ds-2col-stacked', 'clearfix') }}>
+
+  {{ title_suffix.contextual_links }}
+
+  <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
+    {{ header }}
+  </{{ header_wrapper }}>
+  <div class="container  content__container">
+    <div class="row">
+      <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
+        <div class="content__main ">
+          {{ left }}
+          {% if (user.field_valid.value == '1') %}
+            <p>{{ 'User validated'|t }}</p>
+          {% else %}
+            <div class="card mb-3 nemid-validation">
+              <div class="card-body">
+                <h5 class="card-title">{{ 'Validate with NemID'|t }}</h5>
+                <p class="card-text">{{ 'Before you can contribute you must validate your user account with NemID.'|t }}</p>
+                <p class="card-text">{{ 'You only have to do it once, and you can do it now.'|t }}</p>
+                {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
+                <a href="{{ path('hoeringsportal_user_validate.saml.login', { ref :  path('<current>') }) }}" class="btn btn-primary">{{ 'Validate'|t }}</a>
+                <img class="image-fluid float-right" style="width:auto;" src="{{ base_path ~ directory }}/static/images/NEMID_RGB_BLACK.svg" alt="NemID logo">
+              </div>
+            </div>
+          {% endif %}
+
+          <a href="/user/{{ user.id }}/edit" class="btn btn-primary">{{ 'Change user information'|t }}</a>
+        </div>
+      </{{ left_wrapper }}>
+
+      <{{ right_wrapper }}{{ right_attributes.addClass('group-right col-md-4') }}>
+        <h4>{{ 'Your information'|t }}</h4>
+
+        <div class="mb-3">{{ right }}</div>
+        <h6>{{ 'User validation'|t }}</h6>
+        {% if (user.field_valid.value == '1') %}
+          <p>{{ 'Validated with NemID'|t }} {{ user.field_validation_date.value|date('j. F Y - H:i') }} </p>
+        {% else %}
+          <p>{{ 'Not yet validated'|t }}</p>
+        {% endif %}
+        <h4>{{ 'Options'|t }}</h4>
+        <p><a href="/user/{{ user.id }}/edit">{{ 'Change user information'|t }}</a></p>
+      </{{ right_wrapper }}>
+    </div>
+  </div>
+  <{{ footer_wrapper }}{{ footer_attributes.addClass('group-footer container-flex') }}>
+    {{ footer }}
+  </{{ footer_wrapper }}>
+
+</{{ outer_wrapper }}>

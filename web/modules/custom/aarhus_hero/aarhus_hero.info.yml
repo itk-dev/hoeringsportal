@@ -1,0 +1,7 @@
+name: Aarhus Hero
+type: module
+interface translation project: aarhus_hero
+interface translation server pattern: modules/custom/aarhus_hero/translations/aarhus_hero.%language.po
+description: 'Adds a config page and a block for the hero.'
+package: Aarhus modules
+core: '8.x'

@@ -1,0 +1,8 @@
+uuid: cad7abdf-ae7b-4339-bfd6-f86051c78704
+langcode: da
+status: true
+dependencies: {  }
+id: input
+label: Input
+target_entity_type_id: node
+description: ''

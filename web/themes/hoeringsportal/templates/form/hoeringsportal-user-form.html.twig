@@ -1,0 +1,29 @@
+<div class="container content__container">
+  <div class="row">
+    <div class="content group-left col-md-8">
+      <div class="content__main ">
+        {{ form|without('actions', 'field_first_name', 'field_last_name', 'account', 'user_account') }}
+        {{ form.field_first_name }}
+        {{ form.field_last_name }}
+        {{ form.account|without('name', 'status', 'notify', 'user_account') }}
+        {{ form.actions|without('delete', 'user_account') }}
+      </div>
+    </div>
+    <div class="group-right col-md-4">
+      <h4>{{ 'Account activities'|t }}</h4>
+      {% if(form['#user_account'].field_valid['0'].value > 0) %}
+        <p>{{ 'Validated with NemID'|t }} {{ form['#user_account'].field_validation_date['0'].value|date('j. F Y - H:i') }}</p>
+      {% else %}
+        <p>{{ 'The account has not been validated' }}</p>
+      {% endif %}
+
+      <h4>{{ 'Options'|t }}</h4>
+      {% if(not form['#user_account'].field_valid['0'].value == 1) %}
+        {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
+        <p><a href="{{ path('hoeringsportal_user_validate.saml.login', { ref :  path('<current>') }) }}">{{ 'Validate account'|t }}</a></p>
+      {% endif %}
+      <p><a href="/user/{{ form['#user_account'].id }}">{{ 'Show profile'|t }}</a></p>
+      <p>{{ form.actions.delete }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+uuid: 60b2d803-3125-452e-85e5-f6f3a3d69294
+langcode: da
+status: true
+dependencies:
+  module:
+    - aarhus_hero
+    - system
+  theme:
+    - hoeringsportal
+id: aarhushero
+theme: hoeringsportal
+region: hero
+weight: 0
+provider: null
+plugin: aarhus_hero
+settings:
+  id: aarhus_hero
+  label: 'Aarhus hero'
+  provider: aarhus_hero
+  label_display: '0'
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

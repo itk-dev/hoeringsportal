@@ -1,0 +1,31 @@
+.content {
+  background: $white;
+  padding-top: $spacer;
+  padding-bottom: $spacer;
+  &.group-left:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: 200%;
+    background: #fff;
+  }
+}
+
+.content__main {
+  @include media-breakpoint-up(sm) {
+    padding-right: 2em;
+  }
+  img {
+    @extend .img-fluid;
+  }
+}
+
+.timestamp {
+  display: block;
+}
+
+.lead {
+  padding: 1em 0;
+}

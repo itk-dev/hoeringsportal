@@ -1,0 +1,19 @@
+<?php
+/**
+ * @file
+ * Contains module hooks.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Add template for timeline block.
+ */
+function hoeringsportal_timeline_theme($existing, $type, $theme, $path) {
+  return [
+    'hoeringsportal_timeline_block' => [
+      'template' => 'hoeringsportal-timeline-block',
+      'variables' => ['config' => NULL],
+    ],
+  ];
+}

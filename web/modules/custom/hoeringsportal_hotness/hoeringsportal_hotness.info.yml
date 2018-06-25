@@ -1,0 +1,7 @@
+name: Hoeringsportal Hotness
+type: module
+description: 'Adds hotness marker for nodes'
+package: Hoeringsportal
+core: '8.x'
+dependencies:
+  - flag

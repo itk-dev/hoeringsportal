@@ -1,0 +1,9 @@
+uuid: 8f6fed50-a15e-4d49-8d54-6463a1f697cc
+langcode: und
+status: true
+dependencies: {  }
+name: Subjects
+vid: subjects
+description: ''
+hierarchy: 0
+weight: 0

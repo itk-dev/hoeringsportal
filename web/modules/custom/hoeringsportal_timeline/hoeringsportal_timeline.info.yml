@@ -1,0 +1,5 @@
+name: Hoeringsportal timeline
+type: module
+description: 'Add timeline html to specific page'
+package: Hoeringsportal
+core: '8.x'

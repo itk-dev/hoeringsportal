@@ -1,0 +1,11 @@
+<div class="itk-admin-links">
+  <div class="itk-admin-links--overlay js-admin-overlay"></div>
+  <icon class="itk-admin-links--icon js-admin-toggle"></icon>
+  <ul class="itk-admin-links--items js-admin-menu">
+    <li class="itk-admin-links--item"><a href="/admin">{% trans %}Go to administration{% endtrans %}</a></li>
+    {% if (nid) %}
+      <li class="itk-admin-links--item"><a href="/node/{{ nid }}/edit">{% trans %}Edit this page{% endtrans %}</a></li>
+    {% endif %}
+    <li class="itk-admin-links--item"><a href="/user/logout">{% trans %}Log off{% endtrans %}</a></li>
+  </ul>
+</div>

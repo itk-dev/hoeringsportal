@@ -1,0 +1,8 @@
+# --- Administration pages routing --- #
+aarhus_hero.settings:
+  path: '/admin/site-setup/hero'
+  defaults:
+    _form: '\Drupal\aarhus_hero\Form\AarhusHeroSettingsForm'
+    _title: 'Hero settings'
+  requirements:
+    _permission: 'access hero configuration'

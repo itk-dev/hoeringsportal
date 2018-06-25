@@ -1,0 +1,107 @@
+uuid: 77d60427-fbb0-4dbe-ae74-441dda1b8898
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.static_page.body
+    - field.field.node.static_page.field_comments
+    - field.field.node.static_page.field_image
+    - field.field.node.static_page.field_sidebar
+    - field.field.node.static_page.field_teaser
+    - image.style.hero
+    - node.type.static_page
+  module:
+    - ds
+    - image
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: aside
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      header:
+        - field_image
+        - node_title
+      left:
+        - field_teaser
+        - body
+        - node_changed_date
+      right:
+        - field_sidebar
+      footer:
+        - 'dynamic_block_field:node-timeline'
+    fields:
+      'dynamic_block_field:node-timeline':
+        plugin_id: 'dynamic_block_field:node-timeline'
+        weight: 6
+        label: hidden
+        formatter: default
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 4
+        label: inline
+        formatter: ds_post_date_long
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
+id: node.static_page.default
+targetEntityType: node
+bundle: static_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    region: left
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: hero
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: header
+  field_sidebar:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
+  field_teaser:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: left
+hidden:
+  field_comments: true
+  langcode: true
+  links: true

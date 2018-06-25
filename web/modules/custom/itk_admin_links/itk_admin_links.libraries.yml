@@ -1,0 +1,9 @@
+itk_admin_links:
+  css:
+    theme:
+      css/itk-admin-links.css: {}
+  js:
+    js/itk-admin-links.js: {}
+  dependencies:
+      - core/jquery
+      - core/drupalSettings

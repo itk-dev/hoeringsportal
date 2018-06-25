@@ -1,0 +1,10 @@
+global-styling:
+  version: VERSION
+  css:
+    theme:
+      build/hoeringsportal.css: {}
+
+bottom-scripts:
+  version: VERSION
+  js:
+    build/hoeringsportal.js: {scope: bottom}

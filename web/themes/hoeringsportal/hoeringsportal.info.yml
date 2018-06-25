@@ -1,0 +1,15 @@
+name: Høringsportal
+type: theme
+description: 'A theme for Høringsportal'
+core: 8.x
+libraries:
+  - hoeringsportal/global-styling
+  - hoeringsportal/bottom-scripts
+regions:
+  header: Header
+  hero: Hero
+  content: Content
+  sidebar: Sidebar
+  footer: Footer
+stylesheets-remove:
+  - normalize.css

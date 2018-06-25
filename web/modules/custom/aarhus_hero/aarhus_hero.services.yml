@@ -1,0 +1,4 @@
+services:
+  aarhus_hero.hero_config:
+    class: Drupal\aarhus_hero\State\BaseConfig
+    arguments: ['@serialization.json', '@database']

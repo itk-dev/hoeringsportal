@@ -1,0 +1,39 @@
+// Import custom mixins
+@import '_custom-mixins';
+
+// Import custom variables before bootstrap to secure override
+@import '_custom-variables';
+
+// Import custom bootstrap
+@import '_bootstrap-custom';
+
+// Import partials
+@import 'partials/_nav';
+@import 'partials/_hero';
+@import 'partials/_btn';
+@import 'partials/_card';
+@import 'partials/_footer';
+@import 'partials/_content';
+@import 'partials/_aside';
+@import 'partials/_drupal';
+@import 'partials/_utilities';
+@import 'partials/_hotness';
+@import 'partials/_timeline';
+@import 'partials/_status-messages';
+
+
+// Global styles
+
+body {
+    background: $gray-100;
+    padding-top: 6rem;
+    word-wrap: break-word;
+    letter-spacing: .05em;
+}
+
+h1, h2, h3, h4, h5, legend {
+  text-transform: uppercase;
+}
+p {
+  max-width: 45rem;
+}

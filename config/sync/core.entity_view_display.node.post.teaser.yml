@@ -1,0 +1,70 @@
+uuid: ea098b6a-4a72-4a0d-8c9e-fd06c67b9549
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.post.body
+    - field.field.node.post.field_category
+    - field.field.node.post.field_comments
+    - field.field.node.post.field_hotness
+    - field.field.node.post.field_image
+    - field.field.node.post.field_sidebar
+    - field.field.node.post.field_teaser
+    - image.style.card
+    - node.type.post
+  module:
+    - image
+    - options
+    - user
+id: node.post.teaser
+targetEntityType: node
+bundle: post
+mode: teaser
+content:
+  field_category:
+    type: entity_reference_label
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_hotness:
+    type: list_default
+    weight: 4
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  field_image:
+    type: image
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      image_style: card
+      image_link: ''
+    third_party_settings: {  }
+  field_teaser:
+    type: basic_string
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  flag_promote:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  links:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  field_comments: true
+  field_sidebar: true
+  langcode: true

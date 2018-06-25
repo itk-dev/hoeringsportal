@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+
+<article{{ attributes }}>
+  <h1>{{ 'My page'|t }}</h1>
+  <p>{{ content.field_first_name }} {{ content.field_last_name }}</p>
+  {% if (user.field_valid.value == '1') %}
+    <span class="badge badge-primary">{{ 'Validated'|t }} {{ content.field_validation_date }} </span>
+  {% else %}
+    <div class="card mb-3 nemid-validation">
+      <div class="card-body">
+        <h5 class="card-title">{{ 'Validate with NemID'|t }}</h5>
+        <p class="card-text">{{ 'Before you can contribute you must validate your user account with NemID.'|t }}</p>
+        <p class="card-text">{{ 'You only have to do it once, and you can do it now.'|t }}</p>
+        {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
+        <a href="{{ path('hoeringsportal_user_validate.saml.login') }}" class="btn btn-primary">{{ 'Validate'|t }}</a>
+        <img class="image-fluid float-right" style="width:auto;" src="{{ base_path ~ directory }}/static/images/NEMID_RGB_BLACK.svg" alt="NemID logo">
+      </div>
+    </div>
+  {% endif %}
+  {% if content %}
+    {{- content|without('member_for', 'field_first_name', 'field_last_name', 'field_valid', 'field_validation_date') -}}
+  {% endif %}
+</article>
