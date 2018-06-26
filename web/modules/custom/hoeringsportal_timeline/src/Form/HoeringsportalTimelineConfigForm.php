@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Configuration form for the hoeringsportal timeline module.
- */
 
 namespace Drupal\hoeringsportal_timeline\Form;
 
@@ -33,6 +29,7 @@ class HoeringsportalTimelineConfigForm extends ConfigFormBase {
    * Get key/value storage for base config.
    *
    * @return object
+   *   The settings.
    */
   private function getSettings() {
     return \Drupal::getContainer()->get('hoeringsportal_timeline.settings');
@@ -50,14 +47,14 @@ class HoeringsportalTimelineConfigForm extends ConfigFormBase {
       '#title' => t('General settings'),
     ];
 
-    $form['general']['node_ref'] = array(
+    $form['general']['node_ref'] = [
       '#title' => $this->t('Timeline page'),
       '#type' => 'entity_autocomplete',
       '#target_type' => 'node',
       '#default_value' => $node_reference,
       '#description' => t('Choose which page to add the timeline to'),
       '#weight' => '6',
-    );
+    ];
 
     return parent::buildForm($form, $form_state);
   }
@@ -68,10 +65,11 @@ class HoeringsportalTimelineConfigForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     // Save to config.
     // Set the configuration values.
-    $this->getSettings()->setMultiple(array(
+    $this->getSettings()->setMultiple([
       'node_ref' => $form_state->getValue('node_ref'),
-    ));
+    ]);
 
     drupal_flush_all_caches();
   }
+
 }

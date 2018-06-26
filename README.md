@@ -18,6 +18,21 @@ composer install
 ./vendor/bin/drush --yes cache-rebuild
 ```
 
+## Coding standards
+
+All code must follow the [Drupal coding standards](https://www.drupal.org/docs/develop/standards).
+
+Check the code by running
+
+```sh
+composer check-coding-standards
+```
+
+Apply automatic conding standard fixes by running
+
+```sh
+composer apply-coding-standards
+```
 
 ### Drush helper commands
 

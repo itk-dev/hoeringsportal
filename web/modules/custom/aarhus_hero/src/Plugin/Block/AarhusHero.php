@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Implements hero block
- */
 
 namespace Drupal\aarhus_hero\Plugin\Block;
 
@@ -25,21 +21,21 @@ class AarhusHero extends BlockBase {
   public function build() {
     $config = \Drupal::getContainer()->get('aarhus_hero.hero_config')->getAll();
     $file = ($config['hero_image']) ? File::load($config['hero_image']) : FALSE;
-    
-    return array(
+
+    return [
       '#type' => 'markup',
       '#theme' => 'aarhus_hero_block',
       '#config' => $config,
-      '#image' => array (
+      '#image' => [
         '#theme' => 'image_style',
         '#style_name' => 'hero',
         '#uri' => !empty($file) ? $file->getFileUri() : FALSE,
         '#alt' => $config['hero_title'],
-        '#attributes' => array (
-          'class' => 'hero__media'
-        ),
-      ),
-    );
+        '#attributes' => [
+          'class' => 'hero__media',
+        ],
+      ],
+    ];
   }
 
 }
