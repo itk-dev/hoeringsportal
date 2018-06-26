@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Implements timeline block
- */
 
 namespace Drupal\hoeringsportal_timeline\Plugin\Block;
 
@@ -26,12 +22,13 @@ class HoeringsportalTimeline extends BlockBase {
     $nid = \Drupal::routeMatch()->getParameter('node')->id();
 
     if (isset($config['node_ref']) && $nid == $config['node_ref']) {
-      return array(
+      return [
         '#type' => 'markup',
         '#theme' => 'hoeringsportal_timeline_block',
         '#config' => $config,
-      );
+      ];
     }
     return NULL;
   }
+
 }

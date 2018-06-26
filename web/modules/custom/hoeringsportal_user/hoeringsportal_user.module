@@ -1,10 +1,17 @@
 <?php
 
 /**
+ * @file
+ * Missing short description in doc comment.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
  * Implements hook_form_alter().
  */
-function hoeringsportal_user_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if($form_id == 'user_form') {
+function hoeringsportal_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_form') {
     $form['#theme'] = 'hoeringsportal_user_form';
     $form['#user_account'] = Drupal::request()->attributes->get('user');
   }
@@ -16,9 +23,9 @@ function hoeringsportal_user_form_alter(&$form, \Drupal\Core\Form\FormStateInter
  * Use a template for creating the full form.
  */
 function hoeringsportal_user_theme($existing, $type, $theme, $path) {
-  return array(
-    'hoeringsportal_user_form' => array(
+  return [
+    'hoeringsportal_user_form' => [
       'render element' => 'form',
-    ),
-  );
+    ],
+  ];
 }

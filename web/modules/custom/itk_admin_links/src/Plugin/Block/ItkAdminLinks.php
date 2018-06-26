@@ -7,7 +7,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
 
 /**
- * Provides admin links
+ * Provides admin links.
  *
  * @Block(
  *   id = "itk_admin_links",
@@ -15,30 +15,31 @@ use Drupal\Core\Access\AccessResult;
  * )
  */
 class ItkAdminLinks extends BlockBase {
+
   /**
    * {@inheritdoc}
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $variables = array();
+    $variables = [];
     $variables['nid'] = FALSE;
     if ($node) {
       $variables['nid'] = $node->id();
     }
 
-    return array(
+    return [
       '#type' => 'markup',
       '#theme' => 'itk_admin_links_block',
-      '#attached' => array(
-        'library' => array(
+      '#attached' => [
+        'library' => [
           'itk_admin_links/itk_admin_links',
-        ),
-      ),
-      '#cache' => array(
+        ],
+      ],
+      '#cache' => [
         'max-age' => 0,
-      ),
+      ],
       '#nid' => $variables['nid'],
-    );
+    ];
   }
 
   /**
@@ -47,5 +48,5 @@ class ItkAdminLinks extends BlockBase {
   public function blockAccess(AccountInterface $account, $return_as_object = FALSE) {
     return AccessResult::allowedIfHasPermission($account, 'access content overview');
   }
+
 }
-?>
