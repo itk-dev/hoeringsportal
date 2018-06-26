@@ -1,0 +1,22 @@
+# Copy this file to self.site.yml and edit as needed.
+# Docs at https://github.com/drush-ops/drush/blob/master/examples/example.site.yml
+
+dev:
+  root: «root»/web
+  uri: «uri»
+
+stg:
+  host: «host»
+  user: «ssh username»
+  root: «root»/web
+  uri: «uri»
+  paths:
+    drush-script: «root»/vendor/bin/drush
+
+prod:
+  host: «host»
+  user: «ssh username»
+  root: «root»/web
+  uri: «uri»
+  paths:
+    drush-script: «root»/vendor/bin/drush
