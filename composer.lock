@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2144c03ca99154100a9f9cac6de70d1d",
+    "content-hash": "3d636fb38ef5a31ca77aa0b0c4b476a8",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3156,6 +3156,37 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "itk-dev/composer-virtualenv",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-dev/composer-virtualenv.git",
+                "reference": "6623421fa5dd09d7915c4bf95d0b0f1c6e9da290"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-dev/composer-virtualenv/zipball/6623421fa5dd09d7915c4bf95d0b0f1c6e9da290",
+                "reference": "6623421fa5dd09d7915c4bf95d0b0f1c6e9da290",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/activate-virtualenv"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mikkel Ricky",
+                    "email": "rimi@aarhus.dk"
+                }
+            ],
+            "description": "A simple virtual environment for composer",
+            "time": "2018-06-09T10:40:37+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

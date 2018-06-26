@@ -10,6 +10,15 @@ composer install
 ./vendor/bin/drush runserver
 ```
 
+### Updating
+
+```sh
+composer install
+./vendor/bin/drush --yes config:import
+./vendor/bin/drush --yes cache-rebuild
+```
+
+
 ### Drush helper commands
 
 In Drush 9, shell aliases have gone the way of the dodo, so we need other tricks to pull data from remote sites:
@@ -21,3 +30,14 @@ Then you can pull remote data (database and files) by running
 ```sh
 ./drush/scripts/pull [stg|prod]
 ```
+
+## Composer virtualenv
+
+If you get tired of writing `./vendor/bin/drush`, you can run
+
+```sh
+source ./vendor/bin/activate
+```
+
+to add `vendor/bin` to your path. See
+https://github.com/itk-dev/composer-virtualenv for details.
