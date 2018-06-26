@@ -8,7 +8,6 @@ weight: 2
 is_admin: null
 permissions:
   - 'access administration pages'
-  - 'access hoeringsportal hotness settings'
   - 'access hoeringsportal timeline settings'
   - 'access content overview'
   - 'access hero configuration'

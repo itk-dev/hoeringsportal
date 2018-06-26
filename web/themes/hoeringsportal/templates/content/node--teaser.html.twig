@@ -71,7 +71,7 @@
  */
 #}
 
-<div class="card mb-5 {#hotness-{{ content.field_hotness.0['#markup'] ? content.field_hotness.0['#markup']|striptags : 1}}#}">
+<div class="card mb-5">
   <a href="{{ url }}">{{ content.field_image }}</a>
   <div class="card-body">
     <h5 class="card-title"><a href="{{ url }}" class="title">{{ label }}</a></h5>
@@ -86,7 +86,7 @@
       </div>
       <div class="col">
         <div class="float-right">
-          {{ content|without('body', 'links', 'field_image', 'field_category', 'field_hotness', 'field_teaser') }}
+          {{ content|without('body', 'links', 'field_image', 'field_category', 'field_teaser') }}
         </div>
       </div>
     </small>

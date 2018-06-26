@@ -90,7 +90,6 @@ function hoeringsportal_preprocess_node(&$variables) {
 function hoeringsportal_preprocess_flag(&$variables) {
   $flag_count = \Drupal::service('flag.count')->getEntityFlagCounts($variables['flaggable']);
   $variables['flag_count'] = isset($flag_count['promote']) ? $flag_count['promote'] : 0;
-  $variables['hotness'] = isset($variables['flaggable']->field_hotness->getValue()['0']) ? $variables['flaggable']->field_hotness->getValue()['0']['value'] : 1;
 }
 
 /**

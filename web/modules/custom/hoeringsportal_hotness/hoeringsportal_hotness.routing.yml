@@ -1,7 +1,0 @@
-hoeringsportal_hotness.settings:
-  path: '/admin/config/hotness'
-  defaults:
-    _form: '\Drupal\hoeringsportal_hotness\Form\HoeringsportalHotnessConfigForm'
-    _title: 'Hoeringsportal Hotness'
-  requirements:
-    _permission: 'access hoeringsportal hotness settings'

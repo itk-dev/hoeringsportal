@@ -3,7 +3,6 @@ module:
   better_exposed_filters: 0
   block: 0
   externalauth: 0
-  hoeringsportal_hotness: 0
   hoeringsportal_timeline: 0
   hoeringsportal_user: 0
   hoeringsportal_user_validate: 0

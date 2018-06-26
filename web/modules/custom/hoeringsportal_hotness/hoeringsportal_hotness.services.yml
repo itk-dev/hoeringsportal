@@ -1,9 +1,0 @@
-services:
-  hoeringsportal_hotness.flag_subscriber:
-    class: Drupal\hoeringsportal_hotness\EventSubscriber\FlagSubscriber
-    tags:
-      - { name: event_subscriber }
-
-  hoeringsportal_hotness.settings:
-    class: Drupal\hoeringsportal_hotness\State\HoeringsportalHotnessSettings
-    arguments: ['@serialization.json', '@database']
