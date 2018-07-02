@@ -1,0 +1,17 @@
+body {
+  background: $gray-100;
+  padding-top: 6rem;
+  word-wrap: break-word;
+  letter-spacing: .05em;
+}
+
+h1, h2, h3, h4, h5, legend {
+text-transform: uppercase;
+}
+p {
+max-width: 45rem;
+}
+
+a > {
+color: $gray-900;
+}
