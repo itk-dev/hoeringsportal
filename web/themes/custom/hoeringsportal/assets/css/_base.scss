@@ -6,12 +6,12 @@ body {
 }
 
 h1, h2, h3, h4, h5, legend {
-text-transform: uppercase;
+  text-transform: uppercase;
 }
 p {
-max-width: 45rem;
+  max-width: 45rem;
 }
 
 a > {
-color: $gray-900;
+  color: $gray-900;
 }

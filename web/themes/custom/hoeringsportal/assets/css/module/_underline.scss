@@ -8,10 +8,6 @@
       width: $underline-width;
       height: 4px;
       margin-top: $spacer/2;
-      background: $secondary;
-  }
-
-  &--primary:after {
       background: $primary;
   }
 }

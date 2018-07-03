@@ -4,6 +4,7 @@
   '_custom-variables',  // Import custom variables before bootstrap to secure override
   '_bootstrap-custom',  // Import custom bootstrap
   'layout/_aside',      // Import layout
+  '_base',              // Import basic styles
   'module/_nav',        // Import modules
   'module/_hero',
   'module/_btn',
@@ -14,4 +15,6 @@
   'module/_underline',
   'module/_timeline',
   'module/_status-messages',
-  'module/_campaign';
+  'module/_campaign',
+  'module/_activity-teaser',
+  'module/splash';

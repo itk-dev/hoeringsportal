@@ -1,0 +1,51 @@
+.activity-teaser{
+  position: relative;
+}
+.activity-teaser-splash {
+  position: absolute;
+  top: 0;
+  left: 15px;
+}
+.activity-teaser-image {
+  img {
+    width: 100%;
+  }
+}
+.activity-teaser-content {
+  background-color: $white;
+}
+.activity-teaser-title {
+  margin: 0;
+  padding: $spacer*2 $spacer*2 $spacer/4 $spacer*2;
+  font-weight: 600;
+}
+.activity-teaser-description {
+  margin: 0;
+  padding: $spacer/4 $spacer*2 $spacer $spacer*2;
+}
+.activity-teaser-info {
+  padding: $spacer $spacer*2 $spacer $spacer*2;
+  background-color: $white;
+  font-size: .7rem;
+  font-weight: 600;
+  border-spacing: 0;
+}
+.activity-teaser-project-name {
+  color: $primary;
+  margin-right: $spacer*2;
+}
+.activity-teaser-area {
+  color: $gray-600;
+  margin-right: $spacer/3;
+}
+.activity-teaser-type {
+  color: $gray-600;
+  padding-left: $spacer/2;
+  margin-right: $spacer/3;
+  border-left: 2px solid $gray-600;
+}
+.activity-teaser-id {
+  padding-left: $spacer/2;
+  color: $gray-600;
+  border-left: 2px solid $gray-600;
+}
