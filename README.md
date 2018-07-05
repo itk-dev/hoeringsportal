@@ -28,11 +28,11 @@ Check the code by running
 composer check-coding-standards
 ```
 
-Apply automatic conding standard fixes by running
+Apply automatic coding standard fixes by running
 
 ```sh
 composer apply-coding-standards
-```g
+```
 
 ### Drush helper commands
 

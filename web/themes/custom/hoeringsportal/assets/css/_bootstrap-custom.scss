@@ -1,3 +1,4 @@
+/* stylelint-disable color-no-hex */
 $white:    #fff;
 $gray-100: #f6f6f6;
 $gray-200: #eaeaea;
@@ -50,6 +51,7 @@ $primary: $petroleum;
 
 // Set primary color
 $secondary: $black;
+/* stylelint-enable */
 
 // Set default font
 $font-family-sans-serif: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
