@@ -4,11 +4,58 @@
 
 ### Built-in server
 
+Create a database connection in settings.local.php
+```sh
+<?php
+/**
+ * Add development service settings.
+ */
+if (file_exists(__DIR__ . '/services.local.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+}
+
+
+/**
+ * Disable CSS and JS aggregation.
+ */
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
+
+
+/**
+ * Set Hash salt value
+ */
+$settings['hash_salt'] = 'GIVE_ME_STRING';
+
+
+/**
+ * Set local db
+ */
+$databases['default']['default'] = array (
+  'database' => 'hoeringsportal',
+  'username' => 'dev',
+  'password' => 'password',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+
+
+/**
+ * Set sync path
+ */
+$config_directories['sync'] = '../config/sync';
+```
+
+Create db and start server
 ```sh
 composer install
-./vendor/bin/drush  --yes site-install minimal --db-url='mysql://dev:password@localhost/hoeringsportal' --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
+./vendor/bin/drush  --yes site-install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
 ./vendor/bin/drush runserver
 ```
+
 
 ### Updating
 
