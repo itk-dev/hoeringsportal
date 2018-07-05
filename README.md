@@ -37,7 +37,7 @@ $databases['default']['default'] = array (
   'password' => 'password',
   'prefix' => '',
   'host' => 'localhost',
-  'port' => '3306',
+  'port' => '',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
