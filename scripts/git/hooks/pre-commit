@@ -8,4 +8,7 @@ if git status --short | grep '^M.*\.\(scs\|j\)s$'; then
   cd -
 fi
 
+composer check-coding-standards
+npm run --prefix web/themes/custom/hoeringsportal check-coding-standards
+
 exit 0

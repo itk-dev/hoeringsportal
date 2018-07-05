@@ -6,6 +6,7 @@
   <file>web/themes/custom/</file>
 
   <!-- Exclude generated files -->
+  <exclude-pattern>node_modules</exclude-pattern>
   <exclude-pattern>web/themes/custom/*/build/</exclude-pattern>
   <exclude-pattern>web/modules/custom/itk_admin_links/css/itk-admin-links.css</exclude-pattern>
 
