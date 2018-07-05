@@ -1,0 +1,46 @@
+.page-teaser {
+  margin-bottom: $spacer*2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .bg-gray-900 {
+    background-color: $gray-900;
+    border-bottom: 2px solid lighten($gray-900, 10%);
+    height: 100%;
+  }
+  .bg-petroleum-light {
+    background-color: $petroleum-light;
+    border-bottom: 2px solid darken($petroleum-light, 10%);
+  }
+  .bg-petroleum {
+    background-color: $petroleum;
+    border-bottom: 2px solid darken($petroleum, 10%);
+  }
+}
+.page-teaser-content {
+  color: $white;
+  padding: $spacer*2;
+  height: 100%;
+  &:hover {
+    color: $white;
+  }
+}
+.page-teaser-title {
+  font-family: $font-family-black;
+  flex: 1;
+  text-transform: uppercase;
+  &.underlined {
+    &:after {
+      background: $white;
+      height: 2px;
+    }
+  }
+}
+.page-teaser-description {
+  flex: 1;
+}
+.page-teaser-link {
+  position: absolute;
+  bottom: $spacer;
+  right: $spacer*2;
+}

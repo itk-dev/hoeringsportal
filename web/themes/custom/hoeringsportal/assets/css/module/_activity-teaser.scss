@@ -1,5 +1,8 @@
 .activity-teaser{
   position: relative;
+  margin-bottom: $spacer*2;
+  display: flex;
+  flex-direction: column;
 }
 .activity-teaser-splash {
   position: absolute;
@@ -9,26 +12,37 @@
 .activity-teaser-image {
   img {
     width: 100%;
+    height: 200px;
   }
 }
 .activity-teaser-content {
   background-color: $white;
+  flex: 2 0 auto;
 }
 .activity-teaser-title {
+  display: block;
   margin: 0;
   padding: $spacer*2 $spacer*2 $spacer/4 $spacer*2;
   font-weight: 600;
+  color: $gray-900;
+  text-transform: uppercase;
 }
 .activity-teaser-description {
+  display: block;
   margin: 0;
   padding: $spacer/4 $spacer*2 $spacer $spacer*2;
+  color: $gray-900;
 }
 .activity-teaser-info {
   padding: $spacer $spacer*2 $spacer $spacer*2;
   background-color: $white;
   font-size: .7rem;
   font-weight: 600;
+  line-height: 1rem;
+  vertical-align: middle;
   border-spacing: 0;
+  flex: 0 0 auto;
+  border-bottom: 2px solid $gray-200;
 }
 .activity-teaser-project-name {
   color: $primary;
@@ -48,4 +62,11 @@
   padding-left: $spacer/2;
   color: $gray-600;
   border-left: 2px solid $gray-600;
+}
+.activity-teaser-link {
+  color: $primary;
+  font-size: 1rem;
+  position: absolute;
+  bottom: $spacer;
+  right: $spacer*2;
 }
