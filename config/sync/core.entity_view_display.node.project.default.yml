@@ -3,12 +3,11 @@ langcode: da
 status: true
 dependencies:
   config:
-    - field.field.node.project.field_image
+    - field.field.node.project.field_media_image
     - field.field.node.project.field_teaser
     - node.type.project
   module:
     - ds
-    - image
     - user
 third_party_settings:
   ds:
@@ -21,9 +20,9 @@ third_party_settings:
     regions:
       top:
         - node_title
+        - field_media_image
       first:
         - field_teaser
-        - field_image
         - node_changed_date
     fields:
       node_changed_date:
@@ -41,15 +40,17 @@ targetEntityType: node
 bundle: project
 mode: default
 content:
-  field_image:
-    weight: 2
+  field_media_image:
+    weight: 3
     label: hidden
     settings:
-      image_link: ''
-      image_style: ''
-    third_party_settings: {  }
-    type: image
-    region: first
+      view_mode: default
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: top
   field_teaser:
     weight: 1
     label: hidden

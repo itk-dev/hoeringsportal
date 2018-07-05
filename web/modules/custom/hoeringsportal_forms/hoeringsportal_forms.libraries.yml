@@ -1,0 +1,5 @@
+form_styles:
+  version: VERSION
+  css:
+    theme:
+      css/backend_forms.css: { media: screen }
