@@ -36,6 +36,7 @@
         "drupal/pathauto": "^1.2",
         "drupal/samlauth": "^2.0",
         "drupal/toolbar_visibility": "^1.2",
+        "drupal/viewsreference": "^1.2",
         "drush/drush": "^9.0.0",
         "itk-dev/composer-virtualenv": "^1.0",
         "onelogin/php-saml": "dev-3.0.0-namespaceless as 2.5",

@@ -3,16 +3,50 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.landing_page.field_section
     - node.type.landing_page
   module:
+    - ds
+    - entity_reference_revisions
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - langcode
+        - links
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
 mode: default
 content:
+  field_section:
+    type: entity_reference_revisions_entity_view
+    weight: 101
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+  langcode:
+    type: language
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
   links:
     weight: 100
     region: content
-hidden:
-  langcode: true
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

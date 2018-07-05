@@ -5,14 +5,37 @@ dependencies:
   config:
     - node.type.project
   module:
+    - ds
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_twocol
+      library: layout_discovery/twocol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - langcode
+        - links
 id: node.project.default
 targetEntityType: node
 bundle: project
 mode: default
 content:
+  langcode:
+    type: language
+    weight: 0
+    region: top
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
   links:
     weight: 100
-    region: content
-hidden:
-  langcode: true
+    region: top
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
