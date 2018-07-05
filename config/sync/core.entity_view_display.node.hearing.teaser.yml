@@ -4,16 +4,33 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.hearing.field_image
+    - field.field.node.hearing.field_teaser
     - node.type.hearing
   module:
+    - image
     - user
 id: node.hearing.teaser
 targetEntityType: node
 bundle: hearing
 mode: teaser
 content:
-  links:
-    weight: 100
+  field_image:
+    type: image
+    weight: 1
     region: content
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  field_teaser:
+    type: basic_string
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
+  links: true

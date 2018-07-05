@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.static_page.field_teaser
     - node.type.static_page
   module:
     - user
@@ -12,8 +13,13 @@ targetEntityType: node
 bundle: static_page
 mode: teaser
 content:
-  links:
-    weight: 100
+  field_teaser:
+    type: basic_string
+    weight: 0
     region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
+  links: true

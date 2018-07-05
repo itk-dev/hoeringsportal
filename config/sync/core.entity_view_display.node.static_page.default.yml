@@ -3,6 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.static_page.field_teaser
     - node.type.static_page
   module:
     - ds
@@ -14,30 +15,40 @@ third_party_settings:
       library: layout_discovery/twocol
       disable_css: false
       entity_classes: all_classes
-      settings:
-        classes: {  }
-        wrappers:
-          top: div
-          first: div
-          second: div
-          bottom: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
+      settings: {  }
     regions:
       top:
-        - langcode
-        - links
+        - node_title
+      first:
+        - field_teaser
+        - node_changed_date
+    fields:
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 2
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: h1
+          class: ''
+          link: false
 id: node.static_page.default
 targetEntityType: node
 bundle: static_page
 mode: default
 content:
-  links:
-    weight: 100
-    region: content
+  field_teaser:
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    type: basic_string
+    region: first
 hidden:
   langcode: true
+  links: true

@@ -3,9 +3,12 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.project.field_image
+    - field.field.node.project.field_teaser
     - node.type.project
   module:
     - ds
+    - image
     - user
 third_party_settings:
   ds:
@@ -17,25 +20,43 @@ third_party_settings:
       settings: {  }
     regions:
       top:
-        - langcode
-        - links
+        - node_title
+      first:
+        - field_teaser
+        - field_image
+        - node_changed_date
+    fields:
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 3
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
 id: node.project.default
 targetEntityType: node
 bundle: project
 mode: default
 content:
-  langcode:
-    type: language
-    weight: 0
-    region: top
-    label: above
+  field_image:
+    weight: 2
+    label: hidden
     settings:
-      link_to_entity: false
-      native_language: false
+      image_link: ''
+      image_style: ''
     third_party_settings: {  }
-  links:
-    weight: 100
-    region: top
+    type: image
+    region: first
+  field_teaser:
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+    type: basic_string
+    region: first
+hidden:
+  langcode: true
+  links: true

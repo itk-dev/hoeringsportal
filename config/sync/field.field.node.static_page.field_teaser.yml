@@ -1,0 +1,19 @@
+uuid: a8631aa1-706f-4390-a1d0-6fdfb6e49d8c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teaser
+    - node.type.static_page
+id: node.static_page.field_teaser
+field_name: field_teaser
+entity_type: node
+bundle: static_page
+label: Teaser/indledning
+description: 'Kort tekst der vises i teasers og i toppen af indholdsviningen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

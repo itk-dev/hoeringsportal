@@ -3,9 +3,12 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.hearing.field_image
+    - field.field.node.hearing.field_teaser
     - node.type.hearing
   module:
     - ds
+    - image
     - user
 third_party_settings:
   ds:
@@ -14,30 +17,48 @@ third_party_settings:
       library: layout_discovery/twocol
       disable_css: false
       entity_classes: all_classes
-      settings:
-        classes: {  }
-        wrappers:
-          top: div
-          first: div
-          second: div
-          bottom: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
+      settings: {  }
     regions:
       top:
-        - langcode
-        - links
+        - node_title
+      first:
+        - field_teaser
+        - field_image
+        - node_changed_date
+    fields:
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 3
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
 mode: default
 content:
-  links:
-    weight: 100
-    region: content
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings:
+      ds:
+        ds_limit: '1'
+    type: image
+    region: first
+  field_teaser:
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+    type: basic_string
+    region: first
 hidden:
   langcode: true
+  links: true
