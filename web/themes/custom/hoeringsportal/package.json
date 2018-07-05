@@ -7,17 +7,37 @@
   "description": "Høringsportal website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-coding-standards-stylelint": "stylelint --config=.stylelintrc.js 'assets/**/*.scss'",
+    "check-coding-standards-scss": "npm run check-coding-standards-stylelint",
+    "check-coding-standards-eslint": "eslint --config .eslintrc.js 'assets/**/*.js'",
+    "check-coding-standards-js": "npm run check-coding-standards-eslint",
+    "check-coding-standards": "npm run check-coding-standards-scss; npm run check-coding-standards-js",
+    "apply-coding-standards-stylelint": "stylelint --config=.stylelintrc.js 'assets/**/*.scss' --fix",
+    "apply-coding-standards-scss": "npm run apply-coding-standards-stylelint",
+    "apply-coding-standards-eslint": "eslint --config .eslintrc.js 'assets/**/*.js' --fix",
+    "apply-coding-standards-js": "npm run apply-coding-standards-eslint",
+    "apply-coding-standards": "npm run apply-coding-standards-scss; npm run apply-coding-standards-js"
   },
   "author": "ITK",
   "license": "ISC",
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
     "bootstrap": "^4.1.1",
+    "eslint": "^5.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
     "jquery": "^3.3.1",
     "node-sass": "^4.9.0",
     "popper.js": "^1.14.3",
-    "sass-loader": "^7.0.3"
+    "sass-loader": "^7.0.3",
+    "standard": "^11.0.1",
+    "stylelint": "^9.3.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-scss": "^3.1.3"
   },
   "dependencies": {
     "npm": "^5.8.0"

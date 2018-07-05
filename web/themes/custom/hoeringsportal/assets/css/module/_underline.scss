@@ -2,12 +2,12 @@
   margin-bottom: $spacer*1.2;
 
   &:after {
-      @include transition-std(width, ease-in-out, 200ms);
-      content: "";
-      display: block;
-      width: $underline-width;
-      height: 4px;
-      margin-top: $spacer/2;
-      background: $primary;
+    @include transition-std(width, ease-in-out, 200ms);
+    content: "";
+    display: block;
+    width: $underline-width;
+    height: 4px;
+    margin-top: $spacer/2;
+    background: $primary;
   }
 }

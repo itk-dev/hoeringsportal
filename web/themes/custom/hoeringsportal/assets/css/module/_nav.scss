@@ -2,7 +2,7 @@ nav.navbar {
   box-shadow: 0 0 10px rgba(0,0,0,.25);
   transition: padding .4s ease-out;
   .scrolled & {
-    padding: 0.1rem 1rem;
+    padding: .1rem 1rem;
     transition: padding .2s ease-in;
   }
 }
