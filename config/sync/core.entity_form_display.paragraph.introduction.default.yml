@@ -1,0 +1,44 @@
+uuid: 1e6c7acc-76b2-44c9-a540-9bc4b8ca115b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.introduction.field_intro_body
+    - field.field.paragraph.introduction.field_intro_link
+    - field.field.paragraph.introduction.field_intro_title
+    - paragraphs.paragraphs_type.introduction
+  module:
+    - link
+id: paragraph.introduction.default
+targetEntityType: paragraph
+bundle: introduction
+mode: default
+content:
+  field_intro_body:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_intro_link:
+    weight: 2
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_intro_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

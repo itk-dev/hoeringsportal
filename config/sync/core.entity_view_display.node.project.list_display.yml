@@ -1,0 +1,42 @@
+uuid: 792094a9-b1a5-4b9c-af69-5dc0d0f332ff
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_display
+    - node.type.project
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_twocol
+      library: layout_discovery/twocol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - langcode
+        - links
+id: node.project.list_display
+targetEntityType: node
+bundle: project
+mode: list_display
+content:
+  langcode:
+    type: language
+    weight: 0
+    region: top
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+  links:
+    weight: 100
+    region: top
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

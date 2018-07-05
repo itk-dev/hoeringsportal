@@ -1,0 +1,9 @@
+uuid: 3bfcfeae-fe97-4e1f-9273-7f3c1bc573c4
+langcode: da
+status: true
+dependencies: {  }
+id: teaser_row
+label: 'Teaser række'
+icon_uuid: null
+description: 'En række teasers af projekter, høringer og statiske sider'
+behavior_plugins: {  }
