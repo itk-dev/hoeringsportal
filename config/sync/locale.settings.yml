@@ -1,0 +1,6 @@
+translation:
+  update_interval_days: 0
+  use_source: remote_and_local
+  overwrite_customized: false
+  overwrite_not_customized: false
+  path: sites/default/files/languages
