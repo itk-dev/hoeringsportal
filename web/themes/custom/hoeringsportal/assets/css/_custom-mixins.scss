@@ -1,65 +1,65 @@
-﻿@mixin custom-font() {
-    font-family: $font-family-sans-serif;
+@mixin custom-font() {
+  font-family: $font-family-sans-serif;
 }
 
 @mixin title() {
-    font-size: $font-size-h1-responsive;
-    font-weight: $font-weight-black;
+  font-size: $font-size-h1-responsive;
+  font-weight: $font-weight-black;
 
-    @include breakpoint(xs){
-        font-size: $font-size-h1;
-    }
+  @include breakpoint(xs) {
+    font-size: $font-size-h1;
+  }
 }
 
-@mixin link-with-arrow($link-color: $text-color, $arrow-color: $brand-secondary){
-    position: relative;
-    display: inline-block;
-    color: $link-color;
-    margin-left: $default-spacing*1.5;
+@mixin link-with-arrow($link-color: $text-color, $arrow-color: $brand-secondary) {
+  position: relative;
+  display: inline-block;
+  color: $link-color;
+  margin-left: $default-spacing*1.5;
 
-    &:before {
-        @include icon-arrow-right-alt;
-        position: absolute;
-        left: 0;
-        display: inline-block;
-        margin-right: $default-spacing/2;
-        margin-left: -$default-spacing*1.5;
-        color: $arrow-color;
-        text-decoration: none !important;
-    }
-    &:hover{
-        text-decoration: underline;
-    }
+  &:before {
+    @include icon-arrow-right-alt;
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    margin-right: $default-spacing/2;
+    margin-left: -$default-spacing*1.5;
+    color: $arrow-color;
+    text-decoration: none !important;
+  }
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @mixin equal-height-row() {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 @mixin align-vertically() {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 @mixin material-shadow() {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.12), 0 3px 6px rgba(0,0,0,0.19);
+  box-shadow: 0 3px 6px rgba(0,0,0,.12), 0 3px 6px rgba(0,0,0,.19);
 }
 
 @mixin screen-reader-text() {
-    clip: rect(1px, 1px, 1px, 1px);
-    height: 1px;
-    overflow: hidden;
-    position: absolute !important;
-    width: 1px;
-    word-wrap: normal !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
 }
 
 @mixin transition-std($target: all, $ease: ease-in-out, $duration: 200ms, $delay: 0ms) {
-    -webkit-transition: $target $ease $duration $delay;
-    -o-transition: $target $ease $duration $delay;
-    transition: $target $ease $duration $delay;
+  -webkit-transition: $target $ease $duration $delay;
+  -o-transition: $target $ease $duration $delay;
+  transition: $target $ease $duration $delay;
 }
 
 @mixin element-theme($full-bg, $light-bg, $text) {
@@ -67,28 +67,28 @@
   background: $full-bg;
 
   .bg-light {
-      color: $black;
-      background: $light-bg;
+    color: $black;
+    background: $light-bg;
   }
 
   a,
   .link,
   .link:before {
-      color: $text;
+    color: $text;
 
-      span{
-          color: $text;
-      }
+    span {
+      color: $text;
+    }
   }
 
   a:hover {
-      color: $text;
+    color: $text;
   }
 
   .underlined {
-      &:after {
-          background: $text;
-      }
+    &:after {
+      background: $text;
+    }
   }
 }
 
@@ -99,27 +99,27 @@
  */
 
 @function between($to, $from, $toWidth, $fromWidth) {
-    $slope: ($to - $from) / ($toWidth - $fromWidth);
-    $base: $from - $slope * $fromWidth;
+  $slope: ($to - $from) / ($toWidth - $fromWidth);
+  $base: $from - $slope * $fromWidth;
 
-    @return calc(#{$base} + #{100vw * $slope});
+  @return calc(#{$base} + #{100vw * $slope});
 }
 
 @mixin hover-animation() {
-    a {
-        @include transition-std(transform, linear, 200ms);
-        display: block;
-        position: relative;
+  a {
+    @include transition-std(transform, linear, 200ms);
+    display: block;
+    position: relative;
 
-        &:hover {
-            @include move-link-right();
-        }
+    &:hover {
+      @include move-link-right();
     }
+  }
 }
 
-@mixin move-link-right(){
-    transform: translateX(10px);
+@mixin move-link-right() {
+  transform: translateX(10px);
 }
-@mixin move-link-left(){
-    transform: translateX(-10px);
+@mixin move-link-left() {
+  transform: translateX(-10px);
 }

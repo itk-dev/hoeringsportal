@@ -1,7 +1,11 @@
 .page-teaser {
   margin-bottom: $spacer*2;
-
-
+}
+.page-teaser-link {
+  font-size: .8rem;
+  position: absolute;
+  bottom: $spacer;
+  right: $spacer*2.5;
 }
 .page-teaser-anchorblock {
   height: 100%;
@@ -60,10 +64,4 @@
       height: 2px;
     }
   }
-}
-.page-teaser-link {
-  font-size: .8rem;
-  position: absolute;
-  bottom: $spacer;
-  right: $spacer*2.5;
 }
