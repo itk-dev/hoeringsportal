@@ -5,7 +5,7 @@
 ### Built-in server
 
 Create a database connection in settings.local.php
-```sh
+```php
 <?php
 /**
  * Add development service settings.
