@@ -1,0 +1,18 @@
+uuid: c73fc04d-710c-4ee2-9cc6-4afe0792ec65
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.hearing
+  module:
+    - user
+id: node.hearing.default
+targetEntityType: node
+bundle: hearing
+mode: default
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

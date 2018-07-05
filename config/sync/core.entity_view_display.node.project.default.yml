@@ -1,0 +1,18 @@
+uuid: 92384bf2-3974-46c7-96e2-d396f92f15e3
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.project
+  module:
+    - user
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

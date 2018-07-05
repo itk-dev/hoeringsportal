@@ -1,0 +1,20 @@
+uuid: 6805677c-1fec-40f5-bf98-da9e22653885
+langcode: da
+status: true
+dependencies:
+  module:
+    - itk_admin_links
+  theme:
+    - hoeringsportal
+id: itkadminlinks
+theme: hoeringsportal
+region: content
+weight: 0
+provider: null
+plugin: itk_admin_links
+settings:
+  id: itk_admin_links
+  label: 'ITK Admin links'
+  provider: itk_admin_links
+  label_display: '0'
+visibility: {  }

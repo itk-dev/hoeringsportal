@@ -1,0 +1,19 @@
+uuid: 5da4173e-8796-4ff8-a95e-18d216c7c7f9
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.hearing
+  module:
+    - user
+id: node.hearing.teaser
+targetEntityType: node
+bundle: hearing
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true

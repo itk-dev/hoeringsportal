@@ -1,0 +1,22 @@
+uuid: 2f88d54e-d298-499a-ae3f-4564520f2782
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.hearing
+id: node.hearing.promote
+field_name: promote
+entity_type: node
+bundle: hearing
+label: 'Forfremmet til forside'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Tilsluttet
+  off_label: Afbrudt
+field_type: boolean

@@ -1,0 +1,18 @@
+uuid: 1cc52940-fb47-4edf-a065-e05316f14409
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.static_page
+  module:
+    - user
+id: node.static_page.default
+targetEntityType: node
+bundle: static_page
+mode: default
+content:
+  links:
+    weight: 100
+    region: content
+hidden:
+  langcode: true
