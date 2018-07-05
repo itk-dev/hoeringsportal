@@ -1,0 +1,24 @@
+uuid: 234800f4-931d-492a-a514-38bbb080fd3d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_mime_type
+    - media_entity.bundle.document
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: K5FqVzngUVtswIYE6s-L5CWxhZaEEaXnqAsfUWExqk4
+id: media.document.field_itk_media_mime_type
+field_name: field_itk_media_mime_type
+entity_type: media
+bundle: document
+label: 'Mime type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

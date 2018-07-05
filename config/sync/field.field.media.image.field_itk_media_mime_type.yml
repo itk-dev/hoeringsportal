@@ -1,0 +1,24 @@
+uuid: 8cabab2a-169b-4ef9-bfe4-e23e517a9466
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_mime_type
+    - media_entity.bundle.image
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: mkrOJlQ29uqCVArLTZesuMZM_U_OnKcaUgimUKCtlfE
+id: media.image.field_itk_media_mime_type
+field_name: field_itk_media_mime_type
+entity_type: media
+bundle: image
+label: 'Mime type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

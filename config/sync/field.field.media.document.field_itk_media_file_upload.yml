@@ -1,0 +1,32 @@
+uuid: 3741e358-42fa-4418-ab7e-8c5a7f6b67d1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_file_upload
+    - media_entity.bundle.document
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - file
+_core:
+  default_config_hash: oZs81MfjcHU1_yismzFMO18lmmGHfNMFtRTcKtsPn54
+id: media.document.field_itk_media_file_upload
+field_name: field_itk_media_file_upload
+entity_type: media
+bundle: document
+label: 'File upload'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: documents
+  file_extensions: 'txt pdf doc docx xls xlsx'
+  max_filesize: ''
+  description_field: true
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

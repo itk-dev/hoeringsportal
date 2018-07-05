@@ -1,0 +1,24 @@
+uuid: 1578d44e-a3c4-48e5-b330-3d74bf228f47
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_height
+    - media_entity.bundle.image
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: uAGI7I1RyE9G9uK-bl4-JlrDWOjs0xeWKMHpGTm9oME
+id: media.image.field_itk_media_height
+field_name: field_itk_media_height
+entity_type: media
+bundle: image
+label: Height
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

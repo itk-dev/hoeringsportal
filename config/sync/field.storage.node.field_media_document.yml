@@ -1,0 +1,25 @@
+uuid: 196a5303-b73f-4dab-9a36-9433f65b287e
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - media_entity
+    - node
+_core:
+  default_config_hash: o-IPD1HD8Rh5pufw5ihhheCLGrbNiWfi3T3xkkfpsb4
+id: node.field_media_document
+field_name: field_media_document
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

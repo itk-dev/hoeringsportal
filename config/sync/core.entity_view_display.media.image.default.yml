@@ -1,0 +1,43 @@
+uuid: ca355cee-53a5-4bc7-8c5d-db7323fa95c1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.media.image.field_itk_media_height
+    - field.field.media.image.field_itk_media_image_upload
+    - field.field.media.image.field_itk_media_mime_type
+    - field.field.media.image.field_itk_media_tag
+    - field.field.media.image.field_itk_media_width
+    - image.style.hero
+    - media_entity.bundle.image
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - image
+_core:
+  default_config_hash: r2D8FRB9bVoyV9vMLbHf7Gu2frkq-K-rDQ-KiDImZ-M
+id: media.image.default
+targetEntityType: media
+bundle: image
+mode: default
+content:
+  field_itk_media_image_upload:
+    type: image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: hero
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_itk_media_height: true
+  field_itk_media_mime_type: true
+  field_itk_media_tag: true
+  field_itk_media_width: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

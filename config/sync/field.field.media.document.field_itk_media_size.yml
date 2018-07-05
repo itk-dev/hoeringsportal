@@ -1,0 +1,24 @@
+uuid: 12023d84-30ab-4a97-88c5-7f86e0817096
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_size
+    - media_entity.bundle.document
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: MFDq949lumFSz2z4AjPXd5oarO8mV2aQ8hWuUWIRo-A
+id: media.document.field_itk_media_size
+field_name: field_itk_media_size
+entity_type: media
+bundle: document
+label: Size
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
