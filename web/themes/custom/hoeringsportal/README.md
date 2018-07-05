@@ -31,3 +31,25 @@ Build for production:
 ```
 ./node_modules/.bin/encore production
 ```
+
+## Coding standards
+
+This project follows conding standards.
+
+### Scss
+
+Run
+
+```sh
+npm run check-coding-standards
+```
+
+to check coding standards in `scss` files.
+
+Some coding standards issues can be fixed automatically. Run
+
+```sh
+npm run apply-coding-standards
+```
+
+to apply any possible automatic fixes.
