@@ -19,8 +19,7 @@ third_party_settings:
       settings: {  }
     regions:
       content:
-        - langcode
-        - links
+        - field_section
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -28,25 +27,15 @@ mode: default
 content:
   field_section:
     type: entity_reference_revisions_entity_view
-    weight: 101
-    label: above
+    weight: 0
+    region: content
+    label: hidden
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
-    region: content
-  langcode:
-    type: language
-    weight: 0
-    region: content
-    label: above
-    settings:
-      link_to_entity: false
-      native_language: false
-    third_party_settings: {  }
-  links:
-    weight: 100
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+    third_party_settings:
+      ds:
+        ds_limit: ''
+hidden:
+  langcode: true
+  links: true
