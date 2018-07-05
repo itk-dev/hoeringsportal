@@ -1,0 +1,22 @@
+uuid: 47a5f2c7-d384-4a7c-b921-35460218dcf0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hoeringsportal
+_core:
+  default_config_hash: 5MNdk3fpMKx_xxBTcz2T11DL4XEU1H5SgHl8BsYdFsA
+id: hoeringsportal_messages
+theme: hoeringsportal
+region: header
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }
