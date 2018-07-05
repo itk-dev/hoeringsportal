@@ -11,9 +11,9 @@
   display: flex;
   flex-direction: column;
   &:hover {
-    @include transition-std(transform, ease-in, 100ms);
+    @include transition-std(transform, ease-in, 200ms);
     .activity-teaser-link {
-      @include transition-std(transform, ease-out, 300ms);
+      @include transition-std(transform, ease-out, 400ms);
       @include move-link-right();
     }
   }
