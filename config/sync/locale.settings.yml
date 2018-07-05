@@ -4,3 +4,4 @@ translation:
   overwrite_customized: false
   overwrite_not_customized: false
   path: sites/default/files/languages
+langcode: da
