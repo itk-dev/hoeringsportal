@@ -83,14 +83,6 @@ function hoeringsportal_preprocess_form_element__radio(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_node().
- */
-function hoeringsportal_preprocess_node(&$variables) {
-  $variables['comment_count'] = $variables['node']->get('field_comments')->comment_count;
-  $variables['flag_count'] = \Drupal::service('flag.count')->getEntityFlagCounts($variables['node']);
-}
-
-/**
  * Implements hook_preprocess_flag().
  */
 function hoeringsportal_preprocess_flag(&$variables) {
