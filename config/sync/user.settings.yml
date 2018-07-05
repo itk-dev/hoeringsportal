@@ -1,5 +1,5 @@
 anonymous: Anonymous
-verify_mail: false
+verify_mail: true
 notify:
   cancel_confirm: true
   password_reset: true
@@ -9,10 +9,10 @@ notify:
   register_admin_created: true
   register_no_approval_required: true
   register_pending_approval: true
-register: visitors
-cancel_method: user_cancel_reassign
+register: visitors_admin_approval
+cancel_method: user_cancel_block
 password_reset_timeout: 86400
-password_strength: false
-langcode: da
+password_strength: true
+langcode: en
 _core:
   default_config_hash: w314Zp7B4NbrlV4KeeZLNSmTTpdJiv-KwZO2E1fSSK0

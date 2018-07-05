@@ -1,15 +1,14 @@
-uuid: 2b7394c9-e595-45f9-aef4-4ec7de782c82
-name: 'Høringsportalen'
+uuid: a130e152-234f-4e15-a1f6-13b2b5896723
+name: 'Drush Site-Install'
 mail: admin@example.com
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /front
+  front: /user/login
 admin_compact_mode: false
 weight_select_max: 100
-langcode: da
-default_langcode: da
+langcode: en
+default_langcode: en
 _core:
   default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
-mail_notification: ''

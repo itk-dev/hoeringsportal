@@ -1,16 +1,12 @@
-uuid: 3a28b005-d189-4a62-9d7b-2d0a5290514e
-langcode: da
+uuid: a569129e-3b63-4931-9d9b-c301cf867b5f
+langcode: en
 status: true
 dependencies: {  }
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
 id: anonymous
-label: 'Anonym bruger'
+label: 'Anonymous user'
 weight: 0
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
-  - 'flag promote'
-  - 'unflag promote'
-  - 'view the administration theme'
