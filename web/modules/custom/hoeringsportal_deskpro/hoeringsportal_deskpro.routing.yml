@@ -1,0 +1,15 @@
+hoeringsportal_deskpro.deskpro_controller_hearings_tickets:
+  path: '/hoeringsportal_deskpro/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::hearingTickets'
+    _title: 'Ticket'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.deskpro_controller_tickets_messages:
+  path: '/hoeringsportal_deskpro/tickets/{ticket}/messages'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::ticketMessages'
+    _title: 'Ticket messages'
+  requirements:
+    _permission: 'access content'

@@ -27,6 +27,16 @@ $settings['install_profile'] = 'minimal';
 // Configuration sync path.
 $config_directories['sync'] = '../config/sync';
 
+// Deskpro configuration.
+$settings['hoeringsportal_deskpro.deskpro'] = [
+	// Deskpro API base url, e.g. 'https://demo.deskpro.com'
+  'deskpro_url' => null,
+	// See https://manuals.deskpro.com/html/developer-apps/api/managing-api-keys.html
+  'api_code_key' => null,
+	// Deskpro field id of the "hearing" custom field.
+  'hearing_field_id' => null,
+];
+
 // Local settings. These come last so that they can override anything.
 if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';

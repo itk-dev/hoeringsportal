@@ -1,0 +1,17 @@
+{
+  "name": "drupal/hoeringsportal_deskpro",
+  "type": "drupal-module",
+  "description": "Deskpro integration",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/hoeringsportal_deskpro",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/hoeringsportal_deskpro",
+    "source": "http://cgit.drupalcode.org/hoeringsportal_deskpro"
+  },
+  "require": {
+      "guzzlehttp/guzzle": "^6.3",
+    "deskpro/deskpro-api-client-php": "^2.0"
+  }
+}

@@ -1,0 +1,4 @@
+services:
+  hoeringsportal_deskpro.deskpro:
+    class: Drupal\hoeringsportal_deskpro\Service\DeskproService
+    arguments: ['@settings']
