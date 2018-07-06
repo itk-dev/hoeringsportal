@@ -4,11 +4,68 @@
 
 ### Built-in server
 
+Create a database connection in settings.local.php
+```php
+<?php
+/**
+ * Add development service settings.
+ */
+if (file_exists(__DIR__ . '/services.local.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+}
+
+
+/**
+ * Disable CSS and JS aggregation.
+ */
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
+
+
+/**
+ * Set Hash salt value
+ */
+$settings['hash_salt'] = 'GIVE_ME_STRING';
+
+
+/**
+ * Set local db
+ */
+$databases['default']['default'] = array (
+  'database' => 'hoeringsportal',
+  'username' => 'dev',
+  'password' => 'password',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+
+
+/**
+ * Set sync path
+ */
+$config_directories['sync'] = '../config/sync';
+```
+
+Create db
 ```sh
 composer install
-./vendor/bin/drush  --yes site-install minimal --db-url='mysql://dev:password@localhost/hoeringsportal' --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
+./vendor/bin/drush  --yes site-install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
+```
+
+Start server
+```sh
 ./vendor/bin/drush runserver
 ```
+
+Start server with xdebug and PHPStorm
+```sh
+XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 remote_host=127.0.0.1 remote_connect_back=0" \
+  php -S 127.0.0.1:8888 -t web
+```
+
 
 ### Updating
 
