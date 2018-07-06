@@ -41,12 +41,6 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
-
-
-/**
- * Set sync path
- */
-$config_directories['sync'] = '../config/sync';
 ```
 
 Create db

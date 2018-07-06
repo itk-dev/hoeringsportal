@@ -24,6 +24,9 @@ $settings['file_scan_ignore_directories'] = [
 // here.
 $settings['install_profile'] = 'minimal';
 
+// Configuration sync path.
+$config_directories['sync'] = '../config/sync';
+
 // Local settings. These come last so that they can override anything.
 if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';
