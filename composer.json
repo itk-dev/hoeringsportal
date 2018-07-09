@@ -15,14 +15,21 @@
         "itk-dev": {
             "type": "composer",
             "url": "https://packagist.itkdev.dk"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org/"
         }
     },
     "require": {
         "php": "~7.2.0",
+        "bower-asset/jquery-simple-color": "^1.2",
+        "bower-asset/spectrum": "^1.8",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6",
         "drupal-composer/drupal-scaffold": "^2.2",
         "drupal/better_exposed_filters": "^3.0@alpha",
+        "drupal/color_field": "2.0-rc3",
         "drupal/console": "~1.0",
         "drupal/core": "~8.5.1",
         "drupal/ds": "^3.1",
@@ -94,11 +101,17 @@
     "extra": {
         "installer-paths": {
             "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
+            "web/libraries/{$name}": ["type:drupal-library", "name:jquery-simple-color","name:spectrum-colorpicker"],
             "web/modules/contrib/{$name}": ["type:drupal-module"],
             "web/profiles/contrib/{$name}": ["type:drupal-profile"],
             "web/themes/contrib/{$name}": ["type:drupal-theme"],
             "drush/contrib/{$name}": ["type:drupal-drush"]
+        },
+        "enable-patching": true,
+        "patches": {
+            "drupal/color_module": {
+                "Fix color palette issue": "https://www.drupal.org/files/issues/2018-05-23/color_field_spectrum_palette_fix-2827198-23.patch"
+            }
         }
     }
 }

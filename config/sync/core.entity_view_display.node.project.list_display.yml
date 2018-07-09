@@ -39,4 +39,6 @@ content:
     region: top
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_media_image: true
+  field_teaser: true

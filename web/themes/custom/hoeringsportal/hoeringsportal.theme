@@ -5,27 +5,22 @@
  * Høringsportal theme.
  */
 
-use Drupal\Core\Form\FormStateInterface;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\user\Entity\User;
-
 /**
- * Implements hook_form_alter().
+ * Implements hook_preprocess_field().
  */
-function hoeringsportal_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  if ($form_id == "views_exposed_form") {
-    if (isset($form['combine'])) {
-      $form['combine']['#attributes'] = ['data-bef-auto-submit-exclude' => ''];
+function hoeringsportal_preprocess_field(&$variables) {
+  if($variables['element']['#bundle'] == 'teaser_row') {
+
+    // Fields that need a class depending the paragraph type selected.
+    $grid_fields = array(
+      'field_project_hearing_1',
+      'field_project_hearing_2',
+      'field_project_hearing_3'
+    );
+
+    if(in_array($variables['element']['#field_name'], $grid_fields)) {
+      $variables['paragraph_type'] = $variables['element']['#object']->field_type->getValue()['0']['value'];
     }
-  };
-
-  if ($form_id == "comment_input_form") {
-    $form['comment_body']['widget']['#after_build'][] = '_hoeringsportal_allowed_formats_remove_textarea_help';
-    $form['actions']['submit']['#value'] = t('Create your contribution');
-  }
-
-  if ($form_id == "user_register_form") {
-    $form['timezone']['#access'] = FALSE;
   }
 }
 
@@ -60,64 +55,18 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
       $suggestions[] = 'form__user';
     }
   }
-}
 
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function hoeringsportal_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
-  if (!empty($variables['element']['#type'])) {
-    $suggestions[] = 'form_element__' . $variables['element']['#type'];
-  }
-}
+  if ($hook == 'field') {
+    $grid_fields = array(
+      'field_project_hearing_1',
+      'field_project_hearing_2',
+      'field_project_hearing_3'
+    );
 
-/**
- * Implements hook_preprocess_form_element().
- */
-function hoeringsportal_preprocess_form_element__radio(&$variables) {
-  if (is_numeric($variables['element']['#return_value'])) {
-    $tid = $variables['element']['#return_value'];
-    $term_description = Term::load($tid)->get('description')->value;
-    $variables['attributes']['title'] = check_markup($term_description, 'filtered_html');
-  }
-}
-
-/**
- * Implements hook_preprocess_flag().
- */
-function hoeringsportal_preprocess_flag(&$variables) {
-  $flag_count = \Drupal::service('flag.count')->getEntityFlagCounts($variables['flaggable']);
-  $variables['flag_count'] = isset($flag_count['promote']) ? $flag_count['promote'] : 0;
-}
-
-/**
- * Implements hook_preprocess_field().
- */
-function hoeringsportal_preprocess_field(&$variables) {
-  if ($variables['field_name'] == 'field_comments') {
-    $current_user = \Drupal::currentUser();
-    $uid = $current_user->id();
-    $variables['user_anonymous'] = FALSE;
-    if ($uid == 0) {
-      $variables['user_anonymous'] = TRUE;
-    }
-    else {
-      $user = User::load($current_user->id());
-      if (isset($user->field_valid->getValue()['0'])) {
-        $variables['user_validated'] = $user->field_valid->getValue()['0']['value'];
-      }
-      else {
-        $variables['user_validated'] = 0;
-      }
+    if (in_array($variables['element']['#field_name'], $grid_fields)) {
+      $suggestions[] = 'field__field_project_hearing';
     }
   }
-}
-
-/**
- * Implements hook_preprocess_field().
- */
-function hoeringsportal_preprocess_comment(&$variables) {
-  $variables['author_name'] = User::load($variables['author_id'])->get('field_first_name')->getValue();
 }
 
 /**
@@ -128,28 +77,4 @@ function hoeringsportal_preprocess_menu_local_task(&$variables) {
   if (isset($variables['is_active']) && $variables['is_active'] == TRUE) {
     $variables['link']['#options']['attributes']['class'][] = 'active';
   }
-}
-
-/**
- * Remove text area help.
- *
- * @param array $form_element
- *   The form item.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
- *   The state of the form.
- *
- * @return mixed
- *   A modified form element.
- */
-function _hoeringsportal_allowed_formats_remove_textarea_help(array $form_element, FormStateInterface $form_state) {
-  if (isset($form_element[0]['format'])) {
-    // All this stuff is needed to hide the help text.
-    unset($form_element[0]['format']['guidelines']);
-    unset($form_element[0]['format']['help']);
-    unset($form_element[0]['format']['#type']);
-    unset($form_element[0]['format']['#theme_wrappers']);
-    $form_element[0]['format']['format']['#access'] = FALSE;
-  }
-
-  return $form_element;
 }

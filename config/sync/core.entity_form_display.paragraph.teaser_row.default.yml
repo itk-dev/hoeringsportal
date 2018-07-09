@@ -3,6 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.paragraph.teaser_row.field_paragraph_title
     - field.field.paragraph.teaser_row.field_project_hearing_1
     - field.field.paragraph.teaser_row.field_project_hearing_2
     - field.field.paragraph.teaser_row.field_project_hearing_3
@@ -14,6 +15,14 @@ targetEntityType: paragraph
 bundle: teaser_row
 mode: default
 content:
+  field_paragraph_title:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_project_hearing_1:
     weight: 6
     settings:
