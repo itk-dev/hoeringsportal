@@ -41,12 +41,6 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
-
-
-/**
- * Set sync path
- */
-$config_directories['sync'] = '../config/sync';
 ```
 
 Create db
@@ -72,8 +66,16 @@ XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 
 
 ```sh
 composer install
+./vendor/bin/drush --yes updatedb
 ./vendor/bin/drush --yes config:import
-./vendor/bin/drush --yes cache-rebuild
+./vendor/bin/drush --yes locale:update
+./vendor/bin/drush --yes cache:rebuild
+```
+
+For production you should use
+
+```sh
+composer install --no-dev --optimize-autoloader
 ```
 
 ## Coding standards
