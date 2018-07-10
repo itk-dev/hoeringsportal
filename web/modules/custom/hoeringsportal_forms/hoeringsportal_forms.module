@@ -34,62 +34,62 @@ function hoeringsportal_forms_form_paragraphs_subform_alter(&$element) {
     // Use delta to separate states between paragraphs.
     $delta = $element['#parents']['1'];
     // When to show title field.
-    $element['field_paragraph_title']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'one_project_two_static'),
-          array('value' => 'two_projects'),
-          array('value' => 'three_projects')
-        ),
-      ),
-    );
+    $element['field_paragraph_title']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
     // When to show Project/Hearing 1 field.
-    $element['field_project_hearing_1']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'one_project_two_static'),
-          array('value' => 'two_projects'),
-          array('value' => 'three_projects')
-        ),
-      ),
-    );
+    $element['field_project_hearing_1']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
     // When to show Project/Hearing 2 field.
-    $element['field_project_hearing_2']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'two_projects'),
-          array('value' => 'three_projects')
-        ),
-      ),
-      'disabled' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'one_project_two_static'),
-        ),
-      ),
-    );
+    $element['field_project_hearing_2']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+        ],
+      ],
+    ];
     // When to show Project/Hearing 3 field.
-    $element['field_project_hearing_3']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array('value' => 'three_projects'),
-      ),
-      'disabled' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'one_project_two_static'),
-          array('value' => 'two_projects')
-        ),
-      ),
-    );
+    $element['field_project_hearing_3']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => ['value' => 'three_projects'],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+        ],
+      ],
+    ];
     // When to show static pages field.
-    $element['field_static_pages']['#states'] = array(
-      'visible' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array('value' => 'one_project_two_static'),
-      ),
-      'disabled' => array(
-        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => array(
-          array('value' => 'two_projects'),
-          array('value' => 'three_projects')
-        ),
-      ),
-    );
+    $element['field_static_pages']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => ['value' => 'one_project_two_static'],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
   }
 }
