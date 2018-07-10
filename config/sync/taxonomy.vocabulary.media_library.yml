@@ -7,8 +7,8 @@ dependencies:
       - itk_media_entity
 _core:
   default_config_hash: Gkvppk1Wpj0xKTjluAB32_N5_eS5qiIkkgUW2qnkErY
-name: 'Media library'
+name: 'Medie bibliotek'
 vid: media_library
-description: 'A taxonomy to structure your media library'
+description: 'En taksonomi der kan bruges til at strukturere mediebiblioteket'
 hierarchy: 0
 weight: 0

@@ -71,27 +71,40 @@
  */
 #}
 
-<div class="activity-teaser-splash">
-  <div class="splash splash-date">
-    <div class="splash-label">--Svarfrist--</div>
-    <div class="splash-date-day">--10--</div>
-    <div class="splash-date-month">--jun--</div>
+{% if node.bundle == 'project' %}
+  {% set type = 'Initiative'|t %}
+  {% set project = content.field_project_label %}
+{% endif %}
+{% if node.bundle == 'hearing' %}
+  {% set type = content.field_hearing_type[0]['#plain_text'] %}
+  {% set project = content.field_project_reference[0]['#plain_text'] %}
+{% endif %}
+
+{% if(content.field_reply_deadline) %}
+  <div class="activity-teaser-splash">
+    <div class="splash splash-date">
+      <div class="splash-label">{{ 'Reply date' |t }}</div>
+      <div class="splash-date-day">--10--</div>
+      <div class="splash-date-month">--jun--</div>
+    </div>
+    <div class="splash splash-comments">
+      <span class="splash-comments-count"><i class="fa fa-comment"></i>--2--</span>
+    </div>
   </div>
-  <div class="splash splash-comments">
-    <span class="splash-comments-count"><i class="fa fa-comment"></i>--2--</span>
-  </div>
-</div>
+{% endif %}
 <div class="activity-teaser-image">
   <a href="{{ url }}">{{ content.field_media_image }}</a>
 </div>
 <div class="activity-teaser-content">
   <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>
-  <a href="{{ url }}" class="activity-teaser-description">{{ content.field_teaser }}</a>
+  <div class="activity-teaser-description">{{ content.field_teaser }}</div>
 </div>
 <div class="activity-teaser-info">
-  <a href="{{ url }}" class="activity-teaser-project-name">--Projectname--</a>
-  <span class="activity-teaser-area">--Area--</span>
-  <span class="activity-teaser-type">--Type--</span>
-  <span class="activity-teaser-id">--Id--</span>
+  <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>
+  <span class="activity-teaser-area">{{ content.field_area }}</span>
+  <span class="activity-teaser-type">{{ type }}</span>
+  {% if(content.field_hearing_id) %}
+    <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>
+  {% endif %}
   <a href="{{ url }}" class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></a>
 </div>

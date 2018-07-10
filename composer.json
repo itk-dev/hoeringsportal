@@ -36,6 +36,7 @@
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity_browser": "^1.5",
         "drupal/entityqueue": "^1.0@alpha",
+        "drupal/field_group": "3.x-dev",
         "drupal/flag": "^4.0@alpha",
         "drupal/itk_cookie_message": "^1.0",
         "drupal/itk_media_entity": "^1.1",
@@ -111,6 +112,9 @@
         "patches": {
             "drupal/paragraphs": {
                 "Add paragraphs hook": "https://www.drupal.org/files/issues/2868155-16.patch"
+            },
+            "drupal/field_group": {
+                "Possibility to add field group to advanced": "web/patches/field_group_node_sidebar.patch"
             }
         }
     }

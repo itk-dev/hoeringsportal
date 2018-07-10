@@ -8,6 +8,42 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_theme_suggestions_alter().
+ *
+ * Add a template suggestions for modifying the node form.
+ */
+function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array $variables) {
+  if (isset($variables['form']) && $variables['theme_hook_original'] == 'node_edit_form') {
+    if ($variables['form']['#form_id'] == 'node_project_form' || $variables['form']['#form_id'] == 'node_project_edit_form') {
+      $suggestions[] = 'hoeringsportal_project_node_form';
+    }
+    if ($variables['form']['#form_id'] == 'node_hearing_form' || $variables['form']['#form_id'] == 'node_hearing_edit_form') {
+      $suggestions[] = 'hoeringsportal_hearing_node_form';
+    }
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Tell drupal where to find the custom node form templates.
+ */
+function hoeringsportal_forms_theme($existing, $type, $theme, $path) {
+  return [
+    'hoeringsportal_project_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-project-node-form',
+    ],
+    'hoeringsportal_hearing_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-hearing-node-form',
+    ],
+  ];
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Add specific styles for node forms.

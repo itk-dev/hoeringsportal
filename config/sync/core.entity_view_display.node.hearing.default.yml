@@ -3,31 +3,58 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_hearing_id
+    - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_project_reference
+    - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_teaser
     - node.type.hearing
   module:
+    - datetime
     - ds
+    - text
     - user
 third_party_settings:
   ds:
     layout:
-      id: layout_twocol
-      library: layout_discovery/twocol
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
       disable_css: false
       entity_classes: all_classes
-      settings: {  }
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
     regions:
-      top:
+      header:
         - node_title
-        - field_media_image
-      first:
+      left:
         - field_teaser
+        - field_description
+        - field_media_document
+        - field_media_image
         - node_changed_date
+      right:
+        - field_reply_deadline
+        - field_hearing_type
+        - field_hearing_id
+        - field_project_reference
     fields:
       node_changed_date:
         plugin_id: node_changed_date
-        weight: 3
+        weight: 5
         label: hidden
         formatter: ds_post_date_short
       node_title:
@@ -40,8 +67,40 @@ targetEntityType: node
 bundle: hearing
 mode: default
 content:
-  field_media_image:
+  field_description:
+    type: text_default
+    weight: 2
+    region: left
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_hearing_id:
+    type: string
+    weight: 8
+    region: right
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_hearing_type:
+    type: entity_reference_label
+    weight: 7
+    region: right
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_media_document:
+    type: entity_reference_entity_view
     weight: 3
+    region: left
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+  field_media_image:
+    weight: 4
     label: hidden
     settings:
       view_mode: default
@@ -50,14 +109,31 @@ content:
       ds:
         ds_limit: ''
     type: entity_reference_entity_view
-    region: top
+    region: left
+  field_project_reference:
+    type: entity_reference_label
+    weight: 9
+    region: right
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_reply_deadline:
+    type: datetime_plain
+    weight: 6
+    region: right
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
   field_teaser:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: first
+    region: left
 hidden:
+  field_area: true
   langcode: true
   links: true

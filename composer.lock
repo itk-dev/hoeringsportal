@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7beb8d832bdb0fecaa1e4bddfc8c00b0",
+    "content-hash": "6aa9fe88c404f9d6a2666ca4df08aa2c",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2626,6 +2626,65 @@
             }
         },
         {
+            "name": "drupal/field_group",
+            "version": "dev-3.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_group",
+                "reference": "156100419fa88b185197affdc35a6d3876e9756b"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0-beta1+15-dev",
+                    "datestamp": "1531041220",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "patches_applied": []
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Hydra",
+                    "homepage": "https://www.drupal.org/user/647364"
+                },
+                {
+                    "name": "Stalski",
+                    "homepage": "https://www.drupal.org/user/322618"
+                },
+                {
+                    "name": "jyve",
+                    "homepage": "https://www.drupal.org/user/591438"
+                },
+                {
+                    "name": "swentel",
+                    "homepage": "https://www.drupal.org/user/107403"
+                },
+                {
+                    "name": "zuuperman",
+                    "homepage": "https://www.drupal.org/user/361625"
+                }
+            ],
+            "description": "Provides the field_group module.",
+            "homepage": "https://www.drupal.org/project/field_group",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_group"
+            },
+            "time": "2018-07-08T09:15:00+00:00"
+        },
+        {
             "name": "drupal/flag",
             "version": "4.0.0-alpha3",
             "source": {
@@ -3152,6 +3211,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Add paragraphs hook": "https://www.drupal.org/files/issues/2868155-16.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -9015,6 +9077,7 @@
         "drupal/better_exposed_filters": 15,
         "drupal/email_registration": 5,
         "drupal/entityqueue": 15,
+        "drupal/field_group": 20,
         "drupal/flag": 15,
         "drupal/media_entity_usage": 15,
         "onelogin/php-saml": 20

@@ -3,9 +3,14 @@ langcode: da
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - node.type.hearing
+    - taxonomy.vocabulary.area
+    - taxonomy.vocabulary.hearing_type
   module:
+    - datetime
     - node
+    - taxonomy
     - user
 id: all_hearings
 label: 'Alle høringer'
@@ -73,12 +78,10 @@ display:
           default_row_class: true
           uses_fields: false
       row:
-        type: fields
+        type: 'entity:node'
         options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
+          relationship: none
+          view_mode: teaser
       fields:
         title:
           id: title
@@ -148,6 +151,201 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
+        field_hearing_type_target_id:
+          id: field_hearing_type_target_id
+          table: node__field_hearing_type
+          field: field_hearing_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_hearing_type_target_id_op
+            label: Høringstype
+            description: ''
+            use_operator: false
+            operator: field_hearing_type_target_id_op
+            identifier: field_hearing_type_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: hearing_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_project_reference_target_id:
+          id: field_project_reference_target_id
+          table: node__field_project_reference
+          field: field_project_reference_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_project_reference_target_id_op
+            label: 'Initiativ (field_project_reference)'
+            description: null
+            use_operator: false
+            operator: field_project_reference_target_id_op
+            identifier: field_project_reference_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            placeholder: null
+            min_placeholder: null
+            max_placeholder: null
+          is_grouped: true
+          group_info:
+            label: Initiativ
+            description: ''
+            identifier: field_project_reference_target_id
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items:
+              1:
+                title: ''
+                operator: '='
+                value:
+                  value: ''
+                  min: ''
+                  max: ''
+              2:
+                title: ''
+                operator: '='
+                value:
+                  value: ''
+                  min: ''
+                  max: ''
+              3:
+                title: ''
+                operator: '='
+                value:
+                  value: ''
+                  min: ''
+                  max: ''
+          plugin_id: numeric
+        field_reply_deadline_value:
+          id: field_reply_deadline_value
+          table: node__field_reply_deadline
+          field: field_reply_deadline_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_reply_deadline_value_op
+            label: Svarfrist
+            description: ''
+            use_operator: false
+            operator: field_reply_deadline_value_op
+            identifier: field_reply_deadline_value
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            placeholder: ''
+            min_placeholder: ''
+            max_placeholder: ''
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: datetime
+        field_area_target_id:
+          id: field_area_target_id
+          table: node__field_area
+          field: field_area_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_area_target_id_op
+            label: Område
+            description: ''
+            use_operator: false
+            operator: field_area_target_id_op
+            identifier: field_area_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: area
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         created:
           id: created
@@ -175,7 +373,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
