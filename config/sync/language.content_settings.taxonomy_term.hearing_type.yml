@@ -1,0 +1,11 @@
+uuid: 3933f95a-1e85-41d1-9b76-956ac7880db5
+langcode: da
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.hearing_type
+id: taxonomy_term.hearing_type
+target_entity_type_id: taxonomy_term
+target_bundle: hearing_type
+default_langcode: site_default
+language_alterable: false

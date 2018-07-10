@@ -1,0 +1,31 @@
+uuid: 8dec3d5f-6a3d-40b7-be52-5b1943b161ae
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_related_content
+    - node.type.hearing
+    - node.type.project
+    - node.type.static_page
+id: node.project.field_related_content
+field_name: field_related_content
+entity_type: node
+bundle: project
+label: 'Relateret indhold'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      hearing: hearing
+      project: project
+      static_page: static_page
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: hearing
+field_type: entity_reference

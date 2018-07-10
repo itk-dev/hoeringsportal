@@ -1,0 +1,21 @@
+uuid: b196c6ca-6269-4d5a-83c0-f7edbaf8994e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_finish
+    - node.type.project
+  module:
+    - datetime
+id: node.project.field_project_finish
+field_name: field_project_finish
+entity_type: node
+bundle: project
+label: 'Forventet færdiggørelse'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

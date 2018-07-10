@@ -1,0 +1,14 @@
+uuid: 98a5774f-b8d7-43ef-a86f-ec6747f53bba
+langcode: da
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.area
+id: taxonomy_term.area.default
+targetEntityType: taxonomy_term
+bundle: area
+mode: default
+content: {  }
+hidden:
+  description: true
+  langcode: true

@@ -1,0 +1,9 @@
+uuid: 49dfdb89-4bf6-4a04-b0db-01db4acbe620
+langcode: da
+status: true
+dependencies: {  }
+name: Høringstype
+vid: hearing_type
+description: 'De forskellige høringstyper der kan vælges imellem når en høring oprettes'
+hierarchy: 0
+weight: 0

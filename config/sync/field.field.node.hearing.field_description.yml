@@ -1,0 +1,21 @@
+uuid: 678d4178-56b0-424e-b0d4-46ab1e46ddf2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.hearing
+  module:
+    - text
+id: node.hearing.field_description
+field_name: field_description
+entity_type: node
+bundle: hearing
+label: Beskrivelse
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
