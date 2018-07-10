@@ -1,4 +1,4 @@
-uuid: 3168ea62-d45f-4077-aad3-8450481fce7f
+uuid: 6805677c-1fec-40f5-bf98-da9e22653885
 langcode: da
 status: true
 dependencies:
@@ -8,8 +8,8 @@ dependencies:
     - hoeringsportal
 id: itkadminlinks
 theme: hoeringsportal
-region: footer
-weight: -2
+region: content
+weight: 0
 provider: null
 plugin: itk_admin_links
 settings:

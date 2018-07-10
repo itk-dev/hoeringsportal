@@ -1,21 +1,22 @@
 
 @import
-  '_custom-mixins',     // Import custom mixins
-  '_custom-variables',  // Import custom variables before bootstrap to secure override
-  '_bootstrap-custom',  // Import custom bootstrap
-  'layout/_aside',      // Import layout
-  '_base',              // Import basic styles
-  'module/_nav',        // Import modules
-  'module/_hero',
-  'module/_btn',
-  'module/_card',
-  'module/_footer',
-  'module/_content',
-  'module/_drupal',
-  'module/_underline',
-  'module/_timeline',
-  'module/_status-messages',
-  'module/_campaign',
-  'module/_activity-teaser',
-  'module/_splash',
-  'module/_page-teaser';
+  "_custom-mixins",     
+  "_custom-variables",  
+  "_bootstrap-custom",  
+  "layout/_aside",      
+  "_base",              
+  "module/_nav",        
+  "module/_hero",
+  "module/_btn",
+  "module/_card",
+  "module/_footer",
+  "module/_content",
+  "module/_drupal",
+  "module/_underline",
+  "module/_timeline",
+  "module/_status-messages",
+  "module/_campaign",
+  "module/_activity-teaser",
+  "module/_splash",
+  "module/_lead",
+  "module/_page-teaser";

@@ -1,4 +1,4 @@
-uuid: d43dfecf-5e8c-45a6-b3bf-8a68eba7d622
+uuid: 04342185-ae52-47ab-a124-f72d9e4ad8b9
 langcode: da
 status: true
 dependencies: {  }
@@ -9,12 +9,4 @@ label: 'Godkendt bruger'
 weight: 1
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
-  - 'cancel account'
-  - 'edit own comments'
-  - 'flag promote'
-  - 'post comments'
-  - 'skip comment approval'
-  - 'unflag promote'
-  - 'view the administration theme'

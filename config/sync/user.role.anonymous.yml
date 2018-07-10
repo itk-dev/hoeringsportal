@@ -1,4 +1,4 @@
-uuid: 3a28b005-d189-4a62-9d7b-2d0a5290514e
+uuid: a569129e-3b63-4931-9d9b-c301cf867b5f
 langcode: da
 status: true
 dependencies: {  }
@@ -9,8 +9,4 @@ label: 'Anonym bruger'
 weight: 0
 is_admin: false
 permissions:
-  - 'access comments'
   - 'access content'
-  - 'flag promote'
-  - 'unflag promote'
-  - 'view the administration theme'

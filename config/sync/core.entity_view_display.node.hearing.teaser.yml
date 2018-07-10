@@ -1,0 +1,27 @@
+uuid: 5da4173e-8796-4ff8-a95e-18d216c7c7f9
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_teaser
+    - node.type.hearing
+  module:
+    - user
+id: node.hearing.teaser
+targetEntityType: node
+bundle: hearing
+mode: teaser
+content:
+  field_teaser:
+    type: basic_string
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_media_image: true
+  langcode: true
+  links: true

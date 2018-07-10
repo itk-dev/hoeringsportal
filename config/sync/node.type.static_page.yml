@@ -1,4 +1,4 @@
-uuid: bfd53793-ce9e-4bc1-bd6b-0f3964489673
+uuid: 4cbbb75d-a597-4c9b-b135-1c4e385b7fd6
 langcode: da
 status: true
 dependencies:
@@ -7,13 +7,12 @@ dependencies:
 third_party_settings:
   menu_ui:
     available_menus:
-      - footer
       - main
     parent: 'main:'
-name: 'Statisk indhold'
+name: 'Statisk side'
 type: static_page
-description: 'Generelt indhold, ofte tilgængeligt fra en menu'
+description: "Bruges til indhold der sjældent ændres.\r\nEksempler: Cookie politik, \"Om\" side, FAQ"
 help: ''
 new_revision: false
-preview_mode: 0
-display_submitted: false
+preview_mode: 1
+display_submitted: true

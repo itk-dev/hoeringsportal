@@ -1,0 +1,28 @@
+uuid: 94793f50-ec50-4147-82bf-efc4f5bbb013
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_image
+    - media_entity.bundle.image
+    - node.type.hearing
+id: node.hearing.field_media_image
+field_name: field_media_image
+entity_type: node
+bundle: hearing
+label: Billeder
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

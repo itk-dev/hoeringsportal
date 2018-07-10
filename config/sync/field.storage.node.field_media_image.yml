@@ -1,0 +1,25 @@
+uuid: 5a147c3a-e0f2-499a-8978-a3e310cbdce8
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - media_entity
+    - node
+_core:
+  default_config_hash: bd2v9FOE5cN290xvkGXC-ZG8UzpwNKNOQnmO3Nj37H8
+id: node.field_media_image
+field_name: field_media_image
+entity_type: node
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

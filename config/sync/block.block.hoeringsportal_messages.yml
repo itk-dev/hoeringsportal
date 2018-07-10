@@ -1,5 +1,5 @@
-uuid: 63d775b1-8b48-492c-b892-52355bdbb522
-langcode: da
+uuid: 47a5f2c7-d384-4a7c-b921-35460218dcf0
+langcode: en
 status: true
 dependencies:
   module:
@@ -11,7 +11,7 @@ _core:
 id: hoeringsportal_messages
 theme: hoeringsportal
 region: header
-weight: -3
+weight: 0
 provider: null
 plugin: system_messages_block
 settings:

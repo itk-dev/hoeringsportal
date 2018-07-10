@@ -1,0 +1,18 @@
+uuid: cf510728-c28b-4e51-adce-fffd9916be43
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Oversigtsside
+type: landing_page
+description: "Oversigtsside til opsamling af alt indhold indenfor en kategori.\r\nEksempler: Forside, Projekter, Høringer."
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

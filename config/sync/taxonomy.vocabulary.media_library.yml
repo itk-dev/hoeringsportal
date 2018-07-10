@@ -1,0 +1,14 @@
+uuid: e7a4cc62-cfb0-47d4-a52e-c13cb82cc592
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: Gkvppk1Wpj0xKTjluAB32_N5_eS5qiIkkgUW2qnkErY
+name: 'Media library'
+vid: media_library
+description: 'A taxonomy to structure your media library'
+hierarchy: 0
+weight: 0

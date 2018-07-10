@@ -1,9 +1,3 @@
-uuid: 79b04ffb-1843-4a31-ad36-640d246d99c7
-langcode: da
-status: true
-dependencies: {  }
-_core:
-  default_config_hash: b44bhF4q8Jse2Nr8Ywyaqo5mEuydS5IDsKy7rqaGpgw
 name: hero
 label: 'Hero (1440×360)'
 effects:
@@ -14,3 +8,6 @@ effects:
     data:
       width: 1440
       height: 360
+_core:
+  default_config_hash: b44bhF4q8Jse2Nr8Ywyaqo5mEuydS5IDsKy7rqaGpgw
+langcode: da

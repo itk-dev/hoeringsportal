@@ -1,0 +1,43 @@
+uuid: 8b176bb0-a65a-408c-b26a-937975f143f3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_image_upload
+    - media_entity.bundle.image
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - image
+_core:
+  default_config_hash: wxOZ7zPkfoz3yQmi9sF-TLsmo10jX8av2ktW21k5mjk
+id: media.image.field_itk_media_image_upload
+field_name: field_itk_media_image_upload
+entity_type: media
+bundle: image
+label: 'Image upload'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: images
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

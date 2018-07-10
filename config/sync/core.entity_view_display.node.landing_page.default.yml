@@ -1,0 +1,41 @@
+uuid: aac1fdaa-1680-4c58-b0ee-0469b0bb0f7e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.landing_page.field_section
+    - node.type.landing_page
+  module:
+    - ds
+    - entity_reference_revisions
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - field_section
+id: node.landing_page.default
+targetEntityType: node
+bundle: landing_page
+mode: default
+content:
+  field_section:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+hidden:
+  langcode: true
+  links: true

@@ -1,4 +1,4 @@
-require('../css/hoeringsportal.scss');
+require('../css/hoeringsportal.scss')
 
 // require('bootstrap');
 // require('popper.js');

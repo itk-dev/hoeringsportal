@@ -1,0 +1,17 @@
+uuid: f0c4b874-2555-4c33-b9f2-5335fd606b88
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Høring
+type: hearing
+description: 'En høring knyttes til et eksisterende projekt. Alle høringer har en reference til Deskpro, så data kan hentes ind.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

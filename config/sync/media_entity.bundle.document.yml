@@ -1,0 +1,22 @@
+uuid: 3d67e786-acdb-4085-8f54-82dc96c91e46
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - media_entity_document
+_core:
+  default_config_hash: 5b6bXB_RmH_XtufjDGLOpr0usXM9E9a_QJ82tSlA8bM
+id: document
+label: Document
+description: 'A document to be stored in the media library'
+type: document
+queue_thumbnail_downloads: false
+new_revision: false
+type_configuration:
+  source_field: field_itk_media_file_upload
+field_map:
+  mime: field_itk_media_mime_type
+  size: field_itk_media_size

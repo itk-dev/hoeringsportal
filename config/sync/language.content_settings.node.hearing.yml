@@ -1,0 +1,11 @@
+uuid: 57d496dc-8587-45c2-b931-59139a318c26
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.hearing
+id: node.hearing
+target_entity_type_id: node
+target_bundle: hearing
+default_langcode: site_default
+language_alterable: false

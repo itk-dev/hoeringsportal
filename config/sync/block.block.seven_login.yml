@@ -1,5 +1,5 @@
-uuid: 08f9369d-e30c-4e8d-ae84-8aa583f1d8a2
-langcode: da
+uuid: 1dd2c795-f4ec-49c6-b568-e9348f90c300
+langcode: en
 status: true
 dependencies:
   module:
@@ -10,8 +10,8 @@ _core:
   default_config_hash: 4QlSnWBcxxKMIFRM8sbu_MjSkcp3NjGgnVrc-lynQHI
 id: seven_login
 theme: seven
-region: content
-weight: 1
+region: header
+weight: 0
 provider: null
 plugin: user_login_block
 settings:

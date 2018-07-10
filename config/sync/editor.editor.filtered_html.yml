@@ -1,4 +1,4 @@
-uuid: 9e05ec68-7b24-4056-bf6c-5446097f9d47
+uuid: 97147795-3d9b-4001-b211-ec2bffa1e95a
 langcode: da
 status: true
 dependencies:
@@ -23,28 +23,32 @@ settings:
             - DrupalLink
             - DrupalUnlink
         -
-          name: Format
+          name: Lister
           items:
-            - Format
-        -
-          name: Extras
-          items:
-            - Blockquote
-            - DrupalImage
-            - Table
             - BulletedList
             - NumberedList
-            - HorizontalRule
+        -
+          name: Media
+          items:
+            - Blockquote
+        -
+          name: Værktøjer
+          items:
+            - Source
+        -
+          name: Headers
+          items:
+            - Format
   plugins:
     stylescombo:
       styles: ''
     language:
       language_list: un
 image_upload:
-  status: true
+  status: false
   scheme: public
-  directory: images
+  directory: inline-images
   max_size: ''
   max_dimensions:
-    width: 1460
+    width: null
     height: null

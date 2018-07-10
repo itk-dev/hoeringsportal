@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Høringsportal forms.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add specific styles for node forms.
+ */
+function hoeringsportal_forms_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['advanced']['#attributes']['style'] = 'margin-top:1em';
+
+  $form['#attached']['library'][] = 'hoeringsportal_forms/form_styles';
+  $form['field_media_image']['widget']['entity_browser']['#weight'] = -10;
+  $form['field_media_image']['widget']['current']['#weight'] = -50;
+
+  $form['field_media_document']['widget']['entity_browser']['#weight'] = -10;
+  $form['field_media_document']['widget']['current']['#weight'] = -50;
+}

@@ -1,8 +1,22 @@
-.activity-teaser{
+.activity-teaser-link {
+  color: $primary;
+  font-size: .8rem;
+  position: absolute;
+  bottom: $spacer;
+  right: $spacer*2.5;
+}
+.activity-teaser {
   position: relative;
   margin-bottom: $spacer*2;
   display: flex;
   flex-direction: column;
+  &:hover {
+    @include transition-std(transform, ease-in, 200ms);
+    .activity-teaser-link {
+      @include transition-std(transform, ease-out, 400ms);
+      @include move-link-right();
+    }
+  }
 }
 .activity-teaser-splash {
   position: absolute;
@@ -62,11 +76,4 @@
   padding-left: $spacer/2;
   color: $gray-600;
   border-left: 2px solid $gray-600;
-}
-.activity-teaser-link {
-  color: $primary;
-  font-size: 1rem;
-  position: absolute;
-  bottom: $spacer;
-  right: $spacer*2;
 }

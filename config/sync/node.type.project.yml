@@ -1,0 +1,17 @@
+uuid: 620a2258-5aa4-45a0-b8ad-3ce5da46326a
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Projekt
+type: project
+description: "En projekt side til beskrivelse af projektet, med relaterede aktiviteter og høringer\r\nEksempel: Aarhus Ø, Havnebadet"
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: true

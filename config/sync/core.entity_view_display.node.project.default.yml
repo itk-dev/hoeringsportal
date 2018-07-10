@@ -1,0 +1,63 @@
+uuid: 92384bf2-3974-46c7-96e2-d396f92f15e3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.project.field_media_image
+    - field.field.node.project.field_teaser
+    - node.type.project
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_twocol
+      library: layout_discovery/twocol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - node_title
+        - field_media_image
+      first:
+        - field_teaser
+        - node_changed_date
+    fields:
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 3
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  field_media_image:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: top
+  field_teaser:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: first
+hidden:
+  langcode: true
+  links: true
