@@ -71,27 +71,19 @@
  */
 #}
 
-<div class="activity-teaser-splash">
-  <div class="splash splash-date">
-    <div class="splash-label">--Svarfrist--</div>
-    <div class="splash-date-day">--10--</div>
-    <div class="splash-date-month">--jun--</div>
+{%
+set classes = [
+'activity-teaser',
+paragraph_type == 'one_project_two_static' ? 'col-md-6',
+paragraph_type == 'two_projects' ? 'col-md-6',
+paragraph_type == 'three_projects' ? 'col-md-4'
+]
+%}
+
+<a href="{{ url }}" class="page-teaser-anchorblock" style="background-color:{{ node.field_teaser_color.value['0']['color'] }}">
+  <div class="page-teaser-content">
+    <p class="page-teaser-title underlined">{{ label }}</p>
+    <p class="page-teaser-description">{{ content }}</p>
+    <i class="page-teaser-link fa fa-arrow-right float-right"></i>
   </div>
-  <div class="splash splash-comments">
-    <span class="splash-comments-count"><i class="fa fa-comment"></i>--2--</span>
-  </div>
-</div>
-<div class="activity-teaser-image">
-  <a href="{{ url }}">{{ content.field_media_image }}</a>
-</div>
-<div class="activity-teaser-content">
-  <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>
-  <a href="{{ url }}" class="activity-teaser-description">{{ content.field_teaser }}</a>
-</div>
-<div class="activity-teaser-info">
-  <a href="{{ url }}" class="activity-teaser-project-name">--Projectname--</a>
-  <span class="activity-teaser-area">--Area--</span>
-  <span class="activity-teaser-type">--Type--</span>
-  <span class="activity-teaser-id">--Id--</span>
-  <a href="{{ url }}" class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></a>
-</div>
+</a>

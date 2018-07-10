@@ -18,23 +18,14 @@ bundle: teaser_row
 mode: default
 content:
   field_paragraph_title:
-    weight: 4
-    label: above
+    weight: 0
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_project_hearing_1:
-    weight: 0
-    label: hidden
-    settings:
-      view_mode: teaser
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
-  field_project_hearing_2:
     weight: 1
     label: hidden
     settings:
@@ -43,7 +34,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
-  field_project_hearing_3:
+  field_project_hearing_2:
     weight: 2
     label: hidden
     settings:
@@ -52,8 +43,17 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: content
-  field_static_pages:
+  field_project_hearing_3:
     weight: 3
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_static_pages:
+    weight: 4
     label: hidden
     settings:
       view_mode: teaser

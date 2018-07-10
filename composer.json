@@ -109,8 +109,8 @@
         },
         "enable-patching": true,
         "patches": {
-            "drupal/color_module": {
-                "Fix color palette issue": "https://www.drupal.org/files/issues/2018-05-23/color_field_spectrum_palette_fix-2827198-23.patch"
+            "drupal/paragraphs": {
+                "Add paragraphs hook": "https://www.drupal.org/files/issues/2868155-16.patch"
             }
         }
     }

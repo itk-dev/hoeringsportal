@@ -12,13 +12,21 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: layout_onecol
-      library: layout_discovery/onecol
+      id: ds_1col
+      library: null
       disable_css: false
       entity_classes: all_classes
-      settings: {  }
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
     regions:
-      content:
+      ds_content:
         - field_section
 id: node.landing_page.default
 targetEntityType: node
@@ -28,7 +36,7 @@ content:
   field_section:
     type: entity_reference_revisions_entity_view
     weight: 0
-    region: content
+    region: ds_content
     label: hidden
     settings:
       view_mode: default

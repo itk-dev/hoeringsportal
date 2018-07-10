@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.introduction.field_intro_body
     - field.field.paragraph.introduction.field_intro_link
-    - field.field.paragraph.introduction.field_intro_title
+    - field.field.paragraph.introduction.field_paragraph_title
     - paragraphs.paragraphs_type.introduction
   module:
     - link
@@ -30,7 +30,7 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
-  field_intro_title:
+  field_paragraph_title:
     weight: 0
     settings:
       size: 60

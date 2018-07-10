@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.node.static_page.field_teaser
+    - field.field.node.static_page.field_teaser_color
     - node.type.static_page
   module:
+    - color_field
     - path
 id: node.static_page.default
 targetEntityType: node
@@ -19,6 +21,18 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_teaser_color:
+    weight: 26
+    settings:
+      show_palette: '1'
+      palette: '["#008486","#333333"]'
+      show_palette_only: '1'
+      show_input: '0'
+      show_buttons: '0'
+      allow_empty: '0'
+    third_party_settings: {  }
+    type: color_field_widget_spectrum
     region: content
   path:
     type: path

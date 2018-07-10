@@ -3,11 +3,14 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_description
     - field.field.node.project.field_media_image
     - field.field.node.project.field_teaser
     - node.type.project
   module:
     - ds
+    - text
     - user
 third_party_settings:
   ds:
@@ -40,6 +43,21 @@ targetEntityType: node
 bundle: project
 mode: default
 content:
+  field_activities:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_description:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
   field_media_image:
     weight: 3
     label: hidden

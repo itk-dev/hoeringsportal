@@ -16,7 +16,7 @@ bundle: teaser_row
 mode: default
 content:
   field_paragraph_title:
-    weight: 10
+    weight: 1
     settings:
       size: 60
       placeholder: ''
@@ -24,7 +24,7 @@ content:
     type: string_textfield
     region: content
   field_project_hearing_1:
-    weight: 6
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
@@ -33,7 +33,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_project_hearing_2:
-    weight: 7
+    weight: 3
     settings:
       match_operator: CONTAINS
       size: 60
@@ -42,7 +42,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_project_hearing_3:
-    weight: 8
+    weight: 4
     settings:
       match_operator: CONTAINS
       size: 60
@@ -51,13 +51,13 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_static_pages:
-    weight: 9
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
+    type: entity_reference_autocomplete
     region: content
   field_type:
     weight: 0

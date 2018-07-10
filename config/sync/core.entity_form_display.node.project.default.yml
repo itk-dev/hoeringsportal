@@ -4,17 +4,37 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.itk_image_browser
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_description
     - field.field.node.project.field_media_image
     - field.field.node.project.field_teaser
     - node.type.project
   module:
     - entity_browser
     - path
+    - text
 id: node.project.default
 targetEntityType: node
 bundle: project
 mode: default
 content:
+  field_activities:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_description:
+    weight: 26
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
   field_media_image:
     weight: 2
     settings:
