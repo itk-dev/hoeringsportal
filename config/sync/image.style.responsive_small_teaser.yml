@@ -1,0 +1,25 @@
+uuid: fe3dbada-efe6-49b2-9e22-402a061413bc
+langcode: da
+status: true
+dependencies:
+  config:
+    - crop.type.teaser_display
+  module:
+    - crop
+name: responsive_small_teaser
+label: 'Responsive small teaser'
+effects:
+  e32855f3-9f74-4506-a6ab-0cead27ba24f:
+    uuid: e32855f3-9f74-4506-a6ab-0cead27ba24f
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: teaser_display
+  9de68678-4ddb-45c3-af90-1fcd737f73d6:
+    uuid: 9de68678-4ddb-45c3-af90-1fcd737f73d6
+    id: image_scale
+    weight: 3
+    data:
+      width: 810
+      height: 300
+      upscale: false

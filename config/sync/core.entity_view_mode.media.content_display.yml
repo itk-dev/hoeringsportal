@@ -1,0 +1,10 @@
+uuid: 7a8a03fb-6d2c-43d8-a291-a98ef6f64e72
+langcode: da
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.content_display
+label: 'Content display'
+targetEntityType: media
+cache: true

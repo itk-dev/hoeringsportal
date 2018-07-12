@@ -1,0 +1,10 @@
+uuid: b98c108b-f09e-44db-9d58-f67377b2f320
+langcode: da
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.node_form_display
+label: 'Node form display'
+targetEntityType: media
+cache: true

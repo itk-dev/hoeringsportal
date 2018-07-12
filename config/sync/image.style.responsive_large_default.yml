@@ -1,0 +1,25 @@
+uuid: 0713b822-b21d-4568-bef9-fe7fe7c8063e
+langcode: da
+status: true
+dependencies:
+  config:
+    - crop.type.content_display
+  module:
+    - crop
+name: responsive_large_default
+label: 'Responsive large default'
+effects:
+  76765256-62fb-482e-bac7-44703579b0df:
+    uuid: 76765256-62fb-482e-bac7-44703579b0df
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: content_display
+  ab79b57a-beb5-4747-9ae5-47350aa8072c:
+    uuid: ab79b57a-beb5-4747-9ae5-47350aa8072c
+    id: image_scale
+    weight: 2
+    data:
+      width: 1440
+      height: null
+      upscale: false

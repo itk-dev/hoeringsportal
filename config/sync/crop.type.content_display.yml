@@ -1,0 +1,12 @@
+uuid: 6adef32c-103a-48b1-a762-94f601f3250b
+langcode: da
+status: true
+dependencies: {  }
+label: Indholdsvisning
+id: content_display
+description: 'Visningen der anvendes når billedet vises på det fulde indholdselement'
+aspect_ratio: ''
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: 1440
+hard_limit_height: 300

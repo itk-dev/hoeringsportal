@@ -1,0 +1,25 @@
+uuid: d6892b28-a1ff-4445-938d-df53713a9a6a
+langcode: da
+status: true
+dependencies:
+  config:
+    - crop.type.teaser_display
+  module:
+    - crop
+name: responsive_small_teaser_x2
+label: 'Responsive small teaser (x2)'
+effects:
+  358f64cf-82e6-493e-8717-2f8b878793f1:
+    uuid: 358f64cf-82e6-493e-8717-2f8b878793f1
+    id: crop_crop
+    weight: 1
+    data:
+      crop_type: teaser_display
+  119e7e13-2a93-4387-8a2c-2f38fce8df3c:
+    uuid: 119e7e13-2a93-4387-8a2c-2f38fce8df3c
+    id: image_scale
+    weight: 3
+    data:
+      width: 1620
+      height: 600
+      upscale: false
