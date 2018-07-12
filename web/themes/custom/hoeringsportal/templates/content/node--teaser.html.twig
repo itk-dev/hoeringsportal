@@ -95,9 +95,11 @@
 <div class="activity-teaser-image">
   <a href="{{ url }}">{{ content.field_media_image }}</a>
 </div>
-<div class="activity-teaser-content">
+<div{{ attributes.addClass('activity-teaser-content') }}>
   <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>
-  <div class="activity-teaser-description">{{ content.field_teaser }}</div>
+  <div class="activity-teaser-description">
+    {{ content.field_teaser }}
+  </div>
 </div>
 <div class="activity-teaser-info">
   <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>

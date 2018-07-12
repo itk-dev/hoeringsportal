@@ -38,6 +38,7 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "3.x-dev",
         "drupal/flag": "^4.0@alpha",
+        "drupal/image_widget_crop": "^2.2",
         "drupal/itk_cookie_message": "^1.0",
         "drupal/itk_media_entity": "^1.1",
         "drupal/itk_siteimprove": "^1.0",

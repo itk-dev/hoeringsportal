@@ -6,15 +6,6 @@
  */
 
 /**
- * Implements hook_preprocess_node().
- */
-function hoeringsportal_preprocess_node(&$variables) {
-  if (isset($variables['elements']['field_project_reference'])) {
-    // $$variables['elements']['field_project_reference'][0]['#plain_text'];.
-  }
-}
-
-/**
  * Implements hook_preprocess_field().
  */
 function hoeringsportal_preprocess_field(&$variables) {
@@ -76,6 +67,13 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
       $suggestions[] = 'field__field_project_hearing';
     }
   }
+
+  if ($hook == 'responsive_image') {
+    if (isset($variables['attributes']['id']) && $variables['attributes']['id'] == 'hero_image') {
+      $suggestions[] = 'responsive_image__hero';
+    }
+  }
+
 }
 
 /**

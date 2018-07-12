@@ -7,21 +7,31 @@ dependencies:
     - field.field.node.static_page.field_teaser_color
     - node.type.static_page
   module:
-    - color_field
     - ds
     - user
 third_party_settings:
   ds:
     layout:
-      id: layout_twocol
-      library: layout_discovery/twocol
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
       disable_css: false
       entity_classes: all_classes
-      settings: {  }
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
     regions:
-      top:
+      header:
         - node_title
-      first:
+      left:
         - field_teaser
         - node_changed_date
     fields:
@@ -50,16 +60,8 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: first
-  field_teaser_color:
-    weight: 2
-    label: above
-    settings:
-      format: hex
-      opacity: '1'
-    third_party_settings: {  }
-    type: color_field_formatter_text
-    region: content
+    region: left
 hidden:
+  field_teaser_color: true
   langcode: true
   links: true

@@ -4,3 +4,4 @@ require('../css/hoeringsportal.scss')
 // require('popper.js');
 
 require('./hide_password_help.js')
+require('./responsive-image-as-background.js')

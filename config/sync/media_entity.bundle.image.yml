@@ -6,7 +6,11 @@ dependencies:
     module:
       - itk_media_entity
   module:
+    - crop
     - media_entity_image
+third_party_settings:
+  crop:
+    image_field: field_itk_media_image_upload
 _core:
   default_config_hash: 8z1kJM0qM4I0QDNNGjwndK3HdGLy7q54TlhcuS391Z8
 id: image

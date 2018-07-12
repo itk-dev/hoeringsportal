@@ -8,13 +8,13 @@ dependencies:
     - field.field.media.image.field_itk_media_mime_type
     - field.field.media.image.field_itk_media_tag
     - field.field.media.image.field_itk_media_width
-    - image.style.thumbnail
+    - image.style.crop_thumbnail
     - media_entity.bundle.image
   enforced:
     module:
       - itk_media_entity
   module:
-    - image
+    - image_widget_crop
     - path
 _core:
   default_config_hash: pnXequxZbMqHvY7FiF_G1GuHqFrQU2lR9nl2STjebgA
@@ -26,10 +26,18 @@ content:
   field_itk_media_image_upload:
     weight: 1
     settings:
+      show_default_crop: true
+      warn_multiple_usages: true
+      preview_image_style: crop_thumbnail
+      crop_preview_image_style: crop_thumbnail
+      crop_list:
+        - content_display
+        - teaser_display
       progress_indicator: throbber
-      preview_image_style: thumbnail
+      crop_types_required: {  }
+      show_crop_area: false
     third_party_settings: {  }
-    type: image_image
+    type: image_widget_crop
     region: content
   field_itk_media_tag:
     weight: 2

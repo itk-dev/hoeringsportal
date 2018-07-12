@@ -1,16 +1,19 @@
 uuid: 407af7f3-3f49-4d38-9703-61778bfbec58
 langcode: da
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - crop.type.content_display
+  module:
+    - crop
 _core:
   default_config_hash: b44bhF4q8Jse2Nr8Ywyaqo5mEuydS5IDsKy7rqaGpgw
 name: hero
-label: 'Hero (1440×360)'
+label: 'Hero (1440w) - Crop'
 effects:
-  aarhus_hero_large_scale_and_crop:
-    uuid: aarhus_hero_large_scale_and_crop
-    id: image_scale_and_crop
-    weight: 0
+  33dfee6c-d038-44d9-9523-fa9e57d95714:
+    uuid: 33dfee6c-d038-44d9-9523-fa9e57d95714
+    id: crop_crop
+    weight: 1
     data:
-      width: 1440
-      height: 360
+      crop_type: content_display
