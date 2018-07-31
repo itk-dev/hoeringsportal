@@ -1,15 +1,32 @@
-hoeringsportal_deskpro.deskpro_controller_hearings_tickets:
-  path: '/hoeringsportal_deskpro/hearings/{hearing}/tickets'
+hoeringsportal_deskpro.deskpro_controller_ticket:
+  path: '/hoeringsportal_deskpro/hearings/{hearing}/tickets/{ticket}'
   defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::hearingTickets'
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::ticket'
+    _title: 'Ticket details'
+  requirements:
+    _permission: 'access content'
+
+
+hoeringsportal_deskpro.api_controller_hearings_index:
+  path: '/hoeringsportal_deskpro/api/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::hearings'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_hearings_tickets:
+  path: '/hoeringsportal_deskpro/api/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::hearingTickets'
     _title: 'Ticket'
   requirements:
     _permission: 'access content'
 
-hoeringsportal_deskpro.deskpro_controller_tickets_messages:
-  path: '/hoeringsportal_deskpro/tickets/{ticket}/messages'
+hoeringsportal_deskpro.api_controller_tickets_messages:
+  path: '/hoeringsportal_deskpro/api/tickets/{ticket}/messages'
   defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::ticketMessages'
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::ticketMessages'
     _title: 'Ticket messages'
   requirements:
     _permission: 'access content'

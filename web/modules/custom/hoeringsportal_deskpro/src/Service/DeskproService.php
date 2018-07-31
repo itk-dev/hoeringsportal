@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_deskpro\Service;
 
+use Deskpro\API\APIResponse;
 use Deskpro\API\DeskproClient;
 use Deskpro\API\Exception\APIException;
 use Drupal\Core\Site\Settings;
@@ -32,6 +33,20 @@ class DeskproService {
   }
 
   /**
+   * Get hearings.
+   */
+  public function getHearings() {
+    try {
+      $response = $this->get('/ticket_custom_fields/{id}', ['id' => $this->configuration['hearing_field_id']]);
+
+      return $response;
+    }
+    catch (APIException $e) {
+      throw new DeskproException('', 0, $e);
+    }
+  }
+
+  /**
    * Get tickets from a hearing.
    *
    * @param int $hearingId
@@ -50,6 +65,52 @@ class DeskproService {
     }
     catch (APIException $e) {
       throw new DeskproException('', 0, $e);
+    }
+  }
+
+  /**
+   * Get a ticket.
+   *
+   * @param int $ticketId
+   *   A ticket id.
+   *
+   * @return \Deskpro\API\APIResponseInterface
+   *   The ticket.
+   *
+   * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
+   */
+  public function getTicket($ticketId) {
+    try {
+      $response = $this->get('/tickets/{ticket}', ['ticket' => $ticketId]);
+      $data = $response->getData();
+      $data['person'] = $this->getPerson($data['person'])->getData();
+
+      return $response;
+    }
+    catch (APIException $e) {
+      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+    }
+  }
+
+  /**
+   * Get attachments from a ticket.
+   *
+   * @param int $ticketId
+   *   A ticket id.
+   *
+   * @return \Deskpro\API\APIResponseInterface
+   *   The attachments.
+   *
+   * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
+   */
+  public function getTicketAttachments($ticketId) {
+    try {
+      $response = $this->get('/tickets/{ticket}/attachments', ['ticket' => $ticketId]);
+
+      return $response;
+    }
+    catch (APIException $e) {
+      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
     }
   }
 
@@ -85,6 +146,15 @@ class DeskproService {
   }
 
   /**
+   * Get a person by id.
+   */
+  public function getPerson($id) {
+    $response = $this->get('people/' . $id);
+
+    return $response;
+  }
+
+  /**
    * Validate Deskpro configuration.
    */
   public function validateConfiguration() {
@@ -99,7 +169,24 @@ class DeskproService {
    * Convenience function for getting data from the Deskpro client.
    */
   private function get($endpoint, array $params = []) {
-    return $this->getClient()->get($endpoint, $params);
+    $cache = \Drupal::cache('data');
+    $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
+    // @TODO: Get cache ttl from configuration.
+    $cacheTtl = 600;
+
+    if ($cacheItem = $cache->get($cacheKey)) {
+      return new ApiResponse($cacheItem->data['data'], $cacheItem->data['meta'], $cacheItem->data['linked']);
+    }
+
+    $response = $this->getClient()->get($endpoint, $params);
+    $data = [
+      'data' => $response->getData(),
+      'meta' => $response->getMeta(),
+      'linked' => $response->getLinked(),
+    ];
+    $cache->set($cacheKey, $data, time() + $cacheTtl);
+
+    return $response;
   }
 
   /**

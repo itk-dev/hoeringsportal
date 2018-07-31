@@ -1,0 +1,83 @@
+<div {{ attributes.addClass('ds-2col-stacked', 'clearfix') }}>
+  <div class="group-header hero-container">
+    <div class="hero hero--image-right">
+      <div class="container">
+        <div class="hero__content">
+          <h1>Høringssvar af {{ ticket.person.name }}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container  content__container">
+    <div class="row">
+      <div class="content group-left col-md-8">
+        <div class="content__main ">
+          <h2>Høringssvar til<br/>
+            <a href="{{ path('entity.node.canonical', {node: hearing.id}) }}">{{ hearing.title.value }}</a>
+          </h2>
+
+          {% if ticket_messages %}
+            <fieldset class="ticket-messages">
+              <legend>{{ 'Messages'|trans }}</legend>
+
+              <ol class="list-group">
+                {% for message in ticket_messages %}
+                  <li class="list-group-item">
+                    {{ message.person.name }} {{ message.date_created|date }}
+
+                    <div class="message">
+                      {{ message.message|raw }}
+                    </div>
+
+                    {% if message.attachments %}
+                      <div class="attachments">
+                        Attachments:
+                        <ol class="list-group">
+                          {% for attachment in message.attachments %}
+                            <li class="list-group-item">
+                              <a href="#ticket-attachment-{{ attachment.id }}">
+                                {{ attachment.blob.filename }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ol>
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ol>
+            </fieldset>
+          {% endif %}
+
+          {% if ticket_attachments %}
+            <fieldset class="ticket-attachments">
+              <legend>{{ 'Attachments'|trans }}</legend>
+
+              <ol class="list-group">
+                {% for attachment in ticket_attachments %}
+                  {% set blob = attachment.blob %}
+                  <li class="list-group-item" id="ticket-attachment-{{ attachment.id }}">
+                    {#
+                    {% if blob.is_image %}
+                      <img src="{{ blob.download_url }}"/>
+                    {% endif %}
+                      #}
+                    <a href="{{ blob.download_url }}">{{ blob.filename }} ({{ blob.content_type }}; {{ blob.filesize_readable }})</a>
+                  </li>
+                {% endfor %}
+              </ol>
+            </fieldset>
+          {% endif %}
+
+        </div>
+      </div>
+
+      <div class="group-right col-md-4">
+        <h5 class="mt-3">Høringsfrist</h5>
+
+        {{ hearing.field_reply_deadline.value|date }}
+      </div>
+    </div>
+  </div>
+</div>

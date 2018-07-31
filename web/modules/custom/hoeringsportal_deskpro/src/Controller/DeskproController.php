@@ -2,11 +2,10 @@
 
 namespace Drupal\hoeringsportal_deskpro\Controller;
 
+use Drupal\node\Entity\Node;
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Class DeskproController.
@@ -37,58 +36,66 @@ class DeskproController extends ControllerBase {
   }
 
   /**
-   * Tickets.
-   *
-   * @return string
-   *   Return Hello string.
+   * Render a ticket.
    */
-  public function hearingTickets($hearing) {
-    try {
-      $tickets = $this->deskpro->getTickets($hearing);
+  public function ticket($hearing, $ticket) {
+    $hearing = Node::load($hearing);
+    $ticket = $this->getTicket($ticket);
+    $ticket_messages = $this->getTicketMessages($ticket);
+    $ticket_attachments = $this->getTicketAttachments($ticket);
 
-      $data = $tickets->getData();
-      foreach ($data as &$ticket) {
-        $ticket['@url'] = $this->getUrlGenerator()->generateFromRoute(
-          'hoeringsportal_deskpro.deskpro_controller_tickets_messages',
-          ['ticket' => $ticket['id']],
-          ['absolute' => TRUE]
-        );
-      }
-
-      return new JsonResponse($data);
-    }
-    catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
-    }
+    return [
+      '#theme' => 'hoeringsportal_deskpro_ticket',
+      '#hearing' => $hearing,
+      '#ticket' => $ticket,
+      '#ticket_messages' => $ticket_messages,
+      '#ticket_attachments' => $ticket_attachments,
+      '#cache' => [
+        'max-age' => 0,
+      ],
+    ];
   }
 
   /**
-   * Messages.
-   *
-   * @return string
-   *   Return Hello string.
+   * Get a ticket.
    */
-  public function ticketMessages($ticket) {
-    try {
-      $messages = $this->deskpro->getTicketMessages($ticket);
+  private function getTicket($ticket) {
+    $ticket = $this->deskpro->getTicket($ticket)->getData();
+    $ticket['person'] = $this->getPerson($ticket['person']);
 
-      $data = $messages->getData();
-      foreach ($data as &$message) {
-        if (!empty($message['attachments'])) {
-          $attachments = $this->deskpro->getMessageAttachments($message);
-          $message['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
-        }
+    return $ticket;
+  }
+
+  /**
+   * Get ticket messages.
+   */
+  private function getTicketMessages($ticket) {
+    $messages = $this->deskpro->getTicketMessages($ticket['id'])->getData();
+    foreach ($messages as &$message) {
+      $message['person'] = $this->getPerson($message['person']);
+      if (!empty($message['attachments'])) {
+        $attachments = $this->deskpro->getMessageAttachments($message);
+        $message['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
       }
-
-      return new JsonResponse($data);
     }
-    catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
 
-      return new JsonResponse(['error' => $message]);
-    }
+    return $messages;
+  }
+
+  /**
+   * Get ticket attachments.
+   */
+  private function getTicketAttachments($ticket) {
+    $attachments = $this->deskpro->getTicketAttachments($ticket['id'])->getData();
+
+    return $attachments;
+  }
+
+  /**
+   * Get a person.
+   */
+  private function getPerson($person) {
+    return $this->deskpro->getPerson($person)->getData();
   }
 
 }

@@ -31,5 +31,14 @@ function hoeringsportal_deskpro_theme() {
     'hoeringsportal_deskpro' => [
       'render element' => 'children',
     ],
+    'hoeringsportal_deskpro_ticket' => [
+      // 'render element' => 'children',.
+      'variables' => [
+        'hearing' => NULL,
+        'ticket' => NULL,
+        'ticket_messages' => NULL,
+        'ticket_attachments' => NULL,
+      ],
+    ],
   ];
 }

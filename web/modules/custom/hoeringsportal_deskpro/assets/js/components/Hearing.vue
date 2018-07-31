@@ -1,0 +1,76 @@
+<template>
+  <div class="hearing-content">
+    <h1>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h1>
+
+    <div class="loading" v-if="loading">{{ $t('Loading tickets …') }}</div>
+
+    <div v-if="tickets" class="list-group-item ticket" v-for="(ticket, index) in tickets" v-bind:key="ticket.id">
+      <div class="subject">{{ ticket.subject }}</div>
+      <div>
+        {{ $t('Answer #{number} by {name}', {number: index+1, name: ticket.person.display_name}) }}
+        | <span class="ticket-date_created">{{ $d(new Date(ticket.date_created), 'short') }}</span>
+      </div>
+      <div class="ticket-read-more">
+        <a class="read-more" :href="ticket['@details_url']">Details</a>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+// https://codeburst.io/dependency-injection-with-vue-js-f6b44a0dae6d
+import Vue from 'vue'
+
+Vue.mixin({
+  beforeCreate() {
+    const options = this.$options
+    if (options.config) {
+      this.$config = options.config
+    } else if (options.parent && options.parent.$config) {
+      this.$config = options.parent.$config
+    }
+  }
+})
+
+export default {
+  name: "hearing-content",
+  data () {
+    return {
+      loading: false,
+      tickets: null,
+      error: null
+    }
+  },
+  created () {
+    this.fetchData()
+  },
+  methods: {
+    fetchData () {
+      this.error = this.tickets = null
+      this.loading = true
+
+      const self = this
+      fetch(this.$config.data_url)
+        .then(response => {
+          self.loading = false
+          if (!response.ok) {
+            throw (response.statusText)
+          }
+          return response.json()
+        })
+        .then(data => { self.setData(null, data) })
+        .catch(error => { self.setData(error, null) })
+    },
+    setData (error, tickets) {
+      if (error) {
+        this.error = error.toString()
+      } else {
+        tickets.forEach(ticket => {
+          ticket['@details_url'] = this.$config['ticket_details_url'].replace('{ticket}', ticket.id);
+        });
+        this.tickets = tickets
+      }
+    }
+  }
+}
+</script>
