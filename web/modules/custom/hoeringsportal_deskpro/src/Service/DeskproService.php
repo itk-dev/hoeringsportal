@@ -42,7 +42,7 @@ class DeskproService {
       return $response;
     }
     catch (APIException $e) {
-      throw new DeskproException('', 0, $e);
+      throw new DeskproException($e->getMessage(), 0, $e);
     }
   }
 
@@ -158,11 +158,46 @@ class DeskproService {
    * Validate Deskpro configuration.
    */
   public function validateConfiguration() {
-    foreach (['deskpro_url', 'api_code_key', 'hearing_field_id'] as $key) {
+    $requiredKeys = [
+      'deskpro_url',
+      'api_code_key',
+      'hearing_field_id',
+      'hearing_department_id',
+      'cache_ttl',
+    ];
+    foreach ($requiredKeys as $key) {
       if (empty($this->configuration[$key])) {
         throw new DeskproException('"' . $key . '" is missing or empty');
       }
     }
+  }
+
+  /**
+   * Get ticket embed form.
+   *
+   * The form generated in Deskpro
+   * (cf. https://example.deskpro.com/agent/#admin:/tickets/ticket_deps/1)
+   * does not handle default values, so we use embed_loader.js directly.
+   */
+  public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = NULL) {
+    $id = uniqid('deskpro_ticket_form', TRUE);
+    $embed_options = [
+      'helpdeskUrl' => $this->configuration['deskpro_url'],
+      'containerId' => $id,
+      'type' => 'form',
+      'language' => 'da_DK',
+      'department' => $departmentId,
+      'hide_department' => 1,
+      // 'width' => '100%',.
+      'default_values' => $defaultValues,
+    ];
+
+    return implode('', [
+      // '<pre>'.json_encode($embed_options, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE).'</pre>',.
+      '<div id="' . htmlspecialchars($id) . '"></div>',
+      '<script type="text/javascript">window.DESKPRO_EMBED_OPTIONS = ' . json_encode($embed_options) . ';</script>',
+      '<script type="text/javascript" src="' . htmlspecialchars($this->configuration['deskpro_url'] . '/dyn-assets/pub/build/embed_loader.js') . '"></script>',
+    ]);
   }
 
   /**
@@ -171,8 +206,7 @@ class DeskproService {
   private function get($endpoint, array $params = []) {
     $cache = \Drupal::cache('data');
     $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
-    // @TODO: Get cache ttl from configuration.
-    $cacheTtl = 600;
+    $cacheTtl = $this->configuration['cache_ttl'];
 
     if ($cacheItem = $cache->get($cacheKey)) {
       return new ApiResponse($cacheItem->data['data'], $cacheItem->data['meta'], $cacheItem->data['linked']);

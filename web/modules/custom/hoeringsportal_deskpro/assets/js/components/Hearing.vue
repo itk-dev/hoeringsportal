@@ -1,6 +1,17 @@
 <template>
   <div class="hearing-content">
-    <h1>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h1>
+    <div class="row">
+      <div class="col">
+        <h3>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h3>
+      </div>
+      <div class="col" v-if="ticket_add_url">
+        <div class="float-right">
+          <a :href="ticket_add_url" class="btn btn-primary">
+            Skriv et nyt høringssvar →
+          </a>
+        </div>
+      </div>
+    </div>
 
     <div class="loading" v-if="loading">{{ $t('Loading tickets …') }}</div>
 
@@ -38,6 +49,7 @@ export default {
     return {
       loading: false,
       tickets: null,
+      ticket_add_url: this.$config.ticket_add_url,
       error: null
     }
   },
@@ -66,7 +78,7 @@ export default {
         this.error = error.toString()
       } else {
         tickets.forEach(ticket => {
-          ticket['@details_url'] = this.$config['ticket_details_url'].replace('{ticket}', ticket.id);
+          ticket['@details_url'] = this.$config['ticket_view_url'].replace('{ticket}', ticket.id);
         });
         this.tickets = tickets
       }
