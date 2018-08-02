@@ -119,15 +119,23 @@ class DeskproService {
    *
    * @param int $ticketId
    *   A ticket id.
+   * @param bool $noCache
+   *   Disable cache if set.
    *
    * @return \Deskpro\API\APIResponseInterface
    *   The messages.
    *
    * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
    */
-  public function getTicketMessages($ticketId) {
+  public function getTicketMessages($ticketId, $noCache = FALSE) {
     try {
-      $response = $this->get('/tickets/{ticket}/messages', ['ticket' => $ticketId]);
+      $response = $this->get('/tickets/{ticket}/messages', ['ticket' => $ticketId], $noCache);
+
+      // Filter out agent notes.
+      $data = array_filter($response->getData(), function ($message) {
+        return $message['is_agent_note'] === 0;
+      });
+      $response = new ApiResponse($data, $response->getMeta(), $response->getLinked());
 
       return $response;
     }
@@ -203,13 +211,15 @@ class DeskproService {
   /**
    * Convenience function for getting data from the Deskpro client.
    */
-  private function get($endpoint, array $params = []) {
+  private function get($endpoint, array $params = [], $noCache = FALSE) {
     $cache = \Drupal::cache('data');
     $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
     $cacheTtl = $this->configuration['cache_ttl'];
 
-    if ($cacheItem = $cache->get($cacheKey)) {
-      return new ApiResponse($cacheItem->data['data'], $cacheItem->data['meta'], $cacheItem->data['linked']);
+    if (!$noCache && $cacheTtl > 0) {
+      if ($cacheItem = $cache->get($cacheKey)) {
+        return new ApiResponse($cacheItem->data['data'], $cacheItem->data['meta'], $cacheItem->data['linked']);
+      }
     }
 
     $response = $this->getClient()->get($endpoint, $params);

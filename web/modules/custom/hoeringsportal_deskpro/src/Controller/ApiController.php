@@ -5,8 +5,11 @@ namespace Drupal\hoeringsportal_deskpro\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
+use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class ApiController.
@@ -39,17 +42,26 @@ class ApiController extends ControllerBase {
   /**
    * Get all hearings.
    */
-  public function hearings() {
-    $hearings = $this->deskpro->getHearings();
+  public function hearings(Request $request) {
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'hearing')
+      ->condition('status', NodeInterface::PUBLISHED)
+      // @TODO Get only active hearings.
+      ->sort('title', 'ASC');
 
-    $data = $hearings->getData();
-    foreach ($data['choices'] as &$hearing) {
-      $hearing['@url'] = $this->getUrlGenerator()->generateFromRoute(
-        'hoeringsportal_deskpro.api_controller_hearings_tickets',
-        ['hearing' => $hearing['id']],
-        ['absolute' => TRUE]
-      );
+    if ($name = $request->query->get('name')) {
+      $query->condition('title', '%' . $name . '%', 'LIKE');
     }
+    $nids = $query->execute();
+    $hearings = Node::loadMultiple($nids);
+
+    $data = array_values(array_map(function (NodeInterface $hearing) {
+      return [
+        'id' => $hearing->field_hearing_id->value,
+        'title' => $hearing->getTitle(),
+        'field_reply_deadline' => $hearing->field_reply_deadline->value,
+      ];
+    }, $hearings));
 
     return new JsonResponse($data);
   }
@@ -60,7 +72,7 @@ class ApiController extends ControllerBase {
    * @return string
    *   Return Hello string.
    */
-  public function hearingTickets($hearing) {
+  public function hearingTickets(Request $request, $hearing) {
     try {
       $tickets = $this->deskpro->getTickets($hearing);
 
@@ -104,12 +116,13 @@ class ApiController extends ControllerBase {
    * @return string
    *   Return Hello string.
    */
-  public function ticketMessages($ticket) {
+  public function ticketMessages(Request $request, $ticket) {
     try {
-      $messages = $this->deskpro->getTicketMessages($ticket);
+      $messages = $this->deskpro->getTicketMessages($ticket, $request->query->get('no_cache') === '1');
 
-      $data = $messages->getData();
+      $data = array_values($messages->getData());
       foreach ($data as &$message) {
+        $message['person'] = $this->getPerson($message['person']);
         if (!empty($message['attachments'])) {
           $attachments = $this->deskpro->getMessageAttachments($message);
           $message['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
