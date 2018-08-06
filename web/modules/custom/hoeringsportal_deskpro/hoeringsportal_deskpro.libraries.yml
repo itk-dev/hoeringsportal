@@ -1,0 +1,4 @@
+hearing_tickets:
+  version: 1.x
+  js:
+    assets/public/build/hearing-tickets.js: { scope: footer }

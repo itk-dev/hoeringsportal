@@ -1,35 +1,23 @@
 hoeringsportal_deskpro.hearing.view:
-  path: '/hearing/{node}'
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::view'
-    _title_callback: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::title'
-  requirements:
-    _entity_access: 'node.view'
+ path: '/hearing/{node}'
+ defaults:
+   _entity_view: 'node.default'
+ requirements:
+   _permission: 'access content'
 
 hoeringsportal_deskpro.hearing.ticket_add:
   path: '/hearing/{node}/ticket/add'
   defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::addTicket'
-    _title_callback: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::addTicketTitle'
+    _entity_view: 'node.hearing_ticket_add'
   requirements:
-    _entity_access: 'node.view'
+    _permission: 'access content'
 
 hoeringsportal_deskpro.hearing.ticket_view:
   path: '/hearing/{node}/ticket/{ticket}'
   defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::viewTicket'
-    _title_callback: '\Drupal\hoeringsportal_deskpro\Controller\HearingController::viewTicketTitle'
-  requirements:
-    _entity_access: 'node.view'
-
-hoeringsportal_deskpro.deskpro_controller_ticket:
-  path: '/hoeringsportal_deskpro/hearings/{hearing}/tickets/{ticket}'
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DeskproController::ticket'
-    _title: 'Ticket details'
+    _entity_view: 'node.hearing_ticket_view'
   requirements:
     _permission: 'access content'
-
 
 hoeringsportal_deskpro.api_controller_hearings_index:
   path: '/hoeringsportal_deskpro/api/hearings'

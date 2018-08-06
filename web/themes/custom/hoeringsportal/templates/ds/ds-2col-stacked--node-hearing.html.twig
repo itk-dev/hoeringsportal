@@ -34,20 +34,6 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
-
-          <script id="hearing-config" type="application/json">
-            {% set hearingId = field_hearing_id[0]['#context']['value'] %}
-            {{ {
-              locale: 'da',
-              hearing: hearingId,
-              data_url: url('hoeringsportal_deskpro.api_controller_hearings_tickets', {hearing: hearingId})['#markup'],
-              ticket_add_url: url('hoeringsportal_deskpro.hearing.ticket_add', {node: node.nid.value})['#markup'],
-              ticket_view_url: url('hoeringsportal_deskpro.hearing.ticket_view', {node: node.nid.value, ticket: '{ticket}'})['#markup']|replace({('{ticket}'|url_encode): '{ticket}'}),
-              }|json_encode|raw }}
-          </script>
-          <div id="hearing-content" data-hearing="{{ field_hearing_id[0] }}"></div>
-          <script src="/modules/custom/hoeringsportal_deskpro/assets/public/build/hearing.js"></script>
-
           {{ left }}
         </div>
       </{{ left_wrapper }}>

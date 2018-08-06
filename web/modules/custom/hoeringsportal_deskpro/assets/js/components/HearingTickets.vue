@@ -1,5 +1,5 @@
 <template>
-  <div class="hearing-content">
+  <div class="hearing-tickets-content">
     <div class="row">
       <div class="col">
         <h3>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h3>
@@ -44,7 +44,7 @@ Vue.mixin({
 })
 
 export default {
-  name: "hearing-content",
+  name: "hearing-tickets-content",
   data () {
     return {
       loading: false,

@@ -8,7 +8,7 @@ Encore
     .setPublicPath('/build')
 
     // will create public/build/app.js and public/build/app.css
-    .addEntry('hearing', './js/hearing.js')
+    .addEntry('hearing-tickets', './js/hearing-tickets.js')
 
     // allow legacy applications to use $/jQuery as a global variable
     // .autoProvidejQuery()

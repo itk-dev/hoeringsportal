@@ -11,6 +11,7 @@ const messages = {
   },
   en: {
     'Loading tickets …': 'Loading …',
+    'Answer #{number} by {name}': 'Svar #{number} af {name}',
   },
 }
 
