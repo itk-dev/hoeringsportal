@@ -28,8 +28,9 @@ class ResponsiveBackgroundImage {
   }
 }
 
-// eslint-disable-next-line no-use-before-define
+// eslint-disable-next-line no-undef
 Drupal.behaviors.applyResponsiveBackground = {
+
   attach: function (context, settings) {
     // Look for data attribute.
     let elements = document.querySelectorAll('[data-responsive-background-image]')
