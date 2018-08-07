@@ -81,7 +81,7 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
     $ticket_attachments = $this->getTicketAttachments($ticket);
 
     return [
-      '#theme' => 'block__hoeringsportal_hearing_ticket',
+      '#theme' => 'hoeringsportal_hearing_ticket',
       '#ticket' => $ticket,
       '#ticket_messages' => $ticket_messages,
       '#ticket_attachments' => $ticket_attachments,

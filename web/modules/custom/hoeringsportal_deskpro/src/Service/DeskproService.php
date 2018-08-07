@@ -35,7 +35,7 @@ class DeskproService {
   /**
    * Get hearings.
    */
-  public function getHearings() {
+  public function getHearings(array $query = []) {
     try {
       $response = $this->get('/ticket_custom_fields/{id}', ['id' => $this->configuration['hearing_field_id']]);
 
@@ -49,22 +49,34 @@ class DeskproService {
   /**
    * Get tickets from a hearing.
    *
-   * @param int $hearingId
-   *   A hearing id.
+   * @param string $hearingId
+   *   The hearing id.
+   * @param array $query
+   *   The query.
    *
-   * @return \Deskpro\API\APIResponseInterface
-   *   The tickets.
-   *
-   * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
+   * @return \Deskpro\API\APIResponse|\Deskpro\API\APIResponseInterface
+   *   The api response.
    */
-  public function getTickets($hearingId) {
-    try {
-      $response = $this->get('/tickets', ['ticket_field.' . $this->configuration['hearing_field_id'] => $hearingId]);
+  public function getHearingTickets($hearingId, array $query = []) {
+    $query['ticket_field.' . $this->configuration['hearing_field_id']] = $hearingId;
 
-      return $response;
+    return $this->getTickets($query);
+  }
+
+  /**
+   * Get tickets.
+   */
+  public function getTickets(array $query = []) {
+    try {
+      $response = $this->get('/tickets', $query);
+
+      $data = $response->getData();
+      $this->expandData($data, $query);
+
+      return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException('', 0, $e);
+      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
     }
   }
 
@@ -73,19 +85,22 @@ class DeskproService {
    *
    * @param int $ticketId
    *   A ticket id.
+   * @param array $query
+   *   The query.
    *
    * @return \Deskpro\API\APIResponseInterface
    *   The ticket.
    *
    * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
    */
-  public function getTicket($ticketId) {
+  public function getTicket($ticketId, array $query = []) {
     try {
       $response = $this->get('/tickets/{ticket}', ['ticket' => $ticketId]);
-      $data = $response->getData();
-      $data['person'] = $this->getPerson($data['person'])->getData();
 
-      return $response;
+      $data = $response->getData();
+      $this->expandData($data, $query);
+
+      return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
       throw new DeskproException($e->getMessage(), $e->getCode(), $e);
@@ -97,15 +112,18 @@ class DeskproService {
    *
    * @param int $ticketId
    *   A ticket id.
+   * @param array $query
+   *   The query.
    *
    * @return \Deskpro\API\APIResponseInterface
    *   The attachments.
    *
    * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
    */
-  public function getTicketAttachments($ticketId) {
+  public function getTicketAttachments($ticketId, array $query = []) {
     try {
-      $response = $this->get('/tickets/{ticket}/attachments', ['ticket' => $ticketId]);
+      $query['ticket'] = $ticketId;
+      $response = $this->get('/tickets/{ticket}/attachments', $query);
 
       return $response;
     }
@@ -119,25 +137,29 @@ class DeskproService {
    *
    * @param int $ticketId
    *   A ticket id.
-   * @param bool $noCache
-   *   Disable cache if set.
+   * @param array $query
+   *   The query.
    *
    * @return \Deskpro\API\APIResponseInterface
    *   The messages.
    *
    * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
    */
-  public function getTicketMessages($ticketId, $noCache = FALSE) {
+  public function getTicketMessages($ticketId, array $query = []) {
     try {
-      $response = $this->get('/tickets/{ticket}/messages', ['ticket' => $ticketId], $noCache);
+      $query['ticket'] = $ticketId;
+      $response = $this->get('/tickets/{ticket}/messages', $query);
+
+      $data = $response->getData();
 
       // Filter out agent notes.
-      $data = array_filter($response->getData(), function ($message) {
+      $data = array_values(array_filter($data, function ($message) {
         return $message['is_agent_note'] === 0;
-      });
-      $response = new ApiResponse($data, $response->getMeta(), $response->getLinked());
+      }));
 
-      return $response;
+      $this->expandData($data, $query);
+
+      return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
       throw new DeskproException($e->getMessage(), $e->getCode(), $e);
@@ -147,8 +169,10 @@ class DeskproService {
   /**
    * Get message attachments.
    */
-  public function getMessageAttachments($message) {
-    $response = $this->get('tickets/' . $message['ticket'] . '/messages/' . $message['id'] . '/attachments');
+  public function getMessageAttachments($message, array $query = []) {
+    $query['ticket'] = $message['ticket'];
+    $query['id'] = $message['id'];
+    $response = $this->get('tickets/{ticket}/messages/{id}/attachments', $query);
 
     return $response;
   }
@@ -156,8 +180,9 @@ class DeskproService {
   /**
    * Get a person by id.
    */
-  public function getPerson($id) {
-    $response = $this->get('people/' . $id);
+  public function getPerson($id, array $query = []) {
+    $query['id'] = $id;
+    $response = $this->get('people/{id}', $query);
 
     return $response;
   }
@@ -201,7 +226,6 @@ class DeskproService {
     ];
 
     return implode('', [
-      // '<pre>'.json_encode($embed_options, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE).'</pre>',.
       '<div id="' . htmlspecialchars($id) . '"></div>',
       '<script type="text/javascript">window.DESKPRO_EMBED_OPTIONS = ' . json_encode($embed_options) . ';</script>',
       '<script type="text/javascript" src="' . htmlspecialchars($this->configuration['deskpro_url'] . '/dyn-assets/pub/build/embed_loader.js') . '"></script>',
@@ -209,12 +233,21 @@ class DeskproService {
   }
 
   /**
+   * Simple per request response cache.
+   *
+   * @var array
+   */
+  private $responseCache = [];
+
+  /**
    * Convenience function for getting data from the Deskpro client.
    */
-  private function get($endpoint, array $params = [], $noCache = FALSE) {
+  private function get($endpoint, array $query = []) {
     $cache = \Drupal::cache('data');
     $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
     $cacheTtl = $this->configuration['cache_ttl'];
+
+    $noCache = isset($query['no_cache']);
 
     if (!$noCache && $cacheTtl > 0) {
       if ($cacheItem = $cache->get($cacheKey)) {
@@ -222,7 +255,19 @@ class DeskproService {
       }
     }
 
-    $response = $this->getClient()->get($endpoint, $params);
+    // We don't want to performs the same api request more than once pr. http
+    // request.
+    if (isset($this->responseCache[$cacheKey])) {
+      return $this->responseCache[$cacheKey];
+    }
+
+    // Trim out our custom query parameters.
+    unset($query['expand']);
+    unset($query['no_cache']);
+
+    $response = $this->getClient()->get($endpoint, $query);
+    $this->responseCache[$cacheKey] = $response;
+
     $data = [
       'data' => $response->getData(),
       'meta' => $response->getMeta(),
@@ -244,6 +289,68 @@ class DeskproService {
     $client->setAuthKey(...$authKey);
 
     return $client;
+  }
+
+  /**
+   * Set data in response object.
+   *
+   * @param \Deskpro\API\APIResponse $response
+   *   The api response.
+   * @param array $data
+   *   The new data.
+   *
+   * @return \Deskpro\API\APIResponse
+   *   The api response with updated data.
+   */
+  private function setResponseData(APIResponse $response, array $data) {
+    return new APIResponse($data, $response->getMeta(), $response->getLinked());
+  }
+
+  /**
+   * Expand data depending on query parameters.
+   */
+  private function expandData(array &$data, array $query) {
+    if (isset($query['expand'])) {
+      $expands = [
+        'person' => function (array &$item) use ($query) {
+          if (isset($item['person'])) {
+            $person = $this->getPerson($item['person'], $query);
+            $item['person'] = $person !== NULL ? $person->getData() : NULL;
+          }
+        },
+        'attachments' => function (array &$item) use ($query) {
+          if (isset($item['attachments'])) {
+            $attachments = $this->getMessageAttachments($item, $query);
+            $item['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
+          }
+        },
+        'fields' => function (array &$item) {
+          if (isset($this->configuration['ticket_custom_fields'])) {
+            $fields = $this->configuration['ticket_custom_fields'];
+            if (is_array($fields)) {
+              foreach ($fields as $id => $name) {
+                if (isset($item['fields'][$id]['value'])) {
+                  $item['fields'][$name] = $item['fields'][$id]['value'];
+                }
+              }
+            }
+          }
+        },
+      ];
+
+      $fields = array_map('trim', explode(',', $query['expand']));
+      foreach ($fields as $field) {
+        if (isset($expands[$field])) {
+          $expand = $expands[$field];
+          $expand($data);
+          foreach ($data as &$item) {
+            if (is_array($item)) {
+              $expand($item);
+            }
+          }
+        }
+      }
+    }
   }
 
 }

@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_deskpro\Controller;
 
+use Deskpro\API\APIResponse;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
@@ -41,6 +42,9 @@ class ApiController extends ControllerBase {
 
   /**
    * Get all hearings.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
    */
   public function hearings(Request $request) {
     $query = \Drupal::entityQuery('node')
@@ -67,20 +71,63 @@ class ApiController extends ControllerBase {
   }
 
   /**
-   * Tickets.
+   * Get hearing tickets.
    *
-   * @return string
-   *   Return Hello string.
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
    */
   public function hearingTickets(Request $request, $hearing) {
     try {
-      $tickets = $this->deskpro->getTickets($hearing);
+      $query = $this->getDeskproQuery($request);
+      $tickets = $this->deskpro->getHearingTickets($hearing, $query);
 
-      $data = $tickets->getData();
-      foreach ($data as &$ticket) {
-        $ticket['person'] = $this->getPerson($ticket['person']);
-      }
+      return $this->createResponse($tickets);
+    }
+    catch (DeskproException $exception) {
+      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
 
+      return new JsonResponse(['error' => $message]);
+    }
+  }
+
+  /**
+   * Get all tickets.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
+   */
+  public function tickets(Request $request) {
+    try {
+      $query = $this->getDeskproQuery($request);
+      $tickets = $this->deskpro->getTickets($query);
+
+      return $this->createResponse($tickets);
+    }
+    catch (DeskproException $exception) {
+      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
+
+      return new JsonResponse(['error' => $message]);
+    }
+  }
+
+  /**
+   * Get ticket data.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   * @param string $ticket
+   *   The ticket id.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
+   */
+  public function ticket(Request $request, $ticket) {
+    try {
+      $query = $this->getDeskproQuery($request);
+      $ticket = $this->deskpro->getTicket($ticket, $query);
+
+      $data = $ticket->getData();
+      // $data['person'] = $this->getPerson($data['person']);.
       return new JsonResponse($data);
     }
     catch (DeskproException $exception) {
@@ -94,7 +141,7 @@ class ApiController extends ControllerBase {
    * Get ticket attachments.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse
-   *   The response.
+   *   The json response.
    */
   public function ticketAttachments($ticket) {
     try {
@@ -111,25 +158,17 @@ class ApiController extends ControllerBase {
   }
 
   /**
-   * Messages.
+   * Get ticket messages.
    *
-   * @return string
-   *   Return Hello string.
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   The json response.
    */
   public function ticketMessages(Request $request, $ticket) {
     try {
-      $messages = $this->deskpro->getTicketMessages($ticket, $request->query->get('no_cache') === '1');
+      $query = $this->getDeskproQuery($request);
+      $messages = $this->deskpro->getTicketMessages($ticket, $query);
 
-      $data = array_values($messages->getData());
-      foreach ($data as &$message) {
-        $message['person'] = $this->getPerson($message['person']);
-        if (!empty($message['attachments'])) {
-          $attachments = $this->deskpro->getMessageAttachments($message);
-          $message['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
-        }
-      }
-
-      return new JsonResponse($data);
+      return $this->createResponse($messages);
     }
     catch (DeskproException $exception) {
       $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
@@ -139,26 +178,27 @@ class ApiController extends ControllerBase {
   }
 
   /**
-   * Cached persons.
+   * Get query to pass on to api.
    *
-   * @var array
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request.
+   *
+   * @return array
+   *   The query.
    */
-  private $persons = [];
+  private function getDeskproQuery(Request $request) {
+    return array_filter($request->query->all());
+  }
 
   /**
-   * Get a person by id.
+   * Create a json response from a Deskpro api response.
    */
-  private function getPerson($id) {
-    if (isset($this->persons[$id])) {
-      return $this->persons[$id];
-    }
-
-    $person = $this->deskpro->getPerson($id);
-    $data = $person->getData();
-
-    $this->persons[$id] = $data;
-
-    return $data;
+  private function createResponse(APIResponse $response) {
+    return new JsonResponse([
+      'data' => $response->getData(),
+      'meta' => $response->getMeta(),
+      'linked' => $response->getLinked(),
+    ]);
   }
 
 }

@@ -31,6 +31,22 @@ hoeringsportal_deskpro.api_controller_hearings_tickets:
   path: '/hoeringsportal_deskpro/api/hearings/{hearing}/tickets'
   defaults:
     _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::hearingTickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_tickets:
+  path: '/hoeringsportal_deskpro/api/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::tickets'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_ticket:
+  path: '/hoeringsportal_deskpro/api/tickets/{ticket}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::ticket'
     _title: 'Ticket'
   requirements:
     _permission: 'access content'

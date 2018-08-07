@@ -69,9 +69,28 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
       return NULL;
     }
 
-    $data_url = Url::fromRoute('hoeringsportal_deskpro.api_controller_hearings_tickets', ['hearing' => $node->field_hearing_id->value])->toString();
-    $ticket_add_url = Url::fromRoute('hoeringsportal_deskpro.hearing.ticket_add', ['node' => $node->id()])->toString();
-    $ticket_view_url = str_replace(urlencode('{ticket}'), '{ticket}', Url::fromRoute('hoeringsportal_deskpro.hearing.ticket_view', ['node' => $node->id(), 'ticket' => '{ticket}'])->toString());
+    $data_url = Url::fromRoute(
+      'hoeringsportal_deskpro.api_controller_hearings_tickets',
+      [
+        'hearing' => $node->field_hearing_id->value,
+        'expand' => 'person',
+      ]
+    )->toString();
+    $ticket_add_url = Url::fromRoute(
+      'hoeringsportal_deskpro.hearing.ticket_add',
+      [
+        'node' => $node->id(),
+      ]
+    )->toString();
+    $ticket_view_url = Url::fromRoute(
+      'hoeringsportal_deskpro.hearing.ticket_view',
+      [
+        'node' => $node->id(),
+        'ticket' => '{ticket}',
+      ]
+    )->toString();
+    // Fix '{ticket}' placeholder in url.
+    $ticket_view_url = str_replace(urlencode('{ticket}'), '{ticket}', $ticket_view_url);
     $configuration = [
       'data_url' => $data_url,
       'ticket_add_url' => $ticket_add_url,

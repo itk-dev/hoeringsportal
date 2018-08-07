@@ -17,3 +17,20 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
 	'cache_ttl' => 60,
 ];
 ```
+
+## API
+
+### Endpoints
+
+`/hoeringsportal_deskpro/api/hearings`
+`/hoeringsportal_deskpro/api/hearings/{hearing}/tickets`
+`/hoeringsportal_deskpro/api/tickets`
+`/hoeringsportal_deskpro/api/tickets/{ticket}`
+`/hoeringsportal_deskpro/api/tickets/{ticket}/messages`
+
+#### Query parameters
+
+`count`
+`page`
+
+`expand` ∈ {`attachment`, `fields`, `person`}

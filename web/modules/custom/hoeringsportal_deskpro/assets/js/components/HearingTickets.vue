@@ -73,14 +73,15 @@ export default {
         .then(data => { self.setData(null, data) })
         .catch(error => { self.setData(error, null) })
     },
-    setData (error, tickets) {
+    setData (error, data) {
       if (error) {
         this.error = error.toString()
       } else {
-        tickets.forEach(ticket => {
+        data.data.forEach(ticket => {
           ticket['@details_url'] = this.$config['ticket_view_url'].replace('{ticket}', ticket.id)
         })
-        this.tickets = tickets
+        this.data = data
+        this.tickets = this.data.data
       }
     }
   }
