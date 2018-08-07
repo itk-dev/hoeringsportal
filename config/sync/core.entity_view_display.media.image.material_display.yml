@@ -1,9 +1,9 @@
-uuid: b4504884-1356-494b-af82-cef593c7a9f8
+uuid: d55708d3-3382-4b96-a31a-e9cbf3cbac23
 langcode: da
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.teaser_display
+    - core.entity_view_mode.media.material_display
     - field.field.media.image.field_itk_media_height
     - field.field.media.image.field_itk_media_image_upload
     - field.field.media.image.field_itk_media_mime_type
@@ -18,10 +18,10 @@ dependencies:
     - image
 _core:
   default_config_hash: r2D8FRB9bVoyV9vMLbHf7Gu2frkq-K-rDQ-KiDImZ-M
-id: media.image.teaser_display
+id: media.image.material_display
 targetEntityType: media
 bundle: image
-mode: teaser_display
+mode: material_display
 content:
   field_itk_media_image_upload:
     type: image

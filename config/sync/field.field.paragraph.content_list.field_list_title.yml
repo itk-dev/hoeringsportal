@@ -1,0 +1,19 @@
+uuid: b3722a08-b406-49a9-bddb-7c46840f300d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_list_title
+    - paragraphs.paragraphs_type.content_list
+id: paragraph.content_list.field_list_title
+field_name: field_list_title
+entity_type: paragraph
+bundle: content_list
+label: 'Liste titel'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

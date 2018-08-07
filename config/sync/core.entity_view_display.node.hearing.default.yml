@@ -47,11 +47,17 @@ third_party_settings:
         - field_media_image
         - node_changed_date
       right:
+        - 'dynamic_token_field:node-header_information'
         - field_reply_deadline
         - field_hearing_type
         - field_hearing_id
         - field_project_reference
     fields:
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 6
+        label: hidden
+        formatter: default
       node_changed_date:
         plugin_id: node_changed_date
         weight: 5
@@ -62,6 +68,10 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
@@ -76,7 +86,7 @@ content:
     third_party_settings: {  }
   field_hearing_id:
     type: string
-    weight: 8
+    weight: 9
     region: right
     label: above
     settings:
@@ -84,7 +94,7 @@ content:
     third_party_settings: {  }
   field_hearing_type:
     type: entity_reference_label
-    weight: 7
+    weight: 8
     region: right
     label: above
     settings:
@@ -94,16 +104,18 @@ content:
     type: entity_reference_entity_view
     weight: 3
     region: left
-    label: hidden
+    label: above
     settings:
-      view_mode: default
+      view_mode: material_display
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ds_limit: ''
   field_media_image:
     weight: 4
     label: hidden
     settings:
-      view_mode: default
+      view_mode: material_display
       link: false
     third_party_settings:
       ds:
@@ -112,7 +124,7 @@ content:
     region: left
   field_project_reference:
     type: entity_reference_label
-    weight: 9
+    weight: 10
     region: right
     label: above
     settings:
@@ -120,7 +132,7 @@ content:
     third_party_settings: {  }
   field_reply_deadline:
     type: datetime_plain
-    weight: 6
+    weight: 7
     region: right
     label: above
     settings:

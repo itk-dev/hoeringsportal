@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.storage.paragraph.field_content_list
     - paragraphs.paragraphs_type.content_list
+    - views.view.all_hearings
   module:
     - viewsreference
 id: paragraph.content_list.field_content_list
@@ -15,7 +16,16 @@ label: Indholdsliste
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    options:
+      title: 0
+      argument: ''
+    display_id: default
+    argument: null
+    title: 0
+    data: null
+    target_uuid: da3c6d29-0069-474d-ac19-126a479bf56c
 default_value_callback: ''
 settings:
   handler: 'default:view'
@@ -25,12 +35,16 @@ settings:
   plugin_types:
     default: default
     page: 0
+    entity_browser: 0
   preselect_views:
     all_hearings: all_hearings
     all_projects: all_projects
     block_content: 0
     content: 0
     files: 0
+    itk_media: 0
+    itk_media_browser: 0
+    media: 0
     user_admin_people: 0
     watchdog: 0
 field_type: viewsreference

@@ -36,7 +36,8 @@ content:
     type: file_default
     weight: 5
     label: above
-    settings: {  }
+    settings:
+      use_description_as_link_text: true
     third_party_settings: {  }
     region: content
   field_itk_media_mime_type:

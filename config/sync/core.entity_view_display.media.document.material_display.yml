@@ -1,0 +1,54 @@
+uuid: db1ce4f6-54dc-4d20-9ce1-b2db50affe91
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.material_display
+    - field.field.media.document.field_itk_media_file_upload
+    - field.field.media.document.field_itk_media_mime_type
+    - field.field.media.document.field_itk_media_size
+    - field.field.media.document.field_itk_media_tag
+    - media_entity.bundle.document
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - file
+_core:
+  default_config_hash: zuzpSSl6cBbYcXFTGRrBP1Ui0MrEoskEW1CxRg8WaFo
+id: media.document.material_display
+targetEntityType: media
+bundle: document
+mode: material_display
+content:
+  field_itk_media_file_upload:
+    type: file_default
+    weight: 0
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    region: content
+  field_itk_media_mime_type:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    type: string
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_itk_media_size: true
+  field_itk_media_tag: true
+  langcode: true
+  thumbnail: true
+  uid: true

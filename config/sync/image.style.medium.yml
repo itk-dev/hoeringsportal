@@ -1,17 +1,27 @@
 uuid: c2cc0d00-9df9-4a79-b8f9-fd3d480c0d01
 langcode: da
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - crop.type.medium_squared
+  module:
+    - crop
 _core:
   default_config_hash: Y9NmnZHQq20ASSyTNA6JnwtWrJJiSajOehGDtmUFdM0
 name: medium
-label: 'Medium (220×220)'
+label: 'Medium (330×330)'
 effects:
-  bddf0d06-42f9-4c75-a700-a33cafa25ea0:
-    uuid: bddf0d06-42f9-4c75-a700-a33cafa25ea0
-    id: image_scale
-    weight: 0
+  8fc791be-89f6-4bb9-bd02-a9c1347fc51f:
+    uuid: 8fc791be-89f6-4bb9-bd02-a9c1347fc51f
+    id: crop_crop
+    weight: 2
     data:
-      width: 220
-      height: 220
+      crop_type: medium_squared
+  5240c55e-23ba-4096-8241-2ad6d41c0821:
+    uuid: 5240c55e-23ba-4096-8241-2ad6d41c0821
+    id: image_scale
+    weight: 2
+    data:
+      width: 330
+      height: null
       upscale: false

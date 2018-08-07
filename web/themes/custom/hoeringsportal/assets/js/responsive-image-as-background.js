@@ -28,8 +28,13 @@ class ResponsiveBackgroundImage {
   }
 }
 
-// Look for data attribute.
-let elements = document.querySelectorAll('[data-responsive-background-image]')
-for (let i = 0; i < elements.length; i++) {
-  new ResponsiveBackgroundImage(elements[i]) // eslint-disable-line no-new
+// eslint-disable-next-line no-use-before-define
+Drupal.behaviors.applyResponsiveBackground = {
+  attach: function (context, settings) {
+    // Look for data attribute.
+    let elements = document.querySelectorAll('[data-responsive-background-image]')
+    for (let i = 0; i < elements.length; i++) {
+      new ResponsiveBackgroundImage(elements[i]) // eslint-disable-line no-new
+    }
+  }
 }

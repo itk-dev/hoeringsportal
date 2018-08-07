@@ -24,7 +24,7 @@ default_value: {  }
 default_value_callback: ''
 settings:
   file_directory: documents
-  file_extensions: 'txt pdf doc docx xls xlsx'
+  file_extensions: 'txt pdf doc docx xls xlsx jpg png'
   max_filesize: ''
   description_field: true
   handler: 'default:file'

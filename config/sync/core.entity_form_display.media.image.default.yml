@@ -32,6 +32,7 @@ content:
       crop_preview_image_style: crop_thumbnail
       crop_list:
         - content_display
+        - medium_squared
         - teaser_display
       progress_indicator: throbber
       crop_types_required: {  }

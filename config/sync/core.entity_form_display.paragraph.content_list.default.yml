@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.content_list.field_content_list
+    - field.field.paragraph.content_list.field_list_title
     - paragraphs.paragraphs_type.content_list
   module:
     - viewsreference
@@ -17,6 +18,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: viewsreference_select
+    region: content
+  field_list_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
 hidden:
   created: true

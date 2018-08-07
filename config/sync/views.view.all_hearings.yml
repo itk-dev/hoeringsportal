@@ -5,10 +5,13 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - node.type.hearing
+    - node.type.project
     - taxonomy.vocabulary.area
     - taxonomy.vocabulary.hearing_type
   module:
+    - better_exposed_filters
     - datetime
+    - hoeringsportal_forms
     - node
     - taxonomy
     - user
@@ -43,7 +46,7 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: bef
         options:
           submit_button: Apply
           reset_button: false
@@ -52,6 +55,50 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          input_required: false
+          text_input_required: 'Select any filter and click on Apply to see results'
+          bef:
+            general:
+              allow_secondary: false
+              secondary_label: 'Advanced options'
+              autosubmit: true
+              autosubmit_exclude_textfield: true
+              autosubmit_hide: true
+            sort:
+              bef_format: default
+              advanced:
+                collapsible: false
+                collapsible_label: 'Sort options'
+                combine: true
+                combine_rewrite: "Svarfrist Asc|Først kommende\nSvarfrist Desc|Sidst kommende"
+                reset: false
+                reset_label: ''
+                is_secondary: false
+            field_area_target_id:
+              bef_format: default
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: '- Any -|Område'
+            field_project_reference_target_id:
+              bef_format: default
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: '- Any -|Alle initiativer'
+            field_hearing_type_target_id:
+              bef_format: default
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: '- Any -|Alle typer'
+          text_input_required_format: filtered_html
       pager:
         type: mini
         options:
@@ -151,157 +198,7 @@ display:
           entity_type: node
           entity_field: type
           plugin_id: bundle
-        field_hearing_type_target_id:
-          id: field_hearing_type_target_id
-          table: node__field_hearing_type
-          field: field_hearing_type_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
           group: 1
-          exposed: true
-          expose:
-            operator_id: field_hearing_type_target_id_op
-            label: Høringstype
-            description: ''
-            use_operator: false
-            operator: field_hearing_type_target_id_op
-            identifier: field_hearing_type_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: hearing_type
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_project_reference_target_id:
-          id: field_project_reference_target_id
-          table: node__field_project_reference
-          field: field_project_reference_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_project_reference_target_id_op
-            label: 'Initiativ (field_project_reference)'
-            description: null
-            use_operator: false
-            operator: field_project_reference_target_id_op
-            identifier: field_project_reference_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-            placeholder: null
-            min_placeholder: null
-            max_placeholder: null
-          is_grouped: true
-          group_info:
-            label: Initiativ
-            description: ''
-            identifier: field_project_reference_target_id
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items:
-              1:
-                title: ''
-                operator: '='
-                value:
-                  value: ''
-                  min: ''
-                  max: ''
-              2:
-                title: ''
-                operator: '='
-                value:
-                  value: ''
-                  min: ''
-                  max: ''
-              3:
-                title: ''
-                operator: '='
-                value:
-                  value: ''
-                  min: ''
-                  max: ''
-          plugin_id: numeric
-        field_reply_deadline_value:
-          id: field_reply_deadline_value
-          table: node__field_reply_deadline
-          field: field_reply_deadline_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_reply_deadline_value_op
-            label: Svarfrist
-            description: ''
-            use_operator: false
-            operator: field_reply_deadline_value_op
-            identifier: field_reply_deadline_value
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            placeholder: ''
-            min_placeholder: ''
-            max_placeholder: ''
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: datetime
         field_area_target_id:
           id: field_area_target_id
           table: node__field_area
@@ -346,28 +243,132 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-      sorts:
-        created:
-          id: created
-          table: node_field_data
-          field: created
-          order: DESC
-          entity_type: node
-          entity_field: created
-          plugin_id: date
+        field_project_reference_target_id:
+          id: field_project_reference_target_id
+          table: node__field_project_reference
+          field: field_project_reference_target_id
           relationship: none
           group_type: group
           admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_project_reference_target_id_op
+            label: Initiativ
+            description: ''
+            use_operator: false
+            operator: field_project_reference_target_id_op
+            identifier: field_project_reference_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: 0
+          type: select
+          limit: true
+          bundle: project
+          error_message: 1
+          plugin_id: node_index_nid
+        field_hearing_type_target_id:
+          id: field_hearing_type_target_id
+          table: node__field_hearing_type
+          field: field_hearing_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_hearing_type_target_id_op
+            label: Høringstype
+            description: ''
+            use_operator: false
+            operator: field_hearing_type_target_id_op
+            identifier: field_hearing_type_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: hearing_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      sorts:
+        field_reply_deadline_value:
+          id: field_reply_deadline_value
+          table: node__field_reply_deadline
+          field: field_reply_deadline_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Svarfrist
+          granularity: second
+          plugin_id: datetime
+        title:
+          id: title
+          table: node_field_data
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
           exposed: false
           expose:
             label: ''
-          granularity: second
+          entity_type: node
+          entity_field: title
+          plugin_id: standard
       header: {  }
       footer: {  }
       empty: {  }
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:
@@ -375,6 +376,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions
