@@ -1,4 +1,5 @@
 hearing_tickets:
   version: 1.x
   js:
-    assets/public/build/hearing-tickets.js: { scope: footer }
+    # preprocessing this libary does not work.
+    assets/public/build/hearing-tickets.js: { scope: footer, preprocess: false }

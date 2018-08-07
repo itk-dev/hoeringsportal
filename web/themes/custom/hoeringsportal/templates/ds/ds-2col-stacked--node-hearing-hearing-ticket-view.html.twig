@@ -33,66 +33,8 @@
   <div class="container  content__container">
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
-      <div class="content__main ">
-
-        <h2>Høringssvar af {{ ticket.person.name }}</h2>
-
-      {% if ticket_messages %}
-        <fieldset class="ticket-messages">
-          <legend>{{ 'Messages'|trans }}</legend>
-
-          <ol class="list-group">
-            {% for message in ticket_messages %}
-              <li class="list-group-item">
-                {{ message.person.name }} {{ message.date_created|date }}
-
-                <div class="message">
-                  {{ message.message|raw }}
-                </div>
-
-                {% if message.attachments %}
-                  <div class="attachments">
-                    Attachments:
-                    <ol class="list-group">
-                      {% for attachment in message.attachments %}
-                        <li class="list-group-item">
-                          <a href="#ticket-attachment-{{ attachment.id }}">
-                            {{ attachment.blob.filename }}
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ol>
-                  </div>
-                {% endif %}
-              </li>
-            {% endfor %}
-          </ol>
-        </fieldset>
-      {% endif %}
-
-      {% if ticket_attachments %}
-        <fieldset class="ticket-attachments">
-          <legend>{{ 'Attachments'|trans }}</legend>
-
-          <ol class="list-group">
-            {% for attachment in ticket_attachments %}
-              {% set blob = attachment.blob %}
-              <li class="list-group-item" id="ticket-attachment-{{ attachment.id }}">
-                {#
-                  {% if blob.is_image %}
-                  <img src="{{ blob.download_url }}"/>
-                  {% endif %}
-                  #}
-                <a href="{{ blob.download_url }}">{{ blob.filename }} ({{ blob.content_type }}; {{ blob.filesize_readable }})</a>
-              </li>
-            {% endfor %}
-          </ol>
-        </fieldset>
-      {% endif %}
-    </div>
-
-      {{ left }}
-    </{{ left_wrapper }}>
+        {{ left }}
+      </{{ left_wrapper }}>
 
       <{{ right_wrapper }}{{ right_attributes.addClass('group-right col-md-4') }}>
         {{ right }}

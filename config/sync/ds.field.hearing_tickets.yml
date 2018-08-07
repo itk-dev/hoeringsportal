@@ -1,6 +1,6 @@
-id: hoeringsportal_hearing_tickets
+id: hearing_tickets
 label: 'Hearing tickets'
-ui_limit: ''
+ui_limit: 'hearing|*'
 properties:
   block: hoeringsportal_deskpro_hearingtickets_block
   use_block_title: true

@@ -41,14 +41,14 @@ third_party_settings:
       header:
         - node_title
       left:
-        - 'dynamic_block_field:node-hoeringsportal_hearing_ticket'
+        - 'dynamic_block_field:node-hearing_ticket'
       right:
         - field_reply_deadline
         - field_hearing_type
         - field_project_reference
     fields:
-      'dynamic_block_field:node-hoeringsportal_hearing_ticket':
-        plugin_id: 'dynamic_block_field:node-hoeringsportal_hearing_ticket'
+      'dynamic_block_field:node-hearing_ticket':
+        plugin_id: 'dynamic_block_field:node-hearing_ticket'
         weight: 1
         label: hidden
         formatter: default

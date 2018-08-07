@@ -72,26 +72,27 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
     $data_url = Url::fromRoute('hoeringsportal_deskpro.api_controller_hearings_tickets', ['hearing' => $node->field_hearing_id->value])->toString();
     $ticket_add_url = Url::fromRoute('hoeringsportal_deskpro.hearing.ticket_add', ['node' => $node->id()])->toString();
     $ticket_view_url = str_replace(urlencode('{ticket}'), '{ticket}', Url::fromRoute('hoeringsportal_deskpro.hearing.ticket_view', ['node' => $node->id(), 'ticket' => '{ticket}'])->toString());
+    $configuration = [
+      'data_url' => $data_url,
+      'ticket_add_url' => $ticket_add_url,
+      'ticket_view_url' => $ticket_view_url,
+      'locale' => $this->languageManager->getDefaultLanguage()->getId(),
+    ];
 
     return [
+      // Container element for hearing tickets.
       'content' => [
-        '#markup' => '<div id="hearing-tickets-content"></div>',
-      ],
-      'configuration' => [
         '#type' => 'html_tag',
-        '#tag' => 'script',
-        '#value' => json_encode([
-          'data_url' => $data_url,
-          'ticket_add_url' => $ticket_add_url,
-          'ticket_view_url' => $ticket_view_url,
-          'locale' => $this->languageManager->getDefaultLanguage()->getId(),
-        ]),
+        '#tag' => 'div',
         '#attributes' => [
-          'id' => 'hearing-tickets-config',
-          'type' => 'application/json',
+          'id' => 'hearing-tickets',
+          'data-configuration' => json_encode($configuration),
         ],
       ],
-      '#attached' => ['library' => ['hoeringsportal_deskpro/hearing_tickets']],
+      // The hearing tickets library.
+      '#attached' => [
+        'library' => ['hoeringsportal_deskpro/hearing_tickets'],
+      ],
     ];
   }
 
