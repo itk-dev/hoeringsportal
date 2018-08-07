@@ -28,18 +28,6 @@ function hoeringsportal_deskpro_help($route_name, RouteMatchInterface $route_mat
  */
 function hoeringsportal_deskpro_theme() {
   return [
-    'hoeringsportal_deskpro' => [
-      'render element' => 'children',
-    ],
-    'hoeringsportal_deskpro_ticket' => [
-      // 'render element' => 'children',.
-      'variables' => [
-        'hearing' => NULL,
-        'ticket' => NULL,
-        'ticket_messages' => NULL,
-        'ticket_attachments' => NULL,
-      ],
-    ],
     'block__hoeringsportal_hearing_ticket' => [
       'variables' => [
         'ticket' => NULL,
