@@ -1,5 +1,5 @@
 <template>
-  <div class="hearing-tickets-content">
+  <div class="hearing-tickets">
     <div class="row">
       <div class="col">
         <h3>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h3>
@@ -33,7 +33,7 @@
 import Vue from 'vue'
 
 Vue.mixin({
-  beforeCreate() {
+  beforeCreate () {
     const options = this.$options
     if (options.config) {
       this.$config = options.config
@@ -44,7 +44,7 @@ Vue.mixin({
 })
 
 export default {
-  name: "hearing-tickets-content",
+  name: 'hearing-tickets',
   data () {
     return {
       loading: false,
@@ -78,8 +78,8 @@ export default {
         this.error = error.toString()
       } else {
         tickets.forEach(ticket => {
-          ticket['@details_url'] = this.$config['ticket_view_url'].replace('{ticket}', ticket.id);
-        });
+          ticket['@details_url'] = this.$config['ticket_view_url'].replace('{ticket}', ticket.id)
+        })
         this.tickets = tickets
       }
     }
