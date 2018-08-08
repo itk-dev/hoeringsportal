@@ -1,0 +1,21 @@
+uuid: 08d87545-7821-45a9-a7d1-d5c78b891b1d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_contact
+    - taxonomy.vocabulary.hearing_type
+  module:
+    - text
+id: taxonomy_term.hearing_type.field_contact
+field_name: field_contact
+entity_type: taxonomy_term
+bundle: hearing_type
+label: Kontakt
+description: 'Kontaktoplysningerne kan findes på visningen af en høring og kan variere afhængigt af den valgte høringstype.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

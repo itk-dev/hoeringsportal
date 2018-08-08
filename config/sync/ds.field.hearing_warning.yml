@@ -1,0 +1,10 @@
+id: hearing_warning
+label: 'Hearing warning'
+ui_limit: ''
+properties:
+  block: hearing_warning
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node
