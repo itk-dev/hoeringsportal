@@ -1,0 +1,5 @@
+name: Hoeringsportal content blocks
+type: module
+description: 'Blocks used for displaying content on nodes'
+package: Hoeringsportal
+core: '8.x'

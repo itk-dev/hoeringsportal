@@ -29,3 +29,12 @@
 .lead {
   padding: 1em 0;
 }
+
+// Some headers in group right content should be smaller than usual
+.group-right {
+  h4, h5, h6 {
+    font-size: .8rem;
+    text-transform: none;
+    margin-bottom: 0;
+  }
+}

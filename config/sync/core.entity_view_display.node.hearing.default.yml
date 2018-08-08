@@ -39,6 +39,7 @@ third_party_settings:
           layout_class: {  }
     regions:
       header:
+        - 'dynamic_block_field:node-hearing_warning'
         - node_title
       left:
         - field_teaser
@@ -52,20 +53,37 @@ third_party_settings:
         - field_hearing_type
         - field_hearing_id
         - field_project_reference
+        - 'dynamic_block_field:node-node_address'
+        - 'dynamic_block_field:node-node_more_info'
     fields:
+      'dynamic_block_field:node-hearing_warning':
+        plugin_id: 'dynamic_block_field:node-hearing_warning'
+        weight: 0
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-node_address':
+        plugin_id: 'dynamic_block_field:node-node_address'
+        weight: 12
+        label: above
+        formatter: default
+      'dynamic_block_field:node-node_more_info':
+        plugin_id: 'dynamic_block_field:node-node_more_info'
+        weight: 13
+        label: above
+        formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 6
+        weight: 7
         label: hidden
         formatter: default
       node_changed_date:
         plugin_id: node_changed_date
-        weight: 5
+        weight: 6
         label: hidden
         formatter: ds_post_date_short
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         settings:
@@ -79,14 +97,14 @@ mode: default
 content:
   field_description:
     type: text_default
-    weight: 2
+    weight: 3
     region: left
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_hearing_id:
     type: string
-    weight: 9
+    weight: 10
     region: right
     label: above
     settings:
@@ -94,7 +112,7 @@ content:
     third_party_settings: {  }
   field_hearing_type:
     type: entity_reference_label
-    weight: 8
+    weight: 9
     region: right
     label: above
     settings:
@@ -102,7 +120,7 @@ content:
     third_party_settings: {  }
   field_media_document:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 4
     region: left
     label: above
     settings:
@@ -112,7 +130,7 @@ content:
       ds:
         ds_limit: ''
   field_media_image:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       view_mode: material_display
@@ -124,22 +142,23 @@ content:
     region: left
   field_project_reference:
     type: entity_reference_label
-    weight: 10
+    weight: 11
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_reply_deadline:
-    type: datetime_plain
-    weight: 7
+    type: datetime_default
+    weight: 8
     region: right
     label: above
     settings:
       timezone_override: ''
+      format_type: short
     third_party_settings: {  }
   field_teaser:
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
