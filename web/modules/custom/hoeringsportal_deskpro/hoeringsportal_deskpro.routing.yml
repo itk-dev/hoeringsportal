@@ -1,0 +1,115 @@
+# Hearing views
+hoeringsportal_deskpro.hearing.view:
+ path: '/hearing/{node}'
+ defaults:
+   _entity_view: 'node.default'
+ requirements:
+   _permission: 'access content'
+
+hoeringsportal_deskpro.hearing.ticket_add:
+  path: '/hearing/{node}/ticket/add'
+  defaults:
+    _entity_view: 'node.hearing_ticket_add'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.hearing.ticket_view:
+  path: '/hearing/{node}/ticket/{ticket}'
+  defaults:
+    _entity_view: 'node.hearing_ticket_view'
+  requirements:
+    _permission: 'access content'
+
+
+# Autocomplete
+hoeringsportal_deskpro.autocomplete_controller_department:
+  path: '/hoeringsportal_deskpro/autocomplete/department'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::department'
+    _title: 'Departments autocomplete'
+  requirements:
+    # @TODO: Set more restrictive permission, e.g. 'edit content'
+    _permission: 'access content'
+
+hoeringsportal_deskpro.autocomplete_controller_hearing:
+  path: '/hoeringsportal_deskpro/autocomplete/hearing'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::hearing'
+    _title: 'Hearings autocomplete'
+  requirements:
+    # @TODO: Set more restrictive permission, e.g. 'edit content'
+    _permission: 'access content'
+
+
+# API
+hoeringsportal_deskpro.api_controller_index:
+  path: '/hoeringsportal_deskpro/api'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::index'
+    _title: 'API'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_docs:
+  path: '/hoeringsportal_deskpro/api/docs'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::docs'
+    _title: 'API docs'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_departments:
+  path: '/hoeringsportal_deskpro/api/departments'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::departments'
+    _title: 'Departments'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_hearings:
+  path: '/hoeringsportal_deskpro/api/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::hearings'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_hearings_tickets:
+  path: '/hoeringsportal_deskpro/api/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::hearingTickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_tickets:
+  path: '/hoeringsportal_deskpro/api/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::tickets'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_ticket:
+  path: '/hoeringsportal_deskpro/api/tickets/{ticket}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::ticket'
+    _title: 'Ticket'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_tickets_messages:
+  path: '/hoeringsportal_deskpro/api/tickets/{ticket}/messages'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::ticketMessages'
+    _title: 'Ticket messages'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_deskpro.api_controller_tickets_attachments:
+  path: '/hoeringsportal_deskpro/api/tickets/{ticket}/attachments'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::ticketAttachments'
+    _title: 'Ticket attachments'
+  requirements:
+    _permission: 'access content'

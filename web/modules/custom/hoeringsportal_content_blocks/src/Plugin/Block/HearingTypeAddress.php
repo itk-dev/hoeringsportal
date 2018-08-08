@@ -2,8 +2,8 @@
 
 namespace Drupal\hoeringsportal_content_blocks\Plugin\Block;
 
-use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Block\BlockBase;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides address block content.
@@ -20,14 +20,18 @@ class HearingTypeAddress extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $term_id = $node->field_hearing_type->getValue()[0]['target_id'];
-    $config['term'] = Term::load($term_id);
+    $value = $node->field_hearing_type->getValue();
+    if (isset($value[0]['target_id'])) {
+      $config['term'] = Term::load($value[0]['target_id']);
 
-    return [
-      '#type' => 'markup',
-      '#theme' => 'hoeringsportal_hearing_type_address',
-      '#config' => $config,
-    ];
+      return [
+        '#type' => 'markup',
+        '#theme' => 'hoeringsportal_hearing_type_address',
+        '#config' => $config,
+      ];
+    }
+
+    return NULL;
   }
 
 }

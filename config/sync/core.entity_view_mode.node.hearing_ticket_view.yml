@@ -1,0 +1,10 @@
+uuid: 79d6c194-2184-42c5-b059-49e0510bd2a4
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: node.hearing_ticket_view
+label: 'Hearing ticket view'
+targetEntityType: node
+cache: true
