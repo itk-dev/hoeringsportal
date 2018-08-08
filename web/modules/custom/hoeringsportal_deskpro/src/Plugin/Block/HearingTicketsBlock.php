@@ -72,7 +72,7 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
     $data_url = Url::fromRoute(
       'hoeringsportal_deskpro.api_controller_hearings_tickets',
       [
-        'hearing' => $node->field_hearing_id->value,
+        'hearing' => $node->field_deskpro_hearing_id->value,
         'expand' => 'person',
       ]
     )->toString();
