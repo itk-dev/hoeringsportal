@@ -5,3 +5,4 @@ require('../css/hoeringsportal.scss')
 
 require('./hide_password_help.js')
 require('./responsive-image-as-background.js')
+require('./scroll-top.js')

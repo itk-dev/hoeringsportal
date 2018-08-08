@@ -45,17 +45,5 @@
     {{ page }}
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-    <script>
-      // Add class to body while scrolling
-      (function($){
-        $(window).scroll(function () {
-            if ($(this).scrollTop() >= 150) {
-              $('body').addClass('scrolled');
-            } else {
-              $('body').removeClass('scrolled');
-            }
-        });
-      })(jQuery);
-    </script>
   </body>
 </html>
