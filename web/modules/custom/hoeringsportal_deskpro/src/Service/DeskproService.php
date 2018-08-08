@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_deskpro\Service;
 use Deskpro\API\APIResponse;
 use Deskpro\API\DeskproClient;
 use Deskpro\API\Exception\APIException;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 
@@ -243,6 +244,8 @@ class DeskproService {
    * The form generated in Deskpro
    * (cf. https://example.deskpro.com/agent/#admin:/tickets/ticket_deps/1)
    * does not handle default values, so we use embed_loader.js directly.
+   *
+   * https://example.deskpro.com/agent/#admin:/portal/1/ticket_form_widget
    */
   public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = NULL) {
     $id = uniqid('deskpro_ticket_form', TRUE);
@@ -250,10 +253,9 @@ class DeskproService {
       'helpdeskUrl' => $this->configuration['deskpro_url'],
       'containerId' => $id,
       'type' => 'form',
-      'language' => 'da_DK',
+      'language' => $this->languageManager->getCurrentLanguage()->getId(),
       'department' => $departmentId,
       'hide_department' => 1,
-      // 'width' => '100%',.
       'default_values' => $defaultValues,
     ];
 

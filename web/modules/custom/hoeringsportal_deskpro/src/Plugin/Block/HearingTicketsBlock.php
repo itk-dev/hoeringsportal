@@ -95,7 +95,7 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
       'data_url' => $data_url,
       'ticket_add_url' => $ticket_add_url,
       'ticket_view_url' => $ticket_view_url,
-      'locale' => $this->languageManager->getDefaultLanguage()->getId(),
+      'locale' => $this->languageManager->getCurrentLanguage()->getId(),
     ];
 
     return [
