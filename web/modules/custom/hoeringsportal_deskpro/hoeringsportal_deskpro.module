@@ -5,6 +5,7 @@
  * Contains hoeringsportal_deskpro.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
@@ -37,4 +38,17 @@ function hoeringsportal_deskpro_theme() {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'node_hearing_edit_form') {
+    // Department autocomplete.
+    if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
+      && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
+      $form['field_deskpro_department_id']['widget'][0]['value']['#autocomplete_route_name'] = 'hoeringsportal_deskpro.autocomplete_controller_department';
+    }
+  }
 }

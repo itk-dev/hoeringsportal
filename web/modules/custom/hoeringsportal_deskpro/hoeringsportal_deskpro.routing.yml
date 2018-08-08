@@ -1,3 +1,4 @@
+# Hearing views
 hoeringsportal_deskpro.hearing.view:
  path: '/hearing/{node}'
  defaults:
@@ -19,6 +20,28 @@ hoeringsportal_deskpro.hearing.ticket_view:
   requirements:
     _permission: 'access content'
 
+
+# Autocomplete
+hoeringsportal_deskpro.autocomplete_controller_department:
+  path: '/hoeringsportal_deskpro/autocomplete/department'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::department'
+    _title: 'Departments autocomplete'
+  requirements:
+    # @TODO: Set more restrictive permission, e.g. 'edit content'
+    _permission: 'access content'
+
+hoeringsportal_deskpro.autocomplete_controller_hearing:
+  path: '/hoeringsportal_deskpro/autocomplete/hearing'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::hearing'
+    _title: 'Hearings autocomplete'
+  requirements:
+    # @TODO: Set more restrictive permission, e.g. 'edit content'
+    _permission: 'access content'
+
+
+# API
 hoeringsportal_deskpro.api_controller_index:
   path: '/hoeringsportal_deskpro/api'
   defaults:

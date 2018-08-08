@@ -23,8 +23,8 @@ class HearingTicketAddBlock extends HearingTicketBlock {
       return NULL;
     }
 
-    $departmentId = 1;
-    $hearingId = 1;
+    $departmentId = $node->field_deskpro_department_id->value;
+    $hearingId = $node->field_deskpro_hearing_id->value;
     $defaultValues = [];
 
     $form = $this->deskpro->getTicketEmbedForm($departmentId, $hearingId, $defaultValues);

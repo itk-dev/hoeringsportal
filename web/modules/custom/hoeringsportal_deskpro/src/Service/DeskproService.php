@@ -249,7 +249,9 @@ class DeskproService {
    *
    * https://example.deskpro.com/agent/#admin:/portal/1/ticket_form_widget
    */
-  public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = NULL) {
+  public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = []) {
+    $defaultValues['ticket']['ticket_field_' . $this->configuration['hearing_field_id']]['data'] = $hearingId;
+
     $id = uniqid('deskpro_ticket_form', TRUE);
     $embed_options = [
       'helpdeskUrl' => $this->configuration['deskpro_url'],
