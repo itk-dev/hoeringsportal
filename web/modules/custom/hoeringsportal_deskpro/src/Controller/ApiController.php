@@ -11,6 +11,7 @@ use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ApiController.
@@ -38,6 +39,39 @@ class ApiController extends ControllerBase {
     return new static(
       $container->get('hoeringsportal_deskpro.deskpro')
     );
+  }
+
+  /**
+   * Api index.
+   */
+  public function index() {
+    return $this->redirect('hoeringsportal_deskpro.api_controller_docs');
+  }
+
+  /**
+   * Api docs.
+   */
+  public function docs() {
+    $templatePath = drupal_get_path('module', 'hoeringsportal_deskpro') . '/templates/api/docs.html.twig';
+    $template = \Drupal::service('twig')->load($templatePath);
+    $content = $template->render();
+
+    return new Response($content);
+  }
+
+  /**
+   * Departments.
+   */
+  public function departments(Request $request) {
+    try {
+      $query = $this->getDeskproQuery($request);
+      $departments = $this->deskpro->getTicketDepartments($query);
+
+      return $this->createResponse($departments);
+    }
+    catch (DeskproException $exception) {
+      return $this->createErrorResponse($exception);
+    }
   }
 
   /**
@@ -84,9 +118,7 @@ class ApiController extends ControllerBase {
       return $this->createResponse($tickets);
     }
     catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
+      return $this->createErrorResponse($exception);
     }
   }
 
@@ -104,9 +136,7 @@ class ApiController extends ControllerBase {
       return $this->createResponse($tickets);
     }
     catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
+      return $this->createErrorResponse($exception);
     }
   }
 
@@ -131,9 +161,7 @@ class ApiController extends ControllerBase {
       return new JsonResponse($data);
     }
     catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
+      return $this->createErrorResponse($exception);
     }
   }
 
@@ -143,17 +171,15 @@ class ApiController extends ControllerBase {
    * @return \Symfony\Component\HttpFoundation\JsonResponse
    *   The json response.
    */
-  public function ticketAttachments($ticket) {
+  public function ticketAttachments(Request $request, $ticket) {
     try {
-      $attachements = $this->deskpro->getTicketAttachments($ticket);
-      $data = $attachements->getData();
+      $query = $this->getDeskproQuery($request);
+      $attachments = $this->deskpro->getTicketAttachments($ticket, $query);
 
-      return new JsonResponse($data);
+      return $this->createResponse($attachments);
     }
     catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
+      return $this->createErrorResponse($exception);
     }
   }
 
@@ -171,9 +197,7 @@ class ApiController extends ControllerBase {
       return $this->createResponse($messages);
     }
     catch (DeskproException $exception) {
-      $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()->getMessage() : 'unknown error');
-
-      return new JsonResponse(['error' => $message]);
+      return $this->createErrorResponse($exception);
     }
   }
 
@@ -199,6 +223,16 @@ class ApiController extends ControllerBase {
       'meta' => $response->getMeta(),
       'linked' => $response->getLinked(),
     ]);
+  }
+
+  /**
+   * Create an error response.
+   */
+  private function createErrorResponse(\Exception $exception) {
+    $message = $exception->getMessage() ?? ($exception->getPrevious() ? $exception->getPrevious()
+      ->getMessage() : 'unknown error');
+
+    return new JsonResponse(['error' => $message], 400);
   }
 
 }

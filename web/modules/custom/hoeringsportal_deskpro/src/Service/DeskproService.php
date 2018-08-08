@@ -125,7 +125,39 @@ class DeskproService {
       $query['ticket'] = $ticketId;
       $response = $this->get('/tickets/{ticket}/attachments', $query);
 
-      return $response;
+      $data = $response->getData();
+      // Filter out agent notes.
+      $data = array_values(array_filter($data, function ($message) {
+        return !$message['is_agent_note'];
+      }));
+
+      return $this->setResponseData($response, $data);
+    }
+    catch (APIException $e) {
+      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+    }
+  }
+
+  /**
+   * Get ticket deparments.
+   *
+   * @param array $query
+   *   The query.
+   *
+   * @return \Deskpro\API\APIResponseInterface
+   *   The messages.
+   *
+   * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
+   */
+  public function getTicketDepartments(array $query = []) {
+    try {
+      $response = $this->get('/ticket_departments', $query);
+
+      $data = $response->getData();
+
+      $this->expandData($data, $query);
+
+      return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
       throw new DeskproException($e->getMessage(), $e->getCode(), $e);
@@ -154,7 +186,7 @@ class DeskproService {
 
       // Filter out agent notes.
       $data = array_values(array_filter($data, function ($message) {
-        return $message['is_agent_note'] === 0;
+        return !$message['is_agent_note'];
       }));
 
       $this->expandData($data, $query);

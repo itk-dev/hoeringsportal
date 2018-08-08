@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Høringsportal api</title>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>Høringsportal api</h1>
+
+      <h2>Endpoints</h2>
+
+      <dl>
+        <dt><a href="/hoeringsportal_deskpro/api/departments">/hoeringsportal_deskpro/api/departments</a></dt>
+        <dd>Get a list of departments.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/hearings">/hoeringsportal_deskpro/api/hearings</a></dt>
+        <dd>Get a list of hearings.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/hearings/{hearing}/tickets">/hoeringsportal_deskpro/api/hearings/{hearing}/tickets</a></dt>
+        <dd>Get a list of tickets on a hearing.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/tickets">/hoeringsportal_deskpro/api/tickets</a></dt>
+        <dd>Get a list of tickets.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/tickets/{ticket}">/hoeringsportal_deskpro/api/tickets/{ticket}</a></dt>
+        <dd>Get ticket details.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/tickets/{ticket}/messages">/hoeringsportal_deskpro/api/tickets/{ticket}/messages</a></dt>
+        <dd>Get ticket messages.</dd>
+
+        <dt><a href="/hoeringsportal_deskpro/api/tickets/{ticket}/messages">/hoeringsportal_deskpro/api/tickets/{ticket}/attachments</a></dt>
+        <dd>Get ticket attachments.</dd>
+      </dl>
+
+      <h2>Query parameters</h2>
+
+      <dl>
+        <dt><code>count</code></dt>
+        <dd>Items per page</dd>
+
+        <dt><code>page</code></dt>
+        <dd>Page to show</dd>
+
+        {#
+        <dt><code>limit</code></dt>
+        <dd>Max number of items to return</dd>
+        #}
+
+        <dt><code>expand</code></dt>
+        <dd>
+          <p>
+            Expand ids in data to full objects.
+          </p>
+
+          <p>
+            <code>expand</code> ∈ {<code>attachment</code>, <code>fields</code>, <code>person</code>}
+          </p>
+        </dd>
+      </dl>
+    </div>
+  </body>
+</html>
