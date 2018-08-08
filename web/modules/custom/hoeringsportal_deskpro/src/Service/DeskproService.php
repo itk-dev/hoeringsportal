@@ -21,16 +21,18 @@ class DeskproService {
   private $configuration;
 
   /**
-   * Deskpro client.
+   * Language manager.
    *
-   * @var \Deskpro\API\DeskproClient*/
-  private $client;
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  private $languageManager;
 
   /**
    * Constructs a new DeskproService object.
    */
-  public function __construct(Settings $settings) {
+  public function __construct(Settings $settings, LanguageManagerInterface $languageManager) {
     $this->configuration = $settings->get('hoeringsportal_deskpro.deskpro');
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -43,7 +45,7 @@ class DeskproService {
       return $response;
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), 0, $e);
+      throw $this->createException($e);
     }
   }
 
@@ -77,7 +79,7 @@ class DeskproService {
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+      throw $this->createException($e);
     }
   }
 
@@ -104,7 +106,7 @@ class DeskproService {
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+      throw $this->createException($e);
     }
   }
 
@@ -135,7 +137,7 @@ class DeskproService {
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+      throw $this->createException($e);
     }
   }
 
@@ -161,7 +163,7 @@ class DeskproService {
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+      throw $this->createException($e);
     }
   }
 
@@ -195,7 +197,7 @@ class DeskproService {
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
-      throw new DeskproException($e->getMessage(), $e->getCode(), $e);
+      throw $this->createException($e);
     }
   }
 
@@ -385,6 +387,13 @@ class DeskproService {
         }
       }
     }
+  }
+
+  /**
+   * Create exception wrapping an api exception.
+   */
+  private function createException(APIException $exception) {
+    return new DeskproException($exception->getMessage(), $exception->getCode(), $exception);
   }
 
 }
