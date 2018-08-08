@@ -19,6 +19,18 @@ dependencies:
     - node.type.project
   module:
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_twocol
+      library: layout_discovery/twocol
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - langcode
+        - links
 id: node.project.list_display
 targetEntityType: node
 bundle: project

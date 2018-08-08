@@ -31,7 +31,7 @@ third_party_settings:
         - field_project_reference
         - field_area
       parent_name: ''
-      weight: 6
+      weight: 5
       format_type: details
       format_settings:
         id: ''
@@ -52,6 +52,20 @@ third_party_settings:
         open: true
         required_fields: false
       label: Systemindstillinger
+      region: content
+    group_deskpro:
+      children:
+        - field_deskpro_department_id
+        - field_deskpro_hearing_id
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: Deskpro
       region: content
 id: node.hearing.default
 targetEntityType: node
@@ -76,7 +90,7 @@ content:
     type: text_textarea
     region: content
   field_deskpro_department_id:
-    weight: 26
+    weight: 8
     settings:
       size: 60
       placeholder: ''
@@ -84,7 +98,7 @@ content:
     type: string_textfield
     region: content
   field_deskpro_hearing_id:
-    weight: 27
+    weight: 9
     settings:
       size: 60
       placeholder: ''

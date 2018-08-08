@@ -59,6 +59,11 @@ third_party_settings:
         - 'dynamic_block_field:node-node_address'
         - 'dynamic_block_field:node-node_more_info'
     fields:
+      'dynamic_block_field:node-hearing_tickets':
+        plugin_id: 'dynamic_block_field:node-hearing_tickets'
+        weight: 1
+        label: hidden
+        formatter: default
       'dynamic_block_field:node-hearing_warning':
         plugin_id: 'dynamic_block_field:node-hearing_warning'
         weight: 0
@@ -77,11 +82,6 @@ third_party_settings:
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
         weight: 7
-        label: hidden
-        formatter: default
-      'dynamic_block_field:node-hearing_tickets':
-        plugin_id: 'dynamic_block_field:node-hearing_tickets'
-        weight: 1
         label: hidden
         formatter: default
       node_changed_date:

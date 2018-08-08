@@ -95,7 +95,8 @@ class ApiController extends ControllerBase {
 
     $data = array_values(array_map(function (NodeInterface $hearing) {
       return [
-        'id' => $hearing->field_hearing_id->value,
+        'field_deskpro_department_id' => $hearing->field_deskpro_department_id->value,
+        'field_deskpro_hearing_id' => $hearing->field_deskpro_hearing_id->value,
         'title' => $hearing->getTitle(),
         'field_reply_deadline' => $hearing->field_reply_deadline->value,
       ];
