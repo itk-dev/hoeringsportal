@@ -8,3 +8,6 @@ bottom-scripts:
   version: VERSION
   js:
     build/hoeringsportal.js: {scope: bottom}
+  dependencies:
+    - core/jquery
+    - core/drupal
