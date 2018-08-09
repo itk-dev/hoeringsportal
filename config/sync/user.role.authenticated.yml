@@ -11,5 +11,6 @@ is_admin: false
 permissions:
   - 'access content'
   - 'access contextual links'
+  - 'search content'
   - 'use text format filtered_html'
   - 'view media'

@@ -19,16 +19,20 @@ class HearingWarning extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $reply_deadline = strtotime($node->field_reply_deadline->getValue()['0']['value']);
-    $current_date = time();
-    $config['reply_deadline'] = $node->field_reply_deadline->getValue()['0']['value'];
-    if ($reply_deadline - $current_date < 604800) {
-      $config['deadline_passed'] = ($current_date > $reply_deadline) ? TRUE : FALSE;
-      return [
-        '#type' => 'markup',
-        '#theme' => 'hoeringsportal_hearing_warning',
-        '#config' => $config,
-      ];
+    if (isset($node) && $node->hasField('field_reply_deadline')) {
+      $field_reply_deadline = $node->field_reply_deadline->getValue();
+      $reply_deadline = isset($field_reply_deadline) ? strtotime($field_reply_deadline['0']['value']) : FALSE;
+      $current_date = time();
+      if ($reply_deadline) {
+        if ($reply_deadline - $current_date < 604800) {
+          $config['deadline_passed'] = ($current_date > $reply_deadline) ? TRUE : FALSE;
+          return [
+            '#type' => 'markup',
+            '#theme' => 'hoeringsportal_hearing_warning',
+            '#config' => $config,
+          ];
+        }
+      }
     }
     return FALSE;
   }

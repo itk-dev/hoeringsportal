@@ -48,6 +48,7 @@
   color: $gray-900;
 }
 .activity-teaser-info {
+  position: relative;
   padding: $spacer $spacer*2 $spacer $spacer*2;
   background-color: $white;
   font-size: .7rem;
@@ -59,18 +60,24 @@
   border-bottom: 2px solid $gray-200;
 }
 .activity-teaser-project-name {
-  color: $primary;
   margin-right: $spacer*2;
+  display: inline;
+  color: $gray-600;
 }
+a.activity-teaser-project-name {
+  color: $primary;
+}
+
 .activity-teaser-area {
   color: $gray-600;
   margin-right: $spacer/3;
+  padding-right: $spacer/3;
+  border-right: 2px solid $gray-600;
 }
 .activity-teaser-type {
   color: $gray-600;
-  padding-left: $spacer/2;
+  padding-left: $spacer/3;
   margin-right: $spacer/3;
-  border-left: 2px solid $gray-600;
 }
 .activity-teaser-id {
   padding-left: $spacer/2;

@@ -77,19 +77,28 @@
 {% endif %}
 {% if node.bundle == 'hearing' %}
   {% set type = content.field_hearing_type[0]['#plain_text'] %}
-  {% set project = content.field_project_reference[0]['#plain_text'] %}
+  {% set project = content.field_project_reference[0]['#title'] %}
+{% endif %}
+{% if node.bundle == 'static_page' %}
+  {% set type = 'Information page'|t %}
 {% endif %}
 
 <li class="media activity-teaser-content mb-3 p-2 position-relative">
-  <a href="{{ url }}" class="mr-4">{{ content.field_media_image }}</a>
+  <a href="{{ url }}" class="mr-4">{{ content.field_media_image[0] }}</a>
   <div class="media-body">
     <h5><a href="{{ url }}" class="text-secondary">{{ label }}</a></h5>
     <div>
       {{ content.field_teaser }}
     </div>
     <div class="activity-teaser-info pl-0 border-0">
-      <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>
-      <span class="activity-teaser-area">{{ content.field_area }}</span>
+      {% if node.bundle == 'project' %}
+        <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>
+      {% else %}
+        <div class="activity-teaser-project-name">{{ project }}</div>
+      {% endif %}
+      {% if content.field_area[0] is defined %}
+        <span class="activity-teaser-area">{{ content.field_area }}</span>
+      {% endif %}
       <span class="activity-teaser-type">{{ type }}</span>
       {% if(content.field_hearing_id) %}
         <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>

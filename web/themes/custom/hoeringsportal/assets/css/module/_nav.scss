@@ -5,6 +5,10 @@ nav.navbar {
     padding: .1rem 1rem;
     transition: padding .2s ease-in;
   }
+
+  .container {
+    position: relative;
+  }
 }
 .navbar-brand {
   margin-right: $spacer*2;
@@ -50,4 +54,27 @@ nav.navbar {
       }
     }
   }
+
+  &.is-secondary-navigation {
+    .nav-link {
+      color: $gray-800;
+      font-size: .9em;
+      line-height: 1em;
+      padding-bottom: 0;
+      padding-top: 0;
+
+      &.has-border {
+        border-left: 2px solid $gray-600;
+      }
+    }
+
+    .nav-item--secondary-navigation:first-child .nav-link {
+      border-left: 0;
+    }
+  }
+}
+
+.navigation--inner--secondary {
+  position: absolute;
+  right: 0;
 }

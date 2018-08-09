@@ -1,9 +1,10 @@
 uuid: 1702d8ee-65be-41b6-aa36-6a41b911fb4f
 langcode: da
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.landing_page.field_section
     - node.type.landing_page
   module:
     - user

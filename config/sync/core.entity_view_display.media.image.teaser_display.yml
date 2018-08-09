@@ -9,13 +9,13 @@ dependencies:
     - field.field.media.image.field_itk_media_mime_type
     - field.field.media.image.field_itk_media_tag
     - field.field.media.image.field_itk_media_width
-    - image.style.medium
     - media_entity.bundle.image
+    - responsive_image.styles.teaser_image
   enforced:
     module:
       - itk_media_entity
   module:
-    - image
+    - responsive_image
 _core:
   default_config_hash: r2D8FRB9bVoyV9vMLbHf7Gu2frkq-K-rDQ-KiDImZ-M
 id: media.image.teaser_display
@@ -24,12 +24,12 @@ bundle: image
 mode: teaser_display
 content:
   field_itk_media_image_upload:
-    type: image
+    type: responsive_image
     weight: 0
     region: content
     label: hidden
     settings:
-      image_style: medium
+      responsive_image_style: teaser_image
       image_link: ''
     third_party_settings: {  }
 hidden:

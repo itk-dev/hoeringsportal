@@ -26,7 +26,7 @@ content:
     weight: 26
     settings:
       show_palette: '1'
-      palette: '["#008486","#333333"]'
+      palette: '["#008486","#333333", "#B2DADA"]'
       show_palette_only: '1'
       show_input: '0'
       show_buttons: '0'

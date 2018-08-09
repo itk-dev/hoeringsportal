@@ -20,14 +20,18 @@ class HearingTypeMoreInfo extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
-    $term_id = $node->field_hearing_type->getValue()[0]['target_id'];
-    $config['term'] = Term::load($term_id);
+    if (isset($node) && $node->hasField('field_hearing_type')) {
+      $term_id = $node->field_hearing_type->getValue()[0]['target_id'];
+      $config['term'] = Term::load($term_id);
 
-    return [
-      '#type' => 'markup',
-      '#theme' => 'hoeringsportal_hearing_type_more_info',
-      '#config' => $config,
-    ];
+      return [
+        '#type' => 'markup',
+        '#theme' => 'hoeringsportal_hearing_type_more_info',
+        '#config' => $config,
+      ];
+    }
+
+    return FALSE;
   }
 
 }

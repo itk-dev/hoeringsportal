@@ -47,6 +47,7 @@
         "drupal/pathauto": "^1.2",
         "drupal/samlauth": "^2.0",
         "drupal/toolbar_visibility": "^1.2",
+        "drupal/twig_tweak": "^2.1",
         "drupal/viewsreference": "^1.2",
         "drush/drush": "^9.0.0",
         "itk-dev/composer-virtualenv": "^1.0",
