@@ -2,8 +2,8 @@
 
 namespace Drupal\hoeringsportal_content_blocks\Plugin\Block;
 
-use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Block\BlockBase;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides address block content.
@@ -30,8 +30,7 @@ class HearingTypeAddress extends BlockBase {
         '#config' => $config,
       ];
     }
-
-    return FALSE;
+    return NULL;
   }
 
 }

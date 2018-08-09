@@ -6,6 +6,8 @@ dependencies:
     - entity_browser.browser.itk_image_browser
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_media_document
@@ -29,7 +31,7 @@ third_party_settings:
         - field_project_reference
         - field_area
       parent_name: ''
-      weight: 6
+      weight: 5
       format_type: details
       format_settings:
         id: ''
@@ -50,6 +52,20 @@ third_party_settings:
         open: true
         required_fields: false
       label: Systemindstillinger
+      region: content
+    group_deskpro:
+      children:
+        - field_deskpro_department_id
+        - field_deskpro_hearing_id
+      parent_name: ''
+      weight: 6
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: Deskpro
       region: content
 id: node.hearing.default
 targetEntityType: node
@@ -72,6 +88,22 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_deskpro_department_id:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_deskpro_hearing_id:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_hearing_id:
     weight: 10

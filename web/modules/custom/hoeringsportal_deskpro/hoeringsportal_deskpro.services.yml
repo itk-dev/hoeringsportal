@@ -1,0 +1,10 @@
+services:
+  hoeringsportal_deskpro.deskpro:
+    class: Drupal\hoeringsportal_deskpro\Service\DeskproService
+    arguments: ['@settings', '@language_manager']
+
+  hoeringsportal_deskpro.twig_extension:
+    class: Drupal\hoeringsportal_deskpro\Twig\TwigExtension
+    arguments: ['@hoeringsportal_deskpro.deskpro']
+    tags:
+      - { name: twig.extension }

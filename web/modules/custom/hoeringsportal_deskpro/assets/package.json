@@ -1,0 +1,36 @@
+{
+  "name": "hoeringsportal-deskpro",
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "version": "1.0.0",
+  "description": "Høringsportal Deskpro",
+  "main": "index.js",
+  "scripts": {
+    "check-coding-standards-eslint": "eslint --config .eslintrc.js 'js/**/*.{js,vue}'",
+    "check-coding-standards-js": "npm run check-coding-standards-eslint",
+    "check-coding-standards": "npm run check-coding-standards-js",
+    "apply-coding-standards-eslint": "eslint --config .eslintrc.js 'js/**/*.{js,vue}' --fix",
+    "apply-coding-standards-js": "npm run apply-coding-standards-eslint",
+    "apply-coding-standards": "npm run apply-coding-standards-js"
+  },
+  "author": "ITK",
+  "license": "ISC",
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.20.1",
+    "eslint": "^5.3.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "eslint-plugin-vue": "^4.7.1",
+    "vue": "^2.5.16",
+    "vue-i18n": "^8.0.0",
+    "vue-loader": "^14",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "dependencies": {
+    "npm": "^5.8.0"
+  }
+}

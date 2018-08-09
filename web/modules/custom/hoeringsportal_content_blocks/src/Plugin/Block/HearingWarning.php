@@ -34,7 +34,7 @@ class HearingWarning extends BlockBase {
         }
       }
     }
-    return FALSE;
+    return NULL;
   }
 
 }

@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_media_document
@@ -42,6 +44,7 @@ third_party_settings:
         - 'dynamic_block_field:node-hearing_warning'
         - node_title
       left:
+        - 'dynamic_block_field:node-hearing_tickets'
         - field_teaser
         - field_description
         - field_media_document
@@ -56,6 +59,11 @@ third_party_settings:
         - 'dynamic_block_field:node-node_address'
         - 'dynamic_block_field:node-node_more_info'
     fields:
+      'dynamic_block_field:node-hearing_tickets':
+        plugin_id: 'dynamic_block_field:node-hearing_tickets'
+        weight: 1
+        label: hidden
+        formatter: default
       'dynamic_block_field:node-hearing_warning':
         plugin_id: 'dynamic_block_field:node-hearing_warning'
         weight: 0
@@ -166,5 +174,7 @@ content:
     region: left
 hidden:
   field_area: true
+  field_deskpro_department_id: true
+  field_deskpro_hearing_id: true
   langcode: true
   links: true

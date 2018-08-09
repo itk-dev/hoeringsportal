@@ -30,8 +30,7 @@ class HearingTypeMoreInfo extends BlockBase {
         '#config' => $config,
       ];
     }
-
-    return FALSE;
+    return NULL;
   }
 
 }

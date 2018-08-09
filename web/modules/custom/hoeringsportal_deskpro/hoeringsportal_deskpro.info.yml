@@ -1,0 +1,5 @@
+name: 'hoeringsportal_deskpro'
+type: module
+description: 'Deskpro integration'
+core: 8.x
+package: 'Custom'

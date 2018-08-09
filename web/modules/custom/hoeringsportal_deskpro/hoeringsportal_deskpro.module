@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Contains hoeringsportal_deskpro.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function hoeringsportal_deskpro_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the hoeringsportal_deskpro module.
+    case 'help.page.hoeringsportal_deskpro':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Deskpro integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_deskpro_theme() {
+  return [
+    'hoeringsportal_hearing_ticket' => [
+      'template' => 'block/hoeringsportal-hearing-ticket',
+      'variables' => [
+        'ticket' => NULL,
+        'ticket_messages' => NULL,
+        'ticket_attachments' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'node_hearing_edit_form') {
+    // Department autocomplete.
+    if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
+      && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
+      $form['field_deskpro_department_id']['widget'][0]['value']['#autocomplete_route_name'] = 'hoeringsportal_deskpro.autocomplete_controller_department';
+    }
+  }
+}
