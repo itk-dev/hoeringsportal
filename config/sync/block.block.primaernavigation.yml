@@ -1,0 +1,24 @@
+uuid: 97f6b288-83fd-484e-9f15-4008560bb93a
+langcode: da
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - hoeringsportal
+id: primaernavigation
+theme: hoeringsportal
+region: header
+weight: -1
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Primær navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }
