@@ -64,12 +64,16 @@ nav.navbar {
       padding-top: 0;
 
       &.has-border {
-        border-left: 2px solid $gray-600;
+        border-right: 2px solid $gray-600;
       }
     }
 
-    .nav-item--secondary-navigation:first-child .nav-link {
-      border-left: 0;
+    .nav-item--secondary-navigation:last-child .nav-link.has-border {
+      border-right: 0;
+    }
+
+    .logout-link {
+      border-right: 2px solid $gray-600;
     }
   }
 }
