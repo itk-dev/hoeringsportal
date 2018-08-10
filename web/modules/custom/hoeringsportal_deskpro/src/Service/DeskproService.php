@@ -76,6 +76,13 @@ class DeskproService {
       $data = $response->getData();
       $this->expandData($data, $query);
 
+      if (isset($query['expand']) && strpos($query['expand'], 'messages') !== FALSE) {
+        foreach ($data as &$ticket) {
+          $messages = $this->getTicketMessages($ticket['id'], []);
+          $ticket['messages'] = $messages->getData();
+        }
+      }
+
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
