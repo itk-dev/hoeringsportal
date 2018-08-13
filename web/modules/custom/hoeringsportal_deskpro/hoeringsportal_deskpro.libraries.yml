@@ -1,5 +1,7 @@
 hearing_tickets:
   version: 1.x
   js:
-    # preprocessing this libary does not work.
-    assets/public/build/hearing-tickets.js: { scope: footer, preprocess: false }
+    assets/public/build/hearing-tickets.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

@@ -6,6 +6,19 @@ hoeringsportal_deskpro.hearing.view:
  requirements:
    _permission: 'access content'
 
+hoeringsportal_deskpro.hearing.tickets:
+  path: '/hearing/{node}/tickets'
+  options:
+      parameters:
+        node:
+          type: entity:node
+          converter: paramconverter.entity
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ContentController::hearingTickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
 hoeringsportal_deskpro.hearing.ticket_add:
   path: '/hearing/{node}/ticket/add'
   defaults:
