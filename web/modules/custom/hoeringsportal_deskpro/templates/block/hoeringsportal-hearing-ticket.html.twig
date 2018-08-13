@@ -10,7 +10,7 @@
   */
 #}
 
-<h1>Høringssvar af {{ ticket.person.name }} ({{ ticket.date_created|date('d/m/Y') }})</h1>
+<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>
 
 {% if ticket_messages %}
   <fieldset class="ticket-messages">

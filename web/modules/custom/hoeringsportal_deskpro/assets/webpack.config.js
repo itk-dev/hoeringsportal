@@ -27,8 +27,6 @@ Encore
 
     // allow sass/scss files to be processed
     // .enableSassLoader()
-
-    .enableVueLoader()
 ;
 
 // export the final configuration

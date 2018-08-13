@@ -383,7 +383,11 @@ class DeskproService {
         },
       ];
 
-      $fields = array_map('trim', explode(',', $query['expand']));
+      $expand = $query['expand'];
+      if (!is_array($expand)) {
+        $expand = explode(',', $expand);
+      }
+      $fields = array_map('trim', $expand);
       foreach ($fields as $field) {
         if (isset($expands[$field])) {
           $expand = $expands[$field];
