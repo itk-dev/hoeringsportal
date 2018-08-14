@@ -1,8 +1,9 @@
 <template>
   <div class="hearing-tickets">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col">
         <h3>Høringssvar <span v-if="tickets">({{ tickets.length }})</span></h3>
+        <div><label>Svarfrist:</label> <strong>{{ deadline }}</strong></div>
       </div>
       <div class="col" v-if="ticket_add_url">
         <div class="float-right">
@@ -15,15 +16,17 @@
 
     <div class="loading" v-if="loading">{{ $t('Loading tickets …') }}</div>
 
-    <div v-if="tickets" class="list-group-item ticket" v-for="(ticket, index) in tickets" v-bind:key="ticket.id">
-      <div class="subject">{{ ticket.subject }}</div>
-      <div>
-        {{ $t('Answer #{number} by {name}', {number: index+1, name: ticket.person.display_name}) }}
-        | <span class="ticket-date_created">{{ $d(new Date(ticket.date_created), 'short') }}</span>
-      </div>
-      <div class="ticket-read-more">
-        <a class="read-more" :href="ticket['@details_url']">Details</a>
-      </div>
+    <div v-if="tickets" class="bg-light mb-3 ticket" v-for="(ticket, index) in tickets" v-bind:key="ticket.id">
+      <a :href="ticket['@details_url']" class="card">
+        <div class="card-header">{{ ticket.subject }}</div>
+        <div class="card-body pb-0 pt-0">abc</div>
+        <div class="card-footer">
+          {{ $t('Answer #{number} by {name}', {number: index+1, name: ticket.person.display_name}) }}
+          | <span class="ticket-date_created">{{ $d(new Date(ticket.date_created), 'short') }}</span>
+
+            <i class="fa fa-arrow-right float-right"></i>
+        </div>
+      </a>
     </div>
   </div>
 </template>
@@ -50,6 +53,7 @@ export default {
       loading: false,
       tickets: null,
       ticket_add_url: this.$config.ticket_add_url,
+      deadline: this.$config.reply_deadline,
       error: null
     }
   },
@@ -82,6 +86,7 @@ export default {
         })
         this.data = data
         this.tickets = this.data.data
+        console.log(this.tickets);
       }
     }
   }

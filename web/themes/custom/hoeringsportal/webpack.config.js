@@ -9,6 +9,7 @@ Encore
 
     // will create public/build/hoeringsportal.js and public/build/hoeringsportal.css
     .addEntry('hoeringsportal', './assets/js/hoeringsportal.js')
+    .addEntry('show-map', './assets/js/show-map.js')
 
     // Bootstrap expects jQuery to be available as a global variable
     // (cf. http://symfony.com/doc/current/frontend/encore/bootstrap.html#importing-bootstrap-javascript)

@@ -14,7 +14,7 @@ third_party_settings:
 _core:
   default_config_hash: 8z1kJM0qM4I0QDNNGjwndK3HdGLy7q54TlhcuS391Z8
 id: image
-label: Image
+label: Billede
 description: 'An image to be stored in the media library'
 type: image
 queue_thumbnail_downloads: false

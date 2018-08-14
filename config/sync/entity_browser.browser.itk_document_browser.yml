@@ -33,7 +33,7 @@ widgets:
       auto_select: false
     uuid: 0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1
     weight: 1
-    label: Overview
+    label: Overblik
     id: view
   faf405e2-6823-4521-b564-698424677624:
     settings:

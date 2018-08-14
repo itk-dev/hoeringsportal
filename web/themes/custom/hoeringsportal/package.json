@@ -40,6 +40,7 @@
     "stylelint-scss": "^3.1.3"
   },
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^5.8.0",
+    "ol": "^5.1.3"
   }
 }

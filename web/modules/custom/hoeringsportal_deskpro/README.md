@@ -15,6 +15,11 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
 	'hearing_department_id' => 1,
 	// Cache ttl in seconds
 	'cache_ttl' => 60,
+  'ticket_custom_fields' => [
+      13 => 'hearing_id',
+      14 => 'hearing_name',
+      15 => 'edoc_id',
+  ],
 ];
 ```
 

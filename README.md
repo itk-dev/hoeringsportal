@@ -69,6 +69,7 @@ composer install
 ./vendor/bin/drush --yes updatedb
 ./vendor/bin/drush --yes config:import
 ./vendor/bin/drush --yes locale:update
+./vendor/bin/drush --yes entity:updates
 ./vendor/bin/drush --yes cache:rebuild
 ```
 

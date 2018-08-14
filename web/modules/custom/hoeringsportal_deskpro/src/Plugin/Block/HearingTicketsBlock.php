@@ -65,7 +65,7 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
   public function build() {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->routeMatch->getParameter('node');
-    if ('hearing' !== $node->bundle()) {
+    if ($node === NULL || 'hearing' !== $node->bundle()) {
       return NULL;
     }
 
@@ -96,6 +96,7 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
       'ticket_add_url' => $ticket_add_url,
       'ticket_view_url' => $ticket_view_url,
       'locale' => $this->languageManager->getCurrentLanguage()->getId(),
+      'reply_deadline' => $node->field_reply_deadline->date->format('d-m-Y - H:i'),
     ];
 
     return [

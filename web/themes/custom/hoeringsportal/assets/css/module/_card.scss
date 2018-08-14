@@ -1,18 +1,38 @@
 .card {
-  border-bottom: 2px solid $gray-500;
+  background: $gray-100;
+  color: $gray-900;
+  text-decoration: none;
   height: 100%;
-  &-title {
-    .title {
-      color: $black;
+
+  &:hover {
+    @include transition-std(transform, ease-in, 200ms);
+    .fa-arrow-right {
+      @include transition-std(transform, ease-out, 400ms);
+      @include move-link-right();
     }
+    text-decoration: none;
   }
+
+  &-header {
+    background: $gray-100;
+    font-size: 1.2rem;
+  }
+
   .card-img-top {
     height: 10rem;
     background-size: cover;
     background-position: center center;
   }
   .card-body {
+    text-decoration: none;
     min-height: 5rem;
+  }
+
+  .card-footer {
+    background: $gray-100;
+    color: $gray-700;
+    font-size: .7rem;
+    font-weight: 600;
   }
 
   img {

@@ -14,7 +14,7 @@ id: media.image.field_itk_media_height
 field_name: field_itk_media_height
 entity_type: media
 bundle: image
-label: Height
+label: Højde
 description: ''
 required: false
 translatable: false

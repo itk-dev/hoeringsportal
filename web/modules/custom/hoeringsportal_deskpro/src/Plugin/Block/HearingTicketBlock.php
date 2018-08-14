@@ -72,7 +72,7 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
     $node = $this->routeMatch->getParameter('node');
     $ticket = $this->routeMatch->getParameter('ticket');
 
-    if ('hearing' !== $node->bundle() || empty($ticket)) {
+    if ($node === NULL || 'hearing' !== $node->bundle() || empty($ticket)) {
       return NULL;
     }
 

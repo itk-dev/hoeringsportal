@@ -14,7 +14,7 @@ id: media.image.field_itk_media_width
 field_name: field_itk_media_width
 entity_type: media
 bundle: image
-label: Width
+label: Bredde
 description: ''
 required: false
 translatable: false

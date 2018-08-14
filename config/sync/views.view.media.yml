@@ -185,7 +185,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          action_title: Action
+          action_title: Handling
           include_exclude: exclude
           selected_actions: {  }
           entity_type: media
@@ -310,7 +310,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Provider
+          label: Udbyder
           exclude: false
           alter:
             alter_text: false
@@ -632,7 +632,7 @@ display:
           exposed: true
           expose:
             operator_id: ''
-            label: 'True'
+            label: Sandt
             description: null
             use_operator: false
             operator: status_op
@@ -644,7 +644,7 @@ display:
               authenticated: authenticated
           is_grouped: true
           group_info:
-            label: 'Publishing status'
+            label: Publiceringsstatus
             description: ''
             identifier: status
             optional: true
@@ -678,7 +678,7 @@ display:
           exposed: true
           expose:
             operator_id: bundle_op
-            label: Provider
+            label: Udbyder
             description: ''
             use_operator: false
             operator: bundle_op

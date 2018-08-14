@@ -89,6 +89,8 @@ content:
 hidden:
   field_area: true
   field_description: true
+  field_deskpro_department_id: true
+  field_deskpro_hearing_id: true
   field_hearing_id: true
   field_media_document: true
   field_media_image: true

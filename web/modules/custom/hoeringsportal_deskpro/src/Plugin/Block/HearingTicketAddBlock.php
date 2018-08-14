@@ -19,7 +19,7 @@ class HearingTicketAddBlock extends HearingTicketBlock {
   public function build() {
     $node = $this->routeMatch->getParameter('node');
 
-    if ('hearing' !== $node->bundle()) {
+    if ($node === NULL || 'hearing' !== $node->bundle()) {
       return NULL;
     }
 

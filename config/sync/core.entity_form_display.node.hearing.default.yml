@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
     - field.field.node.hearing.field_project_reference
@@ -31,7 +32,7 @@ third_party_settings:
         - field_project_reference
         - field_area
       parent_name: ''
-      weight: 5
+      weight: 6
       format_type: details
       format_settings:
         id: ''
@@ -44,7 +45,7 @@ third_party_settings:
       children:
         - status
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: details
       format_settings:
         id: ''
@@ -58,7 +59,7 @@ third_party_settings:
         - field_deskpro_department_id
         - field_deskpro_hearing_id
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       format_settings:
         id: ''
@@ -118,6 +119,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_map_display:
+    weight: 5
+    settings:
+      rows: 15
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
     region: content
   field_media_document:
     weight: 4
