@@ -52,6 +52,7 @@ class HearingTicketBlock extends BlockBase {
           'hoeringsportal_deskpro/load_content',
         ],
       ],
+      '#cache' => ['contexts' => ['url']],
     ];
   }
 

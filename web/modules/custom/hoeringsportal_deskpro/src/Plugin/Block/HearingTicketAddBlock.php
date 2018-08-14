@@ -35,6 +35,7 @@ class HearingTicketAddBlock extends HearingTicketBlock {
 
     return [
       '#children' => $form,
+      '#cache' => ['contexts' => ['url']],
     ];
   }
 
