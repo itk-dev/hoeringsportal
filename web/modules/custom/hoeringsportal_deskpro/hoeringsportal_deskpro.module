@@ -29,6 +29,15 @@ function hoeringsportal_deskpro_help($route_name, RouteMatchInterface $route_mat
  */
 function hoeringsportal_deskpro_theme() {
   return [
+    'hoeringsportal_hearing_tickets' => [
+      'template' => 'block/hoeringsportal-hearing-tickets',
+      'variables' => [
+        'node' => NULL,
+        'is_loading' => NULL,
+        'configuration' => NULL,
+        'tickets' => NULL,
+      ],
+    ],
     'hoeringsportal_hearing_ticket' => [
       'template' => 'block/hoeringsportal-hearing-ticket',
       'variables' => [

@@ -7,6 +7,7 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -65,53 +66,35 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
   public function build() {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->routeMatch->getParameter('node');
-    if ($node === NULL || 'hearing' !== $node->bundle()) {
+
+    if (empty($node) || !($node instanceof NodeInterface) || 'hearing' !== $node->bundle()) {
       return NULL;
     }
 
-    $data_url = Url::fromRoute(
-      'hoeringsportal_deskpro.api_controller_hearings_tickets',
-      [
-        'hearing' => $node->field_deskpro_hearing_id->value,
-        'expand' => 'person',
-      ]
-    )->toString();
-    $ticket_add_url = Url::fromRoute(
-      'hoeringsportal_deskpro.hearing.ticket_add',
+    $contentUrl = Url::fromRoute(
+      'hoeringsportal_deskpro.hearing.tickets',
       [
         'node' => $node->id(),
       ]
     )->toString();
-    $ticket_view_url = Url::fromRoute(
-      'hoeringsportal_deskpro.hearing.ticket_view',
-      [
-        'node' => $node->id(),
-        'ticket' => '{ticket}',
-      ]
-    )->toString();
-    // Fix '{ticket}' placeholder in url.
-    $ticket_view_url = str_replace(urlencode('{ticket}'), '{ticket}', $ticket_view_url);
+
     $configuration = [
-      'data_url' => $data_url,
-      'ticket_add_url' => $ticket_add_url,
-      'ticket_view_url' => $ticket_view_url,
-      'locale' => $this->languageManager->getCurrentLanguage()->getId(),
-      'reply_deadline' => $node->field_reply_deadline->date->format('d-m-Y - H:i'),
+      'container_id' => 'hearing-tickets-content',
+      'content_url' => $contentUrl,
     ];
 
     return [
-      // Container element for hearing tickets.
-      'content' => [
-        '#type' => 'html_tag',
-        '#tag' => 'div',
-        '#attributes' => [
-          'id' => 'hearing-tickets',
-          'data-configuration' => json_encode($configuration),
-        ],
-      ],
-      // The hearing tickets library.
+      '#theme' => 'hoeringsportal_hearing_tickets',
+      '#node' => $node,
+      '#is_loading' => TRUE,
+      '#configuration' => $configuration,
       '#attached' => [
-        'library' => ['hoeringsportal_deskpro/hearing_tickets'],
+        'drupalSettings' => [
+          'hearing_tickets' => $configuration,
+        ],
+        'library' => [
+          'hoeringsportal_deskpro/hearing_tickets',
+        ],
       ],
     ];
   }

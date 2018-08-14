@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
+use Drupal\node\NodeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -72,7 +73,7 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
     $node = $this->routeMatch->getParameter('node');
     $ticket = $this->routeMatch->getParameter('ticket');
 
-    if ($node === NULL || 'hearing' !== $node->bundle() || empty($ticket)) {
+    if (empty($node) || !($node instanceof NodeInterface) || 'hearing' !== $node->bundle() || empty($ticket)) {
       return NULL;
     }
 
@@ -92,8 +93,7 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
    * Get a ticket.
    */
   private function getTicket($ticket) {
-    $ticket = $this->deskpro->getTicket($ticket)->getData();
-    $ticket['person'] = $this->getPerson($ticket['person']);
+    $ticket = $this->deskpro->getTicket($ticket, ['expand' => 'person'])->getData();
 
     return $ticket;
   }
@@ -102,14 +102,10 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
    * Get ticket messages.
    */
   private function getTicketMessages($ticket) {
-    $messages = $this->deskpro->getTicketMessages($ticket['id'])->getData();
-    foreach ($messages as &$message) {
-      $message['person'] = $this->getPerson($message['person']);
-      if (!empty($message['attachments'])) {
-        $attachments = $this->deskpro->getMessageAttachments($message);
-        $message['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
-      }
-    }
+    $messages = $this->deskpro->getTicketMessages(
+      $ticket['id'],
+      ['expand' => 'person,attachments']
+    )->getData();
 
     return $messages;
   }

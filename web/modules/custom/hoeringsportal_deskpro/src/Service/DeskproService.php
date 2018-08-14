@@ -76,6 +76,13 @@ class DeskproService {
       $data = $response->getData();
       $this->expandData($data, $query);
 
+      if (isset($query['expand']) && strpos($query['expand'], 'messages') !== FALSE) {
+        foreach ($data as &$ticket) {
+          $messages = $this->getTicketMessages($ticket['id'], []);
+          $ticket['messages'] = $messages->getData();
+        }
+      }
+
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
@@ -376,7 +383,11 @@ class DeskproService {
         },
       ];
 
-      $fields = array_map('trim', explode(',', $query['expand']));
+      $expand = $query['expand'];
+      if (!is_array($expand)) {
+        $expand = explode(',', $expand);
+      }
+      $fields = array_map('trim', $expand);
       foreach ($fields as $field) {
         if (isset($expands[$field])) {
           $expand = $expands[$field];
