@@ -41,6 +41,9 @@ function hoeringsportal_deskpro_theme() {
     'hoeringsportal_hearing_ticket' => [
       'template' => 'block/hoeringsportal-hearing-ticket',
       'variables' => [
+        'node' => NULL,
+        'is_loading' => NULL,
+        'configuration' => NULL,
         'ticket' => NULL,
         'ticket_messages' => NULL,
         'ticket_attachments' => NULL,

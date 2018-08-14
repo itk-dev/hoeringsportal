@@ -1,7 +1,7 @@
-hearing_tickets:
+load_content:
   version: 1.x
   js:
-    assets/public/build/hearing-tickets.js: {}
+    assets/public/build/load-content.js: {}
   dependencies:
     - core/jquery
     - core/drupalSettings

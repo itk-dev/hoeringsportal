@@ -76,10 +76,17 @@ class DeskproService {
       $data = $response->getData();
       $this->expandData($data, $query);
 
-      if (isset($query['expand']) && strpos($query['expand'], 'messages') !== FALSE) {
-        foreach ($data as &$ticket) {
-          $messages = $this->getTicketMessages($ticket['id'], []);
-          $ticket['messages'] = $messages->getData();
+      if (isset($query['expand'])) {
+        $expand = $query['expand'];
+        if (!is_array($expand)) {
+          $expand = explode(',', $expand);
+        }
+
+        if (in_array('messages', $expand)) {
+          foreach ($data as &$ticket) {
+            $messages = $this->getTicketMessages($ticket['id'], []);
+            $ticket['messages'] = $messages->getData();
+          }
         }
       }
 

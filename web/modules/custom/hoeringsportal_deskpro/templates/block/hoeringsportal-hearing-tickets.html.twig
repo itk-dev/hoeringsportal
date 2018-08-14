@@ -12,42 +12,44 @@
  */
 #}
 
-<div id="{{ configuration.container_id }}">
+<div class="tickets">
   <div class="row">
     <div class="col">
       {% if is_loading %}
-        <h1>{{ 'Loading tickets for %title%'|trans({'%title%': node.title.value}) }}</h1>
+        <div id="{{ configuration.container_id }}">
+          <h1>{{ 'Loading tickets for %title%'|trans({'%title%': node.title.value}) }}</h1>
+        </div>
       {% else %}
         <h1>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h1>
       {% endif %}
     </div>
     <div class="col">
-      <div class="float-right">
-        <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary">
-          {{ 'Add hearing ticket'|trans }}
-        </a>
-      </div>
+      {% if not configuration.deadline_passed %}
+        <div class="float-right">
+          <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary">
+            {{ 'Add hearing ticket'|trans }}
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 
   {% if not is_loading and tickets %}
     {% for index, ticket in tickets %}
       <div class="hearing-ticket">
-          <div class="header">
-            {{ 'Answer @number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
-            | <span class="ticket-date_created">{{ ticket.date_created|date('Y-m-d H:i:s') }}</span>
-          </div>
-          <div class="teaser">
-            {% if ticket.messages and ticket.messages|length > 0 %}
-              {% set message = ticket.messages[0] %}
-              {{ message.message_preview_text }}
-            {% endif %}
-          </div>
-          <div class="read-more">
-            <a class="read-more" href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}">Details</a>
-          </div>
+        <div class="header">
+          {{ 'Answer @number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
+          | <span class="ticket-date_created">{{ ticket.date_created|date('Y-m-d H:i:s') }}</span>
         </div>
-
+        <div class="teaser">
+          {% if ticket.messages and ticket.messages|length > 0 %}
+            {% set message = ticket.messages[0] %}
+            {{ message.message_preview_text }}
+          {% endif %}
+        </div>
+        <div class="read-more">
+          <a class="read-more" href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}">Details</a>
+        </div>
       </div>
     {% endfor %}
   {% endif %}

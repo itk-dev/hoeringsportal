@@ -3,6 +3,9 @@ services:
     class: Drupal\hoeringsportal_deskpro\Service\DeskproService
     arguments: ['@settings', '@language_manager']
 
+  hoeringsportal_deskpro.helper:
+    class: Drupal\hoeringsportal_deskpro\Service\HearingHelper
+
   hoeringsportal_deskpro.twig_extension:
     class: Drupal\hoeringsportal_deskpro\Twig\TwigExtension
     arguments: ['@hoeringsportal_deskpro.deskpro']
