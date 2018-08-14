@@ -55,34 +55,4 @@ class HearingTicketBlock extends BlockBase {
     ];
   }
 
-  /**
-   * Get a ticket.
-   */
-  private function getTicket($ticket) {
-    $ticket = $this->deskpro->getTicket($ticket, ['expand' => 'person'])->getData();
-
-    return $ticket;
-  }
-
-  /**
-   * Get ticket messages.
-   */
-  private function getTicketMessages($ticket) {
-    $messages = $this->deskpro->getTicketMessages(
-      $ticket['id'],
-      ['expand' => 'person,attachments']
-    )->getData();
-
-    return $messages;
-  }
-
-  /**
-   * Get ticket attachments.
-   */
-  private function getTicketAttachments($ticket) {
-    $attachments = $this->deskpro->getTicketAttachments($ticket['id'])->getData();
-
-    return $attachments;
-  }
-
 }
