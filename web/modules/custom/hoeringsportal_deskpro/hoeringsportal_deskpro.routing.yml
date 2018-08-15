@@ -7,7 +7,7 @@ hoeringsportal_deskpro.hearing.view:
    _permission: 'access content'
 
 hoeringsportal_deskpro.data.syncronize.hearing:
-  path: '/hoeringsportal_deskpro/data/syncronize/hearing/{hearing}'
+  path: '/hoeringsportal_deskpro/data/syncronize/hearing'
   defaults:
     _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearing'
     _title: 'Syncronize hearing'
