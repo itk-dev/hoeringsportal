@@ -10,4 +10,8 @@
     margin-top: $spacer/2;
     background: $primary;
   }
+
+  &.is-white:after {
+    background: $white;
+  }
 }

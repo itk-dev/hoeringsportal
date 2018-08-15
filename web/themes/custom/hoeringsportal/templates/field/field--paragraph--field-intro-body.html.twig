@@ -40,11 +40,11 @@
 {% if label_hidden %}
   {% if multiple %}
     {% for item in items %}
-      <p class="lead">{{ item.content }}</p>
+      <p class="lead-text">{{ item.content }}</p>
     {% endfor %}
   {% else %}
     {% for item in items %}
-      <p class="lead">{{ item.content }}</p>
+      <p class="lead-text">{{ item.content }}</p>
     {% endfor %}
   {% endif %}
 {% else %}
@@ -53,7 +53,7 @@
     <div>
   {% endif %}
   {% for item in items %}
-    <p class="lead">{{ item.content }}</p>
+    <p class="lead-text">{{ item.content }}</p>
   {% endfor %}
   {% if multiple %}
     </div>

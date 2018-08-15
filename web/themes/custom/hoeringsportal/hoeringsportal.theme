@@ -130,6 +130,13 @@ function hoeringsportal_preprocess_menu_local_task(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_ds_1col().
+ */
+function hoeringsportal_preprocess_ds_1col(&$variables) {
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
 function hoeringsportal_form_views_exposed_form_alter(&$form, FormStateInterface $form_state) {

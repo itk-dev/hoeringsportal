@@ -40,7 +40,9 @@
 #}
 <div class="row">
   <div class="col-md-12">
-    <h2>{{ content.field_paragraph_title }}</h2>
+    {% if content.field_paragraph_title['#items'] is not empty %}
+      <h2>{{ content.field_paragraph_title }}</h2>
+    {% endif %}
     <div class="row">
       {% block paragraph %}
         {% block content %}

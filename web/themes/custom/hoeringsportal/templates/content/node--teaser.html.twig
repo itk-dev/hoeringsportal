@@ -81,11 +81,13 @@
 {% endif %}
 
 {% if(content.field_reply_deadline) %}
+  {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
+
   <div class="activity-teaser-splash">
     <div class="splash splash-date">
-      <div class="splash-label">{{ 'Reply date' |t }}</div>
-      <div class="splash-date-day">--10--</div>
-      <div class="splash-date-month">--jun--</div>
+      <div class="splash-label">{{ 'Reply date' | t }}</div>
+      <div class="splash-date-day">{{ deadline|date('d') }}</div>
+      <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
     </div>
     <div class="splash splash-comments">
       <span class="splash-comments-count"><i class="fa fa-comment"></i>--2--</span>
