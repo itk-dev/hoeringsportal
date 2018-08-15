@@ -2,8 +2,6 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
-use Drupal\node\NodeInterface;
-
 /**
  * Provides a 'Hearing ticket' Block.
  *
@@ -21,7 +19,11 @@ class HearingTicketAddBlock extends HearingTicketBlock {
   public function build() {
     $node = $this->routeMatch->getParameter('node');
 
-    if (empty($node) || !($node instanceof NodeInterface) || 'hearing' !== $node->bundle()) {
+    if (!$this->helper->isHearing($node)) {
+      return NULL;
+    }
+
+    if ($this->helper->isDeadlinePassed($node)) {
       return NULL;
     }
 
@@ -33,6 +35,7 @@ class HearingTicketAddBlock extends HearingTicketBlock {
 
     return [
       '#children' => $form,
+      '#cache' => ['contexts' => ['url']],
     ];
   }
 

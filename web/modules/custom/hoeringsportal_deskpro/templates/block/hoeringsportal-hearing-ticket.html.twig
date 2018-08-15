@@ -1,59 +1,48 @@
 {#
-  /**
-  * @file
-  * Hearing ticket block template.
-  *
-  * Available variables:
-  * - ticket
-  * - ticket_messages
-  * - ticket_attachments
-  */
+/**
+ * @file
+ * Hearing ticket block template.
+ *
+ * Available variables:
+ * - node: The hearing node
+ * - is_loading: false iff tickets have not been loaded.
+ * - configuration
+ *   - container_id: All content must be wrapped in an element with this as id.
+ * - ticket
+ * - ticket_messages
+ * - ticket_attachments
+ */
 #}
 
 {#<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>#}
 
-{% if ticket_messages %}
-  <h2>
-    {{ ticket.subject }}
-  </h2>
-
-  {% for message in ticket_messages %}
-    <div>
-      {{ message.message|raw }}
-      {% if message.attachments %}
-        <div class="attachments">
-          Attachments:
-          <ol class="list-group">
-            {% for attachment in message.attachments %}
-              <li class="list-group-item">
-                <a href="#ticket-attachment-{{ attachment.id }}">
-                  {{ attachment.blob.filename }}
-                </a>
-              </li>
-            {% endfor %}
-          </ol>
-        </div>
-      {% endif %}
-    </div>
-  {% endfor %}
-{% endif %}
-
-{% if ticket_attachments %}
-  <fieldset class="ticket-attachments">
-    <legend>{{ 'Attachments'|trans }}</legend>
-
-    <ol class="list-group">
-      {% for attachment in ticket_attachments %}
-        {% set blob = attachment.blob %}
-        <li class="list-group-item" id="ticket-attachment-{{ attachment.id }}">
-          {#
-            {% if blob.is_image %}
-            <img src="{{ blob.download_url }}"/>
-            {% endif %}
-          #}
-          <a href="{{ blob.download_url }}">{{ blob.filename }} ({{ blob.content_type }}; {{ blob.filesize_readable }})</a>
-        </li>
-      {% endfor %}
-    </ol>
-  </fieldset>
+{% if is_loading %}
+  <div id="{{ configuration.container_id }}">
+    <h1>{{ 'Loading ticket'|trans }}</h1>
+  </div>
+{% else %}
+  {% if ticket_messages %}
+    <h2>
+      {{ ticket.subject }}
+    </h2>
+    {% for message in ticket_messages %}
+      <div>
+        {{ message.message|raw }}
+        {% if message.attachments %}
+          <div class="attachments">
+            Attachments:
+            <ol class="list-group">
+              {% for attachment in message.attachments %}
+                <li class="list-group-item">
+                  <a href="#ticket-attachment-{{ attachment.id }}">
+                    {{ attachment.blob.filename }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ol>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endif %}

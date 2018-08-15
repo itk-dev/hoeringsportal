@@ -2,12 +2,7 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\hoeringsportal_deskpro\Service\DeskproService;
-use Drupal\node\NodeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Url;
 
 /**
  * Provides a 'Hearing ticket' Block.
@@ -18,53 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Deskpro"),
  * )
  */
-class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInterface {
-  /**
-   * Route match.
-   *
-   * @var \Drupal\Core\Routing\RouteMatchInterface
-   */
-  protected $routeMatch;
-
-  /**
-   * Deskpro client.
-   *
-   * @var \Drupal\hoeringsportal_deskpro\Service\DeskproService
-   */
-  protected $deskpro;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(
-    ContainerInterface $container,
-    array $configuration,
-    $plugin_id,
-    $plugin_definition
-  ) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('current_route_match'),
-      $container->get('hoeringsportal_deskpro.deskpro')
-    );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    RouteMatchInterface $routeMatch,
-    DeskproService $deskpro
-  ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->routeMatch = $routeMatch;
-    $this->deskpro = $deskpro;
-  }
+class HearingTicketBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -73,57 +22,38 @@ class HearingTicketBlock extends BlockBase implements ContainerFactoryPluginInte
     $node = $this->routeMatch->getParameter('node');
     $ticket = $this->routeMatch->getParameter('ticket');
 
-    if (empty($node) || !($node instanceof NodeInterface) || 'hearing' !== $node->bundle() || empty($ticket)) {
+    if (!$this->helper->isHearing($node) || empty($ticket)) {
       return NULL;
     }
 
-    $ticket = $this->getTicket($ticket);
-    $ticket_messages = $this->getTicketMessages($ticket);
-    $ticket_attachments = $this->getTicketAttachments($ticket);
+    $contentUrl = Url::fromRoute(
+      'hoeringsportal_deskpro.hearing.ticket.render',
+      [
+        'node' => $node->id(),
+        'ticket' => $ticket,
+      ]
+    )->toString();
+
+    $configuration = [
+      'container_id' => 'hearing-ticket',
+      'content_url' => $contentUrl,
+    ];
 
     return [
       '#theme' => 'hoeringsportal_hearing_ticket',
-      '#ticket' => $ticket,
-      '#ticket_messages' => $ticket_messages,
-      '#ticket_attachments' => $ticket_attachments,
+      '#node' => $node,
+      '#is_loading' => TRUE,
+      '#configuration' => $configuration,
+      '#attached' => [
+        'drupalSettings' => [
+          'deskpro_hoeringsportal' => $configuration,
+        ],
+        'library' => [
+          'hoeringsportal_deskpro/load_content',
+        ],
+      ],
+      '#cache' => ['contexts' => ['url']],
     ];
-  }
-
-  /**
-   * Get a ticket.
-   */
-  private function getTicket($ticket) {
-    $ticket = $this->deskpro->getTicket($ticket, ['expand' => 'person'])->getData();
-
-    return $ticket;
-  }
-
-  /**
-   * Get ticket messages.
-   */
-  private function getTicketMessages($ticket) {
-    $messages = $this->deskpro->getTicketMessages(
-      $ticket['id'],
-      ['expand' => 'person,attachments']
-    )->getData();
-
-    return $messages;
-  }
-
-  /**
-   * Get ticket attachments.
-   */
-  private function getTicketAttachments($ticket) {
-    $attachments = $this->deskpro->getTicketAttachments($ticket['id'])->getData();
-
-    return $attachments;
-  }
-
-  /**
-   * Get a person.
-   */
-  private function getPerson($person) {
-    return $this->deskpro->getPerson($person)->getData();
   }
 
 }

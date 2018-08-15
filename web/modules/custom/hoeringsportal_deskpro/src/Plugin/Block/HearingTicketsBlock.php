@@ -2,13 +2,7 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
-use Drupal\node\NodeInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'Hearing tickets' Block.
@@ -19,46 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Deskpro"),
  * )
  */
-class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInterface {
-  /**
-   * Route match.
-   *
-   * @var \Drupal\Core\Routing\RouteMatchInterface
-   */
-  private $routeMatch;
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(
-    ContainerInterface $container,
-    array $configuration,
-    $plugin_id,
-    $plugin_definition
-  ) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('current_route_match'),
-      $container->get('language_manager')
-    );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __construct(
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
-    RouteMatchInterface $routeMatch,
-    LanguageManagerInterface $languageManager
-  ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->routeMatch = $routeMatch;
-    $this->languageManager = $languageManager;
-  }
+class HearingTicketsBlock extends BlockBase {
 
   /**
    * {@inheritdoc}
@@ -67,20 +22,21 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->routeMatch->getParameter('node');
 
-    if (empty($node) || !($node instanceof NodeInterface) || 'hearing' !== $node->bundle()) {
+    if (!$this->helper->isHearing($node)) {
       return NULL;
     }
 
     $contentUrl = Url::fromRoute(
-      'hoeringsportal_deskpro.hearing.tickets',
+      'hoeringsportal_deskpro.hearing.tickets.render',
       [
         'node' => $node->id(),
       ]
     )->toString();
 
     $configuration = [
-      'container_id' => 'hearing-tickets-content',
+      'container_id' => 'hearing-tickets',
       'content_url' => $contentUrl,
+      'deadline_passed' => $this->helper->isDeadlinePassed($node),
     ];
 
     return [
@@ -90,12 +46,13 @@ class HearingTicketsBlock extends BlockBase implements ContainerFactoryPluginInt
       '#configuration' => $configuration,
       '#attached' => [
         'drupalSettings' => [
-          'hearing_tickets' => $configuration,
+          'deskpro_hoeringsportal' => $configuration,
         ],
         'library' => [
-          'hoeringsportal_deskpro/hearing_tickets',
+          'hoeringsportal_deskpro/load_content',
         ],
       ],
+      '#cache' => ['contexts' => ['url']],
     ];
   }
 

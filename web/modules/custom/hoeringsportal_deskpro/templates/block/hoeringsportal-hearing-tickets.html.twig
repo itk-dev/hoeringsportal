@@ -12,21 +12,25 @@
  */
 #}
 
-<div id="{{ configuration.container_id }}">
+<div class="tickets">
   <div class="row">
     <div class="col">
       {% if is_loading %}
-        <div>{{ 'Loading tickets for %title%'|trans({'%title%': node.title.value}) }}</div>
+        <div id="{{ configuration.container_id }}">
+          <div>{{ 'Loading tickets for %title%'|trans({'%title%': node.title.value}) }}</div>
+        </div>
       {% else %}
         <h1>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h1>
       {% endif %}
     </div>
     <div class="col">
-      <div class="float-right">
-        <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary">
-          {{ 'Add hearing ticket'|trans }}
-        </a>
-      </div>
+      {% if not configuration.deadline_passed %}
+        <div class="float-right">
+          <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary">
+            {{ 'Add hearing ticket'|trans }}
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 
