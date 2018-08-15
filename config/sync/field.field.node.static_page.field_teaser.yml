@@ -9,8 +9,8 @@ id: node.static_page.field_teaser
 field_name: field_teaser
 entity_type: node
 bundle: static_page
-label: Teaser/indledning
-description: 'Kort tekst der vises i teasers og i toppen af indholdsviningen'
+label: Teaser/indledni
+description: 'Kort tekst der vises i teasers'
 required: false
 translatable: true
 default_value: {  }

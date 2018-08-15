@@ -10,39 +10,32 @@
   */
 #}
 
-<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>
+{#<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>#}
 
 {% if ticket_messages %}
-  <fieldset class="ticket-messages">
-    <legend>{{ 'Messages'|trans }}</legend>
+  <h2>
+    {{ ticket.subject }}
+  </h2>
 
-    <ol class="list-group">
-      {% for message in ticket_messages %}
-        <li class="list-group-item">
-          {{ message.person.name }} {{ message.date_created|date }}
-
-          <div class="message">
-            {{ message.message|raw }}
-          </div>
-
-          {% if message.attachments %}
-            <div class="attachments">
-              Attachments:
-              <ol class="list-group">
-                {% for attachment in message.attachments %}
-                  <li class="list-group-item">
-                    <a href="#ticket-attachment-{{ attachment.id }}">
-                      {{ attachment.blob.filename }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ol>
-            </div>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ol>
-  </fieldset>
+  {% for message in ticket_messages %}
+    <div>
+      {{ message.message|raw }}
+      {% if message.attachments %}
+        <div class="attachments">
+          Attachments:
+          <ol class="list-group">
+            {% for attachment in message.attachments %}
+              <li class="list-group-item">
+                <a href="#ticket-attachment-{{ attachment.id }}">
+                  {{ attachment.blob.filename }}
+                </a>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
 {% endif %}
 
 {% if ticket_attachments %}

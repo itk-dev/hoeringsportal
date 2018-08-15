@@ -21,6 +21,10 @@ function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array
     if ($variables['form']['#form_id'] == 'node_hearing_form' || $variables['form']['#form_id'] == 'node_hearing_edit_form') {
       $suggestions[] = 'hoeringsportal_hearing_node_form';
     }
+
+    if ($variables['form']['#form_id'] == 'node_static_page_form' || $variables['form']['#form_id'] == 'node_static_page_edit_form') {
+      $suggestions[] = 'hoeringsportal_static_page_node_form';
+    }
   }
 
   return $suggestions;
@@ -40,6 +44,10 @@ function hoeringsportal_forms_theme($existing, $type, $theme, $path) {
     'hoeringsportal_hearing_node_form' => [
       'render element' => 'form',
       'template' => 'hoeringsportal-hearing-node-form',
+    ],
+    'hoeringsportal_static_page_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-static-page-node-form',
     ],
   ];
 }

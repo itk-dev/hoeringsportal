@@ -3,11 +3,16 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.static_page.field_media_image_single
+    - field.field.node.static_page.field_section
+    - field.field.node.static_page.field_sidebar
     - field.field.node.static_page.field_teaser
     - field.field.node.static_page.field_teaser_color
     - node.type.static_page
   module:
     - ds
+    - entity_reference_revisions
+    - text
     - user
 third_party_settings:
   ds:
@@ -31,13 +36,16 @@ third_party_settings:
     regions:
       header:
         - node_title
+        - field_media_image_single
       left:
-        - field_teaser
+        - field_section
         - node_changed_date
+      right:
+        - field_sidebar
     fields:
       node_changed_date:
         plugin_id: node_changed_date
-        weight: 2
+        weight: 3
         label: hidden
         formatter: ds_post_date_short
       node_title:
@@ -54,14 +62,35 @@ targetEntityType: node
 bundle: static_page
 mode: default
 content:
-  field_teaser:
+  field_media_image_single:
     weight: 1
+    label: hidden
+    settings:
+      view_mode: content_display
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: header
+  field_section:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_revisions_entity_view
+    region: left
+  field_sidebar:
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
-    region: left
+    type: text_default
+    region: right
 hidden:
+  field_teaser: true
   field_teaser_color: true
   langcode: true
   links: true

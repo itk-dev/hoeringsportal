@@ -24,10 +24,6 @@ module:
   field_ui: 0
   file: 0
   filter: 0
-  geocoder: 0
-  geocoder_field: 0
-  geocoder_geofield: 0
-  geofield: 0
   hoeringsportal_content_blocks: 0
   hoeringsportal_deskpro: 0
   hoeringsportal_forms: 0

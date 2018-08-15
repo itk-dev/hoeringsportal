@@ -4,6 +4,11 @@
   text-decoration: none;
   height: 100%;
 
+  .fa-arrow-right {
+    color: $primary;
+    font-size: 1rem;
+  }
+
   &:hover {
     @include transition-std(transform, ease-in, 200ms);
     .fa-arrow-right {
@@ -15,7 +20,7 @@
 
   &-header {
     background: $gray-100;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .card-img-top {
@@ -24,6 +29,8 @@
     background-position: center center;
   }
   .card-body {
+    padding-top: 0;
+    padding-bottom: 0;
     text-decoration: none;
     min-height: 5rem;
   }

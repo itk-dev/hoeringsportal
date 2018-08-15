@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
     - field.field.node.project.field_email
+    - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
     - field.field.node.project.field_project_finish
@@ -105,6 +106,13 @@ content:
     third_party_settings: {  }
     type: email_mailto
     region: right
+  field_map_display:
+    weight: 12
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_media_image:
     weight: 1
     label: hidden
