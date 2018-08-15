@@ -40,7 +40,7 @@ class DeskproService {
    */
   public function getHearings(array $query = []) {
     try {
-      $response = $this->get('/ticket_custom_fields/{id}', ['id' => $this->configuration['hearing_field_id']]);
+      $response = $this->get('/ticket_custom_fields/{id}', ['id' => $this->getTicketHearingIdFieldId()]);
 
       return $response;
     }
@@ -61,7 +61,7 @@ class DeskproService {
    *   The api response.
    */
   public function getHearingTickets($hearingId, array $query = []) {
-    $query['ticket_field.' . $this->configuration['hearing_field_id']] = $hearingId;
+    $query['ticket_field.' . $this->getTicketHearingIdFieldId()] = $hearingId;
 
     return $this->getTickets($query);
   }
@@ -265,7 +265,7 @@ class DeskproService {
    * https://example.deskpro.com/agent/#admin:/portal/1/ticket_form_widget
    */
   public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = []) {
-    $defaultValues['ticket']['ticket_field_' . $this->configuration['hearing_field_id']]['data'] = $hearingId;
+    $defaultValues['ticket']['ticket_field_' . $this->getTicketHearingIdFieldId()]['data'] = $hearingId;
 
     $id = uniqid('deskpro_ticket_form', TRUE);
     $embed_options = [
@@ -291,6 +291,13 @@ class DeskproService {
   public function isValidToken(string $token) {
     return isset($this->configuration['x-deskpro-token'])
       && $token === $this->configuration['x-deskpro-token'];
+  }
+
+  /**
+   * Get hearing id field id.
+   */
+  public function getTicketHearingIdFieldId() {
+    return $this->configuration['hearing_field_id'];
   }
 
   /**

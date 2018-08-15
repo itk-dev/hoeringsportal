@@ -59,7 +59,13 @@ class HearingHelper {
   /**
    * Get data from Deskpro and store in hearing node.
    */
-  public function syncronizeHearing($hearingId) {
+  public function syncronizeHearing(array $payload = NULL) {
+    $hearingIdfieldName = 'field' . $this->deskpro->getTicketHearingIdFieldId();
+    if (!isset($payload['ticket'][$hearingIdfieldName])) {
+      throw new \Exception('Invalid data');
+    }
+    $hearingId = $payload['ticket'][$hearingIdfieldName];
+
     $storage = $this->entityTypeManager->getStorage('node');
     $ids = $storage
       ->getQuery()
