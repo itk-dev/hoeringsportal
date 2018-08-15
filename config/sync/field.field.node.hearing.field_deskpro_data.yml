@@ -1,0 +1,19 @@
+uuid: 533b8228-7d75-41dd-ae00-1c57b96624e7
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_deskpro_data
+    - node.type.hearing
+id: node.hearing.field_deskpro_data
+field_name: field_deskpro_data
+entity_type: node
+bundle: hearing
+label: 'Deskpro data'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.itk_image_browser
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
@@ -195,6 +196,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_deskpro_data: true
   langcode: true
   path: true
   promote: true

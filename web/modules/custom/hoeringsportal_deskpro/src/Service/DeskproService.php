@@ -246,6 +246,7 @@ class DeskproService {
       'hearing_field_id',
       'hearing_department_id',
       'cache_ttl',
+      'x-deskpro-token',
     ];
     foreach ($requiredKeys as $key) {
       if (empty($this->configuration[$key])) {
@@ -282,6 +283,14 @@ class DeskproService {
       '<script type="text/javascript">window.DESKPRO_EMBED_OPTIONS = ' . json_encode($embed_options) . ';</script>',
       '<script type="text/javascript" src="' . htmlspecialchars($this->configuration['deskpro_url'] . '/dyn-assets/pub/build/embed_loader.js') . '"></script>',
     ]);
+  }
+
+  /**
+   * Check that token is a valid data token.
+   */
+  public function isValidToken(string $token) {
+    return isset($this->configuration['x-deskpro-token'])
+      && $token === $this->configuration['x-deskpro-token'];
   }
 
   /**

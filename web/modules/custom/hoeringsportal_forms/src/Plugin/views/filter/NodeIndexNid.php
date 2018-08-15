@@ -150,12 +150,12 @@ class NodeIndexNid extends ManyToOne {
   /**
    * Define form a new form.
    *
-   * @param array $form
+   * @param mixed $form
    *   The new admin form.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the form.
    */
-  protected function valueForm(array &$form, FormStateInterface $form_state) {
+  protected function valueForm(&$form, FormStateInterface $form_state) {
     $bundle = $this->nodeTypeStorage->load($this->options['bundle']);
     if (empty($bundle) && $this->options['limit']) {
       $form['markup'] = [
@@ -257,12 +257,12 @@ class NodeIndexNid extends ManyToOne {
   /**
    * Validate the admin form.
    *
-   * @param array $form
+   * @param mixed $form
    *   The form to validate.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the form.
    */
-  protected function valueValidate(array $form, FormStateInterface $form_state) {
+  protected function valueValidate($form, FormStateInterface $form_state) {
     // We only validate if they've chosen the text field style.
     if ($this->options['type'] != 'textfield') {
       return;
@@ -280,13 +280,13 @@ class NodeIndexNid extends ManyToOne {
   /**
    * Whether to accept exposed input.
    *
-   * @param array $input
+   * @param mixed $input
    *   The input.
    *
    * @return bool
    *   Whether to accept the exposed form input.
    */
-  public function acceptExposedInput(array $input) {
+  public function acceptExposedInput($input) {
     if (empty($this->options['exposed'])) {
       return TRUE;
     }
@@ -328,12 +328,12 @@ class NodeIndexNid extends ManyToOne {
   /**
    * Custom validation for the exposed form.
    *
-   * @param array $form
+   * @param mixed $form
    *   The exposed form to validate.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the exposed form.
    */
-  public function validateExposed(array &$form, FormStateInterface $form_state) {
+  public function validateExposed(&$form, FormStateInterface $form_state) {
     if (empty($this->options['exposed'])) {
       return;
     }
@@ -362,24 +362,24 @@ class NodeIndexNid extends ManyToOne {
   /**
    * Custom submit function.
    *
-   * @param array $form
+   * @param mixed $form
    *   The form of the submit.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the form.
    */
-  protected function valueSubmit(array $form, FormStateInterface $form_state) {
+  protected function valueSubmit($form, FormStateInterface $form_state) {
     // Prevent array_filter from messing up our arrays in parent submit.
   }
 
   /**
    * The exposed form builder.
    *
-   * @param array $form
+   * @param mixed $form
    *   The exposed form to build.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The state of the form.
    */
-  public function buildExposeForm(array &$form, FormStateInterface $form_state) {
+  public function buildExposeForm(&$form, FormStateInterface $form_state) {
     parent::buildExposeForm($form, $form_state);
     if ($this->options['type'] != 'select') {
       unset($form['expose']['reduce']);
