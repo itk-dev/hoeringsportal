@@ -1,0 +1,28 @@
+uuid: b9416e99-5dfc-4a44-b269-c48b7cac1424
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_image
+    - media_entity.bundle.image
+    - paragraphs.paragraphs_type.image
+id: paragraph.image.field_paragraph_image
+field_name: field_paragraph_image
+entity_type: paragraph
+bundle: image
+label: Billede
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

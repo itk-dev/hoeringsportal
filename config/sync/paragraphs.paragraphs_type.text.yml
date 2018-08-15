@@ -1,0 +1,9 @@
+uuid: f4fffa03-de9d-41eb-b819-25262bef9db2
+langcode: da
+status: true
+dependencies: {  }
+id: text
+label: Tekst
+icon_uuid: null
+description: 'Et tekstfelt med en wysiwyg editor'
+behavior_plugins: {  }

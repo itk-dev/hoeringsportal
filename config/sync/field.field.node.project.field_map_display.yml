@@ -1,0 +1,19 @@
+uuid: 0563fe93-21a9-4ba7-9b78-a7081284493c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_display
+    - node.type.project
+id: node.project.field_map_display
+field_name: field_map_display
+entity_type: node
+bundle: project
+label: Kortvisning
+description: 'Brug værktøjet Geojson: <a href="http://geojson.io/#map=13/56.1464/10.1739">http://geojson.io/#map=13/56.1464/10.1739</a> og kopiér den genererede json kode ind i dette felt.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

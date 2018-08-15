@@ -1,0 +1,21 @@
+uuid: 8dede522-c6cf-4272-b353-3194ca067013
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sidebar
+    - node.type.static_page
+  module:
+    - text
+id: node.static_page.field_sidebar
+field_name: field_sidebar
+entity_type: node
+bundle: static_page
+label: Sidebar
+description: 'Tekst til visning i højre side på fuldskærmsvisning'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,21 @@
+uuid: 12307953-e1c5-433e-ae12-54394c8d7794
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_block_text
+    - paragraphs.paragraphs_type.text
+  module:
+    - text
+id: paragraph.text.field_content_block_text
+field_name: field_content_block_text
+entity_type: paragraph
+bundle: text
+label: Indhold
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
