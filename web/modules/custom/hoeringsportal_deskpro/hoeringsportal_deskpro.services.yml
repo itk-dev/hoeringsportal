@@ -5,6 +5,7 @@ services:
 
   hoeringsportal_deskpro.helper:
     class: Drupal\hoeringsportal_deskpro\Service\HearingHelper
+    arguments: ['@hoeringsportal_deskpro.deskpro', '@entity_type.manager']
 
   hoeringsportal_deskpro.twig_extension:
     class: Drupal\hoeringsportal_deskpro\Twig\TwigExtension

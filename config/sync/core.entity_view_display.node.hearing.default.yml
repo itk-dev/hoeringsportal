@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
@@ -184,6 +185,7 @@ content:
     region: left
 hidden:
   field_area: true
+  field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
   langcode: true

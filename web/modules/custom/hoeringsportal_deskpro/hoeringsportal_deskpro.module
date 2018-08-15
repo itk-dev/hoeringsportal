@@ -5,6 +5,8 @@
  * Contains hoeringsportal_deskpro.module.
  */
 
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 
@@ -61,6 +63,20 @@ function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_stat
     if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
       && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
       $form['field_deskpro_department_id']['widget'][0]['value']['#autocomplete_route_name'] = 'hoeringsportal_deskpro.autocomplete_controller_department';
+    }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function hoeringsportal_deskpro_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ('hearing' === $entity->bundle()) {
+    // Decode json value to real array.
+    $field = $entity->get('field_deskpro_data');
+    if (NULL !== $field) {
+      $value = json_decode($field->value, TRUE);
+      $field->set(0, $value);
     }
   }
 }

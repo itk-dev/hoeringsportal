@@ -6,6 +6,20 @@ hoeringsportal_deskpro.hearing.view:
  requirements:
    _permission: 'access content'
 
+hoeringsportal_deskpro.data.syncronize.hearing:
+  path: '/hoeringsportal_deskpro/data/syncronize/hearing/{hearing}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearing'
+    _title: 'Syncronize hearing'
+  methods: [POST]
+  requirements:
+    _format: json
+    # @see https://www.drupal.org/project/drupal/issues/2786941
+    _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearingAccess'
+    # _test_access_check: 'TRUE'
+  options:
+    no_cache: true
+
 # Content (for dynamic loading)
 hoeringsportal_deskpro.hearing.tickets.render:
   path: '/hearing/{node}/tickets/render'

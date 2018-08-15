@@ -78,8 +78,8 @@
 {% if node.bundle == 'hearing' %}
   {% set type = content.field_hearing_type[0]['#plain_text'] %}
   {% set project = content.field_project_reference[0]['#plain_text'] %}
+  {% set deskpro_data = node.field_deskpro_data.value[0] %}
 {% endif %}
-
 {% if(content.field_reply_deadline) %}
   {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
 
@@ -89,9 +89,11 @@
       <div class="splash-date-day">{{ deadline|date('d') }}</div>
       <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
     </div>
+    {% if deskpro_data.tickets|default([])|length > 0 %}
     <div class="splash splash-comments">
-      <span class="splash-comments-count"><i class="fa fa-comment"></i>--2--</span>
+      <span class="splash-comments-count"><i class="fa fa-comment"></i>--{{ deskpro_data.tickets|length }}--</span>
     </div>
+    {% endif %}
   </div>
 {% endif %}
 <div class="activity-teaser-image">
