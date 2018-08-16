@@ -76,17 +76,17 @@ class DeskproService {
       $data = $response->getData();
       $this->expandData($data, $query);
 
-      if (isset($query['expand'])) {
-        $expand = $query['expand'];
-        if (!is_array($expand)) {
-          $expand = explode(',', $expand);
+      if ($this->getExpand($query, 'messages')) {
+        foreach ($data as &$ticket) {
+          $messages = $this->getTicketMessages($ticket['id'], $query);
+          $ticket['messages'] = $messages->getData();
         }
+      }
 
-        if (in_array('messages', $expand)) {
-          foreach ($data as &$ticket) {
-            $messages = $this->getTicketMessages($ticket['id'], []);
-            $ticket['messages'] = $messages->getData();
-          }
+      if ($this->getExpand($query, 'attachments')) {
+        foreach ($data as &$ticket) {
+          $attachments = $this->getTicketAttachments($ticket['id'], $query);
+          $ticket['attachments'] = $attachments->getData();
         }
       }
 
@@ -375,42 +375,55 @@ class DeskproService {
   }
 
   /**
+   * Get info on what to expand.
+   */
+  private function getExpand(array $query, string $field = NULL) {
+    if (!isset($query['expand'])) {
+      return NULL;
+    }
+
+    $expand = $query['expand'];
+    if (!is_array($expand)) {
+      $expand = explode(',', $expand);
+    }
+    $fields = array_map('trim', $expand);
+
+    return NULL === $field ? $fields : in_array($field, $fields);
+  }
+
+  /**
    * Expand data depending on query parameters.
    */
   private function expandData(array &$data, array $query) {
-    if (isset($query['expand'])) {
-      $expands = [
-        'person' => function (array &$item) use ($query) {
-          if (isset($item['person'])) {
-            $person = $this->getPerson($item['person'], $query);
-            $item['person'] = $person !== NULL ? $person->getData() : NULL;
-          }
-        },
-        'attachments' => function (array &$item) use ($query) {
-          if (isset($item['attachments'])) {
-            $attachments = $this->getMessageAttachments($item, $query);
-            $item['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
-          }
-        },
-        'fields' => function (array &$item) {
-          if (isset($this->configuration['ticket_custom_fields'])) {
-            $fields = $this->configuration['ticket_custom_fields'];
-            if (is_array($fields)) {
-              foreach ($fields as $id => $name) {
-                if (isset($item['fields'][$id]['value'])) {
-                  $item['fields'][$name] = $item['fields'][$id]['value'];
-                }
+    $expands = [
+      'person' => function (array &$item) use ($query) {
+        if (isset($item['person'])) {
+          $person = $this->getPerson($item['person'], $query);
+          $item['person'] = $person !== NULL ? $person->getData() : NULL;
+        }
+      },
+      'attachments' => function (array &$item) use ($query) {
+        if (isset($item['attachments'])) {
+          $attachments = $this->getMessageAttachments($item, $query);
+          $item['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
+        }
+      },
+      'fields' => function (array &$item) {
+        if (isset($this->configuration['ticket_custom_fields'])) {
+          $fields = $this->configuration['ticket_custom_fields'];
+          if (is_array($fields)) {
+            foreach ($fields as $id => $name) {
+              if (isset($item['fields'][$id]['value'])) {
+                $item['fields'][$name] = $item['fields'][$id]['value'];
               }
             }
           }
-        },
-      ];
+        }
+      },
+    ];
 
-      $expand = $query['expand'];
-      if (!is_array($expand)) {
-        $expand = explode(',', $expand);
-      }
-      $fields = array_map('trim', $expand);
+    $fields = $this->getExpand($query);
+    if (is_array($fields)) {
       foreach ($fields as $field) {
         if (isset($expands[$field])) {
           $expand = $expands[$field];
