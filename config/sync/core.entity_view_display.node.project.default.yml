@@ -56,9 +56,15 @@ third_party_settings:
         - field_phone
         - field_email
       footer:
-        - field_activities
+        - field_map_display
+        - 'dynamic_block_field:node-participate'
         - field_related_content
     fields:
+      'dynamic_block_field:node-participate':
+        plugin_id: 'dynamic_block_field:node-participate'
+        weight: 11
+        label: above
+        formatter: default
       node_changed_date:
         plugin_id: node_changed_date
         weight: 4
@@ -74,17 +80,6 @@ targetEntityType: node
 bundle: project
 mode: default
 content:
-  field_activities:
-    weight: 10
-    label: hidden
-    settings:
-      view_mode: teaser
-      link: false
-    third_party_settings:
-      ds:
-        ds_limit: ''
-    type: entity_reference_entity_view
-    region: footer
   field_contact:
     weight: 7
     label: above
@@ -107,12 +102,12 @@ content:
     type: email_mailto
     region: right
   field_map_display:
-    weight: 12
-    label: above
+    weight: 10
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: content
+    region: footer
   field_media_image:
     weight: 1
     label: hidden
@@ -147,7 +142,7 @@ content:
     type: datetime_plain
     region: right
   field_related_content:
-    weight: 11
+    weight: 12
     label: hidden
     settings:
       view_mode: teaser
@@ -165,6 +160,7 @@ content:
     type: basic_string
     region: left
 hidden:
+  field_activities: true
   field_area: true
   field_project_label: true
   langcode: true
