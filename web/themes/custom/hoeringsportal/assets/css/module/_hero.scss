@@ -89,6 +89,8 @@ $hero-breakpoint:   "sm";
     }
   }
 
+
+
   // &__media {
   //     @include transition-std(transform, ease-in-out, 300ms);
   //     will-change: transform;
@@ -138,4 +140,21 @@ $hero-breakpoint:   "sm";
         background-color: #000;
         overflow: hidden;
     }*/
+
+  &--image-background {
+    .hero__media-container {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 300px;
+    }
+    .hero__content {
+      position: absolute;
+      left: 0;
+      bottom: 10%;
+      padding-top: $spacer;
+      padding-bottom: $spacer;
+      z-index: 10;
+    }
+  }
 }
