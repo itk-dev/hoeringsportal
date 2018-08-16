@@ -78,7 +78,7 @@
 {% if node.bundle == 'hearing' %}
   {% set type = content.field_hearing_type[0]['#plain_text'] %}
   {% set project = content.field_project_reference[0]['#plain_text'] %}
-  {% set deskpro_data = node.field_deskpro_data.value[0] %}
+  {% set deskpro_data = node.field_deskpro_data.value %}
 {% endif %}
 {% if(content.field_reply_deadline) %}
   {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}

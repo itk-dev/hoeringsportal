@@ -6,51 +6,6 @@ hoeringsportal_deskpro.hearing.view:
  requirements:
    _permission: 'access content'
 
-hoeringsportal_deskpro.data.syncronize.hearing:
-  path: '/hoeringsportal_deskpro/data/syncronize/hearing'
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearing'
-    _title: 'Syncronize hearing'
-  methods: [POST]
-  requirements:
-    _format: json
-    # @see https://www.drupal.org/project/drupal/issues/2786941
-    _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearingAccess'
-    # _test_access_check: 'TRUE'
-  options:
-    no_cache: true
-
-# Content (for dynamic loading)
-hoeringsportal_deskpro.hearing.tickets.render:
-  path: '/hearing/{node}/tickets/render'
-  options:
-    parameters:
-      node:
-        type: entity:node
-        converter: paramconverter.entity
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ContentController::hearingTickets'
-    _title: 'Hearing tickets'
-  requirements:
-    _permission: 'access content'
-  options:
-    no_cache: true
-
-hoeringsportal_deskpro.hearing.ticket.render:
-  path: '/hearing/{node}/tickets/{ticket}/render'
-  options:
-    parameters:
-      node:
-        type: entity:node
-        converter: paramconverter.entity
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ContentController::hearingTicket'
-    _title: 'Hearing ticket'
-  requirements:
-    _permission: 'access content'
-  options:
-    no_cache: true
-
 hoeringsportal_deskpro.hearing.ticket_add:
   path: '/hearing/{node}/ticket/add'
   defaults:
@@ -66,21 +21,28 @@ hoeringsportal_deskpro.hearing.ticket_view:
     _permission: 'access content'
 
 
+# Data syncronization
+hoeringsportal_deskpro.data.syncronize.hearing:
+  path: '/hoeringsportal_deskpro/data/syncronize/hearing'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearing'
+    _title: 'Syncronize hearing'
+  methods: [POST]
+  requirements:
+    _format: json
+    # @see https://www.drupal.org/project/drupal/issues/2786941
+    _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearingAccess'
+    # _test_access_check: 'TRUE'
+  options:
+    no_cache: true
+
+
 # Autocomplete
 hoeringsportal_deskpro.autocomplete_controller_department:
   path: '/hoeringsportal_deskpro/autocomplete/department'
   defaults:
     _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::department'
     _title: 'Departments autocomplete'
-  requirements:
-    # @TODO: Set more restrictive permission, e.g. 'edit content'
-    _permission: 'access content'
-
-hoeringsportal_deskpro.autocomplete_controller_hearing:
-  path: '/hoeringsportal_deskpro/autocomplete/hearing'
-  defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::hearing'
-    _title: 'Hearings autocomplete'
   requirements:
     # @TODO: Set more restrictive permission, e.g. 'edit content'
     _permission: 'access content'
