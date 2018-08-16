@@ -53,10 +53,15 @@ class DataController extends ControllerBase implements AccessInterface {
    * Hearing tickets.
    */
   public function syncronizeHearing(Request $request) {
-    $data = json_decode($request->getContent(), TRUE);
-    $result = $this->helper->syncronizeHearing($data);
+    try {
+      $data = json_decode($request->getContent(), TRUE);
+      $result = $this->helper->syncronizeHearing($data);
 
-    return new JsonResponse($result);
+      return new JsonResponse($result);
+    }
+    catch (\Exception $e) {
+      return new JsonResponse(['message' => $e->getMessage()], 400);
+    }
   }
 
   /**

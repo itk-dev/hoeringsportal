@@ -2,8 +2,6 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
-use Drupal\Core\Url;
-
 /**
  * Provides a 'Hearing tickets' Block.
  *
@@ -26,33 +24,11 @@ class HearingTicketsBlock extends BlockBase {
       return NULL;
     }
 
-    $contentUrl = Url::fromRoute(
-      'hoeringsportal_deskpro.hearing.tickets.render',
-      [
-        'node' => $node->id(),
-      ]
-    )->toString();
-
-    $configuration = [
-      'container_id' => 'hearing-tickets',
-      'content_url' => $contentUrl,
-      'deadline_passed' => $this->helper->isDeadlinePassed($node),
-    ];
-
     return [
       '#theme' => 'hoeringsportal_hearing_tickets',
       '#node' => $node,
-      '#is_loading' => TRUE,
-      '#configuration' => $configuration,
-      '#attached' => [
-        'drupalSettings' => [
-          'deskpro_hoeringsportal' => $configuration,
-        ],
-        'library' => [
-          'hoeringsportal_deskpro/load_content',
-        ],
-      ],
-      '#cache' => ['contexts' => ['url']],
+      '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
+      '#tickets' => $this->helper->getHearingTickets($node),
     ];
   }
 

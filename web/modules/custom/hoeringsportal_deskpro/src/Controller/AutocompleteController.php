@@ -51,13 +51,4 @@ class AutocompleteController extends ControllerBase {
     return new JsonResponse($data);
   }
 
-  /**
-   * Hearing.
-   */
-  public function hearing() {
-    $data = [];
-
-    return new JsonResponse($data);
-  }
-
 }

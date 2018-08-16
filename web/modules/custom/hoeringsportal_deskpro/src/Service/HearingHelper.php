@@ -57,6 +57,79 @@ class HearingHelper {
   }
 
   /**
+   * Get hearing id.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The hearing node.
+   *
+   * @return int|null
+   *   The hearing id if any.
+   */
+  public function getHearingId(NodeInterface $node) {
+    return $this->isHearing($node) ? $node->id() : NULL;
+  }
+
+  /**
+   * Get department id.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The hearing node.
+   *
+   * @return int|null
+   *   The department id if any.
+   */
+  public function getDepartmentId(NodeInterface $node) {
+    return $this->isHearing($node) ? $node->field_deskpro_department_id->value : NULL;
+  }
+
+  /**
+   * Get tickets from a hearing.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The hearing node.
+   *
+   * @return array|null
+   *   The tickets if any.
+   */
+  public function getHearingTickets(NodeInterface $node) {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    $data = $node->field_deskpro_data->value;
+
+    return isset($data['tickets']) ? $data['tickets'] : NULL;
+  }
+
+  /**
+   * Get single ticket from a hearing.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The hearing node.
+   * @param int $ticketId
+   *   The ticket id.
+   *
+   * @return array|null
+   *   The ticket if is exists.
+   */
+  public function getHearingTicket(NodeInterface $node, int $ticketId) {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    $tickets = $this->getHearingTickets($node);
+    if (is_array($tickets)) {
+      foreach ($tickets as $ticket) {
+        if ($ticket['id'] === $ticketId) {
+          return $ticket;
+        }
+      }
+    }
+
+    return NULL;
+  }
+
+  /**
    * Get data from Deskpro and store in hearing node.
    */
   public function syncronizeHearing(array $payload = NULL) {
@@ -66,26 +139,23 @@ class HearingHelper {
     }
     $hearingId = $payload['ticket'][$hearingIdfieldName];
 
-    $storage = $this->entityTypeManager->getStorage('node');
-    $ids = $storage
-      ->getQuery()
-      ->condition('type', 'hearing')
-      ->condition('field_deskpro_hearing_id', $hearingId)
-      ->execute();
-    $hearings = $storage->loadMultiple($ids);
-
-    $result = $this->deskpro->getHearingTickets($hearingId, [
-      'expand' => ['person', 'messages'],
-      'no_cache' => 1,
-    ]);
-    $data = json_encode(['tickets' => $result->getData()]);
-
-    foreach ($hearings as $hearing) {
-      $hearing->get('field_deskpro_data')->set(0, $data);
-      $hearing->save();
+    $hearing = $this->entityTypeManager->getStorage('node')->load($hearingId);
+    if (NULL === $hearing) {
+      throw new \Exception('Invalid hearing: ' . $hearingId);
     }
 
-    return ['hearings' => array_keys($hearings), 'data' => $data];
+    $result = $this->deskpro->getHearingTickets($hearingId, [
+      'expand' => ['fields', 'person', 'messages', 'attachments'],
+      'no_cache' => 1,
+    ]);
+    $data = [
+      'tickets' => $result->getData(),
+    ];
+
+    $hearing->field_deskpro_data->value = json_encode($data);
+    $hearing->save();
+
+    return ['hearing' => $hearing->id(), 'data' => $data];
   }
 
 }

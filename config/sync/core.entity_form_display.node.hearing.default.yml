@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
-    - field.field.node.hearing.field_deskpro_hearing_id
     - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_map_display
@@ -93,14 +92,6 @@ content:
     region: content
   field_deskpro_department_id:
     weight: 8
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_deskpro_hearing_id:
-    weight: 9
     settings:
       size: 60
       placeholder: ''
