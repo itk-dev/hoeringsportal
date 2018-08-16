@@ -172,7 +172,11 @@ class DeskproService {
 
       $data = $response->getData();
 
-      $this->expandData($data, $query);
+      // Filter out unavailable departments.
+      $availableIds = $this->configuration['available_departments'];
+      $data = array_filter($data, function (array $department) use ($availableIds) {
+        return in_array($department['id'], $availableIds);
+      });
 
       return $this->setResponseData($response, $data);
     }
@@ -243,8 +247,8 @@ class DeskproService {
     $requiredKeys = [
       'deskpro_url',
       'api_code_key',
-      'hearing_field_id',
-      'hearing_department_id',
+      'available_departments',
+      'ticket_custom_fields',
       'cache_ttl',
       'x-deskpro-token',
     ];
@@ -265,6 +269,7 @@ class DeskproService {
    * https://example.deskpro.com/agent/#admin:/portal/1/ticket_form_widget
    */
   public function getTicketEmbedForm($departmentId, $hearingId, array $defaultValues = []) {
+    $defaultValues['ticket']['department'] = $departmentId;
     $defaultValues['ticket']['ticket_field_' . $this->getTicketHearingIdFieldId()]['data'] = $hearingId;
 
     $id = uniqid('deskpro_ticket_form', TRUE);
@@ -297,7 +302,18 @@ class DeskproService {
    * Get hearing id field id.
    */
   public function getTicketHearingIdFieldId() {
-    return $this->configuration['hearing_field_id'];
+    return $this->getTicketFieldId('hearing_id');
+  }
+
+  /**
+   * Get hearing id field id.
+   */
+  public function getTicketFieldId(string $field) {
+    if (!isset($this->configuration['ticket_custom_fields'][$field])) {
+      throw new \Exception('Invalid field: ' . $field);
+    }
+
+    return $this->configuration['ticket_custom_fields'][$field];
   }
 
   /**

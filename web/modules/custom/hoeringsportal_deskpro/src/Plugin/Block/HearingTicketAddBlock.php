@@ -29,7 +29,11 @@ class HearingTicketAddBlock extends HearingTicketBlock {
 
     $departmentId = $this->helper->getDepartmentId($node);
     $hearingId = $this->helper->getHearingId($node);
-    $defaultValues = [];
+    $defaultValues = [
+      'ticket' => [
+        $this->helper->getTicketFieldName('hearing_name') => $node->getTitle(),
+      ],
+    ];
 
     $form = $this->deskpro->getTicketEmbedForm($departmentId, $hearingId, $defaultValues);
 

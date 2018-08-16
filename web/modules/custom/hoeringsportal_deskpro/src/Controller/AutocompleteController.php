@@ -39,7 +39,7 @@ class AutocompleteController extends ControllerBase {
    * Department.
    */
   public function department() {
-    $departments = $this->deskpro->getTicketDepartments();
+    $departments = $this->deskpro->getTicketDepartments(['no_cache' => 1]);
 
     $data = array_map(function (array $department) {
       return [

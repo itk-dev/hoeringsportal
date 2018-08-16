@@ -130,6 +130,34 @@ class HearingHelper {
   }
 
   /**
+   * Get a Deskpro custom field id.
+   *
+   * @param string $field
+   *   The field name.
+   *
+   * @return int
+   *   The field id.
+   */
+  public function getTicketFieldId(string $field) {
+    return $this->deskpro->getTicketFieldId($field);
+  }
+
+  /**
+   * Get a Deskpro custom field name.
+   *
+   * @param string $field
+   *   The field name.
+   * @param string $prefix
+   *   The field prefix.
+   *
+   * @return string
+   *   The field name.
+   */
+  public function getTicketFieldName($field, string $prefix = 'ticket_field_') {
+    return $prefix . $this->getTicketFieldId($field);
+  }
+
+  /**
    * Get data from Deskpro and store in hearing node.
    */
   public function syncronizeHearing(array $payload = NULL) {
