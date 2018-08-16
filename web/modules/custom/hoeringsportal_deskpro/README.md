@@ -9,17 +9,19 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   'deskpro_url' => 'https://example.deskpro.com',
   // https://example.deskpro.com/agent/#admin:/apps/api_keys/go-create
   'api_code_key' => '1:ABCDEFGHIJKLMNOPQRSTUVWXY',
+  // Departments (ids) that are available for users.
+  'available_departments' => [1],
   // https://example.deskpro.com/agent/#admin:/tickets/fields
-  'hearing_field_id' => 13,
-  // https://example.deskpro.com/agent/#admin:/tickets/ticket_deps
-  'hearing_department_id' => 1,
+  'ticket_custom_fields' => [
+    // Field name => field id.
+    'hearing_id' => 13,
+    'hearing_name' => 14,
+    'edoc_id' => 15,
+  ],
+  // Token used for updating Deskpro data in drupal.
+  'x-deskpro-token' => 'hat og briller',
   // Cache ttl in seconds
   'cache_ttl' => 60,
-  'ticket_custom_fields' => [
-    13 => 'hearing_id',
-    14 => 'hearing_name',
-    15 => 'edoc_id',
-  ],
 ];
 ```
 
