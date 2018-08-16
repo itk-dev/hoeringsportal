@@ -62,6 +62,7 @@ third_party_settings:
         - 'dynamic_block_field:node-node_more_info'
       footer:
         - field_map_display
+        - 'dynamic_block_field:node-nearest_hearings'
     fields:
       'dynamic_block_field:node-hearing_tickets':
         plugin_id: 'dynamic_block_field:node-hearing_tickets'
@@ -72,6 +73,11 @@ third_party_settings:
         plugin_id: 'dynamic_block_field:node-hearing_warning'
         weight: 0
         label: hidden
+        formatter: default
+      'dynamic_block_field:node-nearest_hearings':
+        plugin_id: 'dynamic_block_field:node-nearest_hearings'
+        weight: 16
+        label: above
         formatter: default
       'dynamic_block_field:node-node_address':
         plugin_id: 'dynamic_block_field:node-node_address'
