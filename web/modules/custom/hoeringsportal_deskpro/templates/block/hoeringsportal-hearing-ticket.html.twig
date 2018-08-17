@@ -37,3 +37,8 @@
     </div>
   {% endfor %}
 {% endif %}
+
+{% set url = deskpro_ticket_custom_field(ticket, 'pdf_download_url') %}
+{% if url %}
+  <a class="btn btn-primary" target="_blank" href="{{ url }}">{{ 'Download ticket as pdf'|trans }}</a>
+{% endif %}

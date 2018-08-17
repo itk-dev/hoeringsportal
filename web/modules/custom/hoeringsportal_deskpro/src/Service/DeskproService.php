@@ -428,7 +428,7 @@ class DeskproService {
         if (isset($this->configuration['ticket_custom_fields'])) {
           $fields = $this->configuration['ticket_custom_fields'];
           if (is_array($fields)) {
-            foreach ($fields as $id => $name) {
+            foreach ($fields as $name => $id) {
               if (isset($item['fields'][$id]['value'])) {
                 $item['fields'][$name] = $item['fields'][$id]['value'];
               }

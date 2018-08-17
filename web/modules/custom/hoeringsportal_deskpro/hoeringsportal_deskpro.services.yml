@@ -9,6 +9,6 @@ services:
 
   hoeringsportal_deskpro.twig_extension:
     class: Drupal\hoeringsportal_deskpro\Twig\TwigExtension
-    arguments: ['@hoeringsportal_deskpro.deskpro']
+    arguments: ['@hoeringsportal_deskpro.deskpro', '@hoeringsportal_deskpro.helper']
     tags:
       - { name: twig.extension }

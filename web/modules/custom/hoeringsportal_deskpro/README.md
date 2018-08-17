@@ -17,6 +17,7 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
     'hearing_id' => 13,
     'hearing_name' => 14,
     'edoc_id' => 15,
+    'pdf_download_url' => 22,
   ],
   // Token used for updating Deskpro data in drupal.
   'x-deskpro-token' => 'hat og briller',
