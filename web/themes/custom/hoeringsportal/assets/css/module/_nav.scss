@@ -25,12 +25,15 @@ nav.navbar {
 .navbar-nav {
   .nav-item {
     .nav-link {
+      font-family: $font-family-black;
       font-size: 1rem;
       position: relative;
       display: block;
       font-weight: $font-weight-black;
       color: $black;
       text-transform: uppercase;
+      margin-top: .5rem;
+      margin-right: 1rem;
       @include media-breakpoint-up(lg) {
         &:before {
           opacity: 0;
@@ -43,8 +46,13 @@ nav.navbar {
           background: $primary;
           transition: height .2s ease-out, opacity .2s ease-out;
         }
+        &:hover {
+          color: darken($primary, 10%);
+        }
+        &.is-active {
+          color: $primary;
+        }
         &:hover, &.is-active {
-          color: $black;
           &:before {
             opacity: 1;
             transition: height .2s ease-in, opacity .2s ease-in;
@@ -62,9 +70,14 @@ nav.navbar {
       line-height: 1em;
       padding-bottom: 0;
       padding-top: 0;
-
+      margin-top: .55rem;
+      margin-right: 0;
       &.has-border {
-        border-right: 2px solid $gray-600;
+        border-right: 1px solid $gray-600;
+      }
+      &:hover {
+        color: darken($primary, 10%);
+        text-decoration: underline;
       }
     }
 
@@ -73,7 +86,7 @@ nav.navbar {
     }
 
     .logout-link {
-      border-right: 2px solid $gray-600;
+      border-right: 1px solid $gray-600;
     }
   }
 }

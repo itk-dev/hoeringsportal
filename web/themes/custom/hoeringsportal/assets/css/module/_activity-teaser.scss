@@ -48,6 +48,10 @@
     color: darken($primary, 10%);
     @include transition-std(color, ease-out, 400ms);
   }
+  .media & {
+    padding-left: 0;
+    padding-top: $spacer/2;
+  }
 }
 .activity-teaser-description {
   display: block;
@@ -70,7 +74,7 @@
 .activity-teaser-project-name {
   margin-right: $spacer*1;
   display: inline;
-  color: $gray-600;
+  color: $primary;
   font-weight: 600;
 }
 a.activity-teaser-project-name {
