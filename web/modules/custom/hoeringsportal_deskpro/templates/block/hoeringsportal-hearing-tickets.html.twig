@@ -12,13 +12,13 @@
 
 <div class="tickets">
   <div class="row">
-    <div class="col">
+    <div class="col-md-6">
       <h2>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h2>
     </div>
-    <div class="col">
+    <div class="col-md-6">
       {% if not is_deadline_passed %}
-        <div class="float-right">
-          <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary">
+        <div class="float-md-right">
+          <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary mt-md-3">
             {{ 'Add hearing ticket'|trans }}
           </a>
         </div>
