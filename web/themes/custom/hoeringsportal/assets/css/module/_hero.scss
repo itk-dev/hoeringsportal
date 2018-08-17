@@ -3,8 +3,6 @@
 $hero-breakpoint:   "sm";
 
 .grid-element__hero-image {
-  // @include umbraco-grid-full-width;
-
   //Hover animation
   &:hover,
   a.hero:focus {
@@ -13,43 +11,36 @@ $hero-breakpoint:   "sm";
     }
   }
 }
-
 .hero-container {
   @include element-theme($primary, $gray-100, $white);
 }
-
 .hero {
   @include clearfix;
   @include equal-height-row;
   position: relative;
   display: block;
   overflow: hidden;
-
   &__link {
     display: block;
     margin-bottom: $spacer;
     color: $white;
   }
-
   &:hover,
   &:focus {
     .hero__link {
       text-decoration: underline;
     }
   }
-
   a {
     display: inline-block;
     margin-bottom: $spacer;
   }
-
   &__content {
     position: relative;
     width: 100%;
     float: right;
     padding: $spacer 0;
     font-size: $font-size-lg;
-
     @include media-breakpoint-up($hero-breakpoint) {
       width: 50%;
       padding-top: $spacer*3;
@@ -58,13 +49,11 @@ $hero-breakpoint:   "sm";
       background: $primary; //To hide image fade-in blur
     }
   }
-
   &__media-container {
     position: relative;
     width: 100%;
     max-width: 100%;
     padding-bottom: $aspect-ratio-padding-8-3;
-
     @include media-breakpoint-up($hero-breakpoint) {
       position: absolute;
       top: 0;
@@ -75,7 +64,6 @@ $hero-breakpoint:   "sm";
       padding: 0;
     }
   }
-
   &--image-right {
     .hero__media-container {
       right: 0;
@@ -88,22 +76,6 @@ $hero-breakpoint:   "sm";
       padding-left: 0;
     }
   }
-
-
-
-  // &__media {
-  //     @include transition-std(transform, ease-in-out, 300ms);
-  //     will-change: transform;
-  //     position: absolute;
-  //     top: 0;
-  //     left: 0;
-  //     width: 100%;
-  //     max-width: 100%; //For slimmage resizing
-  //     height: 100% !important; //important, for overriding azure video
-  //     background-size: cover;
-  //     background-position: center;
-  //     background-repeat: no-repeat;
-  // }
   .hero__media {
     img {
       //To hide blur on fade-in image
@@ -125,22 +97,6 @@ $hero-breakpoint:   "sm";
       }
     }
   }
-
-
-  /*#video-viewport {
-        opacity: 0;
-        transition: opacity ease 0.5s;
-        -o-transition: opacity ease 0.5s;
-        -ms-transition: opacity ease 0.5s;
-        -moz-transition: opacity ease 0.5s;
-        -webkit-transition: opacity ease 0.5s;
-        width: 50%;
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-        overflow: hidden;
-    }*/
-
   &--image-background {
     .hero__media-container {
       left: 0;
