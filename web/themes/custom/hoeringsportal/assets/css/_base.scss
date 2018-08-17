@@ -18,3 +18,10 @@ p {
 a > {
   color: $gray-900;
 }
+a {
+  transition: color .2s ease-in, border-bottom .2s ease-in;
+  &:hover {
+    color: darken($petroleum, 10%);
+    transition: color .4s ease-out, border-bottom .3s ease-out;
+  }
+}
