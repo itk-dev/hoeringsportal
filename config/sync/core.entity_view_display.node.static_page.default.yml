@@ -54,7 +54,7 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
-          wrapper: h1
+          wrapper: ''
           class: ''
           link: false
 id: node.static_page.default
