@@ -2,8 +2,9 @@
   color: $primary;
   font-size: .8rem;
   position: absolute;
-  bottom: $spacer;
-  right: $spacer*2.5;
+  bottom: 1.1rem;
+  right: $spacer*1.5;
+  @include transition-std(transform, ease-in, 200ms);
 }
 .activity-teaser {
   position: relative;
@@ -11,7 +12,6 @@
   display: flex;
   flex-direction: column;
   &:hover {
-    @include transition-std(transform, ease-in, 200ms);
     .activity-teaser-link {
       @include transition-std(transform, ease-out, 400ms);
       @include move-link-right();
@@ -34,13 +34,24 @@
   background-color: $white;
   flex: 2 0 auto;
 }
-.activity-teaser-title {
+.activity-teaser-title, a.activity-teaser-title {
+  font-family: $font-family-black;
   display: block;
   margin: 0;
   padding: $spacer*2 $spacer*2 $spacer/4 $spacer*2;
   font-weight: 600;
   color: $gray-900;
   text-transform: uppercase;
+  text-decoration: none;
+  @include transition-std(color, ease-in, 200ms);
+  &:hover {
+    color: darken($primary, 10%);
+    @include transition-std(color, ease-out, 400ms);
+  }
+  .media & {
+    padding-left: 0;
+    padding-top: $spacer/2;
+  }
 }
 .activity-teaser-description {
   display: block;
@@ -53,7 +64,7 @@
   padding: $spacer $spacer*2 $spacer $spacer*2;
   background-color: $white;
   font-size: .7rem;
-  font-weight: 600;
+  font-weight: 300;
   line-height: 1rem;
   vertical-align: middle;
   border-spacing: 0;
@@ -61,27 +72,35 @@
   border-bottom: 2px solid $gray-200;
 }
 .activity-teaser-project-name {
-  margin-right: $spacer*2;
+  margin-right: $spacer*1;
   display: inline;
-  color: $gray-600;
+  color: $primary;
+  font-weight: 600;
 }
 a.activity-teaser-project-name {
   color: $primary;
+  @include transition-std(color, ease-in, 200ms);
+  &:hover {
+    color: darken($primary, 10%);
+    @include transition-std(color, ease-out, 400ms);
+  }
 }
-
+.activity-teaser-meta-wrapper {
+  display: inline-block;
+}
 .activity-teaser-area {
   color: $gray-600;
-  margin-right: $spacer/3;
-  padding-right: $spacer/3;
-  border-right: 2px solid $gray-600;
+  margin-right: $spacer/4;
+  padding-right: $spacer/4;
+  border-right: 1px solid $gray-600;
 }
 .activity-teaser-type {
   color: $gray-600;
-  padding-left: $spacer/3;
-  margin-right: $spacer/3;
+  padding-left: $spacer/4;
+  margin-right: $spacer/4;
 }
 .activity-teaser-id {
-  padding-left: $spacer/2;
+  padding-left: $spacer/4;
   color: $gray-600;
-  border-left: 2px solid $gray-600;
+  border-left: 1px solid $gray-600;
 }

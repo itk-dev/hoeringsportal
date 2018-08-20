@@ -1,6 +1,8 @@
 .campaign {
   position: relative;
-  padding-bottom: $spacer*5;
+  @include media-breakpoint-up(sm) {
+    padding-bottom: $spacer*5;
+  }
   &-media {
     &-image {
       height: 350px;
@@ -13,8 +15,9 @@
     }
   }
   &-content {
+    position: relative;
     background-color: $white;
-    margin: -$spacer*2 $spacer*1 $spacer*1 $spacer*1;
+    margin: -$spacer*6 $spacer*1 $spacer*1 $spacer*1;
     box-shadow: $shadow;
     @include media-breakpoint-up(md) {
       position: absolute;

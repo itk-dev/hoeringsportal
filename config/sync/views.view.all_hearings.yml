@@ -81,7 +81,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: '- Any -|Område'
+                  filter_rewrite_values: "- Any -|Område\n- Enhver -|Vælg område"
             field_project_reference_target_id:
               bef_format: default
               more_options:
@@ -89,7 +89,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: '- Any -|Alle initiativer'
+                  filter_rewrite_values: "- Any -|Alle initiativer\n- Enhver -|Vælg initiativ"
             field_hearing_type_target_id:
               bef_format: default
               more_options:
@@ -97,7 +97,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: '- Any -|Alle typer'
+                  filter_rewrite_values: "- Any -|Alle typer\n- Enhver -|Vælg type"
           text_input_required_format: filtered_html
       pager:
         type: mini

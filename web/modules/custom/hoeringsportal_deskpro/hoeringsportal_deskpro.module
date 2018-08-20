@@ -72,7 +72,10 @@ function hoeringsportal_deskpro_node_view_alter(array &$build, EntityInterface $
     // Decode json value to real array.
     $field = $entity->field_deskpro_data;
     if (NULL !== $field) {
-      $field->value = json_decode($field->value, TRUE);
+      // Only process field value once.
+      if ($field->value && is_string($field->value)) {
+        $field->value = json_decode($field->value, TRUE);
+      }
     }
   }
 }

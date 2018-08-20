@@ -1,20 +1,13 @@
 # Hearing views
-hoeringsportal_deskpro.hearing.view:
- path: '/hearing/{node}'
- defaults:
-   _entity_view: 'node.default'
- requirements:
-   _permission: 'access content'
-
 hoeringsportal_deskpro.hearing.ticket_add:
-  path: '/hearing/{node}/ticket/add'
+  path: '/node/{node}/ticket/add'
   defaults:
     _entity_view: 'node.hearing_ticket_add'
   requirements:
     _permission: 'access content'
 
 hoeringsportal_deskpro.hearing.ticket_view:
-  path: '/hearing/{node}/ticket/{ticket}'
+  path: '/node/{node}/ticket/{ticket}'
   defaults:
     _entity_view: 'node.hearing_ticket_view'
   requirements:

@@ -32,6 +32,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "jquery": "^3.3.1",
     "node-sass": "^4.9.2",
+    "ol": "^5.1.3",
     "popper.js": "^1.14.3",
     "sass-loader": "^7.0.3",
     "standard": "^11.0.1",
@@ -40,7 +41,6 @@
     "stylelint-scss": "^3.1.3"
   },
   "dependencies": {
-    "npm": "^5.8.0",
-    "ol": "^5.1.3"
+    "npm": "~6.4.0"
   }
 }
