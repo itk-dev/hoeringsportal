@@ -1,0 +1,10 @@
+id: quicklinks
+label: 'Genveje til'
+ui_limit: ''
+properties:
+  block: quicklinks
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node
