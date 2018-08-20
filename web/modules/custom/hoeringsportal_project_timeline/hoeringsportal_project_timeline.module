@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Contains hoeringsportal_project_timeline.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_project_timeline_theme() {
+  return [
+    'hoeringsportal_project_timeline' => [
+      'template' => 'hoeringsportal-project-timeline',
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+  ];
+}

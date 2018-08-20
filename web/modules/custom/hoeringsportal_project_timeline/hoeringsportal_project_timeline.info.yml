@@ -1,0 +1,5 @@
+name: 'Hoeringsportal project timeline'
+type: module
+description: 'Provides timeline block for projects'
+core: 8.x
+package: Hoeringsportal

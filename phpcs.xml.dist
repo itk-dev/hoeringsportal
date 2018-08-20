@@ -9,6 +9,7 @@
   <exclude-pattern>node_modules</exclude-pattern>
   <exclude-pattern>web/themes/custom/*/build/</exclude-pattern>
   <exclude-pattern>web/modules/custom/itk_admin_links/css/itk-admin-links.css</exclude-pattern>
+  <exclude-pattern>web/modules/custom/hoeringsportal_project_timeline/assets/public/build/project-timeline.css</exclude-pattern>
 
   <arg value="p"/>
 
