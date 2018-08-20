@@ -1,4 +1,0 @@
-hoeringsportal_timeline.admin:
-  title: 'Timeline'
-  route_name: hoeringsportal_timeline.settings
-  base_route: system.admin_content
