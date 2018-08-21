@@ -48,3 +48,18 @@
   font-size: $h3-font-size;
   text-decoration: underline;
 }
+
+.group-footer {
+  background: $gray-100;
+  padding-bottom: $spacer;
+
+  & > {
+    div:nth-child(odd) {
+      background: $gray-200;
+    }
+
+    div:nth-child(even) {
+      background: $gray-100;
+    }
+  }
+}

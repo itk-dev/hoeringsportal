@@ -1,26 +1,19 @@
 /**
  * @file
- * Add quicklinks.
+ * Toggle admin menu.
  */
-(function ($, Drupal) {
-  Drupal.behaviors.addQuicklinks= {
-    attach: function (context, settings) {
-      "use strict";
+(function ($) {
+  "use strict";
 
-      function addAnchorsAndLinks(){
-        //loop through all your headers
-        $.each($('h2'),function(index,value){
-          //append the text of your header to a list item in a div, linking to an anchor we will create on the next line
-          $('#box-anchors').append('<li><a href="#anchor-'+index+'">'+$(this).html()+'</a></li>');
-          //add an a tag to the header with a sequential name
-          $(this).html('<a name="anchor-'+index+'">'+$(this).html()+'</a>');
-        });
-      }
+  var toggle_button = $('.js-admin-toggle');
+  var admin_menu = $('.js-admin-menu');
+  var overlay = $('.js-admin-overlay');
 
-      // Add anchors and create links.
-      $(document).ready(function () {
-        addAnchorsAndLinks();
-      });
-    }
-  }
-})(jQuery, Drupal);
+  $(toggle_button).click(function() {
+    admin_menu.toggleClass('is-open');
+    toggle_button.toggleClass('is-open');
+
+    // Toggle overlay.
+    overlay.toggleClass('is-visible');
+  });
+})(jQuery);

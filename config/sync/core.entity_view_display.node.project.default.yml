@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
     - field.field.node.project.field_email
+    - field.field.node.project.field_image_gallery_ref
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
@@ -20,6 +21,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - entity_reference_revisions
     - text
     - user
 third_party_settings:
@@ -56,13 +58,14 @@ third_party_settings:
         - field_phone
         - field_email
       footer:
+        - field_image_gallery_ref
         - field_map_display
         - 'dynamic_block_field:node-participate'
         - field_related_content
     fields:
       'dynamic_block_field:node-participate':
         plugin_id: 'dynamic_block_field:node-participate'
-        weight: 11
+        weight: 12
         label: above
         formatter: default
       node_changed_date:
@@ -105,8 +108,17 @@ content:
     third_party_settings: {  }
     type: email_mailto
     region: right
-  field_map_display:
+  field_image_gallery_ref:
+    type: entity_reference_revisions_entity_view
     weight: 10
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: footer
+  field_map_display:
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -146,8 +158,8 @@ content:
     type: datetime_plain
     region: right
   field_related_content:
-    weight: 12
-    label: hidden
+    weight: 13
+    label: above
     settings:
       view_mode: teaser
       link: false
