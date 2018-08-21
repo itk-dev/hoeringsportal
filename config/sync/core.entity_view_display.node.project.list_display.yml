@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
     - field.field.node.project.field_email
+    - field.field.node.project.field_image_gallery_ref
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
@@ -21,18 +22,6 @@ dependencies:
   module:
     - ds
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: layout_twocol
-      library: layout_discovery/twocol
-      disable_css: false
-      entity_classes: all_classes
-      settings: {  }
-    regions:
-      top:
-        - langcode
-        - links
 id: node.project.list_display
 targetEntityType: node
 bundle: project
@@ -72,15 +61,28 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  langcode:
+    type: language
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_activities: true
   field_contact: true
   field_description: true
   field_email: true
+  field_image_gallery_ref: true
   field_map_display: true
   field_phone: true
   field_project_finish: true
   field_project_start: true
   field_related_content: true
-  langcode: true
-  links: true
