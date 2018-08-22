@@ -4,15 +4,17 @@ hoeringsportal_deskpro.hearing.ticket_add:
   defaults:
     _entity_view: 'node.hearing_ticket_add'
   requirements:
-    _permission: 'access content'
+    node: '\d+'
+    _entity_access: 'node.view'
 
 hoeringsportal_deskpro.hearing.ticket_view:
   path: '/node/{node}/ticket/{ticket}'
   defaults:
     _entity_view: 'node.hearing_ticket_view'
   requirements:
-    _permission: 'access content'
-
+    node: '\d+'
+    ticket: '\d+'
+    _entity_access: 'node.view'
 
 # Data syncronization
 hoeringsportal_deskpro.data.syncronize.hearing:

@@ -168,11 +168,11 @@ class HearingHelper {
     $hearingId = $payload['ticket'][$hearingIdfieldName];
 
     $hearing = $this->entityTypeManager->getStorage('node')->load($hearingId);
-    if (NULL === $hearing) {
+    if (!$this->isHearing($hearing)) {
       throw new \Exception('Invalid hearing: ' . $hearingId);
     }
 
-    $result = $this->deskpro->getHearingTickets($hearingId, [
+    $result = $this->deskpro->getHearingTickets($hearing->id(), [
       'expand' => ['fields', 'person', 'messages', 'attachments'],
       'no_cache' => 1,
     ]);
