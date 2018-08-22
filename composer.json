@@ -96,7 +96,7 @@
             "@check-coding-standards/phpcs"
         ],
         "apply-coding-standards/phpcs": [
-            "vendor/bin/phpcbf --standard=phpcs.xml.dist"
+            "scripts/phpcbf --standard=phpcs.xml.dist"
         ],
         "apply-coding-standards": [
             "@apply-coding-standards/phpcs"
