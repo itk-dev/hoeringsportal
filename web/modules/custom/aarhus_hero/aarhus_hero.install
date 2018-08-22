@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Contains Update hooks.
+ */
+
+/**
+ * Disable hoeringsportal_timeline.
+ */
+function aarhus_hero_update_8101() {
+  \Drupal::service('module_installer')->uninstall(['hoeringsportal_timeline']);
+}
