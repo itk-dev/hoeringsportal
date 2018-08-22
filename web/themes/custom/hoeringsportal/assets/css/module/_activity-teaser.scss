@@ -33,6 +33,10 @@
 .activity-teaser-content {
   background-color: $white;
   flex: 2 0 auto;
+  &.media {
+    padding-bottom: 1px; // added to remove zoom bug, where the background from .activity-teaser-info covered part of the border.
+    border-bottom: 2px solid $gray-200;
+  }
 }
 .activity-teaser-title, a.activity-teaser-title {
   font-family: $font-family-black;
