@@ -6,6 +6,7 @@
   position: absolute;
   bottom: $spacer;
   right: $spacer*2.5;
+  @include transition-std(transform, ease-in, 200ms);
 }
 .page-teaser-anchorblock {
   height: 100%;
@@ -14,7 +15,6 @@
   justify-content: center;
   &:hover {
     text-decoration: none;
-    @include transition-std(transform, ease-in, 200ms);
     .page-teaser-link {
       @include transition-std(transform, ease-out, 400ms);
       @include move-link-right();

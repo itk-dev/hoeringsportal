@@ -29,9 +29,9 @@
   {% if tickets %}
     {% for index, ticket in tickets %}
       <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}" class="hearing-ticket card">
-        <h2 class="card-header">
+        <h3 class="card-header">
           {{ ticket.subject }}
-        </h2>
+        </h3>
         <div class="card-body">
           {% if ticket.messages and ticket.messages|length > 0 %}
             {% set message = ticket.messages[0] %}
