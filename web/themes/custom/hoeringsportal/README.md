@@ -25,7 +25,7 @@ Build for development:
 ```
 ./node_modules/.bin/encore dev --watch
 ```
-
+ 
 Build for production:
 
 ```
