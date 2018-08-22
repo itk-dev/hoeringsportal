@@ -113,4 +113,17 @@ $hero-breakpoint:   "sm";
       z-index: 10;
     }
   }
+  &--no-image {
+    .hero__media-container {
+      right: 0;
+      left: auto;
+    }
+
+    .hero__content {
+      float: left;
+      padding-right: $spacer*2;
+      padding-left: 0;
+      width: auto;
+    }
+  }
 }
