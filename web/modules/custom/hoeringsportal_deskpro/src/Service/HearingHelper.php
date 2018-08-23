@@ -175,6 +175,7 @@ class HearingHelper {
     $result = $this->deskpro->getHearingTickets($hearing->id(), [
       'expand' => ['fields', 'person', 'messages', 'attachments'],
       'no_cache' => 1,
+      'count' => 100,
     ]);
     $data = [
       'tickets' => $result->getData(),
