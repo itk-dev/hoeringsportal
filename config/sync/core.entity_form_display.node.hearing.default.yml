@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
     - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_video_embed
     - node.type.hearing
   module:
     - datetime
@@ -34,7 +35,7 @@ third_party_settings:
         - field_project_reference
         - field_area
       parent_name: ''
-      weight: 6
+      weight: 7
       format_type: details
       format_settings:
         id: ''
@@ -47,7 +48,7 @@ third_party_settings:
       children:
         - status
       parent_name: ''
-      weight: 8
+      weight: 9
       format_type: details
       format_settings:
         id: ''
@@ -60,7 +61,7 @@ third_party_settings:
       children:
         - field_deskpro_department_id
       parent_name: ''
-      weight: 7
+      weight: 8
       format_type: details
       format_settings:
         id: ''
@@ -114,7 +115,7 @@ content:
     type: options_select
     region: content
   field_map_display:
-    weight: 5
+    weight: 6
     settings:
       rows: 15
       placeholder: ''
@@ -122,7 +123,7 @@ content:
     type: string_textarea
     region: content
   field_media_document:
-    weight: 4
+    weight: 3
     settings:
       entity_browser: itk_document_browser
       field_widget_display: rendered_entity
@@ -137,7 +138,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_media_image:
-    weight: 3
+    weight: 4
     settings:
       entity_browser: itk_image_browser
       field_widget_display: rendered_entity
@@ -173,6 +174,14 @@ content:
     weight: 1
     settings:
       rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_video_embed:
+    weight: 5
+    settings:
+      rows: 3
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea

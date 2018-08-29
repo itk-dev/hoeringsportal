@@ -34,7 +34,14 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
-          {{ left }}
+          {{ left.field_teaser }}
+          {{ left.field_description }}
+          {{ left.field_media_document }}
+          <div class="row">
+            {{ left.field_media_image }}
+            {{ left.field_video_embed }}
+          </div>
+          {{ left|without('field_teaser', 'field_description', 'field_media_document', 'field_media_image', 'field_video_embed') }}
         </div>
       </{{ left_wrapper }}>
 

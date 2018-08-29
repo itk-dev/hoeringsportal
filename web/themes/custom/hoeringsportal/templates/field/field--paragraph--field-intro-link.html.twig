@@ -42,7 +42,6 @@
 {% if label_hidden %}
   {% if multiple %}
     {% for item in items %}
-      {{ dump(item.attributes) }}
       {{ link(item.content['#title'], item.content['#url'], { 'class':['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
     {% endfor %}
   {% else %}

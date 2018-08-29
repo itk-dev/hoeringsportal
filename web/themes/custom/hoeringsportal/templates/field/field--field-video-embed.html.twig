@@ -41,12 +41,14 @@
   {% if multiple %}
     {% for item in items %}
       <div class="col-6 mb-4">
-        {{ item.content }}
+        <div class="video-embed">
+          {{ item.content['#context'].value|raw }}
+        </div>
       </div>
     {% endfor %}
   {% else %}
     {% for item in items %}
-      {{ item.content }}
+      {{ item.content|raw }}
     {% endfor %}
   {% endif %}
 {% else %}
@@ -55,9 +57,10 @@
     <div>
   {% endif %}
   {% for item in items %}
-    {{ item.content }}
+    {{ item.content|raw }}
   {% endfor %}
   {% if multiple %}
     </div>
   {% endif %}
 {% endif %}
+
