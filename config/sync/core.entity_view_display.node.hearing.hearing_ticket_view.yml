@@ -6,12 +6,16 @@ dependencies:
     - core.entity_view_mode.node.hearing_ticket_view
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_data
+    - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
+    - field.field.node.hearing.field_start_date
     - field.field.node.hearing.field_teaser
     - node.type.hearing
   module:
@@ -43,6 +47,7 @@ third_party_settings:
       left:
         - 'dynamic_block_field:node-hearing_ticket'
       right:
+        - field_start_date
         - field_reply_deadline
         - field_hearing_type
         - field_project_reference
@@ -64,7 +69,7 @@ mode: hearing_ticket_view
 content:
   field_hearing_type:
     type: entity_reference_label
-    weight: 3
+    weight: 4
     region: right
     label: above
     settings:
@@ -72,26 +77,38 @@ content:
     third_party_settings: {  }
   field_project_reference:
     type: entity_reference_label
-    weight: 4
+    weight: 5
     region: right
     label: above
     settings:
       link: true
     third_party_settings: {  }
   field_reply_deadline:
-    type: datetime_plain
+    type: datetime_default
+    weight: 3
+    region: right
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+  field_start_date:
+    type: datetime_default
     weight: 2
     region: right
     label: above
     settings:
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
 hidden:
   field_area: true
   field_description: true
+  field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
   field_hearing_id: true
+  field_map_display: true
   field_media_document: true
   field_media_image: true
   field_teaser: true
