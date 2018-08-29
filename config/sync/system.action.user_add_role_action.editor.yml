@@ -1,0 +1,14 @@
+uuid: 9251af20-25d7-49c5-bd51-9e03600c7748
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.editor
+  module:
+    - user
+id: user_add_role_action.editor
+label: 'Add the Redaktør role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: editor

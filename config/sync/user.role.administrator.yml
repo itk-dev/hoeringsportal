@@ -1,0 +1,52 @@
+uuid: 253daaf7-35bd-4a58-901d-6e2cf5171efc
+langcode: da
+status: true
+dependencies: {  }
+id: administrator
+label: Administrator
+weight: -7
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access site reports'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'administer menu'
+  - 'administer nodes'
+  - 'administer taxonomy'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'bypass node access'
+  - 'create hearing content'
+  - 'create landing_page content'
+  - 'create project content'
+  - 'create static_page content'
+  - 'create terms in area'
+  - 'create terms in hearing_type'
+  - 'create terms in media_library'
+  - 'create url aliases'
+  - 'delete any hearing content'
+  - 'delete any landing_page content'
+  - 'delete any project content'
+  - 'delete any static_page content'
+  - 'delete own hearing content'
+  - 'delete own landing_page content'
+  - 'delete own project content'
+  - 'delete own static_page content'
+  - 'delete terms in area'
+  - 'delete terms in hearing_type'
+  - 'delete terms in media_library'
+  - 'edit any hearing content'
+  - 'edit any landing_page content'
+  - 'edit any project content'
+  - 'edit any static_page content'
+  - 'edit own hearing content'
+  - 'edit own landing_page content'
+  - 'edit own project content'
+  - 'edit own static_page content'
+  - 'edit terms in area'
+  - 'edit terms in hearing_type'
+  - 'edit terms in media_library'
+  - 'view own unpublished content'
+  - 'view the administration theme'
