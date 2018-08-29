@@ -1,0 +1,4 @@
+itk_admin.admin:
+  title: 'Settings'
+  route_name: itk_admin.settings
+  base_route: itk_admin.settings

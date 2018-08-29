@@ -50,14 +50,11 @@
 {% else %}
   <div class="container">
     <h2 class="mt-2 pt-4">{{ label }}</h2>
-  </div>
   {% if multiple %}
     <div>
   {% endif %}
   {% for item in items %}
-        {{ item.content }}
-      </div>
-    </div>
+    {{ item.content }}
   {% endfor %}
   {% if multiple %}
     </div>

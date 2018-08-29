@@ -14,10 +14,10 @@
     {{ image }}
   </div>
   <div class="campaign-content">
-    <a href="/">
+    <a href="{{ config.hero_url }}">
       <h2 class="underlined">{{ config.hero_title }}</h2>
       <p>{{ config.hero_text }}</p>
-      <button class="btn btn-large btn-primary">Følg projektet her</button>
+      <button class="btn btn-large btn-primary">{{ config.hero_button_text }}</button>
     </a>
   </div>
 </div>

@@ -1,0 +1,8 @@
+# --- Administration pages routing --- #
+itk_admin.settings:
+  path: '/admin/site-setup'
+  defaults:
+    _form: '\Drupal\itk_admin\Form\AdminSettingsForm'
+    _title: 'Settings'
+  requirements:
+    _permission: 'access itk admin settings'

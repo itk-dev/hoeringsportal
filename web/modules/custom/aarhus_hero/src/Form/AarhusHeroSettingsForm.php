@@ -69,6 +69,22 @@ class AarhusHeroSettingsForm extends FormBase {
       '#open' => TRUE,
     ];
 
+    $form['hero']['hero_button_text'] = [
+      '#title' => $this->t('Hero button text'),
+      '#type' => 'textfield',
+      '#default_value' => $config->get('hero_button_text'),
+      '#weight' => '2',
+      '#size' => 60,
+      '#maxlength' => 128,
+    ];
+
+    $form['hero']['hero_url'] = [
+      '#type' => 'url',
+      '#title' => $this->t('URL'),
+      '#default_value' => $config->get('hero_url'),
+      '#weight' => '4',
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Save changes'),
@@ -94,7 +110,9 @@ class AarhusHeroSettingsForm extends FormBase {
     // Set the configuration values.
     $this->getBaseConfig()->setMultiple([
       'hero_title' => $form_state->getValue('hero_title'),
+      'hero_url' => $form_state->getValue('hero_url'),
       'hero_text' => $form_state->getValue('hero_text'),
+      'hero_button_text' => $form_state->getValue('hero_button_text'),
       'hero_image' => !empty($form_state->getValue('hero_image')[0]) ? $form_state->getValue('hero_image')[0] : NULL,
     ]);
 

@@ -1,0 +1,7 @@
+name: Hoeringsportal admin
+type: module
+description: 'Provides config settings and admin interface for hoeringsportalen'
+core: 8.x
+package: Hoeringsportal
+dependencies:
+  - drupal:itk_admin

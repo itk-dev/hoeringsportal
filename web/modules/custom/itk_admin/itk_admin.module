@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Contains module hooks.
+ */
+
+/**
+ * Implements hook_page_attachments().
+ */
+function itk_admin_page_attachments(array &$page) {
+  // Attached custom CSS to the admin pages.
+  $page['#attached']['library'][] = 'itk_admin/itk_admin_styles';
+}

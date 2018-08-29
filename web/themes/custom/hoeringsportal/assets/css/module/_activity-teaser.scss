@@ -104,3 +104,12 @@ a.activity-teaser-project-name {
   color: $gray-600;
   border-left: 1px solid $gray-600;
 }
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,.5);
+  top: 0;
+  left: 0;
+  position: absolute;
+}

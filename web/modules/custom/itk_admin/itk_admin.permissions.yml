@@ -1,0 +1,3 @@
+'access itk admin settings':
+  title: Access itk admin settings.
+  restrict access: true

@@ -17,20 +17,16 @@
   <div class="container">
     <div class="row">
       <div class="col-md-3">
-        {# TODO: Content should be editable from admin #}
-        <h4>Aarhus Kommune</h4>
-        <p>Kultur & Borgerservice<br>
-            Hack Kampmanns Plads 2<br>
-            8000 Aarhus C<br>
-        </p>
-        <h5>TLF. 89 40 22 22</h5>
+        {% if (custom_config_exists) %}
+          {{ footer_text|raw }}
+        {% endif %}
         <p><img src="/{{ base_path ~ directory }}/static/images/AAK_02_venstrejusteret_hvid.svg" alt="Aarhus Kommune"></p>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12 permalinks">
         {% if content %}
-            {{ content }}
+          {{ content }}
         {% endif %}
       </div>
     </div>

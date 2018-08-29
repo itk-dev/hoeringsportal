@@ -15,6 +15,12 @@
       <span class="text-light">{{ '<strong>Note!</strong> Hearing deadline has passed.'|t  }}</span>
     </div>
   </div>
+{% elseif (config.not_started) %}
+  <div class="bg-warning p-3">
+    <div class="container">
+      <span class="text-body">{{ '<strong>Note!</strong> This hearing has not started yet'|t  }}</span>
+    </div>
+  </div>
 {% else %}
   <div class="bg-warning p-3">
     <div class="container">

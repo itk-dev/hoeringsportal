@@ -37,32 +37,34 @@
  */
 #}
 
-{% if label_hidden %}
-  {% if multiple %}
-    {% for item in items %}
-      {{ item.content }}
-    {% endfor %}
+<div>
+  {% if label_hidden %}
+    {% if multiple %}
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    {% else %}
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    {% endif %}
   {% else %}
-    {% for item in items %}
-      {{ item.content }}
-    {% endfor %}
-  {% endif %}
-{% else %}
-  <div class="container">
-    <h2 class="mt-2 pt-4">{{ label }}</h2>
-    {% if multiple %}
-      <div>
-    {% endif %}
-    {% for item in items %}
-      <div class="row">
-        <div class="col">
-          {{ item.content }}
-          <div class="read-more text-center"><a href="/hoeringer">{{ 'Show more hearings'|t }}</a></div>
+    <section class="container pt-5 pb-5">
+      <h2 class="mt-2 pt-4">{{ label }}</h2>
+      {% if multiple %}
+        <div>
+      {% endif %}
+      {% for item in items %}
+        <div class="row">
+          <div class="col">
+            {{ item.content }}
+            <div class="read-more text-center"><a href="{{ path('entity.node.canonical', {'node': hearings_node}) }}">{{ 'Show more hearings'|t }}</a></div>
+          </div>
         </div>
-      </div>
-    {% endfor %}
-    {% if multiple %}
-      </div>
-    {% endif %}
-  </div>
-{% endif %}
+      {% endfor %}
+      {% if multiple %}
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+</div>

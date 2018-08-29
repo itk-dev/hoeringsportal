@@ -80,14 +80,29 @@
   {% set project = content.field_project_reference[0]['#plain_text'] %}
   {% set deskpro_data = node.field_deskpro_data.value %}
 {% endif %}
-{% if(content.field_reply_deadline) %}
+{% if (content.field_start_date) %}
+  {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+{% endif %}
+{% if (content.field_reply_deadline) %}
   {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
-
+  {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
   <div class="activity-teaser-splash">
     <div class="splash splash-date">
-      <div class="splash-label">{{ 'Reply date' | t }}</div>
-      <div class="splash-date-day">{{ deadline|date('d') }}</div>
-      <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+      {% if (content.field_start_date['0']['#attributes'].datetime|date('U') > "now"|date('U')) %}
+        <div class="splash-label">{{ 'Start date' | t }}</div>
+        <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
+        <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+        {% set overlay = 'TRUE' %}
+      {% elseif (content.field_reply_deadline['0']['#attributes'].datetime|date('U') < "now"|date('U')) %}
+        <div class="splash-label">{{ 'Finished' | t }}</div>
+        <div class="splash-date-day"><i class="fa fa-check-circle p-1"></i></div>
+        <div class="splash-date-month"></div>
+        {% set overlay = 'TRUE' %}
+      {% else %}
+        <div class="splash-label">{{ 'Reply date' | t }}</div>
+        <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
+        <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+      {% endif %}
     </div>
     {% if deskpro_data.tickets|default([])|length > 0 %}
     <div class="splash splash-comments">
@@ -97,7 +112,10 @@
   </div>
 {% endif %}
 <div class="activity-teaser-image">
-  <a href="{{ url }}">{{ content.field_media_image }}</a>
+  <a href="{{ url }}">{{ content.field_media_image }}
+  {% if (overlay) %}
+  <a href="{{ url }}"><a href="{{ url }}"><div class="overlay"></div></a>
+  {% endif %}
 </div>
 <div{{ attributes.addClass('activity-teaser-content') }}>
   <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>

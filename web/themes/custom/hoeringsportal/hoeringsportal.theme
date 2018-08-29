@@ -11,6 +11,8 @@ use Drupal\Core\Form\FormStateInterface;
  * Implements hook_preprocess_field().
  */
 function hoeringsportal_preprocess_field(&$variables) {
+  $moduleHandler = \Drupal::service('module_handler');
+
   if ($variables['element']['#bundle'] == 'teaser_row') {
 
     // Fields that need a class depending the paragraph type selected.
@@ -22,6 +24,19 @@ function hoeringsportal_preprocess_field(&$variables) {
 
     if (in_array($variables['element']['#field_name'], $grid_fields)) {
       $variables['paragraph_type'] = $variables['element']['#object']->field_type->getValue()['0']['value'];
+    }
+  }
+
+  if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
+    // Fields that use variables from general settings module.
+    $require_settings_fields = [
+      'dynamic_block_field:node-nearest_hearings',
+    ];
+
+    if (in_array($variables['element']['#field_name'], $require_settings_fields)) {
+      $config = \Drupal::getContainer()->get('itk_admin.itk_config');
+      $variables['hearings_node'] = $config->get('hearings_overview');
+      $variables['initiative_node'] = $config->get('initiative_overview');
     }
   }
 }
@@ -144,5 +159,18 @@ function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   // Check content type.
   if ($node_type == 'project') {
     $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function hoeringsportal_preprocess_region__footer(&$variables) {
+  $moduleHandler = \Drupal::service('module_handler');
+  $variables['custom_config_exists'] = FALSE;
+  if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
+    $variables['custom_config_exists'] = TRUE;
+    $config = \Drupal::getContainer()->get('itk_admin.itk_config');
+    $variables['footer_text'] = $config->get('footer_text');
   }
 }
