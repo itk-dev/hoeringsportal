@@ -24,11 +24,21 @@ class HearingTicketBlock extends BlockBase {
       return NULL;
     }
 
+    $cacheTags = $node->getCacheTags();
+
+    $cacheContexts = $node->getCacheContexts();
+    $cacheContexts[] = 'url';
+    $cacheContexts = array_unique($cacheContexts);
+
     return [
       '#theme' => 'hoeringsportal_hearing_ticket',
       '#node' => $node,
       '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
       '#ticket' => $this->helper->getHearingTicket($node, $ticket),
+      '#cache' => [
+        'contexts' => $cacheContexts,
+        'tags' => $cacheTags,
+      ],
     ];
   }
 
