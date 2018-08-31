@@ -33,9 +33,9 @@ class HearingWarning extends BlockBase {
     $node = \Drupal::routeMatch()->getParameter('node');
     if (isset($node) && $node->hasField('field_reply_deadline')) {
       $field_reply_deadline = $node->field_reply_deadline->getValue();
-      $start_date = strtotime($node->field_start_date->getValue()['0']['value']);
+      $start_date = isset($node->field_start_date->value) ? strtotime($node->field_start_date->getValue()['0']['value']) : FALSE;
       // Set reply deadline.
-      $reply_deadline = isset($field_reply_deadline) ? strtotime($field_reply_deadline['0']['value']) : FALSE;
+      $reply_deadline = isset($field_reply_deadline->value) ? strtotime($field_reply_deadline['0']['value']) : FALSE;
       $current_date = time();
       if ($reply_deadline) {
         // Calculate if we should show a warning.
