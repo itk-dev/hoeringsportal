@@ -9,6 +9,8 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access itk_document_browser entity browser pages'
+  - 'access itk_image_browser entity browser pages'
   - 'access media overview'
   - 'access toolbar'
   - 'create hearing content'
