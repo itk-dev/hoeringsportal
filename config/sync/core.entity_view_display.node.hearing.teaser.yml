@@ -101,5 +101,6 @@ hidden:
   field_deskpro_department_id: true
   field_map_display: true
   field_media_document: true
+  field_video_embed: true
   langcode: true
   links: true
