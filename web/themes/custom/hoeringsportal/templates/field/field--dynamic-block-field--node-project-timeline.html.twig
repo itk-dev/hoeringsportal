@@ -37,26 +37,46 @@
  */
 #}
 
-{% if label_hidden %}
-  {% if multiple %}
-    {% for item in items %}
-      {{ item.content }}
-    {% endfor %}
+<div class="mb-5">
+  {% if label_hidden %}
+    {% if multiple %}
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    {% else %}
+      {% for item in items %}
+        {{ item.content }}
+      {% endfor %}
+    {% endif %}
   {% else %}
+    <div class="container">
+      <h3 class="mt-2 pt-4">{{ label }}</h3>
+      <div class="project-timeline-period row">
+        <div class="col-2">
+          <label>{{ 'Project start'|t }}</label>
+          <div>{{ items[0].content[0]['#node'].field_project_start.value }}</div>
+        </div>
+        <div class="col-2">
+          <label>{{ 'Project end'|t }}</label>
+          <div>{{ items[0].content[0]['#node'].field_project_finish.value }}</div>
+        </div>
+      </div>
+    </div>
+    {% if multiple %}
+      <div>
+    {% endif %}
     {% for item in items %}
       {{ item.content }}
     {% endfor %}
+    {% if multiple %}
+      </div>
+    {% endif %}
   {% endif %}
-{% else %}
   <div class="container">
-    <h2 class="mt-2 pt-4">{{ label }}</h2>
-  {% if multiple %}
-    <div>
-  {% endif %}
-  {% for item in items %}
-    {{ item.content }}
-  {% endfor %}
-  {% if multiple %}
+    <div class="row">
+      <div class="col-4 offset-4">
+        <div class="project-type-label hearing"><i class="fa fa-circle pr-1"></i>{{ 'Hearing'|t }}</div>
+      </div>
     </div>
-  {% endif %}
-{% endif %}
+  </div>
+</div>

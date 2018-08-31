@@ -7,10 +7,9 @@
  * - node: The node fetched from route
  */
 #}
-<p>
-  A basic timeline. You can move and zoom the timeline, and select items.
-</p>
-<div id="visualization">
+
+<div id="visualization" class="project-timeline mt-5">
+  {#
   <div class="vis-timeline vis-bottom" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); visibility: visible; height: 146px;">
     <div class="vis-panel vis-background" style="height: 144px; width: 1701px; left: 0px; top: 0px;"></div>
     <div class="vis-panel vis-background vis-vertical" style="height: 144px; width: 1703px; left: 0px; top: 0px;">
@@ -127,4 +126,5 @@
     </div>
     <div class="vis-rolling-mode-btn" style="visibility: hidden;"></div>
   </div>
+  #}
 </div>

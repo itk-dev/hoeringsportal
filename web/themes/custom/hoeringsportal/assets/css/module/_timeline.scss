@@ -1,44 +1,56 @@
-.timeline {
-  padding-top: $spacer*2;
-  padding-bottom: $spacer*2;
-  &-points {
-    border-left: 2px solid $gray-800;
-    padding-top: $spacer*2;
-    margin-left: $spacer*1;
-    .row {
-      position: relative;
-      transition: color .4s ease-out;
-      &:before {
-        content: "";
-        width: 10px;
-        height: 2px;
-        background: $gray-800;
-        position: absolute;
-        left: 0;
-        top: 10px;
+.project-timeline-period {
+  label {
+    font-size: .8rem;
+    font-weight: bold;
+  }
+}
+
+.project-timeline {
+  div {
+    cursor: grab!important;
+
+    &.vis-item.vis-box,
+    &.vis-item.vis-range {
+      border: 0;
+      border-radius: 1rem;
+      background-color: $primary;
+
+      .vis-item-content {
+        color: $white;
+        cursor: pointer !important;
+        font-size: .7rem;
+        padding: 4px 10px;
+        line-height: 1em;
+
+        div {
+          cursor: pointer !important;
+        }
       }
-      &.passed {
-        color: $gray-600;
-      }
-      // &:hover {
-      //   color: $gray-800;
-      //   transition: color .2s ease-in;
-      // }
     }
-    &:before, &:after {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: $gray-800;
-      position: absolute;
-      left: -6px;
-    }
-    &:before {
-      top: 0;
-    }
-    &:after {
-      bottom: 0;
+
+    &.vis-item.vis-line,
+    &.vis-item.vis-dot {
+      border-color: $primary;
+      background-color: $primary;
     }
   }
+  .vis-timeline {
+    border: 0;
+  }
+
+  .vis-grid.vis-vertical {
+    border-right: 0;
+    border-left: 1px solid $gray-400;
+  }
+
+  .vis-bottom {
+    .vis-minor {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}
+
+.project-type-label {
+  color: $primary;
 }
