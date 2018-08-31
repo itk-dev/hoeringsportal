@@ -1,0 +1,9 @@
+uuid: 32a987e3-5528-46b5-9fc6-39d937d57b78
+langcode: da
+status: true
+dependencies: {  }
+id: content_list
+label: Indholdsliste
+icon_uuid: null
+description: 'Vælg en færdigbygget liste af indholdselementer der automatisk opdateres med nyt indhold.'
+behavior_plugins: {  }

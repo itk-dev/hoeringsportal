@@ -71,24 +71,66 @@
  */
 #}
 
-<div class="card mb-5">
-  <a href="{{ url }}">{{ content.field_image }}</a>
-  <div class="card-body">
-    <h5 class="card-title"><a href="{{ url }}" class="title">{{ label }}</a></h5>
-    <p class="card-text">{{ content.field_teaser }}</p>
-    <div class="card-link">{{ content.links }}</div>
+{% if node.bundle == 'project' %}
+  {% set type = 'Initiative'|t %}
+  {% set project = content.field_project_label %}
+{% endif %}
+{% if node.bundle == 'hearing' %}
+  {% set type = content.field_hearing_type[0]['#plain_text'] %}
+  {% set project = content.field_project_reference[0]['#plain_text'] %}
+  {% set deskpro_data = node.field_deskpro_data.value %}
+{% endif %}
+{% if (content.field_start_date) %}
+  {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+{% endif %}
+{% if (content.field_reply_deadline) %}
+  {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
+  {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+  <div class="activity-teaser-splash">
+    <div class="splash splash-date">
+      {% if (content.field_start_date['0']['#attributes'].datetime|date('U') > "now"|date('U')) %}
+        <div class="splash-label">{{ 'Start date' | t }}</div>
+        <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
+        <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+        {% set overlay = 'TRUE' %}
+      {% elseif (content.field_reply_deadline['0']['#attributes'].datetime|date('U') < "now"|date('U')) %}
+        <div class="splash-label">{{ 'Finished' | t }}</div>
+        <div class="splash-date-day"><i class="fa fa-check-circle p-1"></i></div>
+        <div class="splash-date-month"></div>
+        {% set overlay = 'TRUE' %}
+      {% else %}
+        <div class="splash-label">{{ 'Reply date' | t }}</div>
+        <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
+        <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+      {% endif %}
+    </div>
+    {% if deskpro_data.tickets|default([])|length > 0 %}
+    <div class="splash splash-comments">
+      <span class="splash-comments-count"><i class="fa fa-comment"></i>--{{ deskpro_data.tickets|length }}--</span>
+    </div>
+    {% endif %}
   </div>
-  <div class="card-footer container">
-    <small class="text-muted row">
-      <div class="col">
-        <div class="card-category">{{ content.field_category }}</div>
-        <div class="card-comment-count">{{ 'Contributions'|t }}: {{ comment_count }}</div>
-      </div>
-      <div class="col">
-        <div class="float-right">
-          {{ content|without('body', 'links', 'field_image', 'field_category', 'field_teaser') }}
-        </div>
-      </div>
-    </small>
+{% endif %}
+<div class="activity-teaser-image">
+  <a href="{{ url }}">{{ content.field_media_image }}
+  {% if (overlay) %}
+  <a href="{{ url }}"><a href="{{ url }}"><div class="overlay"></div></a>
+  {% endif %}
+</div>
+<div{{ attributes.addClass('activity-teaser-content') }}>
+  <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>
+  <div class="activity-teaser-description">
+    {{ content.field_teaser }}
   </div>
+</div>
+<div class="activity-teaser-info">
+  <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>
+  <span class="activity-teaser-meta-wrapper">
+    <span class="activity-teaser-area">{{ content.field_area }}</span>
+    <span class="activity-teaser-type">{{ type }}</span>
+    {% if(content.field_hearing_id) %}
+      <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>
+    {% endif %}
+  </span>
+  <a href="{{ url }}" class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></a>
 </div>

@@ -1,0 +1,19 @@
+uuid: aec78860-9c24-4617-bd31-ac237229bbb2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hearing_id
+    - node.type.hearing
+id: node.hearing.field_hearing_id
+field_name: field_hearing_id
+entity_type: node
+bundle: hearing
+label: ID
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,165 @@
+<?php
+
+/**
+ * @file
+ * Høringsportal forms.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\field\FieldStorageConfigInterface;
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ *
+ * Add a template suggestions for modifying the node form.
+ */
+function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array $variables) {
+  if (isset($variables['form']) && $variables['theme_hook_original'] == 'node_edit_form') {
+    if ($variables['form']['#form_id'] == 'node_project_form' || $variables['form']['#form_id'] == 'node_project_edit_form') {
+      $suggestions[] = 'hoeringsportal_project_node_form';
+    }
+    if ($variables['form']['#form_id'] == 'node_hearing_form' || $variables['form']['#form_id'] == 'node_hearing_edit_form') {
+      $suggestions[] = 'hoeringsportal_hearing_node_form';
+    }
+
+    if ($variables['form']['#form_id'] == 'node_static_page_form' || $variables['form']['#form_id'] == 'node_static_page_edit_form') {
+      $suggestions[] = 'hoeringsportal_static_page_node_form';
+    }
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * Tell drupal where to find the custom node form templates.
+ */
+function hoeringsportal_forms_theme($existing, $type, $theme, $path) {
+  return [
+    'hoeringsportal_project_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-project-node-form',
+    ],
+    'hoeringsportal_hearing_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-hearing-node-form',
+    ],
+    'hoeringsportal_static_page_node_form' => [
+      'render element' => 'form',
+      'template' => 'hoeringsportal-static-page-node-form',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add specific styles for node forms.
+ */
+function hoeringsportal_forms_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['advanced']['#attributes']['style'] = 'margin-top:1em';
+
+  $form['#attached']['library'][] = 'hoeringsportal_forms/form_styles';
+  $form['field_media_image']['widget']['entity_browser']['#weight'] = -10;
+  $form['field_media_image']['widget']['current']['#weight'] = -50;
+
+  $form['field_media_document']['widget']['entity_browser']['#weight'] = -10;
+  $form['field_media_document']['widget']['current']['#weight'] = -50;
+}
+
+/**
+ * Implements hook_form_paragraphs_subform_alter().
+ *
+ * Add form states to landing page.
+ */
+function hoeringsportal_forms_form_paragraphs_subform_alter(&$element) {
+  // Establish that we have radios to act on.
+  if (array_key_exists('field_type', $element)) {
+    // Use delta to separate states between paragraphs.
+    $delta = $element['#parents']['1'];
+    // When to show title field.
+    $element['field_paragraph_title']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
+    // When to show Project/Hearing 1 field.
+    $element['field_project_hearing_1']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
+    // When to show Project/Hearing 2 field.
+    $element['field_project_hearing_2']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+        ],
+      ],
+    ];
+    // When to show Project/Hearing 3 field.
+    $element['field_project_hearing_3']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => ['value' => 'three_projects'],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'one_project_two_static'],
+          ['value' => 'two_projects'],
+        ],
+      ],
+    ];
+    // When to show static pages field.
+    $element['field_static_pages']['#states'] = [
+      'visible' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => ['value' => 'one_project_two_static'],
+      ],
+      'disabled' => [
+        ':input[name="field_section[' . $delta . '][subform][field_type]"]' => [
+          ['value' => 'two_projects'],
+          ['value' => 'three_projects'],
+        ],
+      ],
+    ];
+  }
+  // Establish that we have a view reference field to act on.
+  if (array_key_exists('field_content_list', $element)) {
+    // Hide options part of form.
+    $element['field_content_list']['widget'][0]['options']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_field_views_data_alter().
+ *
+ * Views integration for entity reference fields which reference nodes.
+ * Adds a term relationship to the default field data.
+ *
+ * @see views_field_default_views_data()
+ */
+function hoeringsportal_forms_field_views_data_alter(array &$data, FieldStorageConfigInterface $field_storage) {
+  if ($field_storage->getType() == 'entity_reference' && $field_storage->getSetting('target_type') == 'node') {
+    foreach ($data as $table_name => $table_data) {
+      foreach ($table_data as $field_name => $field_data) {
+        if (isset($field_data['filter']) && $field_name != 'delta') {
+          $data[$table_name][$field_name]['filter']['id'] = 'node_index_nid';
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+hoeringsportal.xsmall:
+  label: xs
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+hoeringsportal.small:
+  label: sm
+  mediaQuery: 'all and (min-width: 541px) and (max-width: 720px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+hoeringsportal.medium:
+  label: md
+  mediaQuery: 'all and (min-width: 720px) and (max-width: 960px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+hoeringsportal.large:
+  label: lg
+  mediaQuery: 'all and (min-width: 961px) and (max-width: 1140px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x
+hoeringsportal.xlarge:
+  label: xl
+  mediaQuery: 'all and (min-width: 1141px)'
+  weight: 4
+  multipliers:
+    - 1x
+    - 2x

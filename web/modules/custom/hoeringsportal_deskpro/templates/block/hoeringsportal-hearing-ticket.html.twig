@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Hearing ticket block template.
+ *
+ * Available variables:
+ * - node: The hearing node
+ * - ticket: Ticket data from Deskpro
+ *   - messages: List of ticket messages
+ *   - attachments: List of ticket attachments
+ */
+#}
+
+<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>
+
+{% if ticket.messages %}
+  <h2>
+    {{ ticket.subject }}
+  </h2>
+  {% for message in ticket.messages %}
+    <div>
+      {{ message.message|raw }}
+      {% if message.attachments %}
+        <div class="attachments">
+          Attachments:
+          <ol class="list-group">
+            {% for attachment in message.attachments %}
+              <li class="list-group-item">
+                <a href="#ticket-attachment-{{ attachment.id }}">
+                  {{ attachment.blob.filename }}
+                </a>
+              </li>
+            {% endfor %}
+          </ol>
+        </div>
+      {% endif %}
+    </div>
+  {% endfor %}
+{% endif %}
+
+{% set url = deskpro_ticket_custom_field(ticket, 'pdf_download_url') %}
+{% if url %}
+  <a class="btn btn-primary" target="_blank" href="{{ url }}">{{ 'Download ticket as pdf'|trans }}</a>
+{% endif %}

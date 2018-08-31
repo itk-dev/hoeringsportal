@@ -42,27 +42,41 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
 );
 
-
-/**
- * Set sync path
- */
-$config_directories['sync'] = '../config/sync';
 ```
 
-Create db and start server
+Create db
 ```sh
 composer install
 ./vendor/bin/drush  --yes site-install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
+```
+
+Start server
+```sh
 ./vendor/bin/drush runserver
 ```
 
+Start server with xdebug and PHPStorm
+```sh
+cd web && \
+XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 remote_host=127.0.0.1 remote_connect_back=0" \
+  php -S 127.0.0.1:8888 ../vendor/drush/drush/misc/d8-rs-router.php
+```
 
 ### Updating
 
 ```sh
 composer install
+./vendor/bin/drush --yes updatedb
 ./vendor/bin/drush --yes config:import
-./vendor/bin/drush --yes cache-rebuild
+./vendor/bin/drush --yes locale:update
+./vendor/bin/drush --yes entity:updates
+./vendor/bin/drush --yes cache:rebuild
+```
+
+For production you should use
+
+```sh
+composer install --no-dev --optimize-autoloader
 ```
 
 ## Coding standards
@@ -75,7 +89,7 @@ Check the code by running
 composer check-coding-standards
 ```
 
-Apply automatic conding standard fixes by running
+Apply automatic coding standard fixes by running
 
 ```sh
 composer apply-coding-standards

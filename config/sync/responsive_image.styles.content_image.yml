@@ -1,0 +1,70 @@
+uuid: 414eac1e-dbe0-4129-88e2-76f144ae9c12
+langcode: da
+status: true
+dependencies:
+  config:
+    - image.style.responsive_large_default
+    - image.style.responsive_large_default_x2
+    - image.style.responsive_medium_default
+    - image.style.responsive_medium_default_x2
+    - image.style.responsive_small_default
+    - image.style.responsive_small_default_x2
+    - image.style.responsive_xsmall_default
+    - image.style.responsive_xsmall_default_x2
+  theme:
+    - hoeringsportal
+id: content_image
+label: 'Content image'
+image_style_mappings:
+  -
+    breakpoint_id: hoeringsportal.xlarge
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: responsive_large_default
+  -
+    breakpoint_id: hoeringsportal.xlarge
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: responsive_large_default_x2
+  -
+    breakpoint_id: hoeringsportal.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: responsive_large_default
+  -
+    breakpoint_id: hoeringsportal.large
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: responsive_large_default_x2
+  -
+    breakpoint_id: hoeringsportal.medium
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: responsive_medium_default
+  -
+    breakpoint_id: hoeringsportal.medium
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: responsive_medium_default_x2
+  -
+    breakpoint_id: hoeringsportal.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: responsive_small_default
+  -
+    breakpoint_id: hoeringsportal.small
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: responsive_small_default_x2
+  -
+    breakpoint_id: hoeringsportal.xsmall
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: responsive_xsmall_default
+  -
+    breakpoint_id: hoeringsportal.xsmall
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: responsive_xsmall_default_x2
+breakpoint_group: hoeringsportal
+fallback_image_style: responsive_xsmall_default

@@ -1,0 +1,8 @@
+uuid: 3c41668b-0b60-4294-9559-34bcddd95dfa
+langcode: da
+status: true
+dependencies: {  }
+id: secondary-navigation
+label: 'Sekundær navigation'
+description: 'Lille menu til højre i header'
+locked: false

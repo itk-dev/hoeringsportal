@@ -1,0 +1,21 @@
+uuid: 961e898b-37ba-4bff-86e5-a49d3c639ec4
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_more_info
+    - taxonomy.vocabulary.hearing_type
+  module:
+    - text
+id: taxonomy_term.hearing_type.field_more_info
+field_name: field_more_info
+entity_type: taxonomy_term
+bundle: hearing_type
+label: 'Vil du vide mere?'
+description: 'Denne text findes ved visningen af en høring og kan indholde generel information og links der relaterer sig til alle høringer af den valgte type'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,27 @@
+body {
+  background: $gray-100;
+  padding-top: 6rem;
+  word-wrap: break-word;
+  letter-spacing: .05em;
+}
+
+h1, h2, h3, h4, h5, legend {
+  text-transform: uppercase;
+  font-family: $headings-font-family;
+  margin-bottom: $headings-margin-bottom;
+  margin-top: $headings-margin-top;
+}
+p {
+  max-width: 45rem;
+}
+
+a > {
+  color: $gray-900;
+}
+a {
+  transition: color .2s ease-in, border-bottom .2s ease-in;
+  &:hover {
+    color: darken($petroleum, 10%);
+    transition: color .4s ease-out, border-bottom .3s ease-out;
+  }
+}

@@ -1,0 +1,19 @@
+uuid: 1aa234af-17a2-41b0-a056-8e94f5b5e8a4
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_embed
+    - node.type.hearing
+id: node.hearing.field_video_embed
+field_name: field_video_embed
+entity_type: node
+bundle: hearing
+label: 'Video embed'
+description: "Tilføj video embed code.\r\nDet er redaktørens ansvar at videoen overholder kommunens GDPR retningslinjer. \r\nHvis du er i tvivl kan du spørge den GDPR ansvarlige i din afdeling."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

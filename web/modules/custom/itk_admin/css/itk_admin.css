@@ -1,0 +1,6 @@
+/**
+ * Add icon for admin menu.
+ */
+.toolbar-icon-itk-admin-settings:before {
+  background-image: url(../icons/aarhus_logo.svg);
+}

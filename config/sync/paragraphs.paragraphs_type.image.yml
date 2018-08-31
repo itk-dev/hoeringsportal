@@ -1,0 +1,9 @@
+uuid: c5711096-088e-4c16-be62-6682c4da5e64
+langcode: da
+status: true
+dependencies: {  }
+id: image
+label: Billede
+icon_uuid: null
+description: 'Et billede til visning i fuld bredde'
+behavior_plugins: {  }

@@ -1,0 +1,79 @@
+.field--widget-entity-browser-entity-reference .button {
+  margin: 0;
+}
+
+.field--widget-entity-browser-entity-reference .field--name-name {
+  text-align: center;
+  font-weight: bold;
+}
+
+.field--widget-entity-browser-entity-reference .entities-list {
+  display: inline-block;
+}
+
+.view-mode-form-display-when-referenced {
+  display: inline-block;
+  width: 100px;
+}
+
+.field--widget-entity-browser-entity-reference .rendered-entity {
+  display: inline-block;
+  position: relative;
+  margin-top: 25px;
+  margin-right: 25px;
+  vertical-align: top;
+}
+
+.field--widget-entity-browser-entity-reference .rendered-entity .ajax-progress {
+  bottom: -22px;
+  left: 0;
+  position: absolute;
+  width: 150px;
+}
+
+
+.field--widget-entity-browser-entity-reference .entities-list .button {
+  background: url('../icons/close.svg') no-repeat;
+  background-size: 9px;
+  background-color: white;
+  background-position: 3px 3px;
+  font-size: 0;
+  margin: 0;
+  height: 16px;
+  width: 16px;
+  top: -8px;
+  right: -8px;
+  position: absolute;
+  border: 2px solid;
+  padding: 8px;
+  border-radius: 100%;
+}
+
+.field--widget-entity-browser-entity-reference .entities-list .button:hover,
+.field--widget-entity-browser-entity-reference .entities-list .button:focus,
+.field--widget-entity-browser-entity-reference .entities-list .button:active {
+  background: url('../icons/close.svg') no-repeat;
+  background-size: 9px;
+  background-color: white;
+  background-position: 3px 3px;
+  border-color: black;
+}
+
+.field--widget-entity-browser-entity-reference .field--name-thumbnail {
+  text-align: center;
+}
+
+
+/* Document browser specific */
+.field--name-field-media-document.field--widget-entity-browser-entity-reference .rendered-entity {
+  background: #fafafa;
+  padding: .4em;
+  text-align: center;
+  width: 85px;
+  border: 1px solid #ddd;
+}
+
+.field--name-field-media-document.field--widget-entity-browser-entity-reference .view-mode-form-display-when-referenced {
+  display: inline-block;
+  width: 85px;
+}

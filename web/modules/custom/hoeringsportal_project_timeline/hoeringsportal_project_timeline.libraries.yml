@@ -1,0 +1,10 @@
+project_timeline:
+  version: 1.x
+  css:
+    theme:
+      assets/public/build/project-timeline.css: {}
+  js:
+    assets/public/build/project-timeline.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

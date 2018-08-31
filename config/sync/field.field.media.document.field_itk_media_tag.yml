@@ -1,0 +1,33 @@
+uuid: d86ee057-0e97-4136-a6f7-23b5679cafb3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.media.field_itk_media_tag
+    - media_entity.bundle.document
+    - taxonomy.vocabulary.media_library
+  enforced:
+    module:
+      - itk_media_entity
+_core:
+  default_config_hash: Mhq-BH4ANP1A8-xxNbC4DtLjEmhuuyYKmzzsxRG565w
+id: media.document.field_itk_media_tag
+field_name: field_itk_media_tag
+entity_type: media
+bundle: document
+label: Tag
+description: 'The tag will help you navigate in your media library'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      media_library: media_library
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

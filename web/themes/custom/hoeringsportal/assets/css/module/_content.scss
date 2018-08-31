@@ -1,0 +1,87 @@
+.content {
+  background: $white;
+  padding-top: $spacer;
+  padding-bottom: $spacer;
+  &.group-left:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 100%;
+    width: 200%;
+    background: $white;
+  }
+}
+
+.content__main {
+  @include media-breakpoint-up(sm) {
+    padding-right: 2em;
+  }
+  img {
+    @extend .img-fluid;
+  }
+}
+
+.timestamp {
+  display: block;
+}
+
+.lead {
+  padding: 1em 0;
+}
+
+// Some headers in group right content should be smaller than usual
+.group-right {
+  h4, h5, h6 {
+    font-size: .8rem;
+    text-transform: none;
+    margin-bottom: 0;
+  }
+}
+
+.content__header {
+  background: $primary;
+  color: $white;
+}
+
+.read-more {
+  font-size: $h3-font-size;
+  text-decoration: underline;
+}
+
+.video-embed {
+  padding: 56.25% 0 0 0;
+  position: relative;
+
+  > div {
+    padding: 0!important;
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.group-footer {
+  background: $gray-100;
+  padding-bottom: $spacer;
+
+  & > {
+    div:nth-child(odd) {
+      background: $gray-200;
+    }
+
+    div:nth-child(even) {
+      background: $gray-100;
+    }
+  }
+}

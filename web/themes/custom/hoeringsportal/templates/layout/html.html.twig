@@ -34,10 +34,6 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/fontawesome.js" integrity="sha384-M2FSA4xMm1G9m4CNXM49UcDHeWcDZNucAlz1WVHxohug0Uw1K+IpUhp/Wjg0y6qG" crossorigin="anonymous"></script>
   </head>
   <body{{ attributes }}>
-    <!-- ADFS logout HACK -->
-    <iframe style="display: none" src="https://adfs.aarhuskommune.dk/adfs/ls/?wa=wsignout1.0" height="0" width="0"></iframe>
-    <!-- ADFS end -->
-
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
@@ -49,17 +45,5 @@
     {{ page }}
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
-    <script>
-      // Add class to body while scrolling
-      (function($){
-        $(window).scroll(function () {
-            if ($(this).scrollTop() >= 150) {
-              $('body').addClass('scrolled');
-            } else {
-              $('body').removeClass('scrolled');
-            }
-        });
-      })(jQuery);
-    </script>
   </body>
 </html>

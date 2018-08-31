@@ -1,0 +1,88 @@
+uuid: 792094a9-b1a5-4b9c-af69-5dc0d0f332ff
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_display
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_area
+    - field.field.node.project.field_contact
+    - field.field.node.project.field_description
+    - field.field.node.project.field_email
+    - field.field.node.project.field_image_gallery_ref
+    - field.field.node.project.field_map_display
+    - field.field.node.project.field_media_image
+    - field.field.node.project.field_phone
+    - field.field.node.project.field_project_finish
+    - field.field.node.project.field_project_label
+    - field.field.node.project.field_project_start
+    - field.field.node.project.field_related_content
+    - field.field.node.project.field_teaser
+    - node.type.project
+  module:
+    - ds
+    - user
+id: node.project.list_display
+targetEntityType: node
+bundle: project
+mode: list_display
+content:
+  field_area:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_media_image:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: node_form_display
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: '1'
+  field_project_label:
+    type: string
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_teaser:
+    type: basic_string
+    weight: 1
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  langcode:
+    type: language
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_activities: true
+  field_contact: true
+  field_description: true
+  field_email: true
+  field_image_gallery_ref: true
+  field_map_display: true
+  field_phone: true
+  field_project_finish: true
+  field_project_start: true
+  field_related_content: true

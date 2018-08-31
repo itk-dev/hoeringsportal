@@ -1,10 +1,10 @@
 features:
   node_user_picture: false
   comment_user_picture: true
-  comment_user_verification: 1
+  comment_user_verification: true
   favicon: 1
 logo:
   use_default: 0
-  path: themes/hoeringsportal/static/images/aak_kb_logo.svg
+  path: themes/custom/hoeringsportal/static/images/AAK_02_venstrejusteret_sh.svg
 favicon:
   use_default: 1

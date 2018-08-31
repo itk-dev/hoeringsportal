@@ -1,0 +1,9 @@
+uuid: 43db530b-7b63-409a-8fa2-37492866901c
+langcode: da
+status: true
+dependencies: {  }
+id: content_block
+label: Indholdsblok
+icon_uuid: null
+description: 'En indholdsblok til visning af kort text med mulighed for at tilknytte et billede.'
+behavior_plugins: {  }

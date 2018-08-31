@@ -1,0 +1,31 @@
+uuid: e4855ab0-113a-4d31-82c0-0bd601a5059a
+langcode: da
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_display
+    - field.field.node.landing_page.field_section
+    - node.type.landing_page
+  module:
+    - ds
+    - entity_reference_revisions
+    - user
+id: node.landing_page.list_display
+targetEntityType: node
+bundle: landing_page
+mode: list_display
+content:
+  field_section:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+hidden:
+  langcode: true
+  links: true

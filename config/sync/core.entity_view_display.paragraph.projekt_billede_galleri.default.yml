@@ -1,0 +1,40 @@
+uuid: 988ce6fa-4a7d-495d-bf35-f858f059b63d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.projekt_billede_galleri.field_external_link
+    - field.field.paragraph.projekt_billede_galleri.field_image_gallery
+    - paragraphs.paragraphs_type.projekt_billede_galleri
+  module:
+    - ds
+    - link
+id: paragraph.projekt_billede_galleri.default
+targetEntityType: paragraph
+bundle: projekt_billede_galleri
+mode: default
+content:
+  field_external_link:
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_image_gallery:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: teaser_display
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: content
+hidden: {  }

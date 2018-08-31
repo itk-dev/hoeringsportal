@@ -1,0 +1,35 @@
+uuid: e8cc1f71-0a04-4a92-862c-c4c02e6d8e31
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - file
+    - image
+    - media_entity
+_core:
+  default_config_hash: na3o8XsN9NKEW4rjTzcTucdlv9XSk4Fn8BRLyGCdr44
+id: media.field_itk_media_image_upload
+field_name: field_itk_media_image_upload
+entity_type: media
+type: image
+settings:
+  uri_scheme: public
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  target_type: file
+  display_field: false
+  display_default: false
+module: image
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

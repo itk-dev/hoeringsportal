@@ -27,12 +27,14 @@ class AarhusHero extends BlockBase {
       '#theme' => 'aarhus_hero_block',
       '#config' => $config,
       '#image' => [
-        '#theme' => 'image_style',
-        '#style_name' => 'hero',
+        '#theme' => 'responsive_image',
+        '#suggestion' => 'aarhus_hero',
+        '#responsive_image_style_id' => 'content_image',
         '#uri' => !empty($file) ? $file->getFileUri() : FALSE,
         '#alt' => $config['hero_title'],
         '#attributes' => [
           'class' => 'hero__media',
+          'id' => 'hero_image',
         ],
       ],
     ];

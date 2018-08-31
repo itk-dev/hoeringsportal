@@ -1,5 +1,5 @@
-uuid: bea272d4-7d24-41f4-8aeb-4c0015a48ab8
-langcode: da
+uuid: 647a9d23-21bb-45f0-9fac-40fde6c5395c
+langcode: en
 status: true
 dependencies:
   theme:
@@ -9,7 +9,7 @@ _core:
 id: seven_local_tasks
 theme: seven
 region: content
-weight: 0
+weight: -20
 provider: null
 plugin: local_tasks_block
 settings:

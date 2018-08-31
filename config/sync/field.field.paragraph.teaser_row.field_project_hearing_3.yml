@@ -1,0 +1,30 @@
+uuid: 48a956ce-0414-4f33-af6f-1a192a71beac
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_project_hearing_3
+    - node.type.hearing
+    - node.type.project
+    - paragraphs.paragraphs_type.teaser_row
+id: paragraph.teaser_row.field_project_hearing_3
+field_name: field_project_hearing_3
+entity_type: paragraph
+bundle: teaser_row
+label: Projekt/høring
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      hearing: hearing
+      project: project
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: hearing
+field_type: entity_reference

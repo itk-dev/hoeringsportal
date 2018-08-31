@@ -1,0 +1,28 @@
+uuid: 16113c62-f71a-41ab-8ef6-a73a84009c4d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_image_single
+    - media_entity.bundle.image
+    - node.type.static_page
+id: node.static_page.field_media_image_single
+field_name: field_media_image_single
+entity_type: node
+bundle: static_page
+label: Billede
+description: 'Billede til visning i header'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -o errtrace -o noclobber -o nounset -o pipefail
+IFS=$'\n\t'
+
+dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+bold=$(tput bold)
+normal=$(tput sgr0)
+
+# Wrapper around phpcbf to make exit codes wotk as expected
+# (cf. https://github.com/squizlabs/PHP_CodeSniffer/issues/1359)
+
+$dir/../vendor/bin/phpcbf "$@"
+exit_code=$?
+
+if [ $exit_code -eq 1 ]; then
+	 exit 0
+fi
+
+exit 1

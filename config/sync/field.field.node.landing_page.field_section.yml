@@ -1,0 +1,46 @@
+uuid: 98270e15-a484-4cff-bc43-040ab281052c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_section
+    - node.type.landing_page
+    - paragraphs.paragraphs_type.content_block
+    - paragraphs.paragraphs_type.content_list
+    - paragraphs.paragraphs_type.introduction
+    - paragraphs.paragraphs_type.teaser_row
+  module:
+    - entity_reference_revisions
+id: node.landing_page.field_section
+field_name: field_section
+entity_type: node
+bundle: landing_page
+label: 'Indholds region'
+description: 'Vælg den type indhold du ønsker at indsætte'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      introduction: introduction
+      content_block: content_block
+      content_list: content_list
+      teaser_row: teaser_row
+    target_bundles_drag_drop:
+      introduction:
+        enabled: true
+        weight: 4
+      content_block:
+        enabled: true
+        weight: 5
+      content_list:
+        enabled: true
+        weight: 5
+      teaser_row:
+        enabled: true
+        weight: 6
+field_type: entity_reference_revisions

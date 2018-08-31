@@ -1,0 +1,10 @@
+uuid: 82f234d9-0560-49f6-97f3-f069c5a16b56
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: node.hearing_ticket_add
+label: 'Hearing ticket add'
+targetEntityType: node
+cache: true

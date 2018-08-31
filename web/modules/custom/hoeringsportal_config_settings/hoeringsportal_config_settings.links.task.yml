@@ -1,0 +1,9 @@
+hoeringsportal_config_settings.admin:
+  title: 'General settings'
+  route_name: hoeringsportal_general.settings
+  base_route: itk_admin.settings
+
+hoeringsportal_hearing_settings.admin:
+  title: 'Hearing settings'
+  route_name: hoeringsportal_hearing.settings
+  base_route: itk_admin.settings

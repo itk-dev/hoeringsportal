@@ -1,11 +1,11 @@
-uuid: 2b7394c9-e595-45f9-aef4-4ec7de782c82
-name: 'Høringsportalen'
-mail: admin@example.com
+uuid: a130e152-234f-4e15-a1f6-13b2b5896723
+name: 'Høringsportalen - Aarhus kommune'
+mail: info@itkdev.dk
 slogan: ''
 page:
   403: ''
   404: ''
-  front: /front
+  front: /node/6
 admin_compact_mode: false
 weight_select_max: 100
 langcode: da

@@ -1,0 +1,44 @@
+uuid: ae823b7a-c7de-472f-99ea-25572844a5ba
+langcode: da
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.itk_image_browser
+    - field.field.paragraph.projekt_billede_galleri.field_external_link
+    - field.field.paragraph.projekt_billede_galleri.field_image_gallery
+    - paragraphs.paragraphs_type.projekt_billede_galleri
+  module:
+    - entity_browser
+    - link
+id: paragraph.projekt_billede_galleri.default
+targetEntityType: paragraph
+bundle: projekt_billede_galleri
+mode: default
+content:
+  field_external_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_image_gallery:
+    weight: 0
+    settings:
+      entity_browser: itk_image_browser
+      field_widget_display: rendered_entity
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: node_form_display
+      field_widget_edit: false
+      field_widget_replace: false
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

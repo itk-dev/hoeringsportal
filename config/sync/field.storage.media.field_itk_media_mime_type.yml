@@ -1,0 +1,26 @@
+uuid: aadef1a3-13c0-41b9-a487-1dee552a74b2
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - media_entity
+_core:
+  default_config_hash: E7g-Le37pKs-ml9fzxOTsnWxucNUXMYKEPqcr4texY0
+id: media.field_itk_media_mime_type
+field_name: field_itk_media_mime_type
+entity_type: media
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,4 +1,4 @@
-uuid: 60b2d803-3125-452e-85e5-f6f3a3d69294
+uuid: 2b24940d-f783-4097-8eae-91ecc4e28ecf
 langcode: da
 status: true
 dependencies:
@@ -21,6 +21,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: "<front>\r\n/search/*"
     negate: false
     context_mapping: {  }

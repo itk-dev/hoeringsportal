@@ -1,0 +1,211 @@
+uuid: f6afe23d-b5c0-4082-93d0-e72f26283ec2
+langcode: da
+status: true
+dependencies:
+  config:
+    - entity_browser.browser.itk_image_browser
+    - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_data
+    - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_hearing_id
+    - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_map_display
+    - field.field.node.hearing.field_media_document
+    - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_project_reference
+    - field.field.node.hearing.field_reply_deadline
+    - field.field.node.hearing.field_start_date
+    - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_video_embed
+    - node.type.hearing
+  module:
+    - datetime
+    - entity_browser
+    - field_group
+    - text
+third_party_settings:
+  field_group:
+    group_information:
+      children:
+        - field_start_date
+        - field_reply_deadline
+        - field_hearing_type
+        - field_hearing_id
+        - field_project_reference
+        - field_area
+      parent_name: ''
+      weight: 7
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: Informationer
+      region: content
+    group_system_settings:
+      children:
+        - status
+      parent_name: ''
+      weight: 9
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: Systemindstillinger
+      region: content
+    group_deskpro:
+      children:
+        - field_deskpro_department_id
+      parent_name: ''
+      weight: 8
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: true
+      label: Deskpro
+      region: content
+id: node.hearing.default
+targetEntityType: node
+bundle: hearing
+mode: default
+content:
+  field_area:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_description:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_deskpro_department_id:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hearing_id:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_hearing_type:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_map_display:
+    weight: 6
+    settings:
+      rows: 15
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_media_document:
+    weight: 3
+    settings:
+      entity_browser: itk_document_browser
+      field_widget_display: rendered_entity
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: node_form_display
+      field_widget_edit: false
+      field_widget_replace: false
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_media_image:
+    weight: 4
+    settings:
+      entity_browser: itk_image_browser
+      field_widget_display: rendered_entity
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      field_widget_display_settings:
+        view_mode: node_form_display
+      field_widget_edit: false
+      field_widget_replace: false
+    third_party_settings: {  }
+    type: entity_browser_entity_reference
+    region: content
+  field_project_reference:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_reply_deadline:
+    weight: 27
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_start_date:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_teaser:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_video_embed:
+    weight: 5
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 5
+    region: content
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_deskpro_data: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

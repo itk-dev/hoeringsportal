@@ -1,0 +1,16 @@
+# --- Administration pages routing --- #
+hoeringsportal_general.settings:
+  path: '/admin/site-setup/general'
+  defaults:
+    _form: '\Drupal\hoeringsportal_config_settings\Form\ItkGeneralSettingsForm'
+    _title: 'General'
+  requirements:
+    _permission: 'access itk admin settings'
+
+hoeringsportal_hearing.settings:
+  path: '/admin/site-setup/hearing'
+  defaults:
+    _form: '\Drupal\hoeringsportal_config_settings\Form\HearingSettingsForm'
+    _title: 'Hearing'
+  requirements:
+    _permission: 'access itk admin settings'

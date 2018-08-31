@@ -1,0 +1,21 @@
+uuid: cd27b136-f596-460a-8ce7-fdc23dee82e1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_date
+    - node.type.hearing
+  module:
+    - datetime
+id: node.hearing.field_start_date
+field_name: field_start_date
+entity_type: node
+bundle: hearing
+label: 'Start dato'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

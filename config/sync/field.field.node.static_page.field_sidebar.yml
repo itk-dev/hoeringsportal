@@ -1,4 +1,4 @@
-uuid: 07aa7473-a67c-47ac-b14c-e88fb4ccc95e
+uuid: 8dede522-c6cf-4272-b353-3194ca067013
 langcode: da
 status: true
 dependencies:
@@ -12,9 +12,9 @@ field_name: field_sidebar
 entity_type: node
 bundle: static_page
 label: Sidebar
-description: ''
+description: 'Tekst til visning i højre side på fuldskærmsvisning'
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }

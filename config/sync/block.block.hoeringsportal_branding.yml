@@ -1,5 +1,5 @@
-uuid: 4f576de7-6628-4946-b68d-ffc6ac1fcbdb
-langcode: da
+uuid: c0a280e3-7786-4969-820d-2c8aa101f865
+langcode: en
 status: true
 dependencies:
   module:
@@ -16,7 +16,7 @@ provider: null
 plugin: system_branding_block
 settings:
   id: system_branding_block
-  label: 'Site branding'
+  label: 'Aarhus kommune'
   provider: system
   label_display: '0'
   use_site_logo: true

@@ -1,0 +1,67 @@
+uuid: f25febce-8340-46cd-a3e5-7616e932e36b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.teaser_row.field_paragraph_title
+    - field.field.paragraph.teaser_row.field_project_hearing_1
+    - field.field.paragraph.teaser_row.field_project_hearing_2
+    - field.field.paragraph.teaser_row.field_project_hearing_3
+    - field.field.paragraph.teaser_row.field_static_pages
+    - field.field.paragraph.teaser_row.field_type
+    - paragraphs.paragraphs_type.teaser_row
+  module:
+    - ds
+id: paragraph.teaser_row.default
+targetEntityType: paragraph
+bundle: teaser_row
+mode: default
+content:
+  field_paragraph_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_project_hearing_1:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_project_hearing_2:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_project_hearing_3:
+    weight: 3
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_static_pages:
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: content
+hidden:
+  field_type: true

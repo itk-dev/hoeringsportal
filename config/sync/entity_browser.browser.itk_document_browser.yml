@@ -1,0 +1,47 @@
+uuid: de5c6d49-822c-45b2-a421-06f2517bf317
+langcode: da
+status: true
+dependencies:
+  config:
+    - views.view.itk_media_browser
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - entity_browser_entity_form
+    - views
+_core:
+  default_config_hash: WzFC4Bx_1A_N4fCxklPGkaCaS7oySfakUHpnF8Y0io4
+name: itk_document_browser
+label: 'ITK document browser'
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Select entities'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1:
+    settings:
+      view: itk_media_browser
+      view_display: entity_browser_4
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: 0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1
+    weight: 1
+    label: Overblik
+    id: view
+  faf405e2-6823-4521-b564-698424677624:
+    settings:
+      entity_type: media
+      bundle: document
+      form_mode: default
+      submit_text: 'Upload document to media library'
+    uuid: faf405e2-6823-4521-b564-698424677624
+    weight: 2
+    label: 'Upload new document'
+    id: entity_form

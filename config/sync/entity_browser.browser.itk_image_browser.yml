@@ -1,0 +1,47 @@
+uuid: 274fdb96-867c-4aea-9e33-d29befe3b24d
+langcode: da
+status: true
+dependencies:
+  config:
+    - views.view.itk_media_browser
+  enforced:
+    module:
+      - itk_media_entity
+  module:
+    - entity_browser_entity_form
+    - views
+_core:
+  default_config_hash: XGhDZbjTFoQ_nYqlumMYHxQcAhWkSQxTw0ssb38RvzE
+name: itk_image_browser
+label: 'ITK image browser'
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Select entities'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  11d1e481-b183-49c7-b727-0f0e12950bfc:
+    settings:
+      view: itk_media_browser
+      view_display: entity_browser_2
+      submit_text: 'Select entities'
+      auto_select: false
+    uuid: 11d1e481-b183-49c7-b727-0f0e12950bfc
+    weight: 1
+    label: Overblik
+    id: view
+  ea5ee6d6-e3f2-48b8-be8c-99ec28653c04:
+    settings:
+      entity_type: media
+      bundle: image
+      form_mode: default
+      submit_text: 'Upload image to media library'
+    uuid: ea5ee6d6-e3f2-48b8-be8c-99ec28653c04
+    weight: 3
+    label: 'Upload new image'
+    id: entity_form

@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Høringsportal forms.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * Tell drupal where to find the custom node form templates.
+ */
+function hoeringsportal_content_blocks_theme($existing, $type, $theme, $path) {
+  return [
+    'hoeringsportal_hearing_type_address' => [
+      'variables' => ['config' => NULL],
+      'template' => 'hoeringsportal-hearing-type-address',
+    ],
+    'hoeringsportal_hearing_type_more_info' => [
+      'variables' => ['config' => NULL],
+      'template' => 'hoeringsportal-hearing-type-more-info',
+    ],
+    'hoeringsportal_hearing_warning' => [
+      'variables' => ['config' => NULL],
+      'template' => 'hoeringsportal-hearing-warning',
+    ],
+  ];
+}

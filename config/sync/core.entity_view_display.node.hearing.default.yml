@@ -1,0 +1,222 @@
+uuid: c73fc04d-710c-4ee2-9cc6-4afe0792ec65
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_data
+    - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_hearing_id
+    - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_map_display
+    - field.field.node.hearing.field_media_document
+    - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_project_reference
+    - field.field.node.hearing.field_reply_deadline
+    - field.field.node.hearing.field_start_date
+    - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_video_embed
+    - node.type.hearing
+  module:
+    - datetime
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      header:
+        - 'dynamic_block_field:node-hearing_warning'
+        - node_title
+      left:
+        - field_teaser
+        - field_description
+        - field_media_document
+        - field_media_image
+        - field_video_embed
+        - 'dynamic_block_field:node-hearing_tickets'
+        - node_changed_date
+      right:
+        - 'dynamic_block_field:node-quicklinks'
+        - 'dynamic_token_field:node-header_information'
+        - field_start_date
+        - field_reply_deadline
+        - field_hearing_type
+        - field_hearing_id
+        - field_project_reference
+        - 'dynamic_block_field:node-node_address'
+        - 'dynamic_block_field:node-node_more_info'
+      footer:
+        - field_map_display
+        - 'dynamic_block_field:node-nearest_hearings'
+    fields:
+      'dynamic_block_field:node-hearing_tickets':
+        plugin_id: 'dynamic_block_field:node-hearing_tickets'
+        weight: 7
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-hearing_warning':
+        plugin_id: 'dynamic_block_field:node-hearing_warning'
+        weight: 0
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-nearest_hearings':
+        plugin_id: 'dynamic_block_field:node-nearest_hearings'
+        weight: 19
+        label: above
+        formatter: default
+      'dynamic_block_field:node-node_address':
+        plugin_id: 'dynamic_block_field:node-node_address'
+        weight: 16
+        label: above
+        formatter: default
+      'dynamic_block_field:node-node_more_info':
+        plugin_id: 'dynamic_block_field:node-node_more_info'
+        weight: 17
+        label: above
+        formatter: default
+      'dynamic_block_field:node-quicklinks':
+        plugin_id: 'dynamic_block_field:node-quicklinks'
+        weight: 9
+        label: above
+        formatter: default
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 10
+        label: hidden
+        formatter: default
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 8
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
+id: node.hearing.default
+targetEntityType: node
+bundle: hearing
+mode: default
+content:
+  field_description:
+    type: text_default
+    weight: 3
+    region: left
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_hearing_id:
+    type: string
+    weight: 14
+    region: right
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_hearing_type:
+    type: entity_reference_label
+    weight: 13
+    region: right
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_map_display:
+    type: basic_string
+    weight: 18
+    region: footer
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_media_document:
+    type: entity_reference_entity_view
+    weight: 4
+    region: left
+    label: above
+    settings:
+      view_mode: material_display
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+  field_media_image:
+    weight: 5
+    label: hidden
+    settings:
+      view_mode: material_display
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: left
+  field_project_reference:
+    type: entity_reference_label
+    weight: 15
+    region: right
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  field_reply_deadline:
+    type: datetime_default
+    weight: 12
+    region: right
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: short
+    third_party_settings: {  }
+  field_start_date:
+    weight: 11
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: short
+    third_party_settings: {  }
+    type: datetime_default
+    region: right
+  field_teaser:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: left
+  field_video_embed:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: left
+hidden:
+  field_area: true
+  field_deskpro_data: true
+  field_deskpro_department_id: true
+  langcode: true
+  links: true

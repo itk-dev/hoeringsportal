@@ -1,0 +1,33 @@
+uuid: 3446a24e-a1c7-4d26-b1da-a38c26993ec0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.content_list.field_content_list
+    - field.field.paragraph.content_list.field_list_title
+    - paragraphs.paragraphs_type.content_list
+  module:
+    - viewsreference
+id: paragraph.content_list.default
+targetEntityType: paragraph
+bundle: content_list
+mode: default
+content:
+  field_content_list:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    type: viewsreference_select
+    region: content
+  field_list_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

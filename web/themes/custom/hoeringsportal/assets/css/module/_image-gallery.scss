@@ -1,0 +1,58 @@
+.image-gallery {
+  .media {
+    margin-bottom: $spacer;
+
+    @include media-breakpoint-up(lg) {
+      min-height: 100px;
+      max-height: 128px;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  picture {
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding-bottom: 100%;
+    }
+  }
+}
+
+.image-gallery-link {
+  background: $primary;
+  color: $white;
+  display: block;
+  line-height: 1.2rem;
+  padding: $spacer;
+  text-align: center;
+
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+
+  .fa-images-wrapper {
+    height: 29px;
+    margin: .5rem 0;
+  }
+
+  .fa-images {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 2rem;
+  }
+}
+
+.gallery-see-more {
+  max-height: 128px;
+  overflow: hidden;
+}
+
+.ui-dialog {
+  z-index: 1040;
+  max-width: 90%;
+}

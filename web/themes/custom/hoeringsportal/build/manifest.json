@@ -1,4 +1,6 @@
 {
+  "build/show-map.js": "/build/show-map.js",
+  "build/show-map.css": "/build/show-map.css",
   "build/hoeringsportal.js": "/build/hoeringsportal.js",
   "build/hoeringsportal.css": "/build/hoeringsportal.css"
 }

@@ -1,0 +1,4 @@
+services:
+  itk_admin.itk_config:
+    class: Drupal\itk_admin\State\BaseConfig
+    arguments: ['@serialization.json', '@database']

@@ -1,0 +1,10 @@
+uuid: e5fb279c-0646-49c7-9461-8f1cfade67b5
+langcode: da
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.material_display
+label: 'Material display'
+targetEntityType: media
+cache: true

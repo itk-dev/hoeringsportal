@@ -1,0 +1,9 @@
+uuid: be5094c7-c381-44f0-9c04-c0cff04044e6
+langcode: da
+status: true
+dependencies: {  }
+name: Område
+vid: area
+description: 'Området vises i teaservisningen og kan bruges som filter på oversigter'
+hierarchy: 0
+weight: 0

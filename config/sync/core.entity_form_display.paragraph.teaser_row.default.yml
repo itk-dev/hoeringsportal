@@ -1,0 +1,71 @@
+uuid: c57bef82-dcc1-462a-accd-76208399fa7e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.teaser_row.field_paragraph_title
+    - field.field.paragraph.teaser_row.field_project_hearing_1
+    - field.field.paragraph.teaser_row.field_project_hearing_2
+    - field.field.paragraph.teaser_row.field_project_hearing_3
+    - field.field.paragraph.teaser_row.field_static_pages
+    - field.field.paragraph.teaser_row.field_type
+    - paragraphs.paragraphs_type.teaser_row
+id: paragraph.teaser_row.default
+targetEntityType: paragraph
+bundle: teaser_row
+mode: default
+content:
+  field_paragraph_title:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_project_hearing_1:
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_project_hearing_2:
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_project_hearing_3:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_static_pages:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_type:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

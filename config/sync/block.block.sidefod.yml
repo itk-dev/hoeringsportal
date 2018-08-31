@@ -1,4 +1,4 @@
-uuid: b1e40abc-dc40-47eb-b118-d78cce2b3dbc
+uuid: 3493db91-3358-422f-a32e-a10c007b6a03
 langcode: da
 status: true
 dependencies:
@@ -11,7 +11,7 @@ dependencies:
 id: sidefod
 theme: hoeringsportal
 region: footer
-weight: -3
+weight: 0
 provider: null
 plugin: 'system_menu_block:footer'
 settings:
@@ -20,5 +20,5 @@ settings:
   provider: system
   label_display: '0'
   level: 1
-  depth: 0
+  depth: 1
 visibility: {  }

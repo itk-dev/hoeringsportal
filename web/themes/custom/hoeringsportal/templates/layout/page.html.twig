@@ -44,7 +44,8 @@
  */
 #}
 
-<nav class="navbar fixed-top navbar-expand-md navbar-light bg-white justify-content-between">
+{# TODO: Move <nav> into its own template since its a copy from page.html.twig #}
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
   <div class="container">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#block-primaernavigation" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -53,46 +54,15 @@
   </div>
 </nav>
 
+
 {% if page.hero %}
   {{ page.hero }}
 {% endif %}
-
 <div class="container">
-  <div class="row"  >
-    <main class="col-md-12" role="main">
-      <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-      <div class="layout-content">
-        {{ page.title }}
-        {{ page.content }}
-
-        {% if page.sidebar %}
-          {{ page.sidebar }}
-        {% endif %}
-      </div>{# /.layout-content #}
-    </main>
-  </div>
-</div>{# /.layout-container #}
-<div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-3">
-        {# TODO: Content should be editable from admin #}
-        <h4>Aarhus Kommune</h4>
-        <p>Kultur & Borgerservice<br>
-           Hack Kampmanns Plads 2<br>
-           8000 Aarhus C<br>
-        </p>
-        <h5>TLF. 89 40 22 22</h5>
-        {# TODO: White logo from theme. Insert as svg and apply color from stylesheet #}
-        <p><img src="{{ base_path ~ directory }}/static/images/aak_kb_logo_negative.svg" alt="Aarhus Kommune Kultur og Borgerservice"></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12 permalinks">
-        {% if page.footer %}
-          {{ page.footer }}
-        {% endif %}
-      </div>
-    </div>
-  </div>
+  {{ page.content }}
 </div>
+{% if page.sidebar %}
+  {{ page.sidebar }}
+{% endif %}
+
+{{ page.footer }}

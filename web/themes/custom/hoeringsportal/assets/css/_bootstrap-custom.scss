@@ -1,3 +1,10 @@
+/* Set container max widths only on lg and xl to utilize more of the screen on small devices */
+$container-max-widths: (
+  lg: 960px,
+  xl: 1140px
+);
+
+/* stylelint-disable color-no-hex */
 $white:    #fff;
 $gray-100: #f6f6f6;
 $gray-200: #eaeaea;
@@ -46,20 +53,27 @@ $red:                               #d32f2f;
 $red-light:                         #f2c0c0;
 
 // Set primary color
-$primary: $blue;
+$primary: $petroleum;
 
 // Set primary color
-$secondary: $pink;
+$secondary: $black;
+/* stylelint-enable */
 
 // Set default font
-$font-family-sans-serif: Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
+$font-family-sans-serif:      Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
+$headings-font-family:        "Arial Black", Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
 
-$font-size-base: 1.125rem;
-$lead-font-size: 1.625rem;
+$spacer: 1rem;
+
+$headings-margin-bottom:      $spacer;
+$headings-margin-top:         $spacer;
+
+$font-size-base: 1rem;
+$lead-font-size: 1.3rem;
 $lead-font-weight: 400;
 
 $h1-font-size:                $font-size-base * 2.2;
-$h2-font-size:                $font-size-base * 2;
+$h2-font-size:                $font-size-base * 1.4;
 $h3-font-size:                $font-size-base * 1.2;
 $h4-font-size:                $font-size-base * 1.1;
 $h5-font-size:                $font-size-base * 1.0;

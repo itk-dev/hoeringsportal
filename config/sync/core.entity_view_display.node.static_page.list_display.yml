@@ -1,0 +1,27 @@
+uuid: 432f258b-f036-4c0a-a047-0972a85f55be
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_display
+    - field.field.node.static_page.field_teaser
+    - field.field.node.static_page.field_teaser_color
+    - node.type.static_page
+  module:
+    - user
+id: node.static_page.list_display
+targetEntityType: node
+bundle: static_page
+mode: list_display
+content:
+  field_teaser:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden:
+  field_teaser_color: true
+  langcode: true
+  links: true

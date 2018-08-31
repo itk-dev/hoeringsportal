@@ -1,0 +1,28 @@
+uuid: 008b01b9-80e8-4b53-8b10-98ddba5d98b5
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_image_gallery
+    - media_entity.bundle.image
+    - paragraphs.paragraphs_type.projekt_billede_galleri
+id: paragraph.projekt_billede_galleri.field_image_gallery
+field_name: field_image_gallery
+entity_type: paragraph
+bundle: projekt_billede_galleri
+label: Billedegalleri
+description: 'Der kan max uploades 5 billeder til galleriet. Hvis du har flere billede bør du tilføje dem til et eksternt galleri og linke dertil i feltet herunder.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

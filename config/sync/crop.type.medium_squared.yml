@@ -1,0 +1,12 @@
+uuid: b9ad8c9c-c68d-4a45-a907-3e18cb68a6d8
+langcode: da
+status: true
+dependencies: {  }
+label: 'Medium kvadratisk'
+id: medium_squared
+description: 'Anvendt til visning af materialer'
+aspect_ratio: '330:330'
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: 330
+hard_limit_height: 330

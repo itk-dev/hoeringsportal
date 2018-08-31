@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Rebuilt assets if js or scss files are changed.
+if git status --short | grep '^M.*\.\(scs\|j\)s$'; then
+  cd web/themes/custom/hoeringsportal/
+  ./node_modules/.bin/encore production
+  git add build/
+  cd -
+fi
+
+if ! composer check-coding-standards; then
+  cat >&2 << EOF
+Please fix any coding standards issues before commit'ing!
+EOF
+  exit 87
+fi
+
+if ! npm run --prefix web/themes/custom/hoeringsportal check-coding-standards; then
+  cat >&2 << EOF
+Please fix any coding standards issues before commit'ing!
+EOF
+  exit 87
+fi
+
+exit 0

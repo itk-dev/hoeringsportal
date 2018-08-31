@@ -1,0 +1,12 @@
+uuid: 97f35e44-f505-453c-bd28-07eb35265531
+langcode: da
+status: true
+dependencies: {  }
+label: 'Teaser display'
+id: teaser_display
+description: 'Visningen der anvendes når billedet vises som del af en teaser'
+aspect_ratio: ''
+soft_limit_width: null
+soft_limit_height: null
+hard_limit_width: 540
+hard_limit_height: 200

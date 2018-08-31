@@ -1,0 +1,183 @@
+uuid: 92384bf2-3974-46c7-96e2-d396f92f15e3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.project.field_activities
+    - field.field.node.project.field_area
+    - field.field.node.project.field_contact
+    - field.field.node.project.field_description
+    - field.field.node.project.field_email
+    - field.field.node.project.field_image_gallery_ref
+    - field.field.node.project.field_map_display
+    - field.field.node.project.field_media_image
+    - field.field.node.project.field_phone
+    - field.field.node.project.field_project_finish
+    - field.field.node.project.field_project_label
+    - field.field.node.project.field_project_start
+    - field.field.node.project.field_related_content
+    - field.field.node.project.field_teaser
+    - node.type.project
+  module:
+    - datetime
+    - ds
+    - entity_reference_revisions
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      header:
+        - node_title
+        - field_media_image
+      left:
+        - field_teaser
+        - field_description
+        - node_changed_date
+      right:
+        - field_project_start
+        - field_project_finish
+        - field_contact
+        - field_phone
+        - field_email
+      footer:
+        - field_image_gallery_ref
+        - field_map_display
+        - 'dynamic_block_field:node-participate'
+        - field_related_content
+    fields:
+      'dynamic_block_field:node-participate':
+        plugin_id: 'dynamic_block_field:node-participate'
+        weight: 12
+        label: above
+        formatter: default
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 4
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
+id: node.project.default
+targetEntityType: node
+bundle: project
+mode: default
+content:
+  field_contact:
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
+  field_description:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: left
+  field_email:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: right
+  field_image_gallery_ref:
+    type: entity_reference_revisions_entity_view
+    weight: 10
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: footer
+  field_map_display:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: footer
+  field_media_image:
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: content_display
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: header
+  field_phone:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: right
+  field_project_finish:
+    weight: 6
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_plain
+    region: right
+  field_project_start:
+    weight: 5
+    label: above
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_plain
+    region: right
+  field_related_content:
+    weight: 13
+    label: above
+    settings:
+      view_mode: teaser
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+    type: entity_reference_entity_view
+    region: footer
+  field_teaser:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: left
+hidden:
+  field_activities: true
+  field_area: true
+  field_project_label: true
+  langcode: true
+  links: true

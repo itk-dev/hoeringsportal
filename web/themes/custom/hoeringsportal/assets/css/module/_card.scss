@@ -1,0 +1,57 @@
+.card {
+  background: $gray-100;
+  color: $gray-900;
+  text-decoration: none;
+  height: 100%;
+
+  .fa-arrow-right {
+    color: $primary;
+    font-size: 1rem;
+    @include transition-std(transform, ease-in, 200ms);
+  }
+
+  &:hover {
+    .fa-arrow-right {
+      @include transition-std(transform, ease-out, 400ms);
+      @include move-link-right();
+    }
+    text-decoration: none;
+  }
+
+  &-header {
+    background: $gray-100;
+    font-size: 1.3rem;
+  }
+
+  .card-img-top {
+    height: 10rem;
+    background-size: cover;
+    background-position: center center;
+  }
+  .card-body {
+    padding-top: 0;
+    padding-bottom: 0;
+    text-decoration: none;
+    min-height: 5rem;
+  }
+
+  .card-footer {
+    background: $gray-100;
+    color: $gray-700;
+    font-size: .7rem;
+    font-weight: 600;
+  }
+
+  img {
+    width: 100%;
+  }
+  &.hearing-ticket {
+    margin-bottom: $spacer;
+    .card-header {
+      padding-top: 0;
+    }
+    .card-body {
+      min-height: auto;
+    }
+  }
+}

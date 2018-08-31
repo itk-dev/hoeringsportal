@@ -1,0 +1,24 @@
+uuid: 9380dab3-c605-4e5a-b625-c474f5b8422e
+langcode: da
+status: true
+dependencies: {  }
+id: editor
+label: Redaktør
+weight: -8
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'create hearing content'
+  - 'create project content'
+  - 'create static_page content'
+  - 'delete own hearing content'
+  - 'delete own project content'
+  - 'delete own static_page content'
+  - 'edit any hearing content'
+  - 'edit any project content'
+  - 'edit any static_page content'
+  - 'edit own hearing content'
+  - 'edit own project content'
+  - 'edit own static_page content'
+  - 'view own unpublished content'
+  - 'view the administration theme'

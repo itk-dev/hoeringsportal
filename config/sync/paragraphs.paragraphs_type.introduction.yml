@@ -1,0 +1,9 @@
+uuid: b38c2c8c-98db-471d-908c-55e896503383
+langcode: da
+status: true
+dependencies: {  }
+id: introduction
+label: Introduktion
+icon_uuid: null
+description: 'En simpel introduktionstekst med mulighed for header og link'
+behavior_plugins: {  }

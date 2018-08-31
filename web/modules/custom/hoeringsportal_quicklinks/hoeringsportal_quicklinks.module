@@ -1,0 +1,20 @@
+<?php
+
+/**
+ * @file
+ * Contains hoeringsportal_quicklinks.module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_quicklinks_theme() {
+  return [
+    'hoeringsportal_quicklinks' => [
+      'template' => 'hoeringsportal-quicklinks',
+      'variables' => [
+        'node' => NULL,
+      ],
+    ],
+  ];
+}

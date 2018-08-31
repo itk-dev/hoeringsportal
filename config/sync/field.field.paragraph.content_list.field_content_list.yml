@@ -1,0 +1,50 @@
+uuid: d814488f-5a48-450e-824a-2192627e154d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content_list
+    - paragraphs.paragraphs_type.content_list
+    - views.view.all_hearings
+  module:
+    - viewsreference
+id: paragraph.content_list.field_content_list
+field_name: field_content_list
+entity_type: paragraph
+bundle: content_list
+label: Indholdsliste
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    options:
+      title: 0
+      argument: ''
+    display_id: default
+    argument: null
+    title: 0
+    data: null
+    target_uuid: da3c6d29-0069-474d-ac19-126a479bf56c
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: 0
+  plugin_types:
+    default: default
+    page: 0
+    entity_browser: 0
+  preselect_views:
+    all_hearings: all_hearings
+    all_projects: all_projects
+    block_content: 0
+    content: 0
+    files: 0
+    itk_media: 0
+    itk_media_browser: 0
+    media: 0
+    user_admin_people: 0
+    watchdog: 0
+field_type: viewsreference

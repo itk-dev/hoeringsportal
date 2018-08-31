@@ -1,0 +1,43 @@
+uuid: 783ed1b0-5eab-4714-8e13-8260c3c7e864
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.hearing_type.field_contact
+    - field.field.taxonomy_term.hearing_type.field_more_info
+    - taxonomy.vocabulary.hearing_type
+  module:
+    - text
+id: taxonomy_term.hearing_type.default
+targetEntityType: taxonomy_term
+bundle: hearing_type
+mode: default
+content:
+  field_contact:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_more_info:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
