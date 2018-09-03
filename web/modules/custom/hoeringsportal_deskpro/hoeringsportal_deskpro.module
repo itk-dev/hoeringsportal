@@ -37,6 +37,7 @@ function hoeringsportal_deskpro_theme() {
         'node' => NULL,
         'is_deadline_passed' => NULL,
         'tickets' => NULL,
+        'is_hearing_started' => NULL,
       ],
     ],
     'hoeringsportal_hearing_ticket' => [

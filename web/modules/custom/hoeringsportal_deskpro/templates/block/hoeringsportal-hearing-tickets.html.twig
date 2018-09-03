@@ -16,7 +16,7 @@
       <h2>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h2>
     </div>
     <div class="col-md-6">
-      {% if not is_deadline_passed %}
+      {% if not is_deadline_passed and is_hearing_started %}
         <div class="float-md-right">
           <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary mt-md-3">
             {{ 'Add hearing ticket'|trans }}

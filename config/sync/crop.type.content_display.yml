@@ -5,7 +5,7 @@ dependencies: {  }
 label: Indholdsvisning
 id: content_display
 description: 'Visningen der anvendes når billedet vises på det fulde indholdselement'
-aspect_ratio: ''
+aspect_ratio: '1440:300'
 soft_limit_width: null
 soft_limit_height: null
 hard_limit_width: 1440

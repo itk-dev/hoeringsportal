@@ -2,6 +2,8 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
+use Drupal\Core\Datetime\DrupalDateTime;
+
 /**
  * Provides a 'Hearing tickets' Block.
  *
@@ -19,7 +21,10 @@ class HearingTicketsBlock extends BlockBase {
   public function build() {
     /** @var \Drupal\node\NodeInterface $node */
     $node = $this->routeMatch->getParameter('node');
-
+    $start_date = isset($node->field_start_date->date) ? $node->field_start_date->date->getTimestamp() : FALSE;
+    $now = new DrupalDateTime('now');
+    $now_timestamp = $now->getTimestamp();
+    $is_hearing_started = (!empty($start_date) && $now_timestamp > $start_date) ? TRUE : FALSE;
     if (!$this->helper->isHearing($node)) {
       return NULL;
     }
@@ -29,6 +34,7 @@ class HearingTicketsBlock extends BlockBase {
       '#node' => $node,
       '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
       '#tickets' => $this->helper->getHearingTickets($node),
+      '#is_hearing_started' => $is_hearing_started,
     ];
   }
 

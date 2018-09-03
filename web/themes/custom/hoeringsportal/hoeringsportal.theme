@@ -174,3 +174,12 @@ function hoeringsportal_preprocess_region__footer(&$variables) {
     $variables['footer_text'] = $config->get('footer_text');
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hoeringsportal_theme_suggestions_responsive_image_alter(array &$suggestions, array $variables) {
+  if ($variables['responsive_image_style_id'] == 'content_image') {
+    $suggestions[] = 'responsive_image__hero';
+  }
+}

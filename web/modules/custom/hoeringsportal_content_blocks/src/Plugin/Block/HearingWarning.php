@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_content_blocks\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Provides hearing warning block content.
@@ -32,16 +33,17 @@ class HearingWarning extends BlockBase {
     // Get current node.
     $node = \Drupal::routeMatch()->getParameter('node');
     if (isset($node) && $node->hasField('field_reply_deadline')) {
-      $field_reply_deadline = $node->field_reply_deadline->getValue();
-      $start_date = isset($node->field_start_date->value) ? strtotime($node->field_start_date->getValue()['0']['value']) : FALSE;
       // Set reply deadline.
-      $reply_deadline = isset($field_reply_deadline->value) ? strtotime($field_reply_deadline['0']['value']) : FALSE;
-      $current_date = time();
+      $reply_deadline = $node->field_reply_deadline->date->getTimestamp();
+      $start_date = isset($node->field_start_date->value) ? $node->field_start_date->date->getTimestamp() : FALSE;
+      $now = new DrupalDateTime('now');
+      $now_timestamp = $now->getTimestamp();
+      // Set template variables.
       if ($reply_deadline) {
         // Calculate if we should show a warning.
-        if ($reply_deadline - $current_date < $deadline_hours * 3600 || $current_date < $start_date) {
-          $config['not_started'] = ($current_date < $start_date) ? TRUE : FALSE;
-          $config['deadline_passed'] = ($current_date > $reply_deadline) ? TRUE : FALSE;
+        if ($reply_deadline - $now_timestamp < $deadline_hours * 3600 || $now_timestamp < $start_date) {
+          $config['not_started'] = ($now_timestamp < $start_date) ? TRUE : FALSE;
+          $config['deadline_passed'] = ($now_timestamp > $reply_deadline) ? TRUE : FALSE;
           return [
             '#type' => 'markup',
             '#theme' => 'hoeringsportal_hearing_warning',
