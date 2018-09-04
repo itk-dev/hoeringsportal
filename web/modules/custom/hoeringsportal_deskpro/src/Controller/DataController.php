@@ -52,10 +52,10 @@ class DataController extends ControllerBase implements AccessInterface {
   /**
    * Hearing tickets.
    */
-  public function syncronizeHearing(Request $request) {
+  public function synchronizeHearing(Request $request) {
     try {
       $data = json_decode($request->getContent(), TRUE);
-      $result = $this->helper->syncronizeHearing($data);
+      $result = $this->helper->synchronizeHearing($data);
 
       return new JsonResponse($result);
     }
@@ -65,11 +65,11 @@ class DataController extends ControllerBase implements AccessInterface {
   }
 
   /**
-   * Syncronize hearing data from Deskpro.
+   * Synchronize hearing data from Deskpro.
    *
    * @see https://www.drupal.org/node/2122195
    */
-  public function syncronizeHearingAccess(Request $request) {
+  public function synchronizeHearingAccess(Request $request) {
     $token = $request->headers->get('x-deskpro-token');
     return $this->deskpro->isValidToken($token) ? new AccessResultAllowed() : new AccessResultForbidden();
   }
