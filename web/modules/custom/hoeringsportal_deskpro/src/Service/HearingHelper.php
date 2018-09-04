@@ -160,7 +160,7 @@ class HearingHelper {
   /**
    * Get data from Deskpro and store in hearing node.
    */
-  public function syncronizeHearing(array $payload = NULL) {
+  public function synchronizeHearing(array $payload = NULL) {
     $hearingIdfieldName = 'field' . $this->deskpro->getTicketHearingIdFieldId();
     if (!isset($payload['ticket'][$hearingIdfieldName])) {
       throw new \Exception('Invalid data');

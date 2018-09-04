@@ -17,16 +17,16 @@ hoeringsportal_deskpro.hearing.ticket_view:
     _entity_access: 'node.view'
 
 # Data syncronization
-hoeringsportal_deskpro.data.syncronize.hearing:
-  path: '/hoeringsportal_deskpro/data/syncronize/hearing'
+hoeringsportal_deskpro.data.synchronize.hearing:
+  path: '/hoeringsportal_deskpro/data/synchronize/hearing'
   defaults:
-    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearing'
-    _title: 'Syncronize hearing'
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\DataController::synchronizeHearing'
+    _title: 'Synchronize hearing'
   methods: [POST]
   requirements:
     _format: json
     # @see https://www.drupal.org/project/drupal/issues/2786941
-    _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::syncronizeHearingAccess'
+    _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::synchronizeHearingAccess'
     # _test_access_check: 'TRUE'
   options:
     no_cache: true
