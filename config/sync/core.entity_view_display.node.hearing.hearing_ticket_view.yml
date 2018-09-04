@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
     - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_video_embed
     - node.type.hearing
   module:
     - datetime
@@ -43,25 +44,53 @@ third_party_settings:
           layout_class: {  }
     regions:
       header:
-        - node_title
+        - 'dynamic_block_field:node-hearing_ticket_title'
       left:
+        - node_title
         - 'dynamic_block_field:node-hearing_ticket'
       right:
+        - 'dynamic_token_field:node-header_information'
         - field_start_date
         - field_reply_deadline
         - field_hearing_type
         - field_project_reference
+        - 'dynamic_block_field:node-node_address'
+        - 'dynamic_block_field:node-node_more_info'
     fields:
       'dynamic_block_field:node-hearing_ticket':
         plugin_id: 'dynamic_block_field:node-hearing_ticket'
-        weight: 1
+        weight: 2
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-hearing_ticket_title':
+        plugin_id: 'dynamic_block_field:node-hearing_ticket_title'
+        weight: 0
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-node_address':
+        plugin_id: 'dynamic_block_field:node-node_address'
+        weight: 8
+        label: above
+        formatter: default
+      'dynamic_block_field:node-node_more_info':
+        plugin_id: 'dynamic_block_field:node-node_more_info'
+        weight: 9
+        label: above
+        formatter: default
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 3
         label: hidden
         formatter: default
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
+        settings:
+          link: true
+          wrapper: ''
+          class: ''
 id: node.hearing.hearing_ticket_view
 targetEntityType: node
 bundle: hearing
@@ -69,7 +98,7 @@ mode: hearing_ticket_view
 content:
   field_hearing_type:
     type: entity_reference_label
-    weight: 4
+    weight: 6
     region: right
     label: above
     settings:
@@ -77,7 +106,7 @@ content:
     third_party_settings: {  }
   field_project_reference:
     type: entity_reference_label
-    weight: 5
+    weight: 7
     region: right
     label: above
     settings:
@@ -85,21 +114,21 @@ content:
     third_party_settings: {  }
   field_reply_deadline:
     type: datetime_default
-    weight: 3
+    weight: 5
     region: right
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: short
     third_party_settings: {  }
   field_start_date:
     type: datetime_default
-    weight: 2
+    weight: 4
     region: right
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: short
     third_party_settings: {  }
 hidden:
   field_area: true

@@ -49,6 +49,15 @@ function hoeringsportal_deskpro_theme() {
         'ticket_attachments' => NULL,
       ],
     ],
+    'hoeringsportal_hearing_ticket_title' => [
+      'template' => 'block/hoeringsportal-hearing-ticket-title',
+      'variables' => [
+        'node' => NULL,
+        'ticket' => NULL,
+        'ticket_messages' => NULL,
+        'ticket_attachments' => NULL,
+      ],
+    ],
   ];
 }
 

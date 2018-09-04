@@ -86,6 +86,7 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
 
     $suggestions[] = 'field__' . $variables['element']['#field_name'] . '__' .
       $variables['element']['#view_mode'];
+
   }
 
   if ($hook == 'responsive_image') {

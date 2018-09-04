@@ -26,7 +26,7 @@
   {{ title_suffix.contextual_links }}
 
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
-    <div class="hero hero--image-right">
+    <div class="hero hero--no-image">
       {{ header }}
     </div>
   </{{ header_wrapper }}>
@@ -34,6 +34,7 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
+          {{ left }}
           {{ deskpro_ticket_form(node) }}
         </div>
       </{{ left_wrapper }}>
