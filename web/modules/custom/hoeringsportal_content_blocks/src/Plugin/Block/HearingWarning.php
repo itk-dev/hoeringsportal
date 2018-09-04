@@ -32,7 +32,7 @@ class HearingWarning extends BlockBase {
     }
     // Get current node.
     $node = \Drupal::routeMatch()->getParameter('node');
-    if (isset($node) && $node->hasField('field_reply_deadline')) {
+    if (isset($node) && $node->field_reply_deadline->date) {
       // Set reply deadline.
       $reply_deadline = $node->field_reply_deadline->date->getTimestamp();
       $start_date = isset($node->field_start_date->value) ? $node->field_start_date->date->getTimestamp() : FALSE;
