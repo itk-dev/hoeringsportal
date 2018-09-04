@@ -1,0 +1,22 @@
+uuid: 2eb5a418-ea23-4d1b-938e-7a42038c4da4
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: initiative
+label: Initiative
+type: 'canonical_entities:node'
+pattern: 'initiativ/[node:title]'
+selection_criteria:
+  8a2411c8-3d05-4591-b227-d669f3395411:
+    id: node_type
+    bundles:
+      project: project
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 8a2411c8-3d05-4591-b227-d669f3395411
+selection_logic: and
+weight: -5
+relationships: {  }
