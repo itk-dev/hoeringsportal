@@ -29,3 +29,10 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
 ## API
 
 Check out `/hoeringsportal_deskpro/api/docs` for details.
+
+## Drush commands
+
+```
+hoeringsportal:deskpro:synchronize-data     Synchronizes hearing data with Deskpro.
+hoeringsportal:deskpro:synchronize-endpoint Shows information on data synchronization endpoint.
+```

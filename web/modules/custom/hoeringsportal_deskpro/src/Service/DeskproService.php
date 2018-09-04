@@ -299,6 +299,13 @@ class DeskproService {
   }
 
   /**
+   * Get the Deskpro token.
+   */
+  public function getToken() {
+    return $this->configuration['x-deskpro-token'];
+  }
+
+  /**
    * Get hearing id field id.
    */
   public function getTicketHearingIdFieldId() {
