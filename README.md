@@ -1,6 +1,36 @@
 # Høringsportal
 
+## Configuration
+
+Check out
+[`web/modules/custom/hoeringsportal_deskpro/README.md`](web/modules/custom/hoeringsportal_deskpro/README.md)
+for details on configuring the Deskpro integration.
+
+### SAML settings
+
+Add this to `settings.local.php` and edit to match your actual setup.
+
+```php
+// IDP configuration
+$config['samlauth.authentication']['idp_single_log_out_service'] = 'IDP single log out service url';
+$config['samlauth.authentication']['idp_single_sign_on_service'] = 'IDP single sign on service url';
+$config['samlauth.authentication']['idp_x509_certificate'] = 'IDP x509 certificate';
+// Setting of this depends on your IDP
+$config['samlauth.authentication']['security_request_authn_context'] = false;
+
+// SP configuration
+$config['samlauth.authentication']['sp_entity_id'] = 'SP entity id';
+
+// Load certificate and key from certs folder.
+$config['samlauth.authentication']['sp_cert_folder'] = __DIR__;
+// Alternatively, set certificate and key here.
+// $config['samlauth.authentication']['sp_x509_certificate'] = 'SP x509 certificate';
+// $config['samlauth.authentication']['sp_private_key'] = 'SP private key';
+```
+
+
 ## Installation
+
 
 ### Built-in server
 
