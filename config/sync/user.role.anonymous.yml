@@ -12,3 +12,4 @@ permissions:
   - 'access content'
   - 'search content'
   - 'view media'
+  - 'view sp metadata'
