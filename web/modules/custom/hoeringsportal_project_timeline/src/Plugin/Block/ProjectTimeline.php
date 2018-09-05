@@ -19,6 +19,7 @@ class ProjectTimeline extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
+
     $a = 1;
 
     /*

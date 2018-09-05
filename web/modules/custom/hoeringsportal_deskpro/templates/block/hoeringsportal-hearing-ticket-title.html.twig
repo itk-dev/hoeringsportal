@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Hearing ticket block template.
+ *
+ * Available variables:
+ * - node: The hearing node
+ * - ticket: Ticket data from Deskpro
+ *   - messages: List of ticket messages
+ *   - attachments: List of ticket attachments
+ */
+#}
+
+{% if ticket %}
+  <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ 'Hearing reply by @name'|trans({'@name': ticket.person.name}) }}</h1>
+{% else %}
+  <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ 'Create hearing reply'|t }}</h1>
+{% endif %}

@@ -41,6 +41,7 @@ $databases['default']['default'] = array (
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
+
 ```
 
 Create db
@@ -60,7 +61,6 @@ cd web && \
 XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 remote_host=127.0.0.1 remote_connect_back=0" \
   php -S 127.0.0.1:8888 ../vendor/drush/drush/misc/d8-rs-router.php
 ```
-
 
 ### Updating
 

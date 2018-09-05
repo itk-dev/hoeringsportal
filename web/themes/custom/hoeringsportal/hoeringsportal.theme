@@ -86,6 +86,7 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
 
     $suggestions[] = 'field__' . $variables['element']['#field_name'] . '__' .
       $variables['element']['#view_mode'];
+
   }
 
   if ($hook == 'responsive_image') {
@@ -157,7 +158,7 @@ function hoeringsportal_preprocess_ds_1col(&$variables) {
 function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   $node_type = isset($variables['content']['#bundle']) ? $variables['content']['#bundle'] : '';
   // Check content type.
-  if ($node_type == 'project') {
+  if ($node_type == 'project' || $node_type == 'hearing') {
     $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';
   }
 }
@@ -172,5 +173,14 @@ function hoeringsportal_preprocess_region__footer(&$variables) {
     $variables['custom_config_exists'] = TRUE;
     $config = \Drupal::getContainer()->get('itk_admin.itk_config');
     $variables['footer_text'] = $config->get('footer_text');
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hoeringsportal_theme_suggestions_responsive_image_alter(array &$suggestions, array $variables) {
+  if ($variables['responsive_image_style_id'] == 'content_image') {
+    $suggestions[] = 'responsive_image__hero';
   }
 }

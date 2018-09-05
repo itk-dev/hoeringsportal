@@ -146,16 +146,18 @@ content:
     label: above
     settings:
       timezone_override: ''
+      format_type: long
     third_party_settings: {  }
-    type: datetime_plain
+    type: datetime_default
     region: right
   field_project_start:
     weight: 5
     label: above
     settings:
       timezone_override: ''
+      format_type: long
     third_party_settings: {  }
-    type: datetime_plain
+    type: datetime_default
     region: right
   field_related_content:
     weight: 13

@@ -16,7 +16,7 @@
       <h2>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h2>
     </div>
     <div class="col-md-6">
-      {% if not is_deadline_passed %}
+      {% if not is_deadline_passed and is_hearing_started %}
         <div class="float-md-right">
           <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary mt-md-3">
             {{ 'Add hearing ticket'|trans }}
@@ -39,8 +39,8 @@
           {% endif %}
         </div>
         <div class="card-footer">
-          {{ 'Answer @number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
-          | <span class="ticket-date_created">{{ ticket.date_created|date('Y-m-d H:i:s') }}</span>
+          {{ 'Answer #@number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
+          | <span class="ticket-date_created">{{ ticket.date_created|date('d/m/Y - H:i') }}</span>
           <i class="fa fa-arrow-right float-right"></i>
         </div>
       </a>

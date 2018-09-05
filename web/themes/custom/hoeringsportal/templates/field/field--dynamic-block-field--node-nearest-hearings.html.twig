@@ -58,7 +58,9 @@
         <div class="row">
           <div class="col">
             {{ item.content }}
-            <div class="read-more text-center"><a href="{{ path('entity.node.canonical', {'node': hearings_node}) }}">{{ 'Show more hearings'|t }}</a></div>
+            {% if (hearings_node) %}
+              <div class="read-more text-center"><a href="{{ path('entity.node.canonical', {'node': hearings_node}) }}">{{ 'Show more hearings'|t }}</a></div>
+            {% endif %}
           </div>
         </div>
       {% endfor %}

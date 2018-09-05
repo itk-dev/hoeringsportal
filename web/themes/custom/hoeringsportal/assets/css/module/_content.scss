@@ -71,6 +71,20 @@
   }
 }
 
+.content-hearign-ticket-title-label {
+  font-size: .8rem;
+  font-weight: bold;
+}
+
+.ticket-file {
+  color: $gray-900;
+  text-decoration: none!important;
+  padding: 1em;
+  box-sizing: border-box;
+  background: $gray-200;
+  display: block;
+}
+
 .group-footer {
   background: $gray-100;
   padding-bottom: $spacer;
@@ -84,4 +98,8 @@
       background: $gray-100;
     }
   }
+}
+
+.content img {
+  max-width: 100%;
 }

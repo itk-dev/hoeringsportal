@@ -19,7 +19,6 @@
 
       // Add smooth scrolling.
       $(document).on('click', '#quicklinks a', function (event) {
-        console.log($(this).offset().top);
         event.preventDefault()
         $('html, body').animate({
           scrollTop: $(this).offset().top

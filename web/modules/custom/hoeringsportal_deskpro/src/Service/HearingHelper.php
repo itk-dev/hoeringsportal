@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_deskpro\Service;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 
 /**
@@ -158,9 +159,36 @@ class HearingHelper {
   }
 
   /**
+   * Get data synchronization url.
+   */
+  public function getDataSynchronizationUrl() {
+    return Url::fromRoute('hoeringsportal_deskpro.data.synchronize.hearing', [], ['absolute' => TRUE])->toString();
+  }
+
+  /**
+   * Get data synchronization headers.
+   */
+  public function getDataSynchronizationHeaders() {
+    return [
+      'x-deskpro-token:' => $this->deskpro->getToken(),
+    ];
+  }
+
+  /**
+   * Get data synchronization payload.
+   */
+  public function getDataSynchronizationPayload($ticketId = -87) {
+    return [
+      'ticket' => [
+        $this->getTicketFieldName('hearing_id', 'field') => $ticketId,
+      ],
+    ];
+  }
+
+  /**
    * Get data from Deskpro and store in hearing node.
    */
-  public function syncronizeHearing(array $payload = NULL) {
+  public function synchronizeHearing(array $payload = NULL) {
     $hearingIdfieldName = 'field' . $this->deskpro->getTicketHearingIdFieldId();
     if (!isset($payload['ticket'][$hearingIdfieldName])) {
       throw new \Exception('Invalid data');
