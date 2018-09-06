@@ -127,6 +127,23 @@ function hoeringsportal_preprocess_form(&$variables, $hook, &$info) {
 }
 
 /**
+ * Implements hook_preprocess_views_exposed_form().
+ *
+ * Provide link for external map.
+ */
+function hoeringsportal_preprocess_views_exposed_form(&$variables) {
+  if ($variables['form']['#id'] = 'views-exposed-form-all-hearings-default') {
+    $moduleHandler = \Drupal::service('module_handler');
+    $variables['custom_config_exists'] = FALSE;
+    if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
+      $variables['custom_config_exists'] = TRUE;
+      $config = \Drupal::getContainer()->get('itk_admin.itk_config');
+      $variables['full_map_url'] = $config->get('full_map_hearing_url');
+    }
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Alter display of search form.

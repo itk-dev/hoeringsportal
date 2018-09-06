@@ -72,6 +72,30 @@ class ItkGeneralSettingsForm extends FormBase {
       '#weight' => '2',
     ];
 
+    $form['remote_paths'] = [
+      '#title' => $this->t('External references'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '2',
+      '#description' => $this->t('Links to external pages.'),
+    ];
+
+    $form['remote_paths']['full_map_project_url'] = [
+      '#type' => 'url',
+      '#title' => $this->t('Map of all projects'),
+      '#size' => 30,
+      '#default_value' => $config->get('full_map_project_url'),
+      '#description' => $this->t('Used when linking to a map of all projects.'),
+    ];
+
+    $form['remote_paths']['full_map_hearing_url'] = [
+      '#type' => 'url',
+      '#title' => $this->t('Map of all hearings'),
+      '#size' => 30,
+      '#default_value' => $config->get('full_map_hearing_url'),
+      '#description' => $this->t('Used when linking to a map of all hearings.'),
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Save changes'),
@@ -92,6 +116,8 @@ class ItkGeneralSettingsForm extends FormBase {
       'footer_text' => $form_state->getValue('footer_text')['value'],
       'hearings_overview' => $form_state->getValue('hearings_overview'),
       'initiative_overview' => $form_state->getValue('initiative_overview'),
+      'full_map_project_url' => $form_state->getValue('full_map_project_url'),
+      'full_map_hearing_url' => $form_state->getValue('full_map_hearing_url'),
     ]);
 
     drupal_flush_all_caches();

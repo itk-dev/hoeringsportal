@@ -13,7 +13,9 @@
 #}
 <div class="row">
   <div class="col-md-4 mb-4">
-    <a href="/" class="btn btn-primary">{{ 'Show on map'|t }}</a>
+    {% if custom_config_exists and full_map_url %}
+      <a target="_blank" href="{{ full_map_url }}" class="btn btn-primary">{{ 'Show on map'|t }}</a>
+    {% endif %}
   </div>
   <div class="col-md-8 mb-4">
     <div class="row">
