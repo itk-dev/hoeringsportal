@@ -98,6 +98,7 @@
           <div class="splash-label">{{ 'Start date' | t }}</div>
           <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
           <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+          {% set overlay = 'TRUE' %}
         {% elseif (content.field_reply_deadline['0']['#attributes'].datetime|date('U') < "now"|date('U')) %}
           <div class="splash-label">{{ 'Finished' | t }}</div>
           <div class="splash-date-day"><i class="fa fa-check-circle p-1"></i></div>

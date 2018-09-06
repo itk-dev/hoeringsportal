@@ -27,6 +27,7 @@ module:
   hoeringsportal_content_blocks: 0
   hoeringsportal_deskpro: 0
   hoeringsportal_forms: 0
+  hoeringsportal_project_timeline: 0
   hoeringsportal_quicklinks: 0
   image: 0
   image_widget_crop: 0

@@ -59,13 +59,19 @@ third_party_settings:
         - field_email
       footer:
         - field_image_gallery_ref
+        - 'dynamic_block_field:node-project_timeline'
         - field_map_display
         - 'dynamic_block_field:node-participate'
         - field_related_content
     fields:
       'dynamic_block_field:node-participate':
         plugin_id: 'dynamic_block_field:node-participate'
-        weight: 12
+        weight: 13
+        label: above
+        formatter: default
+      'dynamic_block_field:node-project_timeline':
+        plugin_id: 'dynamic_block_field:node-project_timeline'
+        weight: 11
         label: above
         formatter: default
       node_changed_date:
@@ -118,7 +124,7 @@ content:
     third_party_settings: {  }
     region: footer
   field_map_display:
-    weight: 11
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -160,7 +166,7 @@ content:
     type: datetime_default
     region: right
   field_related_content:
-    weight: 13
+    weight: 14
     label: above
     settings:
       view_mode: teaser
