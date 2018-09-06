@@ -1,0 +1,25 @@
+security_authn_requests_sign: 1
+security_messages_sign: 1
+strict: 1
+_core:
+  default_config_hash: xZrT8_AI7UriK8S3VCF6txGozXhDJ4aClCbEaA3-3KE
+langcode: da
+sp_entity_id: 'https://sp.example.com/'
+sp_name_id_format: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress'
+sp_cert_folder: ''
+idp_entity_id: ADFS
+idp_single_sign_on_service: 'https://idp.example.com/adfs/ls/'
+idp_single_log_out_service: 'https://idp.example.com/adfs/ls/'
+idp_x509_certificate: 'IDP x509 Certificate'
+unique_id_attribute: eduPersonTargetedID
+map_users: 1
+create_users: 0
+sync_name: 0
+sync_mail: 0
+user_name_attribute: email
+user_mail_attribute: email
+security_request_authn_context: 0
+drupal_saml_login: 1
+sp_x509_certificate: 'SP x509 Certificate'
+sp_private_key: 'SP Private Key'
+idp_change_password_service: ''
