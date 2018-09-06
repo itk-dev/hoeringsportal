@@ -50,15 +50,9 @@ class TwigExtension extends \Twig_Extension {
       if (!$this->helper->isHearing($node)) {
         return NULL;
       }
-      $departmentId = 1;
-      $hearingId = 1;
+      $departmentId = $node->field_deskpro_department_id->value;
+      $hearingId = $node->id();
       $defaultValues = [];
-
-      $user = \Drupal::currentUser();
-      if ($user->isAuthenticated()) {
-        $defaultValues['ticket']['person']['user_name'] = $user->getAccountName();
-        $defaultValues['ticket']['person']['user_email']['email'] = $user->getEmail();
-      }
 
       $form = $this->deskpro->getTicketEmbedForm($departmentId, $hearingId, $defaultValues);
 
