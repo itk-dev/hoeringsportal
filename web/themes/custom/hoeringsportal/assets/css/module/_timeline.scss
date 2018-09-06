@@ -15,15 +15,24 @@
       border-radius: 1rem;
       background-color: $primary;
 
+      &.system {
+        background: $black;
+      }
+
+      &.passed {
+
+      }
+
       .vis-item-content {
         color: $white;
         cursor: pointer !important;
         font-size: .7rem;
-        padding: 4px 10px;
+        padding: 0;
         line-height: 1em;
 
-        div {
+        > div {
           cursor: pointer !important;
+          padding: 4px 10px;
         }
       }
     }
@@ -32,6 +41,11 @@
     &.vis-item.vis-dot {
       border-color: $primary;
       background-color: $primary;
+
+      &.system {
+        border-color: $black;
+        background: $black;
+      }
     }
   }
   .vis-timeline {
@@ -49,8 +63,31 @@
       visibility: hidden;
     }
   }
+
+  .vis-current-time {
+    top: -30px!important;
+    background-color: $orange;
+
+    label {
+      margin-left: -9px;
+      margin-top: 100px;
+      color: $orange;
+      font-size: .9rem;
+      line-height: 35px;
+      font-weight:bold;
+    }
+  }
+}
+
+.popover-label {
+  font-weight: bold;
+}
+
+.popover-date {
+  font-size: 1rem
 }
 
 .project-type-label {
   color: $primary;
 }
+

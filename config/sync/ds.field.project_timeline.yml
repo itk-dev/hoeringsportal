@@ -1,0 +1,10 @@
+id: project_timeline
+label: Initiativforløb
+ui_limit: ''
+properties:
+  block: project_timeline
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node

@@ -2,33 +2,47 @@ import vis from 'vis/dist/vis.js'
 
 Drupal.behaviors.timeline = {
   attach: function (context, settings) {
-    console.log(settings);
+
     // DOM element where the Timeline will be attached
     var container = document.getElementById('visualization')
 
-    // Create a DataSet (allows two way data-binding)
-    var items = new vis.DataSet([
-      {
-        id: 1,
-        className: 'abc',
-        content: '<div data-container="body" data-toggle="popover" title="Popover title" data-placement="top" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">item 1</div>',
-        start: '2018-04-20'
-      },
-      {id: 2, content: 'item 2', start: '2018-01-14'},
-      {id: 3, content: 'item 3', start: '2018-04-18'},
-      {id: 4, content: 'item 4', start: '2018-04-16', end: '2018-04-19'},
-      {id: 5, content: 'item 5', start: '2018-04-25'},
-      {id: 6, content: 'item 6', start: '2018-04-27', type: 'point'}
-    ])
-
+    // Create a new dataset.
     var newItems = new vis.DataSet({});
     for (var i = 0; i < settings.timelineItems.length; i++) {
       var item = settings.timelineItems[i];
-      console.log(item);
+      var date = new Date(item.startDate);
+      //@todo modify display of date in popup
+      // var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      var popoverLabel = '';
+      var buttonLink = '';
+
+      // Modify machine name to display name.
+      if (item.type == 'hearing') {
+        popoverLabel = 'Høring';
+      }
+
+      // Only show link if a node exists.
+      if (item.nid > 0){
+        buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
+      }
+
+      // Setup the popover content.
+      var formatted_content =
+        '<div class="popover-label">' + popoverLabel + '</div>' +
+        '<div class="popover-date">' +  date.toLocaleDateString("da") + '</div>' +
+        '<h6 class="popover-title">' +  item.title + '</h6>' +
+        buttonLink;
+
       newItems.add({
         id: i,
         className: item.type + ' ' + item.state,
-        content: '<div class="timeline-item-inner" data-container="timeline-item-id-' + i + '" data-toggle="popover" title="' + item.title + '" data-placement="top" data-content="' + item.startDate + ' - ' + item.endDate + '">' + item.title + '</div>',
+        content: $('<div/>', {
+          'class': 'timeline-item-inner is-' + item.type + ' is-' + item.state,
+          'data-toggle': 'timeline-popover',
+          'data-html': true,
+          'data-placement': 'top',
+          'data-content':  formatted_content
+        }).html('<i></i><div>' + item.title + '</div>').prop('outerHTML'),
         start: item.startDate
       });
     }
@@ -42,19 +56,30 @@ Drupal.behaviors.timeline = {
       end: now + 31540000000
     }
 
-    // Create a Timeline
+    // Create a timeline
     var timeline = new vis.Timeline(container, newItems, options)
 
-    timeline.on('click', function (properties) {
-      if(properties.what == 'item') {
-        $(function () {
-          $('.timeline-item-inner').popover({
-            container: 'timeline-item-id-' + properties.item
-          })
-        })
-        console.log('asdf');
-      }
-      console.log(properties);
+    $(function () {
+      $(container).popover({
+        // Selector makes dynamic elements wok as well.
+        // https://github.com/twbs/bootstrap/issues/4215
+        selector: '[data-toggle="timeline-popover"]'
+      });
+    })
+
+    // Hide on timeline drag.
+    timeline.on('rangechange', function (properties) {
+      $('[data-toggle="timeline-popover"]').popover('hide')
     });
+
+    // Hide on timeline drag.
+    timeline.on('click', function (properties) {
+      $('[data-toggle="timeline-popover"]').popover('hide')
+    });
+
+    // Add "Now" to line.
+    var lbl = document.createElement("label");
+    lbl.innerHTML = "NU"
+    timeline.currentTime.bar.appendChild(lbl);
   }
 }
