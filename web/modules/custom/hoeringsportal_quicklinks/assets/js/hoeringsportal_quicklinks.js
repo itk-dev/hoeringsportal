@@ -14,14 +14,14 @@
         // Append the text of your header to a list item in a div, linking to an anchor we will create on the next line
         $('#quicklinks').append('<div><a href="#anchor-' + index + '">' + $(this).html() + '</a></div>')
         // Add an a tag to the header with a sequential name
-        $(this).attr('id', '#anchor-' + index)
+        $(this).attr('id', 'anchor-' + index)
       })
 
       // Add smooth scrolling.
       $(document).on('click', '#quicklinks a', function (event) {
         event.preventDefault()
         $('html, body').animate({
-          scrollTop: $(this).offset().top
+          scrollTop: $($(this).attr('href')).offset().top-100
         }, 500)
       })
     }
