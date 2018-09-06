@@ -8,7 +8,7 @@
     background-color: $primary;
     border-radius: 100%;
     display: inline-block;
-    animation: bouncedelay .4s infinite ease-in-out both;
+    animation: bouncedelay 1.4s infinite ease-in-out both;
   }
   .bounce1 {
     animation-delay: -.32s;
@@ -23,6 +23,6 @@
     transform: scale(0);
   }
   40% {
-    transform: scale(1.0);
+      transform: scale(1.0);
   }
 }
