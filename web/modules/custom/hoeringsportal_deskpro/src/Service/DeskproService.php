@@ -293,7 +293,7 @@ class DeskproService {
   /**
    * Check that token is a valid data token.
    */
-  public function isValidToken(string $token) {
+  public function isValidToken(string $token = NULL) {
     return isset($this->configuration['x-deskpro-token'])
       && $token === $this->configuration['x-deskpro-token'];
   }
