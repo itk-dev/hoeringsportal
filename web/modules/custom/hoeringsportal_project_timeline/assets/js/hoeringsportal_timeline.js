@@ -1,8 +1,6 @@
 import vis from 'vis/dist/vis.js'
 
-Drupal.behaviors.timeline = {
-  attach: function (context, settings) {
-
+    var settings = drupalSettings;
     // DOM element where the Timeline will be attached
     var container = document.getElementById('visualization')
 
@@ -81,5 +79,3 @@ Drupal.behaviors.timeline = {
     var lbl = document.createElement("label");
     lbl.innerHTML = "NU"
     timeline.currentTime.bar.appendChild(lbl);
-  }
-}

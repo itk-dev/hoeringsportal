@@ -8,3 +8,4 @@ project_timeline:
   dependencies:
     - core/jquery
     - core/drupalSettings
+    - core/jquery.once

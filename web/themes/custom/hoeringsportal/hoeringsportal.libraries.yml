@@ -7,7 +7,7 @@ global-styling:
 bottom-scripts:
   version: VERSION
   js:
-    build/hoeringsportal.js: {scope: bottom}
+    build/hoeringsportal.js: {scope: bottom, preprocess: false}
   dependencies:
     - core/jquery
     - core/drupal
