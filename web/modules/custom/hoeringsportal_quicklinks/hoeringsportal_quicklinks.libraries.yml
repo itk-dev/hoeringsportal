@@ -1,7 +1,7 @@
 quicklinks:
   version: 1.x
   js:
-    assets/public/build/project-quicklinks.js: {}
+    assets/public/build/project-quicklinks.js: {preprocess: false}
   dependencies:
     - core/jquery
     - core/drupalSettings

@@ -4,7 +4,7 @@ project_timeline:
     theme:
       assets/public/build/project-timeline.css: {}
   js:
-    assets/public/build/project-timeline.js: {}
+    assets/public/build/project-timeline.js: {preprocess: false}
   dependencies:
     - core/jquery
     - core/drupalSettings
