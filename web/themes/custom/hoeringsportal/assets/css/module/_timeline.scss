@@ -19,10 +19,6 @@
         background: $black;
       }
 
-      &.passed {
-
-      }
-
       .vis-item-content {
         color: $white;
         cursor: pointer !important;
@@ -74,7 +70,7 @@
       color: $orange;
       font-size: .9rem;
       line-height: 35px;
-      font-weight:bold;
+      font-weight: bold;
     }
   }
 }
@@ -84,7 +80,7 @@
 }
 
 .popover-date {
-  font-size: 1rem
+  font-size: 1rem;
 }
 
 .project-type-label {
