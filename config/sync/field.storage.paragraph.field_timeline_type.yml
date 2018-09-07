@@ -1,0 +1,27 @@
+uuid: 556de532-f464-4dec-bcac-7a8a311bd34c
+langcode: da
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_timeline_type
+field_name: field_timeline_type
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: meeting
+      label: Borgermøde
+    -
+      value: debate
+      label: Debat
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

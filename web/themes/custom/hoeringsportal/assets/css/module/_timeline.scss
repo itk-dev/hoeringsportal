@@ -15,8 +15,13 @@
       border-radius: 1rem;
       background-color: $primary;
 
-      &.system {
+      &.system,
+      &.meeting {
         background: $black;
+      }
+
+      &.debate {
+        background: $petroleum-light;
       }
 
       .vis-item-content {
@@ -29,6 +34,10 @@
         > div {
           cursor: pointer !important;
           padding: 4px 10px;
+
+          > div {
+            cursor: pointer !important;
+          }
         }
       }
     }
@@ -38,9 +47,14 @@
       border-color: $primary;
       background-color: $primary;
 
-      &.system {
+      &.system,
+      &.meeting {
         border-color: $black;
         background: $black;
+      }
+
+      &.debate {
+        background: $petroleum-light;
       }
     }
   }
@@ -83,7 +97,22 @@
   font-size: 1rem;
 }
 
+.project-type-label-wrapper {
+  text-align: center;
+}
+
 .project-type-label {
   color: $primary;
+  display: inline-block;
+  margin: 0 5px;
+  text-align: center;
+
+  &.meeting {
+    color: $black;
+  }
+
+  &.debate {
+    color: $petroleum-light
+  }
 }
 

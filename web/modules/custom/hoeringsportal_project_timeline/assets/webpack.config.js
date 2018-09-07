@@ -11,7 +11,7 @@ Encore
   .addEntry('project-timeline', './js/project-timeline.js')
 
   // allow legacy applications to use $/jQuery as a global variable
-  //.autoProvidejQuery()
+  .autoProvidejQuery()
 
   // enable source maps during development
   .enableSourceMaps(!Encore.isProduction())

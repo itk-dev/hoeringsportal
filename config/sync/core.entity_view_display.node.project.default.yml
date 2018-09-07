@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.project.field_project_start
     - field.field.node.project.field_related_content
     - field.field.node.project.field_teaser
+    - field.field.node.project.field_timeline_items
     - node.type.project
   module:
     - datetime
@@ -183,6 +184,15 @@ content:
     third_party_settings: {  }
     type: basic_string
     region: left
+  field_timeline_items:
+    type: entity_reference_revisions_entity_view
+    weight: 15
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
 hidden:
   field_activities: true
   field_area: true

@@ -19,9 +19,12 @@ import vis from 'vis/dist/vis.js'
         popoverLabel = 'Høring';
       }
 
-      // Only show link if a node exists.
+      // Only show link if a node exists or link is set.
       if (item.nid > 0){
         buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
+      }
+      else if(item.link) {
+        buttonLink = '<a class="btn-sm btn-primary" href="' + item.link + '">Læs mere</a>'
       }
 
       // Setup the popover content.

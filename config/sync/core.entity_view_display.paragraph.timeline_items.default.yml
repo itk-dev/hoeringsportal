@@ -1,0 +1,56 @@
+uuid: 5299d98f-edff-4480-bf06-d831f3edaca0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.timeline_items.field_timeline_date
+    - field.field.paragraph.timeline_items.field_timeline_link
+    - field.field.paragraph.timeline_items.field_timeline_title
+    - field.field.paragraph.timeline_items.field_timeline_type
+    - paragraphs.paragraphs_type.timeline_items
+  module:
+    - datetime
+    - link
+    - options
+id: paragraph.timeline_items.default
+targetEntityType: paragraph
+bundle: timeline_items
+mode: default
+content:
+  field_timeline_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_timeline_link:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_timeline_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_timeline_type:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+hidden: {  }

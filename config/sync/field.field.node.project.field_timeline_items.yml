@@ -1,0 +1,52 @@
+uuid: 6b93f32a-f9be-4a95-9449-cd9ed9300ad0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_timeline_items
+    - node.type.project
+    - paragraphs.paragraphs_type.timeline_items
+  module:
+    - entity_reference_revisions
+id: node.project.field_timeline_items
+field_name: field_timeline_items
+entity_type: node
+bundle: project
+label: Tidslinjepunkter
+description: 'Start og slut dato og alle høringer for forløbet plottes automatisk ind på tidslinjen. Du kan bruge dette felt til at plotte flere relevante punkter ind.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    negate: 0
+    target_bundles:
+      timeline_items: timeline_items
+    target_bundles_drag_drop:
+      timeline_items:
+        enabled: true
+        weight: 9
+      content_block:
+        weight: 10
+        enabled: false
+      content_list:
+        weight: 11
+        enabled: false
+      image:
+        weight: 12
+        enabled: false
+      introduction:
+        weight: 13
+        enabled: false
+      projekt_billede_galleri:
+        weight: 14
+        enabled: false
+      teaser_row:
+        weight: 15
+        enabled: false
+      text:
+        weight: 16
+        enabled: false
+field_type: entity_reference_revisions

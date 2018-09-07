@@ -1,0 +1,9 @@
+uuid: 02731735-a2a6-4ef2-a771-f53eb92359b3
+langcode: da
+status: true
+dependencies: {  }
+id: timeline_items
+label: 'Tidslinje punkter'
+icon_uuid: null
+description: 'Tilføj ekstra punkter til tidslinjen'
+behavior_plugins: {  }
