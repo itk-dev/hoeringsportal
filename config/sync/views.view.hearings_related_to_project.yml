@@ -57,6 +57,11 @@ display:
         type: default
       row:
         type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: false
       fields:
         rendered_entity:
           id: rendered_entity
@@ -223,19 +228,19 @@ display:
         - 'user.node_grants:view'
         - user.permissions
       tags:
+        - 'config:core.entity_view_display.node.hearing.default'
         - 'config:core.entity_view_display.node.hearing.hearing_ticket_add'
         - 'config:core.entity_view_display.node.hearing.hearing_ticket_view'
         - 'config:core.entity_view_display.node.hearing.list_display'
-        - 'config:core.entity_view_display.node.landing_page.list_display'
-        - 'config:core.entity_view_display.node.landing_page.teaser'
-        - 'config:core.entity_view_display.node.static_page.list_display'
-        - 'config:core.entity_view_display.node.hearing.default'
         - 'config:core.entity_view_display.node.hearing.teaser'
         - 'config:core.entity_view_display.node.landing_page.default'
+        - 'config:core.entity_view_display.node.landing_page.list_display'
+        - 'config:core.entity_view_display.node.landing_page.teaser'
         - 'config:core.entity_view_display.node.project.default'
         - 'config:core.entity_view_display.node.project.list_display'
         - 'config:core.entity_view_display.node.project.teaser'
         - 'config:core.entity_view_display.node.static_page.default'
+        - 'config:core.entity_view_display.node.static_page.list_display'
         - 'config:core.entity_view_display.node.static_page.teaser'
   block_1:
     display_plugin: block
