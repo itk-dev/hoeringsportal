@@ -22,6 +22,9 @@ class ProjectTimeline extends BlockBase {
    */
   public function build() {
     $node = \Drupal::routeMatch()->getParameter('node');
+    if (!$node) {
+      return;
+    }
     $nid = $node->id();
     $now = new DrupalDateTime('now');
     $now_timestamp = $now->getTimestamp();
