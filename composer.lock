@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5dbf73835380cd1213bbb5ab3bc9dd7",
+    "content-hash": "a77149a2c527fcff341018b74ee6afe1",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3030,7 +3030,7 @@
                     }
                 },
                 "patches_applied": {
-                    "Possibility to add field group to advanced": "web/patches/field_group_node_sidebar.patch"
+                    "Possibility to add field group to advanced": "patches/field_group_node_sidebar.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3798,6 +3798,9 @@
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
