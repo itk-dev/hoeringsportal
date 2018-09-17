@@ -31,7 +31,9 @@ class HearingTicketAddBlock extends HearingTicketBlock {
     $hearingId = $this->helper->getHearingId($node);
     $defaultValues = [
       'ticket' => [
-        $this->helper->getTicketFieldName('hearing_name') => $node->getTitle(),
+        $this->helper->getTicketFieldName('hearing_name') => [
+          'data' => $node->getTitle(),
+        ],
       ],
     ];
 

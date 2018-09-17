@@ -2,7 +2,6 @@
 
 namespace Drupal\hoeringsportal_deskpro\Twig;
 
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 
@@ -37,30 +36,8 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return [
-      new \Twig_SimpleFunction('deskpro_ticket_form', [$this, 'getTicketForm'], ['is_safe' => ['all']]),
       new \Twig_SimpleFunction('deskpro_ticket_custom_field', [$this, 'getTicketCustomField'], ['is_safe' => ['all']]),
     ];
-  }
-
-  /**
-   * Get ticket form.
-   */
-  public function getTicketForm(EntityInterface $node) {
-    try {
-      if (!$this->helper->isHearing($node)) {
-        return NULL;
-      }
-      $departmentId = $node->field_deskpro_department_id->value;
-      $hearingId = $node->id();
-      $defaultValues = [];
-
-      $form = $this->deskpro->getTicketEmbedForm($departmentId, $hearingId, $defaultValues);
-
-      return $form;
-    }
-    catch (\Exception $e) {
-      return '<pre style="background: red; padding: 1em; color: yellow">' . htmlspecialchars($e->getMessage()) . '</pre>';
-    }
   }
 
   /**
