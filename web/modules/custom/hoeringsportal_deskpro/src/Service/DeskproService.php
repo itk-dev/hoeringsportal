@@ -71,7 +71,14 @@ class DeskproService {
    */
   public function getTickets(array $query = []) {
     try {
+      // Default sorting.
+      $query += [
+        'order_by' => 'date_created',
+        'order_dir' => 'desc',
+      ];
       $response = $this->get('/tickets', $query);
+      // Ordering does not make sense for sub-queries.
+      unset($query['order_by'], $query['order_dir']);
 
       $data = $response->getData();
       $this->expandData($data, $query);
