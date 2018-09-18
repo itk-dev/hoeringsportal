@@ -1,0 +1,30 @@
+uuid: fb42aa0f-d040-4692-8fd2-6ee492f213e5
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_content_state
+field_name: field_content_state
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: upcoming
+      label: 'Høring i vente'
+    -
+      value: active
+      label: 'Høring igang'
+    -
+      value: finished
+      label: 'Høring afsluttet'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

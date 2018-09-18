@@ -1,0 +1,21 @@
+uuid: 37ad09f9-c846-4b4d-a439-d0a9fc98d521
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_state
+    - node.type.hearing
+  module:
+    - options
+id: node.hearing.field_content_state
+field_name: field_content_state
+entity_type: node
+bundle: hearing
+label: 'Content state'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
@@ -230,6 +231,7 @@ content:
     type: basic_string
     region: left
 hidden:
+  field_content_state: true
   field_deskpro_data: true
   field_deskpro_department_id: true
   langcode: true
