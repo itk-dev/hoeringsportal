@@ -13,7 +13,7 @@ settings:
   allowed_values:
     -
       value: upcoming
-      label: 'Høring i vente'
+      label: 'Kommende høring'
     -
       value: active
       label: 'Høring igang'
