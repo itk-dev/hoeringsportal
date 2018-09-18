@@ -12,7 +12,7 @@ field_name: field_contact
 entity_type: node
 bundle: project
 label: Initiativansvarlig
-description: ''
+description: "Obs.\r\nIndhold i dette felt bliver vist på hjemmesiden.\r\nFor at sikre at borgerne bruger de korrekte informationskanaler og undgå forvirring, bør dette felt i udgangspunktet ikke indeholde email adresse på specifikke medarbejdere."
 required: false
 translatable: false
 default_value: {  }

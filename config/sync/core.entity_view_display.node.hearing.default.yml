@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
-    - field.field.node.hearing.field_hearing_id
     - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
@@ -15,6 +14,7 @@ dependencies:
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
+    - field.field.node.hearing.field_tags
     - field.field.node.hearing.field_teaser
     - field.field.node.hearing.field_video_embed
     - node.type.hearing
@@ -60,8 +60,10 @@ third_party_settings:
         - field_start_date
         - field_reply_deadline
         - field_hearing_type
-        - field_hearing_id
         - field_project_reference
+        - field_tags
+        - field_area
+        - 'dynamic_token_field:node-node_id_hearing'
         - 'dynamic_block_field:node-node_address'
         - 'dynamic_block_field:node-node_more_info'
       footer:
@@ -80,17 +82,17 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-nearest_hearings':
         plugin_id: 'dynamic_block_field:node-nearest_hearings'
-        weight: 19
+        weight: 21
         label: above
         formatter: default
       'dynamic_block_field:node-node_address':
         plugin_id: 'dynamic_block_field:node-node_address'
-        weight: 16
+        weight: 18
         label: above
         formatter: default
       'dynamic_block_field:node-node_more_info':
         plugin_id: 'dynamic_block_field:node-node_more_info'
-        weight: 17
+        weight: 19
         label: above
         formatter: default
       'dynamic_block_field:node-quicklinks':
@@ -102,6 +104,11 @@ third_party_settings:
         plugin_id: 'dynamic_token_field:node-header_information'
         weight: 10
         label: hidden
+        formatter: default
+      'dynamic_token_field:node-node_id_hearing':
+        plugin_id: 'dynamic_token_field:node-node_id_hearing'
+        weight: 17
+        label: above
         formatter: default
       node_changed_date:
         plugin_id: node_changed_date
@@ -122,20 +129,20 @@ targetEntityType: node
 bundle: hearing
 mode: default
 content:
+  field_area:
+    type: entity_reference_label
+    weight: 16
+    region: right
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
   field_description:
     type: text_default
     weight: 3
     region: left
     label: hidden
     settings: {  }
-    third_party_settings: {  }
-  field_hearing_id:
-    type: string
-    weight: 14
-    region: right
-    label: above
-    settings:
-      link_to_entity: false
     third_party_settings: {  }
   field_hearing_type:
     type: entity_reference_label
@@ -147,7 +154,7 @@ content:
     third_party_settings: {  }
   field_map_display:
     type: basic_string
-    weight: 18
+    weight: 20
     region: footer
     label: hidden
     settings: {  }
@@ -176,7 +183,7 @@ content:
     region: left
   field_project_reference:
     type: entity_reference_label
-    weight: 15
+    weight: 14
     region: right
     label: above
     settings:
@@ -200,6 +207,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: right
+  field_tags:
+    weight: 15
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
   field_teaser:
     weight: 2
     label: hidden
@@ -215,7 +230,6 @@ content:
     type: basic_string
     region: left
 hidden:
-  field_area: true
   field_deskpro_data: true
   field_deskpro_department_id: true
   langcode: true

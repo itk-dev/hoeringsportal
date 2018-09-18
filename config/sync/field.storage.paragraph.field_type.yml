@@ -13,13 +13,13 @@ settings:
   allowed_values:
     -
       value: one_project_two_static
-      label: 'Et project eller en høring og to statiske sider'
+      label: 'Et initiativ eller en høring og to statiske sider'
     -
       value: two_projects
-      label: 'To projekter eller høringer'
+      label: 'To initiativer eller høringer'
     -
       value: three_projects
-      label: 'Tre projekter eller høringer'
+      label: 'Tre initiativer eller høringer'
   allowed_values_function: ''
 module: options
 locked: false

@@ -18,4 +18,14 @@ map-display:
     theme:
       build/show-map.css: {}
   js:
-    build/show-map.js: {}
+    build/show-map.js: {preprocess: false}
+
+hyphenate:
+  version: VERSION
+  header: true
+  css:
+    theme:
+      build/add-hyphens.css: {}
+  js:
+    build/hyphenate.js: {preprocess: false}
+    assets/Hyphenopoly/Hyphenopoly_Loader.js: {preprocess: false}

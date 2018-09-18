@@ -4,6 +4,7 @@ description: 'A theme for Høringsportal'
 core: 8.x
 libraries:
   - hoeringsportal/global-styling
+  - hoeringsportal/hyphenate
   - hoeringsportal/bottom-scripts
 regions:
   header: Header

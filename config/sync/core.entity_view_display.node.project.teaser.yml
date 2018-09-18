@@ -8,14 +8,17 @@ dependencies:
     - field.field.node.project.field_area
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
-    - field.field.node.project.field_email
+    - field.field.node.project.field_image_gallery_ref
+    - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
     - field.field.node.project.field_project_finish
     - field.field.node.project.field_project_label
     - field.field.node.project.field_project_start
     - field.field.node.project.field_related_content
+    - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
+    - field.field.node.project.field_timeline_items
     - node.type.project
   module:
     - datetime
@@ -70,9 +73,12 @@ hidden:
   field_activities: true
   field_contact: true
   field_description: true
-  field_email: true
+  field_image_gallery_ref: true
+  field_map_display: true
   field_phone: true
   field_project_start: true
   field_related_content: true
+  field_tags: true
+  field_timeline_items: true
   langcode: true
   links: true

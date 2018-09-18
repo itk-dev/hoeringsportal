@@ -1,5 +1,5 @@
 id: node_address
-label: 'Node address'
+label: Kontakt
 ui_limit: ''
 properties:
   block: content_address

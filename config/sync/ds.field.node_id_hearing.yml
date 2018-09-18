@@ -1,0 +1,11 @@
+id: node_id_hearing
+label: 'Hearing id'
+ui_limit: ''
+properties:
+  content:
+    value: 'H[node:nid]'
+    format: plain_text
+type: token
+type_label: 'Token field'
+entities:
+  node: node

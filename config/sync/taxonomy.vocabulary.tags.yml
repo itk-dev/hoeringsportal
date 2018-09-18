@@ -1,0 +1,9 @@
+uuid: ca37010f-8947-43c9-8e0e-2af006ebd224
+langcode: da
+status: true
+dependencies: {  }
+name: Emneord
+vid: tags
+description: 'En liste af emneord der kan bruges til at tagge indhold'
+hierarchy: 0
+weight: 0

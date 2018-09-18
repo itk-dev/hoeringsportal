@@ -101,7 +101,7 @@
         <div class="activity-teaser-project-name">{{ project }}</div>
       {% endif %}
       {% if content.field_area[0] is defined %}
-        <span class="activity-teaser-area">{{ content.field_area }}</span>
+        <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
       {% endif %}
       <span class="activity-teaser-type {% if node.bundle == 'static_page' %}pl-0{% endif %}">{{ type }}</span>
       {% if(content.field_hearing_id) %}

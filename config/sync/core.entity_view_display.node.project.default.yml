@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.project.field_area
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
-    - field.field.node.project.field_email
     - field.field.node.project.field_image_gallery_ref
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
@@ -16,6 +15,7 @@ dependencies:
     - field.field.node.project.field_project_label
     - field.field.node.project.field_project_start
     - field.field.node.project.field_related_content
+    - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
     - field.field.node.project.field_timeline_items
     - node.type.project
@@ -56,6 +56,8 @@ third_party_settings:
         - field_project_start
         - field_project_finish
         - field_contact
+        - field_tags
+        - field_area
         - field_phone
         - field_email
       footer:
@@ -67,12 +69,12 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-participate':
         plugin_id: 'dynamic_block_field:node-participate'
-        weight: 13
+        weight: 15
         label: above
         formatter: default
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 11
+        weight: 13
         label: above
         formatter: default
       node_changed_date:
@@ -94,6 +96,14 @@ targetEntityType: node
 bundle: project
 mode: default
 content:
+  field_area:
+    type: entity_reference_label
+    weight: 9
+    region: right
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
   field_contact:
     weight: 7
     label: above
@@ -108,16 +118,9 @@ content:
     third_party_settings: {  }
     type: text_default
     region: left
-  field_email:
-    weight: 9
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: right
   field_image_gallery_ref:
     type: entity_reference_revisions_entity_view
-    weight: 10
+    weight: 12
     label: hidden
     settings:
       view_mode: default
@@ -125,7 +128,7 @@ content:
     third_party_settings: {  }
     region: footer
   field_map_display:
-    weight: 12
+    weight: 14
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -141,7 +144,7 @@ content:
     type: entity_reference_entity_view
     region: header
   field_phone:
-    weight: 8
+    weight: 10
     label: above
     settings:
       link_to_entity: false
@@ -167,7 +170,7 @@ content:
     type: datetime_default
     region: right
   field_related_content:
-    weight: 14
+    weight: 16
     label: above
     settings:
       view_mode: teaser
@@ -177,6 +180,14 @@ content:
         ds_limit: ''
     type: entity_reference_entity_view
     region: footer
+  field_tags:
+    weight: 8
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: right
   field_teaser:
     weight: 2
     label: hidden
@@ -184,18 +195,9 @@ content:
     third_party_settings: {  }
     type: basic_string
     region: left
-  field_timeline_items:
-    type: entity_reference_revisions_entity_view
-    weight: 15
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    region: content
 hidden:
   field_activities: true
-  field_area: true
   field_project_label: true
+  field_timeline_items: true
   langcode: true
   links: true

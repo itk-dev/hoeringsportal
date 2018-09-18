@@ -103,3 +103,14 @@
 .content img {
   max-width: 100%;
 }
+
+
+.is-comma-separated {
+  span:after {
+    content: ",";
+  }
+
+  span:last-child:after {
+    content: "";
+  }
+}

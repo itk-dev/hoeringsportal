@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.project.field_area
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
-    - field.field.node.project.field_email
     - field.field.node.project.field_image_gallery_ref
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
@@ -17,6 +16,7 @@ dependencies:
     - field.field.node.project.field_project_label
     - field.field.node.project.field_project_start
     - field.field.node.project.field_related_content
+    - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
     - field.field.node.project.field_timeline_items
     - node.type.project
@@ -33,6 +33,8 @@ third_party_settings:
         - field_project_start
         - field_project_finish
         - field_contact
+        - field_area
+        - field_tags
         - field_phone
         - field_email
       parent_name: ''
@@ -48,7 +50,6 @@ third_party_settings:
     group_metadata:
       children:
         - field_project_label
-        - field_area
         - field_related_content
       parent_name: ''
       weight: 8
@@ -129,13 +130,13 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_area:
-    weight: 8
+    weight: 12
     settings: {  }
     third_party_settings: {  }
-    type: options_select
+    type: options_buttons
     region: content
   field_contact:
-    weight: 12
+    weight: 11
     settings:
       rows: 3
       placeholder: ''
@@ -149,14 +150,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
-    region: content
-  field_email:
-    weight: 14
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: email_default
     region: content
   field_image_gallery_ref:
     type: entity_reference_paragraphs
@@ -194,7 +187,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_phone:
-    weight: 13
+    weight: 14
     settings:
       size: 60
       placeholder: ''
@@ -229,6 +222,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_tags:
+    weight: 13
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_teaser:
     weight: 2

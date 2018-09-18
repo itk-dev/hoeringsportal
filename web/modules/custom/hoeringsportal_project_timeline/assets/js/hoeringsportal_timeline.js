@@ -19,6 +19,14 @@ import vis from 'vis/dist/vis.js'
         popoverLabel = 'Høring';
       }
 
+      if (item.type == 'meeting') {
+        popoverLabel = 'Møde';
+      }
+
+      if (item.type == 'debate') {
+        popoverLabel = 'Debat';
+      }
+
       // Only show link if a node exists or link is set.
       if (item.nid > 0){
         buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'

@@ -43,7 +43,7 @@ class ProjectTimeline extends BlockBase {
         'link' => NULL,
       ],
       [
-        'title' => t('Project finish'),
+        'title' => t('Expected end date'),
         'startDate' => $node->field_project_finish->value,
         'endDate' => NULL,
         'type' => 'system',
@@ -73,6 +73,7 @@ class ProjectTimeline extends BlockBase {
       }
     }
 
+    // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
       $timeline_items[] = [

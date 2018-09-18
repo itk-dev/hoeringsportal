@@ -25,6 +25,7 @@ permissions:
   - 'edit own hearing content'
   - 'edit own project content'
   - 'edit own static_page content'
+  - 'translate interface'
   - 'update media'
   - 'view own unpublished content'
   - 'view the administration theme'

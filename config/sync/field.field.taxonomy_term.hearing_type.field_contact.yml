@@ -12,7 +12,7 @@ field_name: field_contact
 entity_type: taxonomy_term
 bundle: hearing_type
 label: Kontakt
-description: 'Kontaktoplysningerne kan findes på visningen af en høring og kan variere afhængigt af den valgte høringstype.'
+description: "Kontaktoplysningerne kan findes på visningen af en høring og kan variere afhængigt af den valgte høringstype.\r\nObs.\r\nIndhold i dette felt bliver vist på hjemmesiden.\r\nFor at sikre at borgerne bruger de korrekte informationskanaler og undgå forvirring, bør dette felt i udgangspunktet ikke indeholde kontaktoplysninger på specifikke medarbejdere."
 required: false
 translatable: false
 default_value: {  }

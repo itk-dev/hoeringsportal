@@ -54,6 +54,7 @@ permissions:
   - 'edit terms in area'
   - 'edit terms in hearing_type'
   - 'edit terms in media_library'
+  - 'translate interface'
   - 'update media'
   - 'view own unpublished content'
   - 'view the administration theme'

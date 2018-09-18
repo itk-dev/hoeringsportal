@@ -1,5 +1,5 @@
 id: node_more_info
-label: 'Node more info'
+label: 'Vil du vide mere?'
 ui_limit: ''
 properties:
   block: content_more_info

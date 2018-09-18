@@ -1,0 +1,23 @@
+uuid: cda2a872-6bf5-4746-9a38-71097270fe2f
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_external_link
+    - paragraphs.paragraphs_type.text
+  module:
+    - link
+id: paragraph.text.field_external_link
+field_name: field_external_link
+entity_type: paragraph
+bundle: text
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

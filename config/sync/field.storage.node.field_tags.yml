@@ -1,14 +1,16 @@
-uuid: 698c76d9-f525-442f-b7c0-d781ed2cd681
+uuid: aaccbd21-f6b4-4d4c-a4cf-d313648938c1
 langcode: da
 status: true
 dependencies:
   module:
     - node
-id: node.field_email
-field_name: field_email
+    - taxonomy
+id: node.field_tags
+field_name: field_tags
 entity_type: node
-type: email
-settings: {  }
+type: entity_reference
+settings:
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1

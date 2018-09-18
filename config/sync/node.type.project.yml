@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: Projekt
+name: Initiativ
 type: project
-description: "En projekt side til beskrivelse af projektet, med relaterede aktiviteter og høringer\r\nEksempel: Aarhus Ø, Havnebadet"
+description: "En initiativ side til beskrivelse af initiativet, med relaterede aktiviteter og høringer\r\nEksempel: Aarhus Ø, Havnebadet"
 help: ''
 new_revision: false
 preview_mode: 1

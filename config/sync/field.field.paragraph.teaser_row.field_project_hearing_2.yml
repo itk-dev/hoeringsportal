@@ -11,7 +11,7 @@ id: paragraph.teaser_row.field_project_hearing_2
 field_name: field_project_hearing_2
 entity_type: paragraph
 bundle: teaser_row
-label: Projekt/høring
+label: Initiativ/høring
 description: ''
 required: false
 translatable: false

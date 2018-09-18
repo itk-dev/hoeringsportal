@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.text.field_content_block_text
+    - field.field.paragraph.text.field_external_link
     - paragraphs.paragraphs_type.text
   module:
+    - link
     - text
 id: paragraph.text.default
 targetEntityType: paragraph
@@ -19,6 +21,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_external_link:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
     region: content
 hidden:
   created: true

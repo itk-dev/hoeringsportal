@@ -5,13 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - node.type.hearing
-    - node.type.project
     - taxonomy.vocabulary.area
     - taxonomy.vocabulary.hearing_type
+    - taxonomy.vocabulary.tags
   module:
     - better_exposed_filters
     - datetime
-    - hoeringsportal_forms
     - node
     - taxonomy
     - user
@@ -82,14 +81,6 @@ display:
                 is_secondary: false
                 rewrite:
                   filter_rewrite_values: "- Any -|Område\n- Enhver -|Vælg område"
-            field_project_reference_target_id:
-              bef_format: default
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Alle initiativer\n- Enhver -|Vælg initiativ"
             field_hearing_type_target_id:
               bef_format: default
               more_options:
@@ -98,6 +89,12 @@ display:
                 is_secondary: false
                 rewrite:
                   filter_rewrite_values: "- Any -|Alle typer\n- Enhver -|Vælg type"
+            field_tags_target_id:
+              bef_format: default
+              more_options:
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: "- Any -|Alle emner\n- Enhver -|Vælg emne"
           text_input_required_format: filtered_html
       pager:
         type: mini
@@ -243,49 +240,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_project_reference_target_id:
-          id: field_project_reference_target_id
-          table: node__field_project_reference
-          field: field_project_reference_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_project_reference_target_id_op
-            label: Initiativ
-            description: ''
-            use_operator: false
-            operator: field_project_reference_target_id_op
-            identifier: field_project_reference_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: 0
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: 0
-          type: select
-          limit: true
-          bundle: project
-          error_message: 1
-          plugin_id: node_index_nid
         field_hearing_type_target_id:
           id: field_hearing_type_target_id
           table: node__field_hearing_type
@@ -327,6 +281,52 @@ display:
           type: select
           limit: true
           vid: hearing_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+        field_tags_target_id:
+          id: field_tags_target_id
+          table: node__field_tags
+          field: field_tags_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_tags_target_id_op
+            label: Emne
+            description: ''
+            use_operator: false
+            operator: field_tags_target_id_op
+            identifier: field_tags_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: tags
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
