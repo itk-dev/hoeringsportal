@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * This is a file.
+ */
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_node_presave().
+ */
+function hoeringsportal_data_node_presave(NodeInterface $node) {
+  $helper = \Drupal::service('hoeringsportal_data.map_item_helper');
+  $helper->updateData($node);
+
+  $helper = \Drupal::service('hoeringsportal_data.localplan_item_helper');
+  $helper->updateData($node);
+}
