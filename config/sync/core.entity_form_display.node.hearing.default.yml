@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_lokalplaner
+    - field.field.node.hearing.field_map
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
@@ -24,6 +26,7 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - hoeringsportal_data
     - text
 third_party_settings:
   field_group:
@@ -32,6 +35,7 @@ third_party_settings:
         - field_start_date
         - field_reply_deadline
         - field_hearing_type
+        - field_lokalplaner
         - field_project_reference
         - field_area
         - field_tags
@@ -77,7 +81,7 @@ bundle: hearing
 mode: default
 content:
   field_area:
-    weight: 30
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -104,14 +108,18 @@ content:
     third_party_settings: {  }
     type: options_select
     region: content
-  field_map_display:
-    weight: 6
-    settings:
-      rows: 15
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textarea
+  field_lokalplaner:
+    type: hoeringsportal_data_localplan_default
+    weight: 29
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_map:
+    type: hoeringsportal_data_map_default
+    weight: 6
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_media_document:
     weight: 3
     settings:
@@ -143,7 +151,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_project_reference:
-    weight: 29
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -161,7 +169,7 @@ content:
     type: datetime_default
     region: content
   field_tags:
-    weight: 31
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -201,6 +209,7 @@ hidden:
   created: true
   field_content_state: true
   field_deskpro_data: true
+  field_map_display: true
   langcode: true
   path: true
   promote: true

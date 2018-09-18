@@ -155,10 +155,13 @@ content:
       link: false
     third_party_settings: {  }
 hidden:
+  field_content_state: true
   field_description: true
   field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
+  field_lokalplaner: true
+  field_map: true
   field_map_display: true
   field_media_document: true
   field_media_image: true

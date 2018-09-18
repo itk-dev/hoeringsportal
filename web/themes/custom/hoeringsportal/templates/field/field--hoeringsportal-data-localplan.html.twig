@@ -1,0 +1,16 @@
+{% if not label_hidden %}
+  <h5 class="mt-3">{{ label }}</h5>
+{% endif %}
+
+{% for item in element['#items'] %}
+  {% if item.id %}
+    <div>
+      {% set properties = item.stuff.features[0].properties|default([]) %}
+      {% if properties.doklink|default(false) %}
+        <a href="{{ properties.doklink }}">{{ properties.planid }}</a>
+      {% else %}
+        {{ item.id }}
+      {% endif %}
+    </div>
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,10 @@
+{{ attach_library('hoeringsportal/map-display') }}
+
+{% if not label_hidden %}
+  <h5 class="mt-3">{{ label }}</h5>
+{% endif %}
+
+{# @FIXME: Is this the right way do get the data? #}
+{% for item in element['#items']|slice(0, 1) %}
+  <div id="map" data-geojson="{{ item.data }}"></div>
+{% endfor %}

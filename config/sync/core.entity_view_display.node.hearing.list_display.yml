@@ -69,14 +69,18 @@ content:
     type: basic_string
     region: content
 hidden:
+  field_content_state: true
   field_description: true
   field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
+  field_lokalplaner: true
+  field_map: true
   field_map_display: true
   field_media_document: true
   field_reply_deadline: true
   field_start_date: true
+  field_tags: true
   field_video_embed: true
   langcode: true
   links: true
