@@ -1,0 +1,26 @@
+uuid: 854345f4-658d-4b77-84b3-c0e092927e58
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map
+    - node.type.project
+  module:
+    - hoeringsportal_data
+id: node.project.field_map
+field_name: field_map
+entity_type: node
+bundle: project
+label: 'Map display'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    type: ''
+    data: null
+    geojson: ''
+    localplanids: ''
+default_value_callback: ''
+settings: {  }
+field_type: hoeringsportal_data_map
