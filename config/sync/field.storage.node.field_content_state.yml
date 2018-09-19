@@ -16,7 +16,7 @@ settings:
       label: 'Høring i vente'
     -
       value: active
-      label: 'Høring igang'
+      label: 'Høring i gang'
     -
       value: finished
       label: 'Høring afsluttet'
