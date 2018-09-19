@@ -3,6 +3,10 @@ services:
     class: Drupal\hoeringsportal_data\Service\Plandata
     arguments: ['@settings']
 
+  hoeringsportal_data.hearing_helper:
+    class: Drupal\hoeringsportal_data\Helper\HearingHelper
+    arguments: ['@entity_type.manager']
+
   hoeringsportal_data.map_item_helper:
     class: Drupal\hoeringsportal_data\Helper\MapItemHelper
     arguments: ['@hoeringsportal_data.plandata']
@@ -10,3 +14,9 @@ services:
   hoeringsportal_data.localplan_item_helper:
     class: Drupal\hoeringsportal_data\Helper\LocalplanItemHelper
     arguments: ['@hoeringsportal_data.plandata']
+
+  hoeringsportal_data.commands:
+    class: Drupal\hoeringsportal_data\Commands\DrushCommands
+    arguments: ['@hoeringsportal_data.hearing_helper']
+    tags:
+      - { name: drush.command }
