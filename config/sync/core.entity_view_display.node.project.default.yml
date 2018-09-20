@@ -63,7 +63,6 @@ third_party_settings:
         - field_tags
         - field_area
         - field_phone
-        - field_email
       footer:
         - field_image_gallery_ref
         - 'dynamic_block_field:node-project_timeline'
