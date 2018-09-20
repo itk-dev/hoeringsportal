@@ -33,7 +33,7 @@ input[disabled="disabled"] {
 }
 
 /* reset btn i different color */
-input[type="reset"] {
+button[type="reset"] {
   /* stylelint-disable */
   background: #f2c0c0 !important;
   color: #333 !important;
@@ -60,4 +60,16 @@ input[type="reset"] {
 .portal-mode-focus-window .world,
 .portal-mode-focus-window .padded {
   padding: 0 !important;
+}
+
+/* Allow inputs to optain the available width of the iframe */
+.form-ticket .bucket .dp-medium-rte-wrapper,
+.form-ticket .bucket input[type="text"],
+.form-ticket .bucket input[type="email"],
+.form-ticket .bucket input[type="password"],
+.form-ticket .bucket textarea,
+.form-ticket .bucket select,
+.form-ticket .bucket .multiselect {
+  width: 100%;
+  max-width: 100%;
 }
