@@ -69,7 +69,18 @@ button[type="reset"] {
 .form-ticket .bucket input[type="password"],
 .form-ticket .bucket textarea,
 .form-ticket .bucket select,
-.form-ticket .bucket .multiselect {
+.form-ticket .bucket .multiselect,
+.form-ticket .field_person {
   width: 100% !important;
   max-width: 100% !important;
+}
+.form-ticket .bucket .captcha-field input[type="text"] {
+  width: calc(100% - 157px) !important;
+  max-width: 100% !important;
+}
+@media screen and (max-width: 850px) {
+  .column-half {
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
 }
