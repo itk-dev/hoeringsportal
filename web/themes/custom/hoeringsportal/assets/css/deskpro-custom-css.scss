@@ -1,7 +1,7 @@
 /*
 *   Styles for Deskpro forms
 *   Import in Deskpro from Admin -> User interface -> Portal -> CSS -> Edit custom CSS width this line:
-*   `@import url("deltag.aarhus.dk/sites/default/files/css/deskpro-custom-css.css");`
+*   `@import url("https://deltag.aarhus.dk/themes/custom/hoeringsportal/build/deskpro-custom-css.css");`
 *
 *   We do it this way since Deskpro randomly throws away the contents
 */
@@ -10,25 +10,33 @@
 
 /* Set a max width on text elemensts inside forms */
 .deskpro-form-widget .bucket h1, .deskpro-form-widget .bucket .jj-note, .deskpro-form-widget .bucket .form-help p {
-  max-width: 620px;
+  max-width: 620px !important;
 }
 
 /* Change the color of file input */
 .attach-file, .attach-file-active {
   /* stylelint-disable */
-  background: #f5f5f5;
+  background: #f5f5f5 !important;
   /* stylelint-enable */
 }
 .attach-file .fake-button, .attach-file-active .fake-button {
   /* stylelint-disable */
-  background: #b2dada;
+  background: #b2dada !important;
   /* stylelint-enable */
 }
 
 /* Gray text on disabled input */
 input[disabled="disabled"] {
   /* stylelint-disable */
-  color: #858585;
+  color: #858585 !important;
+  /* stylelint-enable */
+}
+
+/* reset btn i different color */
+input[type="reset"] {
+  /* stylelint-disable */
+  background: #f2c0c0 !important;
+  color: #333 !important;
   /* stylelint-enable */
 }
 
@@ -37,13 +45,13 @@ input[disabled="disabled"] {
  * Fix selects and arrow position
  */
 .multiselect .default.collapsed span {
-  height: auto;
+  height: auto !important;
 }
 
 .multiselect .default i[class^="fa-caret"],
 .multiselect .default i[class*=" fa-caret"] {
-  top: 50%;
-  margin-top: -8px;
+  top: 50% !important;
+  margin-top: -8px !important;
 }
 
 /* styles for form in iframe */
