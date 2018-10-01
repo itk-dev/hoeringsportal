@@ -16,7 +16,7 @@ settings:
       label: 'Kommende høring'
     -
       value: active
-      label: 'Høring igang'
+      label: 'Høring i gang'
     -
       value: finished
       label: 'Høring afsluttet'

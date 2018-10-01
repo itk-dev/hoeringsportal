@@ -8,6 +8,8 @@ dependencies:
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
     - field.field.node.project.field_image_gallery_ref
+    - field.field.node.project.field_lokalplaner
+    - field.field.node.project.field_map
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
@@ -23,6 +25,7 @@ dependencies:
     - datetime
     - ds
     - entity_reference_revisions
+    - hoeringsportal_data
     - text
     - user
 third_party_settings:
@@ -48,6 +51,7 @@ third_party_settings:
       header:
         - node_title
         - field_media_image
+        - field_lokalplaner
       left:
         - field_teaser
         - field_description
@@ -59,11 +63,10 @@ third_party_settings:
         - field_tags
         - field_area
         - field_phone
-        - field_email
       footer:
         - field_image_gallery_ref
         - 'dynamic_block_field:node-project_timeline'
-        - field_map_display
+        - field_map
         - 'dynamic_block_field:node-participate'
         - field_related_content
     fields:
@@ -127,12 +130,19 @@ content:
       link: ''
     third_party_settings: {  }
     region: footer
-  field_map_display:
+  field_lokalplaner:
+    weight: 11
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: hoeringsportal_data_localplan_default
+    region: header
+  field_map:
     weight: 14
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    type: hoeringsportal_data_map_default
     region: footer
   field_media_image:
     weight: 1
@@ -197,6 +207,7 @@ content:
     region: left
 hidden:
   field_activities: true
+  field_map_display: true
   field_project_label: true
   field_timeline_items: true
   langcode: true

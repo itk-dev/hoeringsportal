@@ -9,6 +9,8 @@ dependencies:
     - field.field.node.project.field_contact
     - field.field.node.project.field_description
     - field.field.node.project.field_image_gallery_ref
+    - field.field.node.project.field_lokalplaner
+    - field.field.node.project.field_map
     - field.field.node.project.field_map_display
     - field.field.node.project.field_media_image
     - field.field.node.project.field_phone
@@ -24,6 +26,7 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - hoeringsportal_data
     - paragraphs
     - text
 third_party_settings:
@@ -162,6 +165,18 @@ content:
       form_display_mode: default
       default_paragraph_type: projekt_billede_galleri
     third_party_settings: {  }
+    region: content
+  field_lokalplaner:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: hoeringsportal_data_localplan_default
+    region: content
+  field_map:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: hoeringsportal_data_map_default
     region: content
   field_map_display:
     weight: 7

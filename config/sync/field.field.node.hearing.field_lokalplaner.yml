@@ -1,0 +1,21 @@
+uuid: d7716f86-7170-417c-a48c-8381c191a3f3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lokalplaner
+    - node.type.hearing
+  module:
+    - hoeringsportal_data
+id: node.hearing.field_lokalplaner
+field_name: field_lokalplaner
+entity_type: node
+bundle: hearing
+label: Lokalplaner
+description: 'https://visplaner.plandata.dk/visplaner/lokalplaner.html'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: hoeringsportal_data_localplan

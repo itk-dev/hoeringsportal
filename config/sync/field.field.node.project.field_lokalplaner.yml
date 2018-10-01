@@ -1,0 +1,27 @@
+uuid: 096162e5-7ead-4717-9517-4fad98653fa5
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lokalplaner
+    - node.type.project
+  module:
+    - hoeringsportal_data
+id: node.project.field_lokalplaner
+field_name: field_lokalplaner
+entity_type: node
+bundle: project
+label: Lokalplaner
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    id: ''
+    data: null
+  -
+    id: ''
+    data: null
+default_value_callback: ''
+settings: {  }
+field_type: hoeringsportal_data_localplan

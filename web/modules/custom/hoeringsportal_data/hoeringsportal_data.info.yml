@@ -1,0 +1,8 @@
+name: Data
+type: module
+description: Custom data stuff.
+package: Hoeringsportal
+core: 8.x
+
+dependences:
+  - field

@@ -85,7 +85,8 @@
   {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
 {% endif %}
 
-<div class="activity-teaser-inner">
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
+
   {# When deadline field exists add splash. #}
   {% if (content.field_reply_deadline) %}
     {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
@@ -121,20 +122,20 @@
   {% endif %}
 
   <div class="activity-teaser-image">
-    <a href="{{ url }}">{{ content.field_media_image }}</a>
+    {{ content.field_media_image }}
     {# Add overlay if deadline has passed. #}
     {% if (overlay) %}
-      <a class="activity-teaser-overlay" href="{{ url }}"></a>
+      <span class="activity-teaser-overlay"></span>
     {% endif %}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>
-    <a href="{{ url }}" class="activity-teaser-title">{{ label }}</a>
+    <p class="activity-teaser-title">{{ label }}</p>
     <div class="activity-teaser-description">
       {{ content.field_teaser }}
     </div>
   </div>
   <div class="activity-teaser-info">
-    <a href="{{ url }}" class="activity-teaser-project-name">{{ project }}</a>
+    <span class="activity-teaser-project-name">{{ project }}</span>
     <span class="activity-teaser-meta-wrapper">
       <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
       <span class="activity-teaser-type">{{ type }}</span>
@@ -142,6 +143,6 @@
         <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>
       {% endif %}
     </span>
-    <a href="{{ url }}" class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></a>
+    <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
   </div>
-</div>
+</a>

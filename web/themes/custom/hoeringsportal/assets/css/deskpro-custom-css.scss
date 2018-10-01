@@ -1,0 +1,86 @@
+/*
+*   Styles for Deskpro forms
+*   Import in Deskpro from Admin -> User interface -> Portal -> CSS -> Edit custom CSS width this line:
+*   `@import url("https://deltag.aarhus.dk/themes/custom/hoeringsportal/build/deskpro-custom-css.css");`
+*
+*   We do it this way since Deskpro randomly throws away the contents
+*/
+
+
+
+/* Set a max width on text elemensts inside forms */
+.deskpro-form-widget .bucket h1, .deskpro-form-widget .bucket .jj-note, .deskpro-form-widget .bucket .form-help p {
+  max-width: 620px !important;
+}
+
+/* Change the color of file input */
+.attach-file, .attach-file-active {
+  /* stylelint-disable */
+  background: #f5f5f5 !important;
+  /* stylelint-enable */
+}
+.attach-file .fake-button, .attach-file-active .fake-button {
+  /* stylelint-disable */
+  background: #b2dada !important;
+  /* stylelint-enable */
+}
+
+/* Gray text on disabled input */
+input[disabled="disabled"] {
+  /* stylelint-disable */
+  color: #858585 !important;
+  /* stylelint-enable */
+}
+
+/* reset btn i different color */
+button[type="reset"] {
+  /* stylelint-disable */
+  background: #f2c0c0 !important;
+  color: #333 !important;
+  /* stylelint-enable */
+}
+
+/*
+ * rimi@aarhus.dk 2018-09-06
+ * Fix selects and arrow position
+ */
+.multiselect .default.collapsed span {
+  height: auto !important;
+}
+
+.multiselect .default i[class^="fa-caret"],
+.multiselect .default i[class*=" fa-caret"] {
+  top: 50% !important;
+  margin-top: -8px !important;
+}
+
+/* styles for form in iframe */
+.portal-mode-focus-window .dp-page-body,
+.portal-mode-focus-window .large-title,
+.portal-mode-focus-window .world,
+.portal-mode-focus-window .padded {
+  padding: 0 !important;
+}
+
+/* Allow inputs to optain the available width of the iframe */
+.form-ticket .bucket .dp-medium-rte-wrapper,
+.form-ticket .bucket input[type="text"],
+.form-ticket .bucket input[type="email"],
+.form-ticket .bucket input[type="password"],
+.form-ticket .bucket textarea,
+.form-ticket .bucket select,
+.form-ticket .bucket .multiselect,
+.form-ticket .field_person {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.form-ticket .bucket .captcha-field input[type="text"] {
+  width: calc(100% - 159px) !important;
+  max-width: 100% !important;
+}
+@media screen and (max-width: 850px) {
+  .column-half {
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+}

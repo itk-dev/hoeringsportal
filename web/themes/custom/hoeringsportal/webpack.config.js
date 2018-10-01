@@ -7,8 +7,9 @@ Encore
     // the public path used by the web server to access the previous directory
     .setPublicPath('/build')
 
-    // will create public/build/hoeringsportal.js and public/build/hoeringsportal.css
+    // will create public/build/hoeringsportal.js and public/build/hoeringsportal.css and public/build/deskpro-custom-css.css
     .addEntry('hoeringsportal', './assets/js/hoeringsportal.js')
+    .addEntry('deskpro-custom-css', './assets/js/deskpro-custom-css.js')
     .addEntry('show-map', './assets/js/show-map.js')
 
     // Bootstrap expects jQuery to be available as a global variable
