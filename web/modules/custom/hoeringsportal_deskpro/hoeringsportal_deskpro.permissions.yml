@@ -1,0 +1,3 @@
+access deskpro settings:
+  title: 'Access Deskpro settings'
+  restrict access: TRUE

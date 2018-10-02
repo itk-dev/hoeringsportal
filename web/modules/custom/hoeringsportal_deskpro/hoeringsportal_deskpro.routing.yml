@@ -31,6 +31,14 @@ hoeringsportal_deskpro.data.synchronize.hearing:
   options:
     no_cache: true
 
+# Admin form
+hoeringsportal_deskpro.settings:
+  path: '/admin/site-setup/deskpro'
+  defaults:
+    _form: '\Drupal\hoeringsportal_deskpro\Form\DeskproSettingsForm'
+    _title: 'Deskpro'
+  requirements:
+    _permission: 'access deskpro settings'
 
 # Autocomplete
 hoeringsportal_deskpro.autocomplete_controller_department:

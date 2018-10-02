@@ -18,3 +18,7 @@ services:
     arguments: ['@entity_type.manager', '@hoeringsportal_deskpro.helper']
     tags:
       - { name: drush.command }
+
+  hoeringsportal_deskpro.form_config:
+    class: Drupal\hoeringsportal_deskpro\State\AddHearingFormConfig
+    arguments: ['@serialization.json', '@database']

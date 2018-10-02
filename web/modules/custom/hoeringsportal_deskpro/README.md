@@ -24,6 +24,15 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   // Cache ttl in seconds
   'cache_ttl' => 60,
 ];
+
+$settings['hoeringsportal_deskpro.add_form'] = [
+  'intro' => 'Lorem ipsum intro',
+  'consent' => 'Lorem ipsum consent',
+  'representation' => [
+    '11' => 'AAA',
+    '22' => 'BBB'
+  ],
+];
 ```
 
 ## API

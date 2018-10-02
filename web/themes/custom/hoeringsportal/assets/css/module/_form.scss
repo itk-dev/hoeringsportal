@@ -1,3 +1,14 @@
 .form-control-lg {
   font-size: 100%;
 }
+
+form {
+  .form-required:after {
+    content:" *";
+    color: $danger;
+  }
+
+  .filter-wrapper {
+    display: none;
+  }
+}

@@ -17,32 +17,8 @@ class HearingTicketAddBlock extends HearingTicketBlock {
    * {@inheritdoc}
    */
   public function build() {
-    $node = $this->routeMatch->getParameter('node');
-
-    if (!$this->helper->isHearing($node)) {
-      return NULL;
-    }
-
-    if ($this->helper->isDeadlinePassed($node)) {
-      return NULL;
-    }
-
-    $departmentId = $this->helper->getDepartmentId($node);
-    $hearingId = $this->helper->getHearingId($node);
-    $defaultValues = [
-      'ticket' => [
-        $this->helper->getTicketFieldName('hearing_name') => [
-          'data' => $node->getTitle(),
-        ],
-      ],
-    ];
-
-    $form = $this->deskpro->getTicketEmbedForm($departmentId, $hearingId, $defaultValues);
-
-    return [
-      '#children' => $form,
-      '#cache' => ['contexts' => ['url']],
-    ];
+    $form = \Drupal::formBuilder()->getForm('Drupal\hoeringsportal_deskpro\Form\HearingAddForm');
+    return $form;
   }
 
 }

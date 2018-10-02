@@ -102,6 +102,7 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
 function hoeringsportal_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['#type'])) {
     $suggestions[] = 'form_element__' . $variables['element']['#type'];
+    $suggestions[] = 'form_element__' . $variables['element']['#type'] . '__' . $variables['element']['#name'];
   }
 }
 

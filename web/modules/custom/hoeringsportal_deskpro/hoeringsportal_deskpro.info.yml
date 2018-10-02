@@ -3,3 +3,6 @@ type: module
 description: 'Deskpro integration'
 core: 8.x
 package: 'Custom'
+
+dependences:
+  - itk_admin
