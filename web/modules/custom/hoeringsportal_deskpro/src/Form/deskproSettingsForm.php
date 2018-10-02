@@ -36,17 +36,23 @@ class DeskproSettingsForm extends FormBase {
     $description_representation .= '</p>';
 
     $config = $this->getFormConfig();
-
+    $lines = [];
     $representation = $config->get('representation');
     foreach ($representation as $key => $value) {
       $lines[] = $key . '|' . $value;
     }
     $representation_value = implode(PHP_EOL, $lines);
 
+    $form['deskpro_settings'] = [
+      '#type' => 'vertical_tabs',
+      '#default_tab' => 'edit-add-hearing-form',
+    ];
+
     $form['add_hearing_form'] = [
       '#type' => 'details',
       '#title' => $this->t('Add hearing form'),
       '#open' => TRUE,
+      '#group' => 'deskpro_settings',
     ];
 
     $form['add_hearing_form']['intro'] = [
@@ -63,16 +69,17 @@ class DeskproSettingsForm extends FormBase {
       '#type' => 'text_format',
       '#format' => 'filtered_html',
       '#default_value' => $config->get('consent'),
-      '#weight' => '1',
+      '#weight' => '2',
       '#size' => 60,
     ];
 
-    $form['representation'] = [
+    $form['add_hearing_form']['representation'] = [
       '#type' => 'textarea',
       '#title' => $this
         ->t('Representation list'),
       '#description' => $description_representation,
       '#default_value' => $representation_value,
+      '#weight' => '3',
     ];
 
     $form['submit'] = [
