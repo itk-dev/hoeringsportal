@@ -4,7 +4,7 @@
 
 form {
   .form-required:after {
-    content:" *";
+    content: " *";
     color: $danger;
   }
 
