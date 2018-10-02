@@ -1,0 +1,4 @@
+hoeringsportal_deskpro_settings.admin:
+  title: 'Deskpro settings'
+  route_name: hoeringsportal_deskpro.settings
+  base_route: itk_admin.settings

@@ -1,0 +1,7 @@
+uuid: 0150c387-fb5d-45ca-bb00-9a0adfa94f28
+langcode: da
+status: true
+dependencies: {  }
+formId: hearing_add_form
+captchaType: image_captcha/Image
+label: hearing_add_form
