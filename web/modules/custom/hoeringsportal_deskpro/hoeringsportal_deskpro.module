@@ -66,10 +66,16 @@ function hoeringsportal_deskpro_theme() {
  */
 function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id === 'node_hearing_edit_form') {
-    // Department autocomplete.
+    // Department as select control.
     if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
       && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
-      $form['field_deskpro_department_id']['widget'][0]['value']['#autocomplete_route_name'] = 'hoeringsportal_deskpro.autocomplete_controller_department';
+      $form['field_deskpro_department_id']['widget'][0]['value'] = [
+        '#type' => 'select',
+        '#required' => TRUE,
+        '#size' => 1,
+        '#options' => \Drupal::service('hoeringsportal_deskpro.deskpro')->getDepartments(),
+        '#empty_value' => '',
+      ];
     }
   }
 }

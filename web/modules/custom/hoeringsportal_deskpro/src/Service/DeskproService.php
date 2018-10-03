@@ -255,6 +255,7 @@ class DeskproService {
       'deskpro_url',
       'api_code_key',
       'available_departments',
+      'departments',
       'ticket_custom_fields',
       'cache_ttl',
       'x-deskpro-token',
@@ -328,6 +329,13 @@ class DeskproService {
     }
 
     return $this->configuration['ticket_custom_fields'][$field];
+  }
+
+  /**
+   * Get departments.
+   */
+  public function getDepartments() {
+    return $this->configuration['departments'] ?: [];
   }
 
   /**

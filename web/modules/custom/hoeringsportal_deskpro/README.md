@@ -2,6 +2,8 @@
 
 ## Configuration
 
+Edit configuration on `/admin/site-setup/deskpro`.
+
 Add configuration in `settings.local.php`:
 
 ```php
@@ -11,6 +13,10 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   'api_code_key' => '1:ABCDEFGHIJKLMNOPQRSTUVWXY',
   // Departments (ids) that are available for users.
   'available_departments' => [1],
+  'departments' => [
+    1 => 'Department one',
+    2 => 'Another department',
+  ],
   // https://example.deskpro.com/agent/#admin:/tickets/fields
   'ticket_custom_fields' => [
     // Field name => field id.
