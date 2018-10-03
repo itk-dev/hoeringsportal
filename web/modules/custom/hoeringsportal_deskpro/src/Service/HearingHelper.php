@@ -4,8 +4,11 @@ namespace Drupal\hoeringsportal_deskpro\Service;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
+use Drupal\file\Entity\File;
 use Drupal\node\NodeInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Hearing helper.
@@ -26,11 +29,27 @@ class HearingHelper {
   private $entityTypeManager;
 
   /**
+   * The file system.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  private $fileSystem;
+
+  /**
+   * The logger.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  private $logger;
+
+  /**
    * Constructs a new DeskproHelper object.
    */
-  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager) {
+  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager, FileSystemInterface $fileSystem, LoggerInterface $logger) {
     $this->deskpro = $deskpro;
     $this->entityTypeManager = $entityTypeManager;
+    $this->fileSystem = $fileSystem;
+    $this->logger = $logger;
   }
 
   /**
@@ -128,6 +147,50 @@ class HearingHelper {
     }
 
     return NULL;
+  }
+
+  /**
+   * Create a hearing ticket.
+   */
+  public function createHearingTicket(NodeInterface $node, array $data, array $fileIds = []) {
+    if (!$this->isHearing($node)) {
+      throw new \Exception('Invalid hearing');
+    }
+
+    try {
+      // Get paths to files.
+      $files = array_map(function (File $file) {
+        return $this->fileSystem->realpath($file->getFileUri());
+      }, File::loadMultiple($fileIds));
+
+      // Map data to custom fields.
+      $customFields = $this->deskpro->getTicketCustomFields();
+      foreach ($data as $key => $value) {
+        if (isset($customFields[$key])) {
+          $data['fields'][$customFields[$key]] = $value;
+          unset($data[$key]);
+        }
+      }
+
+      // Add hearing data.
+      $data['fields'][$this->getTicketFieldId('hearing_id')] = $node->id();
+      $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
+
+      $response = $this->deskpro->createTicket($data);
+      $ticket = $response->getData();
+      $response = $this->deskpro->createMessage($ticket, $data, $files);
+      $message = $response->getData();
+
+      return [$ticket, $message];
+    }
+    catch (\Exception $exception) {
+      $this->logger->critical('', [
+        'data' => $data,
+        'body' => (string) $this->deskpro->getLastHttpRequestException()->getResponse()->getBody(),
+        'message' => $this->deskpro->getLastHttpRequestException()->getMessage(),
+      ]);
+      throw $exception;
+    }
   }
 
   /**

@@ -1,0 +1,10 @@
+dawa:
+  version: 1.x
+  css:
+    theme:
+      assets/css/dawa.css: {}
+  js:
+    https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.min.js: { type: external, minified: true }
+    https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js: { type: external, minified: true }
+    https://dawa.aws.dk/js/autocomplete/dawa-autocomplete2.min.js: { type: external, minified: true }
+    assets/js/dawa.js: {}

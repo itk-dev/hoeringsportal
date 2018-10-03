@@ -1,11 +1,15 @@
 services:
+  hoeringsportal_deskpro.logger:
+    parent: logger.channel_base
+    arguments: ['hoeringsportal_deskpro']
+
   hoeringsportal_deskpro.deskpro:
     class: Drupal\hoeringsportal_deskpro\Service\DeskproService
     arguments: ['@settings', '@language_manager']
 
   hoeringsportal_deskpro.helper:
     class: Drupal\hoeringsportal_deskpro\Service\HearingHelper
-    arguments: ['@hoeringsportal_deskpro.deskpro', '@entity_type.manager']
+    arguments: ['@hoeringsportal_deskpro.deskpro', '@entity_type.manager', '@file_system', '@hoeringsportal_deskpro.logger']
 
   hoeringsportal_deskpro.twig_extension:
     class: Drupal\hoeringsportal_deskpro\Twig\TwigExtension
@@ -20,5 +24,5 @@ services:
       - { name: drush.command }
 
   hoeringsportal_deskpro.form_config:
-    class: Drupal\hoeringsportal_deskpro\State\AddHearingFormConfig
+    class: Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig
     arguments: ['@serialization.json', '@database']
