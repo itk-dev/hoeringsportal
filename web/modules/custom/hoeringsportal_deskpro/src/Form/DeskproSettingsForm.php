@@ -20,7 +20,7 @@ class DeskproSettingsForm extends FormBase {
   /**
    * Get key/value storage for base config.
    *
-   * @return object
+   * @return \Drupal\hoeringsportal_deskpro\State\AddHearingFormConfig
    *   The config object.
    */
   private function getFormConfig() {
@@ -37,7 +37,7 @@ class DeskproSettingsForm extends FormBase {
 
     $config = $this->getFormConfig();
     $lines = [];
-    $representation = $config->get('representation');
+    $representation = $config->get('representation', []);
     foreach ($representation as $key => $value) {
       $lines[] = $key . '|' . $value;
     }

@@ -22,6 +22,7 @@ class HearingAddForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form_config = \Drupal::getContainer()->get('hoeringsportal_deskpro.form_config');
+
     $file_validators = [
       'file_validate_size' => [10490000],
     ];
