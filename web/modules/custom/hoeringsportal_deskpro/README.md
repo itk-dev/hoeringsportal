@@ -24,8 +24,8 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   // https://example.deskpro.com/agent/#admin:/tickets/fields
   'ticket_custom_fields' => [
     // Field name => field id.
-    'hearing_id' => 13,
-    'hearing_name' => 14,
+    'hearing_id' => 28,
+    'hearing_name' => 30,
     'edoc_id' => 15,
     'pdf_download_url' => 22,
     'representation' => 2,
