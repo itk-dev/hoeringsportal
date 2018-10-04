@@ -2,6 +2,8 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * Provides a 'Hearing ticket' Block.
  *
@@ -19,9 +21,10 @@ class HearingTicketBlock extends BlockBase {
   public function build() {
     $node = $this->routeMatch->getParameter('node');
     $ticket = $this->routeMatch->getParameter('ticket');
+    $ticket = $this->helper->getHearingTicket($node, $ticket);
 
     if (!$this->helper->isHearing($node) || empty($ticket)) {
-      return NULL;
+      throw new NotFoundHttpException();
     }
 
     $cacheTags = $node->getCacheTags();
@@ -34,7 +37,7 @@ class HearingTicketBlock extends BlockBase {
       '#theme' => 'hoeringsportal_hearing_ticket',
       '#node' => $node,
       '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
-      '#ticket' => $this->helper->getHearingTicket($node, $ticket),
+      '#ticket' => $ticket,
       '#cache' => [
         'contexts' => $cacheContexts,
         'tags' => $cacheTags,

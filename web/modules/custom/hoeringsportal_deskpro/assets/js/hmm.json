@@ -1,0 +1,728 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "parent": null,
+            "title": "Din adresse",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "validation_type": "required",
+                "clickable_links": "",
+                "required": true,
+                "min_length": "1",
+                "max_length": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Din adresse",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Din adresse",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 2,
+            "parent": null,
+            "title": "Jeg udtaler mig som",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "multiple": false,
+                "expanded": false,
+                "validation_type": "required",
+                "required": true,
+                "min_length": "1",
+                "max_length": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [
+                {
+                    "id": 5,
+                    "title": "Privatperson",
+                    "is_selectable": true
+                },
+                {
+                    "id": 3,
+                    "title": "Virksomhed",
+                    "is_selectable": true
+                },
+                {
+                    "id": 4,
+                    "title": "Forening \/ organisation",
+                    "is_selectable": true
+                },
+                {
+                    "id": 20,
+                    "title": "R\u00e5d og n\u00e6vn",
+                    "is_selectable": true
+                },
+                {
+                    "id": 21,
+                    "title": "Myndighed",
+                    "is_selectable": true
+                }
+            ],
+            "default_value": 5,
+            "widget_type": "choice",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Jeg udtaler mig som",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Jeg udtaler mig som",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 7,
+            "parent": null,
+            "title": "Navn p\u00e5 organisation",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Navn p\u00e5 organisation",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Navn p\u00e5 organisation",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 9,
+            "parent": null,
+            "title": "Din adresse (geo)",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Din adresse (geo)",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Din adresse (geo)",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 10,
+            "parent": null,
+            "title": "Vejledning og samtykke",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "html": "<b>Vejledning og samtykke<\/b><br>\nDit h\u00f8ringssvar kan ses p\u00e5 hjemmesiden, kort tid efter du trykker p\u00e5 [Send]. Du modtager en e-mail med kvittering for, at vi har modtaget dit h\u00f8ringssvar. \nP\u00e5 hjemmesiden vil navn, postnummer, by, dit h\u00f8ringssvar og eventuelle bilag blive offentliggjort. N\u00e5r h\u00f8ringer skal behandles politisk vil dit navn, adresse, mailadresse, postnummer, by, h\u00f8ringssvar og eventuelle bilag blive offentliggjort.<br><br>\n\nDu afgiver automatisk dit samtykke, n\u00e5r du afgiver dit svar. \n\nSamtykkeerkl\u00e6ring: \n\nJeg giver samtykke til, at Aarhus Kommune m\u00e5 publicere mit h\u00f8ringssvar. Jeg er indforst\u00e5et med min ret til at tilbagekalde mit samtykke. L\u00e6s mere under punktet \"Oplysninger om anvendelse af persondata\" her p\u00e5 siden. (link til informationen nedenfor- (p\u00e5 side for sig))*"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "display",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Vejledning og samtykke",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Vejledning og samtykke",
+                    "description": ""
+                }
+            },
+            "aliases": [
+                "infoboks"
+            ]
+        },
+        {
+            "id": 11,
+            "parent": null,
+            "title": "Accept af vejledning og samtykke",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "validation_type": "required",
+                "label_text": "Jeg har l\u00e6st vejledning og samtykke og er indforst\u00e5et med vik\u00e5rene",
+                "unchecked_text": "Jeg har ikke l\u00e6st vejledningen og derfor ikke forholdt mig til vilk\u00e5rene"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "toggle",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Accept af vejledning og samtykke",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Accept af vejledning og samtykke",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 12,
+            "parent": null,
+            "title": "Indsend h\u00f8ringssvar",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "html": "Indsend dit h\u00f8ringssvar"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "display",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Indsend h\u00f8ringssvar",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Indsend h\u00f8ringssvar",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 15,
+            "parent": null,
+            "title": "EdocID",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "EdocID",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "EdocID",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 16,
+            "parent": null,
+            "title": "\u00c5ben download PDF URL (publiceres)",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "required": false,
+                "agent_required": false,
+                "allow_file": true
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "url",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "\u00c5ben download PDF URL (publiceres)",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "\u00c5ben download PDF URL (publiceres)",
+                    "description": ""
+                }
+            },
+            "aliases": [
+                "FileURLpub"
+            ]
+        },
+        {
+            "id": 17,
+            "parent": null,
+            "title": "Beskyttet fil URL (journaliseres)",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "required": false,
+                "agent_required": false,
+                "allow_file": true
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "url",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Beskyttet fil URL (journaliseres)",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Beskyttet fil URL (journaliseres)",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 18,
+            "parent": null,
+            "title": "Fjern bidrag fra publicering",
+            "description": "Bidraget overholder ikke retningslinjerne.",
+            "options": {
+                "custom_css_classname": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "toggle",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Fjern bidrag fra publicering",
+                    "description": "Bidraget overholder ikke retningslinjerne."
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Fjern bidrag fra publicering",
+                    "description": "Bidraget overholder ikke retningslinjerne."
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 22,
+            "parent": null,
+            "title": "\u00c5ben PDF preview URL",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "required": false,
+                "agent_required": false,
+                "allow_file": false
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "url",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "\u00c5ben PDF preview URL",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "\u00c5ben PDF preview URL",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 23,
+            "parent": null,
+            "title": "Sharefile ItemID",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Sharefile ItemID",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Sharefile ItemID",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 24,
+            "parent": null,
+            "title": "Sharefile ShareID",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "text",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Sharefile ShareID",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Sharefile ShareID",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 25,
+            "parent": null,
+            "title": "Synkroniseret med webvisning p\u00e5 deltag.aarhus.dk",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "multiple": false,
+                "expanded": false
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [
+                {
+                    "id": 26,
+                    "title": "Ja",
+                    "is_selectable": true
+                },
+                {
+                    "id": 27,
+                    "title": "Nej",
+                    "is_selectable": true
+                }
+            ],
+            "default_value": null,
+            "widget_type": "choice",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Synkroniseret med webvisning p\u00e5 deltag.aarhus.dk",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Synkroniseret med webvisning p\u00e5 deltag.aarhus.dk",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 28,
+            "parent": null,
+            "title": "H\u00f8rings-id",
+            "description": "",
+            "options": {
+                "custom_css_classname": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "hidden",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "H\u00f8rings-id",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "H\u00f8rings-id",
+                    "description": ""
+                }
+            },
+            "aliases": [
+                "hearing_id"
+            ]
+        },
+        {
+            "id": 29,
+            "parent": null,
+            "title": "drupal_synchronize_at",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "default_mode": "0",
+                "required": false,
+                "agent_required": false,
+                "date_valid_timezone": "Europe\/Copenhagen"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": null,
+            "widget_type": "datetime",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "drupal_synchronize_at",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "drupal_synchronize_at",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 30,
+            "parent": null,
+            "title": "H\u00f8ringsnavn",
+            "description": "",
+            "options": {
+                "custom_css_classname": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "hidden",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "H\u00f8ringsnavn",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "H\u00f8ringsnavn",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 31,
+            "parent": null,
+            "title": "Geolokation",
+            "description": "",
+            "options": {
+                "custom_css_classname": ""
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "hidden",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Geolokation",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Geolokation",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 32,
+            "parent": null,
+            "title": "Adressebeskyttelse",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "label_text": "Min adresse er hemmelig"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": false,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "toggle",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Adressebeskyttelse",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Adressebeskyttelse",
+                    "description": ""
+                }
+            },
+            "aliases": [
+                "adressebeskyttelse"
+            ]
+        },
+        {
+            "id": 33,
+            "parent": null,
+            "title": "Resume",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": "1"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "textarea",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Resume",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Resume",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        },
+        {
+            "id": 34,
+            "parent": null,
+            "title": "Vurdering",
+            "description": "",
+            "options": {
+                "custom_css_classname": "",
+                "clickable_links": "1"
+            },
+            "is_user_enabled": true,
+            "is_enabled": true,
+            "display_order": 0,
+            "is_agent_field": true,
+            "choices": [],
+            "default_value": "",
+            "widget_type": "textarea",
+            "translations": {
+                "1": {
+                    "language": 1,
+                    "title": "Vurdering",
+                    "description": ""
+                },
+                "2": {
+                    "language": 2,
+                    "title": "Vurdering",
+                    "description": ""
+                }
+            },
+            "aliases": []
+        }
+    ],
+    "meta": {},
+    "linked": {}
+}

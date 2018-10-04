@@ -2,6 +2,8 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
+use Drupal\hoeringsportal_deskpro\Form\HearingTicketAddForm;
+
 /**
  * Provides a 'Hearing ticket' Block.
  *
@@ -17,7 +19,9 @@ class HearingTicketAddBlock extends HearingTicketBlock {
    * {@inheritdoc}
    */
   public function build() {
-    $form = \Drupal::formBuilder()->getForm('Drupal\hoeringsportal_deskpro\Form\HearingAddForm');
+    $node = $this->routeMatch->getParameter('node');
+    $form = \Drupal::formBuilder()->getForm(HearingTicketAddForm::class, $node);
+
     return $form;
   }
 

@@ -27,6 +27,8 @@ class DeskproService {
    */
   private $languageManager;
 
+  private $client;
+
   /**
    * Constructs a new DeskproService object.
    */
@@ -255,6 +257,7 @@ class DeskproService {
       'deskpro_url',
       'api_code_key',
       'available_departments',
+      'departments',
       'ticket_custom_fields',
       'cache_ttl',
       'x-deskpro-token',
@@ -264,6 +267,83 @@ class DeskproService {
         throw new DeskproException('"' . $key . '" is missing or empty');
       }
     }
+  }
+
+  /**
+   * Create a ticket.
+   */
+  public function createTicket(array $data) {
+    $ticketData = $this->filterData($data, ['subject', 'department', 'fields']);
+
+    $endpoint = '/tickets';
+
+    $response = $this->client()->post($endpoint, $ticketData);
+
+    return $response;
+  }
+
+  /**
+   * Create a message on a ticket.
+   */
+  public function createMessage(array $ticket, array $data, array $files = []) {
+    $messageData = $this->filterData($data, ['message']);
+
+    $blobs = array_map(function ($path) {
+      $response = $this->uploadFile($path);
+      return $response->getData();
+    }, $files);
+
+    foreach ($blobs as $blob) {
+      $messageData['attachments'][] = [
+        'blob_auth' => $blob['blob_auth'],
+        // 'is_inline' => true,.
+      ];
+    }
+
+    $endpoint = '/tickets/{parentId}/messages';
+    $response = $this->client()->post($endpoint, $messageData, [
+      'parentId' => $ticket['id'],
+    ]);
+
+    return $response;
+  }
+
+  /**
+   * Upload a file.
+   */
+  public function uploadFile($path) {
+    $endpoint = '/blobs/temp';
+    $response = $this->client()->post($endpoint, [
+      'multipart' => [
+        [
+          'name'     => 'file',
+          'filename' => basename($path),
+          'contents' => fopen($path, 'r'),
+        ],
+      ],
+    ]);
+
+    return $response;
+  }
+
+  /**
+   * Filter data by keys.
+   */
+  private function filterData(array $data, array $fields) {
+    return array_filter(
+      $data,
+      function ($key) use ($fields) {
+        return in_array($key, $fields);
+      },
+      ARRAY_FILTER_USE_KEY
+    );
+  }
+
+  /**
+   * Get last response exception from Deskpro API.
+   */
+  public function getLastHttpRequestException() {
+    return $this->client()->getLastHTTPRequestException();
   }
 
   /**
@@ -331,6 +411,20 @@ class DeskproService {
   }
 
   /**
+   * Get ticket custom fields.
+   */
+  public function getTicketCustomFields() {
+    return $this->configuration['ticket_custom_fields'];
+  }
+
+  /**
+   * Get departments.
+   */
+  public function getDepartments() {
+    return $this->configuration['departments'] ?: [];
+  }
+
+  /**
    * Simple per request response cache.
    *
    * @var array
@@ -369,7 +463,7 @@ class DeskproService {
     unset($query['expand']);
     unset($query['no_cache']);
 
-    $response = $this->getClient()->get($endpoint, $query);
+    $response = $this->client()->get($endpoint, $query);
     $this->responseCache[$cacheKey] = $response;
 
     $data = [
@@ -399,14 +493,16 @@ class DeskproService {
   /**
    * Get a Deskpro client.
    */
-  private function getClient() {
-    // https://github.com/deskpro/deskpro-api-client-php
-    $this->validateConfiguration();
-    $client = new DeskproClient($this->configuration['deskpro_url']);
-    $authKey = explode(':', $this->configuration['api_code_key']);
-    $client->setAuthKey(...$authKey);
+  private function client() {
+    if (NULL === $this->client) {
+      // https://github.com/deskpro/deskpro-api-client-php
+      $this->validateConfiguration();
+      $authKey = explode(':', $this->configuration['api_code_key']);
+      $this->client = new DeskproClient($this->configuration['deskpro_url']);
+      $this->client->setAuthKey(...$authKey);
+    }
 
-    return $client;
+    return $this->client;
   }
 
   /**
