@@ -81,7 +81,7 @@ class DeskproService {
       unset($query['order_by'], $query['order_dir']);
 
       $data = $response->getData();
-      $this->expandData($data, $query);
+      $this->expandData($data, $query, $response);
 
       if ($this->getExpand($query, 'messages')) {
         foreach ($data as &$ticket) {
@@ -122,7 +122,7 @@ class DeskproService {
       $response = $this->get('/tickets/{ticket}', ['ticket' => $ticketId]);
 
       $data = $response->getData();
-      $this->expandData($data, $query);
+      $this->expandData($data, $query, $response);
 
       return $this->setResponseData($response, $data);
     }
@@ -217,7 +217,7 @@ class DeskproService {
         return !$message['is_agent_note'];
       }));
 
-      $this->expandData($data, $query);
+      $this->expandData($data, $query, $response);
 
       return $this->setResponseData($response, $data);
     }
@@ -359,6 +359,12 @@ class DeskproService {
       return $this->responseCache[$cacheKey];
     }
 
+    if (isset($query['expand'])) {
+      // https://deskpro.gitbook.io/dev-guide/api-basics/sideloading.
+      $names = preg_split('/,/', $query['expand'], -1, PREG_SPLIT_NO_EMPTY);
+      $names = array_map([$this, 'getIncludeName'], $names);
+      $query['include'] = implode(',', $names);
+    }
     // Trim out our custom query parameters.
     unset($query['expand']);
     unset($query['no_cache']);
@@ -374,6 +380,20 @@ class DeskproService {
     $cache->set($cacheKey, $data, time() + $cacheTtl);
 
     return $response;
+  }
+
+  /**
+   * Get Deskpro include name.
+   *
+   * (cf. https://deskpro.gitbook.io/dev-guide/api-basics/sideloading)
+   */
+  private function getIncludeName($name) {
+    switch ($name) {
+      case 'attachments':
+        return 'ticket_attachment';
+    }
+
+    return $name;
   }
 
   /**
@@ -424,18 +444,35 @@ class DeskproService {
   /**
    * Expand data depending on query parameters.
    */
-  private function expandData(array &$data, array $query) {
+  private function expandData(array &$data, array $query, APIResponse $response) {
     $expands = [
-      'person' => function (array &$item) use ($query) {
+      'person' => function (array &$item) use ($query, $response) {
         if (isset($item['person'])) {
-          $person = $this->getPerson($item['person'], $query);
-          $item['person'] = $person !== NULL ? $person->getData() : NULL;
+          $linked = $response->getLinked();
+          $includeName = $this->getIncludeName('person');
+          if (isset($linked[$includeName][$item['person']])) {
+            $item['person'] = $linked[$includeName][$item['person']];
+          }
+          else {
+            $person = $this->getPerson($item['person'], $query);
+            $item['person'] = $person !== NULL ? $person->getData() : NULL;
+          }
         }
       },
-      'attachments' => function (array &$item) use ($query) {
+      'attachments' => function (array &$item) use ($query, $response) {
         if (isset($item['attachments'])) {
-          $attachments = $this->getMessageAttachments($item, $query);
-          $item['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
+          $linked = $response->getLinked();
+          $includeName = $this->getIncludeName('attachments');
+          if (isset($linked[$includeName])) {
+            $attachments = $linked[$includeName];
+            $item['attachments'] = array_map(function ($id) use ($attachments) {
+              return $attachments[$id];
+            }, $item['attachments']);
+          }
+          else {
+            $attachments = $this->getMessageAttachments($item, $query);
+            $item['attachments'] = $attachments !== NULL ? $attachments->getData() : NULL;
+          }
         }
       },
       'fields' => function (array &$item) {
