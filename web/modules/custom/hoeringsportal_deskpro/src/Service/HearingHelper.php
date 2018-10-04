@@ -7,6 +7,7 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerInterface;
 
@@ -258,9 +259,20 @@ class HearingHelper {
     }
     $hearingId = $payload['ticket'][$hearingIdfieldName];
 
-    $hearing = $this->entityTypeManager->getStorage('node')->load($hearingId);
-    if (!$this->isHearing($hearing)) {
+    $hearing = Node::load($hearingId);
+    if (NULL === $hearing) {
       throw new \Exception('Invalid hearing: ' . $hearingId);
+    }
+
+    return $this->synchronizeHearingTickets($hearing);
+  }
+
+  /**
+   * Synchronize hearing tickets.
+   */
+  public function synchronizeHearingTickets(Node $hearing) {
+    if (!$this->isHearing($hearing)) {
+      throw new \Exception('Invalid hearing: ' . $hearing->id());
     }
 
     $result = $this->deskpro->getHearingTickets($hearing->id(), [

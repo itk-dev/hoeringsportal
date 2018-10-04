@@ -48,6 +48,21 @@ class HearingTicketAddForm extends FormBase {
   }
 
   /**
+   * A HACK!
+   *
+   * @see https://www.drupal.org/project/drupal/issues/2742859
+   */
+  private function initialize() {
+    $container = \Drupal::getContainer();
+    if (NULL === $this->config) {
+      $this->config = $container->get('hoeringsportal_deskpro.form_config');
+    }
+    if (NULL === $this->helper) {
+      $this->helper = $container->get('hoeringsportal_deskpro.helper');
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getFormId() {
@@ -58,6 +73,8 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $this->initialize();
+
     $file_validators = [
       'file_validate_size' => [10490000],
     ];
@@ -184,6 +201,8 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    $this->initialize();
+
     parent::validateForm($form, $form_state);
     $representationThatRequireOrganization = $this->config->getRepresentationsThatRequireOrganization();
     $representation = $form_state->getValue('representation');
@@ -199,6 +218,8 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $this->initialize();
+
     $names = [
       'name',
       'email',
@@ -226,15 +247,22 @@ class HearingTicketAddForm extends FormBase {
     $files = $form_state->getValue('files', []);
 
     try {
-      // $this->helper is not set after uploading files!
-      $helper = \Drupal::service('hoeringsportal_deskpro.helper');
-      $node = \Drupal::service('current_route_match')->getParameter('node');
-      $helper->createHearingTicket($node, $data, $files);
+      $node = $this->getRouteMatch()->getParameter('node');
+      [$ticket, $message] = $this->helper->createHearingTicket($node, $data, $files);
       $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted'));
+      try {
+        $this->helper->synchronizeHearingTickets($node);
+      }
+      catch (\Exception $exception) {
+      }
+
+      $form_state->setRedirect('entity.node.canonical', ['node' => $node->id()]);
     }
     catch (\Exception $exception) {
       $this->messenger()->addError($this->t('Error submitting hearing ticket'));
+      return;
     }
+
   }
 
 }
