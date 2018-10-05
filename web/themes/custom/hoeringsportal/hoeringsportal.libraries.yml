@@ -23,9 +23,6 @@ map-display:
 hyphenate:
   version: VERSION
   header: true
-  css:
-    theme:
-      build/add-hyphens.css: {}
   js:
-    build/hyphenate.js: {preprocess: false}
+    assets/js/hyphenate.js: {preprocess: false}
     assets/Hyphenopoly/Hyphenopoly_Loader.js: {preprocess: false}
