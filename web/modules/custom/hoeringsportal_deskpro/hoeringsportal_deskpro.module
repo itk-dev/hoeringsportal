@@ -68,14 +68,28 @@ function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_stat
   if ($form_id === 'node_hearing_edit_form') {
     // Department as select control.
     if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
-      && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
-      $form['field_deskpro_department_id']['widget'][0]['value'] = [
-        '#type' => 'select',
-        '#required' => TRUE,
-        '#size' => 1,
-        '#options' => \Drupal::service('hoeringsportal_deskpro.deskpro')->getDepartments(),
-        '#empty_value' => '',
-      ];
+        && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
+      $departments = \Drupal::service('hoeringsportal_deskpro.deskpro')->getTicketDepartments();
+      $options = [];
+      foreach ($departments as $department) {
+        $options[$department['id']] = $department['title'];
+      }
+      $form['field_deskpro_department_id']['widget'][0]['value'] = array_merge(
+        $form['field_deskpro_department_id']['widget'][0]['value'],
+        [
+          '#type' => 'select',
+          '#required' => TRUE,
+          '#size' => 1,
+          '#options' => $options,
+          '#empty_value' => '',
+        ]
+      );
+    }
+
+    // Autocomplete agents.
+    if (isset($form['field_deskpro_agent_email']['widget'][0]['value']['#type'])
+        && 'email' === $form['field_deskpro_agent_email']['widget'][0]['value']['#type']) {
+      $form['field_deskpro_agent_email']['widget'][0]['value']['#autocomplete_route_name'] = 'hoeringsportal_deskpro.autocomplete_controller_agent';
     }
   }
 }

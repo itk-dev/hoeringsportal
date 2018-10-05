@@ -75,6 +75,21 @@ class ApiController extends ControllerBase {
   }
 
   /**
+   * Departments.
+   */
+  public function agents(Request $request) {
+    try {
+      $query = $this->getDeskproQuery($request);
+      $departments = $this->deskpro->getAgents($query);
+
+      return $this->createResponse($departments);
+    }
+    catch (DeskproException $exception) {
+      return $this->createErrorResponse($exception);
+    }
+  }
+
+  /**
    * Get all hearings.
    *
    * @return \Symfony\Component\HttpFoundation\JsonResponse

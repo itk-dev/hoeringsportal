@@ -64,6 +64,15 @@ class DeskproSettingsForm extends FormBase {
       '#size' => 60,
     ];
 
+    $form['add_hearing_ticket_form']['ticket_created_confirmation'] = [
+      '#title' => $this->t('Confirmation after ticket submit'),
+      '#type' => 'text_format',
+      '#format' => 'filtered_html',
+      '#default_value' => $config->get('ticket_created_confirmation'),
+      '#weight' => '2',
+      '#size' => 60,
+    ];
+
     $example = <<<'YAML'
 5: Privatperson
 3: Virksomhed
@@ -121,6 +130,7 @@ YAML;
       'intro' => $form_state->getValue('intro')['value'],
       'consent' => $form_state->getValue('consent')['value'],
       'representations' => $form_state->getValue('representations'),
+      'ticket_created_confirmation' => $form_state->getValue('ticket_created_confirmation')['value'],
     ]);
 
     drupal_flush_all_caches();

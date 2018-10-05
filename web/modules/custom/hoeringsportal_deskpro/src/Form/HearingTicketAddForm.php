@@ -97,6 +97,12 @@ class HearingTicketAddForm extends FormBase {
       '#required' => TRUE,
     ];
 
+    $form['email_confirm'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Confirm e-mail'),
+      '#required' => TRUE,
+    ];
+
     $form['address'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Address'),
@@ -207,6 +213,11 @@ class HearingTicketAddForm extends FormBase {
     $this->initialize();
 
     parent::validateForm($form, $form_state);
+
+    if ($form_state->getValue('email_confirm') !== $form_state->getValue('email')) {
+      $form_state->setErrorByName('email_confirm', $this->t('Confirmation email does not match email.'));
+    }
+
     $representationThatRequireOrganization = $this->config->getRepresentationsThatRequireOrganization();
     $representation = $form_state->getValue('representation');
     $organization = trim($form_state->getValue('organization'));
@@ -254,13 +265,19 @@ class HearingTicketAddForm extends FormBase {
       [$ticket, $message] = $this->helper->createHearingTicket($node, $data, $files);
       $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted and will appear here in a few minutes.'));
 
+      // @TODO: Show confirmation page.
+      $ticket['url'] = $this->helper->getTicketUrl($ticket);
+      $message = $this->helper->replaceTokens($this->config->get('ticket_created_confirmation'), [
+        'ticket' => $ticket,
+      ]);
+      $this->messenger()->addMessage($message);
+
       $form_state->setRedirect('entity.node.canonical', ['node' => $node->id()]);
     }
     catch (\Exception $exception) {
       $this->messenger()->addError($this->t('Error submitting hearing ticket'));
       return;
     }
-
   }
 
 }

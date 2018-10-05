@@ -51,4 +51,20 @@ class AutocompleteController extends ControllerBase {
     return new JsonResponse($data);
   }
 
+  /**
+   * Agent.
+   */
+  public function agent() {
+    $agents = $this->deskpro->getAgents(['no_cache' => 1]);
+
+    $data = array_map(function (array $agent) {
+      return [
+        'value' => $agent['primary_email'],
+        'label' => sprintf('%s (%s)', $agent['name'], $agent['primary_email']),
+      ];
+    }, $agents->getData());
+
+    return new JsonResponse($data);
+  }
+
 }

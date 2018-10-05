@@ -1,0 +1,19 @@
+uuid: 9cefdbd2-affd-4723-b8dc-55156d89b4f4
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_deskpro_agent_email
+    - node.type.hearing
+id: node.hearing.field_deskpro_agent_email
+field_name: field_deskpro_agent_email
+entity_type: node
+bundle: hearing
+label: 'Deskpro agent email'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

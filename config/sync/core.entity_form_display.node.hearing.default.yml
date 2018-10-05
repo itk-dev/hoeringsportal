@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_hearing_type
@@ -65,6 +66,7 @@ third_party_settings:
     group_deskpro:
       children:
         - field_deskpro_department_id
+        - field_deskpro_agent_email
       parent_name: ''
       weight: 8
       format_type: details
@@ -93,6 +95,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_deskpro_agent_email:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
     region: content
   field_deskpro_department_id:
     weight: 8
