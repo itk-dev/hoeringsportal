@@ -50,3 +50,13 @@
 .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
   background: #f0f0f0;
 }
+
+
+form.is-submitted [type="submit"],
+form .spinner {
+  display: none;
+}
+
+form.is-submitted .spinner {
+  display: block;
+}

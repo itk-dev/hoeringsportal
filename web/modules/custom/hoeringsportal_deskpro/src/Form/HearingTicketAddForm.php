@@ -114,9 +114,6 @@ class HearingTicketAddForm extends FormBase {
       '#type' => 'hidden',
     ];
 
-    // Address autocomplete using https://dawa.aws.dk/.
-    $form['#attached']['library'][] = 'hoeringsportal_deskpro/dawa';
-
     $form['address_secret'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('My address is secret'),
@@ -188,11 +185,17 @@ class HearingTicketAddForm extends FormBase {
       '#required' => TRUE,
     ];
 
+    $form['spinner'] = [
+      '#markup' => '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>',
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Send'),
       '#button_type' => 'primary',
     ];
+
+    $form['#attached']['library'][] = 'hoeringsportal_deskpro/form_ticket_add';
 
     return $form;
   }
