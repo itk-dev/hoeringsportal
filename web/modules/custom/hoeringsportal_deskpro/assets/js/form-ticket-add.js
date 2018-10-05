@@ -10,7 +10,8 @@ window.addEventListener('load', function() {
     var geolocation = document.querySelector('[data-drupal-selector="'+config.fields.geolocation+'"]');
 
     if (null !== address) {
-        var addressWrapper = document.createElement('div');
+      // Address autocomplete using https://dawa.aws.dk/.
+      var addressWrapper = document.createElement('div');
         addressWrapper.setAttribute('class', 'dawa-autocomplete-container');
         address.parentNode.replaceChild(addressWrapper, address);
         addressWrapper.appendChild(address);
@@ -32,4 +33,11 @@ window.addEventListener('load', function() {
             }
         });
     }
+
+  var els = document.querySelectorAll('#hearing-ticket-add-form [type="submit"]');
+  for (var i = 0, el; el = els[i]; i++) {
+    el.addEventListener('click', function() {
+      this.form.classList.add('is-submitted');
+    });
+  }
 });
