@@ -60,7 +60,7 @@ class LocalplanItem extends FieldItemBase {
   public function isEmpty() {
     $item = $this->getValue();
 
-    return !isset($item['id']);
+    return empty($item['id']);
   }
 
   /**
