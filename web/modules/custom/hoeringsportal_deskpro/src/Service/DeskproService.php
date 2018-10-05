@@ -270,10 +270,38 @@ class DeskproService {
   }
 
   /**
+   * Create a person.
+   */
+  public function createPerson(array $data) {
+    $personData = [
+      'name' => $data['name'],
+      'primary_email' => $data['email'],
+    ];
+
+    $endpoint = '/people';
+
+    // Check if person exists.
+    $response = $this->client()->get($endpoint, ['primary_email' => $personData['primary_email']]);
+    if (!empty($response->getData())) {
+      return $response;
+    }
+
+    $response = $this->client()->post($endpoint, $personData);
+
+    return $response;
+  }
+
+  /**
    * Create a ticket.
    */
-  public function createTicket(array $data) {
-    $ticketData = $this->filterData($data, ['subject', 'department', 'fields']);
+  public function createTicket(array $person, array $data) {
+    $ticketData = $this->filterData($data, [
+      'department',
+      'fields',
+      'subject',
+    ]);
+    $ticketData['person']['id'] = $person['id'];
+    $ticketData['suppress_user_notify'] = FALSE;
 
     $endpoint = '/tickets';
 
@@ -287,6 +315,7 @@ class DeskproService {
    */
   public function createMessage(array $ticket, array $data, array $files = []) {
     $messageData = $this->filterData($data, ['message']);
+    $messageData['person']['id'] = $ticket['person']['id'];
 
     $blobs = array_map(function ($path) {
       $response = $this->uploadFile($path);
@@ -455,7 +484,7 @@ class DeskproService {
 
     if (isset($query['expand'])) {
       // https://deskpro.gitbook.io/dev-guide/api-basics/sideloading.
-      $names = preg_split('/,/', $query['expand'], -1, PREG_SPLIT_NO_EMPTY);
+      $names = is_array($query['expand']) ? $query['expand'] : preg_split('/,/', $query['expand'], -1, PREG_SPLIT_NO_EMPTY);
       $names = array_map([$this, 'getIncludeName'], $names);
       $query['include'] = implode(',', $names);
     }

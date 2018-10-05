@@ -252,12 +252,7 @@ class HearingTicketAddForm extends FormBase {
     try {
       $node = $this->getRouteMatch()->getParameter('node');
       [$ticket, $message] = $this->helper->createHearingTicket($node, $data, $files);
-      $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted'));
-      try {
-        $this->helper->synchronizeHearingTickets($node);
-      }
-      catch (\Exception $exception) {
-      }
+      $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted and will appear here in a few minutes.'));
 
       $form_state->setRedirect('entity.node.canonical', ['node' => $node->id()]);
     }

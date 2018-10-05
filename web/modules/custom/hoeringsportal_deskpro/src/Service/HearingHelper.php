@@ -177,7 +177,11 @@ class HearingHelper {
       $data['fields'][$this->getTicketFieldId('hearing_id')] = $node->id();
       $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
 
-      $response = $this->deskpro->createTicket($data);
+      // Create person.
+      $response = $this->deskpro->createPerson($data);
+      $person = $response->getData();
+
+      $response = $this->deskpro->createTicket($person, $data);
       $ticket = $response->getData();
       $response = $this->deskpro->createMessage($ticket, $data, $files);
       $message = $response->getData();
