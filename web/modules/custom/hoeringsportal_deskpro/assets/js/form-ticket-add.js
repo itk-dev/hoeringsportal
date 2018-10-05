@@ -34,10 +34,8 @@ window.addEventListener('load', function() {
         });
     }
 
-  var els = document.querySelectorAll('#hearing-ticket-add-form [type="submit"]');
-  for (var i = 0, el; el = els[i]; i++) {
-    el.addEventListener('click', function() {
-      this.form.classList.add('is-submitted');
-    });
-  }
+    // @TODO: Add class when form is valid and is submitted.
+    // document.querySelectorAll('#hearing-ticket-add-form').addEventListener('submit', function() {
+    //     this.classList.add('is-submitted');
+    // }
 });
