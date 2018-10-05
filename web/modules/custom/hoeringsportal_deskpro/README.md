@@ -12,15 +12,7 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   // https://example.deskpro.com/agent/#admin:/apps/api_keys/go-create
   'api_code_key' => '1:ABCDEFGHIJKLMNOPQRSTUVWXY',
   // Departments (ids) that are available for users.
-  'available_departments' => [1],
-  'departments' => [
-    1 => 'Høringsbidrag',
-    2 => 'Teknik og Miljø - Høringsbidrag',
-    5 => 'Sundhed og Omsorg - Høringsbidrag',
-    6 => 'Børn og Unge - Høringsbidrag',
-    7 => 'Kultur og Borgerservice - Høringsbidrag',
-    8 => 'Sociale Forhold og Beskæftigelse - Høringsbidrag',
-  ],
+	'available_departments' => [1, 2, 5, 6, 7, 8],
   // https://example.deskpro.com/agent/#admin:/tickets/fields
   'ticket_custom_fields' => [
     // Field name => field id.

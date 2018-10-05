@@ -257,7 +257,6 @@ class DeskproService {
       'deskpro_url',
       'api_code_key',
       'available_departments',
-      'departments',
       'ticket_custom_fields',
       'cache_ttl',
       'x-deskpro-token',
@@ -297,6 +296,7 @@ class DeskproService {
   public function createTicket(array $person, array $data) {
     $ticketData = $this->filterData($data, [
       'department',
+      'agent',
       'fields',
       'subject',
     ]);
@@ -376,6 +376,14 @@ class DeskproService {
   }
 
   /**
+   * Get Deskpro url.
+   */
+  public function getDeskproUrl($path, $params) {
+    return $this->client()->getHelpdeskUrl()
+      . $this->client()->getURLInterpolator()->interpolate($path, $params);
+  }
+
+  /**
    * Get ticket embed form.
    *
    * The form generated in Deskpro
@@ -447,10 +455,10 @@ class DeskproService {
   }
 
   /**
-   * Get departments.
+   * Get agents.
    */
-  public function getDepartments() {
-    return $this->configuration['departments'] ?: [];
+  public function getAgents() {
+    return $this->get('agents');
   }
 
   /**

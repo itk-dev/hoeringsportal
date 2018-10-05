@@ -265,13 +265,19 @@ class HearingTicketAddForm extends FormBase {
       [$ticket, $message] = $this->helper->createHearingTicket($node, $data, $files);
       $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted and will appear here in a few minutes.'));
 
+      // @TODO: Show confirmation page.
+      $ticket['url'] = $this->helper->getTicketUrl($ticket);
+      $message = $this->helper->replaceTokens($this->config->get('ticket_created_confirmation'), [
+        'ticket' => $ticket,
+      ]);
+      $this->messenger()->addMessage($message);
+
       $form_state->setRedirect('entity.node.canonical', ['node' => $node->id()]);
     }
     catch (\Exception $exception) {
       $this->messenger()->addError($this->t('Error submitting hearing ticket'));
       return;
     }
-
   }
 
 }

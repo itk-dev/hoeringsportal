@@ -176,6 +176,9 @@ class HearingHelper {
       // Add hearing data.
       $data['fields'][$this->getTicketFieldId('hearing_id')] = $node->id();
       $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
+      if (isset($node->field_deskpro_agent_email->value)) {
+        $data['agent']['email'] = $node->field_deskpro_agent_email->value;
+      }
 
       // Create person.
       $response = $this->deskpro->createPerson($data);
@@ -224,6 +227,26 @@ class HearingHelper {
    */
   public function getTicketFieldName($field, string $prefix = 'ticket_field_') {
     return $prefix . $this->getTicketFieldId($field);
+  }
+
+  /**
+   * Get ticket url.
+   */
+  public function getTicketUrl(array $ticket) {
+    return $this->deskpro->getDeskproUrl('/tickets/{ref}', ['ref' => $ticket['ref']]);
+  }
+
+  /**
+   * Replace tokens.
+   */
+  public function replaceTokens($text, $data) {
+    $pattern = '/\[(?P<type>[^:]+):(?P<key>[^\]]+)\]/';
+
+    return preg_replace_callback($pattern, function ($matches) use ($data) {
+        $type = $matches['type'];
+        $key = $matches['key'];
+        return isset($data[$type][$key]) ? $data[$type][$key] : $matches[0];
+    }, $text);
   }
 
   /**

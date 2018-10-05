@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_hearing_type
@@ -149,6 +150,13 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_deskpro_agent_email:
+    weight: 22
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_hearing_type:
     type: entity_reference_label
     weight: 13

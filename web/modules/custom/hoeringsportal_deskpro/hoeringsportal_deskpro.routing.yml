@@ -47,9 +47,15 @@ hoeringsportal_deskpro.autocomplete_controller_department:
     _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::department'
     _title: 'Departments autocomplete'
   requirements:
-    # @TODO: Set more restrictive permission, e.g. 'edit content'
-    _permission: 'access content'
+    _permission: 'create hearing content,edit own hearing content,edit any hearing content'
 
+hoeringsportal_deskpro.autocomplete_controller_agent:
+  path: '/hoeringsportal_deskpro/autocomplete/agent'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\AutocompleteController::agent'
+    _title: 'Agents autocomplete'
+  requirements:
+    _permission: 'create hearing content,edit own hearing content,edit any hearing content'
 
 # API
 hoeringsportal_deskpro.api_controller_index:
@@ -74,7 +80,15 @@ hoeringsportal_deskpro.api_controller_departments:
     _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::departments'
     _title: 'Departments'
   requirements:
-    _permission: 'access content'
+    _permission: 'create hearing content,edit own hearing content,edit any hearing content'
+
+hoeringsportal_deskpro.api_controller_agents:
+  path: '/hoeringsportal_deskpro/api/agents'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_deskpro\Controller\ApiController::agents'
+    _title: 'Agents'
+  requirements:
+    _permission: 'create hearing content,edit own hearing content,edit any hearing content'
 
 hoeringsportal_deskpro.api_controller_hearings:
   path: '/hoeringsportal_deskpro/api/hearings'
