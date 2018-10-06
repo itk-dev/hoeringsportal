@@ -5,7 +5,7 @@ namespace Drupal\hoeringsportal_deskpro\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
-use Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig;
+use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,7 +15,7 @@ class HearingTicketAddForm extends FormBase {
   /**
    * The form config.
    *
-   * @var \Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig
+   * @var \Drupal\hoeringsportal_deskpro\State\DeskproConfig
    */
   private $config;
 
@@ -31,7 +31,7 @@ class HearingTicketAddForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('hoeringsportal_deskpro.form_config'),
+      $container->get('hoeringsportal_deskpro.config'),
       $container->get('hoeringsportal_deskpro.helper')
     );
   }
@@ -40,7 +40,7 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function __construct(
-    AddHearingTicketFormConfig $config,
+    DeskproConfig $config,
     HearingHelper $helper
   ) {
     $this->config = $config;
@@ -55,7 +55,7 @@ class HearingTicketAddForm extends FormBase {
   private function initialize() {
     $container = \Drupal::getContainer();
     if (NULL === $this->config) {
-      $this->config = $container->get('hoeringsportal_deskpro.form_config');
+      $this->config = $container->get('hoeringsportal_deskpro.config');
     }
     if (NULL === $this->helper) {
       $this->helper = $container->get('hoeringsportal_deskpro.helper');
