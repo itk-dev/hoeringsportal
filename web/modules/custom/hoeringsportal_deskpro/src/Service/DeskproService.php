@@ -200,6 +200,25 @@ class DeskproService {
   }
 
   /**
+   * Get ticket custom field "representation".
+   */
+  public function getRepresentations() {
+    $data = $this->getTicketCustomField('representation');
+
+    return $data['choices'] ?? NULL;
+  }
+
+  /**
+   * Get ticket custom field.
+   */
+  public function getTicketCustomField($name) {
+    $id = $this->config->getTicketCustomFieldId($name);
+    $response = $this->get('/ticket_custom_fields/{id}', ['id' => $id, 'no_cache' => TRUE]);
+
+    return $response->getData();
+  }
+
+  /**
    * Get messages from a ticket.
    *
    * @param int $ticketId

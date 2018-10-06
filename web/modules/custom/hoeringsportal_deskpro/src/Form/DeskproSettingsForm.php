@@ -5,7 +5,6 @@ namespace Drupal\hoeringsportal_deskpro\Form;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Serialization\Yaml;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -106,31 +105,37 @@ class DeskproSettingsForm extends FormBase {
       . '<br/>' . $this->t('Available tokens: @tokens', ['@tokens' => implode(' ', $tokens)]),
     ];
 
-    $example = <<<'YAML'
-5: Privatperson
-3: Virksomhed
-4:
- label: Forening/organisation
- require_organization: true
-20: Råd og nævn
-21: Myndighed
-YAML;
-
-    $description = implode([
-      '<p>', t('Define representations here to match your Deskpro setup.'), '</p>',
-      '<p>Example</p>',
-      '<pre>', Yaml::encode(Yaml::decode($example)), '</pre>',
-    ]);
-
+    $values = $config->get('representations');
     $form['add_hearing_ticket_form']['representations'] = [
-      '#type' => 'textarea',
+      '#type' => 'fieldset',
+      '#tree' => TRUE,
       '#title' => $this->t('Representation list'),
-      '#rows' => 10,
-      '#description' => $description,
-      '#default_value' => $config->get('representations'),
       '#weight' => '3',
       '#required' => TRUE,
     ];
+    foreach ($this->deskpro->getRepresentations() as $representation) {
+      $id = $representation['id'];
+      $defaultValues = $values[$id] ?? [];
+      $form['add_hearing_ticket_form']['representations'][$id] = [
+        '#type' => 'group',
+        'title' => [
+          '#type' => 'textfield',
+          '#title' => $this->t('Representation title (@title)', ['@title' => $representation['title']]),
+          '#default_value' => $defaultValues['title'] ?? $representation['title'],
+          '#required' => TRUE,
+        ],
+        'is_available' => [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Is available'),
+          '#default_value' => $defaultValues['is_available'],
+        ],
+        'require_organization' => [
+          '#type' => 'checkbox',
+          '#title' => $this->t('Require organization'),
+          '#default_value' => $defaultValues['require_organization'],
+        ],
+      ];
+    }
 
     $form['deskpro_integration'] = [
       '#type' => 'details',
@@ -218,14 +223,6 @@ YAML;
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-    try {
-      $value = $form_state->getValue('representations');
-      $this->getFormConfig()->validateRepresentations($value);
-    }
-    catch (\Exception $exception) {
-      $form_state->setErrorByName('representations', $this->t('Invalid YAML'));
-    }
-
     if (!UrlHelper::isValid($form_state->getValue('deskpro_url'), TRUE)) {
       $form_state->setErrorByName('deskpro_url', $this->t('Please enter a valid url.'));
     }

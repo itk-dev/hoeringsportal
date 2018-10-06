@@ -25,36 +25,13 @@ class DeskproConfig extends DatabaseStorage {
   }
 
   /**
-   * Get representations.
+   * Get available representations.
    */
   public function getRepresentations() {
-    try {
-      $value = $this->get('representations');
-      $items = Yaml::decode($value);
+    $representations = $this->get('representations');
 
-      foreach ($items as $id => &$value) {
-        if (!is_array($value)) {
-          $value = [
-            'label' => $value,
-          ];
-        }
-      }
-
-      return $items;
-    }
-    catch (\Exception $exception) {
-      return [];
-    }
-  }
-
-  /**
-   * Get representations that require organization.
-   */
-  public function getRepresentationsThatRequireOrganization() {
-    $representations = $this->getRepresentations();
-
-    return array_filter($representations, function ($item) {
-      return isset($item['require_organization']);
+    return array_filter($representations, function ($representation) {
+      return $representation['is_available'];
     });
   }
 
