@@ -3,9 +3,13 @@ services:
     parent: logger.channel_base
     arguments: ['hoeringsportal_deskpro']
 
+  hoeringsportal_deskpro.config:
+    class: Drupal\hoeringsportal_deskpro\State\DeskproConfig
+    arguments: ['@serialization.json', '@database']
+
   hoeringsportal_deskpro.deskpro:
     class: Drupal\hoeringsportal_deskpro\Service\DeskproService
-    arguments: ['@settings', '@language_manager']
+    arguments: ['@hoeringsportal_deskpro.config', '@language_manager']
 
   hoeringsportal_deskpro.helper:
     class: Drupal\hoeringsportal_deskpro\Service\HearingHelper
@@ -22,7 +26,3 @@ services:
     arguments: ['@entity_type.manager', '@hoeringsportal_deskpro.helper']
     tags:
       - { name: drush.command }
-
-  hoeringsportal_deskpro.form_config:
-    class: Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig
-    arguments: ['@serialization.json', '@database']

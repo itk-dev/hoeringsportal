@@ -6,8 +6,8 @@ use Deskpro\API\APIResponse;
 use Deskpro\API\DeskproClient;
 use Deskpro\API\Exception\APIException;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
+use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 
 /**
  * Class DeskproService.
@@ -18,7 +18,7 @@ class DeskproService {
    *
    * @var array
    */
-  private $configuration;
+  private $config;
 
   /**
    * Language manager.
@@ -32,8 +32,8 @@ class DeskproService {
   /**
    * Constructs a new DeskproService object.
    */
-  public function __construct(Settings $settings, LanguageManagerInterface $languageManager) {
-    $this->configuration = $settings->get('hoeringsportal_deskpro.deskpro');
+  public function __construct(DeskproConfig $config, LanguageManagerInterface $languageManager) {
+    $this->config = $config;
     $this->languageManager = $languageManager;
   }
 
@@ -169,29 +169,58 @@ class DeskproService {
    *
    * @param array $query
    *   The query.
+   * @param bool $noFilter
+   *   If set, all departments will be returned.
    *
    * @return \Deskpro\API\APIResponseInterface
    *   The messages.
    *
    * @throws \Drupal\hoeringsportal_deskpro\Exception\DeskproException
    */
-  public function getTicketDepartments(array $query = []) {
+  public function getTicketDepartments(array $query = [], $noFilter = FALSE) {
     try {
       $response = $this->get('/ticket_departments', $query);
 
       $data = $response->getData();
 
-      // Filter out unavailable departments.
-      $availableIds = $this->configuration['available_departments'];
-      $data = array_filter($data, function (array $department) use ($availableIds) {
-        return in_array($department['id'], $availableIds);
-      });
+      if (!$noFilter) {
+        // Filter out unavailable departments.
+        $availableIds = $this->config->getAvailableDepartments();
+        $data = array_filter($data,
+          function (array $department) use ($availableIds) {
+            return in_array($department['id'], $availableIds);
+          });
+      }
 
       return $this->setResponseData($response, $data);
     }
     catch (APIException $e) {
       throw $this->createException($e);
     }
+  }
+
+  /**
+   * Get ticket custom field "representation".
+   */
+  public function getRepresentations() {
+    try {
+      $data = $this->getTicketCustomField('representation');
+
+      return $data['choices'] ?? [];
+    }
+    catch (\Exception $exception) {
+      return [];
+    }
+  }
+
+  /**
+   * Get ticket custom field.
+   */
+  public function getTicketCustomField($name) {
+    $id = $this->config->getTicketCustomFieldId($name);
+    $response = $this->get('/ticket_custom_fields/{id}', ['id' => $id, 'no_cache' => TRUE]);
+
+    return $response->getData();
   }
 
   /**
@@ -250,25 +279,6 @@ class DeskproService {
   }
 
   /**
-   * Validate Deskpro configuration.
-   */
-  public function validateConfiguration() {
-    $requiredKeys = [
-      'deskpro_url',
-      'api_code_key',
-      'available_departments',
-      'ticket_custom_fields',
-      'cache_ttl',
-      'x-deskpro-token',
-    ];
-    foreach ($requiredKeys as $key) {
-      if (empty($this->configuration[$key])) {
-        throw new DeskproException('"' . $key . '" is missing or empty');
-      }
-    }
-  }
-
-  /**
    * Create a person.
    */
   public function createPerson(array $data) {
@@ -281,8 +291,10 @@ class DeskproService {
 
     // Check if person exists.
     $response = $this->client()->get($endpoint, ['primary_email' => $personData['primary_email']]);
-    if (!empty($response->getData())) {
-      return $response;
+    $data = $response->getData();
+    if (!empty($data)) {
+      // Create new response with just a single person.
+      return new APIResponse(reset($data), [], []);
     }
 
     $response = $this->client()->post($endpoint, $personData);
@@ -317,11 +329,7 @@ class DeskproService {
     $messageData = $this->filterData($data, ['message']);
     $messageData['person']['id'] = $ticket['person']['id'];
 
-    $blobs = array_map(function ($path) {
-      $response = $this->uploadFile($path);
-      return $response->getData();
-    }, $files);
-
+    $blobs = $this->uploadFiles($files);
     foreach ($blobs as $blob) {
       $messageData['attachments'][] = [
         'blob_auth' => $blob['blob_auth'],
@@ -338,9 +346,19 @@ class DeskproService {
   }
 
   /**
+   * Upload files.
+   */
+  private function uploadFiles(array $files) {
+    return array_map(function ($path) {
+      $response = $this->uploadFile($path);
+      return $response->getData();
+    }, $files);
+  }
+
+  /**
    * Upload a file.
    */
-  public function uploadFile($path) {
+  private function uploadFile($path) {
     $endpoint = '/blobs/temp';
     $response = $this->client()->post($endpoint, [
       'multipart' => [
@@ -398,7 +416,7 @@ class DeskproService {
 
     $id = uniqid('deskpro_ticket_form', TRUE);
     $embed_options = [
-      'helpdeskUrl' => $this->configuration['deskpro_url'],
+      'helpdeskUrl' => $this->config->getDeskproUrl(),
       'containerId' => $id,
       'type' => 'form',
       'language' => $this->languageManager->getCurrentLanguage()->getId(),
@@ -410,7 +428,7 @@ class DeskproService {
     return implode('', [
       '<div id="' . htmlspecialchars($id) . '"></div>',
       '<script type="text/javascript">window.DESKPRO_EMBED_OPTIONS = ' . json_encode($embed_options) . ';</script>',
-      '<script type="text/javascript" src="' . htmlspecialchars($this->configuration['deskpro_url'] . '/dyn-assets/pub/build/embed_loader.js') . '"></script>',
+      '<script type="text/javascript" src="' . htmlspecialchars($this->config->getDeskproUrl() . '/dyn-assets/pub/build/embed_loader.js') . '"></script>',
     ]);
   }
 
@@ -418,15 +436,14 @@ class DeskproService {
    * Check that token is a valid data token.
    */
   public function isValidToken(string $token = NULL) {
-    return isset($this->configuration['x-deskpro-token'])
-      && $token === $this->configuration['x-deskpro-token'];
+    return $token === $this->getToken();
   }
 
   /**
    * Get the Deskpro token.
    */
   public function getToken() {
-    return $this->configuration['x-deskpro-token'];
+    return $this->config->getDataToken();
   }
 
   /**
@@ -440,18 +457,14 @@ class DeskproService {
    * Get hearing id field id.
    */
   public function getTicketFieldId(string $field) {
-    if (!isset($this->configuration['ticket_custom_fields'][$field])) {
-      throw new \Exception('Invalid field: ' . $field);
-    }
-
-    return $this->configuration['ticket_custom_fields'][$field];
+    return $this->config->getTicketCustomFieldId($field);
   }
 
   /**
    * Get ticket custom fields.
    */
   public function getTicketCustomFields() {
-    return $this->configuration['ticket_custom_fields'];
+    return $this->config->getTicketCustomFields();
   }
 
   /**
@@ -474,7 +487,7 @@ class DeskproService {
   private function get($endpoint, array $query = []) {
     $cache = \Drupal::cache('data');
     $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
-    $cacheTtl = $this->configuration['cache_ttl'];
+    $cacheTtl = $this->config->getCacheTtl();
 
     $noCache = isset($query['no_cache']);
 
@@ -533,9 +546,8 @@ class DeskproService {
   private function client() {
     if (NULL === $this->client) {
       // https://github.com/deskpro/deskpro-api-client-php
-      $this->validateConfiguration();
-      $authKey = explode(':', $this->configuration['api_code_key']);
-      $this->client = new DeskproClient($this->configuration['deskpro_url']);
+      $authKey = $this->config->getDeskproApiCodeKey();
+      $this->client = new DeskproClient($this->config->getDeskproUrl());
       $this->client->setAuthKey(...$authKey);
     }
 
@@ -609,14 +621,9 @@ class DeskproService {
         }
       },
       'fields' => function (array &$item) {
-        if (isset($this->configuration['ticket_custom_fields'])) {
-          $fields = $this->configuration['ticket_custom_fields'];
-          if (is_array($fields)) {
-            foreach ($fields as $name => $id) {
-              if (isset($item['fields'][$id]['value'])) {
-                $item['fields'][$name] = $item['fields'][$id]['value'];
-              }
-            }
+        foreach ($this->config->getTicketCustomFields() as $name => $id) {
+          if (isset($item['fields'][$id]['value'])) {
+            $item['fields'][$name] = $item['fields'][$id]['value'];
           }
         }
       },

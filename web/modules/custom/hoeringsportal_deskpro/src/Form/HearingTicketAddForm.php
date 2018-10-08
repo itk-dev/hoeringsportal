@@ -5,7 +5,7 @@ namespace Drupal\hoeringsportal_deskpro\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
-use Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig;
+use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -15,7 +15,7 @@ class HearingTicketAddForm extends FormBase {
   /**
    * The form config.
    *
-   * @var \Drupal\hoeringsportal_deskpro\State\AddHearingTicketFormConfig
+   * @var \Drupal\hoeringsportal_deskpro\State\DeskproConfig
    */
   private $config;
 
@@ -31,7 +31,7 @@ class HearingTicketAddForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('hoeringsportal_deskpro.form_config'),
+      $container->get('hoeringsportal_deskpro.config'),
       $container->get('hoeringsportal_deskpro.helper')
     );
   }
@@ -40,7 +40,7 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function __construct(
-    AddHearingTicketFormConfig $config,
+    DeskproConfig $config,
     HearingHelper $helper
   ) {
     $this->config = $config;
@@ -55,7 +55,7 @@ class HearingTicketAddForm extends FormBase {
   private function initialize() {
     $container = \Drupal::getContainer();
     if (NULL === $this->config) {
-      $this->config = $container->get('hoeringsportal_deskpro.form_config');
+      $this->config = $container->get('hoeringsportal_deskpro.config');
     }
     if (NULL === $this->helper) {
       $this->helper = $container->get('hoeringsportal_deskpro.helper');
@@ -126,9 +126,14 @@ class HearingTicketAddForm extends FormBase {
     ];
 
     $representations = $this->config->getRepresentations();
-    $options = array_map(function ($item) {
-      return $item['label'];
-    }, $representations);
+    $stateCondition = [];
+    $options = [];
+    foreach ($representations as $id => $representation) {
+      $options[$id] = $representation['title'];
+      if ($representation['require_organization']) {
+        $stateCondition[] = ['value' => $id];
+      }
+    }
 
     $form['representation'] = [
       '#type' => 'select',
@@ -137,22 +142,19 @@ class HearingTicketAddForm extends FormBase {
       '#required' => TRUE,
     ];
 
-    $representationThatRequireOrganization = $this->config->getRepresentationsThatRequireOrganization();
-    $condition = array_map(function ($id) {
-      return ['value' => $id];
-    }, array_keys($representationThatRequireOrganization));
+    $states = [
+      'visible' => [
+        ':input[name="representation"]' => $stateCondition,
+      ],
+      'required' => [
+        ':input[name="representation"]' => $stateCondition,
+      ],
+    ];
 
     $form['organization'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Organization'),
-      '#states' => [
-        'visible' => [
-          ':input[name="representation"]' => $condition,
-        ],
-        'required' => [
-          ':input[name="representation"]' => $condition,
-        ],
-      ],
+      '#states' => $states,
     ];
 
     $form['subject'] = [
@@ -162,9 +164,8 @@ class HearingTicketAddForm extends FormBase {
     ];
 
     $form['message'] = [
-      '#type' => 'text_format',
+      '#type' => 'textarea',
       '#title' => $this->t('Message'),
-      '#format' => 'filtered_html',
       '#required' => TRUE,
     ];
 
@@ -218,12 +219,11 @@ class HearingTicketAddForm extends FormBase {
       $form_state->setErrorByName('email_confirm', $this->t('Confirmation email does not match email.'));
     }
 
-    $representationThatRequireOrganization = $this->config->getRepresentationsThatRequireOrganization();
     $representation = $form_state->getValue('representation');
     $organization = trim($form_state->getValue('organization'));
+    $representations = $this->config->getRepresentations();
 
-    if (isset($representationThatRequireOrganization[$representation])
-      && empty($organization)) {
+    if ($representations[$representation]['require_organization'] && empty($organization)) {
       $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
     }
   }
