@@ -203,9 +203,14 @@ class DeskproService {
    * Get ticket custom field "representation".
    */
   public function getRepresentations() {
-    $data = $this->getTicketCustomField('representation');
+    try {
+      $data = $this->getTicketCustomField('representation');
 
-    return $data['choices'] ?? NULL;
+      return $data['choices'] ?? [];
+    }
+    catch (\Exception $exception) {
+      return [];
+    }
   }
 
   /**

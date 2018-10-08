@@ -91,7 +91,7 @@ class DeskproConfig extends DatabaseStorage {
   public function getTicketCustomFieldId($name) {
     $fields = $this->getTicketCustomFields();
     if (!isset($fields[$name])) {
-      throw new \Exception('Invalid field: ' . $field);
+      throw new \Exception('Invalid field: ' . $name);
     }
 
     return $fields[$name];
