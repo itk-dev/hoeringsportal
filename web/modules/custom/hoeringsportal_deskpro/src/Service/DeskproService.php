@@ -291,8 +291,10 @@ class DeskproService {
 
     // Check if person exists.
     $response = $this->client()->get($endpoint, ['primary_email' => $personData['primary_email']]);
-    if (!empty($response->getData())) {
-      return $response;
+    $data = $response->getData();
+    if (!empty($data)) {
+      // Create new response with just a single person.
+      return new APIResponse(reset($data), [], []);
     }
 
     $response = $this->client()->post($endpoint, $personData);

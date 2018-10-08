@@ -194,10 +194,12 @@ class HearingHelper {
       return [$ticket, $message];
     }
     catch (\Exception $exception) {
-      $this->logger->critical('', [
+      $httpRequestException = $this->deskpro->getLastHttpRequestException();
+      $this->logger->critical('@message: @body', [
+        '@message' => $exception->getMessage(),
         'data' => $data,
-        'body' => (string) $this->deskpro->getLastHttpRequestException()->getResponse()->getBody(),
-        'message' => $this->deskpro->getLastHttpRequestException()->getMessage(),
+        '@body' => (string) $httpRequestException->getResponse()->getBody(),
+        '@request_message' => $httpRequestException->getMessage(),
       ]);
       throw $exception;
     }
