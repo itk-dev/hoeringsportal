@@ -9,6 +9,7 @@ is_admin: null
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access deskpro settings'
   - 'access hero configuration'
   - 'access itk admin settings'
   - 'access itk_document_browser entity browser pages'
