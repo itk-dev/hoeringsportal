@@ -327,11 +327,7 @@ class DeskproService {
     $messageData = $this->filterData($data, ['message']);
     $messageData['person']['id'] = $ticket['person']['id'];
 
-    $blobs = array_map(function ($path) {
-      $response = $this->uploadFile($path);
-      return $response->getData();
-    }, $files);
-
+    $blobs = $this->uploadFiles($files);
     foreach ($blobs as $blob) {
       $messageData['attachments'][] = [
         'blob_auth' => $blob['blob_auth'],
@@ -348,9 +344,19 @@ class DeskproService {
   }
 
   /**
+   * Upload files.
+   */
+  private function uploadFiles(array $files) {
+    return array_map(function ($path) {
+      $response = $this->uploadFile($path);
+      return $response->getData();
+    }, $files);
+  }
+
+  /**
    * Upload a file.
    */
-  public function uploadFile($path) {
+  private function uploadFile($path) {
     $endpoint = '/blobs/temp';
     $response = $this->client()->post($endpoint, [
       'multipart' => [
