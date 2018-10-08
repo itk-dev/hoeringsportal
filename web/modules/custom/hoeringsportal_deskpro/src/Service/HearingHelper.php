@@ -169,7 +169,9 @@ class HearingHelper {
       foreach ($data as $key => $value) {
         if (isset($customFields[$key])) {
           $data['fields'][$customFields[$key]] = $value;
-          unset($data[$key]);
+          if (!in_array($key, ['message'])) {
+            unset($data[$key]);
+          }
         }
       }
 

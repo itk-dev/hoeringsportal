@@ -164,9 +164,8 @@ class HearingTicketAddForm extends FormBase {
     ];
 
     $form['message'] = [
-      '#type' => 'text_format',
+      '#type' => 'textarea',
       '#title' => $this->t('Message'),
-      '#format' => 'filtered_html',
       '#required' => TRUE,
     ];
 

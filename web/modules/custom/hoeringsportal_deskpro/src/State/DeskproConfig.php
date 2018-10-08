@@ -73,6 +73,7 @@ class DeskproConfig extends DatabaseStorage {
       'address' => NULL,
       'geolocation' => NULL,
       'organization' => NULL,
+      'message' => NULL,
     ];
     $values = $this->get('deskpro_ticket_custom_fields', []);
 
