@@ -51,7 +51,6 @@ third_party_settings:
       header:
         - node_title
         - field_media_image
-        - field_lokalplaner
       left:
         - field_teaser
         - field_description
@@ -62,6 +61,7 @@ third_party_settings:
         - field_contact
         - field_tags
         - field_area
+        - field_lokalplaner
         - field_phone
       footer:
         - field_image_gallery_ref
@@ -131,12 +131,12 @@ content:
     third_party_settings: {  }
     region: footer
   field_lokalplaner:
-    weight: 11
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
     type: hoeringsportal_data_localplan_default
-    region: header
+    region: right
   field_map:
     weight: 14
     label: hidden
@@ -154,7 +154,7 @@ content:
     type: entity_reference_entity_view
     region: header
   field_phone:
-    weight: 10
+    weight: 11
     label: above
     settings:
       link_to_entity: false

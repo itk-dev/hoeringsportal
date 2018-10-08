@@ -37,9 +37,9 @@ third_party_settings:
         - field_project_finish
         - field_contact
         - field_area
+        - field_lokalplaner
         - field_tags
         - field_phone
-        - field_email
       parent_name: ''
       weight: 10
       format_type: details
@@ -167,7 +167,7 @@ content:
     third_party_settings: {  }
     region: content
   field_lokalplaner:
-    weight: 28
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: hoeringsportal_data_localplan_default
@@ -202,7 +202,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_phone:
-    weight: 14
+    weight: 15
     settings:
       size: 60
       placeholder: ''
@@ -239,7 +239,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_tags:
-    weight: 13
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: options_select
