@@ -428,7 +428,7 @@ class DeskproService {
    * Check that token is a valid data token.
    */
   public function isValidToken(string $token = NULL) {
-    return $token === $this->getDataToken();
+    return $token === $this->getToken();
   }
 
   /**

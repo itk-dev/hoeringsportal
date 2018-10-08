@@ -127,12 +127,12 @@ class DeskproSettingsForm extends FormBase {
         'is_available' => [
           '#type' => 'checkbox',
           '#title' => $this->t('Is available'),
-          '#default_value' => $defaultValues['is_available'],
+          '#default_value' => $defaultValues['is_available'] ?? FALSE,
         ],
         'require_organization' => [
           '#type' => 'checkbox',
           '#title' => $this->t('Require organization'),
-          '#default_value' => $defaultValues['require_organization'],
+          '#default_value' => $defaultValues['require_organization'] ?? FALSE,
         ],
       ];
     }

@@ -28,7 +28,7 @@ class DeskproConfig extends DatabaseStorage {
    * Get available representations.
    */
   public function getRepresentations() {
-    $representations = $this->get('representations');
+    $representations = $this->get('representations', []);
 
     return array_filter($representations, function ($representation) {
       return $representation['is_available'];
