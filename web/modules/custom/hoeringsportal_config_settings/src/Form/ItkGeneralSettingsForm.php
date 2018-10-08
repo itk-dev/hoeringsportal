@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_config_settings\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
 
 /**
  * Class ItkGeneralSettingsForm.
@@ -36,11 +37,62 @@ class ItkGeneralSettingsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->getBaseConfig();
 
-    $form['footer_text'] = [
-      '#title' => $this->t('Footer text'),
+    $form['general_settings'] = [
+      '#type' => 'vertical_tabs',
+      '#default_tab' => 'edit-footer',
+    ];
+
+    $form['footer'] = [
+      '#title' => $this->t('Footer'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '0',
+      '#group' => 'general_settings',
+    ];
+
+    $form['footer']['footer_menu_link'] = [
+      '#title' => $this->t('Footer bottom menu'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '5',
+    ];
+
+    $form['footer']['footer_menu_link']['link'] = [
+      '#title' => $this
+        ->t('Footer bottom links'),
+      '#type' => 'link',
+      '#url' => Url::fromRoute('entity.menu.edit_form', ['menu' => 'footer']),
+    ];
+
+    $form['footer']['footer_text'] = [
+      '#title' => $this->t('Footer text first column'),
       '#type' => 'text_format',
       '#format' => 'filtered_html',
       '#default_value' => $config->get('footer_text'),
+      '#weight' => '1',
+    ];
+
+    $form['footer']['footer_text_2nd'] = [
+      '#title' => $this->t('Footer text seccond column'),
+      '#type' => 'text_format',
+      '#format' => 'filtered_html',
+      '#default_value' => $config->get('footer_text_2nd'),
+      '#weight' => '1',
+    ];
+
+    $form['footer']['footer_text_3rd'] = [
+      '#title' => $this->t('Footer text third column'),
+      '#type' => 'text_format',
+      '#format' => 'filtered_html',
+      '#default_value' => $config->get('footer_text_3rd'),
+      '#weight' => '1',
+    ];
+
+    $form['footer']['footer_text_4th'] = [
+      '#title' => $this->t('Footer text forth column'),
+      '#type' => 'text_format',
+      '#format' => 'filtered_html',
+      '#default_value' => $config->get('footer_text_4th'),
       '#weight' => '1',
     ];
 
@@ -50,6 +102,7 @@ class ItkGeneralSettingsForm extends FormBase {
       '#open' => TRUE,
       '#weight' => '2',
       '#description' => $this->t('These references are used by the system when creating links automatically. Only change these if you create a new overview page.'),
+      '#group' => 'general_settings',
     ];
 
     $node_reference = Node::load($config->get('initiative_overview'));
@@ -78,6 +131,7 @@ class ItkGeneralSettingsForm extends FormBase {
       '#open' => TRUE,
       '#weight' => '2',
       '#description' => $this->t('Links to external pages.'),
+      '#group' => 'general_settings',
     ];
 
     $form['remote_paths']['full_map_project_url'] = [
@@ -114,6 +168,9 @@ class ItkGeneralSettingsForm extends FormBase {
     // Set the rest of the configuration values.
     $this->getBaseConfig()->setMultiple([
       'footer_text' => $form_state->getValue('footer_text')['value'],
+      'footer_text_2nd' => $form_state->getValue('footer_text_2nd')['value'],
+      'footer_text_3rd' => $form_state->getValue('footer_text_3rd')['value'],
+      'footer_text_4th' => $form_state->getValue('footer_text_4th')['value'],
       'hearings_overview' => $form_state->getValue('hearings_overview'),
       'initiative_overview' => $form_state->getValue('initiative_overview'),
       'full_map_project_url' => $form_state->getValue('full_map_project_url'),
