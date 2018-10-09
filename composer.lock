@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d82ed970d3189306914ccfe02f6f564",
+    "content-hash": "0fb6fb33c5bce34d37a0b269f3b1ba59",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2456,9 +2456,6 @@
                     "recurse": false,
                     "replace": false,
                     "merge-extra": false
-                },
-                "patches_applied": {
-                    "Simplified custom access checker does not have access to Request": "https://www.drupal.org/files/issues/2786941-9.patch"
                 }
             },
             "autoload": {
