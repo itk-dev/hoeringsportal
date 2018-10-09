@@ -44,6 +44,13 @@ class TwigExtension extends \Twig_Extension {
    * Get ticket custom field value.
    */
   public function getTicketCustomField(array $ticket, string $field) {
+    $config = $this->helper->getDeskproConfig();
+    $representation_states = $config->getRepresentations();
+
+    if ($field == 'representation') {
+      return $representation_states[$ticket['fields']['representation'][0]]['title'];
+    }
+
     return $ticket['fields'][$field] ?? NULL;
   }
 

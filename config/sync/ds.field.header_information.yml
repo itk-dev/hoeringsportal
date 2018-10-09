@@ -3,7 +3,7 @@ label: 'Header - Information'
 ui_limit: ''
 properties:
   content:
-    value: "<h3>Informationer</h3>\r\n"
+    value: "<h3 class=\"abc\">Informationer</h3>\r\n"
     format: filtered_html
 type: token
 type_label: 'Token field'

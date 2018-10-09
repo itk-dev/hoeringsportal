@@ -32,6 +32,18 @@
 
 // Some headers in group right content should be smaller than usual
 .group-right {
+  h3 {
+    border-top: 1px solid #e6e6e6;
+    padding-top: 1.5rem;
+    margin-top: .5rem;
+
+    &:first-child {
+      border: 0;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+
   h4, h5, h6 {
     font-size: .8rem;
     text-transform: none;

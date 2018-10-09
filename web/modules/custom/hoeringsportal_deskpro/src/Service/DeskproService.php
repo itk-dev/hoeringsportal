@@ -14,9 +14,9 @@ use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
  */
 class DeskproService {
   /**
-   * Deskpro configuration.
+   * The Deskpro config.
    *
-   * @var array
+   * @var \Drupal\hoeringsportal_deskpro\State\DeskproConfig
    */
   private $config;
 
@@ -647,9 +647,25 @@ class DeskproService {
 
   /**
    * Create exception wrapping an api exception.
+   *
+   * @param \Deskpro\API\Exception\APIException $exception
+   *   An exception.
+   *
+   * @return \Drupal\hoeringsportal_deskpro\Exception\DeskproException
+   *   The exception.
    */
   private function createException(APIException $exception) {
     return new DeskproException($exception->getMessage(), $exception->getCode(), $exception);
+  }
+
+  /**
+   * Return config.
+   *
+   * @return \Drupal\hoeringsportal_deskpro\State\DeskproConfig
+   *   The config.
+   */
+  public function getConfig() {
+    return $this->config;
   }
 
 }

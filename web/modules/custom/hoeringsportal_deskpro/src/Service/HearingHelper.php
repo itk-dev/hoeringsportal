@@ -235,6 +235,12 @@ class HearingHelper {
 
   /**
    * Get ticket url.
+   *
+   * @param array $ticket
+   *   The ticket.
+   *
+   * @return string
+   *   The url of the ticket.
    */
   public function getTicketUrl(array $ticket) {
     return $this->deskpro->getDeskproUrl('/tickets/{ref}', ['ref' => $ticket['ref']]);
@@ -319,6 +325,16 @@ class HearingHelper {
     $hearing->save();
 
     return ['hearing' => $hearing->id(), 'data' => $data];
+  }
+
+  /**
+   * The Deskpro config.
+   *
+   * @return \Drupal\hoeringsportal_deskpro\State\DeskproConfig
+   *   The Deskpro config.
+   */
+  public function getDeskproConfig() {
+    return $this->deskpro->getConfig();
   }
 
 }
