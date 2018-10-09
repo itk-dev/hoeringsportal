@@ -27,7 +27,6 @@ hoeringsportal_deskpro.data.synchronize.hearing:
     _format: json
     # @see https://www.drupal.org/project/drupal/issues/2786941
     _custom_access: '\Drupal\hoeringsportal_deskpro\Controller\DataController::synchronizeHearingAccess'
-    # _test_access_check: 'TRUE'
   options:
     no_cache: true
 

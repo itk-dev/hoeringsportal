@@ -120,9 +120,6 @@
             "drupal/field_group": {
                 "Possibility to add field group to advanced": "patches/field_group_node_sidebar.patch"
             },
-            "drupal/core": {
-                "Simplified custom access checker does not have access to Request": "https://www.drupal.org/files/issues/2786941-9.patch"
-            },
             "drupal/samlauth": {
                 "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
             }

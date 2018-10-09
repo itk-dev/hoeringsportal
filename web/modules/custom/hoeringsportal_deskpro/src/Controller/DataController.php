@@ -11,6 +11,7 @@ use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class DataController.
@@ -32,11 +33,19 @@ class DataController extends ControllerBase implements AccessInterface {
   protected $helper;
 
   /**
+   * The request.
+   *
+   * @var \Symfony\Component\HttpFoundation\RequestStack
+   */
+  protected $requestStack;
+
+  /**
    * Constructs a new DeskproController object.
    */
-  public function __construct(DeskproService $deskpro, HearingHelper $helper) {
+  public function __construct(DeskproService $deskpro, HearingHelper $helper, RequestStack $requestStack) {
     $this->deskpro = $deskpro;
     $this->helper = $helper;
+    $this->requestStack = $requestStack;
   }
 
   /**
@@ -45,7 +54,8 @@ class DataController extends ControllerBase implements AccessInterface {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('hoeringsportal_deskpro.deskpro'),
-      $container->get('hoeringsportal_deskpro.helper')
+      $container->get('hoeringsportal_deskpro.helper'),
+      $container->get('request_stack')
     );
   }
 
@@ -68,10 +78,11 @@ class DataController extends ControllerBase implements AccessInterface {
    * Synchronize hearing data from Deskpro.
    *
    * @see https://www.drupal.org/node/2122195
+   * but note that we cannot get the Request directly.
    */
-  public function synchronizeHearingAccess(Request $request) {
-    $token = $request->headers->get('x-deskpro-token');
-    return $this->deskpro->isValidToken($token) ? new AccessResultAllowed() : new AccessResultForbidden();
+  public function synchronizeHearingAccess() {
+    $token = $this->requestStack->getCurrentRequest()->headers->get('x-deskpro-token');
+    return $this->deskpro->isValidToken($token) ? new AccessResultAllowed() : new AccessResultForbidden('Invalid data token');
   }
 
 }
