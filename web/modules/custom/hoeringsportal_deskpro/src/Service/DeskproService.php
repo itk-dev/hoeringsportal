@@ -327,7 +327,7 @@ class DeskproService {
    */
   public function createMessage(array $ticket, array $data, array $files = []) {
     $messageData = $this->filterData($data, ['message']);
-    $messageData['person']['id'] = $ticket['person']['id'];
+    $messageData['person']['id'] = $ticket['person'];
 
     $blobs = $this->uploadFiles($files);
     foreach ($blobs as $blob) {
