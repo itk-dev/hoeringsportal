@@ -165,10 +165,11 @@ class DeskproSettingsForm extends FormBase {
     ];
 
     $customFields = $config->getTicketCustomFields();
+    $titles = $config->getTicketCustomFieldTitles();
     foreach ($customFields as $name => $value) {
       $form['deskpro_integration']['deskpro_ticket_custom_fields'][$name] = [
         '#type' => 'number',
-        '#title' => $name,
+        '#title' => $titles[$name] ?? $name,
         '#required' => TRUE,
         '#default_value' => $value,
       ];

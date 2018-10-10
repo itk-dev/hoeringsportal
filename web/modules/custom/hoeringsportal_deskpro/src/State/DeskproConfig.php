@@ -61,23 +61,34 @@ class DeskproConfig extends DatabaseStorage {
   }
 
   /**
-   * Get ticket custom fields.
+   * Ticket custom fields: name => title.
+   *
+   * @var array
+   */
+  private static $ticketCustomFields = [
+    'hearing_id' => 'Hearing id',
+    'hearing_name' => 'Hearing name',
+    'edoc_id' => 'eDoc id',
+    'pdf_download_url' => 'PDF download url',
+    'representation' => 'Representation',
+    'organization' => 'Organization (used with representation)',
+    'address_secret' => 'Address is secret',
+    'address' => 'Address',
+    'geolocation' => 'Geo location',
+    'message' => 'The actual hearing answer',
+  ];
+
+  /**
+   * Get ticket custom field mapping.
    */
   public function getTicketCustomFields() {
-    $defaults = [
-      'hearing_id' => NULL,
-      'hearing_name' => NULL,
-      'edoc_id' => NULL,
-      'pdf_download_url' => NULL,
-      'representation' => NULL,
-      'address_secret' => NULL,
-      'address' => NULL,
-      'geolocation' => NULL,
-      'organization' => NULL,
-      'message' => NULL,
-    ];
     $values = $this->get('deskpro_ticket_custom_fields', []);
 
+    // Get default values: field name => NULL.
+    $defaults = array_combine(
+      array_keys(self::$ticketCustomFields),
+      array_fill(0, count(self::$ticketCustomFields), NULL)
+    );
     // Merge in actual values and remove invalid names.
     $fields = array_merge($defaults, $values);
     $fields = array_filter($fields, function ($name) use ($defaults) {
@@ -85,6 +96,13 @@ class DeskproConfig extends DatabaseStorage {
     }, ARRAY_FILTER_USE_KEY);
 
     return $fields;
+  }
+
+  /**
+   * Get ticket custom field titles.
+   */
+  public function getTicketCustomFieldTitles() {
+    return self::$ticketCustomFields;
   }
 
   /**
