@@ -307,6 +307,7 @@ class DeskproService {
    */
   public function createTicket(array $person, array $data) {
     $ticketData = $this->filterData($data, [
+      'language',
       'department',
       'agent',
       'fields',
@@ -666,6 +667,16 @@ class DeskproService {
    */
   public function getConfig() {
     return $this->config;
+  }
+
+  /**
+   * Get Deskpro languages.
+   */
+  public function getLanguages(array $query = []) {
+    $endpoint = '/languages';
+    $response = $this->client()->get($endpoint, $query);
+
+    return $response;
   }
 
 }

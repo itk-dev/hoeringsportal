@@ -182,6 +182,9 @@ class HearingHelper {
         $data['agent']['email'] = $node->field_deskpro_agent_email->value;
       }
 
+      // Set language.
+      $data['language'] = $this->getLanguageId($node);
+
       // Create person.
       $response = $this->deskpro->createPerson($data);
       $person = $response->getData();
@@ -203,6 +206,26 @@ class HearingHelper {
       ]);
       throw $exception;
     }
+  }
+
+  /**
+   * Get Deskpro language id for a hearing.
+   */
+  private function getLanguageId(NodeInterface $node) {
+    try {
+      $response = $this->deskpro->getLanguages();
+
+      $locale = $node->language()->getId();
+      foreach ($response->getData() as $language) {
+        if ($language['locale'] === $locale) {
+          return $language['id'];
+        }
+      }
+    }
+    catch (\Exception $exception) {
+    }
+
+    return 1;
   }
 
   /**
