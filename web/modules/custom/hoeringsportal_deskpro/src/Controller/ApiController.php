@@ -173,7 +173,7 @@ class ApiController extends ControllerBase {
       $ticket = $this->deskpro->getTicket($ticket, $query);
 
       $data = $ticket->getData();
-      // $data['person'] = $this->getPerson($data['person']);.
+
       return new JsonResponse($data);
     }
     catch (DeskproException $exception) {

@@ -41,8 +41,6 @@ class DrushCommands extends BaseDrushCommands {
    *   Comma-list of hearing ids.
    *
    * @command hoeringsportal:deskpro:synchronize-data
-   * @usage hoeringsportal:deskpro:synchronize-data
-   *   Refreshes Deskpro data for all hearings.
    * @usage hoeringsportal:deskpro:synchronize-data 42,87
    *   Refreshes Deskpro data for hearings with ids 42 and 87.
    */
