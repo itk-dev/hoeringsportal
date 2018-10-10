@@ -70,6 +70,7 @@ class DeskproConfig extends DatabaseStorage {
       'edoc_id' => NULL,
       'pdf_download_url' => NULL,
       'representation' => NULL,
+      'address_secret' => NULL,
       'address' => NULL,
       'geolocation' => NULL,
       'organization' => NULL,

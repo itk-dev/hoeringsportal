@@ -237,6 +237,7 @@ class HearingTicketAddForm extends FormBase {
     $names = [
       'name',
       'email',
+      'address_secret',
       'address',
       'geolocation',
       'representation',
