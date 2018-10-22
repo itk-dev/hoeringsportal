@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_deskpro\Commands;
 
+use Drupal\node\Entity\Node;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
@@ -102,6 +103,44 @@ class DrushCommands extends BaseDrushCommands {
       json_encode($payload, JSON_PRETTY_PRINT),
       '',
     ]);
+  }
+
+  /**
+   * Debug stuff.
+   *
+   * @command hoeringsportal:deskpro:debug
+   */
+  public function debug() {
+    // $service = \Drupal::service('hoeringsportal_deskpro.data_syncronizer');
+    //
+    // $node = \Drupal\node\Entity\Node::load(8);
+    // $service->addToQueue($node);
+    // $service->addToQueue($node);
+    // $service->addToQueue($node);
+    // $node = \Drupal\node\Entity\Node::load(9);
+    // $service->addToQueue($node);
+    //
+    // $service->processQueue();
+    //
+    // return;
+    $node = Node::load(8);
+    $data = [
+      'name' => 'test',
+      'email' => 'test@example.com',
+      'address' => 'Dokk1',
+      'address_secret' => TRUE,
+      'representation' => 35,
+      'subject' => 'Test ' . date('c'),
+      'message' => 'Test ' . date('c'),
+    ];
+
+    $files = [2, 17];
+
+    /** @var \Drupal\hoeringsportal_deskpro\Service\HearingHelper $helper */
+    $helper = \Drupal::service('hoeringsportal_deskpro.helper');
+    $result = $helper->createHearingTicket($node, $data, $files);
+
+    var_export($result);
   }
 
 }

@@ -204,6 +204,18 @@ class HearingTicketAddForm extends FormBase {
 
     $form['#attached']['library'][] = 'hoeringsportal_deskpro/form_ticket_add';
 
+    $form['name']['#default_value'] = uniqid('u');
+    $form['email']['#default_value'] = uniqid('u') . '@example.com';
+    $form['email_confirm']['#default_value'] = $form['email']['#default_value'];
+    $form['address']['#default_value'] = 'Dokk1';
+    $form['geolocation']['#default_value'] = '';
+    $form['address_secret']['#default_value'] = FALSE;
+    $form['representation']['#default_value'] = 36;
+    $form['organization']['#default_value'] = '';
+    $form['subject']['#default_value'] = 'Test ' . date('c');
+    $form['message']['#default_value'] = 'Test ' . date('c');
+    $form['consent']['#default_value'] = TRUE;
+
     return $form;
   }
 
