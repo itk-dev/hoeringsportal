@@ -93,13 +93,13 @@ class HearingTicketAddForm extends FormBase {
 
     $form['email'] = [
       '#type' => 'email',
-      '#title' => $this->t('E-mail'),
+      '#title' => $this->t('Email address'),
       '#required' => TRUE,
     ];
 
     $form['email_confirm'] = [
       '#type' => 'email',
-      '#title' => $this->t('Confirm e-mail'),
+      '#title' => $this->t('Confirm email address'),
       '#required' => TRUE,
     ];
 

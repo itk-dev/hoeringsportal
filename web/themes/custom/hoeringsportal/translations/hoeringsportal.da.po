@@ -1,0 +1,158 @@
+# Danish translation of Høringsportalen - Aarhus kommune
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hoeringsportal\n"
+"POT-Creation-Date: 2018-10-22 16:25+0200\n"
+"PO-Revision-Date: 2018-10-22 16:31+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "SAML login"
+msgstr "ADFS-login"
+
+msgid "Hearing tickets"
+msgstr "Høringssvar"
+
+msgid "Attachments"
+msgstr "Vedhæftninger"
+
+msgid "Replies"
+msgstr "Bidrag"
+
+msgid "Start date"
+msgstr "Start dato"
+
+msgid "Reply"
+msgstr "Bidrag"
+
+msgid "Project not secure"
+msgstr "Initiativ ikke sikkert"
+
+msgid "Project revoked"
+msgstr "Initiativ tilbagekaldt"
+
+msgid "Project not supported"
+msgstr "Initiativ ikke understøttet"
+
+msgid "Add hearing ticket"
+msgstr "Tilføj høringssvar"
+
+msgid "Hearing tickets (@count)"
+msgstr "Høringssvar (@count)"
+
+msgid "Reply date"
+msgstr "Bidrag dato"
+
+msgid "Your search yielded no result"
+msgstr "Din søgning gav ingen resultater."
+
+msgid "Information page"
+msgstr "Information"
+
+msgid "Answer @number by @name"
+msgstr "Bidrag @number af @name"
+
+msgid "Note! Hearing deadline has passed."
+msgstr "Note! Hørings tidsfristen er forbi."
+
+msgid "Show more hearings"
+msgstr "Vis flere høringer"
+
+msgid "<strong>Note!</strong> Hearing deadline has passed."
+msgstr "<strong>Note!</strong> Hørings tidsfristen er forbi."
+
+msgid "<strong>Note!</strong> Hearing deadline approaching."
+msgstr "<strong>Note!</strong> Hørings tidsfristen nærmer sig."
+
+msgid "Content on this page"
+msgstr "Indhold på denne side"
+
+msgid "Open project gallery"
+msgstr "Åbn projekt galleri"
+
+msgid "Finished"
+msgstr "Slut"
+
+msgid "Hearing"
+msgstr "Høring"
+
+msgid "Hearing reply for"
+msgstr "Høringssvar for"
+
+msgid "Hearing reply by @name"
+msgstr "Høringssvar fra @name"
+
+msgid "Answer #@number by @name"
+msgstr "Bidrag #@number af @name"
+
+msgid "Create hearing reply"
+msgstr "Skriv høringssvar"
+
+msgid "<strong>Note!</strong> This hearing has not started yet"
+msgstr "<strong>Note!</strong> Denne høring er ikke startet endnu."
+
+msgid "Project start"
+msgstr "Initiativ start"
+
+msgid "Project end"
+msgstr "Initiativ slut"
+
+msgid "Project finish"
+msgstr "Initiativ afslutning"
+
+msgid "Download ticket as pdf"
+msgstr "Download høringssvar som pdf"
+
+msgid "Meeting"
+msgstr "Møde"
+
+msgid "Debate"
+msgstr "Debat"
+
+msgid "Expected end date"
+msgstr "Forventet slutdato"
+
+msgid ""
+"This question is for testing whether or not you are a human visitor "
+"and to prevent automated spam submissions."
+msgstr ""
+"Please type the text you see in the captcha image to prove you are "
+"human"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Email address"
+msgstr "E-mailadresse"
+
+msgid "Confirm email address"
+msgstr "Bekræft e-mailadresse"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "My address is secret"
+msgstr "Min adresse er hemmelig"
+
+msgid "I represent"
+msgstr "Jeg udtaler mig som"
+
+msgid "Organization"
+msgstr "Organisation"
+
+msgid "Subject"
+msgstr "Emne"
+
+msgid "Message"
+msgstr "Besked"
+
+msgid "Select a file"
+msgstr "Vælg en fil"
+
+msgid "I have red the terms and give my consent"
+msgstr "Jeg har læst betingelserne og giver mit samtykke"
