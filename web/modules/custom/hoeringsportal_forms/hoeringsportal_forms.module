@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\field\FieldStorageConfigInterface;
 
 /**
@@ -162,4 +163,46 @@ function hoeringsportal_forms_field_views_data_alter(array &$data, FieldStorageC
       }
     }
   }
+}
+
+/**
+ * Add login providers to user login form.
+ */
+function hoeringsportal_forms_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ('user_login_form' === $form_id) {
+    // Wrap default Drupal login.
+    foreach ($form as $key => $value) {
+      if (0 !== strpos($key, '#')) {
+        $form['drupal_login'][$key] = array_merge($value);
+        unset($form[$key]);
+      }
+    }
+    $form['drupal_login'] += [
+      '#type' => 'fieldset',
+      '#title' => 'Drupal login',
+      '#weight' => 100,
+    ];
+
+    $login_providers = [];
+
+    if (\Drupal::moduleHandler()->moduleExists('samlauth')) {
+      $login_providers['samlauth'] = [
+        '#type' => 'link',
+        '#title' => t('SAML login'),
+        '#url' => Url::fromRoute('samlauth.saml_controller_login'),
+        '#attributes' => [
+          'class' => 'btn btn-primary login-provider',
+        ],
+      ];
+    }
+
+    if (!empty($login_providers)) {
+      $form['login_providers'] = [
+        '#type' => 'fieldset',
+        '#title' => t('Login providers'),
+        '#weight' => -1000,
+      ] + $login_providers;
+    }
+  }
+
 }

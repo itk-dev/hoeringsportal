@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Implements hook_preprocess_field().
@@ -125,14 +124,6 @@ function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array 
 function hoeringsportal_preprocess_form(&$variables, $hook, &$info) {
   if ($variables['element']['#form_id'] == 'search_form') {
     $info['template'] = 'form--search-form';
-  }
-  elseif ($variables['element']['#form_id'] == 'user_login_form') {
-    if (\Drupal::moduleHandler()->moduleExists('samlauth')) {
-      $variables['login_methods'][] = [
-        'name' => t('SAML login'),
-        'url' => Url::fromRoute('samlauth.saml_controller_login')->toString(),
-      ];
-    }
   }
 }
 
