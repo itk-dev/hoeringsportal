@@ -1,12 +1,12 @@
 import Map from 'ol/Map.js'
 import View from 'ol/View.js'
-import {defaults as defaultControls} from 'ol/control.js'
+import { defaults as defaultControls } from 'ol/control.js'
 import GeoJSON from 'ol/format/GeoJSON.js'
-import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer.js'
-import {OSM, Vector as VectorSource} from 'ol/source.js'
-import {Circle as CircleStyle, Fill, Stroke, Style, Icon} from 'ol/style.js'
-import {fromLonLat} from 'ol/proj.js'
-import {defaults as defaultInteractions} from 'ol/interaction.js'
+import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer.js'
+import { OSM, Vector as VectorSource } from 'ol/source.js'
+import { Circle as CircleStyle, Fill, Stroke, Style, Icon } from 'ol/style.js'
+import { fromLonLat } from 'ol/proj.js'
+import { defaults as defaultInteractions } from 'ol/interaction.js'
 
 require('./ol.css')
 

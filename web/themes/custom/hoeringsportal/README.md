@@ -16,20 +16,19 @@ JavaScript and CSS (actually SCSS) assets are put in `assets/js/` and
 First, install tools and requirements:
 
 ```sh
-npm config set engine-strict true
-npm install
+yarn install
 ```
 
 Build for development:
 
 ```
-./node_modules/.bin/encore dev --watch
+yarn encore dev --watch
 ```
 
 Build for production:
 
 ```
-./node_modules/.bin/encore production
+yarn encore production
 ```
 
 ## Coding standards
@@ -39,7 +38,7 @@ This project follows coding standards.
 Run
 
 ```sh
-npm run check-coding-standards
+yarn run check-coding-standards
 ```
 
 to check coding standards in `sccs` and `js` files.
@@ -49,7 +48,7 @@ to check coding standards in `sccs` and `js` files.
 Run
 
 ```sh
-npm run check-coding-standards-scss
+yarn run check-coding-standards-scss
 ```
 
 to check coding standards in `scss` files.
@@ -57,7 +56,7 @@ to check coding standards in `scss` files.
 Some coding standards issues can be fixed automatically. Run
 
 ```sh
-npm run apply-coding-standards-scss
+yarn run apply-coding-standards-scss
 ```
 
 to apply any possible automatic fixes.
@@ -67,7 +66,7 @@ to apply any possible automatic fixes.
 Run
 
 ```sh
-npm run check-coding-standards-js
+yarn run check-coding-standards-js
 ```
 
 to check coding standards in `js` files.
@@ -75,7 +74,7 @@ to check coding standards in `js` files.
 Some coding standards issues can be fixed automatically. Run
 
 ```sh
-npm run apply-coding-standards-js
+yarn run apply-coding-standards-js
 ```
 
 to apply any possible automatic fixes.
