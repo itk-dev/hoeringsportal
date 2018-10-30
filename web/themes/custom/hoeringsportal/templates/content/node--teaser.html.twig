@@ -98,8 +98,8 @@
         {# Alter splash display depending on content state in relation with deadline. #}
         {% if (content_state == 'upcoming') %}
           <div class="splash-label">{{ 'Start date' | t }}</div>
-          <div class="splash-date-day text-orange p-1">{{ deadline|date('d') }}</div>
-          <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+          <div class="splash-date-day text-orange p-1">{{ startdate|date('d') }}</div>
+          <div class="splash-date-month">{{ startdate|date('M') | t }}</div>
           {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Upcomming' | t %}
           {% set overlay_text_color = 'text-orange' %}
