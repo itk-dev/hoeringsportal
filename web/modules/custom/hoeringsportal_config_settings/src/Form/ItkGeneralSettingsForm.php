@@ -150,6 +150,29 @@ class ItkGeneralSettingsForm extends FormBase {
       '#description' => $this->t('Used when linking to a map of all hearings.'),
     ];
 
+    $form['misc'] = [
+      '#title' => $this->t('Pages'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '2',
+      '#group' => 'general_settings',
+    ];
+
+    $node_reference = Node::load($config->get('frontpage_id'));
+    $form['misc']['frontpage_id'] = [
+      '#title' => $this->t('Front page'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'node',
+      '#default_value' => $node_reference,
+      '#required' => TRUE,
+    ];
+
+    $form['misc']['users_manual_url'] = [
+      '#title' => $this->t("User's manual url"),
+      '#type' => 'url',
+      '#default_value' => $config->get('users_manual_url'),
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Save changes'),
@@ -175,6 +198,8 @@ class ItkGeneralSettingsForm extends FormBase {
       'initiative_overview' => $form_state->getValue('initiative_overview'),
       'full_map_project_url' => $form_state->getValue('full_map_project_url'),
       'full_map_hearing_url' => $form_state->getValue('full_map_hearing_url'),
+      'frontpage_id' => $form_state->getValue('frontpage_id'),
+      'users_manual_url' => $form_state->getValue('users_manual_url'),
     ]);
 
     drupal_flush_all_caches();

@@ -14,3 +14,19 @@ hoeringsportal_hearing.settings:
     _title: 'Hearing'
   requirements:
     _permission: 'access itk admin settings'
+
+hoeringsportal.frontpage:
+  path: '/frontpage'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_config_settings\Controller\PageController::frontPage'
+    _title: 'Frontpage'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal.users_manual:
+  path: '/hoeringsportal/users-manual'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_config_settings\Controller\PageController::usersManual'
+    _title: 'Frontpage'
+  requirements:
+    _permission: 'access content'
