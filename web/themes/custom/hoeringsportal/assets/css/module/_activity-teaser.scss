@@ -112,6 +112,23 @@
   left: 0;
   position: absolute;
   z-index: 2;
+
+  &--text {
+    color: $petroleum;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-family: $headings-font-family;
+
+    &.text-orange {
+      color: $orange;
+    }
+  }
 }
 
 .activity-teaser-link-wrap {
@@ -138,6 +155,13 @@
     .activity-teaser-link {
       @include transition-std(transform, ease-out, 400ms);
       @include move-link-right();
+    }
+
+    .activity-teaser-overlay--text {
+      color: $petroleum;
+      &.text-orange {
+        color: $orange;
+      }
     }
   }
   &.activity-teaser-list-display {

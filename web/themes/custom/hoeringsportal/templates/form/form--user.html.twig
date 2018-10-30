@@ -12,6 +12,19 @@
 #}
 
 <div class="container content__container">
+  {% if login_methods|default(false) %}
+    <div class="row">
+      <div class="content group-left col-md-8">
+        <div class="content__main ">
+          {% for method in login_methods %}
+            <a class="btn btn-primary" href="{{ method.url }}">
+              {{ method.name }}
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
   <div class="row">
     <div class="content group-left col-md-8">
       <div class="content__main ">

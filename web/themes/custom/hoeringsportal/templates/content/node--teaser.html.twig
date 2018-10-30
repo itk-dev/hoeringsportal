@@ -91,20 +91,26 @@
   {% if (content.field_reply_deadline) %}
     {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
     {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+    {% set content_state = content.field_content_state['0']['#markup'] %}
+    {{ dump(content_state) }}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
 
         {# Alter splash display depending on content state in relation with deadline. #}
-        {% if (content.field_start_date['0']['#attributes'].datetime|date('U') > "now"|date('U')) %}
+        {% if (content_state == 'upcoming') %}
           <div class="splash-label">{{ 'Start date' | t }}</div>
-          <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
+          <div class="splash-date-day text-orange p-1">{{ deadline|date('d') }}</div>
           <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
           {% set overlay = 'TRUE' %}
-        {% elseif (content.field_reply_deadline['0']['#attributes'].datetime|date('U') < "now"|date('U')) %}
+          {% set overlay_text = 'Upcomming' | t %}
+          {% set overlay_text_color = 'text-orange' %}
+        {% elseif (content_state == 'finished') %}
           <div class="splash-label">{{ 'Finished' | t }}</div>
-          <div class="splash-date-day"><i class="fa fa-check-circle p-1"></i></div>
+          <div class="splash-date-day"><i class="fa fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
+          {% set overlay_text = 'Finished' | t %}
+          {% set overlay_text_color = 'text-green' %}
         {% else %}
           <div class="splash-label">{{ 'Reply date' | t }}</div>
           <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
@@ -123,9 +129,11 @@
 
   <div class="activity-teaser-image">
     {{ content.field_media_image }}
-    {# Add overlay if deadline has passed. #}
+    {# Add overlay when passed or upcomming #}
     {% if (overlay) %}
-      <span class="activity-teaser-overlay"></span>
+      <span class="activity-teaser-overlay">
+        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">{{ overlay_text }}</span>
+      </span>
     {% endif %}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>

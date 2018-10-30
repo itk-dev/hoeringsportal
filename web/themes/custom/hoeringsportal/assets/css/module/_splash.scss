@@ -4,8 +4,12 @@
   text-align: center;
 }
 .splash-label {
-  font-size: .5rem;
   color: $gray-600;
+  font-size: .75rem;
+  margin-bottom: .25rem;
+}
+.splash-date {
+  padding: .75rem;
 }
 .splash-date-day {
   font-family: $font-family-black;
@@ -13,11 +17,16 @@
   font-size: 1.8rem;
   line-height: 1;
   color: $primary;
+
+  &.text-orange {
+    color: $orange;
+  }
 }
 .splash-date-month {
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: $font-weight-bold;
+  color: $black;
 }
 .splash-comments {
   border-top: 1px solid $gray-400;
