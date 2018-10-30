@@ -5,7 +5,10 @@
  * This is a file.
  */
 
+use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Implements hook_node_presave().
@@ -16,4 +19,15 @@ function hoeringsportal_data_node_presave(NodeInterface $node) {
 
   $helper = \Drupal::service('hoeringsportal_data.localplan_item_helper');
   $helper->updateData($node);
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function hoeringsportal_data_user_login(UserInterface $account) {
+  if ($account->hasPermission('access content overview')) {
+    $url = Url::fromRoute('system.admin_content')->toString();
+    $response = new RedirectResponse($url);
+    $response->send();
+  }
 }
