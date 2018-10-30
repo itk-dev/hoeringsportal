@@ -113,28 +113,34 @@ class DeskproSettingsForm extends FormBase {
       '#weight' => '3',
       '#required' => TRUE,
     ];
-    foreach ($this->deskpro->getRepresentations() as $representation) {
-      $id = $representation['id'];
-      $defaultValues = $values[$id] ?? [];
-      $form['add_hearing_ticket_form']['representations'][$id] = [
-        '#type' => 'group',
-        'title' => [
-          '#type' => 'textfield',
-          '#title' => $this->t('Representation title (@title)', ['@title' => $representation['title']]),
-          '#default_value' => $defaultValues['title'] ?? $representation['title'],
-          '#required' => TRUE,
-        ],
-        'is_available' => [
-          '#type' => 'checkbox',
-          '#title' => $this->t('Is available'),
-          '#default_value' => $defaultValues['is_available'] ?? FALSE,
-        ],
-        'require_organization' => [
-          '#type' => 'checkbox',
-          '#title' => $this->t('Require organization'),
-          '#default_value' => $defaultValues['require_organization'] ?? FALSE,
-        ],
-      ];
+
+    try {
+      foreach ($this->deskpro->getRepresentations() as $representation) {
+        $id = $representation['id'];
+        $defaultValues = $values[$id] ?? [];
+        $form['add_hearing_ticket_form']['representations'][$id] = [
+          '#type' => 'group',
+          'title' => [
+            '#type' => 'textfield',
+            '#title' => $this->t('Representation title (@title)', ['@title' => $representation['title']]),
+            '#default_value' => $defaultValues['title'] ?? $representation['title'],
+            '#required' => TRUE,
+          ],
+          'is_available' => [
+            '#type' => 'checkbox',
+            '#title' => $this->t('Is available'),
+            '#default_value' => $defaultValues['is_available'] ?? FALSE,
+          ],
+          'require_organization' => [
+            '#type' => 'checkbox',
+            '#title' => $this->t('Require organization'),
+            '#default_value' => $defaultValues['require_organization'] ?? FALSE,
+          ],
+        ];
+      }
+    }
+    catch (\Throwable $throwable) {
+      $this->messenger()->addError('Cannot get representations data from Deskpro.');
     }
 
     $form['deskpro_integration'] = [
@@ -183,6 +189,7 @@ class DeskproSettingsForm extends FormBase {
       }
     }
     catch (\Throwable $throwable) {
+      $this->messenger()->addError('Cannot get departments data from Deskpro.');
     }
 
     $form['deskpro_integration']['deskpro_available_department_ids'] = [

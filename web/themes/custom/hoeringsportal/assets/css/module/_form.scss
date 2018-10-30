@@ -12,3 +12,17 @@ form {
     display: none;
   }
 }
+
+#user-login-form {
+  fieldset {
+    padding: 1em 0;
+
+    + fieldset {
+      border-top: solid 1px $secondary;
+    }
+
+    legend {
+      display: none;
+    }
+  }
+}
