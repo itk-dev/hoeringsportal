@@ -18,5 +18,20 @@
 <p>{{ ticket.person.name }}</p>
 <h5 class="mt-3">{{ 'Sent d.'|t }}</h5>
 <p>{{ ticket.date_created|date('j. F Y') }}</p>
-<h5 class="mt-3">{{ 'Represents'|t }}</h5>
-<p>{{ deskpro_ticket_custom_field(ticket, 'representation') }}</p>
+
+{% set represents = deskpro_ticket_custom_field(ticket, 'representation') %}
+{% if represents %}
+  <h5 class="mt-3">{{ 'Represents'|t }}</h5>
+  <p>{{ represents }}</p>
+
+  {% set organization = deskpro_ticket_custom_field(ticket, 'organization') %}
+  {% if organization %}
+    <h5 class="mt-3">{{ 'Organization'|t }}</h5>
+    <p>{{ organization }}</p>
+  {% endif %}
+{% endif %}
+
+{% if ticket.ref %}
+  <h5 class="mt-3">{{ 'Ticket reference'|t }}</h5>
+  <p>{{ ticket.ref }}</p>
+{% endif %}

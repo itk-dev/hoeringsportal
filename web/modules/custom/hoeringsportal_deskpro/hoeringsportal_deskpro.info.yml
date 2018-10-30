@@ -1,8 +1,8 @@
-name: 'hoeringsportal_deskpro'
+name: Høringsportal Deskpro
 type: module
 description: 'Deskpro integration'
 core: 8.x
-package: 'Custom'
+package: Hoeringsportal
 
 dependences:
   - itk_admin

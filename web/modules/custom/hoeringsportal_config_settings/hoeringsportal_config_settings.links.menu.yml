@@ -1,0 +1,6 @@
+hoeringsportal_config_settings.users_manual:
+  title: "User's manual"
+  parent: system.admin
+  description: "User's manual"
+  route_name: hoeringsportal.users_manual
+  weight: 1000
