@@ -11,7 +11,7 @@ field_name: field_area
 entity_type: node
 bundle: hearing
 label: Område
-description: ''
+description: 'Vælg områder som høringen dækker.'
 required: false
 translatable: true
 default_value: {  }

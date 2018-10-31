@@ -11,7 +11,7 @@ field_name: field_media_document
 entity_type: node
 bundle: hearing
 label: Dokumenter
-description: ''
+description: 'Vælg dokumenter der beskriver høringen.'
 required: false
 translatable: true
 default_value: {  }

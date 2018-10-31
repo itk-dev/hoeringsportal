@@ -11,7 +11,7 @@ field_name: field_area
 entity_type: node
 bundle: project
 label: Område
-description: ''
+description: 'Vælg områder som initiativet gælder for.'
 required: false
 translatable: false
 default_value: {  }

@@ -11,7 +11,7 @@ field_name: field_media_image
 entity_type: node
 bundle: hearing
 label: Billeder
-description: ''
+description: 'Vælg billeder der skal vises på høringssiden.'
 required: false
 translatable: true
 default_value: {  }

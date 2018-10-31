@@ -12,7 +12,7 @@ field_name: field_lokalplaner
 entity_type: node
 bundle: project
 label: Lokalplaner
-description: ''
+description: 'Vælg lokalplaner knyttet til høringen.'
 required: false
 translatable: true
 default_value:

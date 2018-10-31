@@ -12,7 +12,7 @@ field_name: field_description
 entity_type: node
 bundle: project
 label: Beskrivelse
-description: ''
+description: 'Beskrivelse af initiativet.'
 required: false
 translatable: false
 default_value: {  }

@@ -12,7 +12,7 @@ field_name: field_map
 entity_type: node
 bundle: project
 label: 'Map display'
-description: ''
+description: 'Kortvisning for intiativet.'
 required: false
 translatable: true
 default_value:

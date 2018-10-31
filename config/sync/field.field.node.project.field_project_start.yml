@@ -12,7 +12,7 @@ field_name: field_project_start
 entity_type: node
 bundle: project
 label: 'Initiativ start'
-description: ''
+description: 'Vælg starttidspunkt for initiativet.'
 required: false
 translatable: false
 default_value: {  }

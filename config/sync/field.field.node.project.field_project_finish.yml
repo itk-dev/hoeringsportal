@@ -12,7 +12,7 @@ field_name: field_project_finish
 entity_type: node
 bundle: project
 label: 'Forventet slutdato'
-description: ''
+description: 'Vælg forventet slutdato for initiativet.'
 required: false
 translatable: false
 default_value: {  }

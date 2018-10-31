@@ -10,7 +10,7 @@ field_name: field_project_reference
 entity_type: node
 bundle: hearing
 label: Initiativ
-description: ''
+description: 'Vælg initiativ som høringen er knyttet til.'
 required: false
 translatable: false
 default_value: {  }
