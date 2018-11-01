@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_edoc_casefile_id
     - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_lokalplaner
     - field.field.node.hearing.field_map
@@ -77,6 +78,20 @@ third_party_settings:
         required_fields: true
       label: Deskpro
       region: content
+    group_edoc:
+      children:
+        - field_edoc_casefile_id
+      parent_name: ''
+      weight: 10
+      format_type: details
+      format_settings:
+        label: eDoc
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: eDoc
+      region: content
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
@@ -106,6 +121,14 @@ content:
     region: content
   field_deskpro_department_id:
     weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_edoc_casefile_id:
+    weight: 11
     settings:
       size: 60
       placeholder: ''

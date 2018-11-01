@@ -1,0 +1,19 @@
+uuid: c12eca6b-ad07-4c39-8788-cee694c8ad52
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_edoc_casefile_id
+    - node.type.hearing
+id: node.hearing.field_edoc_casefile_id
+field_name: field_edoc_casefile_id
+entity_type: node
+bundle: hearing
+label: eDoc-sagsnr.
+description: 'Indtast eDoc-sagsnr. for høringen.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

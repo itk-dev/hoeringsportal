@@ -16,12 +16,13 @@
 #}
 <div class="layout-node-form clearfix">
   <div class="layout-region layout-region-node-main">
-    {{ form|without('advanced', 'actions', 'group_information', 'group_system_settings', 'group_deskpro') }}
+    {{ form|without('advanced', 'actions', 'group_information', 'group_system_settings', 'group_deskpro', 'group_edoc') }}
   </div>
   <div class="layout-region layout-region-node-secondary">
     {{ form.advanced }}
     {{ form.group_information }}
     {{ form.group_deskpro }}
+    {{ form.group_edoc }}
     {{ form.group_system_settings }}
   </div>
   <div class="layout-region layout-region-node-footer">
