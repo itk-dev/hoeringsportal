@@ -61,31 +61,36 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $hearings = Node::loadMultiple($entity_ids);
       foreach ($hearings as $hearing) {
-        $timeline_items[] = [
-          'title' => $hearing->title->value,
-          'startDate' => $hearing->field_reply_deadline->value,
-          'endDate' => NULL,
-          'type' => 'hearing',
-          'state' => $hearing->field_reply_deadline->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
-          'nid' => $hearing->nid->value,
-          'link' => NULL,
-        ];
+        if (isset($hearing->field_reply_deadline)) {
+          $timeline_items[] = [
+            'title' => $hearing->title->value,
+            'startDate' => $hearing->field_reply_deadline->value,
+            'endDate' => NULL,
+            'type' => 'hearing',
+            'state' => $hearing->field_reply_deadline->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
+            'nid' => $hearing->nid->value,
+            'link' => NULL,
+          ];
+        }
       }
     }
 
     // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
-      $timeline_items[] = [
-        'title' => $paragraph_obj->field_timeline_title->value,
-        'startDate' => $paragraph_obj->field_timeline_date->value,
-        'endDate' => NULL,
-        'type' => $paragraph_obj->field_timeline_type->value,
-        'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
-        'nid' => NULL,
-        'link' => $paragraph_obj->field_timeline_link->uri,
-      ];
+      if (isset($paragraph_obj->field_timeline_date)) {
+        $timeline_items[] = [
+          'title' => $paragraph_obj->field_timeline_title->value,
+          'startDate' => $paragraph_obj->field_timeline_date->value,
+          'endDate' => NULL,
+          'type' => $paragraph_obj->field_timeline_type->value,
+          'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
+          'nid' => NULL,
+          'link' => $paragraph_obj->field_timeline_link->uri,
+        ];
+      }
     }
+
     return [
       '#theme' => 'hoeringsportal_project_timeline',
       '#node' => $node,

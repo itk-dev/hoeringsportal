@@ -9,7 +9,7 @@ id: node.hearing.field_deskpro_department_id
 field_name: field_deskpro_department_id
 entity_type: node
 bundle: hearing
-label: 'Afdeling'
+label: Afdeling
 description: 'Vælg afdeling for høringen.'
 required: true
 translatable: false

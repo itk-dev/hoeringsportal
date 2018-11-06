@@ -11,7 +11,7 @@ id: node.hearing.field_map
 field_name: field_map
 entity_type: node
 bundle: hearing
-label: 'Kortvisning'
+label: Kortvisning
 description: 'Vælg kortvisning for høringen.'
 required: false
 translatable: false

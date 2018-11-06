@@ -210,14 +210,14 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: short
+      format_type: long
     third_party_settings: {  }
   field_start_date:
     weight: 11
     label: above
     settings:
       timezone_override: ''
-      format_type: short
+      format_type: long
     third_party_settings: {  }
     type: datetime_default
     region: right

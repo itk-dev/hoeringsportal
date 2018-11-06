@@ -9,7 +9,7 @@ id: node.hearing.field_deskpro_agent_email
 field_name: field_deskpro_agent_email
 entity_type: node
 bundle: hearing
-label: 'Sagsbehandler'
+label: Sagsbehandler
 description: 'Vælg sagsbehandler for høringen.'
 required: false
 translatable: false
