@@ -61,7 +61,7 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $hearings = Node::loadMultiple($entity_ids);
       foreach ($hearings as $hearing) {
-        if (isset($hearing->field_reply_deadline)) {
+        if (isset($hearing->values['field_reply_deadline'])) {
           $timeline_items[] = [
             'title' => $hearing->title->value,
             'startDate' => $hearing->field_reply_deadline->value,
@@ -78,7 +78,7 @@ class ProjectTimeline extends BlockBase {
     // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
-      if (isset($paragraph_obj->field_timeline_date)) {
+      if (isset($paragraph_obj->values['field_timeline_date'])) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
           'startDate' => $paragraph_obj->field_timeline_date->value,
