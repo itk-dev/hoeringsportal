@@ -76,6 +76,7 @@ class DeskproConfig extends DatabaseStorage {
     'address' => 'Address',
     'geolocation' => 'Geo location',
     'message' => 'The actual hearing answer',
+    'accept_terms' => 'Accept terms',
   ];
 
   /**

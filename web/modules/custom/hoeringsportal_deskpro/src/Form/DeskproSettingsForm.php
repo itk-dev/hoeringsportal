@@ -96,8 +96,7 @@ class DeskproSettingsForm extends FormBase {
 
     $form['add_hearing_ticket_form']['ticket_created_confirmation'] = [
       '#title' => $this->t('Confirmation after ticket submit'),
-      '#type' => 'text_format',
-      '#format' => 'filtered_html',
+      '#type' => 'textarea',
       '#default_value' => $config->get('ticket_created_confirmation'),
       '#weight' => '2',
       '#size' => 60,
@@ -255,8 +254,7 @@ class DeskproSettingsForm extends FormBase {
       'intro' => $form_state->getValue('intro')['value'],
       'consent' => $form_state->getValue('consent')['value'],
       'representations' => $form_state->getValue('representations'),
-      'ticket_created_confirmation' => $form_state->getValue('ticket_created_confirmation')['value'],
-
+      'ticket_created_confirmation' => $form_state->getValue('ticket_created_confirmation'),
       'deskpro_url' => $form_state->getValue('deskpro_url'),
       'deskpro_api_code_key' => $form_state->getValue('deskpro_api_code_key'),
       'deskpro_ticket_custom_fields' => $form_state->getValue('deskpro_ticket_custom_fields'),

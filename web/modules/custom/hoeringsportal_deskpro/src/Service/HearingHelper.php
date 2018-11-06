@@ -176,8 +176,12 @@ class HearingHelper {
       }
 
       // Add hearing data.
+      $data['department'] = (int) $node->field_deskpro_department_id->value;
       $data['fields'][$this->getTicketFieldId('hearing_id')] = $node->id();
       $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
+      $data['fields'][$this->getTicketFieldId('edoc_id')] = $node->field_edoc_casefile_id->value;
+      $data['fields'][$this->getTicketFieldId('accept_terms')] = TRUE;
+
       if (isset($node->field_deskpro_agent_email->value)) {
         $data['agent']['email'] = $node->field_deskpro_agent_email->value;
       }

@@ -77,6 +77,7 @@ class HearingTicketAddForm extends FormBase {
 
     $file_validators = [
       'file_validate_size' => [10490000],
+      'file_validate_extensions' => ['jpg jpeg gif png txt doc docx xls xlsx pdf ppt pptx pps odt ods odp'],
     ];
 
     $form['hearing_intro_text'] = [
