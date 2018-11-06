@@ -189,13 +189,20 @@ class HearingHelper {
       // Set language.
       $data['language'] = $this->getLanguageId($node);
 
+      // Upload files.
+      $blobs = $this->deskpro->uploadFiles($files);
+      if ($blobs) {
+        $data['fields'][$this->getTicketFieldId('files')] = $this->deskpro->getAttachments($blobs);
+      }
+
       // Create person.
       $response = $this->deskpro->createPerson($data);
       $person = $response->getData();
 
       $response = $this->deskpro->createTicket($person, $data);
       $ticket = $response->getData();
-      $response = $this->deskpro->createMessage($ticket, $data, $files);
+
+      $response = $this->deskpro->createMessage($ticket, $data, $blobs);
       $message = $response->getData();
 
       return [$ticket, $message];

@@ -326,16 +326,11 @@ class DeskproService {
   /**
    * Create a message on a ticket.
    */
-  public function createMessage(array $ticket, array $data, array $files = []) {
+  public function createMessage(array $ticket, array $data, array $blobs = []) {
     $messageData = $this->filterData($data, ['message']);
     $messageData['person']['id'] = $ticket['person'];
-
-    $blobs = $this->uploadFiles($files);
-    foreach ($blobs as $blob) {
-      $messageData['attachments'][] = [
-        'blob_auth' => $blob['blob_auth'],
-        // 'is_inline' => true,.
-      ];
+    if ($blobs) {
+      $messageData['attachments'] = $this->getAttachments($blobs);
     }
 
     $endpoint = '/tickets/{parentId}/messages';
@@ -349,11 +344,27 @@ class DeskproService {
   /**
    * Upload files.
    */
-  private function uploadFiles(array $files) {
+  public function uploadFiles(array $files) {
     return array_map(function ($path) {
       $response = $this->uploadFile($path);
       return $response->getData();
     }, $files);
+  }
+
+  /**
+   * Get attachments from blobs.
+   */
+  public function getAttachments(array $blobs, $inline = FALSE) {
+    $attachments = [];
+
+    foreach ($blobs as $blob) {
+      $attachments[] = [
+        'blob_auth' => $blob['blob_auth'],
+        'is_inline' => $inline,
+      ];
+    }
+
+    return $attachments;
   }
 
   /**
