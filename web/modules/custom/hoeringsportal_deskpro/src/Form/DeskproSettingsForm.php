@@ -169,11 +169,23 @@ class DeskproSettingsForm extends FormBase {
       '#title' => $this->t('Deskpro ticket custom fields'),
     ];
 
+    $options = [];
+    try {
+      $allCustomFields = $this->deskpro->getAllTicketCustomFields();
+      foreach ($allCustomFields as $customField) {
+        $options[$customField['id']] = $customField['title'];
+      }
+    }
+    catch (\Throwable $throwable) {
+      $this->messenger()->addError('Cannot get custom fields from Deskpro.');
+    }
     $customFields = $config->getTicketCustomFields();
     $titles = $config->getTicketCustomFieldTitles();
     foreach ($customFields as $name => $value) {
       $form['deskpro_integration']['deskpro_ticket_custom_fields'][$name] = [
-        '#type' => 'number',
+        '#type' => 'select',
+        '#options' => $options,
+        '#empty_value' => '',
         '#title' => $titles[$name] ?? $name,
         '#required' => TRUE,
         '#default_value' => $value,
@@ -239,7 +251,8 @@ class DeskproSettingsForm extends FormBase {
     $usedIds = [];
     foreach ($values as $name => $id) {
       if (isset($usedIds[$id])) {
-        $form_state->setErrorByName('deskpro_ticket_custom_fields][' . $name, $this->t('The id @id is already used by @name.', ['@id' => $id, '@name' => $usedIds[$id]]));
+        $titles = $this->getFormConfig()->getTicketCustomFieldTitles();
+        $form_state->setErrorByName('deskpro_ticket_custom_fields][' . $name, $this->t('This field is already used by @name.', ['@id' => $id, '@name' => $titles[$usedIds[$id]] ?? $usedIds[$id]]));
       }
       $usedIds[$id] = $name;
     }

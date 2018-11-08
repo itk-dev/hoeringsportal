@@ -8,6 +8,7 @@ use Deskpro\API\Exception\APIException;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
+use GuzzleHttp\Client;
 
 /**
  * Class DeskproService.
@@ -211,6 +212,15 @@ class DeskproService {
     catch (\Exception $exception) {
       return [];
     }
+  }
+
+  /**
+   * Get ticket custom fields.
+   */
+  public function getAllTicketCustomFields() {
+    $response = $this->get('/ticket_custom_fields');
+
+    return $response->getData();
   }
 
   /**
@@ -559,7 +569,8 @@ class DeskproService {
     if (NULL === $this->client) {
       // https://github.com/deskpro/deskpro-api-client-php
       $authKey = $this->config->getDeskproApiCodeKey();
-      $this->client = new DeskproClient($this->config->getDeskproUrl());
+      $client = new Client(['connect_timeout' => 2]);
+      $this->client = new DeskproClient($this->config->getDeskproUrl(), $client);
       $this->client->setAuthKey(...$authKey);
     }
 
