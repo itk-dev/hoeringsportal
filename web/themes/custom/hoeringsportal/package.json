@@ -16,6 +16,12 @@
   },
   "author": "ITK",
   "license": "ISC",
+  "browserslist": [
+    "last 2 versions",
+    "ios >= 8",
+    "IE 10-11",
+    "Android 4"
+  ],
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
     "bootstrap": "^4.1.3",

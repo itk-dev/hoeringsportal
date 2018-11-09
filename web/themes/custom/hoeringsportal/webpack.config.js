@@ -30,6 +30,9 @@ Encore
 
     // allow sass/scss files to be processed
     .enableSassLoader()
+
+    // Enable css-loader and autoprefixer
+    .enablePostCssLoader()
 ;
 
 // export the final configuration
