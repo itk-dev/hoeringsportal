@@ -20,7 +20,7 @@
   </h2>
   {% for message in ticket.messages %}
     <div>
-      {{ message.message|raw }}
+      {{ message.message|raw|nl2br }}
       {% if message.attachments %}
         <h3>{{ 'Attachments'|t }}</h3>
         <div class="attachments">
