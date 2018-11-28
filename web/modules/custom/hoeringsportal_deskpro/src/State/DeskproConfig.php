@@ -140,4 +140,11 @@ class DeskproConfig extends DatabaseStorage {
     return (int) $this->get('deskpro_cache_ttl');
   }
 
+  /**
+   * Get hearing id prefix (must be set in settings.php).
+   */
+  public function getHearingIdPrefix() {
+    return \Drupal::config('hoeringsportal_deskpro.config')->get('deskpro_hearing_id_prefix');
+  }
+
 }

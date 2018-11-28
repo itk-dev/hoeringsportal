@@ -87,7 +87,13 @@ class HearingHelper {
    *   The hearing id if any.
    */
   public function getHearingId(NodeInterface $node) {
-    return $this->isHearing($node) ? $node->id() : NULL;
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    $prefix = $this->getDeskproConfig()->getHearingIdPrefix();
+
+    return $prefix . $node->id();
   }
 
   /**
@@ -177,7 +183,7 @@ class HearingHelper {
 
       // Add hearing data.
       $data['department'] = (int) $node->field_deskpro_department_id->value;
-      $data['fields'][$this->getTicketFieldId('hearing_id')] = $node->id();
+      $data['fields'][$this->getTicketFieldId('hearing_id')] = $this->getHearingId($node);
       $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
       $data['fields'][$this->getTicketFieldId('edoc_id')] = $node->field_edoc_casefile_id->value;
       $data['fields'][$this->getTicketFieldId('accept_terms')] = TRUE;
@@ -328,7 +334,13 @@ class HearingHelper {
     if (!isset($payload['ticket'][$hearingIdfieldName])) {
       throw new \Exception('Invalid data');
     }
+
     $hearingId = $payload['ticket'][$hearingIdfieldName];
+
+    $prefix = $this->getDeskproConfig()->getHearingIdPrefix();
+    if ($prefix && 0 === strpos($hearingId, $prefix)) {
+      $hearingId = substr($hearingId, strlen($prefix));
+    }
 
     $hearing = Node::load($hearingId);
     if (NULL === $hearing) {
@@ -346,7 +358,8 @@ class HearingHelper {
       throw new \Exception('Invalid hearing: ' . $hearing->id());
     }
 
-    $result = $this->deskpro->getHearingTickets($hearing->id(), [
+    $deskproHearingId = $this->getHearingId($hearing);
+    $result = $this->deskpro->getHearingTickets($deskproHearingId, [
       'expand' => ['fields', 'person', 'messages', 'attachments'],
       'no_cache' => 1,
       'count' => 100,
