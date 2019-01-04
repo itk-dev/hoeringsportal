@@ -61,14 +61,10 @@ class DrushCommands extends BaseDrushCommands {
       throw new RuntimeException('Invalid ids: ' . implode(', ', $diff));
     }
 
-    foreach ($hearingIds as $id) {
-      $payload = [
-        'ticket' => [
-          $this->helper->getTicketFieldName('hearing_id', 'field') => $id,
-        ],
-      ];
-      $this->output->writeln('Hearing: ' . $id);
-      $result = $this->helper->synchronizeHearing($payload);
+    $hearings = Node::loadMultiple($ids);
+    foreach ($hearings as $hearing) {
+      $this->output->writeln('Hearing: ' . $hearing->id());
+      $result = $this->helper->synchronizeHearingTickets($hearing);
       $this->output->writeln([
         'Result',
         json_encode($result, JSON_PRETTY_PRINT),

@@ -78,6 +78,7 @@ class DeskproConfig extends DatabaseStorage {
     'message' => 'The actual hearing answer',
     'files' => 'Attached files',
     'accept_terms' => 'Accept terms',
+    'unpublish_reply' => 'Unpublish reply',
   ];
 
   /**
@@ -138,6 +139,13 @@ class DeskproConfig extends DatabaseStorage {
    */
   public function getCacheTtl() {
     return (int) $this->get('deskpro_cache_ttl');
+  }
+
+  /**
+   * Get hearing id prefix (must be set in settings.php).
+   */
+  public function getHearingIdPrefix() {
+    return \Drupal::config('hoeringsportal_deskpro.config')->get('deskpro_hearing_id_prefix');
   }
 
 }

@@ -187,7 +187,7 @@ class DeskproSettingsForm extends FormBase {
         '#options' => $options,
         '#empty_value' => '',
         '#title' => $titles[$name] ?? $name,
-        '#required' => TRUE,
+        '#required' => count($options) > 0,
         '#default_value' => $value,
       ];
     }
@@ -250,7 +250,7 @@ class DeskproSettingsForm extends FormBase {
     $values = $form_state->getValue('deskpro_ticket_custom_fields');
     $usedIds = [];
     foreach ($values as $name => $id) {
-      if (isset($usedIds[$id])) {
+      if (!empty($id) && isset($usedIds[$id])) {
         $titles = $this->getFormConfig()->getTicketCustomFieldTitles();
         $form_state->setErrorByName('deskpro_ticket_custom_fields][' . $name, $this->t('This field is already used by @name.', ['@id' => $id, '@name' => $titles[$usedIds[$id]] ?? $usedIds[$id]]));
       }
