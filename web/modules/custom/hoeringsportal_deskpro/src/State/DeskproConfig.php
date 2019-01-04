@@ -78,6 +78,7 @@ class DeskproConfig extends DatabaseStorage {
     'message' => 'The actual hearing answer',
     'files' => 'Attached files',
     'accept_terms' => 'Accept terms',
+    'unpublish_reply' => 'Unpublish reply',
   ];
 
   /**
