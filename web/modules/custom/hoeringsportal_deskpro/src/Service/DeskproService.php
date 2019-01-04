@@ -84,6 +84,8 @@ class DeskproService {
       unset($query['order_by'], $query['order_dir']);
 
       $data = $response->getData();
+      $data = $this->filterTickets($data);
+
       $this->expandData($data, $query, $response);
 
       if ($this->getExpand($query, 'messages')) {
@@ -699,6 +701,23 @@ class DeskproService {
     $response = $this->client()->get($endpoint, $query);
 
     return $response;
+  }
+
+  /**
+   * Filter tickets.
+   */
+  private function filterTickets(array $data) {
+    // Remove tickets that should not be published.
+    $dontPublishFieldId = $this->config->getTicketCustomFieldId('unpublish_reply');
+    $data = array_values(array_filter($data, function ($ticket) use ($dontPublishFieldId) {
+      if (isset($ticket['fields'][$dontPublishFieldId])) {
+        return 1 !== $ticket['fields'][$dontPublishFieldId]['value'];
+      }
+
+      return TRUE;
+    }));
+
+    return $data;
   }
 
 }
