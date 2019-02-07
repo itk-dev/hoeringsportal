@@ -710,8 +710,9 @@ class DeskproService {
     // Remove tickets that should not be published.
     $dontPublishFieldId = $this->config->getTicketCustomFieldId('unpublish_reply');
     $data = array_values(array_filter($data, function ($ticket) use ($dontPublishFieldId) {
+
       if (isset($ticket['fields'][$dontPublishFieldId])) {
-        return 1 !== $ticket['fields'][$dontPublishFieldId]['value'];
+        return 1 != $ticket['fields'][$dontPublishFieldId]['value'];
       }
 
       return TRUE;
