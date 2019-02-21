@@ -147,3 +147,24 @@ source ./vendor/bin/activate
 
 to add `vendor/bin` to your path. See
 https://github.com/itk-dev/composer-virtualenv for details.
+
+## system_status module
+
+After installation, you must uninstall and enable the
+[system_status](https://www.drupal.org/project/system_status) module to get
+"Your siteUUID":
+
+```sh
+(cd web \
+&& ../vendor/bin/drush --yes pm:uninstall system_status \
+&& ../vendor/bin/drush --yes pm:enable system_status \
+&& ../vendor/bin/drush config:get system_status.settings)
+```
+
+Now, add these lines to `settings.local.php` (update `«system_status_token»`
+and `«system_status_encrypt_token»` to match the values reported above):
+
+```php
+$config['system_status.settings']['system_status_token'] = '«system_status_token»';
+$config['system_status.settings']['system_status_encrypt_token'] = '«system_status_encrypt_token»';
+```

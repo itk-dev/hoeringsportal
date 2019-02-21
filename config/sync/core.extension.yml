@@ -58,6 +58,7 @@ module:
   samlauth: 0
   search: 0
   system: 0
+  system_status: 0
   taxonomy: 0
   telephone: 0
   text: 0
