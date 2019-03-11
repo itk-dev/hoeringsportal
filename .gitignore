@@ -22,3 +22,5 @@
 /.env
 drush/sites/self.site.yml
 
+.env-remote
+.pull-prod
