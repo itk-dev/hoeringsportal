@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\GeneratedLink;
 
 /**
  * Implements hook_preprocess_field().
@@ -213,11 +212,7 @@ function hoeringsportal_theme_suggestions_responsive_image_alter(array &$suggest
  * Implements hook_preprocess_file_link().
  */
 function hoeringsportal_preprocess_file_link(&$variables) {
-  if ($variables['link'] && $variables['link'] instanceof GeneratedLink) {
-    $doc = new DOMDocument();
-    $doc->loadHTML($variables['link']->getGeneratedLink());
-    $node = $doc->getElementsByTagName('a')[0];
-    $node->setAttribute('target', '_blank');
-    $variables['link']->setGeneratedLink($doc->saveHTML());
+  if ($variables['link']) {
+    $variables['file_path'] = file_create_url($variables['file']->get('uri')->getValue()['0']['value']);
   }
 }
