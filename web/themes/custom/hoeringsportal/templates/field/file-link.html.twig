@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override for a link to a file.
+ *
+ * Available variables:
+ * - attributes: The HTML attributes for the containing element.
+ * - link: A link to the file.
+ *
+ * @see template_preprocess_file_link()
+ */
+#}
+{#<span{{ attributes }}>{{ link }}</span>#}
+
+<span{{ attributes }}>
+  <a
+    href="{{ file_path }}"
+    target="_blank"
+    type="{{ file.get('filemime').getValue()['0'].value }}; length={{ file.get('filesize').getValue()['0'].value }}">
+    {{ file.get('filename').getValue()['0'].value }}
+  </a>
+</span>
