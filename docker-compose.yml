@@ -16,7 +16,7 @@ services:
     restart: always
     environment:
       - PHP_XDEBUG=${PHP_XDEBUG:-0}
-      - PHP_XDEBUG_REMOTE_AUTOSTART=${PHP_XDEBUG_REMOTE_AUTOSTART:-0}
+      - PHP_XDEBUG_REMOTE_AUTOSTART=0
       - PHP_XDEBUG_REMOTE_HOST=${PHP_XDEBUG_REMOTE_HOST:-0.0.0.0}
       - PHP_XDEBUG_REMOTE_CONNECT_BACK=${PHP_XDEBUG_REMOTE_CONNECT_BACK:-0}
       # - PHP_MAIL=1 # Uncomment to enable mailhog
