@@ -38,6 +38,7 @@ class ProjectTimeline extends BlockBase {
         'startDate' => $node->field_project_start->value,
         'endDate' => NULL,
         'type' => 'system',
+        'description' => NULL,
         'state' => $project_start_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
@@ -47,6 +48,7 @@ class ProjectTimeline extends BlockBase {
         'startDate' => $node->field_project_finish->value,
         'endDate' => NULL,
         'type' => 'system',
+        'description' => NULL,
         'state' => $project_end_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
@@ -67,6 +69,7 @@ class ProjectTimeline extends BlockBase {
             'startDate' => $hearing->field_reply_deadline->value,
             'endDate' => NULL,
             'type' => 'hearing',
+            'description' => $hearing->field_teaser->value,
             'state' => $hearing->field_reply_deadline->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
             'nid' => $hearing->nid->value,
             'link' => NULL,
@@ -78,12 +81,13 @@ class ProjectTimeline extends BlockBase {
     // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
-      if (isset($paragraph_obj->values['field_timeline_date'])) {
+      if (isset($paragraph_obj->field_timeline_date->value)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
           'startDate' => $paragraph_obj->field_timeline_date->value,
           'endDate' => NULL,
           'type' => $paragraph_obj->field_timeline_type->value,
+          'description' => $paragraph_obj->field_timeline_description->value,
           'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
           'nid' => NULL,
           'link' => $paragraph_obj->field_timeline_link->uri,

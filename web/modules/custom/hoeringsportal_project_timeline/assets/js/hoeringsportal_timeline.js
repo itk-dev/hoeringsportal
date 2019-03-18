@@ -13,6 +13,7 @@ import vis from 'vis/dist/vis.js'
       // var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       var popoverLabel = '';
       var buttonLink = '';
+      var description = '<div>' + item.description + '</div></br>';
 
       // Modify machine name to display name.
       if (item.type == 'hearing') {
@@ -27,6 +28,11 @@ import vis from 'vis/dist/vis.js'
         popoverLabel = 'Debat';
       }
 
+      if (item.description == null){
+        description = ''
+      }
+
+
       // Only show link if a node exists or link is set.
       if (item.nid > 0){
         buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
@@ -40,6 +46,7 @@ import vis from 'vis/dist/vis.js'
         '<div class="popover-label">' + popoverLabel + '</div>' +
         '<div class="popover-date">' +  date.toLocaleDateString("da") + '</div>' +
         '<h6 class="popover-title">' +  item.title + '</h6>' +
+        description +
         buttonLink;
 
       newItems.add({

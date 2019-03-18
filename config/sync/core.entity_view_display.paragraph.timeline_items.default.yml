@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.timeline_items.field_timeline_date
+    - field.field.paragraph.timeline_items.field_timeline_description
     - field.field.paragraph.timeline_items.field_timeline_link
     - field.field.paragraph.timeline_items.field_timeline_title
     - field.field.paragraph.timeline_items.field_timeline_type
@@ -25,6 +26,13 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_timeline_description:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
     region: content
   field_timeline_link:
     weight: 3
