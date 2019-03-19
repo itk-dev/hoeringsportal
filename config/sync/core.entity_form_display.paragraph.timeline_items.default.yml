@@ -8,7 +8,6 @@ dependencies:
     - field.field.paragraph.timeline_items.field_timeline_link
     - field.field.paragraph.timeline_items.field_timeline_taxonomy_type
     - field.field.paragraph.timeline_items.field_timeline_title
-    - field.field.paragraph.timeline_items.field_timeline_type
     - paragraphs.paragraphs_type.timeline_items
   module:
     - datetime
@@ -53,12 +52,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_timeline_type:
-    weight: 2
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
 hidden:
   created: true

@@ -8,12 +8,10 @@ dependencies:
     - field.field.paragraph.timeline_items.field_timeline_link
     - field.field.paragraph.timeline_items.field_timeline_taxonomy_type
     - field.field.paragraph.timeline_items.field_timeline_title
-    - field.field.paragraph.timeline_items.field_timeline_type
     - paragraphs.paragraphs_type.timeline_items
   module:
     - datetime
     - link
-    - options
 id: paragraph.timeline_items.default
 targetEntityType: paragraph
 bundle: timeline_items
@@ -62,12 +60,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_timeline_type:
-    weight: 1
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: content
 hidden: {  }

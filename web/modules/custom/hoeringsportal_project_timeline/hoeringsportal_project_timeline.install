@@ -19,11 +19,11 @@ function hoeringsportal_project_timeline_update_8001() {
   $categories_vocabulary = 'timeline_item_types';
   $terms = [
     [
-      'name' => 'Meeting',
+      'name' => 'Møde',
       'color' => '#b2dada',
     ],
     [
-      'name' => 'Debate',
+      'name' => 'Debat',
       'color' => '#333333',
     ],
   ];

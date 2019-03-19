@@ -90,13 +90,13 @@ class ProjectTimeline extends BlockBase {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
       $timeline_type_term_id = $paragraph_obj->field_timeline_taxonomy_type->target_id;
       $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#333';
-      $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->title;
+      $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->getTitle();
       if (isset($paragraph_obj->field_timeline_date->value)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
           'startDate' => $paragraph_obj->field_timeline_date->value,
           'endDate' => NULL,
-          'type' => str_replace(' ', '_', $label),
+          'type' => isset($label) ? str_replace(' ', '_', $label) : '',
           'description' => $paragraph_obj->field_timeline_description->value,
           'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
           'nid' => NULL,
