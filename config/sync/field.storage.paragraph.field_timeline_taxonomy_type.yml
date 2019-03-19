@@ -1,0 +1,20 @@
+uuid: cdae1e9e-fb62-40aa-bd80-3ce4aa75b7f6
+langcode: da
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_timeline_taxonomy_type
+field_name: field_timeline_taxonomy_type
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

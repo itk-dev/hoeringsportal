@@ -3,7 +3,7 @@ import vis from 'vis/dist/vis.js'
     var settings = drupalSettings;
     // DOM element where the Timeline will be attached
     var container = document.getElementById('visualization')
-
+    var dotColors = {};
     // Create a new dataset.
     var newItems = new vis.DataSet({});
     for (var i = 0; i < settings.timelineItems.length; i++) {
@@ -11,27 +11,13 @@ import vis from 'vis/dist/vis.js'
       var date = new Date(item.startDate);
       //@todo modify display of date in popup
       // var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      var popoverLabel = '';
+      var popoverLabel = item.label;
       var buttonLink = '';
       var description = '<div>' + item.description + '</div></br>';
-
-      // Modify machine name to display name.
-      if (item.type == 'hearing') {
-        popoverLabel = 'Høring';
-      }
-
-      if (item.type == 'meeting') {
-        popoverLabel = 'Møde';
-      }
-
-      if (item.type == 'debate') {
-        popoverLabel = 'Debat';
-      }
 
       if (item.description == null){
         description = ''
       }
-
 
       // Only show link if a node exists or link is set.
       if (item.nid > 0){
@@ -51,6 +37,7 @@ import vis from 'vis/dist/vis.js'
 
       newItems.add({
         id: i,
+        style: 'background-color:' + item.color,
         className: item.type + ' ' + item.state,
         content: $('<div/>', {
           'class': 'timeline-item-inner is-' + item.type + ' is-' + item.state,
@@ -61,6 +48,9 @@ import vis from 'vis/dist/vis.js'
         }).html('<i></i><div>' + item.title + '</div>').prop('outerHTML'),
         start: item.startDate
       });
+
+      // Prepare coloring for dots and lines.
+      dotColors[item.type] = item.color;
     }
 
     var now = Date.now()
@@ -82,6 +72,12 @@ import vis from 'vis/dist/vis.js'
         selector: '[data-toggle="timeline-popover"]'
       });
     })
+
+    // Modify the colors of dot and line.
+    Object.keys(dotColors).forEach(function(key) {
+      $('.vis-dot.' + key).css('border-color', dotColors[key]);
+      $('.vis-line.' + key).css('border-color', dotColors[key]);
+    });
 
     // Hide on timeline drag.
     timeline.on('rangechange', function (properties) {
