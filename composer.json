@@ -123,9 +123,6 @@
             },
             "drupal/samlauth": {
                 "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
-            },
-            "drupal/core": {
-                "Add post config import hook": "https://www.drupal.org/files/issues/2019-02-26/2901418-53-reroll-28_0.patch"
             }
         },
         "merge-plugin": {
