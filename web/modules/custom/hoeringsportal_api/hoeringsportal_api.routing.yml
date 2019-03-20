@@ -1,0 +1,39 @@
+hoeringsportal_api.api_controller_index:
+  path: '/hoeringsportal_api/api'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\DefaultController::index'
+    _title: 'API'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_api.api_controller_hearings:
+  path: '/hoeringsportal_api/api/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\HearingController::index'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_api.api_controller_hearings_show:
+  path: '/hoeringsportal_api/api/hearings/{hearing}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\HearingController::show'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_api.api_controller_hearings_tickets:
+  path: '/hoeringsportal_api/api/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\HearingController::tickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_api.api_controller_tickets:
+  path: '/hoeringsportal_api/api/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
