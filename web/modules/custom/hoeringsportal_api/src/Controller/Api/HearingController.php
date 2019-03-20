@@ -69,11 +69,18 @@ class HearingController extends ApiController {
     $project_reference = $this->getReference($entity, 'field_project_reference');
     $tags = $entity->get('field_tags')->referencedEntities();
 
+    $lokalplaner = [];
+    foreach ($entity->get('field_lokalplaner') as $lokalplan) {
+      $lokalplaner[] = $lokalplan->id;
+    }
+
+    $geojson = \json_decode($entity->get('field_map_display')->value, TRUE);
+
     return [
       'properties' => [
         'id' => $entity->id(),
         'title' => $entity->getTitle(),
-        'area' => array_map([$this, 'getTermName'], $areas),
+        'areas' => array_map([$this, 'getTermName'], $areas),
         'content_state' => $entity->get('field_content_state')->value,
         'description' => $entity->get('field_description')->value,
         'hearing_type' => $this->getTermName($hearing_type),
@@ -82,6 +89,8 @@ class HearingController extends ApiController {
         'start_date' => $this->getDateTime($entity->get('field_start_date')->value),
         'tags' => array_map([$this, 'getTermName'], $tags),
         'teaser' => $entity->get('field_teaser')->value,
+        'lokalplaner' => $lokalplaner,
+        'geojson' => $geojson,
       ],
       'links' => [
         'self' => $this->generateUrl('hoeringsportal_api.api_controller_hearings_show', ['hearing' => $entity->id()]),
