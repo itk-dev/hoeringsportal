@@ -22,7 +22,7 @@
 
   img {
     width: 100%;
-    height:auto;
+    height: auto;
   }
 }
 
@@ -70,7 +70,7 @@
   .fa-video {
     position: absolute;
     z-index: 1;
-    color: white;
+    color: $white;
     font-size: 1.5em;
     border: 2px solid;
     border-radius: 25px;
@@ -101,8 +101,8 @@
     height: auto!important;
     padding-bottom: 1.5em;
 
-    > div {
-      height:100%;
+    & > div {
+      height: 100%;
     }
   }
 
@@ -118,7 +118,7 @@
 }
 
 .slick-slider-gallery {
-  > div {
+  & > div {
     margin-bottom: 1rem;
   }
 }

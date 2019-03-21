@@ -1,3 +1,4 @@
+/* eslint-env jquery */
 (function ($) {
   $('.slick-slider-gallery').slick({
     slidesToShow: 3,
