@@ -13,6 +13,7 @@ permissions:
   - 'access media overview'
   - 'access toolbar'
   - 'administer nodes'
+  - 'bypass node access'
   - 'create hearing content'
   - 'create media'
   - 'create project content'
