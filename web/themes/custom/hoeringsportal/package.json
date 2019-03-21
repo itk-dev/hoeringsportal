@@ -43,6 +43,7 @@
     "stylelint-scss": "^3.3.2"
   },
   "dependencies": {
-    "hyphenopoly": "^2.4.0"
+    "hyphenopoly": "^2.4.0",
+    "slick-carousel": "^1.8.1"
   }
 }

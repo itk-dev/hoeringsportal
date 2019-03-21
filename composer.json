@@ -53,6 +53,7 @@
         "drupal/viewsreference": "^1.2",
         "drush/drush": "^9.0.0",
         "itk-dev/composer-virtualenv": "^1.0",
+        "itk-dev/itk_azure_video": "^1.1",
         "onelogin/php-saml": "dev-3.0.0-namespaceless as 2.5",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
@@ -123,7 +124,10 @@
             },
             "drupal/samlauth": {
                 "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
-            }
+            },
+             "drupal/core": {
+                "Fixes core bug in modal window": "https://www.drupal.org/files/issues/2018-07-06/2663316-52.patch"
+             }
         },
         "merge-plugin": {
             "require": [

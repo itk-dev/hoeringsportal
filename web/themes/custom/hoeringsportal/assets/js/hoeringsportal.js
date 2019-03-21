@@ -8,6 +8,8 @@ require('./hide_password_help.js')
 require('./responsive-image-as-background.js')
 require('./scroll-top.js')
 require('./hide_spinner.js')
+require('slick-carousel')
+require('./slick-slider-config.js')
 
 // Enable popovers.
 $(function () {
