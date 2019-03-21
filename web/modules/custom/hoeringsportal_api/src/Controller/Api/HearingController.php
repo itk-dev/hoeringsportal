@@ -5,12 +5,12 @@ namespace Drupal\hoeringsportal_api\Controller\Api;
 use Zend\Diactoros\Response\JsonResponse;
 
 /**
- *
+ * Hearing controller.
  */
 class HearingController extends ApiController {
 
   /**
-   *
+   * Index.
    */
   public function index() {
     $entities = $this->helper()->getHearings();
@@ -25,7 +25,7 @@ class HearingController extends ApiController {
   }
 
   /**
-   *
+   * Show a Hearing.
    */
   public function show($hearing) {
     $entities = $this->helper()->getHearings(['nid' => $hearing]);
@@ -44,9 +44,10 @@ class HearingController extends ApiController {
   }
 
   /**
-   *
+   * Show tickets on a hearing.
    */
   public function tickets($hearing) {
+    return new JsonResponse(NULL);
   }
 
 }

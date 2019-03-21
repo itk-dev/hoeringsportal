@@ -62,10 +62,10 @@ hoeringsportal_api.api_controller_geojson_hearings_show:
 #   requirements:
 #     _permission: 'access content'
 
-# hoeringsportal_api.api_controller_geojson_tickets:
-#   path: '/api/tickets'
-#   defaults:
-#     _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\TicketController::index'
-#     _title: 'Tickets'
-#   requirements:
-#     _permission: 'access content'
+hoeringsportal_api.api_controller_geojson_tickets:
+  path: '/api/tickets.geojson'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'

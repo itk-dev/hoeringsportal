@@ -1,6 +1,6 @@
 services:
   hoeringsportal_api.geojson_helper:
-    class: Drupal\hoeringsportal_api\Service\GeoJSONHelper
+    class: Drupal\hoeringsportal_api\Service\GeoJsonHelper
 
   hoeringsportal_api.helper:
     class: Drupal\hoeringsportal_api\Service\Helper

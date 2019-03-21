@@ -6,28 +6,23 @@ use Drupal\hoeringsportal_api\Controller\Api\ApiController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- *
+ * GeoJSON hearing controller.
  */
 class HearingController extends ApiController {
 
   /**
-   *
+   * Get hearings.
    */
   public function index() {
-    $entities = $this->helper()->getHearings(['nid' => 8]);
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJSON'], $entities));
-
-    $response = new JsonResponse([
-      'features' => $features,
-      'type' => 'FeatureCollection',
-    ]);
-    $response->headers->set('content-type', 'application/geo+json');
+    $entities = $this->helper()->getHearings();
+    $features = array_values(array_map([$this->helper(), 'serializeGeoJson'], $entities));
+    $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
 
     return $response;
   }
 
   /**
-   *
+   * Show a hearing.
    */
   public function show($hearing) {
     $entities = $this->helper()->getHearings(['nid' => $hearing]);
@@ -40,7 +35,7 @@ class HearingController extends ApiController {
 
     $entity = \reset($entities);
 
-    $data = $this->helper()->serializeGeoJSON($entity);
+    $data = $this->helper()->serializeGeoJson($entity);
 
     $response = new JsonResponse([
       'features' => [$data],
@@ -49,12 +44,6 @@ class HearingController extends ApiController {
     $response->headers->set('content-type', 'application/geo+json');
 
     return new $response();
-  }
-
-  /**
-   *
-   */
-  public function tickets($hearing) {
   }
 
 }

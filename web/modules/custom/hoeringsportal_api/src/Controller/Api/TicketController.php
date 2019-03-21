@@ -5,12 +5,12 @@ namespace Drupal\hoeringsportal_api\Controller\Api;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- *
+ * Ticket controller.
  */
 class TicketController extends ApiController {
 
   /**
-   *
+   * Index.
    */
   public function index() {
     $entities = $this->getTickets();
@@ -26,7 +26,7 @@ class TicketController extends ApiController {
   }
 
   /**
-   *
+   * Get tickets.
    */
   private function getTickets() {
     $hearings = $this->helper()->getHearings();
@@ -48,36 +48,20 @@ class TicketController extends ApiController {
   }
 
   /**
-   *
+   * Serialize a Ticket.
    */
   private function serialize(object $entity) {
     $hearing = $entity->hearing;
     $data = $entity->data;
 
-    // header('Content-type: text/plain'); echo var_export($entity->data->fields, true); die(__FILE__.':'.__LINE__.':'.__METHOD__);.
     return [
       'properties' => [
-        'id' => $entity->id,
-        'ref' => $entity->ref,
-        'person' => $entity->person,
-        'message' => $entity->fields->message ?? NULL,
-
-        'organization' => $entity->fields->organization ?? NULL,
-        'address' => $entity->fields->address ?? NULL,
-        'geolocation' => $entity->fields->geolocation ?? NULL,
+        'id' => $data->id,
+        'ref' => $data->ref,
+        'message' => $data->fields->message ?? NULL,
+        'person_name' => $data->person->name ?? NULL,
+        'organization' => $data->fields->organization ?? NULL,
         'hearing' => $this->helper()->serializeHearing($hearing),
-
-    // 'areas' => array_map([$this, 'getTermName'], $areas),
-    //        'content_state' => $entity->get('field_content_state')->value,
-    //        'description' => $entity->get('field_description')->value,
-    //        'hearing_type' => $this->getTermName($hearing_type),
-    //        'project_reference' => $project_reference ? $project_reference->getTitle() : NULL,
-    //        'reply_deadline' => $this->getDateTime($entity->get('field_reply_deadline')->value),
-    //        'start_date' => $this->getDateTime($entity->get('field_start_date')->value),
-    //        'tags' => array_map([$this, 'getTermName'], $tags),
-    //        'teaser' => $entity->get('field_teaser')->value,
-    //        'lokalplaner' => $lokalplaner,
-    //        'geojson' => $geojson,.
       ],
     ];
   }

@@ -3,12 +3,12 @@
 namespace Drupal\hoeringsportal_api\Service;
 
 /**
- *
+ * GeoJSON helper.
  */
-class GeoJSONHelper {
+class GeoJsonHelper {
 
   /**
-   *
+   * Merge a GeoJSON feature collection into a single multi geometry.
    */
   public function featureCollectionToMulti(array $geojson) {
     if (!isset($geojson['type']) || 'FeatureCollection' !== $geojson['type']) {
@@ -30,13 +30,13 @@ class GeoJSONHelper {
         continue;
       }
 
-      $coordinates[] = $geometry['coordinates'];
+      if ($isMulti) {
+        $coordinates = \array_merge($coordinates, $geometry['coordinates']);
+      }
+      else {
+        $coordinates[] = $geometry['coordinates'];
+      }
     }
-
-    header('content-type: application/json'); echo \json_encode([
-      'type' => $isMulti ? $type : 'Multi' . $type,
-      'coordinates' => $coordinates,
-    ], TRUE); die();
 
     return [
       'type' => $isMulti ? $type : 'Multi' . $type,
