@@ -1,0 +1,19 @@
+uuid: ec9b2c8b-1d29-40ea-a8c3-ca62f3088bb0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_description
+    - paragraphs.paragraphs_type.timeline_items
+id: paragraph.timeline_items.field_timeline_description
+field_name: field_timeline_description
+entity_type: paragraph
+bundle: timeline_items
+label: Beskrivelse
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

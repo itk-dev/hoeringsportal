@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
+use Drupal\taxonomy\Entity\Term;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Block\BlockBase;
@@ -38,18 +39,24 @@ class ProjectTimeline extends BlockBase {
         'startDate' => $node->field_project_start->value,
         'endDate' => NULL,
         'type' => 'system',
+        'description' => NULL,
         'state' => $project_start_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
+        'color' => '#333333',
+        'label' => t('Project start'),
       ],
       [
         'title' => t('Expected end date'),
         'startDate' => $node->field_project_finish->value,
         'endDate' => NULL,
         'type' => 'system',
+        'description' => NULL,
         'state' => $project_end_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
+        'color' => '#333333',
+        'label' => t('Expected end date'),
       ],
     ];
 
@@ -67,9 +74,12 @@ class ProjectTimeline extends BlockBase {
             'startDate' => $hearing->field_reply_deadline->value,
             'endDate' => NULL,
             'type' => 'hearing',
+            'description' => $hearing->field_teaser->value,
             'state' => $hearing->field_reply_deadline->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
             'nid' => $hearing->nid->value,
             'link' => NULL,
+            'color' => '#008486',
+            'label' => t('Hearing'),
           ];
         }
       }
@@ -78,15 +88,21 @@ class ProjectTimeline extends BlockBase {
     // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
-      if (isset($paragraph_obj->values['field_timeline_date'])) {
+      $timeline_type_term_id = $paragraph_obj->field_timeline_taxonomy_type->target_id;
+      $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#333';
+      $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->getTitle();
+      if (isset($paragraph_obj->field_timeline_date->value)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
           'startDate' => $paragraph_obj->field_timeline_date->value,
           'endDate' => NULL,
-          'type' => $paragraph_obj->field_timeline_type->value,
+          'type' => isset($label) ? str_replace(' ', '_', $label) : '',
+          'description' => $paragraph_obj->field_timeline_description->value,
           'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
           'nid' => NULL,
           'link' => $paragraph_obj->field_timeline_link->uri,
+          'color' => $color,
+          'label' => $label,
         ];
       }
     }

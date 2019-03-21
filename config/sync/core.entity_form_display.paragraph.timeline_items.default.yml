@@ -4,9 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.paragraph.timeline_items.field_timeline_date
+    - field.field.paragraph.timeline_items.field_timeline_description
     - field.field.paragraph.timeline_items.field_timeline_link
+    - field.field.paragraph.timeline_items.field_timeline_taxonomy_type
     - field.field.paragraph.timeline_items.field_timeline_title
-    - field.field.paragraph.timeline_items.field_timeline_type
     - paragraphs.paragraphs_type.timeline_items
   module:
     - datetime
@@ -17,18 +18,32 @@ bundle: timeline_items
 mode: default
 content:
   field_timeline_date:
-    weight: 2
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_timeline_description:
+    weight: 1
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
   field_timeline_link:
-    weight: 3
+    weight: 5
     settings:
       placeholder_url: ''
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_timeline_taxonomy_type:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_timeline_title:
     weight: 0
@@ -37,12 +52,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_timeline_type:
-    weight: 1
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
     region: content
 hidden:
   created: true

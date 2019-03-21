@@ -1,0 +1,20 @@
+uuid: dc620ba9-640e-466b-87f6-21625b1e44a3
+langcode: da
+status: true
+dependencies:
+  module:
+    - color_field
+    - taxonomy
+id: taxonomy_term.field_timeline_item_color
+field_name: field_timeline_item_color
+entity_type: taxonomy_term
+type: color_field_type
+settings:
+  format: '#HEXHEX'
+module: color_field
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,9 @@
+uuid: 906032e4-4a59-4a6d-933a-fea344b1988b
+langcode: da
+status: true
+dependencies: {  }
+name: 'Tidslinje punkttyper'
+vid: timeline_item_types
+description: 'Typer af tidslinje punkter'
+hierarchy: 0
+weight: 0
