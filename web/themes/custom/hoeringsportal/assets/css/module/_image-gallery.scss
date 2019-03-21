@@ -94,6 +94,13 @@
   display: flex!important;
 }
 
+
+.slick-slider-gallery {
+  & > div {
+    margin-bottom: 1rem;
+  }
+}
+
 .slick-slide {
   padding: 1em;
 
@@ -115,12 +122,6 @@
 .gallery-see-more {
   height: 100%;
   position: relative;
-}
-
-.slick-slider-gallery {
-  & > div {
-    margin-bottom: 1rem;
-  }
 }
 
 .slick-arrow {
