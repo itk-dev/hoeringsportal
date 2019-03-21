@@ -11,7 +11,7 @@ field_name: field_image_gallery
 entity_type: paragraph
 bundle: projekt_billede_galleri
 label: Billedegalleri
-description: 'Der kan max uploades 5 billeder til galleriet. Hvis du har flere billede bør du tilføje dem til et eksternt galleri og linke dertil i feltet herunder.'
+description: 'Der bør max uploade 5 billeder til galleriet. Hvis du har flere billede bør du tilføje dem til et eksternt galleri og linke dertil i feltet herunder.'
 required: false
 translatable: false
 default_value: {  }

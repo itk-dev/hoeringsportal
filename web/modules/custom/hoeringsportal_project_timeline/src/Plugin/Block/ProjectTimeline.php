@@ -68,7 +68,7 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $hearings = Node::loadMultiple($entity_ids);
       foreach ($hearings as $hearing) {
-        if (isset($hearing->values['field_reply_deadline'])) {
+        if (isset($hearing->field_reply_deadline->value)) {
           $timeline_items[] = [
             'title' => $hearing->title->value,
             'startDate' => $hearing->field_reply_deadline->value,

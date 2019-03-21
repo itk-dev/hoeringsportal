@@ -5,5 +5,5 @@ dependencies: {  }
 id: projekt_billede_galleri
 label: 'Initiativ billede galleri'
 icon_uuid: null
-description: "Mulighed for visning af billeder galleri og link til ekstern billedeservice.\r\nFor at få den bedste visuelle effekt bør der vises minimum et billede og gerne flere.\r\nDer kan maksimalt vises 4 billeder."
+description: "Mulighed for visning af billeder galleri og link til ekstern billedeservice.\r\nFor at få den bedste visuelle effekt bør der vises minimum et billede og gerne flere."
 behavior_plugins: {  }

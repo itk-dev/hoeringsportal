@@ -55,5 +55,6 @@ content:
     region: content
 hidden:
   created: true
+  field_timeline_type: true
   status: true
   uid: true
