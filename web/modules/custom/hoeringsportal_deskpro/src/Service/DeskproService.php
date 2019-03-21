@@ -647,7 +647,10 @@ class DeskproService {
       },
       'fields' => function (array &$item) {
         foreach ($this->config->getTicketCustomFields() as $name => $id) {
-          if (isset($item['fields'][$id]['value'])) {
+          if (isset($item['fields'][$id]['detail'])) {
+            $item['fields'][$name] = $item['fields'][$id]['detail'];
+          }
+          elseif (isset($item['fields'][$id]['value'])) {
             $item['fields'][$name] = $item['fields'][$id]['value'];
           }
         }

@@ -25,6 +25,36 @@
       {{ message|raw|nl2br }}
     </div>
   {% endif %}
+
+  {% set files = deskpro_ticket_custom_field(ticket, 'files') %}
+  {% if files|default(false) %}
+    {% for file in files %}
+      <div class="content-box--link-with-icon mb-3">
+        <a href="{{ file.download_url }}" target="_blank">
+          {{ file.filename }}
+        </a>
+        {% if file.content_type == 'application/pdf' %}
+          <i class="fa fa-file-pdf fa-sm ml-2 mr-2 mt-1"></i><span>PDF</span>
+        {% elseif file.content_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
+          <i class="fa fa-file-word fa-sm ml-2 mr-2  mt-1"></i><strong>DOC</strong>
+        {% elseif file.content_type == 'application/msword' %}
+          <i class="fa fa-file-word fa-sm ml-2 mr-2  mt-1"></i><strong>DOC</strong>
+        {% elseif file.content_type == 'text/plain' %}
+          <i class="fa fa-file-alt fa-sm ml-2 mr-2  mt-1"></i><strong>TXT</strong>
+        {% elseif file.content_type == 'image/png' %}
+          <i class="fa fa-file-image fa-sm ml-2 mr-2  mt-1"></i><span>PNG</span>
+        {% elseif file.content_type == 'image/jpeg' %}
+          <i class="fa fa-file-image fa-sm ml-2 mr-2  mt-1"></i><strong>JPEG</strong>
+        {% elseif file.content_type == 'application/vnd.ms-excel' %}
+          <i class="fa fa-file-excel fa-sm ml-2 mr-2  mt-1"></i><strong>XLS</strong>
+        {% elseif file.content_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %}
+          <i class="fa fa-file-excel fa-sm ml-2 mr-2  mt-1"></i><strong>XLS</strong>
+        {% else %}
+          <i class="fa fa-file fa-sm ml-2 mr-2  mt-1"></i>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
 {% endif %}
 
 {% set url = deskpro_ticket_custom_field(ticket, 'pdf_download_url') %}
