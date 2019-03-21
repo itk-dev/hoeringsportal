@@ -19,24 +19,40 @@
       padding-bottom: 100%;
     }
   }
+
+  img {
+    width: 100%;
+    height:auto;
+  }
 }
 
 .image-gallery-link {
-  background: $primary;
+  background: $petroleum;
   color: $white;
   display: block;
-  line-height: 1.2rem;
-  padding: $spacer;
+  min-height: 100px;
+  height: 100%;
   text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
 
   &:hover {
     color: $white;
     text-decoration: none;
   }
 
+  &--content {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
   .fa-images-wrapper {
     height: 29px;
-    margin: .5rem 0;
+    margin: 0 0 .5rem 0;
   }
 
   .fa-images {
@@ -47,10 +63,97 @@
   }
 }
 
-.gallery-see-more {
-  max-height: 128px;
-  overflow: hidden;
+.video-link {
+  position: relative;
+  display: block;
+
+  .fa-video {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-size: 1.5em;
+    border: 2px solid;
+    border-radius: 25px;
+    width: 45px;
+    height: 45px;
+    padding: 8px;
+    top: 50%;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+  }
 }
+
+.itk-azure-video {
+  width: 100%;
+}
+
+.slick-track {
+  // Override js.
+  display: flex!important;
+}
+
+.slick-slide {
+  padding: 1em;
+
+  &:last-child {
+    height: auto!important;
+    padding-bottom: 1.5em;
+
+    > div {
+      height:100%;
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.gallery-see-more {
+  height: 100%;
+  position: relative;
+}
+
+.slick-slider-gallery {
+  > div {
+    margin-bottom: 1rem;
+  }
+}
+
+.slick-arrow {
+  border: 2px solid $primary;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  text-align: center;
+  border-radius: 50%;
+  background: $white;
+  color: $primary;
+  z-index: 400;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slick-prev {
+  left: 0;
+  margin-left: -.5em;
+}
+
+.slick-next {
+  right: 0;
+  margin-right: -.5em;
+}
+
+.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
 
 .ui-dialog {
   z-index: 1040;

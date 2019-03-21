@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9515cf7f6655ad20eea2eca9975f9965",
+    "content-hash": "0c60f17311c7cdff17a64607b1d32ed0",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -133,7 +133,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/9e8ec3d10fad04748176144f108d7355662ae75e",
-                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
+                "reference": "9e8ec3d10fad04748176144f108d7355662ae75e",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -151,7 +152,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/recurser/jquery-simple-color/zipball/ebe0b2c0db639584e81499bd29d6619abb9a2599",
-                "reference": "ebe0b2c0db639584e81499bd29d6619abb9a2599"
+                "reference": "ebe0b2c0db639584e81499bd29d6619abb9a2599",
+                "shasum": null
             },
             "type": "bower-asset",
             "license": [
@@ -169,7 +171,8 @@
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/bgrins/spectrum/zipball/98454b55521cfb495f628db28af01100c029ef76",
-                "reference": "98454b55521cfb495f628db28af01100c029ef76"
+                "reference": "98454b55521cfb495f628db28af01100c029ef76",
+                "shasum": null
             },
             "require": {
                 "bower-asset/jquery": ">=1.7.2"
@@ -4848,6 +4851,31 @@
             "time": "2018-06-09T10:40:37+00:00"
         },
         {
+            "name": "itk-dev/itk_azure_video",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-dev/itk_azure_video.git",
+                "reference": "54cee41873d956a575997d6da9a52d914bec1d8e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-dev/itk_azure_video/zipball/54cee41873d956a575997d6da9a52d914bec1d8e",
+                "reference": "54cee41873d956a575997d6da9a52d914bec1d8e",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Module that supplies an Azure Video Media Service field for Drupal 8",
+            "keywords": [
+                "drupal"
+            ],
+            "time": "2019-02-01T10:25:36+00:00"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "v0.2",
             "source": {
@@ -6447,7 +6475,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",

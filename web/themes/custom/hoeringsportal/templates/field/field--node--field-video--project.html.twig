@@ -39,8 +39,13 @@
 
 {% if label_hidden %}
   {% if multiple %}
-    {% for item in items %}
-      {{ item.content }}
+    {% for key, item in items %}
+      <div>
+        <a class="video-link use-ajax" data-dialog-options="{&quot;width&quot;:1500}" data-dialog-type="modal" href="/content-video/{{ element['#object'].id() }}/{{ key }}">
+          <i class="fas fa-video"></i>
+          {{ item.content }}
+        </a>
+      </div>
     {% endfor %}
   {% else %}
     {% for item in items %}
