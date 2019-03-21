@@ -1,0 +1,15 @@
+uuid: 00f9dff3-606f-487e-bf3b-45870250e22f
+langcode: da
+status: true
+dependencies: {  }
+name: carousel_300x168
+label: 'Carousel 576x322'
+effects:
+  ceda9a53-ef60-4191-baa1-deb80b25b5b8:
+    uuid: ceda9a53-ef60-4191-baa1-deb80b25b5b8
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 576
+      height: 322
+      anchor: center-center

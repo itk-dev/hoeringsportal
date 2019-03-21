@@ -1,0 +1,21 @@
+uuid: b9cd92af-a7b9-4a42-b795-ba3c6b702928
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video
+    - node.type.project
+  module:
+    - itk_azure_video
+id: node.project.field_video
+field_name: field_video
+entity_type: node
+bundle: project
+label: Video
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: itk_azure_video_field
