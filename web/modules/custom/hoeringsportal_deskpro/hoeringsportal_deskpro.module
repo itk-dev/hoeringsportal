@@ -80,9 +80,10 @@ function hoeringsportal_deskpro_form_alter(&$form, FormStateInterface $form_stat
         && 'textfield' === $form['field_deskpro_department_id']['widget'][0]['value']['#type']) {
       $departments = \Drupal::service('hoeringsportal_deskpro.deskpro')->getTicketDepartments();
       $options = [];
-      foreach ($departments as $department) {
+      foreach ($departments->getData() as $department) {
         $options[$department['id']] = $department['title'];
       }
+
       $form['field_deskpro_department_id']['widget'][0]['value'] = array_merge(
         $form['field_deskpro_department_id']['widget'][0]['value'],
         [
