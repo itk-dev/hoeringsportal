@@ -1,0 +1,22 @@
+uuid: 142051f2-0bd5-442f-8fe8-54b02262e2b0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_timeline_item_color
+    - taxonomy.vocabulary.timeline_item_types
+  module:
+    - color_field
+id: taxonomy_term.timeline_item_types.field_timeline_item_color
+field_name: field_timeline_item_color
+entity_type: taxonomy_term
+bundle: timeline_item_types
+label: Punktfarve
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  opacity: 1
+field_type: color_field_type

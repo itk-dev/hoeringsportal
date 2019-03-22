@@ -5,6 +5,7 @@
  * Høringsportal theme.
  */
 
+use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
@@ -37,6 +38,22 @@ function hoeringsportal_preprocess_field(&$variables) {
       $config = \Drupal::getContainer()->get('itk_admin.itk_config');
       $variables['hearings_node'] = $config->get('hearings_overview');
       $variables['initiative_node'] = $config->get('initiative_overview');
+    }
+  }
+
+  if ($variables['field_name'] == 'dynamic_block_field:node-project_timeline') {
+    $timeline_vocab = 'timeline_item_types';
+
+    $query = \Drupal::entityQuery('taxonomy_term');
+    $query->condition('vid', 'timeline_item_types');
+    $tids = $query->execute();
+    $terms = Term::loadMultiple($tids);
+    $variables['timeline_terms'] = [];
+    foreach ($terms as $term) {
+      $variables['timeline_terms'][] = [
+        'name' => $term->getName(),
+        'color' => $term->field_timeline_item_color->color,
+      ];
     }
   }
 }

@@ -1,0 +1,38 @@
+uuid: 4927e96c-52a2-481c-9594-be44b0e9f62e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.timeline_item_types.field_timeline_item_color
+    - taxonomy.vocabulary.timeline_item_types
+  module:
+    - color_field
+id: taxonomy_term.timeline_item_types.default
+targetEntityType: taxonomy_term
+bundle: timeline_item_types
+mode: default
+content:
+  field_timeline_item_color:
+    weight: 1
+    settings:
+      show_palette: '1'
+      palette: '["#008486","#673ab7","#3661d8","#2b3ba2","#B2DADA","#008850","#ffe13d","#d32f2f","#333333"]'
+      show_palette_only: '1'
+      show_input: '0'
+      show_buttons: '0'
+      allow_empty: '0'
+    third_party_settings: {  }
+    type: color_field_widget_spectrum
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true

@@ -1,0 +1,7 @@
+name: 'hoeringsportal_api'
+type: module
+description: 'Høringsportal API'
+core: 8.x
+package: 'Custom'
+dependencies:
+  - serialization

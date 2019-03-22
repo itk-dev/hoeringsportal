@@ -21,12 +21,14 @@ dependencies:
     - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
     - field.field.node.project.field_timeline_items
+    - field.field.node.project.field_video
     - node.type.project
   module:
     - datetime
     - entity_browser
     - field_group
     - hoeringsportal_data
+    - itk_azure_video
     - paragraphs
     - text
 third_party_settings:
@@ -71,7 +73,6 @@ third_party_settings:
       weight: 11
       format_type: details
       format_settings:
-        label: Systemindstillinger
         open: true
         id: ''
         classes: ''
@@ -93,6 +94,7 @@ third_party_settings:
       region: content
     group_billedegalleri:
       children:
+        - field_video
         - field_image_gallery_ref
       parent_name: ''
       weight: 4
@@ -111,7 +113,6 @@ third_party_settings:
       weight: 5
       format_type: details
       format_settings:
-        label: Tidslinje
         open: true
         id: ''
         classes: ''
@@ -156,7 +157,7 @@ content:
     region: content
   field_image_gallery_ref:
     type: entity_reference_paragraphs
-    weight: 5
+    weight: 14
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -167,7 +168,7 @@ content:
     third_party_settings: {  }
     region: content
   field_lokalplaner:
-    weight: 13
+    weight: 14
     settings: {  }
     third_party_settings: {  }
     type: hoeringsportal_data_localplan_default
@@ -202,7 +203,7 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_phone:
-    weight: 15
+    weight: 16
     settings:
       size: 60
       placeholder: ''
@@ -216,7 +217,7 @@ content:
     type: datetime_default
     region: content
   field_project_label:
-    weight: 7
+    weight: 14
     settings:
       size: 60
       placeholder: ''
@@ -230,7 +231,7 @@ content:
     type: datetime_default
     region: content
   field_related_content:
-    weight: 9
+    weight: 15
     settings:
       match_operator: CONTAINS
       size: 60
@@ -239,7 +240,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_tags:
-    weight: 14
+    weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -264,6 +265,14 @@ content:
       default_paragraph_type: timeline_items
     third_party_settings: {  }
     region: content
+  field_video:
+    type: itk_azure_video_widget
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 9
