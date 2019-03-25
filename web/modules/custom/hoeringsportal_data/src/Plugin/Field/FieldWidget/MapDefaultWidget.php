@@ -35,7 +35,6 @@ class MapDefaultWidget extends WidgetBase {
     ];
 
     $typeOptions = [
-      MapItem::TYPE_GEOJSON => t('GeoJSON'),
       MapItem::TYPE_LOCALPLANIDS => t('Local plan ids'),
     ];
     if (MapItemHelper::hasLocalplanField($items->getEntity())) {
