@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_api\Service;
+namespace Drupal\hoeringsportal_data\Helper;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
@@ -83,7 +83,7 @@ class GeoJsonHelper {
         'geojson' => $geojson,
       ],
       'links' => [
-        'self' => $this->generateUrl('hoeringsportal_api.api_controller_hearings_show', ['hearing' => $entity->id()]),
+        'self' => $this->generateUrl('hoeringsportal_data.api_controller_hearings_show', ['hearing' => $entity->id()]),
       ],
     ];
   }

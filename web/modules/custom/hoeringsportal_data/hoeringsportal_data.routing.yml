@@ -1,0 +1,63 @@
+hoeringsportal_data.api_controller_index:
+  path: '/api'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\DefaultController::index'
+    _title: 'API'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings:
+  path: '/api/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::index'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings_show:
+  path: '/api/hearings/{hearing}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::show'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings_tickets:
+  path: '/api/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::tickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_tickets:
+  path: '/api/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_hearings:
+  path: '/api/geojson/hearings/{type}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\HearingController::index'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_hearings_show:
+  path: '/api/geojson/hearings/{hearing}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\HearingController::show'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_tickets:
+  path: '/api/geojson/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'

@@ -1,9 +1,9 @@
 <?php
 
-namespace Drupal\hoeringsportal_api\Controller\Api;
+namespace Drupal\hoeringsportal_data\Controller\Api;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\hoeringsportal_api\Service\GeoJsonHelper;
+use Drupal\hoeringsportal_data\Helper\GeoJsonHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -14,7 +14,7 @@ abstract class ApiController extends ControllerBase {
   /**
    * Helper.
    *
-   * @var \Drupal\hoeringsportal_api\Service\GeoJsonHelper
+   * @var \Drupal\hoeringsportal_data\Helper\GeoJsonHelper
    */
   private $geoJsonHelper;
 
@@ -30,7 +30,7 @@ abstract class ApiController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('hoeringsportal_api.geojson_helper')
+      $container->get('hoeringsportal_data.geojson_helper')
     );
   }
 

@@ -20,3 +20,9 @@ services:
     arguments: ['@hoeringsportal_data.hearing_helper']
     tags:
       - { name: drush.command }
+
+  hoeringsportal_data.geojson_helper:
+    class: Drupal\hoeringsportal_data\Helper\GeoJsonHelper
+    arguments:
+    - '@entity_type.manager'
+    - '@url_generator'

@@ -22,6 +22,7 @@ class MapItem extends FieldItemBase {
   const TYPE_GEOJSON = 'geojson';
   const TYPE_LOCALPLANIDS = 'localplanids';
   const TYPE_LOCALPLANIDS_NODE = 'localplanids_node';
+  const TYPE_POINT = 'point';
 
   /**
    * {@inheritdoc}

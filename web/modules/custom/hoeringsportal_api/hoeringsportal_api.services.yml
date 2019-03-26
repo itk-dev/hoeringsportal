@@ -1,6 +1,0 @@
-services:
-  hoeringsportal_api.geojson_helper:
-    class: Drupal\hoeringsportal_api\Service\GeoJsonHelper
-    arguments:
-    - '@entity_type.manager'
-    - '@url_generator'

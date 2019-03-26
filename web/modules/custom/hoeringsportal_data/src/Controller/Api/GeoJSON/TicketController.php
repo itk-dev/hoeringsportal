@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\hoeringsportal_api\Controller\Api\GeoJSON;
+namespace Drupal\hoeringsportal_data\Controller\Api\GeoJSON;
 
-use Drupal\hoeringsportal_api\Controller\Api\ApiController;
+use Drupal\hoeringsportal_data\Controller\Api\ApiController;
 
 /**
  * GeoJson ticket controller.

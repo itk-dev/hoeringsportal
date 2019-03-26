@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_api\Controller\Api;
+namespace Drupal\hoeringsportal_data\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -20,7 +20,7 @@ class TicketController extends ApiController {
     return new JsonResponse([
       'data' => $data,
       'links' => [
-        'self' => $this->generateUrl('hoeringsportal_api.api_controller_tickets'),
+        'self' => $this->generateUrl('hoeringsportal_data.api_controller_tickets'),
       ],
     ]);
   }
