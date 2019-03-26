@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_api\Controller\Api\GeoJSON;
 
 use Drupal\hoeringsportal_api\Controller\Api\ApiController;
+use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -13,9 +14,17 @@ class HearingController extends ApiController {
   /**
    * Get hearings.
    */
-  public function index() {
-    $entities = $this->helper()->getHearings();
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJson'], $entities));
+  public function index($type) {
+    $conditions = [
+      'field_map.type' => [MapItem::TYPE_LOCALPLANIDS_NODE, MapItem::TYPE_LOCALPLANIDS],
+    ];
+    switch ($type) {
+      case 'point':
+        $conditions['field_map.type'] = [MapItem::TYPE_POINT];
+        break;
+    }
+    $entities = $this->helper()->getHearings($conditions);
+    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
     $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
 
     return $response;
@@ -25,6 +34,10 @@ class HearingController extends ApiController {
    * Show a hearing.
    */
   public function show($hearing) {
+    if (!is_numeric($hearing)) {
+      return $this->index($hearing);
+    }
+
     $entities = $this->helper()->getHearings(['nid' => $hearing]);
 
     if (1 !== \count($entities)) {

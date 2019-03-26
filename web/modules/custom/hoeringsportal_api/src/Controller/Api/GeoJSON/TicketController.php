@@ -14,7 +14,7 @@ class TicketController extends ApiController {
    */
   public function index() {
     $entities = $this->getTickets();
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJson'], $entities));
+    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonTicket'], $entities));
     $response = $this->createGeoJsonResponse($features);
 
     return $response;

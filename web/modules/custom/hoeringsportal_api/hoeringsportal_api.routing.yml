@@ -39,7 +39,7 @@ hoeringsportal_api.api_controller_tickets:
     _permission: 'access content'
 
 hoeringsportal_api.api_controller_geojson_hearings:
-  path: '/api/hearings.geojson'
+  path: '/api/geojson/hearings/{type}'
   defaults:
     _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\HearingController::index'
     _title: 'Hearings'
@@ -47,23 +47,15 @@ hoeringsportal_api.api_controller_geojson_hearings:
     _permission: 'access content'
 
 hoeringsportal_api.api_controller_geojson_hearings_show:
-  path: '/api/hearings/{hearing}.geojson'
+  path: '/api/geojson/hearings/{hearing}'
   defaults:
     _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\HearingController::show'
     _title: 'Hearings'
   requirements:
     _permission: 'access content'
 
-# hoeringsportal_api.api_controller_geojson_hearings_tickets:
-#   path: '/api/hearings/{hearing}/tickets'
-#   defaults:
-#     _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\HearingController::tickets'
-#     _title: 'Hearing tickets'
-#   requirements:
-#     _permission: 'access content'
-
 hoeringsportal_api.api_controller_geojson_tickets:
-  path: '/api/tickets.geojson'
+  path: '/api/geojson/tickets'
   defaults:
     _controller: '\Drupal\hoeringsportal_api\Controller\Api\GeoJSON\TicketController::index'
     _title: 'Tickets'
