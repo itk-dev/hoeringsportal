@@ -15,12 +15,13 @@ class HearingController extends ApiController {
    * Get hearings.
    */
   public function index($type) {
+    // By default, we show local plans.
     $conditions = [
       'field_map.type' => [MapItem::TYPE_LOCALPLANIDS_NODE, MapItem::TYPE_LOCALPLANIDS],
     ];
     switch ($type) {
       case 'point':
-        $conditions['field_map.type'] = [MapItem::TYPE_POINT];
+        $conditions['field_map.type'] = [MapItem::TYPE_ADDRESS];
         break;
     }
     $entities = $this->helper()->getHearings($conditions);

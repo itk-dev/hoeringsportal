@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_data\Helper;
 
 use Drupal\hoeringsportal_data\Plugin\Field\FieldType\LocalplanItem;
 use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
+use Drupal\hoeringsportal_data\Service\DAWA;
 use Drupal\hoeringsportal_data\Service\Plandata;
 use Drupal\node\NodeInterface;
 
@@ -19,10 +20,18 @@ class MapItemHelper {
   private $plandata;
 
   /**
+   * The DAWA service.
+   *
+   * @var \Drupal\hoeringsportal_data\Service\DAWA
+   */
+  private $dawa;
+
+  /**
    * Constructor.
    */
-  public function __construct(Plandata $plandata) {
+  public function __construct(Plandata $plandata, DAWA $dawa) {
     $this->plandata = $plandata;
+    $this->dawa = $dawa;
   }
 
   /**
@@ -34,24 +43,40 @@ class MapItemHelper {
       if (MapItem::FIELD_TYPE === $field->getType()) {
         /** @var \Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem $item */
         $item = $node->{$field->getName()};
-        $data = NULL;
+        $geojson = NULL;
         switch ($item->type) {
           case MapItem::TYPE_GEOJSON:
-            $data = json_decode($item->geojson, TRUE);
+            $geojson = json_decode($item->geojson, TRUE);
             break;
 
           case MapItem::TYPE_LOCALPLANIDS:
             $ids = preg_split('/[, ]+/', $item->localplanids, -1, PREG_SPLIT_NO_EMPTY);
-            $data = $this->plandata->getGeojsonFromIds('planid', $ids);
+            $geojson = $this->plandata->getGeojsonFromIds('planid', $ids);
             break;
 
           case MapItem::TYPE_LOCALPLANIDS_NODE:
             $ids = $this->getLocalplanIds($node);
-            $data = $this->plandata->getGeojsonFromIds('planid', $ids);
+            $geojson = $this->plandata->getGeojsonFromIds('planid', $ids);
+            break;
+
+          case MapItem::TYPE_ADDRESS:
+            $coordinates = $this->dawa->getCoordinates($item->address);
+            $geojson = [
+              'properties' => [
+                'address' => $item->address,
+              ],
+            ];
+            if (NULL !== $coordinates) {
+              $geojson['type'] = 'Feature';
+              $geojson['geometry'] = [
+                'type' => 'Point',
+                'coordinates' => $coordinates,
+              ];
+            }
             break;
         }
 
-        $item->data = json_encode($data);
+        $item->data = json_encode($geojson);
       }
     }
   }

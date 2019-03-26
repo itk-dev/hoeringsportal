@@ -3,13 +3,16 @@ services:
     class: Drupal\hoeringsportal_data\Service\Plandata
     arguments: ['@settings']
 
+  hoeringsportal_data.dawa:
+    class: Drupal\hoeringsportal_data\Service\DAWA
+
   hoeringsportal_data.hearing_helper:
     class: Drupal\hoeringsportal_data\Helper\HearingHelper
     arguments: ['@entity_type.manager']
 
   hoeringsportal_data.map_item_helper:
     class: Drupal\hoeringsportal_data\Helper\MapItemHelper
-    arguments: ['@hoeringsportal_data.plandata']
+    arguments: ['@hoeringsportal_data.plandata', '@hoeringsportal_data.dawa']
 
   hoeringsportal_data.localplan_item_helper:
     class: Drupal\hoeringsportal_data\Helper\LocalplanItemHelper

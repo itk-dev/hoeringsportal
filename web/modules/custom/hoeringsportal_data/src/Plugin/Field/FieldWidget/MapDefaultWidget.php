@@ -36,10 +36,12 @@ class MapDefaultWidget extends WidgetBase {
 
     $typeOptions = [
       MapItem::TYPE_LOCALPLANIDS => t('Local plan ids'),
+      MapItem::TYPE_ADDRESS => t('Point'),
     ];
     if (MapItemHelper::hasLocalplanField($items->getEntity())) {
       $typeOptions[MapItem::TYPE_LOCALPLANIDS_NODE] = t('Local plan ids from node');
     }
+    asort($typeOptions);
     $element['type'] = [
       '#type' => 'select',
       '#title' => t('Type'),
@@ -76,6 +78,19 @@ class MapDefaultWidget extends WidgetBase {
         ],
       ],
     ];
+    $element['address'] = [
+      '#type' => 'textfield',
+      '#title' => t('Address'),
+      '#default_value' => $item->address ?? '',
+      '#description' => t('Address'),
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $parentNameSelector . '[type]"]' => ['value' => MapItem::TYPE_ADDRESS],
+        ],
+      ],
+    ];
+
+    $element['#attached']['library'][] = 'hoeringsportal_data/hearing-edit';
 
     return $element;
   }
