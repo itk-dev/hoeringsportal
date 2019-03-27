@@ -68,7 +68,7 @@ class GeoJsonHelper {
 
     return [
       'properties' => [
-        'id' => $entity->id(),
+        'id' => (int) $entity->id(),
         'title' => $entity->getTitle(),
         'areas' => array_map([$this, 'getTermName'], $areas),
         'content_state' => $entity->get('field_content_state')->value,
@@ -120,7 +120,7 @@ class GeoJsonHelper {
 
     return [
       'properties' => [
-        'id' => $hearing->id(),
+        'id' => (int) $hearing->id(),
         'title' => $hearing->getTitle(),
         'areas' => array_map([$this, 'getTermName'], $areas),
         'content_state' => $hearing->get('field_content_state')->value,
