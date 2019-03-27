@@ -37,7 +37,7 @@
  */
 #}
 
-<div class="col-sm-6 col-lg-2 gallery-see-more">
+<div class="gallery-see-more">
   {% if label_hidden %}
     {% if multiple %}
       {% for item in items %}
@@ -46,8 +46,10 @@
     {% else %}
       {% for item in items %}
         <a target="_blank" href="{{ item.content['#url'].uri }}" class="image-gallery-link">
-          <p class="fa-images-wrapper"><i class="fa fa-images"></i></p>
-          <p>{{ 'Open project gallery'|t }}</p>
+          <div class="image-gallery-link--content">
+            <p class="fa-images-wrapper"><i class="fa fa-images"></i></p>
+            <p>{{ 'Open project gallery'|t }}</p>
+          </div>
         </a>
       {% endfor %}
     {% endif %}

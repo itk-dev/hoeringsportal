@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Contains update and install hooks for timeline module.
+ */
+
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Utility\UpdateException;
+
+/**
+ * Add taxonomy terms to timeline vocabulary.
+ */
+function hoeringsportal_project_timeline_update_8001() {
+  $vocabularies = taxonomy_vocabulary_get_names();
+  if (!array_key_exists('timeline_item_types', $vocabularies)) {
+    throw new UpdateException('This update requires the timeline_item_types vocabulary. Run config-import to add the vocabulary and rerun this update hook.');
+  }
+  $categories_vocabulary = 'timeline_item_types';
+  $terms = [
+    [
+      'name' => 'Møde',
+      'color' => '#b2dada',
+    ],
+    [
+      'name' => 'Debat',
+      'color' => '#333333',
+    ],
+  ];
+  foreach ($terms as $term) {
+    $term = Term::create([
+      'parent' => [],
+      'name' => $term['name'],
+      'vid' => $categories_vocabulary,
+      'field_timeline_item_color' => [
+        ['color' => $term['color']],
+      ],
+    ])->save();
+  }
+}

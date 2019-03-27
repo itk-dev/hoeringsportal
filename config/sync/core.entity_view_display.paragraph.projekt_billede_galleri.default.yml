@@ -30,7 +30,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      view_mode: teaser_display
+      view_mode: project_gallery_display
       link: false
     third_party_settings:
       ds:

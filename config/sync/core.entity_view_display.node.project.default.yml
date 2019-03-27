@@ -20,12 +20,14 @@ dependencies:
     - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
     - field.field.node.project.field_timeline_items
+    - field.field.node.project.field_video
     - node.type.project
   module:
     - datetime
     - ds
     - entity_reference_revisions
     - hoeringsportal_data
+    - itk_azure_video
     - text
     - user
 third_party_settings:
@@ -64,6 +66,7 @@ third_party_settings:
         - field_lokalplaner
         - field_phone
       footer:
+        - field_video
         - field_image_gallery_ref
         - 'dynamic_block_field:node-project_timeline'
         - field_map
@@ -72,12 +75,12 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-participate':
         plugin_id: 'dynamic_block_field:node-participate'
-        weight: 15
+        weight: 16
         label: above
         formatter: default
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 13
+        weight: 14
         label: above
         formatter: default
       node_changed_date:
@@ -123,7 +126,7 @@ content:
     region: left
   field_image_gallery_ref:
     type: entity_reference_revisions_entity_view
-    weight: 12
+    weight: 13
     label: hidden
     settings:
       view_mode: default
@@ -138,7 +141,7 @@ content:
     type: hoeringsportal_data_localplan_default
     region: right
   field_map:
-    weight: 14
+    weight: 15
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -180,7 +183,7 @@ content:
     type: datetime_default
     region: right
   field_related_content:
-    weight: 16
+    weight: 17
     label: above
     settings:
       view_mode: teaser
@@ -205,6 +208,19 @@ content:
     third_party_settings: {  }
     type: basic_string
     region: left
+  field_video:
+    type: itk_azure_video_formatter
+    weight: 12
+    region: footer
+    label: hidden
+    settings:
+      responsive: true
+      muted: true
+      autoplay: false
+      controls: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
 hidden:
   field_activities: true
   field_map_display: true

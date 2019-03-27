@@ -24,6 +24,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  hoeringsportal_api: 0
   hoeringsportal_config_settings: 0
   hoeringsportal_content_blocks: 0
   hoeringsportal_data: 0
@@ -38,6 +39,7 @@ module:
   inline_form_errors: 0
   itk_admin: 0
   itk_admin_links: 0
+  itk_azure_video: 0
   itk_cookie_message: 0
   itk_media_entity: 0
   itk_siteimprove: 0
@@ -57,6 +59,7 @@ module:
   responsive_image: 0
   samlauth: 0
   search: 0
+  serialization: 0
   system: 0
   system_status: 0
   taxonomy: 0

@@ -1,0 +1,10 @@
+uuid: dded5960-fbd7-4a1e-9071-ab9966af4c45
+langcode: da
+status: true
+dependencies:
+  module:
+    - media_entity
+id: media.project_gallery_display
+label: 'Project gallery display'
+targetEntityType: media
+cache: true

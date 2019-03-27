@@ -1,0 +1,33 @@
+uuid: 329349a3-3ce2-432a-87ed-6dd37d9ba4b9
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.timeline_item_types.field_timeline_item_color
+    - taxonomy.vocabulary.timeline_item_types
+  module:
+    - color_field
+    - text
+id: taxonomy_term.timeline_item_types.default
+targetEntityType: taxonomy_term
+bundle: timeline_item_types
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_timeline_item_color:
+    weight: 1
+    label: above
+    settings:
+      format: hex
+      opacity: '1'
+    third_party_settings: {  }
+    type: color_field_formatter_text
+    region: content
+hidden:
+  langcode: true

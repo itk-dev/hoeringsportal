@@ -1,5 +1,5 @@
 id: nearest_hearings
-label: 'Andre lokalplaner i høring'
+label: 'Andre igangværende høringer'
 ui_limit: ''
 properties:
   block: 'views_block:nearest_hearings-block_1'
