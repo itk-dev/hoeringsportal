@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_data\Helper;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
+use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
@@ -115,10 +116,10 @@ class GeoJsonHelper {
 
     $lokalplaner = [];
     foreach ($hearing->get('field_lokalplaner') as $lokalplan) {
-      $lokalplaner[] = $lokalplan->id;
+      $lokalplaner[] = (int) $lokalplan->id;
     }
 
-    return [
+    $data = [
       'properties' => [
         'id' => (int) $hearing->id(),
         'title' => $hearing->getTitle(),
@@ -134,6 +135,14 @@ class GeoJsonHelper {
         'lokalplaner' => implode(',', $lokalplaner),
       ],
     ];
+
+    $geometry = $this->getGeometry($hearing);
+    if (NULL !== $geometry) {
+      $data['geometry'] = $geometry['geometry'];
+      $data['type'] = 'Feature';
+    }
+
+    return $data;
   }
 
   /**
@@ -159,6 +168,74 @@ class GeoJsonHelper {
     ];
 
     return $serialized;
+  }
+
+  /**
+   * Get geometry.
+   */
+  private function getGeometry(NodeInterface $entity) {
+    $value = $entity->get('field_map')->getValue();
+
+    if (empty($value) || !isset($value[0]['data'])) {
+      return NULL;
+    }
+
+    // For now we're only interested in points.
+    // Other map data will be joined into hearing data.
+    if (MapItem::TYPE_ADDRESS !== $value[0]['type']) {
+      // Fake geometry object.
+      return [
+        'geometry' => [
+          'type' => 'Point',
+          'coordinates' => [0, 0],
+        ],
+      ];
+    }
+
+    $geojson = \json_decode($value[0]['data'], TRUE);
+
+    if (empty($geojson)) {
+      return NULL;
+    }
+
+    return $this->featureCollectionToMulti($geojson);
+  }
+
+  /**
+   * Convert a FeatureCollection to a Multi-collection.
+   */
+  public function featureCollectionToMulti(array $geojson) {
+    if (!isset($geojson['type']) || 'FeatureCollection' !== $geojson['type']) {
+      return $geojson;
+    }
+
+    $type = NULL;
+    $isMulti = FALSE;
+    $coordinates = [];
+
+    foreach ($geojson['features'] as $feature) {
+      $geometry = $feature['geometry'];
+      if (NULL === $type) {
+        $type = $geometry['type'];
+        $isMulti = preg_match('/^Multi/', $type);
+      }
+      elseif ($type !== $geometry['type']) {
+        // Different type in feature.
+        continue;
+      }
+
+      if ($isMulti) {
+        $coordinates = \array_merge($coordinates, $geometry['coordinates']);
+      }
+      else {
+        $coordinates[] = $geometry['coordinates'];
+      }
+    }
+
+    return [
+      'type' => $isMulti ? $type : 'Multi' . $type,
+      'coordinates' => $coordinates,
+    ];
   }
 
   /**

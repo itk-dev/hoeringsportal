@@ -24,11 +24,37 @@ class HearingController extends ApiController {
         $conditions['field_map.type'] = [MapItem::TYPE_ADDRESS];
         break;
     }
+
     $entities = $this->helper()->getHearings($conditions);
+
+    if ('lokalplaner' === $type) {
+      return $this->hearingsJoinLokalplaner($entities);
+    }
+
     $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
     $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
 
     return $response;
+  }
+
+  /**
+   * Get join table for Hearings and Lokalplaner.
+   */
+  public function hearingsJoinLokalplaner(array $hearings) {
+    $features = [];
+
+    foreach ($hearings as $hearing) {
+      foreach ($hearing->get('field_lokalplaner') as $lokalplan) {
+        $features[] = [
+          'properties' => [
+            'hearing_id' => (int) $hearing->id(),
+            'lokalplan_id' => (int) $lokalplan->id,
+          ],
+        ];
+      }
+    }
+
+    return $this->createGeoJsonResponse($features, 'FeatureCollection');
   }
 
   /**

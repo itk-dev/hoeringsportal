@@ -16,7 +16,8 @@ class DefaultController extends ApiController {
     return new JsonResponse([
       'resources' => [
         'geojson' => [
-          'hearings_plandata' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'plandata']),
+          'hearings_plandata' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'lokalplan']),
+          'hearings_plandata_join' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'lokalplaner']),
           'hearings_point' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'point']),
           'tickets' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_tickets'),
         ],
