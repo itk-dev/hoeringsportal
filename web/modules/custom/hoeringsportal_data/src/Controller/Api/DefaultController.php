@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_data\Controller\Api;
 
+use Drupal\hoeringsportal_data\Helper\GeoJsonHelper;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -16,9 +17,9 @@ class DefaultController extends ApiController {
     return new JsonResponse([
       'resources' => [
         'geojson' => [
-          'hearings_plandata' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'lokalplan']),
-          'hearings_plandata_join' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'lokalplaner']),
-          'hearings_point' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['type' => 'point']),
+          'hearings' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings'),
+          'hearings_local_plan' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['geometry' => GeoJsonHelper::GEOMETRY_LOCAL_PLAN]),
+          'hearings_point' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings', ['geometry' => GeoJsonHelper::GEOMETRY_POINT]),
           'tickets' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_tickets'),
         ],
       ],

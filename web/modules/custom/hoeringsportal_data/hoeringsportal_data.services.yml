@@ -29,3 +29,4 @@ services:
     arguments:
     - '@entity_type.manager'
     - '@url_generator'
+    - '@hoeringsportal_data.hearing_helper'

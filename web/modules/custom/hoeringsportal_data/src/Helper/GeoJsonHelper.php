@@ -13,6 +13,10 @@ use Drupal\taxonomy\Entity\Term;
  * Helper.
  */
 class GeoJsonHelper {
+  const GEOMETRY_POLYGON = 'polygon';
+  const GEOMETRY_LOCAL_PLAN = 'local_plan';
+  const GEOMETRY_POINT = 'point';
+
   /**
    * Entity type manager.
    *
@@ -28,11 +32,19 @@ class GeoJsonHelper {
   private $urlGenerator;
 
   /**
+   * Hearing helper.
+   *
+   * @var \Drupal\hoeringsportal_data\Helper\HearingHelper
+   */
+  private $helper;
+
+  /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, UrlGeneratorInterface $urlGenerator) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, UrlGeneratorInterface $urlGenerator, HearingHelper $helper) {
     $this->entityTypeManager = $entityTypeManager;
     $this->urlGenerator = $urlGenerator;
+    $this->helper = $helper;
   }
 
   /**
@@ -119,20 +131,26 @@ class GeoJsonHelper {
       $lokalplaner[] = (int) $lokalplan->id;
     }
 
+    $geometryType = $this->getGeometryType($hearing);
+
     $data = [
       'properties' => [
-        'id' => (int) $hearing->id(),
-        'title' => $hearing->getTitle(),
-        'areas' => array_map([$this, 'getTermName'], $areas),
-        'content_state' => $hearing->get('field_content_state')->value,
-        'description' => $hearing->get('field_description')->value,
+        'hearing_id' => (int) $hearing->id(),
+        'hearing_title' => $hearing->getTitle(),
+        'hearing_areas' => array_map([$this, 'getTermName'], $areas),
+        'hearing_area_ids' => $this->listify(array_map(function (Term $term) {
+          return $term->get('field_area_id')->value;
+        }, $areas)),
+        'hearing_content_state' => $hearing->get('field_content_state')->value,
+        'hearing_description' => $hearing->get('field_description')->value,
         'hearing_type' => $this->getTermName($hearing_type),
-        'project_reference' => $project_reference ? $project_reference->getTitle() : NULL,
-        'reply_deadline' => $this->getDateTime($hearing->get('field_reply_deadline')->value),
-        'start_date' => $this->getDateTime($hearing->get('field_start_date')->value),
-        'tags' => array_map([$this, 'getTermName'], $tags),
-        'teaser' => $hearing->get('field_teaser')->value,
-        'lokalplaner' => implode(',', $lokalplaner),
+        'hearing_project_reference' => $project_reference ? $project_reference->getTitle() : NULL,
+        'hearing_reply_deadline' => $this->getDateTime($hearing->get('field_reply_deadline')->value),
+        'hearing_start_date' => $this->getDateTime($hearing->get('field_start_date')->value),
+        'hearing_tags' => array_map([$this, 'getTermName'], $tags),
+        'hearing_teaser' => $hearing->get('field_teaser')->value,
+        'hearing_localplan_ids' => $this->listify($lokalplaner),
+        'hearing_geometry_type' => $geometryType,
       ],
     ];
 
@@ -152,22 +170,51 @@ class GeoJsonHelper {
     $serialized = $this->serializeGeoJsonHearing($ticket->hearing);
 
     $properties = &$serialized['properties'];
-    $keys = array_keys($properties);
-    foreach ($keys as $key) {
-      $properties['hearing_' . $key] = $properties[$key];
-      unset($properties[$key]);
-    }
 
     $data = $ticket->data;
     $fields = $data->fields;
     $properties += [
-      'message' => $fields->message ?? NULL,
-      'person_name' => $data->person->name ?? NULL,
-      'organization' => $fields->organization ?? NULL,
-      'pdf_download_url' => $fields->pdf_download_url ?? NULL,
+      'ticket_message' => $fields->message ?? NULL,
+      'ticket_person_name' => $data->person->name ?? NULL,
+      'ticket_organization' => $fields->organization ?? NULL,
+      'ticket_pdf_download_url' => $fields->pdf_download_url ?? NULL,
     ];
 
     return $serialized;
+  }
+
+  /**
+   * Convert a list into csv format.
+   */
+  private function listify(array $values) {
+    return implode(',', array_filter($values));
+  }
+
+  /**
+   * Get the type of geometry associated with an entity.
+   *
+   * @param \Drupal\node\NodeInterface $entity
+   *   The entity.
+   */
+  private function getGeometryType(NodeInterface $entity) {
+    if (!$this->helper->isHearing($entity)) {
+      return NULL;
+    }
+
+    $value = $entity->get('field_map')->getValue();
+
+    if (empty($value) || !isset($value[0]['type'])) {
+      return NULL;
+    }
+
+    switch ($value[0]['type']) {
+      case MapItem::TYPE_ADDRESS:
+        return self::GEOMETRY_POINT;
+
+      case MapItem::TYPE_LOCALPLANIDS:
+      case MapItem::TYPE_LOCALPLANIDS_NODE:
+        return self::GEOMETRY_LOCAL_PLAN;
+    }
   }
 
   /**

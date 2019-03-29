@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_data\Controller\Api\GeoJSON;
 
 use Drupal\hoeringsportal_data\Controller\Api\ApiController;
+use Drupal\hoeringsportal_data\Helper\GeoJsonHelper;
 use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -14,47 +15,26 @@ class HearingController extends ApiController {
   /**
    * Get hearings.
    */
-  public function index($type) {
-    // By default, we show local plans.
-    $conditions = [
-      'field_map.type' => [MapItem::TYPE_LOCALPLANIDS_NODE, MapItem::TYPE_LOCALPLANIDS],
-    ];
-    switch ($type) {
-      case 'point':
+  public function index() {
+    $geometry = $this->getParameter('geometry');
+
+    $conditions = [];
+    switch ($geometry) {
+      case GeoJsonHelper::GEOMETRY_POINT:
         $conditions['field_map.type'] = [MapItem::TYPE_ADDRESS];
+        break;
+
+      case GeoJsonHelper::GEOMETRY_LOCAL_PLAN:
+        $conditions['field_map.type'] = [MapItem::TYPE_LOCALPLANIDS_NODE, MapItem::TYPE_LOCALPLANIDS];
         break;
     }
 
     $entities = $this->helper()->getHearings($conditions);
 
-    if ('lokalplaner' === $type) {
-      return $this->hearingsJoinLokalplaner($entities);
-    }
-
     $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
     $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
 
     return $response;
-  }
-
-  /**
-   * Get join table for Hearings and Lokalplaner.
-   */
-  public function hearingsJoinLokalplaner(array $hearings) {
-    $features = [];
-
-    foreach ($hearings as $hearing) {
-      foreach ($hearing->get('field_lokalplaner') as $lokalplan) {
-        $features[] = [
-          'properties' => [
-            'hearing_id' => (int) $hearing->id(),
-            'lokalplan_id' => (int) $lokalplan->id,
-          ],
-        ];
-      }
-    }
-
-    return $this->createGeoJsonResponse($features, 'FeatureCollection');
   }
 
   /**
