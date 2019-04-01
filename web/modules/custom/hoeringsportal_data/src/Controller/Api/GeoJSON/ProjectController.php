@@ -7,12 +7,12 @@ use Drupal\hoeringsportal_data\Helper\GeoJsonHelper;
 use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 
 /**
- * GeoJSON hearing controller.
+ * GeoJSON project controller.
  */
-class HearingController extends ApiController {
+class ProjectController extends ApiController {
 
   /**
-   * Get hearings.
+   * Get projects.
    */
   public function index() {
     $geometry = $this->getParameter('geometry');
@@ -28,9 +28,9 @@ class HearingController extends ApiController {
         break;
     }
 
-    $entities = $this->helper()->getHearings($conditions);
+    $entities = $this->helper()->getProjects($conditions);
 
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
+    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonProject'], $entities));
     $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
 
     return $response;

@@ -63,6 +63,21 @@ class GeoJsonHelper {
   }
 
   /**
+   * Get projects.
+   */
+  public function getProjects(array $properties = []) {
+    $properties += [
+      'status' => NodeInterface::PUBLISHED,
+      'type' => 'project',
+    ];
+    $entities = $this->entityTypeManager
+      ->getStorage('node')
+      ->loadByProperties($properties);
+
+    return $entities;
+  }
+
+  /**
    * Serialize a Hearing.
    */
   public function serializeHearing(Node $entity) {
@@ -103,18 +118,55 @@ class GeoJsonHelper {
   }
 
   /**
-   * Serialize as GeoJSON.
+   * Serialize Project as GeoJSON.
    */
-  public function serializeGeoJson($entity) {
-    if ($entity instanceof NodeInterface) {
-      return $this->serializeGeoJsonHearing($entity);
+  public function serializeGeoJsonProject(NodeInterface $project) {
+    $areas = $project->get('field_area')->referencedEntities();
+    $tags = $project->get('field_tags')->referencedEntities();
+
+    $lokalplaner = [];
+    foreach ($project->get('field_lokalplaner') as $lokalplan) {
+      $lokalplaner[] = $lokalplan;
     }
-    elseif (is_object($entity)) {
-      return $this->serializeGeoJsonTicket($entity);
+
+    $geometryType = $this->getGeometryType($project);
+
+    $data = [
+      'properties' => [
+        'project_id' => (int) $project->id(),
+        'project_title' => $project->getTitle(),
+        'project_teaser' => $project->get('field_teaser')->value,
+        'project_description' => $project->get('field_description')->value,
+        'project_start' => $this->getDateTime($project->get('field_project_start')->value),
+        'project_finish' => $this->getDateTime($project->get('field_project_finish')->value),
+        'project_tags' => array_map([$this, 'getTermName'], $tags),
+        'project_teaser' => $project->get('field_teaser')->value,
+        'project_contact' => $project->get('field_contact')->value,
+        'project_phone' => $project->get('field_phone')->value,
+        'project_geometry_type' => $geometryType,
+        'project_url' => $this->generateUrl('entity.node.canonical', ['node' => $project->id()]),
+        'project_area_list' => $this->listify(array_map(function (Term $term) {
+          return $term->get('field_area_id')->value;
+        }, $areas)),
+        'project_area_ids' => array_map(function (Term $term) {
+          return (int) $term->get('field_area_id')->value;
+        }, $areas),
+        'project_local_plan_list' => $this->listify(array_map(function ($lokalplan) {
+          return $lokalplan->id;
+        }, $lokalplaner)),
+        'project_local_plan_ids' => array_map(function ($lokalplan) {
+          return (int) $lokalplan->id;
+        }, $lokalplaner),
+      ],
+    ];
+
+    $geometry = $this->getGeometry($project);
+    if (NULL !== $geometry) {
+      $data['geometry'] = $geometry['geometry'];
+      $data['type'] = 'Feature';
     }
-    else {
-      throw new \RuntimeException('Cannot serialize as GeoJSON');
-    }
+
+    return $data;
   }
 
   /**
@@ -211,13 +263,15 @@ class GeoJsonHelper {
    *
    * @param \Drupal\node\NodeInterface $entity
    *   The entity.
+   * @param string $mapFieldName
+   *   The map field name.
    */
-  private function getGeometryType(NodeInterface $entity) {
-    if (!$this->helper->isHearing($entity)) {
+  private function getGeometryType(NodeInterface $entity, string $mapFieldName = 'field_map') {
+    if (!$entity->hasField($mapFieldName)) {
       return NULL;
     }
 
-    $value = $entity->get('field_map')->getValue();
+    $value = $entity->get($mapFieldName)->getValue();
 
     if (empty($value) || !isset($value[0]['type'])) {
       return NULL;
@@ -231,6 +285,8 @@ class GeoJsonHelper {
       case MapItem::TYPE_LOCALPLANIDS_NODE:
         return self::GEOMETRY_LOCAL_PLAN;
     }
+
+    return NULL;
   }
 
   /**
