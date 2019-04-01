@@ -128,7 +128,7 @@ class GeoJsonHelper {
 
     $lokalplaner = [];
     foreach ($hearing->get('field_lokalplaner') as $lokalplan) {
-      $lokalplaner[] = (int) $lokalplan->id;
+      $lokalplaner[] = $lokalplan;
     }
 
     $geometryType = $this->getGeometryType($hearing);
@@ -137,20 +137,27 @@ class GeoJsonHelper {
       'properties' => [
         'hearing_id' => (int) $hearing->id(),
         'hearing_title' => $hearing->getTitle(),
-        'hearing_areas' => array_map([$this, 'getTermName'], $areas),
-        'hearing_area_ids' => $this->listify(array_map(function (Term $term) {
-          return $term->get('field_area_id')->value;
-        }, $areas)),
         'hearing_content_state' => $hearing->get('field_content_state')->value,
         'hearing_description' => $hearing->get('field_description')->value,
         'hearing_type' => $this->getTermName($hearing_type),
-        'hearing_project_reference' => $project_reference ? $project_reference->getTitle() : NULL,
         'hearing_reply_deadline' => $this->getDateTime($hearing->get('field_reply_deadline')->value),
         'hearing_start_date' => $this->getDateTime($hearing->get('field_start_date')->value),
         'hearing_tags' => array_map([$this, 'getTermName'], $tags),
         'hearing_teaser' => $hearing->get('field_teaser')->value,
-        'hearing_localplan_ids' => $this->listify($lokalplaner),
         'hearing_geometry_type' => $geometryType,
+        'hearing_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()]),
+        'hearing_area_list' => $this->listify(array_map(function (Term $term) {
+          return $term->get('field_area_id')->value;
+        }, $areas)),
+        'hearing_area_ids' => array_map(function (Term $term) {
+          return (int) $term->get('field_area_id')->value;
+        }, $areas),
+        'hearing_local_plan_list' => $this->listify(array_map(function ($lokalplan) {
+          return $lokalplan->id;
+        }, $lokalplaner)),
+        'hearing_local_plan_ids' => array_map(function ($lokalplan) {
+          return (int) $lokalplan->id;
+        }, $lokalplaner),
       ],
     ];
 
@@ -178,6 +185,10 @@ class GeoJsonHelper {
       'ticket_person_name' => $data->person->name ?? NULL,
       'ticket_organization' => $fields->organization ?? NULL,
       'ticket_pdf_download_url' => $fields->pdf_download_url ?? NULL,
+      'ticket_url' => $this->generateUrl('hoeringsportal_deskpro.hearing.ticket_view', [
+        'node' => $ticket->hearing->id(),
+        'ticket' => $data->id,
+      ]),
     ];
 
     return $serialized;
