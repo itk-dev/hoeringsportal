@@ -8,3 +8,8 @@ hearing-edit:
     https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js: { type: external, minified: true }
     https://dawa.aws.dk/js/autocomplete/dawa-autocomplete2.min.js: { type: external, minified: true }
     build/hearing-edit.js: {preprocess: false}
+
+septima-widget:
+  version: VERSION
+  js:
+    https://widgetconfig.septima.dk/widgetconfig.js: { type: external }
