@@ -85,6 +85,7 @@ class GeoJsonHelper {
         'title' => $entity->getTitle(),
         'areas' => array_map([$this, 'getTermName'], $areas),
         'content_state' => $entity->get('field_content_state')->value,
+        'teaser' => $entity->get('field_teaser')->value,
         'description' => $entity->get('field_description')->value,
         'hearing_type' => $this->getTermName($hearing_type),
         'project_reference' => $project_reference ? $project_reference->getTitle() : NULL,
@@ -123,7 +124,8 @@ class GeoJsonHelper {
     $areas = $hearing->get('field_area')->referencedEntities();
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
     $hearing_type = $this->getReference($hearing, 'field_hearing_type');
-    $project_reference = $this->getReference($hearing, 'field_project_reference');
+    $project = $this->getReference($hearing, 'field_project_reference');
+
     $tags = $hearing->get('field_tags')->referencedEntities();
 
     $lokalplaner = [];
@@ -146,6 +148,9 @@ class GeoJsonHelper {
         'hearing_teaser' => $hearing->get('field_teaser')->value,
         'hearing_geometry_type' => $geometryType,
         'hearing_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()]),
+        'hearing_project_id' => $project ? (int) $project->id() : NULL,
+        'hearing_project_title' => $project ? $project->get('title')->value : NULL,
+        'hearing_project_url' => $project ? $this->generateUrl('entity.node.canonical', ['node' => $project->id()]) : NULL,
         'hearing_area_list' => $this->listify(array_map(function (Term $term) {
           return $term->get('field_area_id')->value;
         }, $areas)),
@@ -229,25 +234,34 @@ class GeoJsonHelper {
   }
 
   /**
+   * Empty geometry object.
+   *
+   * Empty (sort of) geometry to use as a fallback when no real geometry is
+   * available.
+   *
+   * @var array
+   */
+  private static $emptyGeometry = [
+    'geometry' => [
+      'type' => 'Point',
+      'coordinates' => [0, 0],
+    ],
+  ];
+
+  /**
    * Get geometry.
    */
   private function getGeometry(NodeInterface $entity) {
     $value = $entity->get('field_map')->getValue();
 
     if (empty($value) || !isset($value[0]['data'])) {
-      return NULL;
+      return self::$emptyGeometry;
     }
 
     // For now we're only interested in points.
     // Other map data will be joined into hearing data.
     if (MapItem::TYPE_ADDRESS !== $value[0]['type']) {
-      // Fake geometry object.
-      return [
-        'geometry' => [
-          'type' => 'Point',
-          'coordinates' => [0, 0],
-        ],
-      ];
+      return self::$emptyGeometry;
     }
 
     $geojson = \json_decode($value[0]['data'], TRUE);
