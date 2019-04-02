@@ -62,18 +62,18 @@ hoeringsportal_data.api_controller_geojson_tickets:
   requirements:
     _permission: 'access content'
 
-hoeringsportal_data.septima_controller:
-  path: '/septima'
+hoeringsportal_data.maps_controller:
+  path: '/maps'
   defaults:
-    _controller: '\Drupal\hoeringsportal_data\Controller\SeptimaController::index'
-    _title: 'Septima'
+    _controller: '\Drupal\hoeringsportal_data\Controller\MapsController::index'
+    _title: 'Maps'
   requirements:
     _permission: 'access content'
 
-hoeringsportal_data.septima_controller_widget:
-  path: '/septima/widget/{id}'
+hoeringsportal_data.maps_controller_widget:
+  path: '/maps/widget/{id}'
   defaults:
-    _controller: '\Drupal\hoeringsportal_data\Controller\SeptimaController::widget'
-    _title: 'Septima configuration'
+    _controller: '\Drupal\hoeringsportal_data\Controller\MapsController::widget'
+    _title: 'Maps configuration'
   requirements:
     _permission: 'access content'

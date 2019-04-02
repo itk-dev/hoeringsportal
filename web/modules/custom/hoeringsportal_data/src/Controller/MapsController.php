@@ -3,46 +3,26 @@
 namespace Drupal\hoeringsportal_data\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Link;
-use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
- * Septima controller.
+ * Maps controller.
  */
-class SeptimaController extends ControllerBase {
+class MapsController extends ControllerBase {
 
   /**
    * Index action.
    */
   public function index(Request $request) {
-    $content['menu'] = [
-      '#type' => 'container',
-    ];
-
-    $ids = array_keys($this->getWidgets());
-    foreach ($ids as $id) {
-      $url = Url::fromRoute('hoeringsportal_data.septima_controller',
-                            ['widget' => $id]);
-      $url->setOptions([
-        'attributes' => [
-          'class' => ['btn', 'btn-primary'],
-        ],
-      ]);
-      $content['menu'][$id] = [
-        '#markup' => Link::fromTextAndUrl($id, $url)->toString(),
-      ];
-    }
-
-    $widget = $request->get('widget', reset($ids));
+    $widget = $request->get('widget', 'alles-zusammen');
 
     if (NULL !== $widget) {
-      $widgetUrl = $this->getUrlGenerator()->generateFromRoute('hoeringsportal_data.septima_controller_widget', ['id' => $widget]);
+      $widgetUrl = $this->getUrlGenerator()->generateFromRoute('hoeringsportal_data.maps_controller_widget', ['id' => $widget]);
 
       $content['map'] = [
-        '#markup' => '<div data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',
+        '#markup' => '<div class="maps-septima" data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',
         '#attached' => [
           'library' => [
             'hoeringsportal_data/septima-widget',
@@ -67,7 +47,6 @@ class SeptimaController extends ControllerBase {
     }
 
     if ('dump-data-url' === $request->get('action')) {
-      // header('content-type: text/plain');.
       foreach ($widget['map']['layer'] as $layer) {
         if (isset($layer['features_host'])) {
           $url = $layer['features_host'];
@@ -94,6 +73,233 @@ class SeptimaController extends ControllerBase {
    * Get all widgets.
    */
   private function getWidgets() {
+
+    $widgets['alles-zusammen'] = [
+      'map' => [
+        'srs' => 'EPSG:25832',
+        'maxZoomLevel' => 0,
+        'minZoomLevel' => 11,
+        'view' => [
+          'zoomLevel' => 6,
+          'x' => 575159,
+          'y' => 6223373,
+        ],
+
+        'layer' => [
+
+          [
+            'namedlayer' => '#gst',
+          ],
+
+          [
+            'srs' => 'EPSG:4326',
+            'disable' => FALSE,
+            'features' => TRUE,
+            'features_host' => 'https://rimi-aarhus.cartodb.com/api/v2/sql?'
+            . http_build_query([
+              'format' => 'geojson',
+              'q' => '
+
+SELECT 1 AS index,
+       \'area\' AS type,
+       hearing_id,
+       hearing_title,
+       hearing_teaser,
+       hearing_description,
+       hearing_content_state,
+       hearing_type,
+       hearing_reply_deadline,
+       hearing_start_date,
+       hearing_url,
+       hearing_project_url,
+       hearing_replies_count,
+       hearing_replies_url,
+       hearing_project_title,
+       the_geom
+  FROM (SELECT hearing_id,
+               hearing_title,
+               hearing_teaser,
+               hearing_description,
+               hearing_content_state,
+               hearing_type,
+               hearing_reply_deadline,
+               hearing_start_date,
+               hearing_url,
+               hearing_project_url,
+               hearing_replies_count,
+               hearing_replies_url,
+               COALESCE(hearing_project_title, \'(intet)\') AS hearing_project_title,
+               CAST(REGEXP_SPLIT_TO_TABLE(hearing_area_list, \',\') AS INTEGER) AS area_id
+          FROM jnt6324g5clm1was_ttepg
+         WHERE hearing_area_list != \'\') AS hearing,
+       (SELECT CAST(nr AS INTEGER) AS id,
+               the_geom
+          FROM jay3dzjvfb4f6ftegaypcg) AS area
+ WHERE hearing.area_id = area.id
+
+UNION
+
+SELECT 2 AS index,
+       \'plan_data\' AS type,
+       hearing_id,
+       hearing_title,
+       hearing_teaser,
+       hearing_description,
+       hearing_content_state,
+       hearing_type,
+       hearing_reply_deadline,
+       hearing_start_date,
+       hearing_url,
+       hearing_project_url,
+       hearing_replies_count,
+       hearing_replies_url,
+       hearing_project_title,
+       the_geom
+  FROM (SELECT hearing_id,
+               hearing_title,
+               hearing_teaser,
+               hearing_description,
+               hearing_content_state,
+               hearing_type,
+               hearing_reply_deadline,
+               hearing_start_date,
+               hearing_url,
+               hearing_project_url,
+               hearing_replies_count,
+               hearing_replies_url,
+               COALESCE(hearing_project_title, \'(intet)\') AS hearing_project_title,
+               CAST(REGEXP_SPLIT_TO_TABLE(hearing_local_plan_list, \',\') AS INTEGER) AS planid
+          FROM jnt6324g5clm1was_ttepg
+         WHERE hearing_local_plan_list != \'\') AS hearing,
+       geoserver_getfeature_1 AS plandata
+ WHERE hearing.planid = plandata.planid
+
+UNION
+
+SELECT 3 AS index,
+       \'point\' AS type,
+       hearing_id,
+       hearing_title,
+       hearing_teaser,
+       hearing_description,
+       hearing_content_state,
+       hearing_type,
+       hearing_reply_deadline,
+       hearing_start_date,
+       hearing_url,
+       hearing_project_url,
+       hearing_replies_count,
+       hearing_replies_url,
+       hearing_project_title,
+       the_geom
+  FROM jnt6324g5clm1was_ttepg AS hearing
+ WHERE hearing_geometry_type = \'point\'
+                    ',
+
+            ]),
+            'features_dataType' => 'jsonp',
+            'features_style' => [
+              'namedstyle' => '#011',
+            ],
+
+            'template_info' => '
+<div class="widget-hoverbox-title">{{hearing_title}}</div>
+<div class="widget-hoverbox-sub">
+ <% if ("(intet)" !== hearing_project_title) { %><div>Project: <a href="{{hearing_project_url}}">{{hearing_project_title}}</a></div><% } %>
+ <div>{{hearing_teaser}} <a href="{{hearing_url}}">Læs mere …</a></div>
+ <div>#replies: <a href="{{hearing_replies_url}}">{{hearing_replies_count}}</a></div>
+ <div>Høringsstart: <% print(moment(hearing_start_date).format("DD/MM/YYYY"))%></div>
+ <div>Høringsfrist: <% print(moment(hearing_reply_deadline).format("DD/MM/YYYY"))%></div>
+ <div>Status: {{hearing_content_state}}</div>
+</div>
+            ',
+            'template_search_title' => '{{hearing_title}}',
+            'template_search_description' => '{{hearing_description}}',
+            'layername' => 'hearing_point',
+            'name' => 'Høringer',
+            'type' => 'geojson',
+            'userfilter' => [
+              'hearing_start_date' => [
+                'type' => 'daterange',
+                'label' => 'Høring i gang (vælg fra og til)',
+                'maxDateColumn' => 'hearing_start_date',
+                'format' => 'DD/MM/YYYY',
+                // 'min' => 'today-30d',
+                // 'max' => 'today+1y',
+                // 'startDate' => 'today-30d',
+                // 'endDate' => 'today+1y',.
+                'urlParamNames' => [
+                  'min' => 'startdato',
+                  'max' => 'slutdato',
+                ],
+                'showShortcuts' => TRUE,
+                'shortcuts' => [
+                  'next' => [
+                    'week',
+                    'month',
+                    'year',
+                  ],
+                ],
+              ],
+            ],
+          ],
+
+        ],
+
+        'controls' => [
+          [
+            'fullscreen' => [
+              'disable' => FALSE,
+            ],
+
+            'info' => [
+              'disable' => FALSE,
+              'eventtype' => 'click',
+              'type' => 'popup',
+            ],
+
+            'filter' => [
+              'disable' => FALSE,
+              'detach' => 'filter',
+              'combine' => TRUE,
+            ],
+
+            'search' => [
+              'displaytext' => 'Søg',
+              'minResolution' => 1,
+              'features_style' => [
+                'namedstyle' => '#011',
+              ],
+              'driver' => [
+                [
+                  'type' => 'dawa',
+                  'options' => [
+                    'kommunekode' => '751',
+                  ],
+                ],
+                [
+                  'type' => 'local',
+                  'options' => [
+                    'singular' => 'Arrangement',
+                    'plural' => 'Arrangementer',
+                  ],
+                ],
+              ],
+            ],
+
+            'layerswitch' => [
+              'disable' => FALSE,
+              'layers' => 'all',
+              'selectAll' => FALSE,
+              'showbuttons' => TRUE,
+              'showlegend' => TRUE,
+            ],
+          ],
+        ],
+
+      ],
+    ];
+
     $widgets['filter14'] = [
       'map' => [
         'srs' => 'EPSG:25832',
@@ -135,17 +341,18 @@ with arr_plads (arr_id, plads_id)
               'startdato' => [
                 'type' => 'daterange',
                 'label' => 'Hvornår (vælg fra og til)',
-                // 'maxDateColumn' => 'slutdato',.
+                'maxDateColumn' => 'slutdato',
                 'format' => 'DD/MM/YYYY',
                 'min' => 'today-5d',
                 'max' => 'today+5d',
                 'startDate' => 'today-5d',
                 'endDate' => 'today+5d',
-                // 'urlParamNames' => [
-                //   'min' => 'startdato',
-                //   'max' => 'slutdato'
-                // ],
-                // 'showShortcuts' => true, 'shortcuts'  => ['next' => ['week','month','year']].
+                'urlParamNames' => [
+                  'min' => 'startdato',
+                  'max' => 'slutdato',
+                ],
+                'showShortcuts' => TRUE,
+                'shortcuts' => ['next' => ['week', 'month', 'year']],
               ],
             ],
           ],
@@ -1136,232 +1343,6 @@ WHERE  hearing.area_id = area.id
             ],
           ],
 
-        ],
-
-      ],
-    ];
-
-    $widgets['hearing.alles-zu-sammen'] = [
-      'map' => [
-        'srs' => 'EPSG:25832',
-        'maxZoomLevel' => 0,
-        'minZoomLevel' => 11,
-        'view' => [
-          'zoomLevel' => 6,
-          'x' => 575159,
-          'y' => 6223373,
-        ],
-
-        'layer' => [
-
-          [
-            'namedlayer' => '#gst',
-          ],
-
-          [
-            'srs' => 'EPSG:4326',
-            'disable' => FALSE,
-            'features' => TRUE,
-            'features_host' => 'https://rimi-aarhus.cartodb.com/api/v2/sql?'
-            . http_build_query([
-              'format' => 'geojson',
-              'q' => '
-
-SELECT 1 AS index,
-       \'area\' AS type,
-       hearing_id,
-       hearing_title,
-       hearing_teaser,
-       hearing_description,
-       hearing_content_state,
-       hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
-       hearing_url,
-       hearing_project_url,
-       hearing_replies_count,
-       hearing_replies_url,
-       hearing_project_title,
-       the_geom
-  FROM (SELECT hearing_id,
-               hearing_title,
-               hearing_teaser,
-               hearing_description,
-               hearing_content_state,
-               hearing_type,
-               hearing_reply_deadline,
-               hearing_start_date,
-               hearing_url,
-               hearing_project_url,
-               hearing_replies_count,
-               hearing_replies_url,
-               COALESCE(hearing_project_title, \'(intet)\') AS hearing_project_title,
-               CAST(REGEXP_SPLIT_TO_TABLE(hearing_area_list, \',\') AS INTEGER) AS area_id
-          FROM jnt6324g5clm1was_ttepg
-         WHERE hearing_area_list != \'\') AS hearing,
-       (SELECT CAST(nr AS INTEGER) AS id,
-               the_geom
-          FROM jay3dzjvfb4f6ftegaypcg) AS area
- WHERE hearing.area_id = area.id
-
-UNION
-
-SELECT 2 AS index,
-       \'plan_data\' AS type,
-       hearing_id,
-       hearing_title,
-       hearing_teaser,
-       hearing_description,
-       hearing_content_state,
-       hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
-       hearing_url,
-       hearing_project_url,
-       hearing_replies_count,
-       hearing_replies_url,
-       hearing_project_title,
-       the_geom
-  FROM (SELECT hearing_id,
-               hearing_title,
-               hearing_teaser,
-               hearing_description,
-               hearing_content_state,
-               hearing_type,
-               hearing_reply_deadline,
-               hearing_start_date,
-               hearing_url,
-               hearing_project_url,
-               hearing_replies_count,
-               hearing_replies_url,
-               COALESCE(hearing_project_title, \'(intet)\') AS hearing_project_title,
-               CAST(REGEXP_SPLIT_TO_TABLE(hearing_local_plan_list, \',\') AS INTEGER) AS planid
-          FROM jnt6324g5clm1was_ttepg
-         WHERE hearing_local_plan_list != \'\') AS hearing,
-       geoserver_getfeature_1 AS plandata
- WHERE hearing.planid = plandata.planid
-
-UNION
-
-SELECT 3 AS index,
-       \'point\' AS type,
-       hearing_id,
-       hearing_title,
-       hearing_teaser,
-       hearing_description,
-       hearing_content_state,
-       hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
-       hearing_url,
-       hearing_project_url,
-       hearing_replies_count,
-       hearing_replies_url,
-       hearing_project_title,
-       the_geom
-  FROM jnt6324g5clm1was_ttepg AS hearing
- WHERE hearing_geometry_type = \'point\'
-                    ',
-
-            ]),
-            'features_dataType' => 'jsonp',
-            'features_style' => [
-              'namedstyle' => '#011',
-            ],
-
-            'template_info' => '
-<div class="widget-hoverbox-title">{{hearing_title}}</div>
-<div class="widget-hoverbox-sub">
- <% if ("(intet)" !== hearing_project_title) { %><div>Project: <a href="{{hearing_project_url}}">{{hearing_project_title}}</a></div><% } %>
- <div>{{hearing_teaser}} <a href="{{hearing_url}}">Læs mere …</a></div>
- <div>#replies: <a href="{{hearing_replies_url}}">{{hearing_replies_count}}</a></div>
- <div>Høringsstart: <% print(moment(hearing_start_date).format("DD/MM/YYYY"))%></div>
- <div>Høringsfrist: <% print(moment(hearing_reply_deadline).format("DD/MM/YYYY"))%></div>
- <div>Status: {{hearing_content_state}}</div>
-</div>
-            ',
-            'template_search_title' => '{{hearing_title}}',
-            'template_search_description' => '{{hearing_description}}',
-            'layername' => 'hearing_point',
-            'name' => 'Høringer',
-            'type' => 'geojson',
-            'userfilter' => [
-              'hearing_start_date' => [
-                'type' => 'daterange',
-                'label' => 'Høringsstart (vælg fra og til)',
-                'maxDateColumn' => 'hearing_start_date',
-                'format' => 'DD/MM/YYYY',
-                // 'min' => 'today-30d',
-                // 'max' => 'today+1y',
-                // 'startDate' => 'today-30d',
-                // 'endDate' => 'today+1y',.
-                'urlParamNames' => [
-                  'min' => 'startdato',
-                  'max' => 'slutdato',
-                ],
-                'showShortcuts' => TRUE,
-                'shortcuts' => [
-                  'next' => [
-                    'week',
-                    'month',
-                    'year',
-                  ],
-                ],
-              ],
-            ],
-          ],
-
-        ],
-
-        'controls' => [
-          [
-            'fullscreen' => [
-              'disable' => FALSE,
-            ],
-
-            'info' => [
-              'disable' => FALSE,
-              'eventtype' => 'click',
-              'type' => 'popup',
-            ],
-
-            'filter' => [
-              'disable' => FALSE,
-              'detach' => 'filter',
-              'combine' => TRUE,
-            ],
-
-            'search' => [
-              'displaytext' => 'Søg',
-              'minResolution' => 1,
-              'features_style' => [
-                'namedstyle' => '#011',
-              ],
-              'driver' => [
-                [
-                  'type' => 'dawa',
-                  'options' => [
-                    'kommunekode' => '751',
-                  ],
-                ],
-                [
-                  'type' => 'local',
-                  'options' => [
-                    'singular' => 'Arrangement',
-                    'plural' => 'Arrangementer',
-                  ],
-                ],
-              ],
-            ],
-
-            'layerswitch' => [
-              'disable' => FALSE,
-              'layers' => 'all',
-              'selectAll' => FALSE,
-              'showbuttons' => TRUE,
-              'showlegend' => TRUE,
-            ],
-          ],
         ],
 
       ],
