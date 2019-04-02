@@ -177,6 +177,7 @@ class GeoJsonHelper {
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
     $hearing_type = $this->getReference($hearing, 'field_hearing_type');
     $project = $this->getReference($hearing, 'field_project_reference');
+    $data = \json_decode($hearing->get('field_deskpro_data')->value, TRUE);
 
     $tags = $hearing->get('field_tags')->referencedEntities();
 
@@ -199,6 +200,8 @@ class GeoJsonHelper {
         'hearing_tags' => array_map([$this, 'getTermName'], $tags),
         'hearing_teaser' => $hearing->get('field_teaser')->value,
         'hearing_geometry_type' => $geometryType,
+        'hearing_replies_count' => isset($data['tickets']) ? \count($data['tickets']) : 0,
+        'hearing_replies_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()], ['fragment' => 'hearing-tickets']),
         'hearing_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()]),
         'hearing_project_id' => $project ? (int) $project->id() : NULL,
         'hearing_project_title' => $project ? $project->get('title')->value : NULL,
