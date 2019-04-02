@@ -102,6 +102,148 @@ class MapsController extends ControllerBase {
 
 SELECT 1 AS index,
        \'area\' AS type,
+       project_id,
+       project_title,
+       project_teaser,
+       project_description,
+       project_start,
+       project_finish,
+       project_url,
+       the_geom
+  FROM (SELECT project_id,
+               project_title,
+               project_teaser,
+               project_description,
+               project_start,
+               project_finish,
+               project_url,
+               CAST(REGEXP_SPLIT_TO_TABLE(project_area_list, \',\') AS INTEGER) AS area_id
+          FROM table_f_ey6qadbbgt2t7plublg
+         WHERE project_area_list != \'\') AS project,
+       (SELECT CAST(nr AS INTEGER) AS id,
+               the_geom
+          FROM jay3dzjvfb4f6ftegaypcg) AS area
+ WHERE project.area_id = area.id
+
+UNION
+
+SELECT 2 AS index,
+       \'local_plan\' AS type,
+       project_id,
+       project_title,
+       project_teaser,
+       project_description,
+       project_start,
+       project_finish,
+       project_url,
+       the_geom
+  FROM (SELECT project_id,
+               project_title,
+               project_teaser,
+               project_description,
+               project_start,
+               project_finish,
+               project_url,
+               CAST(REGEXP_SPLIT_TO_TABLE(project_local_plan_list, \',\') AS INTEGER) AS planid
+          FROM table_f_ey6qadbbgt2t7plublg
+         WHERE project_local_plan_list != \'\') AS project,
+       geoserver_getfeature_1 AS plandata
+ WHERE project.planid = plandata.planid
+
+UNION
+
+SELECT 3 AS index,
+       \'point\' AS type,
+       project_id,
+       project_title,
+       project_teaser,
+       project_description,
+       project_start,
+       project_finish,
+       project_url,
+       the_geom
+  FROM table_f_ey6qadbbgt2t7plublg AS project
+ WHERE project_geometry_type = \'point\'
+
+                    ',
+            ]),
+            'features_dataType' => 'jsonp',
+            'features_style' => [
+              'namedstyle' => '#001',
+            ],
+
+            'template_info' => '
+<div class="widget-hoverbox-title">{{project_title}}</div>
+<div class="widget-hoverbox-sub">
+ <div>{{project_teaser}} <a href="{{project_url}}">Læs mere …</a></div>
+ <div>Start: <% print(moment(project_start).format("DD/MM/YYYY"))%></div>
+ <div>Slut: <% print(moment(project_finish).format("DD/MM/YYYY"))%></div>
+</div>
+            ',
+            'template_search_title' => '{{project_title}}',
+            'template_search_description' => '{{project_description}}',
+            'layername' => 'project_local_plan',
+            'name' => 'Initiativer',
+            'type' => 'geojson',
+            '//userfilter' => [
+              'project_start' => [
+                'type' => 'daterange',
+                'label' => 'Start (vælg fra og til)',
+                'maxDateColumn' => 'project_start_date',
+                'format' => 'DD/MM/YYYY',
+                'min' => 'today-30d',
+                'max' => 'today+1y',
+                'startDate' => 'today-30d',
+                'endDate' => 'today+1y',
+                'urlParamNames' => [
+                  'min' => 'startdato',
+                  'max' => 'slutdato',
+                ],
+                'showShortcuts' => TRUE,
+                'shortcuts' => [
+                  'next' => [
+                    'week',
+                    'month',
+                    'year',
+                  ],
+                ],
+              ],
+              'project_finish' => [
+                'type' => 'daterange',
+                'label' => 'Slut (vælg fra og til)',
+                'maxDateColumn' => 'project_reply_deadline',
+                'format' => 'DD/MM/YYYY',
+                // 'min' => 'today-30d',
+                // 'max' => 'today+1y',
+                // 'startDate' => 'today-30d',
+                // 'endDate' => 'today+1y',.
+                'urlParamNames' => [
+                  'min' => 'startdato',
+                  'max' => 'slutdato',
+                ],
+                'showShortcuts' => TRUE,
+                'shortcuts' => [
+                  'next' => [
+                    0 => 'week',
+                    1 => 'month',
+                    2 => 'year',
+                  ],
+                ],
+              ],
+            ],
+          ],
+
+          [
+            'srs' => 'EPSG:4326',
+            'disable' => FALSE,
+            'features' => TRUE,
+            'features_host' => 'https://rimi-aarhus.cartodb.com/api/v2/sql?'
+            . http_build_query([
+              'format' => 'geojson',
+              'q' => '
+
+SELECT 1 AS index,
+       \'area\' AS type,
        hearing_id,
        hearing_title,
        hearing_teaser,
@@ -199,7 +341,7 @@ SELECT 3 AS index,
             ]),
             'features_dataType' => 'jsonp',
             'features_style' => [
-              'namedstyle' => '#011',
+              'namedstyle' => '#007',
             ],
 
             'template_info' => '
@@ -559,7 +701,7 @@ FROM   (SELECT project_id,
                project_url,
                CAST(REGEXP_SPLIT_TO_TABLE(project_local_plan_list, \',\') AS INTEGER) AS planid
         FROM   table_f_ey6qadbbgt2t7plublg
-        WHERE  project_local_plan_list !== \'\') AS project,
+        WHERE  project_local_plan_list != \'\') AS project,
        geoserver_getfeature_1 AS plandata
 WHERE  project.planid = plandata.planid
                     ',
