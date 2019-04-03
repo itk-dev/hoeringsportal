@@ -2029,6 +2029,11 @@ date-now@^0.1.4:
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
 
+dawa-autocomplete2@^0.13.1:
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/dawa-autocomplete2/-/dawa-autocomplete2-0.13.1.tgz#aabd2d4bbc58001a9858bfe50cfe0de090a06eca"
+  integrity sha512-Z2VbH7B5jXHIhaWHglCCCcdmTr0zqbwSLWO5H0PqDScbIaD2Da9eko1Yhj4CcII9SGXC8QqkWrdW9Us1juUomA==
+
 debug-log@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/debug-log/-/debug-log-1.0.1.tgz#2307632d4c04382b8df8a32f70b895046d52745f"

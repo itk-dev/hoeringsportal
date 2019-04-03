@@ -82,7 +82,7 @@ class MapDefaultWidget extends WidgetBase {
       '#type' => 'textfield',
       '#title' => t('Address'),
       '#default_value' => $item->address ?? '',
-      '#description' => t('Address'),
+      '#description' => t('Enter address or coordinates (e.g. "56.1535557,10.2120222")'),
       '#states' => [
         'visible' => [
           ':input[name="' . $parentNameSelector . '[type]"]' => ['value' => MapItem::TYPE_ADDRESS],

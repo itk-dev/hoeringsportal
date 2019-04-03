@@ -1,4 +1,5 @@
 require('../css/hearing-edit.scss')
+const dawaAutocomplete2 = require('dawa-autocomplete2');
 
 window.addEventListener('load', function() {
   const config = {
@@ -16,7 +17,7 @@ window.addEventListener('load', function() {
     address.parentNode.replaceChild(addressWrapper, address);
     addressWrapper.appendChild(address);
 
-    dawaAutocomplete.dawaAutocomplete(address, {
+    dawaAutocomplete2.dawaAutocomplete(address, {
       select: function(selected) {
         fetch(selected.data.href)
           .then(function(response) {

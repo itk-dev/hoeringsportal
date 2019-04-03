@@ -60,7 +60,13 @@ class MapItemHelper {
             break;
 
           case MapItem::TYPE_ADDRESS:
-            $coordinates = $this->dawa->getCoordinates($item->address);
+            $coordinates = NULL;
+            if (preg_match('/(?P<lat>[0-9.]+)\s*,(?P<lng>\s*[0-9.]+)/', $item->address, $matches)) {
+              $coordinates = [$matches['lat'], $matches['lng']];
+            }
+            else {
+              $coordinates = $this->dawa->getCoordinates($item->address);
+            }
             $geojson = [
               'properties' => [
                 'address' => $item->address,
