@@ -22,7 +22,7 @@ class MapsController extends ControllerBase {
       $widgetUrl = $this->getUrlGenerator()->generateFromRoute('hoeringsportal_data.maps_controller_widget', ['id' => $widget]);
 
       $content['map'] = [
-        '#markup' => '<div class="maps-septima" data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',
+        '#markup' => '<div class="maps-septima" data-widget-height="100%" data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',
         '#attached' => [
           'library' => [
             'hoeringsportal_data/septima-widget',
