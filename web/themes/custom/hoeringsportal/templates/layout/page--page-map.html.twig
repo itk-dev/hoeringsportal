@@ -63,4 +63,8 @@
       var map = new WidgetAPI(target, config);
     });
   </script>
+
+  {% if page.content.itkadminlinks|default(false) %}
+    {{ page.content.itkadminlinks }}
+  {% endif %}
 </div>
