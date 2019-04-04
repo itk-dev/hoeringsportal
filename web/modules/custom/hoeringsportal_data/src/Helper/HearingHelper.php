@@ -59,15 +59,14 @@ class HearingHelper {
     }
 
     $now = $this->getDateTime();
-    $startTime = $this->getDateTime($hearing->field_start_date->value);
+    $startTime = $hearing->field_start_date->date;
+    $endTime = $hearing->field_reply_deadline->date;
 
-    if ($startTime > $now) {
+    if (empty($startTime) || $startTime > $now) {
       return self::STATE_UPCOMING;
     }
 
-    $endTime = $this->getDateTime($hearing->field_reply_deadline->value);
-
-    if ($endTime < $now) {
+    if (!empty($endTime) && $endTime < $now) {
       return self::STATE_FINISHED;
     }
 
@@ -82,7 +81,7 @@ class HearingHelper {
       return FALSE;
     }
 
-    $deadline = $node->field_reply_deadline->value;
+    $deadline = $node->field_reply_deadline->date;
 
     if (empty($deadline)) {
       return FALSE;
@@ -120,8 +119,8 @@ class HearingHelper {
   /**
    * Get a date time object.
    */
-  private function getDateTime($time = 'now') {
-    return new DrupalDateTime($time);
+  private function getDateTime($time = 'now', $timezone = 'UTC') {
+    return new DrupalDateTime($time, $timezone);
   }
 
 }
