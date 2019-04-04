@@ -32,6 +32,17 @@ function hoeringsportal_data_preprocess_page(&$variables) {
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function hoeringsportal_data_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ('node_page_map_edit_form' === $form_id) {
+    // Quick'n'dirty hacks to the text area.
+    $form['field_map_configuration']['widget'][0]['value']['#attributes']['style'] = 'font-family: monospace';
+    $form['field_map_configuration']['widget'][0]['value']['#rows'] = 50;
+  }
+}
+
+/**
  * Implements hook_entity_bundle_field_info_alter().
  */
 
