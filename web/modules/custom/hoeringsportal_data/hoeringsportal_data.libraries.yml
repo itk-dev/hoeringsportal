@@ -6,7 +6,14 @@ hearing-edit:
   js:
     build/hearing-edit.js: {preprocess: false}
 
-septima-widget:
+septima-widget-config:
   version: VERSION
   js:
     https://widgetconfig.septima.dk/widgetconfig.js: { type: external }
+
+septima-widget-api:
+  version: VERSION
+  js:
+    https://widgetconfig.septima.dk/widgetapi.js: { type: external }
+
+

@@ -25,7 +25,7 @@ class MapsController extends ControllerBase {
         '#markup' => '<div class="maps-septima" data-widget-height="100%" data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',
         '#attached' => [
           'library' => [
-            'hoeringsportal_data/septima-widget',
+            'hoeringsportal_data/septima-widget-config',
           ],
         ],
       ];
@@ -106,8 +106,8 @@ SELECT 1 AS index,
        project_title,
        project_teaser,
        project_description,
-       project_start,
-       project_finish,
+       project_start AS starttime,
+       project_finish AS endtime,
        project_url,
        the_geom
   FROM (SELECT project_id,
@@ -133,8 +133,8 @@ SELECT 2 AS index,
        project_title,
        project_teaser,
        project_description,
-       project_start,
-       project_finish,
+       project_start AS starttime,
+       project_finish AS endtime,
        project_url,
        the_geom
   FROM (SELECT project_id,
@@ -158,8 +158,8 @@ SELECT 3 AS index,
        project_title,
        project_teaser,
        project_description,
-       project_start,
-       project_finish,
+       project_start AS starttime,
+       project_finish AS endtime,
        project_url,
        the_geom
   FROM table_f_ey6qadbbgt2t7plublg AS project
@@ -171,6 +171,8 @@ SELECT 3 AS index,
             'features_style' => [
               'namedstyle' => '#001',
             ],
+
+            // 'multifeature'
 
             'template_info' => '
 <div class="widget-hoverbox-title">{{project_title}}</div>
@@ -185,19 +187,20 @@ SELECT 3 AS index,
             'layername' => 'project_local_plan',
             'name' => 'Initiativer',
             'type' => 'geojson',
-            '//userfilter' => [
-              'project_start' => [
+            'userfilter' => [
+              'starttime' => [
                 'type' => 'daterange',
-                'label' => 'Start (vælg fra og til)',
-                'maxDateColumn' => 'project_start_date',
+                'combine' => true,
+                'label' => 'Høring i gang (vælg fra og til)',
+                'maxDateColumn' => 'endtime',
                 'format' => 'DD/MM/YYYY',
-                'min' => 'today-30d',
-                'max' => 'today+1y',
-                'startDate' => 'today-30d',
+                // 'min' => 'today-30d',
+                // 'max' => 'today+1y',
+                'startDate' => 'today-1y',
                 'endDate' => 'today+1y',
                 'urlParamNames' => [
-                  'min' => 'startdato',
-                  'max' => 'slutdato',
+                  'min' => 'starttime',
+                  'max' => 'endtime',
                 ],
                 'showShortcuts' => TRUE,
                 'shortcuts' => [
@@ -205,28 +208,6 @@ SELECT 3 AS index,
                     'week',
                     'month',
                     'year',
-                  ],
-                ],
-              ],
-              'project_finish' => [
-                'type' => 'daterange',
-                'label' => 'Slut (vælg fra og til)',
-                'maxDateColumn' => 'project_reply_deadline',
-                'format' => 'DD/MM/YYYY',
-                // 'min' => 'today-30d',
-                // 'max' => 'today+1y',
-                // 'startDate' => 'today-30d',
-                // 'endDate' => 'today+1y',.
-                'urlParamNames' => [
-                  'min' => 'startdato',
-                  'max' => 'slutdato',
-                ],
-                'showShortcuts' => TRUE,
-                'shortcuts' => [
-                  'next' => [
-                    0 => 'week',
-                    1 => 'month',
-                    2 => 'year',
                   ],
                 ],
               ],
@@ -250,8 +231,8 @@ SELECT 1 AS index,
        hearing_description,
        hearing_content_state,
        hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
+       hearing_start_date AS starttime,
+       hearing_reply_deadline AS endtime,
        hearing_url,
        hearing_project_url,
        hearing_replies_count,
@@ -289,8 +270,8 @@ SELECT 2 AS index,
        hearing_description,
        hearing_content_state,
        hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
+       hearing_start_date AS starttime,
+       hearing_reply_deadline AS endtime,
        hearing_url,
        hearing_project_url,
        hearing_replies_count,
@@ -326,8 +307,8 @@ SELECT 3 AS index,
        hearing_description,
        hearing_content_state,
        hearing_type,
-       hearing_reply_deadline,
-       hearing_start_date,
+       hearing_start_date AS starttime,
+       hearing_reply_deadline AS endtime,
        hearing_url,
        hearing_project_url,
        hearing_replies_count,
@@ -350,8 +331,8 @@ SELECT 3 AS index,
  <% if ("(intet)" !== hearing_project_title) { %><div>Project: <a href="{{hearing_project_url}}">{{hearing_project_title}}</a></div><% } %>
  <div>{{hearing_teaser}} <a href="{{hearing_url}}">Læs mere …</a></div>
  <div>#replies: <a href="{{hearing_replies_url}}">{{hearing_replies_count}}</a></div>
- <div>Høringsstart: <% print(moment(hearing_start_date).format("DD/MM/YYYY"))%></div>
- <div>Høringsfrist: <% print(moment(hearing_reply_deadline).format("DD/MM/YYYY"))%></div>
+ <div>Høringsstart: <% print(moment(starttime).format("DD/MM/YYYY"))%></div>
+ <div>Høringsfrist: <% print(moment(endtime).format("DD/MM/YYYY"))%></div>
  <div>Status: {{hearing_content_state}}</div>
 </div>
             ',
@@ -361,18 +342,19 @@ SELECT 3 AS index,
             'name' => 'Høringer',
             'type' => 'geojson',
             'userfilter' => [
-              'hearing_start_date' => [
+              'starttime' => [
                 'type' => 'daterange',
+                'combine' => true,
                 'label' => 'Høring i gang (vælg fra og til)',
-                'maxDateColumn' => 'hearing_start_date',
+                'maxDateColumn' => 'endtime',
                 'format' => 'DD/MM/YYYY',
                 // 'min' => 'today-30d',
                 // 'max' => 'today+1y',
-                // 'startDate' => 'today-30d',
-                // 'endDate' => 'today+1y',.
+                'startDate' => 'today-1y',
+                'endDate' => 'today+1y',
                 'urlParamNames' => [
-                  'min' => 'startdato',
-                  'max' => 'slutdato',
+                  'min' => 'starttime',
+                  'max' => 'endtime',
                 ],
                 'showShortcuts' => TRUE,
                 'shortcuts' => [
@@ -580,8 +562,8 @@ SELECT * FROM jnt6324g5clm1was_ttepg WHERE hearing_geometry_type = \'point\'
 <div class="widget-hoverbox-title">{{hearing_title}}</div>
 <div class="widget-hoverbox-sub">
  <div>{{hearing_teaser}} <a href="{{hearing_url}}">Læs mere …</a></div>
- <div>Start: <% print(moment(hearing_start_date).format("DD/MM/YYYY"))%></div>
- <div>Slut: <% print(moment(hearing_reply_deadline).format("DD/MM/YYYY"))%></div>
+ <div>Start: <% print(moment(starttime).format("DD/MM/YYYY"))%></div>
+ <div>Slut: <% print(moment(endtime).format("DD/MM/YYYY"))%></div>
 </div>
             ',
             // 'template_search_title' => '{{project_title}}',

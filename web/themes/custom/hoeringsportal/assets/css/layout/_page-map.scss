@@ -1,0 +1,9 @@
+.page--page-map {
+  .container-full {
+    height: calc(100vh - 96px);
+
+    #map {
+      height: 100%;
+    }
+  }
+}

@@ -5,12 +5,51 @@
  * This is a file.
  */
 
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_data_preprocess_page(&$variables) {
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    if ('page_map' === $node->bundle()) {
+      $value = $node->get('field_map_configuration')->value;
+      $configuration = NULL;
+      try {
+        $configuration = Yaml::parse($value);
+      }
+      catch (ParseException $parseException) {
+//        throw $parseException;
+      }
+      if (null === $configuration) {
+        $configuration = \json_decode($value);
+      }
+      $variables['map_configuration'] = $configuration;
+
+      $variables['#attached']['library'][] = 'hoeringsportal_data/septima-widget-api';
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function hoeringsportal_data_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ('node' === $entity_type->id() && 'page_map' === $bundle && isset($fields['field_map_configuration'])) {
+    $fields['field_map_configuration']->addConstraint('MapConfiguration');
+  }
+}
 
 /**
  * Implements hook_node_presave().
