@@ -10,8 +10,8 @@ field_name: field_map_configuration
 entity_type: node
 bundle: page_map
 label: 'Map configuration'
-description: ''
-required: false
+description: "Map configuration as JSON or YAML or a path (relative to the site's <code>files</code> folder) of a file containing JSON or YAML.\r\nThe value can also be a URL pointing to a JSON map configuration."
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

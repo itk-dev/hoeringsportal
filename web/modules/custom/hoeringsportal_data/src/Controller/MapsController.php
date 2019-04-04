@@ -172,7 +172,7 @@ SELECT 3 AS index,
               'namedstyle' => '#001',
             ],
 
-            // 'multifeature'
+            /* 'multifeature' */
 
             'template_info' => '
 <div class="widget-hoverbox-title">{{project_title}}</div>
@@ -190,12 +190,12 @@ SELECT 3 AS index,
             'userfilter' => [
               'starttime' => [
                 'type' => 'daterange',
-                'combine' => true,
+                'combine' => TRUE,
                 'label' => 'Høring i gang (vælg fra og til)',
                 'maxDateColumn' => 'endtime',
                 'format' => 'DD/MM/YYYY',
-                // 'min' => 'today-30d',
-                // 'max' => 'today+1y',
+                '//min' => 'today-30d',
+                '//max' => 'today+1y',
                 'startDate' => 'today-1y',
                 'endDate' => 'today+1y',
                 'urlParamNames' => [
@@ -344,12 +344,12 @@ SELECT 3 AS index,
             'userfilter' => [
               'starttime' => [
                 'type' => 'daterange',
-                'combine' => true,
+                'combine' => TRUE,
                 'label' => 'Høring i gang (vælg fra og til)',
                 'maxDateColumn' => 'endtime',
                 'format' => 'DD/MM/YYYY',
-                // 'min' => 'today-30d',
-                // 'max' => 'today+1y',
+                '//min' => 'today-30d',
+                '//max' => 'today+1y',
                 'startDate' => 'today-1y',
                 'endDate' => 'today+1y',
                 'urlParamNames' => [

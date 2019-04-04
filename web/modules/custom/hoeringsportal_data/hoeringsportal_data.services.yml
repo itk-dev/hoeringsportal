@@ -30,3 +30,6 @@ services:
     - '@entity_type.manager'
     - '@url_generator'
     - '@hoeringsportal_data.hearing_helper'
+
+  hoeringsportal_data.map_helper:
+    class: Drupal\hoeringsportal_data\Helper\MapHelper

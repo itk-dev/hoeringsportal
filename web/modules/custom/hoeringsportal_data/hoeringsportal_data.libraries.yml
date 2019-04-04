@@ -15,5 +15,3 @@ septima-widget-api:
   version: VERSION
   js:
     https://widgetconfig.septima.dk/widgetapi.js: { type: external }
-
-

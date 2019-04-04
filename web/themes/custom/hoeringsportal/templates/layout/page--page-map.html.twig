@@ -60,8 +60,7 @@
     window.addEventListener('load', function() {
       var target = document.getElementById('map');
       var config = {{ map_configuration|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
-      config['map']['height'] = '100%';
-      new WidgetAPI(target, config);
+      var map = new WidgetAPI(target, config);
     });
   </script>
 </div>

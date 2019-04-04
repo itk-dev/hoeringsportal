@@ -72,7 +72,7 @@ function hoeringsportal_theme_suggestions_page_alter(array &$suggestions, array 
     $suggestions[] = 'page__anonymous_forms';
   }
   if ($node = \Drupal::routeMatch()->getParameter('node')) {
-    $suggestions[] = 'page__'.$node->bundle();
+    $suggestions[] = 'page__' . $node->bundle();
   }
 }
 
@@ -142,7 +142,7 @@ function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array 
  */
 function hoeringsportal_preprocess_html(&$variables) {
   if ($node = \Drupal::request()->attributes->get('node')) {
-    $variables['attributes']['class'][] = 'page--'.str_replace('_', '-', $node->bundle());
+    $variables['attributes']['class'][] = 'page--' . str_replace('_', '-', $node->bundle());
   }
 }
 

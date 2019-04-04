@@ -7,31 +7,14 @@ dependencies:
     - field.field.node.page_map.field_map_type
     - node.type.page_map
   module:
-    - options
     - user
 id: node.page_map.default
 targetEntityType: node
 bundle: page_map
 mode: default
-content:
-  field_map_configuration:
-    weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_map_type:
-    weight: 2
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: content
-  links:
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
+content: {  }
 hidden:
+  field_map_configuration: true
+  field_map_type: true
   langcode: true
+  links: true

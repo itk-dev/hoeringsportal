@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_data\Plugin\Constraint;
+namespace Drupal\hoeringsportal_data\Plugin\Validation\Constraint;
 
 use Symfony\Component\Validator\Constraint;
 
@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraint;
  *   type = "string"
  * )
  */
-
 class MapConfiguration extends Constraint {
 
 }

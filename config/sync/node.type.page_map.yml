@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Page map'
+name: Kort
 type: page_map
-description: 'Page with a map view'
+description: 'Side med et stort kort'
 help: ''
 new_revision: true
 preview_mode: 1

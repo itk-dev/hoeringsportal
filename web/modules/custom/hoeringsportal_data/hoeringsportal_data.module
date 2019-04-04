@@ -12,8 +12,6 @@ use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Yaml\Exception\ParseException;
-use Symfony\Component\Yaml\Yaml;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -22,19 +20,13 @@ function hoeringsportal_data_preprocess_page(&$variables) {
   if ($node = \Drupal::request()->attributes->get('node')) {
     if ('page_map' === $node->bundle()) {
       $value = $node->get('field_map_configuration')->value;
-      $configuration = NULL;
-      try {
-        $configuration = Yaml::parse($value);
-      }
-      catch (ParseException $parseException) {
-//        throw $parseException;
-      }
-      if (null === $configuration) {
-        $configuration = \json_decode($value);
-      }
+      $helper = \Drupal::getContainer()->get('hoeringsportal_data.map_helper');
+      $configuration = $helper->parseConfiguration($value, TRUE);
       $variables['map_configuration'] = $configuration;
 
       $variables['#attached']['library'][] = 'hoeringsportal_data/septima-widget-api';
+
+      $variables['#cache']['tags'][] = 'node:' . $node->id();
     }
   }
 }
@@ -42,6 +34,7 @@ function hoeringsportal_data_preprocess_page(&$variables) {
 /**
  * Implements hook_entity_bundle_field_info_alter().
  */
+
 /**
  * Implements hook_entity_bundle_field_info_alter().
  */
