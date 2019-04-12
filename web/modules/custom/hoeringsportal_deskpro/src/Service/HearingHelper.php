@@ -61,7 +61,7 @@ class HearingHelper {
       return FALSE;
     }
 
-    $deadline = $node->field_reply_deadline->value;
+    $deadline = $node->field_reply_deadline->date;
 
     if (empty($deadline)) {
       return FALSE;
