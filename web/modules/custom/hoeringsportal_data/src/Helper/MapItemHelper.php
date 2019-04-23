@@ -61,8 +61,8 @@ class MapItemHelper {
 
           case MapItem::TYPE_ADDRESS:
             $coordinates = NULL;
-            if (preg_match('/(?P<lat>[0-9.]+)\s*,(?P<lng>\s*[0-9.]+)/', $item->address, $matches)) {
-              $coordinates = [$matches['lat'], $matches['lng']];
+            if (preg_match('/(?P<lat>[0-9.]+)\s*,\s*(?P<lng>[0-9.]+)/', $item->address, $matches)) {
+              $coordinates = [(float) $matches['lat'], (float) $matches['lng']];
             }
             else {
               $coordinates = $this->dawa->getCoordinates($item->address);
