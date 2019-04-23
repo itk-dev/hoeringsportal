@@ -59,25 +59,10 @@ class MapItemHelper {
             $geojson = $this->plandata->getGeojsonFromIds('planid', $ids);
             break;
 
-          case MapItem::TYPE_ADDRESS:
-            $coordinates = NULL;
-            if (preg_match('/(?P<lat>[0-9.]+)\s*,\s*(?P<lng>[0-9.]+)/', $item->address, $matches)) {
-              $coordinates = [(float) $matches['lat'], (float) $matches['lng']];
-            }
-            else {
-              $coordinates = $this->dawa->getCoordinates($item->address);
-            }
-            $geojson = [
-              'properties' => [
-                'address' => $item->address,
-              ],
-            ];
-            if (NULL !== $coordinates) {
-              $geojson['type'] = 'Feature';
-              $geojson['geometry'] = [
-                'type' => 'Point',
-                'coordinates' => $coordinates,
-              ];
+          case MapItem::TYPE_POINT:
+            $data = json_decode($item->point, TRUE);
+            if (isset($data['features'][0]['geometry']['type']) && 'Point' === $data['features'][0]['geometry']['type']) {
+              $geojson = $data['features'][0];
             }
             break;
         }

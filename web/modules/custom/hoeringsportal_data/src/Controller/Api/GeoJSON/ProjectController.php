@@ -20,7 +20,7 @@ class ProjectController extends ApiController {
     $conditions = [];
     switch ($geometry) {
       case GeoJsonHelper::GEOMETRY_POINT:
-        $conditions['field_map.type'] = [MapItem::TYPE_ADDRESS];
+        $conditions['field_map.type'] = [MapItem::TYPE_POINT];
         break;
 
       case GeoJsonHelper::GEOMETRY_LOCAL_PLAN:

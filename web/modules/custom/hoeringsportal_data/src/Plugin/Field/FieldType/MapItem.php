@@ -22,7 +22,7 @@ class MapItem extends FieldItemBase {
   const TYPE_GEOJSON = 'geojson';
   const TYPE_LOCALPLANIDS = 'localplanids';
   const TYPE_LOCALPLANIDS_NODE = 'localplanids_node';
-  const TYPE_ADDRESS = 'address';
+  const TYPE_POINT = 'point';
 
   /**
    * {@inheritdoc}
@@ -46,9 +46,9 @@ class MapItem extends FieldItemBase {
           'type' => 'varchar',
           'length' => 255,
         ],
-        'address' => [
-          'type' => 'varchar',
-          'length' => 255,
+        self::TYPE_POINT => [
+          'type' => 'text',
+          'size' => 'normal',
         ],
       ],
     ];
@@ -75,8 +75,8 @@ class MapItem extends FieldItemBase {
         ->setLabel(t('Local plan ids'))
         ->setRequired(FALSE),
 
-      'address' => DataDefinition::create('string')
-        ->setLabel(t('Address'))
+      self::TYPE_POINT => DataDefinition::create('string')
+        ->setLabel(t('Point'))
         ->setRequired(FALSE),
     ];
   }

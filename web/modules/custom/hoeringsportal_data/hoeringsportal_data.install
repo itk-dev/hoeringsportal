@@ -7,6 +7,7 @@
 
 use Drupal\Core\Entity\Sql\SqlContentEntityStorage;
 use Drupal\Core\Entity\Sql\SqlContentEntityStorageException;
+use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 
 /**
  * Lifted from google_map_field.install.
@@ -111,10 +112,10 @@ function _hoeringsportal_data_add_columns_to_schema(array $columns_to_add, $fiel
 }
 
 /**
- * Add "address" to Map item field.
+ * Add "point" to Map item field.
  */
 function hoeringsportal_data_update_8001() {
-  $columns_to_add = ['address'];
+  $columns_to_add = [MapItem::TYPE_POINT];
   $field_id = 'hoeringsportal_data_map';
 
   _hoeringsportal_data_add_columns_to_schema($columns_to_add, $field_id);

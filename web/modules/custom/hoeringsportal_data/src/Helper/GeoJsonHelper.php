@@ -281,7 +281,7 @@ class GeoJsonHelper {
     }
 
     switch ($value[0]['type']) {
-      case MapItem::TYPE_ADDRESS:
+      case MapItem::TYPE_POINT:
         return self::GEOMETRY_POINT;
 
       case MapItem::TYPE_LOCALPLANIDS:
@@ -319,7 +319,7 @@ class GeoJsonHelper {
 
     // For now we're only interested in points.
     // Other map data will be joined into hearing data.
-    if (MapItem::TYPE_ADDRESS !== $value[0]['type']) {
+    if (MapItem::TYPE_POINT !== $value[0]['type']) {
       return self::$emptyGeometry;
     }
 

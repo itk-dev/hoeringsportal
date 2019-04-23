@@ -36,7 +36,7 @@ class MapDefaultWidget extends WidgetBase {
 
     $typeOptions = [
       MapItem::TYPE_LOCALPLANIDS => t('Local plan ids'),
-      MapItem::TYPE_ADDRESS => t('Point'),
+      MapItem::TYPE_POINT => t('Point'),
     ];
     if (MapItemHelper::hasLocalplanField($items->getEntity())) {
       $typeOptions[MapItem::TYPE_LOCALPLANIDS_NODE] = t('Local plan ids from node');
@@ -78,14 +78,27 @@ class MapDefaultWidget extends WidgetBase {
         ],
       ],
     ];
-    $element['address'] = [
-      '#type' => 'textfield',
-      '#title' => t('Address'),
-      '#default_value' => $item->address ?? '',
-      '#description' => t('Enter address or coordinates (e.g. "56.1535557,10.2120222")'),
+    $element[MapItem::TYPE_POINT] = [
+      '#type' => 'hidden',
+      '#default_value' => $item->point ?? '',
+    ];
+
+    $element[MapItem::TYPE_POINT . '-widget'] = [
+      '#type' => 'container',
       '#states' => [
         'visible' => [
-          ':input[name="' . $parentNameSelector . '[type]"]' => ['value' => MapItem::TYPE_ADDRESS],
+          ':input[name="' . $parentNameSelector . '[type]"]' => ['value' => MapItem::TYPE_POINT],
+        ],
+      ],
+
+      'septima-widget' => [
+        '#type' => 'container',
+        '#title' => __METHOD__,
+        '#description' => t('Enter address or coordinates (e.g. "56.1535557,10.2120222")'),
+        '#attributes' => [
+          'class' => ['septima-widget'],
+          'data-value' => $item->point ?? '',
+          'data-value-target' => '[name="' . $parentNameSelector . '[' . MapItem::TYPE_POINT . ']',
         ],
       ],
     ];

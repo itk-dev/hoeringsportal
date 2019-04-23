@@ -4,6 +4,7 @@ hearing-edit:
     theme:
       build/hearing-edit.css: {}
   js:
+    https://widgetconfig.septima.dk/widgetapi.js: { type: external }
     build/hearing-edit.js: {preprocess: false}
 
 septima-widget-config:
