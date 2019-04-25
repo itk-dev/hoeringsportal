@@ -121,6 +121,10 @@ class HearingTicketAddForm extends FormBase {
       '#type' => 'hidden',
     ];
 
+    $form['postal_code'] = [
+      '#type' => 'hidden',
+    ];
+
     $form['address_secret'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('My address is secret'),
@@ -240,6 +244,7 @@ class HearingTicketAddForm extends FormBase {
       'email',
       'address_secret',
       'address',
+      'postal_code',
       'geolocation',
       'representation',
       'organization',
