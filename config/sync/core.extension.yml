@@ -24,7 +24,6 @@ module:
   field_ui: 0
   file: 0
   filter: 0
-  hoeringsportal_api: 0
   hoeringsportal_config_settings: 0
   hoeringsportal_content_blocks: 0
   hoeringsportal_data: 0
@@ -59,7 +58,6 @@ module:
   responsive_image: 0
   samlauth: 0
   search: 0
-  serialization: 0
   system: 0
   system_status: 0
   taxonomy: 0

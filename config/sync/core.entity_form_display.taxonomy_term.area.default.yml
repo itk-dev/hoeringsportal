@@ -3,12 +3,20 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.area.field_area_id
     - taxonomy.vocabulary.area
 id: taxonomy_term.area.default
 targetEntityType: taxonomy_term
 bundle: area
 mode: default
 content:
+  field_area_id:
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
   name:
     type: string_textfield
     weight: 0

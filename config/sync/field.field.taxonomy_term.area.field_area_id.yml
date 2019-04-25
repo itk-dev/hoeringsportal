@@ -1,0 +1,23 @@
+uuid: 6fbf33e8-56bf-4d50-944d-c5fb43d7152a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_area_id
+    - taxonomy.vocabulary.area
+id: taxonomy_term.area.field_area_id
+field_name: field_area_id
+entity_type: taxonomy_term
+bundle: area
+label: Postnummer
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
