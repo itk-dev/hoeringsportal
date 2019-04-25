@@ -5,12 +5,55 @@
  * This is a file.
  */
 
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_data_preprocess_page(&$variables) {
+  if ($node = \Drupal::request()->attributes->get('node')) {
+    if ('page_map' === $node->bundle()) {
+      $value = $node->get('field_map_configuration')->value;
+      $helper = \Drupal::getContainer()->get('hoeringsportal_data.map_helper');
+      $configuration = $helper->parseConfiguration($value, TRUE);
+      $variables['map_configuration'] = $configuration;
+
+      $variables['#attached']['library'][] = 'hoeringsportal_data/septima-widget-api';
+
+      $variables['#cache']['tags'][] = 'node:' . $node->id();
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hoeringsportal_data_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ('node_page_map_edit_form' === $form_id) {
+    // Quick'n'dirty hacks to the text area.
+    $form['field_map_configuration']['widget'][0]['value']['#attributes']['style'] = 'font-family: monospace';
+    $form['field_map_configuration']['widget'][0]['value']['#rows'] = 50;
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+
+/**
+ * Implements hook_entity_bundle_field_info_alter().
+ */
+function hoeringsportal_data_entity_bundle_field_info_alter(&$fields, EntityTypeInterface $entity_type, $bundle) {
+  if ('node' === $entity_type->id() && 'page_map' === $bundle && isset($fields['field_map_configuration'])) {
+    $fields['field_map_configuration']->addConstraint('MapConfiguration');
+  }
+}
 
 /**
  * Implements hook_node_presave().

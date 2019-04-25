@@ -17,7 +17,7 @@
 <h5 class="mt-3">{{ 'Name'|t }}</h5>
 <p>{{ ticket.person.name }}</p>
 <h5 class="mt-3">{{ 'Sent d.'|t }}</h5>
-<p>{{ ticket.date_created|date('j. F Y') }}</p>
+<p>{{ ticket.date_created|date('U')|format_date('short') }}</p>
 
 {% set represents = deskpro_ticket_custom_field(ticket, 'representation') %}
 {% if represents %}

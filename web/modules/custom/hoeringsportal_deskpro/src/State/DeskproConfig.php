@@ -74,6 +74,7 @@ class DeskproConfig extends DatabaseStorage {
     'organization' => 'Organization (used with representation)',
     'address_secret' => 'Address is secret',
     'address' => 'Address',
+    'postal_code' => 'Postal code',
     'geolocation' => 'Geo location',
     'message' => 'The actual hearing answer',
     'files' => 'Attached files',

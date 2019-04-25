@@ -13,7 +13,6 @@ services:
 
   phpfpm:
     image: itkdev/php7.2-fpm:latest
-    restart: always
     environment:
       - PHP_XDEBUG=${PHP_XDEBUG:-0}
       - PHP_XDEBUG_REMOTE_AUTOSTART=0
@@ -30,8 +29,8 @@ services:
     depends_on:
       - phpfpm
       - memcached
-    # ports:
-    #   - '80'
+    ports:
+      - '80'
     volumes:
       - ${PWD}/.docker/vhost.conf:/etc/nginx/conf.d/default.conf:ro
       - ./:/app:delegated
@@ -47,7 +46,6 @@ services:
 
   mailhog:
     image: mailhog/mailhog
-    restart: always
     ports:
       - "1025"
       - "8025"

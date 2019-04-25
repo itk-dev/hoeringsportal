@@ -1,0 +1,23 @@
+uuid: 518b38b6-a4f9-4dd2-8ebd-e631cc4e6abf
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_type
+    - node.type.page_map
+  module:
+    - options
+id: node.page_map.field_map_type
+field_name: field_map_type
+entity_type: node
+bundle: page_map
+label: 'Map type'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: septima_widget
+default_value_callback: ''
+settings: {  }
+field_type: list_string

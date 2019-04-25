@@ -1,0 +1,20 @@
+uuid: 0db8c7df-f6f3-4f9d-90a4-45f4137ca4ec
+langcode: da
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_area_id
+field_name: field_area_id
+entity_type: taxonomy_term
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

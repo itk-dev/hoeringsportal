@@ -2,11 +2,13 @@ window.addEventListener('load', function() {
     var config = {
         fields: {
             address: 'edit-address',
+            postalCode: 'edit-postal-code',
             geolocation: 'edit-geolocation'
         }
     };
 
     var address = document.querySelector('[data-drupal-selector="'+config.fields.address+'"]');
+    var postalCode = document.querySelector('[data-drupal-selector="'+config.fields.postalCode+'"]');
     var geolocation = document.querySelector('[data-drupal-selector="'+config.fields.geolocation+'"]');
 
     if (null !== address) {
@@ -24,9 +26,12 @@ window.addEventListener('load', function() {
                     })
                     .then(function(json) {
                         try {
-                            var coords = json.adgangsadresse.adgangspunkt.koordinater;
                             if (null !== geolocation) {
+                                var coords = json.adgangsadresse.adgangspunkt.koordinater;
                                 geolocation.value = coords[0]+', '+coords[1];
+                            }
+                            if (null !== postalCode) {
+                                postalCode.value = json.adgangsadresse.postnummer.nr;
                             }
                         } catch (e) {}
                     });

@@ -1,0 +1,24 @@
+.page--page-map {
+  .container-full {
+    height: calc(100vh - 96px);
+
+    #map {
+      height: 100%;
+    }
+  }
+
+  // Pull admin links to bottom center of page.
+  .itk-admin-links--icon,
+  .itk-admin-links--items {
+    right: 50%;
+    z-index: 10000;
+  }
+
+  .itk-admin-links--icon {
+    right: 50%;
+  }
+
+  .itk-admin-links--items {
+    right: calc(50% + 4.5em);
+  }
+}

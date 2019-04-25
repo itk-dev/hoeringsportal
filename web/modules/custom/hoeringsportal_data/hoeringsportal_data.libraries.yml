@@ -1,0 +1,18 @@
+hearing-edit:
+  version: VERSION
+  css:
+    theme:
+      build/hearing-edit.css: {}
+  js:
+    https://widgetconfig.septima.dk/widgetapi.js: { type: external }
+    build/hearing-edit.js: {preprocess: false}
+
+septima-widget-config:
+  version: VERSION
+  js:
+    https://widgetconfig.septima.dk/widgetconfig.js: { type: external }
+
+septima-widget-api:
+  version: VERSION
+  js:
+    https://widgetconfig.septima.dk/widgetapi.js: { type: external }
