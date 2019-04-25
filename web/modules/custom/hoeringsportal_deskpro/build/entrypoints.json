@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "form-ticket-add": {
+      "css": [
+        "/build/form-ticket-add.css"
+      ],
+      "js": [
+        "/build/form-ticket-add.js"
+      ]
+    }
+  }
+}
