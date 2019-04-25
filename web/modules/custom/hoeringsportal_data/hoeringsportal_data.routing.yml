@@ -1,0 +1,79 @@
+hoeringsportal_data.api_controller_index:
+  path: '/api'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\DefaultController::index'
+    _title: 'API'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings:
+  path: '/api/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::index'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings_show:
+  path: '/api/hearings/{hearing}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::show'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_hearings_tickets:
+  path: '/api/hearings/{hearing}/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\HearingController::tickets'
+    _title: 'Hearing tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_tickets:
+  path: '/api/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_projects:
+  path: '/api/geojson/projects'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\ProjectController::index'
+    _title: 'Projects'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_hearings:
+  path: '/api/geojson/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\HearingController::index'
+    _title: 'Hearings'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.api_controller_geojson_tickets:
+  path: '/api/geojson/tickets'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\TicketController::index'
+    _title: 'Tickets'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.maps_controller:
+  path: '/maps'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\MapsController::index'
+    _title: 'Maps'
+  requirements:
+    _permission: 'access content'
+
+hoeringsportal_data.maps_controller_widget:
+  path: '/maps/widget/{id}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\MapsController::widget'
+    _title: 'Maps configuration'
+  requirements:
+    _permission: 'access content'

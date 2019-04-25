@@ -3,12 +3,22 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.taxonomy_term.area.field_area_id
     - taxonomy.vocabulary.area
 id: taxonomy_term.area.default
 targetEntityType: taxonomy_term
 bundle: area
 mode: default
-content: {  }
+content:
+  field_area_id:
+    weight: -4
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
 hidden:
   description: true
   langcode: true

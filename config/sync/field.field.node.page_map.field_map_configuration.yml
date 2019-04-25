@@ -1,0 +1,19 @@
+uuid: ee760f5a-0a35-43b9-90c6-0b674cd3a49a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map_configuration
+    - node.type.page_map
+id: node.page_map.field_map_configuration
+field_name: field_map_configuration
+entity_type: node
+bundle: page_map
+label: 'Map configuration'
+description: "Map configuration as JSON or YAML or a path (relative to the site's <code>files</code> folder) of a file containing JSON or YAML.\r\nThe value can also be a URL pointing to a JSON map configuration."
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

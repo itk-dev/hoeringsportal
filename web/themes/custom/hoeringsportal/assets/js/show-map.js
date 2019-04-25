@@ -119,3 +119,9 @@ var map = new Map({
 
 var source = vectorLayer.getSource()
 map.getView().fit(source.getExtent(), map.getSize())
+
+// If the map contains only a single point we have reached max zoom level (which
+// defaults to 28). Zoom out a bit.
+if (map.getView().getZoom() > 15) {
+  map.getView().setZoom(15)
+}

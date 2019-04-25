@@ -11,7 +11,7 @@ id: node.hearing.field_start_date
 field_name: field_start_date
 entity_type: node
 bundle: hearing
-label: 'Start dato'
+label: Startdato
 description: 'Vælg startdato for høringen.'
 required: false
 translatable: false

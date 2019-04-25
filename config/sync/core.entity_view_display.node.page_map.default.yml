@@ -1,0 +1,20 @@
+uuid: 083997c1-7ceb-4542-a07a-62a06e202727
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.page_map.field_map_configuration
+    - field.field.node.page_map.field_map_type
+    - node.type.page_map
+  module:
+    - user
+id: node.page_map.default
+targetEntityType: node
+bundle: page_map
+mode: default
+content: {  }
+hidden:
+  field_map_configuration: true
+  field_map_type: true
+  langcode: true
+  links: true
