@@ -61,6 +61,30 @@
       var target = document.getElementById('map');
       var config = {{ map_configuration|json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
       var map = new WidgetAPI(target, config);
+
+      // Select feature in map by url fragment:
+      // #select=«layer id».«property name»:«property value»
+      var match = new RegExp('map.select=([a-z0-9_]+)\.([a-z0-9_]+):([a-z0-9]+)', 'i').exec(document.location.hash)
+      if (null !== match) {
+        var selectedLayer = match[1]
+        var selectedProperty = match[2]
+        var selectedValue = match[3]
+        for (var p in config.map.layer) {
+          if ('undefined' !== config.map.layer[p].id) {
+            var layerId = config.map.layer[p].id;
+            if (selectedLayer === layerId) {
+              map.selectFeatureInLayer(layerId, function (properties) {
+                return 'undefined' !== properties[selectedProperty] && selectedValue == properties[selectedProperty]
+              }, {
+                minResolution: 0.8,
+                zoomStyle: 'faster',
+                activateZoom: true
+              },
+              false)
+            }
+          }
+        }
+      }
     });
   </script>
 

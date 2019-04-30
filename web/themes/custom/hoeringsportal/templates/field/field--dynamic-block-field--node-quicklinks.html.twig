@@ -38,6 +38,14 @@
 #}
 
 <h3>{{ 'Content on this page'| t }}</h3>
+
+{% set node = element['#object']|default(null)  %}
+{% if null != node and 'active' == node.field_content_state.value|default('') %}
+<a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary btn-sm">
+  {{ 'Add hearing ticket'|trans }}
+</a>
+{% endif %}
+
 {% if label_hidden %}
   {% if multiple %}
     {% for item in items %}
