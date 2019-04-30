@@ -240,7 +240,9 @@ class GeoJsonHelper {
 
     $data = $ticket->data;
     $fields = $data->fields;
-    $properties += [
+    $properties = [
+      'ticket_id' => $data->id,
+      'ticket_hearing_id' => (int) $ticket->hearing->id(),
       'ticket_message' => $fields->message ?? NULL,
       'ticket_person_name' => $data->person->name ?? NULL,
       'ticket_organization' => $fields->organization ?? NULL,
