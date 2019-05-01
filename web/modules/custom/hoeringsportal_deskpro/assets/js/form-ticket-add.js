@@ -4,6 +4,8 @@ require('../css/form-ticket-add.css')
 
 const $ = require('jquery')
 require('jquery-validation')
+// IE 11 does not support Object.assign
+require('es6-object-assign/auto');
 const dawaAutocomplete = require('dawa-autocomplete2')
 
 $(() => {

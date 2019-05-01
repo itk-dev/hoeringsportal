@@ -136,7 +136,7 @@ class HearingTicketAddForm extends FormBase {
     foreach ($representations as $id => $representation) {
       $options[$id] = $representation['title'];
       if ($representation['require_organization']) {
-        $stateCondition[] = ['value' => $id];
+        $stateCondition[] = ['value' => (string) $id];
       }
     }
 
@@ -186,9 +186,7 @@ class HearingTicketAddForm extends FormBase {
     ];
 
     $form['hearing_consent_text'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'p',
-      '#value' => $this->config->get('consent'),
+      '#markup' => $this->config->get('consent'),
     ];
 
     $form['consent'] = [
