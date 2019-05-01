@@ -136,7 +136,7 @@ class HearingTicketAddForm extends FormBase {
     foreach ($representations as $id => $representation) {
       $options[$id] = $representation['title'];
       if ($representation['require_organization']) {
-        $stateCondition[] = ['value' => $id];
+        $stateCondition[] = ['value' => (string) $id];
       }
     }
 
