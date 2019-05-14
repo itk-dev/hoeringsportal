@@ -32,7 +32,7 @@
         "drupal/captcha": "^1.0@beta",
         "drupal/color_field": "^2.0",
         "drupal/console": "^1.0.2",
-        "drupal/core": "^8.6.0",
+        "drupal/core": "~8.6.0",
         "drupal/ds": "^3.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity_browser": "^1.5",
@@ -61,7 +61,7 @@
         "wikimedia/composer-merge-plugin": "^1.4"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "^8.6.0"
+        "webflo/drupal-core-require-dev": "~8.6.0"
     },
     "conflict": {
         "drupal/drupal": "*"
