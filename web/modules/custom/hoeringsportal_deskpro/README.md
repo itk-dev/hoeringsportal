@@ -16,3 +16,9 @@ hoeringsportal:deskpro:synchronize-endpoint
 ```
 Synchronizes hearing data with Deskpro.
 Shows information on data synchronization endpoint.
+
+Process Deskpro queue:
+
+```sh
+drush advancedqueue:queue:process hoeringsportal_deskpro
+```

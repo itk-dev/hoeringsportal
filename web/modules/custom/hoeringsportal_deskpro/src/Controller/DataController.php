@@ -65,7 +65,7 @@ class DataController extends ControllerBase implements AccessInterface {
   public function synchronizeHearing(Request $request) {
     try {
       $data = json_decode($request->getContent(), TRUE);
-      $result = $this->helper->synchronizeHearing($data);
+      $result = $this->helper->synchronizeHearing($data, $request->query->getBoolean('delayed'));
 
       return new JsonResponse($result);
     }

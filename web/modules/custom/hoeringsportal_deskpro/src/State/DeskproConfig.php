@@ -143,6 +143,13 @@ class DeskproConfig extends DatabaseStorage {
   }
 
   /**
+   * Get synchronization delay.
+   */
+  public function getSynchronizationDelay() {
+    return (int) $this->get('deskpro_synchronization_delay');
+  }
+
+  /**
    * Get hearing id prefix (must be set in settings.php).
    */
   public function getHearingIdPrefix() {

@@ -2,9 +2,9 @@
 
 namespace Drupal\hoeringsportal_deskpro\Commands;
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
+use Drupal\node\Entity\Node;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
 use Symfony\Component\Console\Exception\RuntimeException;
 
@@ -76,21 +76,29 @@ class DrushCommands extends BaseDrushCommands {
   /**
    * Shows information on data synchronization endpoint.
    *
+   * @param string|null $id
+   *   Hearing id.
+   *
    * @command hoeringsportal:deskpro:synchronize-endpoint
    */
-  public function synchronizeEndpoint() {
+  public function synchronizeEndpoint($id = -87) {
     $url = $this->helper->getDataSynchronizationUrl();
+    $urlDelayed = $this->helper->getDataSynchronizationUrl(TRUE);
+
     $headers = $this->helper->getDataSynchronizationHeaders();
-    $payload = $this->helper->getDataSynchronizationPayload();
+    $payload = $this->helper->getDataSynchronizationPayload($id);
 
     $this->output->writeln([
       'url:',
       $url,
       '',
+      'url (delayed):',
+      $urlDelayed,
+      '',
     ]);
     $this->output->writeln('headers:');
     foreach ($headers as $name => $value) {
-      $this->output->writeln($name . ' ' . $value);
+      $this->output->writeln($name . ': ' . $value);
     }
     $this->output->writeln('');
 
@@ -98,6 +106,25 @@ class DrushCommands extends BaseDrushCommands {
       'Example payload:',
       json_encode($payload, JSON_PRETTY_PRINT),
       '',
+    ]);
+
+    $curlCommand[] = 'curl';
+    $curlCommand[] = $url;
+    foreach ($headers as $name => $value) {
+      $curlCommand[] = '--header ' . escapeshellarg($name . ': ' . $value);
+    }
+    $curlCommand[] = '--data ' . escapeshellarg(json_encode($payload));
+
+    $this->output->writeln('Example curl commands:');
+    $this->output->writeln([
+      '',
+      implode(' ', $curlCommand),
+    ]);
+
+    array_splice($curlCommand, 1, 1, $urlDelayed);
+    $this->output->writeln([
+      '',
+      implode(' ', $curlCommand),
     ]);
   }
 

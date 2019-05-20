@@ -2,11 +2,14 @@
 
 namespace Drupal\hoeringsportal_deskpro\Service;
 
+use Drupal\advancedqueue\Entity\Queue;
+use Drupal\advancedqueue\Job;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
+use Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType\SynchronizeHearing;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerInterface;
@@ -302,8 +305,9 @@ class HearingHelper {
   /**
    * Get data synchronization url.
    */
-  public function getDataSynchronizationUrl() {
-    return Url::fromRoute('hoeringsportal_deskpro.data.synchronize.hearing', [], ['absolute' => TRUE])->toString();
+  public function getDataSynchronizationUrl($delayed = FALSE) {
+    $params = $delayed ? ['delayed' => TRUE] : [];
+    return Url::fromRoute('hoeringsportal_deskpro.data.synchronize.hearing', $params, ['absolute' => TRUE])->toString();
   }
 
   /**
@@ -311,7 +315,7 @@ class HearingHelper {
    */
   public function getDataSynchronizationHeaders() {
     return [
-      'x-deskpro-token:' => $this->deskpro->getToken(),
+      'x-deskpro-token' => $this->deskpro->getToken(),
     ];
   }
 
@@ -329,13 +333,22 @@ class HearingHelper {
   /**
    * Get data from Deskpro and store in hearing node.
    */
-  public function synchronizeHearing(array $payload = NULL) {
+  public function synchronizeHearing(array $payload = NULL, $delayed = FALSE) {
     $hearingIdfieldName = 'field' . $this->deskpro->getTicketHearingIdFieldId();
     if (!isset($payload['ticket'][$hearingIdfieldName])) {
       throw new \Exception('Invalid data');
     }
 
     $hearingId = $payload['ticket'][$hearingIdfieldName];
+
+    if ($delayed) {
+      $job = Job::create(SynchronizeHearing::class, $payload);
+      $queue = Queue::load('hoeringsportal_deskpro');
+      $delay = max($this->deskpro->getConfig()->getSynchronizationDelay(), 60);
+      $queue->enqueueJob($job, $delay);
+
+      return $job->toArray();
+    }
 
     $prefix = $this->getDeskproConfig()->getHearingIdPrefix();
     if ($prefix && 0 === strpos($hearingId, $prefix)) {
