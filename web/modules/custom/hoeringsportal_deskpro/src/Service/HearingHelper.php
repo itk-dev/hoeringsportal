@@ -341,6 +341,16 @@ class HearingHelper {
 
     $hearingId = $payload['ticket'][$hearingIdfieldName];
 
+    $prefix = $this->getDeskproConfig()->getHearingIdPrefix();
+    if ($prefix && 0 === strpos($hearingId, $prefix)) {
+      $hearingId = substr($hearingId, strlen($prefix));
+    }
+
+    $hearing = Node::load($hearingId);
+    if (!$this->isHearing($hearing)) {
+      throw new \Exception('Invalid hearing: ' . $hearingId);
+    }
+
     if ($delayed) {
       $job = Job::create(SynchronizeHearing::class, $payload);
       $queue = Queue::load('hoeringsportal_deskpro');
@@ -348,16 +358,6 @@ class HearingHelper {
       $queue->enqueueJob($job, $delay);
 
       return $job->toArray();
-    }
-
-    $prefix = $this->getDeskproConfig()->getHearingIdPrefix();
-    if ($prefix && 0 === strpos($hearingId, $prefix)) {
-      $hearingId = substr($hearingId, strlen($prefix));
-    }
-
-    $hearing = Node::load($hearingId);
-    if (NULL === $hearing) {
-      throw new \Exception('Invalid hearing: ' . $hearingId);
     }
 
     return $this->synchronizeHearingTickets($hearing);
