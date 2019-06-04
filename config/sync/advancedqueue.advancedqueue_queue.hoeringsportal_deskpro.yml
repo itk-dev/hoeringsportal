@@ -1,0 +1,12 @@
+uuid: 2d40fef1-dc25-4ba4-8805-24659f1089b4
+langcode: da
+status: true
+dependencies: {  }
+id: hoeringsportal_deskpro
+label: Deskpro
+backend: database
+backend_configuration:
+  lease_time: 300
+processor: daemon
+processing_time: 300
+locked: false

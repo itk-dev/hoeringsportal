@@ -228,6 +228,14 @@ class DeskproSettingsForm extends FormBase {
       '#description' => $this->t('Cache ttl in seconds.'),
     ];
 
+    $form['deskpro_integration']['deskpro_synchronization_delay'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Synchronization delay'),
+      '#required' => TRUE,
+      '#default_value' => $config->get('deskpro_synchronization_delay', 120),
+      '#description' => $this->t('Synchronization delay in seconds.'),
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
@@ -274,6 +282,7 @@ class DeskproSettingsForm extends FormBase {
       'deskpro_available_department_ids' => array_keys(array_filter($form_state->getValue('deskpro_available_department_ids'))),
       'deskpro_data_token' => $form_state->getValue('deskpro_data_token'),
       'deskpro_cache_ttl' => $form_state->getValue('deskpro_cache_ttl'),
+      'deskpro_synchronization_delay' => $form_state->getValue('deskpro_synchronization_delay'),
     ]);
 
     drupal_flush_all_caches();
