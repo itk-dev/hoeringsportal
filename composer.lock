@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "60442337c5fd9145f7e886817a59e961",
+    "content-hash": "9bcf7eac73b69c807654d04e6a600bfb",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2457,6 +2457,73 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/color_field",
                 "issues": "https://www.drupal.org/project/issues/color_field?version=8.x"
+            }
+        },
+        {
+            "name": "drupal/config_import_locale",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/config_import_locale.git",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_import_locale-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "aa91b8fb062eeb5b18f29c4baa63399158992d32"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1517237584",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "KevinVb",
+                    "homepage": "https://www.drupal.org/user/3087389"
+                },
+                {
+                    "name": "L_VanDamme",
+                    "homepage": "https://www.drupal.org/user/3162503"
+                },
+                {
+                    "name": "al0a",
+                    "homepage": "https://www.drupal.org/user/2841369"
+                },
+                {
+                    "name": "brentgees",
+                    "homepage": "https://www.drupal.org/user/3090845"
+                },
+                {
+                    "name": "falc0",
+                    "homepage": "https://www.drupal.org/user/356980"
+                },
+                {
+                    "name": "nielsaers",
+                    "homepage": "https://www.drupal.org/user/752444"
+                }
+            ],
+            "description": "Locale: Config import",
+            "homepage": "https://www.drupal.org/project/config_import_locale",
+            "support": {
+                "source": "https://git.drupalcode.org/project/config_import_locale"
             }
         },
         {
