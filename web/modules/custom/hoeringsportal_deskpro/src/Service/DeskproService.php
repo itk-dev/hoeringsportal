@@ -80,8 +80,8 @@ class DeskproService {
         'order_dir' => 'desc',
       ];
       $response = $this->get('/tickets', $query);
-      // Ordering does not make sense for sub-queries.
-      unset($query['order_by'], $query['order_dir']);
+      // Ordering and pagination does not make sense for sub-queries.
+      unset($query['order_by'], $query['order_dir'], $query['count'], $query['page']);
 
       $data = $response->getData();
       $data = $this->filterTickets($data);
