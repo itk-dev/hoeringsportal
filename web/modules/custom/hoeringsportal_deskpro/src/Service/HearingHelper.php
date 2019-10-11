@@ -372,13 +372,35 @@ class HearingHelper {
     }
 
     $deskproHearingId = $this->getHearingId($hearing);
-    $result = $this->deskpro->getHearingTickets($deskproHearingId, [
-      'expand' => ['fields', 'person', 'messages', 'attachments'],
-      'no_cache' => 1,
-      'count' => 100,
-    ]);
+
+    // The Deskpro API supports returning maximum 200 items per request.
+    $itemsPerPage = 100;
+    $currentPage = 1;
+    $totalPages = NULL;
+
+    // Get all tickets.
+    $tickets = [];
+    do {
+      $result = $this->deskpro->getHearingTickets($deskproHearingId, [
+        'expand' => ['fields', 'person', 'messages', 'attachments'],
+        'no_cache' => 1,
+        'count' => $itemsPerPage,
+        'page' => $currentPage,
+      ]);
+      $tickets[] = $result->getData();
+
+      $meta = $result->getMeta();
+
+      if (!isset($meta['pagination']['current_page'], $meta['pagination']['total_pages'])) {
+        break;
+      }
+
+      $currentPage = $meta['pagination']['current_page'] + 1;
+      $totalPages = $meta['pagination']['total_pages'];
+    } while ($currentPage <= $totalPages);
+
     $data = [
-      'tickets' => $result->getData(),
+      'tickets' => array_merge(...$tickets),
     ];
 
     $hearing->field_deskpro_data->value = json_encode($data);
