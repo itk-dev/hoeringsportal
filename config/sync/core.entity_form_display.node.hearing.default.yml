@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.itk_image_browser
     - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
@@ -17,6 +18,7 @@ dependencies:
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_more_info
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
@@ -85,12 +87,39 @@ third_party_settings:
       weight: 10
       format_type: details
       format_settings:
-        label: eDoc
         open: true
         required_fields: true
         id: ''
         classes: ''
       label: eDoc
+      region: content
+    group_contact:
+      children:
+        - field_contact
+      parent_name: ''
+      weight: 11
+      format_type: details
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+        required_fields: false
+      label: Kontakt
+      region: content
+    group_more_info:
+      children:
+        - field_more_info
+      parent_name: ''
+      weight: 13
+      format_type: details
+      format_settings:
+        description: ''
+        open: true
+        id: ''
+        classes: ''
+        required_fields: false
+      label: 'Vil du vide mere?'
       region: content
 id: node.hearing.default
 targetEntityType: node
@@ -102,6 +131,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
+  field_contact:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_description:
     weight: 2
@@ -182,6 +219,14 @@ content:
       field_widget_replace: false
     third_party_settings: {  }
     type: entity_browser_entity_reference
+    region: content
+  field_more_info:
+    weight: 14
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_project_reference:
     weight: 30
