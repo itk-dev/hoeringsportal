@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.hearing_ticket_add
     - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
@@ -17,6 +18,7 @@ dependencies:
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_more_info
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
@@ -27,6 +29,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - text
     - user
 third_party_settings:
   ds:
@@ -62,8 +65,8 @@ third_party_settings:
         - field_tags
         - field_area
         - 'dynamic_token_field:node-node_id_hearing'
-        - 'dynamic_block_field:node-node_address'
-        - 'dynamic_block_field:node-node_more_info'
+        - field_contact
+        - field_more_info
     fields:
       'dynamic_block_field:node-hearing_ticket_add':
         plugin_id: 'dynamic_block_field:node-hearing_ticket_add'
@@ -74,16 +77,6 @@ third_party_settings:
         plugin_id: 'dynamic_block_field:node-hearing_ticket_title'
         weight: 0
         label: hidden
-        formatter: default
-      'dynamic_block_field:node-node_address':
-        plugin_id: 'dynamic_block_field:node-node_address'
-        weight: 11
-        label: above
-        formatter: default
-      'dynamic_block_field:node-node_more_info':
-        plugin_id: 'dynamic_block_field:node-node_more_info'
-        weight: 12
-        label: above
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
@@ -117,6 +110,13 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_contact:
+    type: text_default
+    weight: 11
+    region: right
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   field_hearing_type:
     type: entity_reference_label
     weight: 6
@@ -124,6 +124,13 @@ content:
     label: above
     settings:
       link: false
+    third_party_settings: {  }
+  field_more_info:
+    type: text_default
+    weight: 12
+    region: right
+    label: above
+    settings: {  }
     third_party_settings: {  }
   field_project_reference:
     type: entity_reference_label
