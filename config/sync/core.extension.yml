@@ -54,6 +54,7 @@ module:
   media_entity_image: 0
   media_entity_usage: 0
   menu_ui: 0
+  migrate_subject_data: 0
   node: 0
   options: 0
   page_cache: 0
