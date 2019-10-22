@@ -27,11 +27,10 @@ class MigrateSubjectDataCommands extends DrushCommands {
       foreach ($nodes as $node) {
         if (!empty($node->field_hearing_type->target_id)) {
           $node->field_contact->value = $terms[$node->field_hearing_type->target_id]['contact'];
-          $node->field_contact->format = 'full_html';
+          $node->field_contact->format = 'filtered_html';
           $node->field_more_info->value = $terms[$node->field_hearing_type->target_id]['more_info'];
-          $node->field_more_info->format = 'full_html';
+          $node->field_more_info->format = 'filtered_html';
           $node->save();
-          $this->output()->writeln(print_r($node->field_hearing_type->target_id));
         }
       }
 
