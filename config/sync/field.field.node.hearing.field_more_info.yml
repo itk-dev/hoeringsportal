@@ -1,0 +1,21 @@
+uuid: 5fc6e328-2516-4e54-81d9-68b8510ac4b8
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_more_info
+    - node.type.hearing
+  module:
+    - text
+id: node.hearing.field_more_info
+field_name: field_more_info
+entity_type: node
+bundle: hearing
+label: 'Vil du vide mere?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

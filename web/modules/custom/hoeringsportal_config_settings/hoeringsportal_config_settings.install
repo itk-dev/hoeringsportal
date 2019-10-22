@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Stuff related to updates and installation of this module.
+ */
+
+/**
+ * Enable migrate_subject_data and warn about a needed drush migration.
+ */
+function hoeringsportal_config_settings_update_8101() {
+  // Enable modules.
+  $module_list = [
+    'migrate_subject_data',
+  ];
+  \Drupal::service('module_installer')->install($module_list);
+  \Drupal::messenger()->addMessage(t('Run "drush migrate-subject-data" after configuration import to add contact and more info values from taxonomy to nodes.'), 'warning');
+}

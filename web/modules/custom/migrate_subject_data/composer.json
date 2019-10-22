@@ -1,0 +1,17 @@
+{
+  "name": "drupal/migrate_subject_data",
+  "description": "Migrate subject data from taxonomy to node.",
+  "type": "drupal-module",
+  "autoload": {
+    "psr-4": {
+      "Drupal\\migrate_subject_data\\": "src/"
+    }
+  },
+  "extra": {
+    "drush": {
+      "services": {
+        "drush.services.yml": "^9"
+      }
+    }
+  }
+}
