@@ -1,0 +1,5 @@
+name: Migrate subject data
+description: Migrates subject data from taxonomy to node
+core: 8.x
+type: module
+package: Hoeringsportal

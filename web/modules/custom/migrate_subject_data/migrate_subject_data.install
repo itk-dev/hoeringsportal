@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * @file
+ * Stuff related to installation and updates.
+ */
+
+/**
+ * Implements hook_requirements().
+ *
+ * Warn about state of migrations.
+ */
+function migrate_subject_data_requirements($phase) {
+  $requirements = [];
+
+  // If all is well don't do anything.
+  if (\Drupal::state()->get('subject_data_migrated') === 'migrated_and_removed') {
+    return $requirements;
+  }
+
+  // Look for existing fields.
+  $entityFieldManager = \Drupal::service('entity_field.manager');
+  $fields = $entityFieldManager->getFieldDefinitions('taxonomy_term', 'hearing_type');
+  $fields_exist = array_key_exists('field_contact', $fields) && array_key_exists('field_more_info', $fields) ? TRUE : FALSE;
+
+  switch ($phase) {
+    case 'runtime':
+      // Default state.
+      $sev = REQUIREMENT_WARNING;
+      $value = 'Run "drush migrate-subject-data" to migrate "field_contact" and "field_more_info" to nodes.';
+
+      // State after drush command has run.
+      if (\Drupal::state()->get('subject_data_migrated') === 'migrated') {
+        if ($fields_exist) {
+          // If old fields still exist we need to take action in future release.
+          $sev = REQUIREMENT_WARNING;
+          $value = 'Migrations have been done. The fields "field_contact" and "field_more_info" are no longer used and should be deleted to avoid confusion.';
+        }
+        else {
+          // First time we get here change status so we won't check again.
+          \Drupal::state()->set('subject_data_migrated', 'migrated_and_removed');
+          return $requirements;
+        }
+      }
+  }
+
+  $requirements['reroute_email_status'] = [
+    'title' => 'Migrate subject data: Migration warning',
+    'value' => $value,
+    'severity' => $sev,
+  ];
+
+  return $requirements;
+}
