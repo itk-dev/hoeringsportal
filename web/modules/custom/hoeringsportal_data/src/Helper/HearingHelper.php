@@ -90,6 +90,11 @@ class HearingHelper {
     return $this->getDateTime() > new DrupalDateTime($deadline);
   }
 
+  /**
+   * A list of conditions.
+   *
+   * @var array
+   */
   private $defaultConditions = [
     ['status', NodeInterface::PUBLISHED],
     ['type', self::NODE_TYPE_HEARING],

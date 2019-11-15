@@ -5,5 +5,4 @@ dependencies: {  }
 name: 'Tidslinje punkttyper'
 vid: timeline_item_types
 description: 'Typer af tidslinje punkter'
-hierarchy: 0
 weight: 0

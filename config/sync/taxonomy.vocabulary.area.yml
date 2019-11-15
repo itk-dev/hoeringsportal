@@ -5,5 +5,4 @@ dependencies: {  }
 name: Område
 vid: area
 description: 'Området vises i teaservisningen og kan bruges som filter på oversigter'
-hierarchy: 0
 weight: 0

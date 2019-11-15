@@ -28,6 +28,11 @@ class DeskproService {
    */
   private $languageManager;
 
+  /**
+   * The client.
+   *
+   * @var \GuzzleHttp\Client
+   */
   private $client;
 
   /**

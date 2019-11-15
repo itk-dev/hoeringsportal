@@ -5,5 +5,4 @@ dependencies: {  }
 name: Høringstype
 vid: hearing_type
 description: 'De forskellige høringstyper der kan vælges imellem når en høring oprettes'
-hierarchy: 0
 weight: 0
