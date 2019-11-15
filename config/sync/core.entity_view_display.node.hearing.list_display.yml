@@ -5,16 +5,22 @@ dependencies:
   config:
     - core.entity_view_mode.node.list_display
     - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_edoc_casefile_id
     - field.field.node.hearing.field_hearing_type
+    - field.field.node.hearing.field_lokalplaner
+    - field.field.node.hearing.field_map
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
+    - field.field.node.hearing.field_tags
     - field.field.node.hearing.field_teaser
     - field.field.node.hearing.field_video_embed
     - node.type.hearing
@@ -71,9 +77,11 @@ content:
 hidden:
   field_content_state: true
   field_description: true
+  field_deskpro_agent_email: true
   field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
+  field_edoc_casefile_id: true
   field_lokalplaner: true
   field_map: true
   field_map_display: true

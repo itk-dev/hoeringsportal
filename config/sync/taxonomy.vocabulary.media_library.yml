@@ -10,5 +10,4 @@ _core:
 name: 'Medie bibliotek'
 vid: media_library
 description: 'En taksonomi der kan bruges til at strukturere mediebiblioteket'
-hierarchy: 0
 weight: 0
