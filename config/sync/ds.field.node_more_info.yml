@@ -1,0 +1,10 @@
+id: node_more_info
+label: 'Vil du vide mere?'
+ui_limit: ''
+properties:
+  block: content_more_info
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node

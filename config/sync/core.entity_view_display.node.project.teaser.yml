@@ -21,6 +21,7 @@ dependencies:
     - field.field.node.project.field_tags
     - field.field.node.project.field_teaser
     - field.field.node.project.field_timeline_items
+    - field.field.node.project.field_video
     - node.type.project
   module:
     - datetime
@@ -84,5 +85,6 @@ hidden:
   field_related_content: true
   field_tags: true
   field_timeline_items: true
+  field_video: true
   langcode: true
   links: true

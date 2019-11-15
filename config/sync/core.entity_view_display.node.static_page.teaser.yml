@@ -4,7 +4,11 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.static_page.field_media_image_single
+    - field.field.node.static_page.field_section
+    - field.field.node.static_page.field_sidebar
     - field.field.node.static_page.field_teaser
+    - field.field.node.static_page.field_teaser_color
     - node.type.static_page
   module:
     - user
@@ -21,5 +25,9 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_media_image_single: true
+  field_section: true
+  field_sidebar: true
+  field_teaser_color: true
   langcode: true
   links: true

@@ -14,7 +14,18 @@ class Plandata {
   const PROJECTION_EPSG_4326 = 'EPSG:4326';
   const OUTPUT_FORMAT_JSON = 'application/json';
 
+  /**
+   * A Url.
+   *
+   * @var string
+   */
   private $wsfUrl;
+
+  /**
+   * A query.
+   *
+   * @var array
+   */
   private $wsfBaseQuery;
 
   /**

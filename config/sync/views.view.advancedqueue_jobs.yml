@@ -438,7 +438,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Message
+          label: Høringssvar
           exclude: false
           alter:
             alter_text: false
@@ -723,7 +723,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Page
+    display_title: Side
     position: 1
     display_options:
       display_extenders: {  }
