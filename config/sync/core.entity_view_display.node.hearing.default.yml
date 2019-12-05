@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
@@ -16,6 +17,7 @@ dependencies:
     - field.field.node.hearing.field_map_display
     - field.field.node.hearing.field_media_document
     - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_more_info
     - field.field.node.hearing.field_project_reference
     - field.field.node.hearing.field_reply_deadline
     - field.field.node.hearing.field_start_date
@@ -71,8 +73,8 @@ third_party_settings:
         - field_tags
         - field_area
         - 'dynamic_token_field:node-node_id_hearing'
-        - 'dynamic_block_field:node-node_address'
-        - 'dynamic_block_field:node-node_more_info'
+        - field_contact
+        - field_more_info
       footer:
         - field_map
         - 'dynamic_block_field:node-nearest_hearings'
@@ -90,16 +92,6 @@ third_party_settings:
       'dynamic_block_field:node-nearest_hearings':
         plugin_id: 'dynamic_block_field:node-nearest_hearings'
         weight: 22
-        label: above
-        formatter: default
-      'dynamic_block_field:node-node_address':
-        plugin_id: 'dynamic_block_field:node-node_address'
-        weight: 19
-        label: above
-        formatter: default
-      'dynamic_block_field:node-node_more_info':
-        plugin_id: 'dynamic_block_field:node-node_more_info'
-        weight: 20
         label: above
         formatter: default
       'dynamic_block_field:node-quicklinks':
@@ -144,6 +136,13 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_contact:
+    weight: 19
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
   field_description:
     type: text_default
     weight: 3
@@ -195,6 +194,13 @@ content:
         ds_limit: ''
     type: entity_reference_entity_view
     region: left
+  field_more_info:
+    weight: 20
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: right
   field_project_reference:
     type: entity_reference_label
     weight: 15

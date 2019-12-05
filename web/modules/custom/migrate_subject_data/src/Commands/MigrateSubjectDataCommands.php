@@ -31,6 +31,7 @@ class MigrateSubjectDataCommands extends DrushCommands {
           $node->field_more_info->value = $terms[$node->field_hearing_type->target_id]['more_info'];
           $node->field_more_info->format = 'filtered_html';
           $node->save();
+          $this->output()->writeln(print_r($node->field_hearing_type->target_id));
         }
       }
 
