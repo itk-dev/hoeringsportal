@@ -10,8 +10,9 @@
  * @see template_preprocess_select()
  */
 #}
+
 {% spaceless %}
-  <select{{ attributes.addclass('form-control form-control-lg rounded-0') }}>
+  <select aria-label="{{ options[0].label }}" {{ attributes.addclass('form-control form-control-lg rounded-0') }}>
     {% for option in options %}
       {% if option.type == 'optgroup' %}
         <optgroup label="{{ option.label }}">
