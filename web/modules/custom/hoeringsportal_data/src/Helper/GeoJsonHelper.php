@@ -377,7 +377,18 @@ class GeoJsonHelper {
   private function getReference($entity, $field_name) {
     $reference = $entity->get($field_name)->first();
 
-    return NULL !== $reference ? $reference->get('entity')->getTarget()->getValue() : NULL;
+    if (NULL === $reference) {
+      return NULL;
+    }
+
+    $entity = $reference->get('entity');
+    if (NULL === $entity) {
+      return NULL;
+    }
+
+    $target = $entity->getTarget();
+
+    return NULL !== $target ? $target->getValue() : NULL;
   }
 
   /**
