@@ -1,0 +1,29 @@
+uuid: 4dee5e8c-5078-48e6-b0da-ac8cf7640520
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hearing_type
+    - node.type.public_meeting
+    - taxonomy.vocabulary.hearing_type
+id: node.public_meeting.field_hearing_type
+field_name: field_hearing_type
+entity_type: node
+bundle: public_meeting
+label: Høringstype
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      hearing_type: hearing_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

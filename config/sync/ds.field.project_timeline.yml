@@ -1,9 +1,10 @@
 id: project_timeline
-label: Initiativforløb
+label: Tidslinje
 ui_limit: ''
 properties:
   block: project_timeline
   use_block_title: false
+  add_block_wrappers: false
 type: block
 type_label: 'Block field'
 entities:

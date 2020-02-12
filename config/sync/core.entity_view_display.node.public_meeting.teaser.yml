@@ -1,0 +1,21 @@
+uuid: 2185afa3-0244-43fc-ae96-3d86f4ebf902
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.public_meeting
+  module:
+    - user
+id: node.public_meeting.teaser
+targetEntityType: node
+bundle: public_meeting
+mode: teaser
+content:
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
