@@ -2,6 +2,7 @@
  * @file
  * Toggle admin menu.
  */
+
 (function ($) {
   "use strict";
 
@@ -9,7 +10,7 @@
   var admin_menu = $('.js-admin-menu');
   var overlay = $('.js-admin-overlay');
 
-  $(toggle_button).click(function() {
+  $(toggle_button).click(function () {
     admin_menu.toggleClass('is-open');
     toggle_button.toggleClass('is-open');
 
