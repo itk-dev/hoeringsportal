@@ -1,0 +1,17 @@
+uuid: 86ab4f91-7af7-43ba-ae1d-8d0f1f8be973
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Borgermøde
+type: public_meeting
+description: 'Et borgermøde'
+help: ''
+new_revision: true
+preview_mode: 0
+display_submitted: false

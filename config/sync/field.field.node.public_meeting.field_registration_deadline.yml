@@ -1,0 +1,24 @@
+uuid: c49b338c-87d4-4aaf-8078-4b2bf947af2b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_registration_deadline
+    - node.type.public_meeting
+  module:
+    - datetime
+id: node.public_meeting.field_registration_deadline
+field_name: field_registration_deadline
+entity_type: node
+bundle: public_meeting
+label: Tilmeldingsfrist
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

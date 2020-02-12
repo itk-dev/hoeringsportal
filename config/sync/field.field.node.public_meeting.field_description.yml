@@ -1,0 +1,21 @@
+uuid: f3382a03-e400-41ef-82f0-10b8e578af0c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.public_meeting
+  module:
+    - text
+id: node.public_meeting.field_description
+field_name: field_description
+entity_type: node
+bundle: public_meeting
+label: Beskrivelse
+description: 'Beskrivelse af borgemødet.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
