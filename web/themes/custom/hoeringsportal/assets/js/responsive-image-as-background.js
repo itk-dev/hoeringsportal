@@ -1,4 +1,5 @@
 /**
+ * @file
  * Change html responsive images to be used as css background images instead.
  */
 
@@ -28,14 +29,14 @@ class ResponsiveBackgroundImage {
   }
 }
 
-// eslint-disable-next-line no-undef
+/* eslint-disable-next-line no-undef */
 Drupal.behaviors.applyResponsiveBackground = {
 
   attach: function (context, settings) {
     // Look for data attribute.
     let elements = document.querySelectorAll('[data-responsive-background-image]')
     for (let i = 0; i < elements.length; i++) {
-      new ResponsiveBackgroundImage(elements[i]) // eslint-disable-line no-new
+      new ResponsiveBackgroundImage(elements[i]) /* eslint-disable-line no-new */
     }
   }
 }
