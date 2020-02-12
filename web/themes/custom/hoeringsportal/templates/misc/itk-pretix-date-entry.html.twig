@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Template for displaying a pretix date.
+ *
+ * Available variables:
+ * - variables: An array containing data about the pretix date.
+ */
+#}
+<tr>
+  <td><i class="fas fa-ticket-alt"></i></td>
+  <td>{{ variables.location }}</td>
+  <td>{{ variables.time_from|date('U')|format_date('custom', 'l j. F, Y') }}</td>
+  <td>{{ variables.time_from|date('U')|format_date('custom', 'H:i') }} - {{ variables.time_to|date('U')|format_date('custom', 'H:i') }}</td>
+  <td>{{ variables.spots }}</td>
+  <td><a href="#" class="btn btn-primary btn-sm">{{ 'Signup'|t }}</a></td>
+</tr>
