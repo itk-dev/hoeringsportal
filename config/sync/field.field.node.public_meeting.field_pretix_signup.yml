@@ -1,0 +1,21 @@
+uuid: 45da0b11-81d6-4383-9311-52e8f245f96d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pretix_signup
+    - node.type.public_meeting
+  module:
+    - itk_pretix
+id: node.public_meeting.field_pretix_signup
+field_name: field_pretix_signup
+entity_type: node
+bundle: public_meeting
+label: Tilmelding
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: pretix_field_type
