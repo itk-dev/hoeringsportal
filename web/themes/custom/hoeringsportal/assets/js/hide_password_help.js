@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Hide password helper.
+ */
+
 const $ = require('jquery')
 
 // Function for hiding password confirmation text.

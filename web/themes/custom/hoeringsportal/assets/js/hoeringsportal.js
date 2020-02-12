@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Gather theme related assets.
+ */
+
 require('../css/hoeringsportal.scss')
 
 const $ = require('jquery')

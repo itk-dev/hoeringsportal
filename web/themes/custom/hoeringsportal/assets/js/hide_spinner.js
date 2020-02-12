@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Set timer for iframe.
+ */
+
 var timer = setInterval(function () {
   var element = document.querySelector('.node--type-hearing iframe')
   if (!element) {
