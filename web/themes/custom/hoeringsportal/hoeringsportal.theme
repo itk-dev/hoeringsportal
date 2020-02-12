@@ -207,7 +207,7 @@ function hoeringsportal_preprocess_ds_1col(&$variables) {
 function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   $node_type = isset($variables['content']['#bundle']) ? $variables['content']['#bundle'] : '';
   // Check content type.
-  if ($node_type == 'project' || $node_type == 'hearing') {
+  if ($node_type == 'project' || $node_type == 'hearing' || $node_type == 'public_meeting' ) {
     $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';
   }
 }
