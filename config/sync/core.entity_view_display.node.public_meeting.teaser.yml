@@ -4,18 +4,91 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_hearing_type
+    - field.field.node.public_meeting.field_hidden_signup
+    - field.field.node.public_meeting.field_media_document
+    - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_signup
+    - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_registration_deadline
+    - field.field.node.public_meeting.field_section
+    - field.field.node.public_meeting.field_teaser
     - node.type.public_meeting
   module:
+    - datetime
+    - itk_pretix
     - user
 id: node.public_meeting.teaser
 targetEntityType: node
 bundle: public_meeting
 mode: teaser
 content:
-  links:
-    weight: 100
+  field_area:
+    type: entity_reference_label
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+  field_hearing_type:
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_media_image_single:
+    type: entity_reference_entity_view
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      view_mode: teaser_display
+      link: false
+    third_party_settings: {  }
+  field_pretix_signup:
+    type: pretix_formatter_type
+    weight: 5
+    region: content
+    label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_project_reference:
+    type: entity_reference_label
+    weight: 4
     region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  field_registration_deadline:
+    type: datetime_default
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+  field_teaser:
+    type: basic_string
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
 hidden:
+  field_contact: true
+  field_description: true
+  field_hidden_signup: true
+  field_media_document: true
+  field_section: true
   langcode: true
+  links: true

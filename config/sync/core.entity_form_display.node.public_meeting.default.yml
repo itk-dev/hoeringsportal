@@ -6,11 +6,13 @@ dependencies:
     - entity_browser.browser.itk_image_browser
     - field.field.node.public_meeting.field_area
     - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_hearing_type
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_signup
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
@@ -20,6 +22,7 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - itk_pretix
     - paragraphs
     - text
 third_party_settings:
@@ -140,6 +143,12 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
+  field_pretix_signup:
+    weight: 9
+    settings: {  }
+    third_party_settings: {  }
+    type: pretix_widget_type
+    region: content
   field_project_reference:
     weight: 8
     settings:
@@ -192,6 +201,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_content_state: true
   langcode: true
   path: true
   promote: true
