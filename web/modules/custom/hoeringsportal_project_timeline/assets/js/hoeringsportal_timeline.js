@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Vis timeline setup.
+ */
+
 import vis from 'vis/dist/vis.js'
 
 var settings = drupalSettings;
@@ -69,14 +74,19 @@ for (var i = 0; i < items.length; i++) {
 
 
       if (item.description == null){
+
+      if (item.description == null) {
         description = ''
       }
 
       // Only show link if a node exists or link is set.
-      if (item.nid > 0){
+      if (item.type === 'hearing') {
         buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
       }
-      else if(item.link) {
+      else if (item.type === 'meeting') {
+        buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til borgermøde</a>'
+      }
+      else if (item.link) {
         buttonLink = '<a class="btn-sm btn-primary" href="' + item.link + '">Læs mere</a>'
       }
 
@@ -108,14 +118,14 @@ for (var i = 0; i < items.length; i++) {
 
     var now = Date.now()
 
-    // Configuration for the Timeline
+    // Configuration for the timeline.
     var options = {
       zoomable: false,
       start: now - 31540000000,
       end: now + 31540000000
     }
 
-    // Create a timeline
+    // Create a timeline.
     var timeline = new vis.Timeline(container, newItems, options)
 
     $(function () {
@@ -127,7 +137,7 @@ for (var i = 0; i < items.length; i++) {
     })
 
     // Modify the colors of dot and line.
-    Object.keys(dotColors).forEach(function(key) {
+    Object.keys(dotColors).forEach(function (key) {
       $('.vis-dot.' + key).css('border-color', dotColors[key]);
       $('.vis-line.' + key).css('border-color', dotColors[key]);
     });
