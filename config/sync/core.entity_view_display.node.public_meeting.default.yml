@@ -5,19 +5,24 @@ dependencies:
   config:
     - field.field.node.public_meeting.field_area
     - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_hearing_type
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_signup
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_teaser
     - node.type.public_meeting
   module:
+    - datetime
     - ds
     - entity_reference_revisions
+    - field_group
+    - itk_pretix
     - text
     - user
 third_party_settings:
@@ -54,13 +59,16 @@ third_party_settings:
         - field_hearing_type
         - field_contact
       footer:
+        - group_signup
         - 'dynamic_block_field:node-project_timeline'
         - field_section
         - 'dynamic_block_field:node-related_public_meeting'
+        - field_pretix_signup
+        - field_registration_deadline
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 10
+        weight: 11
         label: hidden
         formatter: default
       'dynamic_block_field:node-quicklinks':
@@ -70,7 +78,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 12
+        weight: 13
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
@@ -87,6 +95,26 @@ third_party_settings:
           wrapper: ''
           class: ''
           link: false
+  field_group:
+    group_signup:
+      children:
+        - field_pretix_signup
+        - field_registration_deadline
+      parent_name: ''
+      weight: 10
+      format_type: html_element
+      format_settings:
+        element: div
+        show_label: true
+        label_element: h2
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: 'container pt-5 pb-3 position-relative'
+      label: Tilmelding
+      region: hidden
 id: node.public_meeting.default
 targetEntityType: node
 bundle: public_meeting
@@ -142,8 +170,23 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: left
+  field_pretix_signup:
+    weight: 32
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: pretix_formatter_type
+    region: footer
+  field_registration_deadline:
+    type: datetime_plain
+    weight: 33
+    region: footer
+    label: hidden
+    settings:
+      timezone_override: ''
+    third_party_settings: {  }
   field_section:
-    weight: 11
+    weight: 12
     label: hidden
     settings:
       view_mode: default
@@ -159,8 +202,8 @@ content:
     type: basic_string
     region: left
 hidden:
+  field_content_state: true
   field_hidden_signup: true
   field_project_reference: true
-  field_registration_deadline: true
   langcode: true
   links: true
