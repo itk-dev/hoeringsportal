@@ -1,33 +1,27 @@
+/**
+ * @file
+ * Encore config.
+ *
+ * @type {Encore}
+ */
+
 var Encore = require('@symfony/webpack-encore');
 
 Encore
-// the project directory where all compiled assets will be stored
+  // The project directory where all compiled assets will be stored.
   .setOutputPath('public/build/')
 
-  // the public path used by the web server to access the previous directory
+  // The public path used by the web server to access the previous directory.
   .setPublicPath('/build')
 
-  // will create public/build/app.js and public/build/app.css
+  // Will create public/build/app.js and public/build/app.css.
   .addEntry('project-quicklinks', './js/project-quicklinks.js')
 
-  // allow legacy applications to use $/jQuery as a global variable
-  // .autoProvidejQuery()
-
-  // enable source maps during development
+  // Enable source maps during development.
   .enableSourceMaps(!Encore.isProduction())
 
-  // empty the outputPath dir before each build
-  .cleanupOutputBeforeBuild()
+  // Empty the outputPath dir before each build.
+  .cleanupOutputBeforeBuild();
 
-  // show OS notifications when builds finish/fail
-  // .enableBuildNotifications()
-
-  // create hashed filenames (e.g. app.abc123.css)
-  // .enableVersioning()
-
-  // allow sass/scss files to be processed
-  // .enableSassLoader()
-;
-
-// export the final configuration
+// Export the final configuration.
 module.exports = Encore.getWebpackConfig();
