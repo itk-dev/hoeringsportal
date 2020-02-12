@@ -1,10 +1,13 @@
-/* global fetch */
+/**
+ * @file
+ * Global fetch.
+ */
 
 require('../css/form-ticket-add.css')
 
 const $ = require('jquery')
 require('jquery-validation')
-// IE 11 does not support Object.assign
+// IE 11 does not support Object.assign.
 require('es6-object-assign/auto');
 const dawaAutocomplete = require('dawa-autocomplete2')
 
@@ -43,7 +46,10 @@ $(() => {
               if (postalCode !== null) {
                 postalCode.value = json.adgangsadresse.postnummer.nr
               }
-            } catch (e) {}
+            }
+            catch (e) {
+
+            }
           })
       }
     })
