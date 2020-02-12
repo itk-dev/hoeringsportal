@@ -1,0 +1,28 @@
+uuid: 3e8bac3c-aa4f-4151-b251-099198654652
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_media_image_single
+    - media_entity.bundle.image
+    - node.type.public_meeting
+id: node.public_meeting.field_media_image_single
+field_name: field_media_image_single
+entity_type: node
+bundle: public_meeting
+label: Billede
+description: 'Vælg billeder der skal vises i teaservisningen.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

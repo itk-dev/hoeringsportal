@@ -1,0 +1,19 @@
+uuid: 32cb5107-2bd9-4a8d-957a-acd1b67abaa6
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_teaser
+    - node.type.public_meeting
+id: node.public_meeting.field_teaser
+field_name: field_teaser
+entity_type: node
+bundle: public_meeting
+label: Teaser/indledning
+description: 'Kort tekst der vises i teasers og i toppen af indholdsvisningen'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
