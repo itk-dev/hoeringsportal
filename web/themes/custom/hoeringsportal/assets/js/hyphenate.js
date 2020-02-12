@@ -1,5 +1,10 @@
+/**
+ * @file
+ * Add hyphenation.
+ */
+
 /* eslint no-unused-vars: 0 */
-var Hyphenopoly = {
+let Hyphenopoly = {
   require: {
     'da': 'sporvognsskinneskidtskraber'
   },
