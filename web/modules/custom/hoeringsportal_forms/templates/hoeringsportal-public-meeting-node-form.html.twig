@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a node edit form.
+ *
+ * Two column template for the node add/edit form.
+ *
+ * This template will be used as form when editing a project
+ * Otherwise, by default, node add/edit forms will be themed by form.html.twig.
+ *
+ * Available variables:
+ * - form: The node add/edit form.
+ *
+ * @see seven_form_node_form_alter()
+ */
+#}
+<div class="layout-node-form clearfix">
+  <div class="layout-region layout-region-node-main">
+    {{ form|without('advanced', 'actions', 'group_information', 'group_system_settings', 'group_contact') }}
+  </div>
+  <div class="layout-region layout-region-node-secondary">
+    {{ form.advanced }}
+    {{ form.group_information }}
+    {{ form.group_contact }}
+    {{ form.group_system_settings }}
+  </div>
+  <div class="layout-region layout-region-node-footer">
+    {{ form.actions }}
+  </div>
+</div>
