@@ -1,0 +1,31 @@
+.list-filter-link-wrapper {
+  flex: 0 0 9em;
+  a {
+    background: $white;
+    border: 1px solid $gray-400;
+    color: $gray-700;
+    display: block;
+    height: 7em;
+    padding: 1em;
+    text-decoration: none;
+
+    &:hover {
+      border: 1px solid $primary;
+      color: $primary;
+    }
+  }
+
+  &.bef-link-active a {
+    border: 1px solid $primary;
+    color: $primary;
+  }
+}
+
+.list-filter-link-inner {
+  display: flex;
+
+  span {
+    margin-top: .5em;
+    text-align: center;
+  }
+}

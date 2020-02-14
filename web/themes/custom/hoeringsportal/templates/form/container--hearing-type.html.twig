@@ -1,0 +1,70 @@
+{#
+/**
+ * @file
+ * Theme override of a container used to wrap child elements.
+ *
+ * Used for grouped form items. Can also be used as a theme wrapper for any
+ * renderable element, to surround it with a <div> and HTML attributes.
+ * See \Drupal\Core\Render\Element\RenderElement for more
+ * information on the #theme_wrappers render array property, and
+ * \Drupal\Core\Render\Element\container for usage of the container render
+ * element.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - children: The rendered child elements of the container.
+ * - has_parent: A flag to indicate that the container has one or more parent
+     containers.
+ *
+ * @see template_preprocess_container()
+ */
+#}
+{%
+  set classes = [
+    has_parent ? 'js-form-wrapper',
+    has_parent ? 'form-wrapper',
+  ]
+%}
+{%
+  set icon_links = [
+    {'id': 'All', 'title':  'All', 'icon': 'fal fa-2x fa-check-double'},
+    {'id': '56', 'title':  'Municipal plan', 'icon': 'fal fa-2x  fa-map'},
+    {'id': '62', 'title':  'Local plan', 'icon': 'fal fa-2x  fa-map-marked-alt'},
+    {'id': '58', 'title':  'Trafic and mobility', 'icon': 'fal fa-2x  fa-car-bus'},
+    {'id': '47', 'title':  'Daycare and school', 'icon': 'fal fa-2x  fa-chalkboard-teacher'},
+    {'id': '57', 'title':  'Health and care', 'icon': 'fal fa-2x  fa-heartbeat'},
+    {'id': '53', 'title':  'Other', 'icon': 'fal fa-2x  fa-star'},
+  ]
+%}
+
+{% set link_classes = 'list-filter-link-inner d-flex flex-column align-items-center' %}
+{% set id = element['#url'].getOptions.query.field_hearing_type_target_id %}
+{% set options = element['#url'].getOptions %}
+
+{#
+  For some reason query is field_hearing_type_target_id is empty on active element.
+  In these situation we get the id from the url query.
+ #}
+{% if (options['query']['field_hearing_type_target_id'] is empty) %}
+  {% set id = displayed_target_id %}
+{% endif %}
+
+{#
+  If no query we show all.
+ #}
+{% if (options['query'] is empty) %}
+  {% set id = 'All' %}
+{% endif %}
+
+{% for icon_link in icon_links %}
+  {% if (id == icon_link.id)  %}
+    <div{{ attributes.addClass(classes).addClass('mb-3', 'list-filter-link-wrapper') }}>
+      <a href="{{ path(element['#url'].getRouteName, element['#url'].getRouteParameters, element['#url'].getOptions) }}" class="rounded">
+        <div class="{{ link_classes }}">
+          <i class="{{ icon_link.icon }}"></i>
+          <span>{{ icon_link.title|t }}</span>
+        </div>
+      </a>
+    </div>
+  {% endif %}
+{% endfor %}

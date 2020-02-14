@@ -7,6 +7,8 @@
 
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_preprocess_field().
@@ -42,8 +44,6 @@ function hoeringsportal_preprocess_field(&$variables) {
   }
 
   if ($variables['field_name'] == 'dynamic_block_field:node-project_timeline') {
-    $timeline_vocab = 'timeline_item_types';
-
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', 'timeline_item_types');
     $tids = $query->execute();
@@ -134,6 +134,19 @@ function hoeringsportal_theme_suggestions_form_element_alter(array &$suggestions
 function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['#id'])) {
     $suggestions[] = 'form__' . $variables['element']['#id'];
+  }
+}
+
+function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  if (_hoeringsportal_is_bef_container($variables)) {
+    $suggestions[] ='container__hearing_type';
+  }
+}
+
+function hoeringsportal_preprocess_container(&$variables) {
+  if (_hoeringsportal_is_bef_container($variables)) {
+    $query = \Drupal::request()->query->get('field_hearing_type_target_id');
+    $variables['displayed_target_id'] = $query;
   }
 }
 
@@ -244,4 +257,19 @@ function hoeringsportal_preprocess_file_link(&$variables) {
   if ($variables['link']) {
     $variables['file_path'] = file_create_url($variables['file']->get('uri')->getValue()['0']['value']);
   }
+}
+
+function _hoeringsportal_is_bef_container($variables) {
+  if(isset($variables['element']['#url']) && !empty($variables['element']['#url']->getOptions())) {
+    $options = $variables['element']['#url']->getOptions();
+    if(isset($options['attributes']['class']) && $options['attributes']['class'] == 'bef-link-active') {
+      return TRUE;
+    }
+
+    if(isset($options['query']['field_hearing_type_target_id'])) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
