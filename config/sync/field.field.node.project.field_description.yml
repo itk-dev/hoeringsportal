@@ -12,7 +12,7 @@ field_name: field_description
 entity_type: node
 bundle: project
 label: Beskrivelse
-description: 'Beskrivelse af initiativet.'
+description: 'En beskrivelse tilknyttet til tidslinjen. Beskrivelsen vises kun i backend som eventuel hjælp til redaktørerne.'
 required: false
 translatable: false
 default_value: {  }
