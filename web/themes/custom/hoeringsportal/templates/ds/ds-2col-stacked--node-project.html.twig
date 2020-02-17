@@ -26,7 +26,7 @@
   {{ title_suffix.contextual_links }}
 
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
-    <div class="hero hero--image-background">
+    <div class="hero hero--image-right">
       {{ header }}
     </div>
   </{{ header_wrapper }}>
@@ -45,14 +45,7 @@
     </div>
   </div>
   <{{ footer_wrapper }}{{ footer_attributes.addClass('group-footer container-flex') }}>
-    <section class="container pt-5 pb-5 image-gallery">
-      <h3 class="mt-0 pt-4">{{ 'Project gallery'|t }}</h3>
-      <div class="slick-slider-gallery">
-        {{ footer.field_video }}
-        {{ footer.field_image_gallery_ref }}
-      </div>
-    </section>
-    {{ footer|without('field_video', 'field_image_gallery_ref') }}
+    {{ footer }}
   </{{ footer_wrapper }}>
 
 </{{ outer_wrapper }}>
