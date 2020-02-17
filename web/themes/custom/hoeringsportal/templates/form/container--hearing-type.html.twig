@@ -27,13 +27,13 @@
 %}
 {%
   set icon_links = [
-    {'id': 'All', 'title':  'All', 'icon': 'fal fa-2x fa-check-double'},
-    {'id': '56', 'title':  'Municipal plan', 'icon': 'fal fa-2x  fa-map'},
-    {'id': '62', 'title':  'Local plan', 'icon': 'fal fa-2x  fa-map-marked-alt'},
-    {'id': '58', 'title':  'Trafic and mobility', 'icon': 'fal fa-2x  fa-car-bus'},
-    {'id': '47', 'title':  'Daycare and school', 'icon': 'fal fa-2x  fa-chalkboard-teacher'},
-    {'id': '57', 'title':  'Health and care', 'icon': 'fal fa-2x  fa-heartbeat'},
-    {'id': '53', 'title':  'Other', 'icon': 'fal fa-2x  fa-star'},
+    {'id': 'All', 'title': 'All', 'icon': 'fal fa-2x fa-check-double'},
+    {'id': '56', 'title': 'Municipal plan', 'icon': 'fal fa-2x  fa-map'},
+    {'id': '62', 'title': 'Local plan', 'icon': 'fal fa-2x  fa-map-marked-alt'},
+    {'id': '58', 'title': 'Trafic and mobility', 'icon': 'fal fa-2x  fa-car-bus'},
+    {'id': '47', 'title': 'Daycare and school', 'icon': 'fal fa-2x  fa-chalkboard-teacher'},
+    {'id': '57', 'title': 'Health and care', 'icon': 'fal fa-2x  fa-heartbeat'},
+    {'id': '53', 'title': 'Other', 'icon': 'fal fa-2x  fa-star'},
   ]
 %}
 
@@ -45,15 +45,12 @@
   For some reason query is field_hearing_type_target_id is empty on active element.
   In these situation we get the id from the url query.
  #}
-{% if (options['query']['field_hearing_type_target_id'] is empty) %}
-  {% set id = displayed_target_id %}
-{% endif %}
 
-{#
-  If no query we show all.
- #}
-{% if (options['query'] is empty) %}
-  {% set id = 'All' %}
+{% if (options['attributes']['class'] == 'bef-link-active') %}
+  {% set id = displayed_target_id %}
+  {% if displayed_target_id is empty %}
+    {% set id = 'All' %}
+  {% endif %}
 {% endif %}
 
 {% for icon_link in icon_links %}
