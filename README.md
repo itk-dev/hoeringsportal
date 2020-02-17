@@ -168,3 +168,32 @@ and `«system_status_encrypt_token»` to match the values reported above):
 $config['system_status.settings']['system_status_token'] = '«system_status_token»';
 $config['system_status.settings']['system_status_encrypt_token'] = '«system_status_encrypt_token»';
 ```
+
+## `docker`
+
+Create `.env` with the following content:
+
+```sh
+COMPOSE_PROJECT_NAME=hoeringsportal
+COMPOSE_DOMAIN=hoeringsportal.local.itkdev.dk
+```
+
+Start the containers:
+
+```sh
+docker-compose up -d
+```
+
+### Drupal
+
+```sh
+docker-compose exec phpfpm composer install
+```
+
+### pretix
+
+```sh
+docker-compose exec pretix python /pretix/src/manage.py migrate
+docker-compose exec pretix python /pretix/src/manage.py compress
+docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
+```

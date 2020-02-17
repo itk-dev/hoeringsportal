@@ -6,6 +6,9 @@ networks:
   app:
     driver: bridge
     internal: false
+  pretix:
+    driver: bridge
+    internal: false
 
 services:
   mariadb:
@@ -74,6 +77,49 @@ services:
     ports:
       - "1025"
       - "8025"
+
+  pretix:
+    image: pretix/standalone:stable
+    networks:
+      - app
+      - pretix
+      - frontend
+    depends_on:
+      - pretix_database
+      - pretix_redis
+      - mailhog
+    ports:
+      - '80'
+    volumes:
+      - ${PWD}/.docker/pretix/etc/pretix.cfg:/etc/pretix/pretix.cfg
+
+    # Let the pretix container be accessible both internally and externally on the same domain.
+    container_name: pretix.${COMPOSE_DOMAIN}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_pretix.rule=Host(`pretix.${COMPOSE_DOMAIN}`)"
+
+  pretix_database:
+    image: mariadb:10.3
+    networks:
+      - pretix
+    ports:
+      - '3306'
+    volumes:
+      - .docker/dumps/pretix:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: pretix
+      MYSQL_PASSWORD: pretix
+      MYSQL_DATABASE: pretix
+
+  pretix_redis:
+    image: redis:latest
+    networks:
+      - pretix
+    ports:
+      - "6379"
 
 # Drush cache volume to persist cache between runs.
 volumes:
