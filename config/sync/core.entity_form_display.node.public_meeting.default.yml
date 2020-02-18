@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_hidden_signup
+    - field.field.node.public_meeting.field_last_signup_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_signup
@@ -31,7 +32,6 @@ third_party_settings:
       children:
         - field_project_reference
         - field_registration_deadline
-        - field_hearing_type
         - field_type
         - field_area
       parent_name: ''
@@ -203,6 +203,7 @@ content:
 hidden:
   created: true
   field_content_state: true
+  field_last_signup_time: true
   langcode: true
   path: true
   promote: true
