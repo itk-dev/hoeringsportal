@@ -67,7 +67,7 @@
 }
 .activity-teaser-info {
   position: relative;
-  padding: $spacer $spacer*2 $spacer $spacer*2;
+  padding: $spacer $spacer*3 $spacer $spacer*2;
   background-color: $white;
   font-size: .7rem;
   font-weight: 300;
@@ -78,7 +78,7 @@
   border-bottom: 2px solid $gray-200;
   @include transition-std(border-bottom, ease-in, 200ms);
 }
-.activity-teaser-project-name {
+.activity-teaser-type {
   margin-right: $spacer*1;
   display: inline;
   color: $primary;
@@ -89,19 +89,7 @@
 }
 .activity-teaser-area {
   color: $gray-600;
-  margin-right: $spacer/4;
   padding-right: $spacer/4;
-  border-right: 1px solid $gray-600;
-}
-.activity-teaser-type {
-  color: $gray-600;
-  padding-left: $spacer/4;
-  margin-right: $spacer/4;
-}
-.activity-teaser-id {
-  padding-left: $spacer/4;
-  color: $gray-600;
-  border-left: 1px solid $gray-600;
 }
 
 .activity-teaser-overlay {
