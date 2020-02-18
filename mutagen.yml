@@ -1,0 +1,22 @@
+sync:
+  defaults:
+    # @see https://mutagen.io/documentation/synchronization/ignores
+    ignore:
+      # paths:
+      #   - var
+      vcs: ~
+    # @see https://mutagen.io/documentation/synchronization/permissions
+    permissions:
+      defaultFileMode: 666
+      defaultDirectoryMode: 777
+
+  hoeringsportal-phpfpm:
+    alpha: '.'
+    beta: 'docker://hoeringsportal-phpfpm/app'
+    # @see https://mutagen.io/documentation/synchronization#modes
+    mode: 'two-way-safe'
+
+  hoeringsportal-nginx:
+    alpha: '.'
+    beta: 'docker://hoeringsportal-nginx/app'
+    mode: 'one-way-replica'

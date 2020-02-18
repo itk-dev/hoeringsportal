@@ -29,6 +29,7 @@ services:
 
   phpfpm:
     image: itkdev/php7.2-fpm:latest
+    container_name: ${COMPOSE_PROJECT_NAME}-phpfpm
     networks:
       - app
     environment:
@@ -42,12 +43,12 @@ services:
       - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
     depends_on:
       - mariadb
-    volumes:
-      - .:/app:delegated
-      - drush-cache:/root/.drush
+    # volumes:
+    #   - .:/app:delegated
 
   nginx:
     image: nginx:latest
+    container_name: ${COMPOSE_PROJECT_NAME}-nginx
     networks:
       - app
       - frontend
@@ -58,7 +59,7 @@ services:
       - '80'
     volumes:
       - ${PWD}/.docker/vhost.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./:/app:delegated
+      # - ./:/app:delegated
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
@@ -123,7 +124,3 @@ services:
       - pretix
     ports:
       - "6379"
-
-# Drush cache volume to persist cache between runs.
-volumes:
-  drush-cache:
