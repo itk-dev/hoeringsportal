@@ -116,19 +116,17 @@
     {% endif %}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>
-    <p class="activity-teaser-title">{{ label }}</p>
+    <p class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</p>
     <div class="activity-teaser-description">
-      {{ content.field_teaser }}
+      {{ content.field_teaser[0]['#context'].value|length > 95 ? content.field_teaser[0]['#context'].value|slice(0, 95) ~ '...' : content.field_teaser }}
     </div>
   </div>
   <div class="activity-teaser-info">
-    <span class="activity-teaser-project-name">{{ project }}</span>
     <span class="activity-teaser-meta-wrapper">
-      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
-      <span class="activity-teaser-type">{{ type }}</span>
-      {% if(content.field_hearing_id) %}
-        <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>
+      {% if type is not empty %}
+        <span class="activity-teaser-type">{{ type }}</span>
       {% endif %}
+      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
     </span>
     <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
   </div>
