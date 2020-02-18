@@ -6,14 +6,17 @@ dependencies:
     - core.entity_view_mode.node.hearing_ticket_add
     - field.field.node.public_meeting.field_area
     - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
-    - field.field.node.public_meeting.field_hearing_type
+    - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_signup
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_teaser
+    - field.field.node.public_meeting.field_type
     - node.type.public_meeting
   module:
     - datetime
@@ -81,14 +84,6 @@ content:
     third_party_settings: {  }
     type: text_default
     region: header
-  field_hearing_type:
-    weight: 7
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: header
   field_media_document:
     weight: 6
     label: above
@@ -148,4 +143,8 @@ content:
       native_language: false
     third_party_settings: {  }
 hidden:
+  field_content_state: true
+  field_hidden_signup: true
+  field_pretix_signup: true
+  field_type: true
   links: true

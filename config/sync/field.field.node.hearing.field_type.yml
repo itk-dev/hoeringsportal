@@ -1,18 +1,18 @@
-uuid: 4dee5e8c-5078-48e6-b0da-ac8cf7640520
+uuid: b62b5f10-2eac-4d78-b72f-dc286c722fbe
 langcode: da
 status: true
 dependencies:
   config:
-    - field.storage.node.field_hearing_type
-    - node.type.public_meeting
-    - taxonomy.vocabulary.hearing_type
-id: node.public_meeting.field_hearing_type
-field_name: field_hearing_type
+    - field.storage.node.field_type
+    - node.type.hearing
+    - taxonomy.vocabulary.type
+id: node.hearing.field_type
+field_name: field_type
 entity_type: node
-bundle: public_meeting
-label: Høringstype
+bundle: hearing
+label: Type
 description: ''
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      hearing_type: hearing_type
+      type: type
     sort:
       field: name
       direction: asc
