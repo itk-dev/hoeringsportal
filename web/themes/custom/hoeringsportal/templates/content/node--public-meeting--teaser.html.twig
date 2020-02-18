@@ -72,7 +72,7 @@
 #}
 
 {# Set variables depending on node type. #}
-{% set type = content.field_hearing_type[0]['#plain_text'] %}
+{% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
 {% set startdate = content.field_pretix_signup['#items'].value['0'].time_from %}
 <a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
