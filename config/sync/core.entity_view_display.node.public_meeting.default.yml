@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_hidden_signup
+    - field.field.node.public_meeting.field_last_signup_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_signup
@@ -56,7 +57,6 @@ third_party_settings:
         - 'dynamic_block_field:node-quicklinks'
         - 'dynamic_token_field:node-header_information'
         - field_area
-        - field_hearing_type
         - field_type
         - field_contact
       footer:
@@ -69,7 +69,7 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 12
+        weight: 11
         label: hidden
         formatter: default
       'dynamic_block_field:node-quicklinks':
@@ -79,7 +79,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 14
+        weight: 13
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
@@ -102,7 +102,7 @@ third_party_settings:
         - field_pretix_signup
         - field_registration_deadline
       parent_name: ''
-      weight: 11
+      weight: 10
       format_type: html_element
       format_settings:
         element: div
@@ -130,7 +130,7 @@ content:
     type: entity_reference_label
     region: right
   field_contact:
-    weight: 10
+    weight: 9
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -179,7 +179,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 13
+    weight: 12
     label: hidden
     settings:
       view_mode: default
@@ -195,7 +195,7 @@ content:
     type: basic_string
     region: left
   field_type:
-    weight: 9
+    weight: 8
     label: above
     settings:
       link: true
@@ -205,6 +205,7 @@ content:
 hidden:
   field_content_state: true
   field_hidden_signup: true
+  field_last_signup_time: true
   field_project_reference: true
   langcode: true
   links: true
