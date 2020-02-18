@@ -137,16 +137,61 @@ function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array 
   }
 }
 
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
 function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, array $variables) {
   if (_hoeringsportal_is_bef_container($variables)) {
-    $suggestions[] ='container__hearing_type';
+    $suggestions[] ='container__type';
   }
 }
 
+/**
+ * Implements hook_preprocess_container().
+ */
 function hoeringsportal_preprocess_container(&$variables) {
   if (_hoeringsportal_is_bef_container($variables)) {
-    $query = \Drupal::request()->query->get('field_hearing_type_target_id');
+    $query = \Drupal::request()->query->get('field_type_target_id');
     $variables['displayed_target_id'] = $query;
+    // Get "type" taxonomy terms
+    $vid = 'type';
+    $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+
+    foreach ($terms as $key => $term) {
+      $type_list[] = array(
+        'id' => $term->tid,
+        'title' => $term->name,
+      );
+      switch ($term->name) {
+        case 'Kommuneplan':
+          $type_list[$key ]['icon'] = 'fal fa-2x fa-map';
+          break;
+        case 'Lokalplan':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-map-marked-alt';
+          break;
+        case 'Trafik og mobilitet':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-car-bus';
+          break;
+        case 'Dagtilbud og skole':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';
+          break;
+        case 'Sundhed og omsorg':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-heartbeat';
+          break;
+        case 'Andet':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-star';
+          break;
+      }
+    }
+
+    // Add All option to array
+    array_unshift($type_list, array(
+      'id' => 'All',
+      'title' => 'Alle',
+      'icon' => 'fal fa-2x fa-check-double'
+    ));
+
+    $variables['display_icons'] = $type_list;
   }
 }
 
@@ -266,7 +311,7 @@ function _hoeringsportal_is_bef_container($variables) {
       return TRUE;
     }
 
-    if(isset($options['query']['field_hearing_type_target_id'])) {
+    if(isset($options['query']['field_type_target_id'])) {
       return TRUE;
     }
   }
