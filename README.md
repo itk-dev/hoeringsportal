@@ -206,3 +206,10 @@ docker-compose exec pretix python /pretix/src/manage.py migrate
 docker-compose exec pretix python /pretix/src/manage.py compress
 docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
 ```
+
+#### API
+
+```sh
+curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e' \
+  http://pretix.hoeringsportal.local.itkdev.dk/api/v1/organizers/
+```
