@@ -184,10 +184,19 @@ Start the containers:
 docker-compose up -d
 ```
 
+```sh
+brew install mutagen-io/mutagen/mutagen
+mutagen project start
+```
+
 ### Drupal
 
 ```sh
 docker-compose exec phpfpm composer install
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
 ```
 
 ### pretix
