@@ -91,6 +91,7 @@
   {% if (content.field_reply_deadline) %}
     {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
     {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+    {% set finishdate = content.field_reply_deadline['0']['#attributes'].datetime %}
     {% set content_state = content.field_content_state['0']['#markup'] %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
@@ -132,7 +133,12 @@
     {# Add overlay when passed or upcomming #}
     {% if (overlay) %}
       <span class="activity-teaser-overlay">
-        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">{{ overlay_text }}</span>
+        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">
+          {{ overlay_text }}
+          {% if (overlay_sub_text) %}
+            <div class="activity-teaser-overlay--sub-text">{{ overlay_sub_text }}</div>
+          {% endif %}
+        </span>
       </span>
     {% endif %}
   </div>

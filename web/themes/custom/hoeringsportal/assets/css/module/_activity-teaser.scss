@@ -117,6 +117,12 @@
       color: $orange;
     }
   }
+
+  &--sub-text {
+    color: $gray-900;
+    font-family: $font-family-sans-serif;
+    font-weight: bold;
+  }
 }
 
 .activity-teaser-link-wrap {
