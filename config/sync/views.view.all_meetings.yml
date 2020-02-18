@@ -6,10 +6,9 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - node.type.public_meeting
     - taxonomy.vocabulary.area
-    - taxonomy.vocabulary.hearing_type
+    - taxonomy.vocabulary.type
   module:
     - better_exposed_filters
-    - datetime
     - node
     - options
     - taxonomy
@@ -97,9 +96,17 @@ display:
                 is_secondary: false
                 rewrite:
                   filter_rewrite_values: "- Enhver -|Alle\r\nKommende|Aktive\r\nAfsluttet|Afsluttede"
+            field_type_target_id:
+              bef_format: bef_links
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: "- Any -|Alle typer\r\n- Enhver -|Vælg type"
           text_input_required_format: filtered_html
       pager:
-        type: mini
+        type: full
         options:
           items_per_page: 15
           offset: 0
@@ -108,6 +115,8 @@ display:
           tags:
             previous: ‹‹
             next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -116,6 +125,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
+          quantity: 9
       style:
         type: default
         options:
@@ -274,52 +284,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_hearing_type_target_id:
-          id: field_hearing_type_target_id
-          table: node__field_hearing_type
-          field: field_hearing_type_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_hearing_type_target_id_op
-            label: 'Hvilke typer?'
-            description: ''
-            use_operator: false
-            operator: field_hearing_type_target_id_op
-            identifier: field_hearing_type_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: hearing_type
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         field_content_state_value:
           id: field_content_state_value
           table: node__field_content_state
@@ -364,20 +328,53 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: list_field
-      sorts:
-        field_reply_deadline_value:
-          id: field_reply_deadline_value
-          table: node__field_reply_deadline
-          field: field_reply_deadline_value
+        field_type_target_id:
+          id: field_type_target_id
+          table: node__field_type
+          field: field_type_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          order: ASC
+          operator: or
+          value: {  }
+          group: 1
           exposed: true
           expose:
-            label: Svarfrist
-          granularity: second
-          plugin_id: datetime
+            operator_id: field_type_target_id_op
+            label: Type
+            description: ''
+            use_operator: false
+            operator: field_type_target_id_op
+            identifier: field_type_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      sorts:
         title:
           id: title
           table: node_field_data
@@ -410,8 +407,6 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions

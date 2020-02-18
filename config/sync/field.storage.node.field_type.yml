@@ -1,12 +1,12 @@
-uuid: 2ec2a787-2539-4adb-be39-88c2260cf36d
+uuid: ac9d1cd5-8cbf-417f-989e-a5c43e47a415
 langcode: da
 status: true
 dependencies:
   module:
     - node
     - taxonomy
-id: node.field_hearing_type
-field_name: field_hearing_type
+id: node.field_type
+field_name: field_type
 entity_type: node
 type: entity_reference
 settings:

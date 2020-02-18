@@ -12,7 +12,6 @@ dependencies:
     - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_edoc_casefile_id
-    - field.field.node.hearing.field_hearing_type
     - field.field.node.hearing.field_lokalplaner
     - field.field.node.hearing.field_map
     - field.field.node.hearing.field_map_display
@@ -24,6 +23,7 @@ dependencies:
     - field.field.node.hearing.field_start_date
     - field.field.node.hearing.field_tags
     - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_type
     - field.field.node.hearing.field_video_embed
     - node.type.hearing
   module:
@@ -39,6 +39,7 @@ third_party_settings:
         - field_start_date
         - field_reply_deadline
         - field_hearing_type
+        - field_type
         - field_lokalplaner
         - field_project_reference
         - field_area
@@ -127,7 +128,7 @@ bundle: hearing
 mode: default
 content:
   field_area:
-    weight: 31
+    weight: 32
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -172,15 +173,9 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_hearing_type:
-    weight: 28
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_lokalplaner:
     type: hoeringsportal_data_localplan_default
-    weight: 29
+    weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -229,7 +224,7 @@ content:
     type: text_textarea
     region: content
   field_project_reference:
-    weight: 30
+    weight: 31
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -247,7 +242,7 @@ content:
     type: datetime_default
     region: content
   field_tags:
-    weight: 32
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -259,6 +254,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
+  field_type:
+    weight: 29
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
     region: content
   field_video_embed:
     weight: 5

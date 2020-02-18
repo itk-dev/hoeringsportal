@@ -9,8 +9,8 @@ id: node.hearing.field_project_reference
 field_name: field_project_reference
 entity_type: node
 bundle: hearing
-label: Initiativ
-description: 'Vælg initiativ som høringen er knyttet til.'
+label: Projekttidslinje
+description: 'Vælg den projekttidslinje som høringen er tilknyttet.'
 required: false
 translatable: false
 default_value: {  }

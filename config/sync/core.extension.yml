@@ -29,6 +29,7 @@ module:
   file: 0
   filter: 0
   hoeringsportal_config_settings: 0
+  hoeringsportal_content_access: 0
   hoeringsportal_content_blocks: 0
   hoeringsportal_data: 0
   hoeringsportal_deskpro: 0
