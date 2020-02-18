@@ -25,26 +25,10 @@
     has_parent ? 'form-wrapper',
   ]
 %}
-{%
-  set icon_links = [
-    {'id': 'All', 'title': 'All', 'icon': 'fal fa-2x fa-check-double'},
-    {'id': '56', 'title': 'Municipal plan', 'icon': 'fal fa-2x  fa-map'},
-    {'id': '62', 'title': 'Local plan', 'icon': 'fal fa-2x  fa-map-marked-alt'},
-    {'id': '58', 'title': 'Trafic and mobility', 'icon': 'fal fa-2x  fa-car-bus'},
-    {'id': '47', 'title': 'Daycare and school', 'icon': 'fal fa-2x  fa-chalkboard-teacher'},
-    {'id': '57', 'title': 'Health and care', 'icon': 'fal fa-2x  fa-heartbeat'},
-    {'id': '53', 'title': 'Other', 'icon': 'fal fa-2x  fa-star'},
-  ]
-%}
 
 {% set link_classes = 'list-filter-link-inner d-flex flex-column align-items-center' %}
-{% set id = element['#url'].getOptions.query.field_hearing_type_target_id %}
+{% set id = element['#url'].getOptions.query.field_type_target_id %}
 {% set options = element['#url'].getOptions %}
-
-{#
-  For some reason query is field_hearing_type_target_id is empty on active element.
-  In these situation we get the id from the url query.
- #}
 
 {% if (options['attributes']['class'] == 'bef-link-active') %}
   {% set id = displayed_target_id %}
@@ -53,7 +37,7 @@
   {% endif %}
 {% endif %}
 
-{% for icon_link in icon_links %}
+{% for icon_link in display_icons %}
   {% if (id == icon_link.id)  %}
     <div{{ attributes.addClass(classes).addClass('mb-3', 'list-filter-link-wrapper') }}>
       <a href="{{ path(element['#url'].getRouteName, element['#url'].getRouteParameters, element['#url'].getOptions) }}" class="rounded">
