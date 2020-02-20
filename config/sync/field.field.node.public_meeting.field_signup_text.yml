@@ -1,0 +1,21 @@
+uuid: 0fbb9b10-66aa-4618-a07e-972db30e42e0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_signup_text
+    - node.type.public_meeting
+  module:
+    - text
+id: node.public_meeting.field_signup_text
+field_name: field_signup_text
+entity_type: node
+bundle: public_meeting
+label: Tilmeldingstekst
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
