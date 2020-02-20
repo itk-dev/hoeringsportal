@@ -15,17 +15,26 @@
  * @ingroup themeable
  */
 #}
-<div class="signup">
-  <{{ wrapper_element }} {{ attributes }}>
-    {% if title %}
-    <{{ title_element }}{{ title_attributes }}>{{ title }}</{{ title_element }}>
-    {% endif %}
-    {% if collapsible %}
-    <div class="field-group-wrapper">
-    {% endif %}
-    {{children}}
-    {% if collapsible %}
-    </div>
-    {% endif %}
-  </{{ wrapper_element }}>
-</div>
+{% if element.field_signup_selection[0]['#markup'] != 'hidden' %}
+  <div class="signup">
+    <{{ wrapper_element }} {{ attributes }}>
+      {% if title %}
+      <{{ title_element }}{{ title_attributes }}>{{ title }}</{{ title_element }}>
+      {% endif %}
+      {% if collapsible %}
+      <div class="field-group-wrapper">
+      {% endif %}
+        {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
+          {{ element.field_registration_deadline }}
+          {{ element.field_pretix_signup }}
+        {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
+          {{ element.field_registration_deadline }}
+          {{ element.field_signup_link }}
+          {{ element.field_signup_text }}
+        {% endif %}
+      {% if collapsible %}
+      </div>
+      {% endif %}
+    </{{ wrapper_element }}>
+  </div>
+{% endif %}

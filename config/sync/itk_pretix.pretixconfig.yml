@@ -2,4 +2,4 @@ itk_pretix: null
 _core:
   default_config_hash: peWh3JrwZ60PoKUGdO3_bHBdvmb6HQb6LscjOgivUjc
 langcode: da
-api_token: '$config[''itk_pretix.pretixconfig''][''api_token''] in settings.local.php'
+api_token: '$config[''itk_pretix.pretixconfig''][''api_token''] in settings.'

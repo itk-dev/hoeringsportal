@@ -1,0 +1,21 @@
+uuid: 8e2bcadf-0f88-4cee-a63f-c4da577fa496
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_first_meeting_time
+    - node.type.public_meeting
+  module:
+    - datetime
+id: node.public_meeting.field_first_meeting_time
+field_name: field_first_meeting_time
+entity_type: node
+bundle: public_meeting
+label: 'First meeting time'
+description: 'This field is computed on node_save. It represents the time of the first meeting in case of multiple event dates. We need this value for views sorting and displays.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

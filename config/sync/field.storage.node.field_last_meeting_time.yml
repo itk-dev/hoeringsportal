@@ -1,12 +1,12 @@
-uuid: 6ff761f2-18c5-4659-9416-2b828f813166
+uuid: 02a1b02f-5053-496e-b946-ffe39b868e52
 langcode: da
 status: true
 dependencies:
   module:
     - datetime
     - node
-id: node.field_last_signup_time
-field_name: field_last_signup_time
+id: node.field_last_meeting_time
+field_name: field_last_meeting_time
 entity_type: node
 type: datetime
 settings:
