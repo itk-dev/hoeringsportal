@@ -1,7 +1,12 @@
+/**
+ * @file
+ * Vis timeline setup.
+ */
+
 import vis from 'vis/dist/vis.js'
 
     var settings = drupalSettings;
-    // DOM element where the Timeline will be attached
+    // DOM element where the Timeline will be attached.
     var container = document.getElementById('visualization')
     var dotColors = {};
     // Create a new dataset.
@@ -9,29 +14,32 @@ import vis from 'vis/dist/vis.js'
     for (var i = 0; i < settings.timelineItems.length; i++) {
       var item = settings.timelineItems[i];
       var date = new Date(item.startDate);
-      //@todo modify display of date in popup
+      // @todo modify display of date in popup.
       // var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       var popoverLabel = item.label;
       var buttonLink = '';
       var description = '<div>' + item.description + '</div></br>';
 
-      if (item.description == null){
+      if (item.description == null) {
         description = ''
       }
 
       // Only show link if a node exists or link is set.
-      if (item.nid > 0){
+      if (item.type === 'hearing') {
         buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
       }
-      else if(item.link) {
+      else if (item.type === 'meeting') {
+        buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til borgermøde</a>'
+      }
+      else if (item.link) {
         buttonLink = '<a class="btn-sm btn-primary" href="' + item.link + '">Læs mere</a>'
       }
 
       // Setup the popover content.
       var formatted_content =
         '<div class="popover-label">' + popoverLabel + '</div>' +
-        '<div class="popover-date">' +  date.toLocaleDateString("da") + '</div>' +
-        '<h6 class="popover-title">' +  item.title + '</h6>' +
+        '<div class="popover-date">' + date.toLocaleDateString("da") + '</div>' +
+        '<h6 class="popover-title">' + item.title + '</h6>' +
         description +
         buttonLink;
 
@@ -55,14 +63,14 @@ import vis from 'vis/dist/vis.js'
 
     var now = Date.now()
 
-    // Configuration for the Timeline
+    // Configuration for the timeline.
     var options = {
       zoomable: false,
       start: now - 31540000000,
       end: now + 31540000000
     }
 
-    // Create a timeline
+    // Create a timeline.
     var timeline = new vis.Timeline(container, newItems, options)
 
     $(function () {
@@ -74,7 +82,7 @@ import vis from 'vis/dist/vis.js'
     })
 
     // Modify the colors of dot and line.
-    Object.keys(dotColors).forEach(function(key) {
+    Object.keys(dotColors).forEach(function (key) {
       $('.vis-dot.' + key).css('border-color', dotColors[key]);
       $('.vis-line.' + key).css('border-color', dotColors[key]);
     });

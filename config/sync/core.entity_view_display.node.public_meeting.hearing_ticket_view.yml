@@ -1,0 +1,150 @@
+uuid: 4e24af4f-dbae-4750-a867-3259d5d0dd39
+langcode: da
+status: false
+dependencies:
+  config:
+    - core.entity_view_mode.node.hearing_ticket_view
+    - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_content_state
+    - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_hidden_signup
+    - field.field.node.public_meeting.field_media_document
+    - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_signup
+    - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_registration_deadline
+    - field.field.node.public_meeting.field_section
+    - field.field.node.public_meeting.field_teaser
+    - field.field.node.public_meeting.field_type
+    - node.type.public_meeting
+  module:
+    - datetime
+    - ds
+    - entity_reference_revisions
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      header:
+        - langcode
+        - field_description
+        - field_hidden_signup
+        - field_contact
+        - field_section
+        - field_project_reference
+        - field_teaser
+        - field_registration_deadline
+        - field_media_document
+        - field_hearing_type
+        - field_media_image_single
+        - field_area
+id: node.public_meeting.hearing_ticket_view
+targetEntityType: node
+bundle: public_meeting
+mode: hearing_ticket_view
+content:
+  field_area:
+    weight: 9
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header
+  field_contact:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: header
+  field_description:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: header
+  field_media_document:
+    weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header
+  field_media_image_single:
+    weight: 8
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header
+  field_project_reference:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: header
+  field_registration_deadline:
+    weight: 5
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: header
+  field_section:
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: header
+  field_teaser:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: header
+  langcode:
+    type: language
+    weight: 0
+    region: header
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+hidden:
+  field_content_state: true
+  field_hidden_signup: true
+  field_pretix_signup: true
+  field_type: true
+  links: true

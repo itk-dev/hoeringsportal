@@ -1,4 +1,4 @@
-uuid: b196c6ca-6269-4d5a-83c0-f7edbaf8994e
+uuid: 7aa65ffe-db0f-4066-bfb6-9344ad82a7e1
 langcode: da
 status: true
 dependencies:
@@ -11,8 +11,8 @@ id: node.project.field_project_finish
 field_name: field_project_finish
 entity_type: node
 bundle: project
-label: 'Forventet slutdato'
-description: 'Vælg forventet slutdato for initiativet.'
+label: Projektafslutning
+description: 'Vælg afslutningsdato for projektet.'
 required: true
 translatable: false
 default_value: {  }

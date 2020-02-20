@@ -77,7 +77,7 @@
   {% set project = content.field_project_label %}
 {% endif %}
 {% if node.bundle == 'hearing' %}
-  {% set type = content.field_hearing_type[0]['#plain_text'] %}
+  {% set type = content.field_type[0]['#plain_text'] %}
   {% set project = content.field_project_reference[0]['#plain_text'] %}
   {% set deskpro_data = node.field_deskpro_data.value %}
 {% endif %}
@@ -91,6 +91,7 @@
   {% if (content.field_reply_deadline) %}
     {% set deadline = content.field_reply_deadline['0']['#attributes'].datetime %}
     {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
+    {% set finishdate = content.field_reply_deadline['0']['#attributes'].datetime %}
     {% set content_state = content.field_content_state['0']['#markup'] %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
@@ -109,6 +110,7 @@
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Finished' | t %}
+          {% set overlay_sub_text = finishdate|date('d/m/Y') %}
           {% set overlay_text_color = 'text-green' %}
         {% else %}
           <div class="splash-label">{{ 'Reply date' | t }}</div>
@@ -131,24 +133,27 @@
     {# Add overlay when passed or upcomming #}
     {% if (overlay) %}
       <span class="activity-teaser-overlay">
-        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">{{ overlay_text }}</span>
+        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">
+          {{ overlay_text }}
+          {% if (overlay_sub_text) %}
+            <div class="activity-teaser-overlay--sub-text">{{ overlay_sub_text }}</div>
+          {% endif %}
+        </span>
       </span>
     {% endif %}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>
-    <p class="activity-teaser-title">{{ label }}</p>
+    <p class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</p>
     <div class="activity-teaser-description">
-      {{ content.field_teaser }}
+      {{ content.field_teaser[0]['#context'].value|length > 95 ? content.field_teaser[0]['#context'].value|slice(0, 95) ~ '...' : content.field_teaser }}
     </div>
   </div>
   <div class="activity-teaser-info">
-    <span class="activity-teaser-project-name">{{ project }}</span>
     <span class="activity-teaser-meta-wrapper">
-      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
-      <span class="activity-teaser-type">{{ type }}</span>
-      {% if(content.field_hearing_id) %}
-        <span class="activity-teaser-id">{{ content.field_hearing_id }}</span>
+      {% if type is not empty %}
+        <span class="activity-teaser-type">{{ type }}</span>
       {% endif %}
+      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
     </span>
     <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
   </div>

@@ -35,16 +35,24 @@ settings:
   plugin_types:
     default: default
     page: 0
+    entity_reference: 0
+    block: 0
     entity_browser: 0
   preselect_views:
     all_hearings: all_hearings
+    all_meetings: all_meetings
     all_projects: all_projects
+    advancedqueue_jobs: 0
     block_content: 0
     content: 0
     files: 0
+    form_list_active_projects: 0
+    hearings_related_to_project: 0
     itk_media: 0
     itk_media_browser: 0
     media: 0
+    nearest_hearings: 0
+    timeline_related_items: 0
     user_admin_people: 0
-    watchdog: 0
+    video_display: 0
 field_type: viewsreference

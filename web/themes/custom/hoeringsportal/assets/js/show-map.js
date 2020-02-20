@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Add map display config.
+ */
+
 import Map from 'ol/Map.js'
 import View from 'ol/View.js'
 import { defaults as defaultControls } from 'ol/control.js'

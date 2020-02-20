@@ -1,0 +1,8 @@
+uuid: 95397d51-334e-41d4-b214-9e76ceb03982
+langcode: da
+status: true
+dependencies: {  }
+name: Type
+vid: type
+description: ''
+weight: 0

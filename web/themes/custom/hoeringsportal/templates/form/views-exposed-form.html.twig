@@ -12,12 +12,12 @@
  */
 #}
 <div class="row">
-  <div class="col-md-2 mb-4">
-    {% if custom_config_exists and full_map_url %}
+  {% if custom_config_exists and full_map_url %}
+    <div class="col-md-2 mb-4">
       <a target="_blank" href="{{ full_map_url }}" class="btn btn-primary">{{ 'Show on map'|t }}</a>
-    {% endif %}
-  </div>
-  <div class="col-md-10 mb-4">
+    </div>
+  {% endif %}
+  <div class="col-md-12 mb-4">
     <div class="row justify-content-end">
       {% if q is not empty %}
         {#
