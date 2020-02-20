@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_first_meeting_time
+    - field.field.node.public_meeting.field_hidden_signup_link
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -18,7 +19,6 @@ dependencies:
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
     - field.field.node.public_meeting.field_signup_selection
-    - field.field.node.public_meeting.field_signup_tekst
     - field.field.node.public_meeting.field_teaser
     - field.field.node.public_meeting.field_type
     - node.type.public_meeting
@@ -157,9 +157,9 @@ content:
 hidden:
   field_content_state: true
   field_first_meeting_time: true
+  field_hidden_signup_link: true
   field_last_meeting_time: true
   field_pretix_signup: true
   field_signup_link: true
   field_signup_selection: true
-  field_signup_tekst: true
   links: true
