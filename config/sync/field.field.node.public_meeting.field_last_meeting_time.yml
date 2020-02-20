@@ -1,0 +1,21 @@
+uuid: 855aa52b-528d-41d4-96d3-499b8ddc60a9
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_meeting_time
+    - node.type.public_meeting
+  module:
+    - datetime
+id: node.public_meeting.field_last_meeting_time
+field_name: field_last_meeting_time
+entity_type: node
+bundle: public_meeting
+label: 'Last meeting time'
+description: 'This field is computed on node_save. It represents the time of the last meeting in case of multiple event dates. We need this value for views sorting and displays.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

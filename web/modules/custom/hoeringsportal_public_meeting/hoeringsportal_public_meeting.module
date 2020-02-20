@@ -9,34 +9,70 @@ use Drupal\node\NodeInterface;
 /**
  * Implements hook_ENTITY_TYPE_presave().
  *
- * Set last signup time for public meeting, based on Pretix field time_to values.
+ * Set last meeting time for public meeting, based on Pretix field time_to values.
  */
 function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
   if ($node->bundle() == 'public_meeting') {
     $last_time = 0;
+    $last_meeting_string = '';
     // Define fields to work on.
     $pretix_field_name = 'field_pretix_signup';
-    $last_signup_field_name = 'field_last_signup_time';
+    $last_meeting_field_name = 'field_last_meeting_time';
     $pretix_field = $node->hasField($pretix_field_name) ? $node->get($pretix_field_name) : NULL;
-    $last_signup = $node->hasField($last_signup_field_name) ? $node->get($last_signup_field_name) : NULL;
+    $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
     if ($pretix_field) {
       $pretix_type = $pretix_field->getFieldDefinition()->getType();
       if ($pretix_type == 'pretix_field_type') {
-        if ($last_signup) {
+        if ($last_meeting) {
           $values = $pretix_field->getValue();
           // Determine latest possible value.
           foreach($values as $value) {
             if ($value['time_to']->getTimestamp() > $last_time) {
-              $last_signup_string = $value['time_to']->format('Y-m-d H:i:s');
+              $last_meeting_string = $value['time_to']->format('Y-m-d H:i:s');
               $last_time = $value['time_to']->getTimestamp();
             }
           }
           // Only act if values were found.
           if ($values) {
-            $node->set($last_signup_field_name, $last_signup_string);
+            $node->set($last_meeting_field_name, $last_meeting_string);
           }
         }
       }
     }
+  }
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ *
+ * Change the display of the form depending on signup selection.
+ */
+function hoeringsportal_public_meeting_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'node_public_meeting_edit_form' || $form_id == 'node_public_meeting_form') {
+    $form['field_registration_deadline']['#states'] = array(
+      'invisible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
+      ],
+    );
+    $form['field_pretix_signup']['#states'] = array(
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
+      ],
+    );
+    $form['field_signup_link']['#states'] = array(
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
+      ],
+    );
+    $form['field_signup_text']['#states'] = array(
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
+      ],
+    );
+    $form['field_hidden_signup_link']['#states'] = array(
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
+      ],
+    );
   }
 }

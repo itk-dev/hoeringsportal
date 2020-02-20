@@ -1,0 +1,30 @@
+uuid: ea29cc7f-727a-4835-9db5-bf1bcad45cad
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_signup_selection
+field_name: field_signup_selection
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: pretix
+      label: 'Anvend Pretix'
+    -
+      value: manual
+      label: 'Manuel tilmelding'
+    -
+      value: hidden
+      label: 'Skjul tilmelding'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
