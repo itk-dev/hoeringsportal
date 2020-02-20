@@ -3,12 +3,12 @@ langcode: da
 status: true
 dependencies:
   config:
-    - field.storage.node.field_pretix_signup
+    - field.storage.node.field_pretix_dates
     - node.type.public_meeting
   module:
     - itk_pretix
-id: node.public_meeting.field_pretix_signup
-field_name: field_pretix_signup
+id: node.public_meeting.field_pretix_dates
+field_name: field_pretix_dates
 entity_type: node
 bundle: public_meeting
 label: Tilmelding
@@ -18,4 +18,4 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: pretix_field_type
+field_type: pretix_date_field_type
