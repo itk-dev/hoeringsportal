@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
-    - field.field.node.public_meeting.field_pretix_signup
+    - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
@@ -161,11 +161,11 @@ content:
     third_party_settings: {  }
     type: entity_browser_entity_reference
     region: content
-  field_pretix_signup:
+  field_pretix_dates:
     weight: 12
     settings: {  }
     third_party_settings: {  }
-    type: pretix_widget_type
+    type: pretix_date_widget_type
     region: content
   field_project_reference:
     weight: 8

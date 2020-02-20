@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
-    - field.field.node.public_meeting.field_pretix_signup
+    - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
@@ -50,8 +50,8 @@ content:
       view_mode: teaser_display
       link: false
     third_party_settings: {  }
-  field_pretix_signup:
-    type: pretix_formatter_type
+  field_pretix_dates:
+    type: pretix_date_formatter_type
     weight: 5
     region: content
     label: hidden

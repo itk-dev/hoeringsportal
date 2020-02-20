@@ -12,7 +12,7 @@ dependencies:
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
-    - field.field.node.public_meeting.field_pretix_signup
+    - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
@@ -56,7 +56,7 @@ third_party_settings:
         - node_title
       footer:
         - field_signup_selection
-        - field_pretix_signup
+        - field_pretix_dates
         - field_registration_deadline
         - field_signup_link
         - field_signup_text
@@ -109,7 +109,7 @@ third_party_settings:
     group_signup:
       children:
         - field_signup_selection
-        - field_pretix_signup
+        - field_pretix_dates
         - field_registration_deadline
         - field_signup_link
         - field_signup_text
@@ -175,12 +175,12 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
     region: left
-  field_pretix_signup:
+  field_pretix_dates:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: pretix_formatter_type
+    type: pretix_date_formatter_type
     region: footer
   field_registration_deadline:
     type: datetime_plain
