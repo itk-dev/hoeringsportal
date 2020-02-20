@@ -1,0 +1,29 @@
+uuid: b62b5f10-2eac-4d78-b72f-dc286c722fbe
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type
+    - node.type.hearing
+    - taxonomy.vocabulary.type
+id: node.hearing.field_type
+field_name: field_type
+entity_type: node
+bundle: hearing
+label: Type
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      type: type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

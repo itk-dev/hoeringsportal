@@ -6,8 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - node.type.hearing
     - taxonomy.vocabulary.area
-    - taxonomy.vocabulary.hearing_type
-    - taxonomy.vocabulary.tags
+    - taxonomy.vocabulary.type
   module:
     - better_exposed_filters
     - datetime
@@ -70,7 +69,7 @@ display:
                 collapsible: false
                 collapsible_label: 'Sort options'
                 combine: true
-                combine_rewrite: "Svarfrist Asc|Først kommende\nSvarfrist Desc|Sidst kommende"
+                combine_rewrite: "Svarfrist Asc|Først kommende\r\nSvarfrist Desc|Sidst kommende"
                 reset: false
                 reset_label: ''
                 is_secondary: false
@@ -81,23 +80,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: "- Any -|Område\n- Enhver -|Vælg område"
-            field_hearing_type_target_id:
-              bef_format: default
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Alle typer\n- Enhver -|Vælg type"
-            field_tags_target_id:
-              bef_format: default
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Alle emner\n- Enhver -|Vælg emne"
+                  filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vælg område"
             field_content_state_value:
               bef_format: default
               more_options:
@@ -105,15 +88,28 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: "- Any -|Alle\n- Enhver -|Vælg status"
+                  filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Vælg status"
+            field_type_target_id:
+              bef_format: bef_links
+              more_options:
+                bef_select_all_none: false
+                bef_collapsible: false
+                is_secondary: false
+                rewrite:
+                  filter_rewrite_values: '- Any -|Alle'
           text_input_required_format: filtered_html
       pager:
-        type: mini
+        type: full
         options:
-          items_per_page: 12
+          items_per_page: 15
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -122,9 +118,7 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 100000
       style:
         type: default
         options:
@@ -251,96 +245,6 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_hearing_type_target_id:
-          id: field_hearing_type_target_id
-          table: node__field_hearing_type
-          field: field_hearing_type_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_hearing_type_target_id_op
-            label: Høringstype
-            description: ''
-            use_operator: false
-            operator: field_hearing_type_target_id_op
-            identifier: field_hearing_type_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: hearing_type
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
-        field_tags_target_id:
-          id: field_tags_target_id
-          table: node__field_tags
-          field: field_tags_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: or
-          value: {  }
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_tags_target_id_op
-            label: Emne
-            description: ''
-            use_operator: false
-            operator: field_tags_target_id_op
-            identifier: field_tags_target_id
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              editor: '0'
-              administrator: '0'
-            reduce: false
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          reduce_duplicates: false
-          type: select
-          limit: true
-          vid: tags
-          hierarchy: false
-          error_message: true
-          plugin_id: taxonomy_index_tid
         field_content_state_value:
           id: field_content_state_value
           table: node__field_content_state
@@ -383,6 +287,52 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: list_field
+        field_type_target_id:
+          id: field_type_target_id
+          table: node__field_type
+          field: field_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_type_target_id_op
+            label: Type
+            description: ''
+            use_operator: false
+            operator: field_type_target_id_op
+            identifier: field_type_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              editor: '0'
+              administrator: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         field_reply_deadline_value:
           id: field_reply_deadline_value
@@ -421,7 +371,7 @@ display:
         operator: AND
         groups:
           1: AND
-      use_ajax: true
+      use_ajax: false
     cache_metadata:
       max-age: -1
       contexts:

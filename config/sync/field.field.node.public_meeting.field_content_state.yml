@@ -1,0 +1,23 @@
+uuid: 2c94062a-efd5-4694-b748-74e893eafbe2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_state
+    - node.type.public_meeting
+  module:
+    - options
+id: node.public_meeting.field_content_state
+field_name: field_content_state
+entity_type: node
+bundle: public_meeting
+label: 'Content state'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: upcoming
+default_value_callback: ''
+settings: {  }
+field_type: list_string

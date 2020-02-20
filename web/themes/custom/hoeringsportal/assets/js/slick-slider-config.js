@@ -1,3 +1,8 @@
+/**
+ * @file
+ * Add hyphenation.
+ */
+
 /* eslint-env jquery */
 (function ($) {
   $('.slick-slider-gallery').slick({
@@ -19,9 +24,7 @@
         breakpoint: 576,
         settings: 'unslick'
       }
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
+      // You can unslick at a given breakpoint now by adding settings: "unslick" instead of a settings object.
     ]
   })
 })(jQuery)

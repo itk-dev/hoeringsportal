@@ -22,10 +22,23 @@ class ProjectTimeline extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $node = \Drupal::routeMatch()->getParameter('node');
-    if (!$node) {
+    $current_node = \Drupal::routeMatch()->getParameter('node');
+    if (!$current_node) {
       return;
     }
+
+    if ($current_node->bundle() != 'project') {
+      if (!empty($current_node->field_project_reference->target_id)) {
+        $node = Node::load($current_node->field_project_reference->target_id);
+      }
+      else {
+        return;
+      }
+    }
+    else {
+      $node = $current_node;
+    }
+
     $nid = $node->id();
     $now = new DrupalDateTime('now');
     $now_timestamp = $now->getTimestamp();
@@ -82,6 +95,35 @@ class ProjectTimeline extends BlockBase {
             'label' => t('Hearing'),
           ];
         }
+      }
+    }
+
+    // Add public meetings to timeline items.
+    $query = \Drupal::entityQuery('node');
+    $query->condition('field_project_reference', $nid);
+    $query->condition('type', 'public_meeting');
+    $entity_ids = $query->execute();
+    if (!empty($entity_ids)) {
+      $meetings_nodes = Node::loadMultiple($entity_ids);
+      foreach ($meetings_nodes as $meeting_node) {
+        $meetings = $meeting_node->get('field_pretix_signup')->getValue();
+        usort($meetings, function ($a, $b) {
+          return date('U', strtotime($a['time_from'])) - date('U', strtotime($b['time_from']));
+        });
+        $first_meeting = $meetings[0];
+        $last_meeting = end($meeting);
+        $timeline_items[] = [
+          'title' => $meeting_node->title->value,
+          'startDate' => date('c', strtotime($first_meeting['time_from'])),
+          'endDate' => date('c', strtotime($last_meeting['time_from'])),
+          'type' => 'meeting',
+          'description' => NULL,
+          'state' => date('U', strtotime($last_meeting['time_from'])) < $now_timestamp ? 'passed' : 'upcomming',
+          'nid' => $meeting_node->nid->value,
+          'link' => NULL,
+          'color' => '#B2DADA',
+          'label' => t('Public meeting'),
+        ];
       }
     }
 

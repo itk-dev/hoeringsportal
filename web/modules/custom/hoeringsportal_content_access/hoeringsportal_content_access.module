@@ -1,0 +1,18 @@
+<?php
+/**
+ * @file
+ * Module for node access.
+ */
+
+use Drupal\Core\Access\AccessResultForbidden;
+use Drupal\Core\Access\AccessResultNeutral;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_node_access().
+ */
+function hoeringsportal_content_access_node_access(NodeInterface $node, $operation, AccountInterface $account) {
+  $bundle = $node->bundle();
+  return ($bundle == 'project' && $operation == 'view') ? new AccessResultForbidden() : new AccessResultNeutral();
+}

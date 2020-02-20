@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: Initiativ
+name: Projekttidslinje
 type: project
-description: "En initiativ side til beskrivelse af initiativet, med relaterede aktiviteter og høringer\r\nEksempel: Aarhus Ø, Havnebadet"
+description: 'En projekttidslinje der samler relaterede borgermøder og initiativer i en kronologi. Det er muligt at tilføje ekstra tidslinje punkter.'
 help: ''
 new_revision: false
 preview_mode: 1

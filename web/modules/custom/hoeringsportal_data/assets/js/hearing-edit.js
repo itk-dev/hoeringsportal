@@ -1,9 +1,12 @@
-/* global WidgetAPI */
+/**
+ * @file
+ * Encore config global WidgetAPI.
+ */
 
 import proj4 from 'proj4'
 
 require('../css/hearing-edit.scss')
-// Define default Septima projection
+// Define default Septima projection.
 proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs')
 
 // Aliases for convenience.
@@ -26,8 +29,6 @@ const project = (geojson, fromProjection, toProjection) => {
 window.addEventListener('load', function () {
   const config = {
     'map': {
-      // Apparently, "search" with "dawa" only works as expected with "EPSG:25832".
-      // "srs": "EPSG:25832",
       'maxZoomLevel': 1,
       'minZoomLevel': 22,
       'view': {
@@ -82,7 +83,7 @@ window.addEventListener('load', function () {
               {
                 'type': 'dawa',
                 'options': {
-                  'kommunekode': '0751' // Aarhus
+                  'kommunekode': '0751' // Aarhus.
                 }
               }
             ]
@@ -98,7 +99,11 @@ window.addEventListener('load', function () {
       try {
         const data = JSON.parse(container.getAttribute('data-value'))
         return project(data, targetMapProjection, config.map.srs || defaultMapProjection)
-      } catch (ex) {}
+      }
+      catch (ex) {
+
+      }
+
       return null
     }())
 

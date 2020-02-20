@@ -1,0 +1,11 @@
+uuid: a7d865d2-833d-429c-aa65-bc0a0b870899
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.public_meeting
+id: node.public_meeting
+target_entity_type_id: node
+target_bundle: public_meeting
+default_langcode: site_default
+language_alterable: false

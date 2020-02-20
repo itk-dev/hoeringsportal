@@ -7,6 +7,8 @@
 
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_preprocess_field().
@@ -42,8 +44,6 @@ function hoeringsportal_preprocess_field(&$variables) {
   }
 
   if ($variables['field_name'] == 'dynamic_block_field:node-project_timeline') {
-    $timeline_vocab = 'timeline_item_types';
-
     $query = \Drupal::entityQuery('taxonomy_term');
     $query->condition('vid', 'timeline_item_types');
     $tids = $query->execute();
@@ -138,6 +138,64 @@ function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array 
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, array $variables) {
+  if (_hoeringsportal_is_bef_container($variables)) {
+    $suggestions[] ='container__type';
+  }
+}
+
+/**
+ * Implements hook_preprocess_container().
+ */
+function hoeringsportal_preprocess_container(&$variables) {
+  if (_hoeringsportal_is_bef_container($variables)) {
+    $query = \Drupal::request()->query->get('field_type_target_id');
+    $variables['displayed_target_id'] = $query;
+    // Get "type" taxonomy terms
+    $vid = 'type';
+    $terms =\Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
+
+    foreach ($terms as $key => $term) {
+      $type_list[] = array(
+        'id' => $term->tid,
+        'title' => $term->name,
+      );
+      switch ($term->name) {
+        case 'Kommuneplan':
+          $type_list[$key ]['icon'] = 'fal fa-2x fa-map';
+          break;
+        case 'Lokalplan':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-map-marked-alt';
+          break;
+        case 'Trafik og mobilitet':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-car-bus';
+          break;
+        case 'Dagtilbud og skole':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';
+          break;
+        case 'Sundhed og omsorg':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-heartbeat';
+          break;
+        case 'Andet':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-star';
+          break;
+      }
+    }
+
+    // Add All option to array
+    array_unshift($type_list, array(
+      'id' => 'All',
+      'title' => 'Alle',
+      'icon' => 'fal fa-2x fa-check-double'
+    ));
+
+    $variables['display_icons'] = $type_list;
+  }
+}
+
+/**
  * Implements hook_preprocess_html().
  */
 function hoeringsportal_preprocess_html(&$variables) {
@@ -207,7 +265,7 @@ function hoeringsportal_preprocess_ds_1col(&$variables) {
 function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   $node_type = isset($variables['content']['#bundle']) ? $variables['content']['#bundle'] : '';
   // Check content type.
-  if ($node_type == 'project' || $node_type == 'hearing') {
+  if ($node_type == 'project' || $node_type == 'hearing' || $node_type == 'public_meeting' ) {
     $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';
   }
 }
@@ -244,4 +302,19 @@ function hoeringsportal_preprocess_file_link(&$variables) {
   if ($variables['link']) {
     $variables['file_path'] = file_create_url($variables['file']->get('uri')->getValue()['0']['value']);
   }
+}
+
+function _hoeringsportal_is_bef_container($variables) {
+  if(isset($variables['element']['#url']) && !empty($variables['element']['#url']->getOptions())) {
+    $options = $variables['element']['#url']->getOptions();
+    if(isset($options['attributes']['class']) && $options['attributes']['class'] == 'bef-link-active') {
+      return TRUE;
+    }
+
+    if(isset($options['query']['field_type_target_id'])) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }

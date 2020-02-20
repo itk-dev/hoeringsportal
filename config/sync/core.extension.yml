@@ -14,6 +14,7 @@ module:
   ctools: 0
   datetime: 0
   datetime_range: 0
+  dblog: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
@@ -28,11 +29,13 @@ module:
   file: 0
   filter: 0
   hoeringsportal_config_settings: 0
+  hoeringsportal_content_access: 0
   hoeringsportal_content_blocks: 0
   hoeringsportal_data: 0
   hoeringsportal_deskpro: 0
   hoeringsportal_forms: 0
   hoeringsportal_project_timeline: 0
+  hoeringsportal_public_meeting: 0
   hoeringsportal_quicklinks: 0
   image: 0
   image_captcha: 0
@@ -44,6 +47,7 @@ module:
   itk_azure_video: 0
   itk_cookie_message: 0
   itk_media_entity: 0
+  itk_pretix: 0
   itk_siteimprove: 0
   language: 0
   layout_discovery: 0

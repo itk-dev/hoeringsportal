@@ -1,0 +1,25 @@
+uuid: b2d6b691-f683-4851-8e34-a9b04fc9c3b2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_reference
+    - node.type.public_meeting
+id: node.public_meeting.field_project_reference
+field_name: field_project_reference
+entity_type: node
+bundle: public_meeting
+label: Initiativ
+description: 'Vælg initiativ som høringen er knyttet til.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: form_list_active_projects
+      display_name: entity_reference_1
+      arguments: {  }
+field_type: entity_reference

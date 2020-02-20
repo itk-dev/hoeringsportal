@@ -1,0 +1,42 @@
+<?php
+/**
+ * @file
+ * Module for public meeting content type.
+ */
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ *
+ * Set last signup time for public meeting, based on Pretix field time_to values.
+ */
+function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
+  if ($node->bundle() == 'public_meeting') {
+    $last_time = 0;
+    // Define fields to work on.
+    $pretix_field_name = 'field_pretix_signup';
+    $last_signup_field_name = 'field_last_signup_time';
+    $pretix_field = $node->hasField($pretix_field_name) ? $node->get($pretix_field_name) : NULL;
+    $last_signup = $node->hasField($last_signup_field_name) ? $node->get($last_signup_field_name) : NULL;
+    if ($pretix_field) {
+      $pretix_type = $pretix_field->getFieldDefinition()->getType();
+      if ($pretix_type == 'pretix_field_type') {
+        if ($last_signup) {
+          $values = $pretix_field->getValue();
+          // Determine latest possible value.
+          foreach($values as $value) {
+            if ($value['time_to']->getTimestamp() > $last_time) {
+              $last_signup_string = $value['time_to']->format('Y-m-d H:i:s');
+              $last_time = $value['time_to']->getTimestamp();
+            }
+          }
+          // Only act if values were found.
+          if ($values) {
+            $node->set($last_signup_field_name, $last_signup_string);
+          }
+        }
+      }
+    }
+  }
+}

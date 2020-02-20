@@ -1,4 +1,5 @@
 @import
+  "../../node_modules/bootstrap/dist/css/bootstrap.min.css",
   "_custom-mixins",
   "_custom-variables",
   "_bootstrap-custom",
@@ -25,4 +26,7 @@
   "module/_image-gallery",
   "module/_spinner",
   "module/_hyphenate",
+  "module/_signup",
+  "module/_list",
+  "module/_pager",
   "../../node_modules/slick-carousel/slick/slick.scss";
