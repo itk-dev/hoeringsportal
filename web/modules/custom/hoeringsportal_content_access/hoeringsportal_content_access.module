@@ -14,11 +14,5 @@ use Drupal\node\NodeInterface;
  */
 function hoeringsportal_content_access_node_access(NodeInterface $node, $operation, AccountInterface $account) {
   $bundle = $node->bundle();
-  if ($bundle == 'project' && $operation == 'view') {
-    $access = new AccessResultForbidden();
-  }
-  else {
-    $access = new AccessResultNeutral();
-  }
-  return $access;
+  return ($bundle == 'project' && $operation == 'view') ? new AccessResultForbidden() : new AccessResultNeutral();
 }
