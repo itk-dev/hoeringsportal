@@ -1,17 +1,16 @@
-uuid: 6ff761f2-18c5-4659-9416-2b828f813166
+uuid: ba07fbe7-11f7-4060-bd8a-0c627ae8dad5
 langcode: da
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_last_signup_time
-field_name: field_last_signup_time
+id: node.field_signup_tekst
+field_name: field_signup_tekst
 entity_type: node
-type: datetime
+type: string_long
 settings:
-  datetime_type: datetime
-module: datetime
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

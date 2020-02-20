@@ -7,14 +7,17 @@ dependencies:
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
-    - field.field.node.public_meeting.field_hidden_signup
-    - field.field.node.public_meeting.field_last_signup_time
+    - field.field.node.public_meeting.field_first_meeting_time
+    - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_signup
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
+    - field.field.node.public_meeting.field_signup_link
+    - field.field.node.public_meeting.field_signup_selection
+    - field.field.node.public_meeting.field_signup_tekst
     - field.field.node.public_meeting.field_teaser
     - field.field.node.public_meeting.field_type
     - node.type.public_meeting
@@ -24,6 +27,8 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - itk_pretix
+    - link
+    - options
     - text
     - user
 third_party_settings:
@@ -187,6 +192,32 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: footer
+  field_signup_link:
+    weight: 35
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  field_signup_selection:
+    weight: 34
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_signup_tekst:
+    weight: 36
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_teaser:
     weight: 1
     label: hidden
@@ -204,8 +235,8 @@ content:
     region: right
 hidden:
   field_content_state: true
-  field_hidden_signup: true
-  field_last_signup_time: true
+  field_first_meeting_time: true
+  field_last_meeting_time: true
   field_project_reference: true
   langcode: true
   links: true

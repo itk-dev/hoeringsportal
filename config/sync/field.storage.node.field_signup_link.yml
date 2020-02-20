@@ -1,15 +1,16 @@
-uuid: d9f9867a-bbfa-4984-86ce-64c237138696
-langcode: en
+uuid: 8e148fef-cb9c-40f7-91c1-213e1f5b0eab
+langcode: da
 status: true
 dependencies:
   module:
+    - link
     - node
-id: node.field_hidden_signup
-field_name: field_hidden_signup
+id: node.field_signup_link
+field_name: field_signup_link
 entity_type: node
-type: boolean
+type: link
 settings: {  }
-module: core
+module: link
 locked: false
 cardinality: 1
 translatable: true
