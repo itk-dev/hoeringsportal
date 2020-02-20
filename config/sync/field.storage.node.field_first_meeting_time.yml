@@ -1,0 +1,20 @@
+uuid: 22a13025-5f3a-42ae-a7c0-18a7e980e48f
+langcode: da
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_first_meeting_time
+field_name: field_first_meeting_time
+entity_type: node
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

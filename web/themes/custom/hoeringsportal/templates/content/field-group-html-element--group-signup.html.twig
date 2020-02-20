@@ -23,7 +23,9 @@
     {% if collapsible %}
     <div class="field-group-wrapper">
     {% endif %}
-    {{children}}
+    {{ children }}
+      {{ element.field_signup_selection }}
+      {{ element.field_pretix_signup }}
     {% if collapsible %}
     </div>
     {% endif %}
