@@ -73,20 +73,20 @@ for (var i = 0; i < items.length; i++) {
   }
 
 
-      if (item.description == null) {
-        description = ''
-      }
+  if (item.description == null) {
+    description = ''
+  }
 
-      // Only show link if a node exists or link is set.
-      if (item.type === 'hearing') {
-        buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
-      }
-      else if (item.type === 'meeting') {
-        buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til borgermøde</a>'
-      }
-      else if (item.link) {
-        buttonLink = '<a class="btn-sm btn-primary" href="' + item.link + '">Læs mere</a>'
-      }
+  // Only show link if a node exists or link is set.
+  if (item.type === 'hearing') {
+    buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til høring</a>'
+  }
+  else if (item.type === 'meeting') {
+    buttonLink = '<a class="btn-sm btn-primary" href="/node/' + item.nid + '">Gå til borgermøde</a>'
+  }
+  else if (item.link) {
+    buttonLink = '<a class="btn-sm btn-primary" href="' + item.link + '">Læs mere</a>'
+  }
 
   // Setup the popover content.
   var formatted_content =
@@ -96,61 +96,61 @@ for (var i = 0; i < items.length; i++) {
     description +
     buttonLink;
 
-      newItems.add({
-        id: i,
-        style: 'background-color:' + item.color,
-        className: item.type + ' ' + item.state,
-        content: $('<div/>', {
-          'class': 'timeline-item-inner is-' + item.type + ' is-' + item.state,
-          'data-toggle': 'timeline-popover',
-          'data-html': true,
-          'data-placement': 'top',
-          'data-content':  formatted_content
-        }).html('<i></i><div>' + item.title + '</div>').prop('outerHTML'),
-        start: item.startDate
-      });
+  newItems.add({
+    id: i,
+    style: 'background-color:' + item.color,
+    className: item.type + ' ' + item.state,
+    content: $('<div/>', {
+      'class': 'timeline-item-inner is-' + item.type + ' is-' + item.state,
+      'data-toggle': 'timeline-popover',
+      'data-html': true,
+      'data-placement': 'top',
+      'data-content':  formatted_content
+    }).html('<i></i><div>' + item.title + '</div>').prop('outerHTML'),
+    start: item.startDate
+  });
 
-      // Prepare coloring for dots and lines.
-      dotColors[item.type] = item.color;
-    }
+  // Prepare coloring for dots and lines.
+  dotColors[item.type] = item.color;
+}
 
-    var now = Date.now()
+var now = Date.now()
 
-    // Configuration for the timeline.
-    var options = {
-      zoomable: false,
-      start: now - 31540000000,
-      end: now + 31540000000
-    }
+// Configuration for the timeline.
+var options = {
+  zoomable: false,
+  start: now - 31540000000,
+  end: now + 31540000000
+}
 
-    // Create a timeline.
-    var timeline = new vis.Timeline(container, newItems, options)
+// Create a timeline.
+var timeline = new vis.Timeline(container, newItems, options)
 
-    $(function () {
-      $(container).popover({
-        // Selector makes dynamic elements wok as well.
-        // https://github.com/twbs/bootstrap/issues/4215
-        selector: '[data-toggle="timeline-popover"]'
-      });
-    })
+$(function () {
+  $(container).popover({
+    // Selector makes dynamic elements wok as well.
+    // https://github.com/twbs/bootstrap/issues/4215
+    selector: '[data-toggle="timeline-popover"]'
+  });
+})
 
-    // Modify the colors of dot and line.
-    Object.keys(dotColors).forEach(function (key) {
-      $('.vis-dot.' + key).css('border-color', dotColors[key]);
-      $('.vis-line.' + key).css('border-color', dotColors[key]);
-    });
+// Modify the colors of dot and line.
+Object.keys(dotColors).forEach(function (key) {
+  $('.vis-dot.' + key).css('border-color', dotColors[key]);
+  $('.vis-line.' + key).css('border-color', dotColors[key]);
+});
 
-    // Hide on timeline drag.
-    timeline.on('rangechange', function (properties) {
-      $('[data-toggle="timeline-popover"]').popover('hide')
-    });
+// Hide on timeline drag.
+timeline.on('rangechange', function (properties) {
+  $('[data-toggle="timeline-popover"]').popover('hide')
+});
 
-    // Hide on timeline drag.
-    timeline.on('click', function (properties) {
-      $('[data-toggle="timeline-popover"]').popover('hide')
-    });
+// Hide on timeline drag.
+timeline.on('click', function (properties) {
+  $('[data-toggle="timeline-popover"]').popover('hide')
+});
 
-    // Add "Now" to line.
-    var lbl = document.createElement("label");
-    lbl.innerHTML = "NU"
-    timeline.currentTime.bar.appendChild(lbl);
+// Add "Now" to line.
+var lbl = document.createElement("label");
+lbl.innerHTML = "NU"
+timeline.currentTime.bar.appendChild(lbl);
