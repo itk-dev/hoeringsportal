@@ -106,7 +106,7 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $meetings_nodes = Node::loadMultiple($entity_ids);
       foreach ($meetings_nodes as $meeting_node) {
-        $meetings = $meeting_node->get('field_pretix_signup')->getValue();
+        $meetings = $meeting_node->get('field_pretix_dates')->getValue();
         usort($meetings, function ($a, $b) {
           return date('U', strtotime($a['time_from'])) - date('U', strtotime($b['time_from']));
         });

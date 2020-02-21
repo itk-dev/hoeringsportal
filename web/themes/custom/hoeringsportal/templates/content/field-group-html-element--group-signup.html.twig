@@ -26,7 +26,7 @@
       {% endif %}
         {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
           {{ element.field_registration_deadline }}
-          {{ element.field_pretix_signup }}
+          {{ element.field_pretix_dates }}
         {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
           {{ element.field_registration_deadline }}
           {{ element.field_signup_link }}

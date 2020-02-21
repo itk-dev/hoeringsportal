@@ -74,10 +74,10 @@
 {# Set variables depending on node type. #}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
-{% set startdate = content.field_first_meeting_time['#items'].value %}
 <a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
   {# When deadline field exists add splash. #}
-  {% if (content.field_pretix_signup) %}
+  {% if (content.field_first_meeting_time) %}
+    {% set startdate = content.field_first_meeting_time['#items'].value %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
         {# @todo Add determine content state. #}
