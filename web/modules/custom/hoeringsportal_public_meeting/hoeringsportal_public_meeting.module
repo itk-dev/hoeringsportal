@@ -14,7 +14,6 @@ use Drupal\node\NodeInterface;
 function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
   if ($node->bundle() == 'public_meeting') {
     $last_time = 0;
-    $first_meeting_string = '';
     $last_meeting_string = '';
     // Define fields to work on.
     $pretix_field_name = 'field_pretix_signup';
@@ -30,23 +29,22 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
           $values = $pretix_field->getValue();
           // Set a comparable value for first_time possible.
           $first_time = $values[0]['time_from']->getTimestamp();
+          $first_meeting_string = $values[0]['time_from']->format('Y-m-d\TH:i:s');
           // Determine latest possible value.
           foreach($values as $value) {
-            if ($value['time_to']->getTimestamp() < $first_time) {
-              $first_meeting_string = $value['time_from']->format('Y-m-d H:i:s');
+            if ($value['time_from']->getTimestamp() < $first_time) {
+              $first_meeting_string = $value['time_from']->format('Y-m-d\TH:i:s');
               $first_time = $value['time_from']->getTimestamp();
             }
 
             if ($value['time_to']->getTimestamp() > $last_time) {
-              $last_meeting_string = $value['time_to']->format('Y-m-d H:i:s');
+              $last_meeting_string = $value['time_to']->format('Y-m-d\TH:i:s');
               $last_time = $value['time_to']->getTimestamp();
             }
           }
           // Only act if values were found.
           if ($values) {
             $node->set($first_meeting_field_name, $first_meeting_string);
-          }
-          if ($values) {
             $node->set($last_meeting_field_name, $last_meeting_string);
           }
         }
