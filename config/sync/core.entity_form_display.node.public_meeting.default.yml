@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_dates
+    - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
@@ -166,6 +167,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: pretix_date_widget_type
+    region: content
+  field_pretix_event_settings:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: pretix_event_settings_widget_type
     region: content
   field_project_reference:
     weight: 8
