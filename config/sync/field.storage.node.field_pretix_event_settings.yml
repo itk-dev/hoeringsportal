@@ -1,0 +1,19 @@
+uuid: ae5b5303-8dbc-408a-b7d5-7edbdcfc4751
+langcode: da
+status: true
+dependencies:
+  module:
+    - itk_pretix
+    - node
+id: node.field_pretix_event_settings
+field_name: field_pretix_event_settings
+entity_type: node
+type: pretix_event_settings_field_type
+settings: {  }
+module: itk_pretix
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
