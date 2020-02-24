@@ -24,7 +24,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
     $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
     if ($pretix_field) {
       $pretix_type = $pretix_field->getFieldDefinition()->getType();
-      if ($pretix_type == 'pretix_field_type') {
+      if ($pretix_type == 'pretix_field_date') {
         if ($first_meeting && $last_meeting) {
           $values = $pretix_field->getValue();
           // Set a comparable value for first_time possible.
