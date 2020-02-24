@@ -16,7 +16,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
     $last_time = 0;
     $last_meeting_string = '';
     // Define fields to work on.
-    $pretix_field_name = 'field_pretix_signup';
+    $pretix_field_name = 'field_pretix_dates';
     $first_meeting_field_name = 'field_first_meeting_time';
     $last_meeting_field_name = 'field_last_meeting_time';
     $pretix_field = $node->hasField($pretix_field_name) ? $node->get($pretix_field_name) : NULL;
@@ -24,7 +24,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
     $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
     if ($pretix_field) {
       $pretix_type = $pretix_field->getFieldDefinition()->getType();
-      if ($pretix_type == 'pretix_field_type') {
+      if ($pretix_type == 'pretix_field_date') {
         if ($first_meeting && $last_meeting) {
           $values = $pretix_field->getValue();
           // Set a comparable value for first_time possible.
@@ -65,7 +65,7 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, \Drupal\Core
         ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
       ],
     );
-    $form['field_pretix_signup']['#states'] = array(
+    $form['field_pretix_dates']['#states'] = array(
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],

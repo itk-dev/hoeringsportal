@@ -5,10 +5,10 @@ dependencies:
   module:
     - itk_pretix
     - node
-id: node.field_pretix_signup
-field_name: field_pretix_signup
+id: node.field_pretix_dates
+field_name: field_pretix_dates
 entity_type: node
-type: pretix_field_type
+type: pretix_date_field_type
 settings: {  }
 module: itk_pretix
 locked: false
