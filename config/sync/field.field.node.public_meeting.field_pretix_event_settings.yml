@@ -1,0 +1,21 @@
+uuid: 74871711-9e89-4e88-963f-084289e34b1c
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pretix_event_settings
+    - node.type.public_meeting
+  module:
+    - itk_pretix
+id: node.public_meeting.field_pretix_event_settings
+field_name: field_pretix_event_settings
+entity_type: node
+bundle: public_meeting
+label: pretix-indstillinger
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: pretix_event_settings_field_type
