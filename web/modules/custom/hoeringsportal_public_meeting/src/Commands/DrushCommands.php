@@ -33,7 +33,6 @@ class DrushCommands extends BaseDrushCommands {
    */
   public function updatePublicMeetingState() {
     $meetings = $this->helper->loadPublicMeetings();
-
     foreach ($meetings as $meeting) {
       $newState = $this->helper->computeState($meeting);
       if ($this->helper->getState($meeting) !== $newState) {
