@@ -1,0 +1,10 @@
+services:
+  hoeringsportal_public_meeting.public_meeting_helper:
+    class: Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper
+    arguments: ['@entity_type.manager']
+
+  hoeringsportal_public_meeting.commands:
+    class: Drupal\hoeringsportal_public_meeting\Commands\DrushCommands
+    arguments: ['@hoeringsportal_public_meeting.public_meeting_helper']
+    tags:
+      - { name: drush.command }

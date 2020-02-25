@@ -53,8 +53,6 @@ third_party_settings:
         classes:
           layout_class: {  }
     regions:
-      header:
-        - node_title
       footer:
         - field_signup_selection
         - field_pretix_dates
@@ -65,6 +63,9 @@ third_party_settings:
         - 'dynamic_block_field:node-project_timeline'
         - field_section
         - 'dynamic_block_field:node-related_public_meeting'
+      header:
+        - 'dynamic_block_field:node-public_meeting_warning'
+        - node_title
       left:
         - field_teaser
         - field_description
@@ -79,27 +80,32 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 11
+        weight: 12
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-public_meeting_warning':
+        plugin_id: 'dynamic_block_field:node-public_meeting_warning'
+        weight: 0
         label: hidden
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 5
+        weight: 6
         label: above
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 13
+        weight: 14
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 6
+        weight: 7
         label: hidden
         formatter: default
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         settings:
@@ -115,7 +121,7 @@ third_party_settings:
         - field_signup_link
         - field_signup_text
       parent_name: ''
-      weight: 10
+      weight: 11
       format_type: html_element
       format_settings:
         element: div
@@ -135,7 +141,7 @@ bundle: public_meeting
 mode: default
 content:
   field_area:
-    weight: 7
+    weight: 8
     label: above
     settings:
       link: true
@@ -143,21 +149,21 @@ content:
     type: entity_reference_label
     region: right
   field_contact:
-    weight: 9
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: right
   field_description:
-    weight: 2
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: left
   field_media_document:
-    weight: 3
+    weight: 4
     label: above
     settings:
       view_mode: material_display
@@ -168,7 +174,7 @@ content:
     type: entity_reference_entity_view
     region: left
   field_media_image_single:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       view_mode: teaser_display
@@ -192,7 +198,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 12
+    weight: 13
     label: hidden
     settings:
       view_mode: default
@@ -227,14 +233,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_teaser:
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: left
   field_type:
-    weight: 8
+    weight: 9
     label: above
     settings:
       link: true
