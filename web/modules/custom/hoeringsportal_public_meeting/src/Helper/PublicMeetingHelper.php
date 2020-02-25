@@ -57,9 +57,8 @@ class PublicMeetingHelper {
       return NULL;
     }
 
-    $now = $this->getDateTime();
-    $endTime = $public_meeting->field_last_meeting_time->date;
-    print $now;
+    $now = $this->getDateTime()->getTimestamp();
+    $endTime = $public_meeting->field_last_meeting_time->date->getTimestamp();
     if (empty($endTime) || $endTime >= $now) {
       return self::STATE_UPCOMING;
     }
