@@ -213,3 +213,9 @@ docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
 curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e' \
   http://pretix.hoeringsportal.local.itkdev.dk/api/v1/organizers/
 ```
+
+### Resetting prtix database
+
+```sh
+gunzip < .docker/pretix/dumps/pretix_2020-02-26.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
+```
