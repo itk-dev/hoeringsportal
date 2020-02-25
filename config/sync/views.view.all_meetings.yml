@@ -9,6 +9,7 @@ dependencies:
     - taxonomy.vocabulary.type
   module:
     - better_exposed_filters
+    - datetime
     - node
     - options
     - taxonomy
@@ -375,6 +376,19 @@ display:
           error_message: true
           plugin_id: taxonomy_index_tid
       sorts:
+        field_last_meeting_time_value:
+          id: field_last_meeting_time_value
+          table: node__field_last_meeting_time
+          field: field_last_meeting_time_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Svarfrist
+          granularity: second
+          plugin_id: datetime
         title:
           id: title
           table: node_field_data
@@ -407,6 +421,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
         - user
         - 'user.node_grants:view'
         - user.permissions

@@ -1,6 +1,6 @@
 id: node_id_hearing
 label: 'Hearing id'
-ui_limit: ''
+ui_limit: 'hearing|*'
 properties:
   content:
     value: 'H[node:nid]'

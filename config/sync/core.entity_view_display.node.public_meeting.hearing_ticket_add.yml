@@ -152,7 +152,9 @@ hidden:
   field_hidden_signup_link: true
   field_last_meeting_time: true
   field_pretix_dates: true
+  field_pretix_event_settings: true
   field_signup_link: true
   field_signup_selection: true
+  field_signup_text: true
   field_type: true
   links: true
