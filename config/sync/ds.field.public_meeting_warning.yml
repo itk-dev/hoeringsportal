@@ -1,8 +1,8 @@
-id: hearing_ticket_author
-label: Afsender
-ui_limit: 'hearing|*'
+id: public_meeting_warning
+label: 'Public meeting warning'
+ui_limit: 'public_meeting|*'
 properties:
-  block: hoeringsportal_deskpro_hearingticket_author_block
+  block: meeting_warning
   use_block_title: false
   add_block_wrappers: false
 type: block

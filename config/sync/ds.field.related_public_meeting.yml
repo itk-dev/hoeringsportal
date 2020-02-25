@@ -3,7 +3,7 @@ label: 'Relateret til dette borgermøde'
 ui_limit: 'public_meeting|*'
 properties:
   block: 'views_block:timeline_related_items-block_1'
-  use_block_title: true
+  use_block_title: false
   add_block_wrappers: false
   config:
     id: 'views_block:timeline_related_items-block_1'
