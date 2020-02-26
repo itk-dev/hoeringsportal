@@ -12,7 +12,7 @@ use Drupal\node\NodeInterface;
  * Set last meeting time for public meeting, based on Pretix field time_to values.
  */
 function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
-  if ($node->bundle() == 'public_meeting') {
+  if (Drupal::currentUser()->isAuthenticated() > 0 && $node->bundle() === 'public_meeting') {
     $last_time = 0;
     $last_meeting_string = '';
     // Define fields to work on.
@@ -24,7 +24,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
     $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
     if ($pretix_field) {
       $pretix_type = $pretix_field->getFieldDefinition()->getType();
-      if ($pretix_type == 'pretix_field_date') {
+      if ($pretix_type == 'pretix_date_field_type') {
         if ($first_meeting && $last_meeting) {
           $values = $pretix_field->getValue();
           // Set a comparable value for first_time possible.

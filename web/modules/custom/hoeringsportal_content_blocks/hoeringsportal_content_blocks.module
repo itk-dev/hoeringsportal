@@ -24,5 +24,9 @@ function hoeringsportal_content_blocks_theme($existing, $type, $theme, $path) {
       'variables' => ['config' => NULL],
       'template' => 'hoeringsportal-hearing-warning',
     ],
+    'hoeringsportal_meeting_warning' => [
+      'variables' => ['config' => NULL],
+      'template' => 'hoeringsportal-meeting-warning',
+    ],
   ];
 }

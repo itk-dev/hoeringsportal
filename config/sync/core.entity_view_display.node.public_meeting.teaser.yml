@@ -14,17 +14,20 @@ dependencies:
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_dates
+    - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
     - field.field.node.public_meeting.field_signup_selection
+    - field.field.node.public_meeting.field_signup_text
     - field.field.node.public_meeting.field_teaser
     - field.field.node.public_meeting.field_type
     - node.type.public_meeting
   module:
     - datetime
     - itk_pretix
+    - options
     - user
 id: node.public_meeting.teaser
 targetEntityType: node
@@ -41,6 +44,31 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+  field_content_state:
+    type: list_default
+    weight: 9
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_first_meeting_time:
+    type: datetime_default
+    weight: 7
+    region: content
+    label: hidden
+    settings:
+      timezone_override: Europe/Copenhagen
+      format_type: html_datetime
+    third_party_settings: {  }
+  field_last_meeting_time:
+    type: datetime_default
+    weight: 8
+    region: content
+    label: hidden
+    settings:
+      timezone_override: Europe/Copenhagen
+      format_type: html_datetime
+    third_party_settings: {  }
   field_media_image_single:
     type: entity_reference_entity_view
     weight: 2
@@ -91,14 +119,13 @@ content:
     third_party_settings: {  }
 hidden:
   field_contact: true
-  field_content_state: true
   field_description: true
-  field_first_meeting_time: true
   field_hidden_signup_link: true
-  field_last_meeting_time: true
   field_media_document: true
+  field_pretix_event_settings: true
   field_section: true
   field_signup_link: true
   field_signup_selection: true
+  field_signup_text: true
   langcode: true
   links: true

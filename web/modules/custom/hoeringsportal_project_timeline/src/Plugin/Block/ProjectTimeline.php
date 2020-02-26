@@ -110,11 +110,11 @@ class ProjectTimeline extends BlockBase {
         usort($meetings, function ($a, $b) {
           return date('U', strtotime($a['time_from'])) - date('U', strtotime($b['time_from']));
         });
-        $first_meeting = $meetings[0];
         $last_meeting = end($meetings);
         $timeline_items[] = [
           'title' => $meeting_node->title->value,
-          'startDate' => date('c', strtotime($first_meeting['time_from'])),
+          // Only one date is used in JS and we want it to be end date.
+          'startDate' => date('c', strtotime($last_meeting['time_from'])),
           'endDate' => date('c', strtotime($last_meeting['time_from'])),
           'type' => 'meeting',
           'description' => NULL,

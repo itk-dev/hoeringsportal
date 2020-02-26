@@ -72,37 +72,31 @@
 #}
 
 {# Set variables depending on node type. #}
+{% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
 <a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
+
   {# When deadline field exists add splash. #}
   {% if (content.field_first_meeting_time) %}
-    {% set startdate = content.field_first_meeting_time['#items'].value %}
+    {% set enddate = content.field_last_meeting_time['#items'].value %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
         {# @todo Add determine content state. #}
-        {% set content_state = 'upcoming' %}
         {# Alter splash display depending on content state in relation with deadline. #}
         {% if (content_state == 'upcoming') %}
           <div class="splash-label">{{ 'Public meeting' | t }}</div>
-          <div class="splash-date-day p-1">{{ startdate|date('d') }}</div>
-          <div class="splash-date-month">{{ startdate|date('M') | t }}</div>
+          <div class="splash-date-day p-1">{{ enddate|date('d') }}</div>
+          <div class="splash-date-month">{{ enddate|date('M') | t }}</div>
         {% elseif (content_state == 'finished') %}
           <div class="splash-label">{{ 'Finished' | t }}</div>
           <div class="splash-date-day"><i class="fa fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Finished' | t %}
-          {% set overlay_text_color = 'text-green' %}
+          {% set overlay_sub_text = finishdate|date('d/m/Y') %}
         {% endif %}
       </div>
-
-      {# @todo Add available seats. #}
-      {#
-      <div class="splash splash-comments">
-        <span class="splash-comments-count"><i class="fa fa-users"></i>1/50</span>
-      </div>
-      #}
     </div>
   {% endif %}
 
@@ -111,7 +105,12 @@
     {# Add overlay when passed or upcomming #}
     {% if (overlay) %}
       <span class="activity-teaser-overlay">
-        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">{{ overlay_text }}</span>
+        <span class="activity-teaser-overlay--text {{ overlay_text_color }}">
+          {{ overlay_text }}
+          {% if (overlay_sub_text) %}
+            <div class="activity-teaser-overlay--sub-text">{{ overlay_sub_text }}</div>
+          {% endif %}
+        </span>
       </span>
     {% endif %}
   </div>
@@ -131,3 +130,4 @@
     <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
   </div>
 </a>
+

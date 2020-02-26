@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Display of hearing warning
+ *
+ * Available variables:
+ * - config: The available texts
+ */
+#}
+{% if (config.content_state === 'finished') %}
+  <div class="bg-danger p-3">
+    <div class="container">
+      <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been held.'|t  }}</span>
+    </div>
+  </div>
+{% endif %}
