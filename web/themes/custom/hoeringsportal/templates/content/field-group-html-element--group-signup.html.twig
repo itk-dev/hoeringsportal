@@ -15,7 +15,8 @@
  * @ingroup themeable
  */
 #}
-{% if element.field_signup_selection[0]['#markup'] != 'hidden' %}
+
+{% if element.field_hidden_signup[0]['#markup'] != 1 %}
   <div class="signup">
     <{{ wrapper_element }} {{ attributes }}>
       {% if title %}
