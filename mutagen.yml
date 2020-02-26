@@ -18,5 +18,5 @@ sync:
 
   hoeringsportal-nginx:
     alpha: '.'
-    beta: 'docker://hoeringsportal-nginx/app'
+    beta: 'docker://hoeringsportal.local.itkdev.dk/app'
     mode: 'one-way-replica'
