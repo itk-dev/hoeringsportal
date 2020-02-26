@@ -18,11 +18,11 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The node the block appears on.
+   * The route match.
    *
    * @var \Drupal\Core\Routing\CurrentRouteMatch
    */
-  protected $currentNode;
+  protected $routeMatch;
 
   /**
    * Block constructor.
@@ -38,7 +38,7 @@ class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterfac
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, CurrentRouteMatch $routeMatch) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->currentNode = $routeMatch->getParameter('node');
+    $this->routeMatch = $routeMatch;
   }
 
   /**
@@ -68,8 +68,9 @@ class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterfac
    * {@inheritdoc}
    */
   public function build() {
-    if (isset($this->currentNode) && $this->currentNode->field_content_state->value) {
-      $config['content_state'] = $this->currentNode->field_content_state->value;
+    $node = $this->routeMatch->getParameter('node');
+    if (isset($node) && $node->field_content_state->value) {
+      $config['content_state'] = $node->field_content_state->value;
       return [
         '#type' => 'markup',
         '#theme' => 'hoeringsportal_meeting_warning',
