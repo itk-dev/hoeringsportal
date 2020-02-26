@@ -294,16 +294,16 @@
         },
         {
             "name": "behat/mink-selenium2-driver",
-            "version": "dev-master",
+            "version": "1.3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
-                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a"
+                "reference": "0a09c4341621fca937a726827611b20ce3e2c259"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/8684ee4e634db7abda9039ea53545f86fc1e105a",
-                "reference": "8684ee4e634db7abda9039ea53545f86fc1e105a",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/0a09c4341621fca937a726827611b20ce3e2c259",
+                "reference": "0a09c4341621fca937a726827611b20ce3e2c259",
                 "shasum": ""
             },
             "require": {
@@ -331,14 +331,14 @@
             ],
             "authors": [
                 {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                },
-                {
                     "name": "Pete Otaqui",
                     "email": "pete@otaqui.com",
                     "homepage": "https://github.com/pete-otaqui"
+                },
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
                 }
             ],
             "description": "Selenium2 (WebDriver) driver for Mink framework",
@@ -351,7 +351,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2018-10-10T12:39:06+00:00"
+            "time": "2019-09-02T09:46:54+00:00"
         },
         {
             "name": "bower-asset/jquery",
@@ -2561,6 +2561,10 @@
                     "homepage": "https://www.drupal.org/user/87775"
                 },
                 {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
                     "name": "pjcdawkins",
                     "homepage": "https://www.drupal.org/user/1025236"
                 },
@@ -2616,6 +2620,10 @@
             ],
             "authors": [
                 {
+                    "name": "Etroid",
+                    "homepage": "https://www.drupal.org/user/3048985"
+                },
+                {
                     "name": "chr.fritsch",
                     "homepage": "https://www.drupal.org/user/2103716"
                 },
@@ -2628,10 +2636,6 @@
                     "homepage": "https://www.drupal.org/user/192273"
                 },
                 {
-                    "name": "mortona2k",
-                    "homepage": "https://www.drupal.org/user/1029484"
-                },
-                {
                     "name": "rlhawk",
                     "homepage": "https://www.drupal.org/user/352283"
                 }
@@ -2639,7 +2643,7 @@
             "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
             "homepage": "https://www.drupal.org/project/better_exposed_filters",
             "support": {
-                "source": "http://cgit.drupalcode.org/better_exposed_filters"
+                "source": "https://git.drupalcode.org/project/better_exposed_filters"
             }
         },
         {
@@ -3697,7 +3701,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-rc3",
-                    "datestamp": "1559579884",
+                    "datestamp": "1582735747",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4208,6 +4212,10 @@
                     "homepage": "https://www.drupal.org/user/3057985"
                 },
                 {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
                     "name": "slashrsm",
                     "homepage": "https://www.drupal.org/user/744628"
                 },
@@ -4412,7 +4420,7 @@
             "description": "Media entity API.",
             "homepage": "https://www.drupal.org/project/media_entity",
             "support": {
-                "source": "http://cgit.drupalcode.org/media_entity"
+                "source": "https://git.drupalcode.org/project/media_entity"
             }
         },
         {
@@ -4764,6 +4772,10 @@
                 {
                     "name": "roderik",
                     "homepage": "https://www.drupal.org/user/8841"
+                },
+                {
+                    "name": "smfsh",
+                    "homepage": "https://www.drupal.org/user/3348892"
                 }
             ],
             "description": "Allows users to authenticate against an external SAML identity provider.",
@@ -4828,7 +4840,7 @@
             "description": "Provides an overview of all the available updates for your Drupal website using an external service.",
             "homepage": "https://www.drupal.org/project/system_status",
             "support": {
-                "source": "http://cgit.drupalcode.org/system_status"
+                "source": "https://git.drupalcode.org/project/system_status"
             }
         },
         {
@@ -4947,7 +4959,7 @@
             "description": "Choose theme to show the toobar",
             "homepage": "https://www.drupal.org/project/toolbar_visibility",
             "support": {
-                "source": "http://cgit.drupalcode.org/toolbar_visibility"
+                "source": "https://git.drupalcode.org/project/toolbar_visibility"
             }
         },
         {
@@ -5047,6 +5059,10 @@
                 {
                     "name": "New Zeal",
                     "homepage": "https://www.drupal.org/user/93571"
+                },
+                {
+                    "name": "jasonawant",
+                    "homepage": "https://www.drupal.org/user/589890"
                 },
                 {
                     "name": "joekers",
@@ -5855,12 +5871,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "a87fe0aa84cbf1188f6186df429efe3c4c25e76a"
+                "reference": "af87b7a7777d0f6db6520972f5f7f6d2af08ae75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/a87fe0aa84cbf1188f6186df429efe3c4c25e76a",
-                "reference": "a87fe0aa84cbf1188f6186df429efe3c4c25e76a",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/af87b7a7777d0f6db6520972f5f7f6d2af08ae75",
+                "reference": "af87b7a7777d0f6db6520972f5f7f6d2af08ae75",
                 "shasum": ""
             },
             "require": {
@@ -5879,7 +5895,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-26T09:18:58+00:00"
+            "time": "2020-02-26T19:41:13+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -5912,12 +5928,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/pretix-api-client-php.git",
-                "reference": "8883c3a68e5995c62973f7124d8a7f028db51ea4"
+                "reference": "ddb3378214e531368f41fdf526648f97dde39a77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/8883c3a68e5995c62973f7124d8a7f028db51ea4",
-                "reference": "8883c3a68e5995c62973f7124d8a7f028db51ea4",
+                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/ddb3378214e531368f41fdf526648f97dde39a77",
+                "reference": "ddb3378214e531368f41fdf526648f97dde39a77",
                 "shasum": ""
             },
             "require": {
@@ -5934,7 +5950,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "ItkDev\\Pretix\\": "src/"
+                    "ItkDev\\Pretix\\Api\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -5948,7 +5964,7 @@
                 }
             ],
             "description": "PHP client for pretix api",
-            "time": "2020-02-25T16:25:56+00:00"
+            "time": "2020-02-26T19:30:04+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
