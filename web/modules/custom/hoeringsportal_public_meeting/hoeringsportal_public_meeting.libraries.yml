@@ -1,0 +1,7 @@
+single-date:
+  version: VERSION
+  css:
+    theme:
+      assets/public/build/single-date.css: {}
+  js:
+    assets/public/build/single-date.js: {preprocess: false}
