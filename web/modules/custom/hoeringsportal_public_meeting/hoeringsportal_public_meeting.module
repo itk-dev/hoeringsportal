@@ -93,7 +93,15 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
  *
  * Change the display of the form depending on signup selection.
  */
-function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function hoeringsportal_public_meeting_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $form['#attached']['library'][] = 'hoeringsportal_public_meeting/single-date';
+  foreach ($form['field_pretix_dates']['widget'] as $key => $value) {
+    if (is_numeric($key) && is_array($value)) {
+      $form['field_pretix_dates']['widget'][$key]['time_from']['#attributes']['class'] = array('date-from-element');
+      $form['field_pretix_dates']['widget'][$key]['time_to']['#attributes']['class'] = array('date-to-element');
+    }
+  }
+
   if ($form_id == 'node_public_meeting_edit_form' || $form_id == 'node_public_meeting_form') {
     $signUpPretix = [':input[name="field_signup_selection"]' => ['value' => 'pretix']];
     $signUpManual = [':input[name="field_signup_selection"]' => ['value' => 'manual']];

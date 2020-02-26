@@ -1,0 +1,9 @@
+.date-to-element input.form-date {
+  user-select: none;
+  background: #eee;
+}
+.date-to-element input.form-date::-webkit-inner-spin-button,
+.date-to-element input.form-date::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
