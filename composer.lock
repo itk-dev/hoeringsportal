@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "faf6c44bf11292211abda9d84e566516",
+    "content-hash": "04574477cd7965d258719a432d0f0bc6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2810,6 +2810,75 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/color_field",
                 "issues": "https://www.drupal.org/project/issues/color_field?version=8.x"
+            }
+        },
+        {
+            "name": "drupal/config_filter",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/config_filter.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_filter-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "81210684c378dab856b3c2bce5eeaa58992d2efc"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "suggest": {
+                "drupal/config_split": "Split site configuration for different environments."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1572542288",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Fabian Bircher",
+                    "homepage": "https://www.drupal.org/u/bircher",
+                    "email": "opensource@fabianbircher.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nuvole Web",
+                    "homepage": "http://nuvole.org",
+                    "email": "info@nuvole.org",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                }
+            ],
+            "description": "Config Filter allows other modules to interact with a ConfigStorage through filter plugins.",
+            "homepage": "https://www.drupal.org/project/config_filter",
+            "keywords": [
+                "Drupal",
+                "configuration",
+                "configuration management"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_filter",
+                "issues": "https://www.drupal.org/project/issues/config_filter",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
@@ -5867,19 +5936,20 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-develop",
+            "version": "dev-feature-config-filter",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83"
+                "reference": "39700d816963cc92bb153c13df8cd75c52e91132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
-                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/39700d816963cc92bb153c13df8cd75c52e91132",
+                "reference": "39700d816963cc92bb153c13df8cd75c52e91132",
                 "shasum": ""
             },
             "require": {
+                "drupal/config_filter": "*",
                 "itk-dev/pretix-api-client-php": "dev-develop"
             },
             "require-dev": {
@@ -5895,7 +5965,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-27T09:33:05+00:00"
+            "time": "2020-02-27T11:40:11+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
