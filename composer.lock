@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d3568ff74fa24e5b81b99858a939b420",
+    "content-hash": "faf6c44bf11292211abda9d84e566516",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5867,16 +5867,16 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-feature-HRIN-413-pretix-sync",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "af87b7a7777d0f6db6520972f5f7f6d2af08ae75"
+                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/af87b7a7777d0f6db6520972f5f7f6d2af08ae75",
-                "reference": "af87b7a7777d0f6db6520972f5f7f6d2af08ae75",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
+                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
                 "shasum": ""
             },
             "require": {
@@ -5895,7 +5895,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-26T19:41:13+00:00"
+            "time": "2020-02-27T09:33:05+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
