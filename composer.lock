@@ -2813,6 +2813,75 @@
             }
         },
         {
+            "name": "drupal/config_filter",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/config_filter.git",
+                "reference": "8.x-1.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_filter-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "81210684c378dab856b3c2bce5eeaa58992d2efc"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "suggest": {
+                "drupal/config_split": "Split site configuration for different environments."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.5",
+                    "datestamp": "1572542288",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Fabian Bircher",
+                    "homepage": "https://www.drupal.org/u/bircher",
+                    "email": "opensource@fabianbircher.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nuvole Web",
+                    "homepage": "http://nuvole.org",
+                    "email": "info@nuvole.org",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                }
+            ],
+            "description": "Config Filter allows other modules to interact with a ConfigStorage through filter plugins.",
+            "homepage": "https://www.drupal.org/project/config_filter",
+            "keywords": [
+                "Drupal",
+                "configuration",
+                "configuration management"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_filter",
+                "issues": "https://www.drupal.org/project/issues/config_filter",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/config_import_locale",
             "version": "1.0.0",
             "source": {
@@ -5871,16 +5940,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83"
+                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
-                "reference": "5a58a3afdfd5a105aab9287a5fdecbc227a97b83",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
+                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
                 "shasum": ""
             },
             "require": {
-                "itk-dev/pretix-api-client-php": "dev-develop"
+                "drupal/config_filter": "*",
+                "itk-dev/pretix-api-client-php": "dev-develop",
+                "nicoeg/dawa": "^1.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
@@ -5895,7 +5966,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-27T09:33:05+00:00"
+            "time": "2020-02-27T20:53:48+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -6460,6 +6531,60 @@
                 "object graph"
             ],
             "time": "2020-01-17T21:11:47+00:00"
+        },
+        {
+            "name": "nicoeg/dawa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicoeg/Dawa.git",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicoeg/Dawa/zipball/43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicoeg\\Dawa\\DawaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Dawa": "Nicoeg\\Dawa\\DawaFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicoeg\\Dawa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolaj Egelund",
+                    "email": "nicomanden@gmail.com"
+                }
+            ],
+            "description": "A PHP package for Dawa http://dawa.aws.dk",
+            "keywords": [
+                "Dawa",
+                "aws.dk",
+                "laravel"
+            ],
+            "time": "2020-01-16T19:03:09+00:00"
         },
         {
             "name": "nikic/php-parser",
