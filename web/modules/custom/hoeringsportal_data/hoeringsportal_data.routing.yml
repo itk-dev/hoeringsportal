@@ -62,6 +62,14 @@ hoeringsportal_data.api_controller_geojson_tickets:
   requirements:
     _permission: 'access content'
 
+hoeringsportal_data.api_controller_geojson_public_meeting_dates:
+  path: '/api/geojson/public_meetings/dates'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\PublicMeetingController::dates'
+    _title: 'Public meetings'
+  requirements:
+    _permission: 'access content'
+
 hoeringsportal_data.maps_controller:
   path: '/maps'
   defaults:
