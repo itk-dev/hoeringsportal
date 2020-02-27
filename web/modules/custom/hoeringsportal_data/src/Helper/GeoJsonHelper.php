@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_data\Helper;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
@@ -60,6 +61,19 @@ class GeoJsonHelper {
       ->loadByProperties($properties);
 
     return $entities;
+  }
+
+  /**
+   * Get public meetings.
+   */
+  public function getPublicMeetings(array $properties = []) {
+    $properties += [
+      'status' => NodeInterface::PUBLISHED,
+      'type' => 'public_meeting',
+    ];
+    return $this->entityTypeManager
+      ->getStorage('node')
+      ->loadByProperties($properties);
   }
 
   /**
@@ -228,6 +242,60 @@ class GeoJsonHelper {
     }
 
     return $data;
+  }
+
+  /**
+   * Serialize Public meeting as GeoJSON.
+   */
+  public function serializeGeoJsonPublicMeeting(NodeInterface $meeting) {
+    $areas = $meeting->get('field_area')->referencedEntities();
+    $types = $meeting->get('field_type')->referencedEntities();
+    $type = reset($types);
+
+    return [
+      'properties' => [
+        'meeting_id' => (int) $meeting->id(),
+        'meeting_title' => $meeting->getTitle(),
+        'meeting_url' => $this->generateUrl('entity.node.canonical', ['node' => $meeting->id()]),
+        'meeting_description' => $meeting->get('field_description')->value,
+        'meeting_area_list' => $this->listify(array_map(function (Term $term) {
+          return $term->get('field_area_id')->value;
+        }, $areas)),
+        'meeting_area_ids' => array_map(function (Term $term) {
+          return (int) $term->get('field_area_id')->value;
+        }, $areas),
+        'meeting_type' => NULL !== $type ? $this->getTermName($type) : NULL,
+      ],
+    ];
+  }
+
+  /**
+   * Serialize Public meeting date as GeoJSON.
+   */
+  public function serializeGeoJsonPublicMeetingDate(object $date) {
+    $serialized = $this->serializeGeoJsonPublicMeeting($date->meeting);
+
+    $properties = &$serialized['properties'];
+
+    $data = json_decode(json_encode($date->data), FALSE);
+    $properties += [
+      'date_uuid' => $data->uuid,
+      'date_location' => $data->location,
+      'date_address' => $data->address,
+      'date_time_from' => $this->getDrupalDateTime($data->time_from),
+      'date_time_to' => $this->getDrupalDateTime($data->time_to),
+      'date_spots' => (int) $data->spots,
+    ];
+
+    if (isset($data->data->coordinates)) {
+      $serialized['geometry'] = [
+        'type' => 'Point',
+        'coordinates' => $data->data->coordinates,
+      ];
+      $serialized['type'] = 'Feature';
+    }
+
+    return $serialized;
   }
 
   /**
@@ -403,6 +471,13 @@ class GeoJsonHelper {
    */
   private function getDateTime($value) {
     return $value ? (new \DateTime($value))->format(\DateTime::ATOM) : NULL;
+  }
+
+  /**
+   * Get formatted date time.
+   */
+  private function getDrupalDateTime($value) {
+    return $value ? (new DrupalDateTime($value))->format(\DateTime::ATOM) : NULL;
   }
 
   /**
