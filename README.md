@@ -168,3 +168,54 @@ and `«system_status_encrypt_token»` to match the values reported above):
 $config['system_status.settings']['system_status_token'] = '«system_status_token»';
 $config['system_status.settings']['system_status_encrypt_token'] = '«system_status_encrypt_token»';
 ```
+
+## `docker`
+
+Create `.env` with the following content:
+
+```sh
+COMPOSE_PROJECT_NAME=hoeringsportal
+COMPOSE_DOMAIN=hoeringsportal.local.itkdev.dk
+```
+
+Start the containers:
+
+```sh
+docker-compose up -d
+```
+
+```sh
+brew install mutagen-io/mutagen/mutagen
+mutagen project start
+```
+
+### Drupal
+
+```sh
+docker-compose exec phpfpm composer install
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
+```
+
+### pretix
+
+```sh
+docker-compose exec pretix python /pretix/src/manage.py migrate
+docker-compose exec pretix python /pretix/src/manage.py compress
+docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
+```
+
+#### API
+
+```sh
+curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e' \
+  http://pretix.hoeringsportal.local.itkdev.dk/api/v1/organizers/
+```
+
+### Resetting pretix database
+
+```sh
+gunzip < .docker/pretix/dumps/pretix_2020-02-26.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
+```
