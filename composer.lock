@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04574477cd7965d258719a432d0f0bc6",
+    "content-hash": "faf6c44bf11292211abda9d84e566516",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5936,21 +5936,22 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-feature-config-filter",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "6ebaaa2ceaa2fbda0fe86faa570ca8a0defca035"
+                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/6ebaaa2ceaa2fbda0fe86faa570ca8a0defca035",
-                "reference": "6ebaaa2ceaa2fbda0fe86faa570ca8a0defca035",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
+                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
                 "shasum": ""
             },
             "require": {
                 "drupal/config_filter": "*",
-                "itk-dev/pretix-api-client-php": "dev-develop"
+                "itk-dev/pretix-api-client-php": "dev-develop",
+                "nicoeg/dawa": "^1.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
@@ -5965,7 +5966,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-27T12:53:07+00:00"
+            "time": "2020-02-27T20:53:48+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -6530,6 +6531,60 @@
                 "object graph"
             ],
             "time": "2020-01-17T21:11:47+00:00"
+        },
+        {
+            "name": "nicoeg/dawa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicoeg/Dawa.git",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicoeg/Dawa/zipball/43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicoeg\\Dawa\\DawaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Dawa": "Nicoeg\\Dawa\\DawaFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicoeg\\Dawa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolaj Egelund",
+                    "email": "nicomanden@gmail.com"
+                }
+            ],
+            "description": "A PHP package for Dawa http://dawa.aws.dk",
+            "keywords": [
+                "Dawa",
+                "aws.dk",
+                "laravel"
+            ],
+            "time": "2020-01-16T19:03:09+00:00"
         },
         {
             "name": "nikic/php-parser",
