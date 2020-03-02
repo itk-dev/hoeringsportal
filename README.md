@@ -28,6 +28,11 @@ $config['samlauth.authentication']['sp_cert_folder'] = __DIR__;
 // $config['samlauth.authentication']['sp_private_key'] = 'SP private key';
 ```
 
+## Ignored configuration
+
+The [config_ignore module](https://www.drupal.org/project/config_ignore) is used
+to ignore configuration for the [`itk_pretix`
+module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Installation
 
