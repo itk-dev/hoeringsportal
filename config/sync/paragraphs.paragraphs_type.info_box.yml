@@ -1,0 +1,10 @@
+uuid: f67fed54-4edb-4f47-890f-d53c0ee9a5aa
+langcode: da
+status: true
+dependencies: {  }
+id: info_box
+label: Infoboks
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

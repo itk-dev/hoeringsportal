@@ -1,0 +1,31 @@
+uuid: 8d97ea8f-0593-4140-bbd8-712d1f01e98f
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.info_box.field_content_block_text
+    - field.field.paragraph.info_box.field_paragraph_title
+    - paragraphs.paragraphs_type.info_box
+  module:
+    - text
+id: paragraph.info_box.default
+targetEntityType: paragraph
+bundle: info_box
+mode: default
+content:
+  field_content_block_text:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_paragraph_title:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

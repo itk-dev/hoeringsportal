@@ -6,13 +6,14 @@ dependencies:
     - field.storage.node.field_section
     - node.type.public_meeting
     - paragraphs.paragraphs_type.content_block
+    - paragraphs.paragraphs_type.info_box
   module:
     - entity_reference_revisions
 id: node.public_meeting.field_section
 field_name: field_section
 entity_type: node
 bundle: public_meeting
-label: 'Indholds region'
+label: Indhold
 description: ''
 required: false
 translatable: true
@@ -24,10 +25,14 @@ settings:
     negate: 0
     target_bundles:
       content_block: content_block
+      info_box: info_box
     target_bundles_drag_drop:
       content_block:
         enabled: true
         weight: 9
+      info_box:
+        enabled: true
+        weight: 10
       content_list:
         weight: 10
         enabled: false
