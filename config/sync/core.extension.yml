@@ -65,6 +65,7 @@ module:
   options: 0
   page_cache: 0
   path: 0
+  quick_node_clone: 0
   responsive_image: 0
   samlauth: 0
   search: 0
