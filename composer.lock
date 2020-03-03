@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "199eaf95637cecd34d85cf206c4e12fb",
+    "content-hash": "a1d5392e27d0458e4b0bd9fb440760ef",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -4855,6 +4855,60 @@
             }
         },
         {
+            "name": "drupal/quick_node_clone",
+            "version": "1.12.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/quick_node_clone.git",
+                "reference": "8.x-1.12"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/quick_node_clone-8.x-1.12.zip",
+                "reference": "8.x-1.12",
+                "shasum": "65c0b9a70b0077b04ba44b4df68de736ca4bd6fd"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/paragraphs": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.12",
+                    "datestamp": "1556289181",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                },
+                "patches_applied": {
+                    "Permissions not respected": "https://www.drupal.org/files/issues/2019-08-16/quick_node_clone-permissions_not_respected-2979426-13.patch"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "vilepickle",
+                    "homepage": "https://www.drupal.org/user/783006"
+                }
+            ],
+            "description": "Quickly clone a node with regular fields.",
+            "homepage": "https://www.drupal.org/project/quick_node_clone",
+            "support": {
+                "source": "https://cgit.drupalcode.org/quick_node_clone",
+                "issues": "https://www.drupal.org/project/issues/quick_node_clone"
+            }
+        },
+        {
             "name": "drupal/samlauth",
             "version": "2.0.0-alpha1",
             "source": {
@@ -6001,16 +6055,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2"
+                "reference": "7aba8650937409be11e8bed168e211353e300ed7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
-                "reference": "8b76b37616114f4b38b759bc7e1f81bafc2bfdb2",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/7aba8650937409be11e8bed168e211353e300ed7",
+                "reference": "7aba8650937409be11e8bed168e211353e300ed7",
                 "shasum": ""
             },
             "require": {
-                "drupal/config_filter": "*",
                 "itk-dev/pretix-api-client-php": "dev-develop",
                 "nicoeg/dawa": "^1.0"
             },
@@ -6027,7 +6080,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-02-27T20:53:48+00:00"
+            "time": "2020-03-03T09:44:09+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -6060,16 +6113,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/pretix-api-client-php.git",
-                "reference": "ddb3378214e531368f41fdf526648f97dde39a77"
+                "reference": "8bd3515e5315a0710c95c430172776f401ef1477"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/ddb3378214e531368f41fdf526648f97dde39a77",
-                "reference": "ddb3378214e531368f41fdf526648f97dde39a77",
+                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/8bd3515e5315a0710c95c430172776f401ef1477",
+                "reference": "8bd3515e5315a0710c95c430172776f401ef1477",
                 "shasum": ""
             },
             "require": {
-                "doctrine/collections": "^1.6",
+                "doctrine/collections": "^1.4",
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "^6.3",
                 "php": "^7.2",
@@ -6096,7 +6149,7 @@
                 }
             ],
             "description": "PHP client for pretix api",
-            "time": "2020-02-26T19:30:04+00:00"
+            "time": "2020-03-01T17:47:49+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
