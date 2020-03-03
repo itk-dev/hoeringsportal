@@ -36,6 +36,9 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Installation
 
+A number of `cron` jobs must be set up to make things happen automagically; see
+* [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
+* [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
 
 ### Built-in server
 
