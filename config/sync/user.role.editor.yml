@@ -14,6 +14,7 @@ permissions:
   - 'access toolbar'
   - 'administer nodes'
   - 'bypass node access'
+  - 'clone public_meeting content'
   - 'create hearing content'
   - 'create media'
   - 'create project content'
