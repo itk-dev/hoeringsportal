@@ -12,7 +12,7 @@ type: pretix_date_field_type
 settings: {  }
 module: itk_pretix
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false
