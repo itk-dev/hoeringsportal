@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_first_meeting_time
-    - field.field.node.public_meeting.field_hidden_signup_link
+    - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -120,7 +120,7 @@ content:
 hidden:
   field_contact: true
   field_description: true
-  field_hidden_signup_link: true
+  field_hidden_signup: true
   field_media_document: true
   field_pretix_event_settings: true
   field_section: true

@@ -17,9 +17,6 @@ settings:
     -
       value: manual
       label: 'Manuel tilmelding'
-    -
-      value: hidden
-      label: 'Skjul tilmelding'
   allowed_values_function: ''
 module: options
 locked: false
