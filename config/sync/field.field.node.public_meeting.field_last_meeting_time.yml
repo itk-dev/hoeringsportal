@@ -11,8 +11,8 @@ id: node.public_meeting.field_last_meeting_time
 field_name: field_last_meeting_time
 entity_type: node
 bundle: public_meeting
-label: 'Last meeting time'
-description: 'This field is computed on node_save. It represents the time of the last meeting in case of multiple event dates. We need this value for views sorting and displays.'
+label: Mødedato
+description: ''
 required: false
 translatable: false
 default_value: {  }
