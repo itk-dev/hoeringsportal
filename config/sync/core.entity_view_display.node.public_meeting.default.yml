@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_first_meeting_time
-    - field.field.node.public_meeting.field_hidden_signup_link
+    - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -53,16 +53,6 @@ third_party_settings:
         classes:
           layout_class: {  }
     regions:
-      footer:
-        - field_signup_selection
-        - field_pretix_dates
-        - field_registration_deadline
-        - field_signup_link
-        - field_signup_text
-        - group_signup
-        - 'dynamic_block_field:node-project_timeline'
-        - field_section
-        - 'dynamic_block_field:node-related_public_meeting'
       header:
         - 'dynamic_block_field:node-public_meeting_warning'
         - node_title
@@ -77,10 +67,21 @@ third_party_settings:
         - field_area
         - field_type
         - field_contact
+      footer:
+        - field_hidden_signup
+        - field_signup_selection
+        - field_pretix_dates
+        - field_registration_deadline
+        - field_signup_link
+        - group_signup
+        - 'dynamic_block_field:node-project_timeline'
+        - field_signup_text
+        - field_section
+        - 'dynamic_block_field:node-related_public_meeting'
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 12
+        weight: 13
         label: hidden
         formatter: default
       'dynamic_block_field:node-public_meeting_warning':
@@ -95,7 +96,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 14
+        weight: 15
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
@@ -115,13 +116,14 @@ third_party_settings:
   field_group:
     group_signup:
       children:
+        - field_hidden_signup
         - field_signup_selection
         - field_pretix_dates
         - field_registration_deadline
         - field_signup_link
         - field_signup_text
       parent_name: ''
-      weight: 11
+      weight: 12
       format_type: html_element
       format_settings:
         element: div
@@ -141,7 +143,7 @@ bundle: public_meeting
 mode: default
 content:
   field_area:
-    weight: 8
+    weight: 9
     label: above
     settings:
       link: true
@@ -149,7 +151,7 @@ content:
     type: entity_reference_label
     region: right
   field_contact:
-    weight: 10
+    weight: 11
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -162,6 +164,16 @@ content:
     third_party_settings: {  }
     type: text_default
     region: left
+  field_hidden_signup:
+    weight: 8
+    label: above
+    settings:
+      format: boolean
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    type: boolean
+    region: footer
   field_media_document:
     weight: 4
     label: above
@@ -183,7 +195,7 @@ content:
     type: entity_reference_entity_view
     region: left
   field_pretix_dates:
-    weight: 1
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -191,14 +203,14 @@ content:
     region: footer
   field_registration_deadline:
     type: datetime_plain
-    weight: 2
+    weight: 11
     region: footer
     label: hidden
     settings:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 13
+    weight: 14
     label: hidden
     settings:
       view_mode: default
@@ -208,7 +220,7 @@ content:
     region: footer
   field_signup_link:
     type: link
-    weight: 3
+    weight: 12
     region: footer
     label: hidden
     settings:
@@ -220,14 +232,14 @@ content:
     third_party_settings: {  }
   field_signup_selection:
     type: list_key
-    weight: 0
+    weight: 9
     region: footer
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_signup_text:
     type: text_default
-    weight: 4
+    weight: 13
     region: footer
     label: hidden
     settings: {  }
@@ -240,7 +252,7 @@ content:
     type: basic_string
     region: left
   field_type:
-    weight: 9
+    weight: 10
     label: above
     settings:
       link: true
@@ -250,7 +262,6 @@ content:
 hidden:
   field_content_state: true
   field_first_meeting_time: true
-  field_hidden_signup_link: true
   field_last_meeting_time: true
   field_pretix_event_settings: true
   field_project_reference: true
