@@ -20,4 +20,16 @@ require('./icons.js')
 // Enable popovers.
 $(function () {
   $('[data-toggle="popover"]').popover()
+
+  // See of we can find a Sign up shortcut element.
+  const signUpShortcut = $('#sign-up-shortcut').first()
+  if (signUpShortcut.length > 0) {
+    // Set target url from first sign up button in the shortcut.
+    const firstMeeting = $('.public-meeting-sign-up').first()
+    if (firstMeeting.length > 0) {
+      signUpShortcut
+        .attr('href', firstMeeting.attr('href'))
+        .toggle(true)
+    }
+  }
 })
