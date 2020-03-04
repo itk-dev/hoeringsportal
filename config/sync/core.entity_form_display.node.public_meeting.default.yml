@@ -9,7 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_first_meeting_time
-    - field.field.node.public_meeting.field_hidden_signup_link
+    - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -81,11 +81,14 @@ third_party_settings:
     group_signup:
       children:
         - field_signup_selection
+        - field_hidden_signup
         - field_registration_deadline
-        - field_pretix_signup
+        - field_last_meeting_time
         - field_signup_link
         - field_signup_text
         - field_hidden_signup_link
+        - field_pretix_dates
+        - field_pretix_event_settings
       parent_name: ''
       weight: 9
       format_type: details
@@ -124,14 +127,19 @@ content:
     third_party_settings: {  }
     type: text_textarea
     region: content
-  field_hidden_signup_link:
-    weight: 15
+  field_hidden_signup:
+    weight: 11
     settings:
-      placeholder_url: ''
-      placeholder_title: ''
+      display_label: true
     third_party_settings: {  }
-    type: link_default
+    type: boolean_checkbox
     region: content
+  field_last_meeting_time:
+    type: datetime_default
+    weight: 13
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_media_document:
     weight: 3
     settings:
@@ -163,13 +171,13 @@ content:
     type: entity_browser_entity_reference
     region: content
   field_pretix_dates:
-    weight: 12
+    weight: 17
     settings: {  }
     third_party_settings: {  }
     type: pretix_date_widget_type
     region: content
   field_pretix_event_settings:
-    weight: 26
+    weight: 18
     settings: {  }
     third_party_settings: {  }
     type: pretix_event_settings_widget_type
@@ -184,7 +192,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_registration_deadline:
-    weight: 11
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -202,7 +210,7 @@ content:
     type: entity_reference_paragraphs
     region: content
   field_signup_link:
-    weight: 13
+    weight: 14
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -216,7 +224,7 @@ content:
     type: options_buttons
     region: content
   field_signup_text:
-    weight: 14
+    weight: 15
     settings:
       rows: 5
       placeholder: ''
@@ -256,7 +264,6 @@ hidden:
   created: true
   field_content_state: true
   field_first_meeting_time: true
-  field_last_meeting_time: true
   langcode: true
   path: true
   promote: true
