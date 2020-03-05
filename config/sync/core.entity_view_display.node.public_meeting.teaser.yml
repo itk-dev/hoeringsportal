@@ -79,7 +79,7 @@ content:
       link: false
     third_party_settings: {  }
   field_pretix_dates:
-    type: pretix_date_formatter_type
+    type: pretix_date_formatter
     weight: 5
     region: content
     label: hidden

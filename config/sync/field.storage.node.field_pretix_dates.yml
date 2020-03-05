@@ -8,7 +8,7 @@ dependencies:
 id: node.field_pretix_dates
 field_name: field_pretix_dates
 entity_type: node
-type: pretix_date_field_type
+type: pretix_date
 settings: {  }
 module: itk_pretix
 locked: false
