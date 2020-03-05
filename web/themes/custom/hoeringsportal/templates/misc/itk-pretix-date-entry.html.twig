@@ -29,7 +29,7 @@
       {{ 'Meeting has already been held'|t }}
     {% else %}
       {% if variables.data.data.pretix_subevent_shop_url|default(false) %}
-        <a href="{{ variables.data.data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm">{{ 'Signup'|t }}</a>
+        <a href="{{ variables.data.data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up">{{ 'Sign up'|t }}</a>
       {% endif %}
     {% endif %}
   </td>
