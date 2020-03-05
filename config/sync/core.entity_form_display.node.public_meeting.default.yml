@@ -86,7 +86,6 @@ third_party_settings:
         - field_last_meeting_time
         - field_signup_link
         - field_signup_text
-        - field_hidden_signup_link
         - field_pretix_dates
         - field_pretix_event_settings
       parent_name: ''
