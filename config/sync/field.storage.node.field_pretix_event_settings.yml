@@ -8,7 +8,7 @@ dependencies:
 id: node.field_pretix_event_settings
 field_name: field_pretix_event_settings
 entity_type: node
-type: pretix_event_settings_field_type
+type: pretix_event_settings
 settings: {  }
 module: itk_pretix
 locked: false
