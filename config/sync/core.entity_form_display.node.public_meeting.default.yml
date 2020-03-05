@@ -173,13 +173,13 @@ content:
     weight: 17
     settings: {  }
     third_party_settings: {  }
-    type: pretix_date_widget_type
+    type: pretix_date_widget
     region: content
   field_pretix_event_settings:
     weight: 18
     settings: {  }
     third_party_settings: {  }
-    type: pretix_event_settings_widget_type
+    type: pretix_event_settings_widget
     region: content
   field_project_reference:
     weight: 8

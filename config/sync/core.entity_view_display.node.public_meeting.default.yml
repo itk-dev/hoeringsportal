@@ -199,7 +199,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: pretix_date_formatter_type
+    type: pretix_date_formatter
     region: footer
   field_registration_deadline:
     type: datetime_plain
