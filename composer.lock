@@ -358,7 +358,7 @@
             "version": "3.4.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
             },
             "dist": {
@@ -6055,12 +6055,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "7aba8650937409be11e8bed168e211353e300ed7"
+                "reference": "904c2fc3b1f5ddf130087127e61d235a81d7c94f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/7aba8650937409be11e8bed168e211353e300ed7",
-                "reference": "7aba8650937409be11e8bed168e211353e300ed7",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/904c2fc3b1f5ddf130087127e61d235a81d7c94f",
+                "reference": "904c2fc3b1f5ddf130087127e61d235a81d7c94f",
                 "shasum": ""
             },
             "require": {
@@ -6080,7 +6080,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-03-03T09:44:09+00:00"
+            "time": "2020-03-06T09:40:03+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
