@@ -34,6 +34,7 @@ module:
   hoeringsportal_data: 0
   hoeringsportal_deskpro: 0
   hoeringsportal_forms: 0
+  hoeringsportal_hearing: 0
   hoeringsportal_project_timeline: 0
   hoeringsportal_public_meeting: 0
   hoeringsportal_quicklinks: 0

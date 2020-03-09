@@ -1,0 +1,5 @@
+services:
+  hoeringsportal_hearing.event_subscriber:
+    class: Drupal\hoeringsportal_hearing\EventSubscriber\EventSubscriber
+    tags:
+      - {name: event_subscriber}

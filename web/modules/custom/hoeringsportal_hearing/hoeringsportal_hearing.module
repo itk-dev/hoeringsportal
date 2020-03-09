@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * Contains hoeringsportal_hearing.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_help().
+ */
+function hoeringsportal_hearing_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the hoeringsportal_hearing module.
+    case 'help.page.hoeringsportal_hearing':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Hearings') . '</p>';
+      return $output;
+
+    default:
+  }
+}
