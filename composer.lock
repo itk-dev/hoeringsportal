@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1d5392e27d0458e4b0bd9fb440760ef",
+    "content-hash": "00ea530fc4d73875b9834fba8fd05aa9",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -11418,7 +11418,6 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/advancedqueue": 10,
         "drupal/better_exposed_filters": 15,
         "drupal/captcha": 10,
         "drupal/email_registration": 5,
