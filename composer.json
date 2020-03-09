@@ -35,7 +35,7 @@
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity_browser": "^1.5",
         "drupal/entityqueue": "^1.0@alpha",
-        "drupal/field_group": "3.x-dev",
+        "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
         "drupal/image_widget_crop": "^2.2",
         "drupal/media_entity_usage": "1.x-dev",
