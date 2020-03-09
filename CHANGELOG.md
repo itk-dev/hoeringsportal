@@ -2,6 +2,7 @@
 
 ## In development
 
+* Upgrade to Drupal 8.8
 * Added public meeting content type
 * syncronize public meeting dates with [pretix](https://pretix.eu)
 
