@@ -68,7 +68,17 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
         ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
       ],
     );
+    $form['field_last_meeting_time']['#states'] = array(
+      'invisible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
+      ],
+    );
     $form['field_pretix_dates']['#states'] = array(
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
+      ],
+    );
+    $form['field_pretix_event_settings']['#states'] = array(
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],
