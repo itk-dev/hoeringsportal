@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Module for public meeting content type.
@@ -12,7 +13,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_ENTITY_TYPE_presave().
  *
- * Set last meeting time for public meeting, based on Pretix field time_to values.
+ * Set last meeting time for public meeting, based on Pretix field time_to
+ * values.
  */
 function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
   if (Drupal::currentUser()->isAuthenticated() && $node->bundle() === 'public_meeting') {
@@ -34,7 +36,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
               $first_time = $values[0]['time_from'];
               $last_time = new DrupalDateTime('2001-01-01');
               // Determine latest possible value.
-              foreach($values as $value) {
+              foreach ($values as $value) {
                 if ($value['time_from'] < $first_time) {
                   $first_time = $value['time_from'];
                 }
@@ -61,21 +63,21 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
  */
 function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id == 'node_public_meeting_edit_form' || $form_id == 'node_public_meeting_form') {
-    $form['field_registration_deadline']['#states'] = array(
+    $form['field_registration_deadline']['#states'] = [
       'invisible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
       ],
-    );
-    $form['field_last_meeting_time']['#states'] = array(
+    ];
+    $form['field_last_meeting_time']['#states'] = [
       'invisible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],
-    );
-    $form['field_pretix_dates']['#states'] = array(
+    ];
+    $form['field_pretix_dates']['#states'] = [
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],
-    );
+    ];
 
     // Show pretix sub-event shop urls only when sign-up is hidden.
     foreach ($form['field_pretix_dates']['widget'] as $key => &$value) {
@@ -88,21 +90,21 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
       }
     }
 
-    $form['field_pretix_event_settings']['#states'] = array(
+    $form['field_pretix_event_settings']['#states'] = [
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],
-    );
-    $form['field_signup_link']['#states'] = array(
+    ];
+    $form['field_signup_link']['#states'] = [
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'manual'],
       ],
-    );
-    $form['field_signup_text']['#states'] = array(
+    ];
+    $form['field_signup_text']['#states'] = [
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'manual'],
       ],
-    );
+    ];
 
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
   }
@@ -111,12 +113,15 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
 /**
  * After build function for form in order to have all parts of the date fields.
  *
- * @param $form
+ * @param array $form
+ *   The form.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
  *
- * @return mixed
+ * @return array
+ *   The altered form.
  */
-function hoeringsportal_public_meeting_alter_form_after_build($form, FormStateInterface &$form_state) {
+function hoeringsportal_public_meeting_alter_form_after_build(array $form, FormStateInterface &$form_state) {
   // Add custom field validation for last meeting.
   array_unshift($form['field_last_meeting_time']['widget'][0]['value']['#element_validate'], 'hoeringsportal_public_meeting_last_meeting_validate');
   return $form;
@@ -125,10 +130,12 @@ function hoeringsportal_public_meeting_alter_form_after_build($form, FormStateIn
 /**
  * Custom validation function to ensure that a last_meeting_time is always set.
  *
- * @param $element
+ * @param array $element
+ *   The element.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
  */
-function hoeringsportal_public_meeting_last_meeting_validate($element, FormStateInterface &$form_state) {
+function hoeringsportal_public_meeting_last_meeting_validate(array $element, FormStateInterface &$form_state) {
   $signup_selection = $form_state->getValue('field_signup_selection')[0]['value'];
   if ($signup_selection == 'manual') {
     $last_time_values = $form_state->getValue('field_last_meeting_time')[0]['value'];
