@@ -78,6 +78,18 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
       ],
     );
+
+    // Show pretix sub-event shop urls only when sign-up is hidden.
+    foreach ($form['field_pretix_dates']['widget'] as $key => &$value) {
+      if (is_int($key) && isset($value['pretix_links']['pretix_subevent_shop_url'])) {
+        $value['pretix_links']['pretix_subevent_shop_url']['#states'] = [
+          'visible' => [
+            ':input[name="field_hidden_signup[value]"]' => ['checked' => TRUE],
+          ],
+        ];
+      }
+    }
+
     $form['field_pretix_event_settings']['#states'] = array(
       'visible' => [
         ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
