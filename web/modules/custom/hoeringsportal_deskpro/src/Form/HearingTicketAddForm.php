@@ -107,6 +107,7 @@ class HearingTicketAddForm extends FormBase {
     $form['address'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Address'),
+      '#description' => $this->t('Your address will not be shown on the website.'),
       '#states' => [
         'visible' => [
           ':input[name="address_secret"]' => ['checked' => FALSE],
