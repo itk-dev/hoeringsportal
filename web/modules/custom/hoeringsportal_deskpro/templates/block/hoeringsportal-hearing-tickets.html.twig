@@ -40,7 +40,7 @@
         </div>
         <div class="card-footer">
           {{ 'Answer #@number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
-          | <span class="ticket-date_created">{{ ticket.date_created|date('d/m/Y - H:i') }}</span>
+          | <span class="ticket-date_created">{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</span>
           <i class="fa fa-arrow-right float-right"></i>
         </div>
       </a>

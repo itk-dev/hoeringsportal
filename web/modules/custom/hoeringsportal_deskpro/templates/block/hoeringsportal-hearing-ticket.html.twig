@@ -10,10 +10,6 @@
  *   - attachments: List of ticket attachments
  */
 #}
-{#
-<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>
-#}
-
 {% if ticket.messages %}
   <h2>
     {{ ticket.subject }}
