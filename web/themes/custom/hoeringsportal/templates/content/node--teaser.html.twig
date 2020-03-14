@@ -109,6 +109,7 @@
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Finished' | t %}
+          {% set overlay_sub_text = finishdate|date('U')|format_date('hoeringsportal_date') %}
           {% set overlay_text_color = 'text-green' %}
         {% else %}
           <div class="splash-label">{{ 'Reply date' | t }}</div>
