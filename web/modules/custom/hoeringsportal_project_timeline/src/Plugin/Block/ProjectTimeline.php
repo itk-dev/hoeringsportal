@@ -2,6 +2,8 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
+use DateTimeInterface;
+use Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
@@ -106,19 +108,22 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $meetings_nodes = Node::loadMultiple($entity_ids);
       foreach ($meetings_nodes as $meeting_node) {
-        $meetings = $meeting_node->get('field_pretix_dates')->getValue();
-        usort($meetings, function ($a, $b) {
-          return date('U', strtotime($a['time_from'])) - date('U', strtotime($b['time_from']));
+        /** @var \Drupal\Core\Field\FieldItemList $meetings */
+        $meetings = iterator_to_array($meeting_node->get('field_pretix_dates'));
+        // Sort ascending by start time.
+        usort($meetings, static function (PretixDate $a, PretixDate $b) {
+          return $a->time_from <=> $b->time_from;
         });
+        /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $last_meeting */
         $last_meeting = end($meetings);
         $timeline_items[] = [
           'title' => $meeting_node->title->value,
           // Only one date is used in JS and we want it to be end date.
-          'startDate' => date('c', strtotime($last_meeting['time_from'])),
-          'endDate' => date('c', strtotime($last_meeting['time_from'])),
+          'startDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
+          'endDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
           'type' => 'meeting',
           'description' => NULL,
-          'state' => date('U', strtotime($last_meeting['time_from'])) < $now_timestamp ? 'passed' : 'upcomming',
+          'state' => $last_meeting->time_from < $now ? 'passed' : 'upcomming',
           'nid' => $meeting_node->nid->value,
           'link' => NULL,
           'color' => '#B2DADA',
