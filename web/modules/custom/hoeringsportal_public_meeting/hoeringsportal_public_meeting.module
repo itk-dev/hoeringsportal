@@ -5,7 +5,6 @@
  * Module for public meeting content type.
  */
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -29,22 +28,20 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
         $pretix_type = $pretix_field->getFieldDefinition()->getType();
         if ($pretix_type == 'pretix_date') {
           if ($first_meeting && $last_meeting) {
-            $values = $pretix_field->getValue();
-            // Only act if values were found.
-            if ($values) {
-              // Set a comparable value for first_time possible.
-              $first_time = $values[0]['time_from'];
-              $last_time = new DrupalDateTime('2001-01-01');
-              // Determine latest possible value.
-              foreach ($values as $value) {
-                if ($value['time_from'] < $first_time) {
-                  $first_time = $value['time_from'];
+            if ($pretix_field->count() > 0) {
+              $first_time = NULL;
+              $last_time = NULL;
+              /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $date */
+              foreach ($pretix_field as $date) {
+                if (NULL === $first_time || $date->time_from < $first_time) {
+                  $first_time = $date->time_from;
                 }
 
-                if ($value['time_to'] > $last_time) {
-                  $last_time = $value['time_to'];
+                if (NULL === $last_time || $date->time_to > $last_time) {
+                  $last_time = $date->time_to;
                 }
               }
+
               $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
               $node->set($first_meeting_field_name, $first_time->format($format, ['timezone' => 'UTC']));
               $node->set($last_meeting_field_name, $last_time->format($format, ['timezone' => 'UTC']));
