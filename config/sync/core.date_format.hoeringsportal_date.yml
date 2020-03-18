@@ -1,0 +1,8 @@
+uuid: 6e92d023-8c82-4277-9f8a-34eaa46b4796
+langcode: da
+status: true
+dependencies: {  }
+id: hoeringsportal_date
+label: "Høringsportalen –\_dato"
+locked: false
+pattern: d/m/Y

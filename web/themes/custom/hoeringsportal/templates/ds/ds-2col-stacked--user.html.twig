@@ -58,7 +58,7 @@
         <div class="mb-3">{{ right }}</div>
         <h6>{{ 'User validation'|t }}</h6>
         {% if (user.field_valid.value == '1') %}
-          <p>{{ 'Validated with NemID'|t }} {{ user.field_validation_date.value|date('j. F Y - H:i') }} </p>
+          <p>{{ 'Validated with NemID'|t }} {{ user.field_validation_date.value|date('U')|format_date('hoeringsportal_datetime') }} </p>
         {% else %}
           <p>{{ 'Not yet validated'|t }}</p>
         {% endif %}

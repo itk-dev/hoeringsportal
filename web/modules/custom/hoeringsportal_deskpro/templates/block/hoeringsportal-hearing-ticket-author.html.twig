@@ -10,14 +10,11 @@
  *   - attachments: List of ticket attachments
  */
 #}
-{#
-<h1>{{ 'Hearing ticket by @name at @date'|trans({'@name': ticket.person.name, '@date': ticket.date_created|date('d/m/Y')}) }}</h1>
-#}
 
 <h5 class="mt-3">{{ 'Name'|t }}</h5>
 <p>{{ ticket.person.name }}</p>
 <h5 class="mt-3">{{ 'Sent d.'|t }}</h5>
-<p>{{ ticket.date_created|date('U')|format_date('short') }}</p>
+<p>{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</p>
 
 {% set represents = deskpro_ticket_custom_field(ticket, 'representation') %}
 {% if represents %}

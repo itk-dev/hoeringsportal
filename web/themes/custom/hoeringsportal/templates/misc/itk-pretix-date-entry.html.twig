@@ -7,12 +7,13 @@
  * - variables: An array containing data about the pretix date.
  */
 #}
-{% set meeting_has_been_held = variables.time_from|date('U') <= 'now'|date('U') %}
+
+{% set meeting_has_been_held = variables.time_from <= 'now'|date %}
 <tr class="{{ meeting_has_been_held ? 'pretix-meeting-has-been-held' }}">
   <td><i class="fas fa-ticket-alt"></i></td>
   <td>{{ variables.location }}</td>
-  <td>{{ variables.time_from|date('U')|format_date('custom', 'l j. F, Y') }}</td>
-  <td>{{ variables.time_from|date('U')|format_date('custom', 'H:i') }} - {{ variables.time_to|date('U')|format_date('custom', 'H:i') }}</td>
+  <td>{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</td>
+  <td>{{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}</td>
   <td>
     {# @TODO Maybe we should clean up this property path … #}
     {% set availability = variables.data.data.availability|first|default(false) %}
