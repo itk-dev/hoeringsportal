@@ -73,8 +73,6 @@ for (var i = 0; i < items.length; i++) {
   }
 
 
-      if (item.description == null){
-
       if (item.description == null) {
         description = ''
       }
