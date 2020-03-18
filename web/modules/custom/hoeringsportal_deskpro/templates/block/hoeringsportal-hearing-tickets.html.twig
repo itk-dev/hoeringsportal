@@ -27,7 +27,7 @@
   </div>
 
   {% if tickets %}
-    {% for index, ticket in tickets %}
+    {% for ticket in tickets %}
       <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}" class="hearing-ticket card">
         <h3 class="card-header">
           {{ ticket.subject }}
@@ -39,7 +39,7 @@
           {% endif %}
         </div>
         <div class="card-footer">
-          {{ 'Answer #@number by @name'|trans({'@number': index+1, '@name': ticket.person.display_name}) }}
+          {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.person.display_name}) }}
           | <span class="ticket-date_created">{{ ticket.date_created|date('d/m/Y - H:i') }}</span>
           <i class="fa fa-arrow-right float-right"></i>
         </div>
