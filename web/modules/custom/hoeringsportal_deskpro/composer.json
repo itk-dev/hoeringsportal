@@ -1,6 +1,6 @@
 {
   "name": "drupal/hoeringsportal_deskpro",
-  "type": "drupal-module",
+  "type": "drupal-custom-module",
   "description": "Deskpro integration",
   "keywords": ["Drupal"],
   "license": "GPL-2.0+",
