@@ -12,7 +12,7 @@
     <div class="group-right col-md-4">
       <h4>{{ 'Account activities'|t }}</h4>
       {% if(form['#user_account'].field_valid['0'].value > 0) %}
-        <p>{{ 'Validated with NemID'|t }} {{ form['#user_account'].field_validation_date['0'].value|date('j. F Y - H:i') }}</p>
+        <p>{{ 'Validated with NemID'|t }} {{ form['#user_account'].field_validation_date['0'].value|date('U')|format_date('hoeringsportal_datetime') }}</p>
       {% else %}
         <p>{{ 'The account has not been validated' }}</p>
       {% endif %}

@@ -199,14 +199,14 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: long
+      format_type: hoeringsportal_datetime
     third_party_settings: {  }
   field_start_date:
     weight: 11
     label: above
     settings:
       timezone_override: ''
-      format_type: long
+      format_type: hoeringsportal_date
     third_party_settings: {  }
     type: datetime_default
     region: right

@@ -137,7 +137,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: short
+      format_type: hoeringsportal_datetime
     third_party_settings: {  }
   field_start_date:
     type: datetime_default
@@ -146,7 +146,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: short
+      format_type: hoeringsportal_date
     third_party_settings: {  }
   field_tags:
     type: entity_reference_label

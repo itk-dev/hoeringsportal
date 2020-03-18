@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
+use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\node\Entity\Node;
@@ -149,6 +150,9 @@ class ProjectTimeline extends BlockBase {
       }
     }
 
+    /** @var \Drupal\Core\Datetime\Entity\DateFormat $date_format */
+    $date_format = DateFormat::load('hoeringsportal_date');
+
     return [
       '#theme' => 'hoeringsportal_project_timeline',
       '#node' => $node,
@@ -157,7 +161,12 @@ class ProjectTimeline extends BlockBase {
           'hoeringsportal_project_timeline/project_timeline',
         ],
         'drupalSettings' => [
-          'timelineItems' => $timeline_items,
+          'timeline' => [
+            'items' => $timeline_items,
+            'options' => [
+              'date_format' => NULL !== $date_format ? $date_format->getPattern() : 'd/m/Y',
+            ],
+          ],
         ],
       ],
     ];
