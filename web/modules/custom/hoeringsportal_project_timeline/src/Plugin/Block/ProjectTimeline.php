@@ -46,11 +46,12 @@ class ProjectTimeline extends BlockBase {
     $now = new DrupalDateTime('now');
     $now_timestamp = $now->getTimestamp();
 
+    $timeline_items = [];
+
     // Add start and end date to timeline items.
-    $project_start_timestamp = $node->field_project_start->date->getTimestamp();
-    $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
-    $timeline_items = [
-      [
+    if (isset($node->field_project_start->date)) {
+      $project_start_timestamp = $node->field_project_start->date->getTimestamp();
+      $timeline_items[] = [
         'title' => t('Project start'),
         'startDate' => $node->field_project_start->value,
         'endDate' => NULL,
@@ -61,8 +62,12 @@ class ProjectTimeline extends BlockBase {
         'link' => NULL,
         'color' => '#333333',
         'label' => t('Project start'),
-      ],
-      [
+      ];
+    }
+
+    if (isset($node->field_project_finish->date)) {
+      $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
+      $timeline_items[] = [
         'title' => t('Expected end date'),
         'startDate' => $node->field_project_finish->value,
         'endDate' => NULL,
@@ -73,8 +78,8 @@ class ProjectTimeline extends BlockBase {
         'link' => NULL,
         'color' => '#333333',
         'label' => t('Expected end date'),
-      ],
-    ];
+      ];
+    }
 
     // Add hearings to timeline items.
     $query = \Drupal::entityQuery('node');
@@ -117,19 +122,21 @@ class ProjectTimeline extends BlockBase {
         });
         /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $last_meeting */
         $last_meeting = end($meetings);
-        $timeline_items[] = [
-          'title' => $meeting_node->title->value,
-          // Only one date is used in JS and we want it to be end date.
-          'startDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
-          'endDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
-          'type' => 'meeting',
-          'description' => NULL,
-          'state' => $last_meeting->time_from < $now ? 'passed' : 'upcomming',
-          'nid' => $meeting_node->nid->value,
-          'link' => NULL,
-          'color' => '#B2DADA',
-          'label' => t('Public meeting'),
-        ];
+        if ($last_meeting) {
+          $timeline_items[] = [
+            'title' => $meeting_node->title->value,
+            // Only one date is used in JS and we want it to be end date.
+            'startDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
+            'endDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
+            'type' => 'meeting',
+            'description' => NULL,
+            'state' => $last_meeting->time_from < $now ? 'passed' : 'upcomming',
+            'nid' => $meeting_node->nid->value,
+            'link' => NULL,
+            'color' => '#B2DADA',
+            'label' => t('Public meeting'),
+          ];
+        }
       }
     }
 
