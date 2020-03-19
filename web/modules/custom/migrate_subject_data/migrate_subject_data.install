@@ -44,11 +44,13 @@ function migrate_subject_data_requirements($phase) {
       }
   }
 
-  $requirements['reroute_email_status'] = [
-    'title' => 'Migrate subject data: Migration warning',
-    'value' => $value,
-    'severity' => $sev,
-  ];
+  if (isset($value, $sev)) {
+    $requirements['reroute_email_status'] = [
+      'title' => 'Migrate subject data: Migration warning',
+      'value' => $value,
+      'severity' => $sev,
+    ];
+  }
 
   return $requirements;
 }
