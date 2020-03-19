@@ -67,7 +67,7 @@ class ProjectTimeline extends BlockBase {
       $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
       $timeline_items[] = [
         'title' => t('Expected end date'),
-        'startDate' => $node->field_project_finish->value,
+        'startDate' => $node->field_project_finish->date,
         'endDate' => NULL,
         'type' => 'system',
         'description' => NULL,
