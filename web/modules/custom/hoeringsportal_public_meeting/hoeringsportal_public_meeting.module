@@ -60,14 +60,9 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
  */
 function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id == 'node_public_meeting_edit_form' || $form_id == 'node_public_meeting_form') {
-    $form['field_registration_deadline']['#states'] = [
-      'invisible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'hidden'],
-      ],
-    ];
     $form['field_last_meeting_time']['#states'] = [
-      'invisible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
+      'visible' => [
+        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
       ],
     ];
     $form['field_pretix_dates']['#states'] = [
