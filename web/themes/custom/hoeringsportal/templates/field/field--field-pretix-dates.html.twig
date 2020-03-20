@@ -59,7 +59,21 @@
         </table>
       {% else %}
         {% for item in items %}
-          {{ item.content }}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">{{ 'Location'|t }}</th>
+              <th scope="col">{{ 'Date'|t }}</th>
+              <th scope="col">{{ 'Time'|t }}</th>
+              <th scope="col">{{ 'Spots'|t }}</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            {{ item.content }}
+          </tbody>
+        </table>
         {% endfor %}
       {% endif %}
     {% else %}
