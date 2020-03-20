@@ -5,4 +5,4 @@ dependencies: {  }
 id: hoeringsportal_date_long
 label: "Høringsportalen –\_dato (lang)"
 locked: false
-pattern: 'l \d. d. F Y'
+pattern: 'l \d. j. F Y'
