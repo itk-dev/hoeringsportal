@@ -8,7 +8,7 @@
  */
 #}
 
-{% set meeting_has_been_held = variables.time_from <= 'now'|date %}
+{% set meeting_has_been_held = variables.time_from|date('U') <= 'now'|date('U') %}
 <tr class="{{ meeting_has_been_held ? 'pretix-meeting-has-been-held' }}">
   <td><i class="fas fa-ticket-alt"></i></td>
   <td>{{ variables.location }}</td>
