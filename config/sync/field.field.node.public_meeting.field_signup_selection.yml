@@ -12,7 +12,7 @@ field_name: field_signup_selection
 entity_type: node
 bundle: public_meeting
 label: 'Vælg tilmeldingstype'
-description: ''
+description: 'Bemærk at du ikke kan ændre tilmeldingstypen senere.'
 required: true
 translatable: false
 default_value: {  }
