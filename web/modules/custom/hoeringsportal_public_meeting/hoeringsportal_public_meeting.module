@@ -5,9 +5,10 @@
  * Module for public meeting content type.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_ENTITY_TYPE_presave().
@@ -60,42 +61,38 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
  */
 function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ($form_id == 'node_public_meeting_edit_form' || $form_id == 'node_public_meeting_form') {
+    $signUpPretix = [':input[name="field_signup_selection"]' => ['value' => 'pretix']];
+    $signUpManual = [':input[name="field_signup_selection"]' => ['value' => 'manual']];
+    $signUpHidden = [':input[name="field_hidden_signup[value]"]' => ['checked' => TRUE]];
+
     $form['field_last_meeting_time']['#states'] = [
-      'visible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
-      ],
-    ];
-    $form['field_pretix_dates']['#states'] = [
-      'visible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
-      ],
+      'visible' => $signUpManual,
     ];
 
+    _hoeringsportal_public_meeting_set_states($form['field_pretix_dates'], [
+      'required' => $signUpPretix,
+      'visible' => $signUpPretix,
+    ]);
+
     // Show pretix sub-event shop urls only when sign-up is hidden.
-    foreach ($form['field_pretix_dates']['widget'] as $key => &$value) {
-      if (is_int($key) && isset($value['pretix_links']['pretix_subevent_shop_url'])) {
-        $value['pretix_links']['pretix_subevent_shop_url']['#states'] = [
-          'visible' => [
-            ':input[name="field_hidden_signup[value]"]' => ['checked' => TRUE],
-          ],
+    foreach (Element::children($form['field_pretix_dates']['widget']) as $key) {
+      if (isset($form[$key]['pretix_links']['pretix_subevent_shop_url'])) {
+        $form[$key]['pretix_links']['pretix_subevent_shop_url']['#states'] = [
+          'visible' => $signUpHidden,
         ];
       }
     }
 
-    $form['field_pretix_event_settings']['#states'] = [
-      'visible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'pretix'],
-      ],
-    ];
+    _hoeringsportal_public_meeting_set_states($form['field_pretix_event_settings'], [
+      'required' => $signUpPretix,
+      'visible' => $signUpPretix,
+    ]);
+
     $form['field_signup_link']['#states'] = [
-      'visible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
-      ],
+      'visible' => $signUpManual,
     ];
     $form['field_signup_text']['#states'] = [
-      'visible' => [
-        ':input[name="field_signup_selection"]' => ['value' => 'manual'],
-      ],
+      'visible' => $signUpManual,
     ];
 
     $form['#validate'][] = 'hoeringsportal_public_meeting_form_validate';
@@ -106,7 +103,25 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
       $form['field_signup_selection']['#disabled'] = TRUE;
     }
 
+    // @TODO Add custom validation of field_last_meeting_time or pretix dates.
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
+  }
+}
+
+/**
+ * Set states on an element and all sub-elements.
+ *
+ * @param array $element
+ *   The element.
+ * @param array $states
+ *   The states.
+ */
+function _hoeringsportal_public_meeting_set_states(array &$element, array $states) {
+  if (isset($element['#type']) && 'hidden' !== $element['#type']) {
+    $element['#states'] = $states;
+  }
+  foreach (Element::children($element) as $child) {
+    _hoeringsportal_public_meeting_set_states($element[$child], $states);
   }
 }
 
