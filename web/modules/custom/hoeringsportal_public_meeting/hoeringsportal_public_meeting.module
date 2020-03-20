@@ -100,6 +100,12 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
 
     $form['#validate'][] = 'hoeringsportal_public_meeting_form_validate';
 
+    $meeting = $form_state->getFormObject()->getEntity();
+    if (NULL !== $meeting->id()) {
+      // Lock sign-up type on existing meeting.
+      $form['field_signup_selection']['#disabled'] = TRUE;
+    }
+
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
   }
 }
