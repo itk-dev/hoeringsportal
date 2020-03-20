@@ -80,6 +80,7 @@
   {# When deadline field exists add splash. #}
   {% if (content.field_first_meeting_time) %}
     {% set enddate = content.field_last_meeting_time['#items'].value %}
+    {% set finishdate = enddate %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
         {# @todo Add determine content state. #}
