@@ -103,6 +103,8 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
       ],
     ];
 
+    $form['#validate'][] = 'hoeringsportal_public_meeting_form_validate';
+
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
   }
 }
@@ -139,6 +141,26 @@ function hoeringsportal_public_meeting_last_meeting_validate(array $element, For
     if (empty($last_time_values['object'])) {
       $form_state->setErrorByName('field_last_meeting_time',
         t('Please enter a value!'));
+    }
+  }
+}
+
+/**
+ * Validation function for public meeting form.
+ *
+ * @param array $element
+ *   The element.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function hoeringsportal_public_meeting_form_validate(array $element, FormStateInterface &$form_state) {
+  $registration_deadline = $form_state->getValue('field_registration_deadline');
+  $dates = $form_state->getValue('field_pretix_dates');
+  if (!empty($registration_deadline) && !empty($dates)) {
+    $registration_deadline = $registration_deadline[0]['value'];
+    $meeting_start_time = $dates[0]['time_from_value'];
+    if ($meeting_start_time < $registration_deadline) {
+      $form_state->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
     }
   }
 }
