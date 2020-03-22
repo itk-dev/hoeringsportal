@@ -103,7 +103,6 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
       $form['field_signup_selection']['#disabled'] = TRUE;
     }
 
-    // @TODO Add custom validation of field_last_meeting_time or pretix dates.
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
   }
 }
@@ -166,17 +165,45 @@ function hoeringsportal_public_meeting_last_meeting_validate(array $element, For
  *
  * @param array $element
  *   The element.
- * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param \Drupal\Core\Form\FormStateInterface $formState
  *   The form state.
  */
-function hoeringsportal_public_meeting_form_validate(array $element, FormStateInterface &$form_state) {
-  $registration_deadline = $form_state->getValue('field_registration_deadline');
-  $dates = $form_state->getValue('field_pretix_dates');
-  if (!empty($registration_deadline) && !empty($dates)) {
-    $registration_deadline = $registration_deadline[0]['value'];
-    $meeting_start_time = $dates[0]['time_from_value'];
+function hoeringsportal_public_meeting_form_validate(array $element, FormStateInterface $formState) {
+  $registration_deadline = $formState->getValue('field_registration_deadline')[0]['value'];
+  $signUpType = $formState->getValue('field_signup_selection')[0]['value'];
+  if ('pretix' === $signUpType) {
+    $dates = $formState->getValue('field_pretix_dates');
+
+    if (!empty($registration_deadline) && !empty($dates)) {
+      $meeting_start_time = reset($dates)['time_from_value'];
+      if ($meeting_start_time < $registration_deadline) {
+        $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
+      }
+    }
+
+    foreach ($dates as $delta => $date) {
+      $namePrefix = 'field_pretix_dates][' . $delta . '][';
+      if (empty($date['location'])) {
+        $formState->setErrorByName($namePrefix . 'location', t('Please enter a location'));
+      }
+      if (empty($date['address'])) {
+        $formState->setErrorByName($namePrefix . 'address', t('Please enter an address'));
+      }
+      if (empty($date['time_from_value'])) {
+        $formState->setErrorByName($namePrefix . 'time_from_value', t('Please enter a start time'));
+      }
+      if (empty($date['time_to_value'])) {
+        $formState->setErrorByName($namePrefix . 'time_to_value', t('Please enter an end time'));
+      }
+      if (empty($date['spots'])) {
+        $formState->setErrorByName($namePrefix . 'spots', t('Please enter number of spots'));
+      }
+    }
+  }
+  elseif ('manual' === $signUpType) {
+    $meeting_start_time = $formState->getValue('field_last_meeting_time')[0]['value'];
     if ($meeting_start_time < $registration_deadline) {
-      $form_state->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
+      $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
     }
   }
 }
