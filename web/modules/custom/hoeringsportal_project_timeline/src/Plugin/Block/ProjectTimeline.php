@@ -51,7 +51,7 @@ class ProjectTimeline extends BlockBase {
       $project_start_timestamp = $node->field_project_start->date->getTimestamp();
       $timeline_items[] = [
         'title' => t('Project start'),
-        'startDate' => $node->field_project_start->value,
+        'startDate' => $node->field_project_start->date->format(DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
         'description' => NULL,
@@ -67,7 +67,7 @@ class ProjectTimeline extends BlockBase {
       $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
       $timeline_items[] = [
         'title' => t('Expected end date'),
-        'startDate' => $node->field_project_finish->date,
+        'startDate' => $node->field_project_finish->date->format(DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
         'description' => NULL,
@@ -87,10 +87,10 @@ class ProjectTimeline extends BlockBase {
     if (!empty($entity_ids)) {
       $hearings = Node::loadMultiple($entity_ids);
       foreach ($hearings as $hearing) {
-        if (isset($hearing->field_reply_deadline->value)) {
+        if (isset($hearing->field_reply_deadline->date)) {
           $timeline_items[] = [
             'title' => $hearing->title->value,
-            'startDate' => $hearing->field_reply_deadline->value,
+            'startDate' => $hearing->field_reply_deadline->date->format(DateTimeInterface::ATOM),
             'endDate' => NULL,
             'type' => 'hearing',
             'description' => $hearing->field_teaser->value,
@@ -144,10 +144,10 @@ class ProjectTimeline extends BlockBase {
       $timeline_type_term_id = $paragraph_obj->field_timeline_taxonomy_type->target_id;
       $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#333';
       $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->getTitle();
-      if (isset($paragraph_obj->field_timeline_date->value)) {
+      if (isset($paragraph_obj->field_timeline_date->date)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
-          'startDate' => $paragraph_obj->field_timeline_date->value,
+          'startDate' => $paragraph_obj->field_timeline_date->date->format(DateTimeInterface::ATOM),
           'endDate' => NULL,
           'type' => isset($label) ? str_replace(' ', '_', $label) : '',
           'description' => $paragraph_obj->field_timeline_description->value,
