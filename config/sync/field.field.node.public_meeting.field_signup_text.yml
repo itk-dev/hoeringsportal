@@ -12,7 +12,7 @@ field_name: field_signup_text
 entity_type: node
 bundle: public_meeting
 label: Tilmeldingstekst
-description: ''
+description: 'Skriv evt. en uddybende forklaring på tilmeldingsproceduren.'
 required: false
 translatable: false
 default_value: {  }
