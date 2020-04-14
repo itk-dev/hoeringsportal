@@ -1,0 +1,7 @@
+.user-login-form #drupal-login {
+  display: none;
+}
+
+.user-login-form #drupal-login:target {
+  display: block;
+}

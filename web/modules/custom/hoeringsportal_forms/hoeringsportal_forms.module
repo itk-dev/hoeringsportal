@@ -170,6 +170,8 @@ function hoeringsportal_forms_field_views_data_alter(array &$data, FieldStorageC
  */
 function hoeringsportal_forms_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   if ('user_login_form' === $form_id) {
+    $form['#attached']['library'][] = 'hoeringsportal_forms/user-login-form';
+
     // Wrap default Drupal login.
     foreach ($form as $key => $value) {
       if (0 !== strpos($key, '#')) {
@@ -181,6 +183,7 @@ function hoeringsportal_forms_form_alter(&$form, FormStateInterface $form_state,
       '#type' => 'fieldset',
       '#title' => 'Drupal login',
       '#weight' => 100,
+      '#attributes' => ['id' => 'drupal-login'],
     ];
 
     $login_providers = [];

@@ -3,3 +3,9 @@ form_styles:
   css:
     theme:
       css/backend_forms.css: { media: screen }
+
+user-login-form:
+  version: VERSION
+  css:
+    theme:
+      css/user-login-form.css: { media: screen }
