@@ -143,7 +143,7 @@
     {% endif %}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>
-    <p class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</p>
+    <h3 class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
     <div class="activity-teaser-description">
       {{ content.field_teaser[0]['#context'].value|length > 95 ? content.field_teaser[0]['#context'].value|slice(0, 95) ~ '...' : content.field_teaser }}
     </div>
