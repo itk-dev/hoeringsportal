@@ -70,6 +70,11 @@ class HearingHelper {
       return FALSE;
     }
 
+    // Allow users with edit access to do stuff after the deadline.
+    if ($node->access('edit', \Drupal::currentUser())) {
+      return FALSE;
+    }
+
     return new DrupalDateTime() > new DrupalDateTime($deadline);
   }
 
