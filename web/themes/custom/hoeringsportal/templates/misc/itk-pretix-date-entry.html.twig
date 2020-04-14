@@ -32,6 +32,7 @@
       <div class="pretix-alert meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
     {% else %}
       {% if registration_deadline_passed %}
+        {# @TODO: Design: styling of "alert" #}
         <div class="pretix-alert pretix-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
       {% elseif variables.data.data.pretix_subevent_shop_url|default(false) %}
         <a href="{{ variables.data.data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
