@@ -37,10 +37,22 @@
  */
 #}
 
+{% set entity = element['#object'] %}
+{% set now_timestamp = 'now'|date('U') %}
+{% set registration_deadline = entity.field_registration_deadline[0].date %}
+{% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
+
 {% for item in items %}
-  {% set url = item.content['#url'] %}
-  <a href="{{ url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
-    {{ item.content['#title'] }}
-    <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
-  </a>
+  <div class="signup-link {{ registration_deadline_passed ? 'signup-link-registration-deadline-passed' }}">
+    {% if registration_deadline_passed %}
+      {# @TODO: Design: styling of "alert" #}
+      <div class="signup-alert signup-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
+    {% else %}
+      {% set url = item.content['#url'] %}
+      <a href="{{ url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
+        {{ item.content['#title'] }}
+        <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+      </a>
+    {% endif %}
+  </div>
 {% endfor %}
