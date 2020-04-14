@@ -5,9 +5,10 @@
  * Contains hoeringsportal_hearing.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
-use Drupal\views\Plugin\views\query\QueryPluginBase;
-use Drupal\views\ViewExecutable;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
@@ -22,5 +23,24 @@ function hoeringsportal_hearing_help($route_name, RouteMatchInterface $route_mat
       return $output;
 
     default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function hoeringsportal_hearing_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ('node_hearing_edit_form' === $form_id && isset($form['field_reply_deadline'])) {
+    $node = $form_state->getFormObject()->getEntity();
+    if (NULL !== $node->id()) {
+      $form['field_reply_deadline']['#suffix'] = Link::fromTextAndUrl(
+        t('Add hearing reply'),
+        Url::fromRoute(
+          'hoeringsportal_deskpro.hearing.ticket_add',
+          ['node' => $node->id()],
+          ['attributes' => ['class' => ['button']]]
+        )
+      )->toString();
+    }
   }
 }
