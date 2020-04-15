@@ -24,3 +24,6 @@ drush/sites/self.site.yml
 
 .env-remote
 .pull-prod
+
+/.env.local
+/.env.*.local
