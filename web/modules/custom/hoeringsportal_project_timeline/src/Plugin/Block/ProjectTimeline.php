@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
+use DateTimeInterface;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\paragraphs\Entity\Paragraph;
