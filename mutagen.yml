@@ -20,3 +20,7 @@ sync:
     alpha: '.'
     beta: 'docker://hoeringsportal.local.itkdev.dk/app'
     mode: 'one-way-replica'
+
+# @see https://mutagen.io/documentation/projects#setup-and-teardown
+beforeCreate:
+  - docker-compose up -d
