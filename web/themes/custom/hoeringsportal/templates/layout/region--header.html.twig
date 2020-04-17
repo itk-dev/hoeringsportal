@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override to display a region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ */
+#}
+{% if content %}
+  {% if elements.hoeringsportal_branding %}
+    {{ elements.hoeringsportal_branding }}
+  {% endif %}
+
+  <div class="collapse navbar-collapse" id="block-navigation">
+    {% if elements.primaernavigation %}
+      {{ elements.primaernavigation }}
+    {% endif %}
+    {% if elements.sekundaernavigation %}
+      {{ elements.sekundaernavigation }}
+    {% endif %}
+  </div>
+{% endif %}
