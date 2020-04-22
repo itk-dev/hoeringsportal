@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<div role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').addClass('collapse navbar-collapse navbar--secondary') }}>
+<div role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').addClass('navbar--secondary') }}>
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
@@ -47,7 +47,7 @@
         {# Logout link #}
         {% if (user.id > 0) %}
           <ul class="navbar-nav is-secondary-navigation">
-            <li class="nav-item--secondary-navigation">
+            <li class="nav-item nav-item--secondary-navigation">
               <a href="/user/logout" class="logout-link nav-link">{{ 'Log out'|t }}</a>
             </li>
           </ul>
