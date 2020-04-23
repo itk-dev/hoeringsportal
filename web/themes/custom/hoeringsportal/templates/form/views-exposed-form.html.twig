@@ -18,7 +18,7 @@
     </div>
   {% endif %}
   <div class="col-md-12 mb-4">
-    <div class="row justify-content-end">
+    <div class="row justify-content-end collapse" id="collapseFilters">
       {% if q is not empty %}
         {#
           This ensures that, if clean URLs are off, the 'q' is added first,
@@ -29,5 +29,6 @@
       {{ form.sort_order }}
       {{ form|without('sort_order') }}
     </div>
+    <div class="filters-toggle-wrapper"><a class="filters-toggle rounded" data-toggle="collapse" href="#collapseFilters"><span>{{ 'Show filters'|t }}</span><i class="fa fa-arrow-right float-right"></i></a></div>
   </div>
 </div>
