@@ -1,0 +1,46 @@
+.filters-toggle-wrapper {
+  display: flex;
+  flex: 0 0 100%;
+}
+
+.filters-toggle {
+  display: none;
+
+  &:hover {
+    border: 1px solid $primary;
+    color: $primary;
+  }
+
+  span {
+    display: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    background: $white;
+    border: 1px solid $gray-400;
+    color: $gray-700;
+    cursor: pointer;
+    display: block;
+    font-weight: 400;
+    flex: 0 0 100%;
+    margin-bottom: $spacer;
+    padding: $spacer;
+
+    span {
+      display: inline;
+
+    }
+  }
+}
+
+.bef-links {
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
+}
+
+#collapseFilters.collapse:not(.show) {
+    display: none;
+}

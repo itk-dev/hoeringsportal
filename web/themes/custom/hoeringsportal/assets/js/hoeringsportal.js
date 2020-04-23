@@ -15,6 +15,7 @@ require('./scroll-top.js')
 require('./hide_spinner.js')
 require('slick-carousel')
 require('./slick-slider-config.js')
+require('./filter-collapse.js')
 require('./icons.js')
 
 // Enable popovers.
