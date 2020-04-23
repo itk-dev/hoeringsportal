@@ -1,5 +1,5 @@
 .list-filter-link-wrapper {
-  flex: 0 0 9em;
+  flex: 0 1 9em;
   a {
     background: $white;
     border: 1px solid $gray-400;
@@ -27,5 +27,9 @@
   span {
     margin-top: .5em;
     text-align: center;
+
+    @include media-breakpoint-down(md) {
+      line-height: 1.1em;
+    }
   }
 }
