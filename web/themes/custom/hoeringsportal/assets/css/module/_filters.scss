@@ -34,11 +34,9 @@
 }
 
 .bef-links {
-  flex-wrap: wrap;
-
-  @include media-breakpoint-up(md) {
-    flex-wrap: nowrap;
-  }
+  display: grid!important;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  grid-gap: 1.5rem;
 }
 
 #collapseFilters.collapse:not(.show) {

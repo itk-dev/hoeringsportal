@@ -25,11 +25,8 @@
   display: flex;
 
   span {
+    line-height: 1.1em;
     margin-top: .5em;
     text-align: center;
-
-    @include media-breakpoint-down(md) {
-      line-height: 1.1em;
-    }
   }
 }

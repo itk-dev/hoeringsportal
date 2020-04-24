@@ -7,6 +7,7 @@ import { faChalkboardTeacher } from '@fortawesome/pro-light-svg-icons/faChalkboa
 import { faHeartbeat } from '@fortawesome/pro-light-svg-icons/faHeartbeat'
 import { faStar } from '@fortawesome/pro-light-svg-icons/faStar'
 import { faCarBus } from '@fortawesome/pro-light-svg-icons/faCarBus'
+import { faSortAlt } from '@fortawesome/pro-light-svg-icons/faSortAlt'
 
 library.add(
   faCheckDouble,
@@ -15,5 +16,6 @@ library.add(
   faChalkboardTeacher,
   faHeartbeat,
   faStar,
-  faCarBus
+  faCarBus,
+  faSortAlt
 )
