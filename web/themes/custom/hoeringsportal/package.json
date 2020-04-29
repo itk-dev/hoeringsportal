@@ -12,7 +12,9 @@
     "apply-coding-standards-scss": "npm run apply-coding-standards-stylelint",
     "apply-coding-standards-eslint": "eslint --config .eslintrc.js 'assets/**/*.js' --fix",
     "apply-coding-standards-js": "npm run apply-coding-standards-eslint",
-    "apply-coding-standards": "npm run apply-coding-standards-scss; npm run apply-coding-standards-js"
+    "apply-coding-standards": "npm run apply-coding-standards-scss; npm run apply-coding-standards-js",
+    "build": "encore production --progress",
+    "watch": "encore dev --watch"
   },
   "author": "ITK",
   "license": "ISC",

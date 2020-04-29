@@ -1,11 +1,13 @@
 // @TODO We may need to have a designer take a look at this!
 .info-box {
   background-color: $petroleum-light;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: $spacer;
+  margin-top: $spacer * 3;
+  margin-bottom: $spacer;
 
   p {
     max-width: none;
+    font-size: $font-size-base * 1.25;
   }
 
   $block-elements: p, ol, ul, h1, h2;
