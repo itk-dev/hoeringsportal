@@ -192,6 +192,8 @@ Start the containers:
 docker-compose up -d
 ```
 
+### `mutagen`
+
 ```sh
 brew install mutagen-io/mutagen/mutagen
 mutagen project start

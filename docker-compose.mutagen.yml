@@ -23,12 +23,10 @@ services:
       - MYSQL_PASSWORD=db
       - MYSQL_DATABASE=db
       #- ENCRYPT=1 # Uncomment to enable database encryptionn.
-    # @see https://symfony.com/doc/current/setup/symfony_server.html#docker-integration
-    labels:
-      com.symfony.server.service-prefix: 'DATABASE'
 
   phpfpm:
     image: itkdev/php7.2-fpm:latest
+    container_name: hoeringsportal-phpfpm
     networks:
       - app
     environment:
@@ -43,8 +41,6 @@ services:
       - PHP_IDE_CONFIG=serverName=localhost
     depends_on:
       - mariadb
-    volumes:
-      - .:/app:delegated
 
   nginx:
     image: nginx:latest
@@ -58,7 +54,6 @@ services:
       - '80'
     volumes:
       - ${PWD}/.docker/vhost.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./:/app:delegated
     # Let the container be accessible both internally and externally on the same domain.
     container_name: ${COMPOSE_DOMAIN}
     labels:

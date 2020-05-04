@@ -23,4 +23,7 @@ sync:
 
 # @see https://mutagen.io/documentation/projects#setup-and-teardown
 beforeCreate:
-  - docker-compose up -d
+  - docker-compose --file=docker-compose.mutagen.yml up -d
+
+afterTerminate:
+  - docker-compose --file=docker-compose.mutagen.yml stop
