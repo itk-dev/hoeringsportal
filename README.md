@@ -199,6 +199,15 @@ brew install mutagen-io/mutagen/mutagen
 mutagen project start
 ```
 
+### `symfony`
+
+Install `symfony` from https://symfony.com/download
+
+```sh
+docker-compose up -d
+symfony serve
+```
+
 ### Drupal
 
 ```sh
