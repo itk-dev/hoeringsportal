@@ -55,6 +55,7 @@ function hoeringsportal_preprocess_field(&$variables) {
     }
   }
 
+
   if ($variables['field_name'] == 'field_pretix_dates') {
     foreach ($variables['items'] as $delta => $item) {
       // For some reason ['content']['#variables']['data'] only contains
@@ -62,6 +63,12 @@ function hoeringsportal_preprocess_field(&$variables) {
       // here.
       $variables['data'][$delta] = $variables['items'][$delta]['content']['#variables']['data'];
     }
+  }
+
+  if ('public_meeting' === $variables['element']['#bundle'] && 'field_signup_link' === $variables['field_name']) {
+    /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
+    $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
+    $variables['registration_deadline_passed'] = $helper->isDeadlinePassed($variables['element']['#object']);
   }
 }
 

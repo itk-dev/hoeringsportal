@@ -32,15 +32,11 @@
  * - field_name: The name of the field.
  * - field_type: The type of the field.
  * - label_display: The display settings for the label.
+ * - registration_deadline_passed: true iff registration deadline is passed
  *
  * @see template_preprocess_field()
  */
 #}
-
-{% set entity = element['#object'] %}
-{% set now_timestamp = 'now'|date('U') %}
-{% set registration_deadline = entity.field_registration_deadline[0].date %}
-{% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
 
 {% for item in items %}
   <div class="signup-link {{ registration_deadline_passed ? 'signup-link-registration-deadline-passed' }}">
