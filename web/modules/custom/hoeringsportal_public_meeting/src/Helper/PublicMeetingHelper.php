@@ -30,6 +30,20 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Get end time for a public meeting.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   The end time.
+   */
+  public function getEndTime(NodeInterface $public_meeting) {
+    if (!$this->isPublicMeeting($public_meeting)) {
+      return NULL;
+    }
+
+    return $public_meeting->field_last_meeting_time->date;
+  }
+
+  /**
    * Get current public_meeting state.
    */
   public function getState(NodeInterface $public_meeting) {
@@ -57,18 +71,13 @@ class PublicMeetingHelper {
       return NULL;
     }
 
-    $now = $this->getDateTime()->getTimestamp();
-    if (empty($public_meeting->field_last_meeting_time->date)) {
-      return self::STATE_UPCOMING;
-    }
-    $endTime = $public_meeting->field_last_meeting_time->date->getTimestamp();
+    $now = $this->getDateTime();
+    $endTime = $this->getEndTime($public_meeting);
     if (empty($endTime) || $endTime >= $now) {
       return self::STATE_UPCOMING;
     }
 
-    if (!empty($endTime) && $endTime < $now) {
-      return self::STATE_FINISHED;
-    }
+    return self::STATE_FINISHED;
   }
 
   /**
@@ -85,7 +94,7 @@ class PublicMeetingHelper {
       return FALSE;
     }
 
-    return $this->getDateTime() > new DrupalDateTime($deadline);
+    return $this->getDateTime() > $deadline;
   }
 
   /**
