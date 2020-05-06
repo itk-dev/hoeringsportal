@@ -5,6 +5,7 @@
  * Module for public meeting content type.
  */
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -185,13 +186,28 @@ function hoeringsportal_public_meeting_last_meeting_validate(array $element, For
  *   The form state.
  */
 function hoeringsportal_public_meeting_form_validate(array $element, FormStateInterface $formState) {
+  /** @var \Drupal\Core\Entity\EntityInterface $entity */
+  $entity = $formState->getFormObject()->getEntity();
+
+  /** @var \Drupal\Core\Datetime\DrupalDateTime $registration_deadline */
   $registration_deadline = $formState->getValue('field_registration_deadline')[0]['value'];
+
+  // Validate some dates on new meetings.
+  $isNew = NULL === $entity->id();
+  $now = new DrupalDateTime();
+  if ($isNew && $registration_deadline < $now) {
+    $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be in the past.'));
+  }
+
   $signUpType = $formState->getValue('field_signup_selection')[0]['value'];
   if ('pretix' === $signUpType) {
     $dates = $formState->getValue('field_pretix_dates');
 
     if (!empty($registration_deadline) && !empty($dates)) {
       $meeting_start_time = reset($dates)['time_from_value'];
+      if ($isNew && $meeting_start_time < $now) {
+        $formState->setErrorByName('field_pretix_dates', t('The meeting time must not be in the past.'));
+      }
       if ($meeting_start_time < $registration_deadline) {
         $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
       }
@@ -218,6 +234,9 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
   }
   elseif ('manual' === $signUpType) {
     $meeting_start_time = $formState->getValue('field_last_meeting_time')[0]['value'];
+    if ($isNew && $meeting_start_time < $now) {
+      $formState->setErrorByName('field_last_meeting_time', t('The meeting time must not be in the past.'));
+    }
     if ($meeting_start_time < $registration_deadline) {
       $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
     }
