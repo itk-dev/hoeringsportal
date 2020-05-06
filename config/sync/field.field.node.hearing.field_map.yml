@@ -13,7 +13,7 @@ entity_type: node
 bundle: hearing
 label: Kortvisning
 description: 'Vælg kortvisning for høringen.'
-required: false
+required: true
 translatable: false
 default_value:
   -
@@ -21,6 +21,7 @@ default_value:
     data: null
     geojson: ''
     localplanids: ''
+    point: ''
 default_value_callback: ''
 settings: {  }
 field_type: hoeringsportal_data_map
