@@ -34,7 +34,8 @@ function hoeringsportal_preprocess_field(&$variables) {
       'dynamic_block_field:node-nearest_hearings',
     ];
 
-    if (in_array($variables['element']['#field_name'], $require_settings_fields)) {
+    if (in_array($variables['element']['#field_name'],
+      $require_settings_fields)) {
       $config = \Drupal::getContainer()->get('itk_admin.itk_config');
       $variables['hearings_node'] = $config->get('hearings_overview');
       $variables['initiative_node'] = $config->get('initiative_overview');
@@ -55,10 +56,21 @@ function hoeringsportal_preprocess_field(&$variables) {
     }
   }
 
-  if ('public_meeting' === $variables['element']['#bundle'] && 'field_signup_link' === $variables['field_name']) {
-    /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
-    $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
-    $variables['registration_deadline_passed'] = $helper->isDeadlinePassed($variables['element']['#object']);
+  if ($variables['field_name'] == 'field_pretix_dates') {
+    foreach ($variables['items'] as $delta => $item) {
+      // For some reason ['content']['#variables']['data'] only contains
+      // coordinates in twig layer, so we store the full data as a variable
+      // here.
+      $variables['data'][$delta] = $variables['items'][$delta]['content']['#variables']['data'];
+    }
+
+    if ('public_meeting' === $variables['element']['#bundle'] && 'field_signup_link' === $variables['field_name']) {
+      /**
+       * @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper
+       */
+      $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
+      $variables['registration_deadline_passed'] = $helper->isDeadlinePassed($variables['element']['#object']);
+    }
   }
 }
 
@@ -110,7 +122,6 @@ function hoeringsportal_theme_suggestions_alter(array &$suggestions, array $vari
 
     $suggestions[] = 'field__' . $variables['element']['#field_name'] . '__' .
       $variables['element']['#view_mode'];
-
   }
 
   if ($hook == 'responsive_image') {

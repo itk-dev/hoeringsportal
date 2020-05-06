@@ -12,6 +12,22 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
 
 /**
+ * Implements hook_theme().
+ */
+function hoeringsportal_public_meeting_theme() {
+  return [
+    'hoeringsportal_public_meeting_summary' => [
+      'template' => 'hoeringsportal-public-meeting-summary',
+      'variables' => [
+        'pretix_signup' => NULL,
+        'signup_deadline' => NULL,
+        'node' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_ENTITY_TYPE_presave().
  *
  * Set last meeting time for public meeting, based on Pretix field time_to

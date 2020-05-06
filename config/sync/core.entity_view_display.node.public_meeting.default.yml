@@ -41,6 +41,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           header: div
           left: div
@@ -62,6 +63,7 @@ third_party_settings:
         - field_media_document
         - field_media_image_single
       right:
+        - 'dynamic_block_field:node-public_meeting_summary'
         - 'dynamic_block_field:node-quicklinks'
         - 'dynamic_token_field:node-header_information'
         - field_area
@@ -71,10 +73,10 @@ third_party_settings:
         - field_hidden_signup
         - field_signup_selection
         - field_pretix_dates
-        - field_registration_deadline
-        - field_signup_link
         - group_signup
+        - field_registration_deadline
         - 'dynamic_block_field:node-project_timeline'
+        - field_signup_link
         - field_signup_text
         - field_section
         - 'dynamic_block_field:node-related_public_meeting'
@@ -84,6 +86,11 @@ third_party_settings:
         weight: 13
         label: hidden
         formatter: default
+      'dynamic_block_field:node-public_meeting_summary':
+        plugin_id: 'dynamic_block_field:node-public_meeting_summary'
+        weight: 6
+        label: above
+        formatter: default
       'dynamic_block_field:node-public_meeting_warning':
         plugin_id: 'dynamic_block_field:node-public_meeting_warning'
         weight: 0
@@ -91,7 +98,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 6
+        weight: 7
         label: above
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
@@ -101,7 +108,7 @@ third_party_settings:
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 7
+        weight: 8
         label: hidden
         formatter: default
       node_title:
@@ -136,7 +143,7 @@ third_party_settings:
         id: ''
         classes: 'container pt-5 pb-3 position-relative'
       label: Tilmelding
-      region: hidden
+      region: footer
 id: node.public_meeting.default
 targetEntityType: node
 bundle: public_meeting
@@ -195,7 +202,7 @@ content:
     type: entity_reference_entity_view
     region: left
   field_pretix_dates:
-    weight: 10
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -203,7 +210,7 @@ content:
     region: footer
   field_registration_deadline:
     type: datetime_plain
-    weight: 11
+    weight: 12
     region: footer
     label: hidden
     settings:
@@ -220,7 +227,7 @@ content:
     region: footer
   field_signup_link:
     type: link
-    weight: 12
+    weight: 13
     region: footer
     label: hidden
     settings:
@@ -239,7 +246,7 @@ content:
     third_party_settings: {  }
   field_signup_text:
     type: text_default
-    weight: 13
+    weight: 14
     region: footer
     label: hidden
     settings: {  }
