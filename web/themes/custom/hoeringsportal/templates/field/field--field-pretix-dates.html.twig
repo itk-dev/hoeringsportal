@@ -36,57 +36,54 @@
  * @see template_preprocess_field()
  */
 #}
+{% set field_first_content = items[0].content['#variables'].entity.field_pretix_dates[0] %}
 <div>
-  <div class="container pb-5 pt-4">
-    {% if label_hidden %}
-      {% if multiple %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">{{ 'Location'|t }}</th>
-              <th scope="col">{{ 'Date'|t }}</th>
-              <th scope="col">{{ 'Time'|t }}</th>
-              <th scope="col">{{ 'Spots'|t }}</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            {% for item in items %}
-              {{ item.content }}
-            {% endfor %}
-          </tbody>
-        </table>
-      {% else %}
-        {% for item in items %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">{{ 'Location'|t }}</th>
-              <th scope="col">{{ 'Date'|t }}</th>
-              <th scope="col">{{ 'Time'|t }}</th>
-              <th scope="col">{{ 'Spots'|t }}</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody class="bg-white">
-            {{ item.content }}
-          </tbody>
-        </table>
-        {% endfor %}
-      {% endif %}
-    {% else %}
-      <h2 class="mt-3">{{ label }}</h2>
-      {% if multiple %}
-        <div>
-      {% endif %}
-      {% for item in items %}
-        {{ item.content }}
-      {% endfor %}
-      {% if multiple %}
+  <div class="container">
+    <div class="d-block d-lg-none bg-white p-3 signup-responsive">
+      <div>
+        <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
+        {{ field_first_content.location }}
+      </div>
+      <div>
+        <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
+        {{ field_first_content.time_from|date('U')|format_date('hoeringsportal_date_long') }}
+      </div>
+      <div>
+        <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
+        {{ field_first_content.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ field_first_content.time_to|date('U')|format_date('hoeringsportal_time') }}
+      </div>
+      <div>
+        <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
+        {# @TODO Maybe we should clean up this property path … #}
+        {% set availability = data[0].data.availability|first|default(false) %}
+        {% if availability.availability|default(false) %}
+          {% set availability = availability.availability %}
+          {{ availability.available_number }}/{{ availability.total_size }}
+        {% else %}
+          {{ field_first_content.spots }}/{{ field_first_content.spots }}
+        {% endif %}
+        <div class="mt-3">
+          <a href="{{ data[0].data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
+            {{ 'Sign up'|t }}
+            <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+          </a>
         </div>
-      {% endif %}
-    {% endif %}
+      </div>
+    </div>
+    <table class="table d-none d-lg-block pb-5 pt-4">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">{{ 'Location'|t }}</th>
+          <th scope="col">{{ 'Date'|t }}</th>
+          <th scope="col">{{ 'Time'|t }}</th>
+          <th scope="col">{{ 'Spots'|t }}</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="bg-white">
+        {{ items[0].content }}
+      </tbody>
+    </table>
   </div>
 </div>
