@@ -42,13 +42,26 @@ class MapDefaultWidget extends WidgetBase {
       $typeOptions[MapItem::TYPE_LOCALPLANIDS_NODE] = t('Local plan ids from node');
     }
     asort($typeOptions);
+
+    $availableTypes = $this->getAvailableTypes();
+    if (!empty($availableTypes)) {
+      $typeOptions = array_filter($typeOptions, static function ($type) use ($availableTypes) {
+        return isset($availableTypes[$type]);
+      }, ARRAY_FILTER_USE_KEY);
+    }
+
     $element['type'] = [
       '#type' => 'select',
       '#title' => t('Type'),
       '#options' => $typeOptions,
-      '#empty_value' => '',
       '#default_value' => $item->type ?? '',
+      '#required' => $element['#required'],
     ];
+
+    if (count($typeOptions) > 1) {
+      $element['type']['#empty_value'] = '';
+    }
+
     $geojsonUrl = 'http://geojson.io/';
     $geojsonUrlWithMap = $geojsonUrl . '#map=13/56.1464/10.1739';
     // @see https://github.com/mapbox/geojson.io/blob/gh-pages/API.md#datadataapplicationjson
@@ -103,9 +116,72 @@ class MapDefaultWidget extends WidgetBase {
       ],
     ];
 
+    $element['#element_validate'][] = [$this, 'validate'];
     $element['#attached']['library'][] = 'hoeringsportal_data/hearing-edit';
 
     return $element;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function defaultSettings() {
+    return [
+      'available_types' => [],
+    ] + parent::defaultSettings();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    $element['available_types'] = [
+      '#title' => $this->t('Available types'),
+      '#type' => 'checkboxes',
+      '#options' => [
+        MapItem::TYPE_LOCALPLANIDS => t('Local plan ids'),
+        MapItem::TYPE_POINT => t('Point'),
+        MapItem::TYPE_LOCALPLANIDS_NODE => t('Local plan ids from node'),
+      ],
+      '#required' => TRUE,
+      '#default_value' => $this->getSetting('available_types'),
+    ];
+
+    return $element;
+  }
+
+  /**
+   * Get available types.
+   */
+  private function getAvailableTypes() {
+    return array_filter($this->getSetting('available_types'));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function settingsSummary() {
+    $summary[] = $this->t('Available types: @types', [
+      '@types' => implode(', ', $this->getAvailableTypes()),
+    ]);
+
+    return $summary;
+  }
+
+  /**
+   * Validation callback.
+   */
+  public function validate(array &$element, FormStateInterface $form_state, array &$complete_form) {
+    $type = $element['type']['#value'];
+
+    if (MapItem::TYPE_POINT === $type) {
+      $point = $element[MapItem::TYPE_POINT]['#value'];
+
+      if (empty($point)) {
+        $form_state->setError($element['type'],
+          $this->t('Please select a point on the map'));
+      }
+    }
   }
 
 }
