@@ -1,0 +1,5 @@
+pretix_url: 'https://pretix.eu/'
+organizer_slug: aarhuskommune
+api_token: w12xts6m0fhv8ef9vqrcxpx9nagk2kszt0nil2oe29w4hcd0njvx31kii16eqx1j
+template_event_slugs: Standard2
+langcode: da
