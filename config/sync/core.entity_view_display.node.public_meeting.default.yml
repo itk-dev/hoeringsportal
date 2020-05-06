@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
+    - field.field.node.public_meeting.field_map
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_dates
@@ -28,6 +29,7 @@ dependencies:
     - ds
     - entity_reference_revisions
     - field_group
+    - hoeringsportal_data
     - itk_pretix
     - link
     - options
@@ -79,11 +81,12 @@ third_party_settings:
         - field_signup_link
         - field_signup_text
         - field_section
+        - field_map
         - 'dynamic_block_field:node-related_public_meeting'
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 13
+        weight: 12
         label: hidden
         formatter: default
       'dynamic_block_field:node-public_meeting_summary':
@@ -130,7 +133,7 @@ third_party_settings:
         - field_signup_link
         - field_signup_text
       parent_name: ''
-      weight: 12
+      weight: 11
       format_type: html_element
       format_settings:
         element: div
@@ -150,7 +153,7 @@ bundle: public_meeting
 mode: default
 content:
   field_area:
-    weight: 9
+    weight: 8
     label: above
     settings:
       link: true
@@ -158,7 +161,7 @@ content:
     type: entity_reference_label
     region: right
   field_contact:
-    weight: 11
+    weight: 10
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -180,6 +183,13 @@ content:
       format_custom_false: ''
     third_party_settings: {  }
     type: boolean
+    region: footer
+  field_map:
+    weight: 14
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: hoeringsportal_data_map_default
     region: footer
   field_media_document:
     weight: 4
@@ -217,7 +227,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 14
+    weight: 13
     label: hidden
     settings:
       view_mode: default
@@ -259,7 +269,7 @@ content:
     type: basic_string
     region: left
   field_type:
-    weight: 10
+    weight: 9
     label: above
     settings:
       link: true

@@ -1,0 +1,27 @@
+uuid: 2bca7d8c-0268-448b-a830-70e510d68c07
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_map
+    - node.type.public_meeting
+  module:
+    - hoeringsportal_data
+id: node.public_meeting.field_map
+field_name: field_map
+entity_type: node
+bundle: public_meeting
+label: Kortvisning
+description: ''
+required: true
+translatable: true
+default_value:
+  -
+    type: ''
+    data: null
+    geojson: ''
+    localplanids: ''
+    point: ''
+default_value_callback: ''
+settings: {  }
+field_type: hoeringsportal_data_map
