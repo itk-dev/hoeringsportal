@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
+    - field.field.node.public_meeting.field_map
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
     - field.field.node.public_meeting.field_pretix_dates
@@ -28,6 +29,7 @@ dependencies:
     - datetime
     - entity_browser
     - field_group
+    - hoeringsportal_data
     - itk_pretix
     - link
     - paragraphs
@@ -139,6 +141,16 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_map:
+    weight: 26
+    settings:
+      available_types:
+        point: point
+        localplanids: 0
+        localplanids_node: 0
+    third_party_settings: {  }
+    type: hoeringsportal_data_map_default
+    region: content
   field_media_document:
     weight: 3
     settings:

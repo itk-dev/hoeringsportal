@@ -183,7 +183,11 @@ content:
     type: hoeringsportal_data_map_default
     weight: 6
     region: content
-    settings: {  }
+    settings:
+      available_types:
+        point: point
+        localplanids: 0
+        localplanids_node: 0
     third_party_settings: {  }
   field_media_document:
     weight: 3
