@@ -1,8 +1,24 @@
 .signup {
   .last-signup {
-    position: absolute;
-    top: 3em;
-    right: 0;
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      top: 3em;
+      right: 0;
+    }
+
+    margin-bottom: 1em;
+    position: relative;
+  }
+
+  .signup-responsive {
+    margin-left: -1em;
+    margin-right: -1em;
+  }
+
+  .h5-responsive {
+    font-size: .8rem;
+    text-transform: none;
+    margin-bottom: .5em;
   }
 
   table th {
