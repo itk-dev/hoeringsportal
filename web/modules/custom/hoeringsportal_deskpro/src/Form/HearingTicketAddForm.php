@@ -98,27 +98,39 @@ class HearingTicketAddForm extends FormBase {
     }
 
     $form['representation'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Representation'),
+      // '#type' => 'fieldset',
+      // '#title' => $this->t('Representation'),
       '#attributes' => ['class' => ['group-representation']],
       '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
       '#description_position' => 'top',
     ];
 
     $form['person'] = [
-      '#type' => 'fieldset',
+      '#type' => 'container',
       '#title' => $this->t('Personal information'),
       '#attributes' => ['class' => ['group-personal-information']],
-      '#description' => $this->t('Enter your person details.'),
+      // '#description' => $this->t('Enter your personal details.'),
       '#description_position' => 'top',
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => ['value' => ''],
+        ],
+      ],
     ];
 
     $form['reply'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Hearing reply'),
       '#attributes' => ['class' => ['group-hearing-reply']],
-      '#description' => $this->t('Enter your hearing reply.'),
+      // '#description' => $this->t('Enter your hearing reply.'),
       '#description_position' => 'top',
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => ['value' => ''],
+        ],
+      ],
     ];
 
     $form['representation']['representation'] = [
@@ -126,6 +138,7 @@ class HearingTicketAddForm extends FormBase {
       '#title' => $this->t('I represent'),
       '#options' => $options,
       '#required' => TRUE,
+      // '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
     ];
 
     $states = [
@@ -137,11 +150,11 @@ class HearingTicketAddForm extends FormBase {
       ],
     ];
 
-    $form['representation']['organization'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Organization'),
-      '#states' => $states,
-    ];
+    // $form['representation']['organization'] = [
+    //   '#type' => 'textfield',
+    //   '#title' => $this->t('Organization'),
+    //   '#states' => $states,
+    // ];
 
     $form['person']['name'] = [
       '#type' => 'textfield',
@@ -196,6 +209,12 @@ class HearingTicketAddForm extends FormBase {
     $form['person']['address_secret'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('My address is secret'),
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => $stateCondition,
+        ],
+      ],
     ];
 
     $form['reply']['subject'] = [
@@ -221,21 +240,21 @@ class HearingTicketAddForm extends FormBase {
       '#multiple' => TRUE,
     ];
 
-    $form['hearing_consent_text'] = [
+    $form['reply']['hearing_consent_text'] = [
       '#markup' => $this->config->get('consent'),
     ];
 
-    $form['consent'] = [
+    $form['reply']['consent'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('I have red the terms and give my consent'),
       '#required' => TRUE,
     ];
 
-    $form['spinner'] = [
+    $form['reply']['spinner'] = [
       '#markup' => '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>',
     ];
 
-    $form['submit'] = [
+    $form['reply']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Send'),
       '#button_type' => 'primary',

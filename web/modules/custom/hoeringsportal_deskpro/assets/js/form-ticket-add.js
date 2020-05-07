@@ -139,9 +139,22 @@ $(() => {
   })
 
   $('[data-drupal-selector="edit-representation"]').on('change', function () {
+    const value = $(this).val()
+    const isPersonal = value == 5
     const text = $('option:selected', this).text()
     if (text) {
-      $('[for="edit-organization"]').text(`Navn på ${text.toLowerCase()}`)
+      // Set labels
+      const labels = {
+        // Field name => label
+        'name': isPersonal ? 'Dit navn' : `Navn (${text})`,
+        'email': isPersonal ? 'Din e-mailadresse' : `E-mailadresse (${text})`,
+        'address': isPersonal ? 'Din adresse' : `Adresse (${text})`,
+      }
+      for (let [key, label] of Object.entries(labels)) {
+        const selector = `[for="edit-${key}"]`
+        console.log(selector, $(selector))
+        $(selector).text(label)
+      }
     }
   })
 })
