@@ -41,14 +41,14 @@
   {% if multiple %}
     {% for item in items %}
       <div class="alert alert-danger last-signup" role="alert">
-        {{ 'Last date for signup'|t }} {{ item.content['#markup']|date('U')|format_date('hoeringsportal_date_long') }}
+        {{ 'Last date for signup'|t }} {{ item.content['#markup']|date('U')|format_date('hoeringsportal_datetime') }}
       </div>
     {% endfor %}
   {% else %}
     {% for item in items %}
       <div class="alert alert-danger last-signup" role="alert">
         {# @TODO There must be a better way to get the date value #}
-        {{ 'Last date for signup'|t }} <strong>{{ item.content['#markup']|date('U')|format_date('hoeringsportal_date_long') }}</strong>
+        {{ 'Last date for signup'|t }} <strong>{{ item.content['#markup']|date('U')|format_date('hoeringsportal_datetime') }}</strong>
       </div>
     {% endfor %}
   {% endif %}
