@@ -87,27 +87,83 @@ class HearingTicketAddForm extends FormBase {
       '#value' => $this->config->get('intro'),
     ];
 
-    $form['name'] = [
+    $representations = $this->config->getRepresentations();
+    $stateCondition = [];
+    $options = [];
+    foreach ($representations as $id => $representation) {
+      $options[$id] = $representation['title'];
+      if ($representation['require_organization']) {
+        $stateCondition[] = ['value' => (string) $id];
+      }
+    }
+
+    $form['representation'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Representation'),
+      '#attributes' => ['class' => ['group-representation']],
+      '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
+      '#description_position' => 'top',
+    ];
+
+    $form['person'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Personal information'),
+      '#attributes' => ['class' => ['group-personal-information']],
+      '#description' => $this->t('Enter your person details.'),
+      '#description_position' => 'top',
+    ];
+
+    $form['reply'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Hearing reply'),
+      '#attributes' => ['class' => ['group-hearing-reply']],
+      '#description' => $this->t('Enter your hearing reply.'),
+      '#description_position' => 'top',
+    ];
+
+    $form['representation']['representation'] = [
+      '#type' => 'select',
+      '#title' => $this->t('I represent'),
+      '#options' => $options,
+      '#required' => TRUE,
+    ];
+
+    $states = [
+      'visible' => [
+        ':input[name="representation"]' => $stateCondition,
+      ],
+      'required' => [
+        ':input[name="representation"]' => $stateCondition,
+      ],
+    ];
+
+    $form['representation']['organization'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Name'),
+      '#title' => $this->t('Organization'),
+      '#states' => $states,
+    ];
+
+    $form['person']['name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Your name'),
       '#required' => TRUE,
     ];
 
-    $form['email'] = [
+    $form['person']['email'] = [
       '#type' => 'email',
-      '#title' => $this->t('Email address'),
+      '#title' => $this->t('Your email address'),
       '#required' => TRUE,
     ];
 
-    $form['email_confirm'] = [
+    $form['person']['email_confirm'] = [
       '#type' => 'email',
       '#title' => $this->t('Confirm email address'),
       '#required' => TRUE,
     ];
 
-    $form['address'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Address'),
+    $form['person']['address'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Your address'),
       '#description' => $this->t('Your address will not be shown on the website.'),
       '#description_position' => 'top',
 
@@ -133,60 +189,28 @@ class HearingTicketAddForm extends FormBase {
       '#attributes' => ['autocomplete' => 'off'],
     ];
 
-    $form['postal_code'] = [
+    $form['person']['postal_code'] = [
       '#type' => 'hidden',
     ];
 
-    $form['address_secret'] = [
+    $form['person']['address_secret'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('My address is secret'),
     ];
 
-    $representations = $this->config->getRepresentations();
-    $stateCondition = [];
-    $options = [];
-    foreach ($representations as $id => $representation) {
-      $options[$id] = $representation['title'];
-      if ($representation['require_organization']) {
-        $stateCondition[] = ['value' => (string) $id];
-      }
-    }
-
-    $form['representation'] = [
-      '#type' => 'select',
-      '#title' => $this->t('I represent'),
-      '#options' => $options,
-      '#required' => TRUE,
-    ];
-
-    $states = [
-      'visible' => [
-        ':input[name="representation"]' => $stateCondition,
-      ],
-      'required' => [
-        ':input[name="representation"]' => $stateCondition,
-      ],
-    ];
-
-    $form['organization'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Organization'),
-      '#states' => $states,
-    ];
-
-    $form['subject'] = [
+    $form['reply']['subject'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Subject'),
       '#required' => TRUE,
     ];
 
-    $form['message'] = [
+    $form['reply']['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#required' => TRUE,
     ];
 
-    $form['files'] = [
+    $form['reply']['files'] = [
       '#title' => $this->t('Select a file'),
       '#type' => 'managed_file',
       '#upload_validators' => $file_validators,
