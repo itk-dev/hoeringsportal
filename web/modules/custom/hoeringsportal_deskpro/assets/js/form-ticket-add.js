@@ -137,4 +137,11 @@ $(() => {
       $(this).addClass('is-submitted')
     }
   })
+
+  $('[data-drupal-selector="edit-representation"]').on('change', function () {
+    const text = $('option:selected', this).text()
+    if (text) {
+      $('[for="edit-organization"]').text(`Navn på ${text.toLowerCase()}`)
+    }
+  })
 })
