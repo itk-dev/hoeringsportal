@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06f0fb0441e127e63af68d0099e9171d",
+    "content-hash": "e082956caab4b125cc418c62755e04e7",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -394,7 +394,7 @@
             "version": "1.8.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bgrins/spectrum.git",
+                "url": "git@github.com:bgrins/spectrum.git",
                 "reference": "98454b55521cfb495f628db28af01100c029ef76"
             },
             "dist": {
@@ -2613,6 +2613,10 @@
             ],
             "authors": [
                 {
+                    "name": "Etroid",
+                    "homepage": "https://www.drupal.org/user/3048985"
+                },
+                {
                     "name": "chr.fritsch",
                     "homepage": "https://www.drupal.org/user/2103716"
                 },
@@ -2625,10 +2629,6 @@
                     "homepage": "https://www.drupal.org/user/192273"
                 },
                 {
-                    "name": "mortona2k",
-                    "homepage": "https://www.drupal.org/user/1029484"
-                },
-                {
                     "name": "rlhawk",
                     "homepage": "https://www.drupal.org/user/352283"
                 }
@@ -2636,7 +2636,7 @@
             "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
             "homepage": "https://www.drupal.org/project/better_exposed_filters",
             "support": {
-                "source": "http://cgit.drupalcode.org/better_exposed_filters"
+                "source": "https://git.drupalcode.org/project/better_exposed_filters"
             }
         },
         {
@@ -4128,6 +4128,37 @@
             }
         },
         {
+            "name": "drupal/hoeringsportal_deskpro",
+            "version": "dev-feature/HRIN-510-address-fields",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/hoeringsportal_deskpro",
+                "reference": "e616677e475bc1f8e5d9dd35e0c204ec5f53a23d"
+            },
+            "require": {
+                "deskpro/deskpro-api-client-php": "^2.0",
+                "guzzlehttp/guzzle": "^6.3",
+                "nicoeg/dawa": "^1.0"
+            },
+            "type": "drupal-custom-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Deskpro integration",
+            "homepage": "https://www.drupal.org/project/hoeringsportal_deskpro",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/hoeringsportal_deskpro",
+                "source": "http://cgit.drupalcode.org/hoeringsportal_deskpro"
+            },
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
+        },
+        {
             "name": "drupal/image_widget_crop",
             "version": "2.2.0",
             "source": {
@@ -4180,6 +4211,10 @@
                 {
                     "name": "Drupal media CI",
                     "homepage": "https://www.drupal.org/user/3057985"
+                },
+                {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
                 },
                 {
                     "name": "slashrsm",
@@ -4722,6 +4757,10 @@
                 {
                     "name": "roderik",
                     "homepage": "https://www.drupal.org/user/8841"
+                },
+                {
+                    "name": "smfsh",
+                    "homepage": "https://www.drupal.org/user/3348892"
                 }
             ],
             "description": "Allows users to authenticate against an external SAML identity provider.",
@@ -4786,7 +4825,7 @@
             "description": "Provides an overview of all the available updates for your Drupal website using an external service.",
             "homepage": "https://www.drupal.org/project/system_status",
             "support": {
-                "source": "http://cgit.drupalcode.org/system_status"
+                "source": "https://git.drupalcode.org/project/system_status"
             }
         },
         {
@@ -4900,7 +4939,7 @@
             "description": "Choose theme to show the toobar",
             "homepage": "https://www.drupal.org/project/toolbar_visibility",
             "support": {
-                "source": "http://cgit.drupalcode.org/toolbar_visibility"
+                "source": "https://git.drupalcode.org/project/toolbar_visibility"
             }
         },
         {
@@ -5000,6 +5039,10 @@
                 {
                     "name": "New Zeal",
                     "homepage": "https://www.drupal.org/user/93571"
+                },
+                {
+                    "name": "jasonawant",
+                    "homepage": "https://www.drupal.org/user/589890"
                 },
                 {
                     "name": "joekers",
@@ -5856,6 +5899,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -5902,6 +5946,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -6310,6 +6355,60 @@
                 "object graph"
             ],
             "time": "2019-12-15T19:12:40+00:00"
+        },
+        {
+            "name": "nicoeg/dawa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicoeg/Dawa.git",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicoeg/Dawa/zipball/43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicoeg\\Dawa\\DawaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Dawa": "Nicoeg\\Dawa\\DawaFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicoeg\\Dawa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolaj Egelund",
+                    "email": "nicomanden@gmail.com"
+                }
+            ],
+            "description": "A PHP package for Dawa http://dawa.aws.dk",
+            "keywords": [
+                "Dawa",
+                "aws.dk",
+                "laravel"
+            ],
+            "time": "2020-01-16T19:03:09+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -10737,6 +10836,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2019-08-06T17:53:53+00:00"
         },
         {
@@ -10782,6 +10882,7 @@
                 "escaper",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-escaper",
             "time": "2019-09-05T20:03:20+00:00"
         },
         {
@@ -10845,6 +10946,7 @@
                 "feed",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-feed",
             "time": "2019-03-05T20:08:49+00:00"
         },
         {
@@ -10891,6 +10993,7 @@
                 "stdlib",
                 "zf"
             ],
+            "abandoned": "laminas/laminas-stdlib",
             "time": "2018-08-28T21:34:05+00:00"
         }
     ],
@@ -10920,5 +11023,6 @@
     "platform": {
         "php": "~7.2.0"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

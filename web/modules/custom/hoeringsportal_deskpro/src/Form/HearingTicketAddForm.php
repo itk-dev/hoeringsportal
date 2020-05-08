@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Nicoeg\Dawa\Dawa;
 
 /**
  * Form form definition for adding a hearing.
@@ -105,9 +106,11 @@ class HearingTicketAddForm extends FormBase {
     ];
 
     $form['address'] = [
-      '#type' => 'textfield',
+      '#type' => 'fieldset',
       '#title' => $this->t('Address'),
       '#description' => $this->t('Your address will not be shown on the website.'),
+      '#description_position' => 'top',
+
       '#states' => [
         'visible' => [
           ':input[name="address_secret"]' => ['checked' => FALSE],
@@ -118,8 +121,16 @@ class HearingTicketAddForm extends FormBase {
       ],
     ];
 
-    $form['geolocation'] = [
-      '#type' => 'hidden',
+    $form['address']['postal_code_and_city'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Postal code and city'),
+      '#attributes' => ['autocomplete' => 'off'],
+    ];
+
+    $form['address']['street_and_number'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Street and number'),
+      '#attributes' => ['autocomplete' => 'off'],
     ];
 
     $form['postal_code'] = [
@@ -242,9 +253,9 @@ class HearingTicketAddForm extends FormBase {
       'name',
       'email',
       'address_secret',
-      'address',
       'postal_code',
-      'geolocation',
+      'postal_code_and_city',
+      'street_and_number',
       'representation',
       'organization',
       'subject',
@@ -259,8 +270,24 @@ class HearingTicketAddForm extends FormBase {
       return $value;
     }, array_combine($names, $names));
 
+    $data['address'] = implode(', ', [$data['street_and_number'], $data['postal_code_and_city']]);
+    unset($data['street_and_number'], $data['postal_code_and_city']);
+
     if ($form_state->getValue('address_secret')) {
-      unset($data['address'], $data['geolocation']);
+      unset($data['address']);
+    }
+
+    if (isset($data['address'])) {
+      // Try to get geolocation from DAWA.
+      try {
+        $dawa = new Dawa();
+        $result = $dawa->accessAddressSearch($data['address']);
+        if (1 === count($result)) {
+          $data['geolocation'] = implode(', ', $result[0]->adgangspunkt->koordinater);
+        }
+      }
+      catch (\Exception $e) {
+      }
     }
 
     // File ids.
