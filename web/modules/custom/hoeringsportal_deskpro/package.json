@@ -35,7 +35,7 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
     "fetch": "^1.1.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jquery-ui": "^1.12.1",
     "jquery-validation": "^1.19.0",
     "node-sass": "^4.9.4",
