@@ -1,0 +1,29 @@
+uuid: b4595727-f689-4ff1-acec-a81e1ed25aad
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_taxonomy_type
+    - paragraphs.paragraphs_type.timeline_period
+    - taxonomy.vocabulary.timeline_item_types
+id: paragraph.timeline_period.field_timeline_taxonomy_type
+field_name: field_timeline_taxonomy_type
+entity_type: paragraph
+bundle: timeline_period
+label: Type
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      timeline_item_types: timeline_item_types
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

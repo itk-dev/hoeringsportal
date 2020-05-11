@@ -1,0 +1,23 @@
+uuid: 13f910b3-513d-493b-abab-c55583d12bc9
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_link
+    - paragraphs.paragraphs_type.timeline_period
+  module:
+    - link
+id: paragraph.timeline_period.field_timeline_link
+field_name: field_timeline_link
+entity_type: paragraph
+bundle: timeline_period
+label: Link
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 0
+field_type: link

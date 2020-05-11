@@ -67,8 +67,8 @@ third_party_settings:
       right:
         - 'dynamic_block_field:node-public_meeting_summary'
         - 'dynamic_block_field:node-quicklinks'
-        - 'dynamic_token_field:node-header_information'
         - field_area
+        - 'dynamic_token_field:node-header_information'
         - field_type
         - field_contact
       footer:
@@ -76,18 +76,18 @@ third_party_settings:
         - field_signup_selection
         - field_pretix_dates
         - group_signup
-        - field_registration_deadline
         - 'dynamic_block_field:node-project_timeline'
-        - field_signup_link
-        - field_signup_text
+        - field_registration_deadline
         - field_section
+        - field_signup_link
         - field_map
+        - field_signup_text
         - 'dynamic_block_field:node-related_public_meeting'
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
         weight: 12
-        label: hidden
+        label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_summary':
         plugin_id: 'dynamic_block_field:node-public_meeting_summary'

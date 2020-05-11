@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_timeline_items
     - node.type.project
     - paragraphs.paragraphs_type.timeline_items
+    - paragraphs.paragraphs_type.timeline_period
   module:
     - entity_reference_revisions
 id: node.project.field_timeline_items
@@ -24,6 +25,7 @@ settings:
     negate: 0
     target_bundles:
       timeline_items: timeline_items
+      timeline_period: timeline_period
     target_bundles_drag_drop:
       timeline_items:
         enabled: true
@@ -31,6 +33,9 @@ settings:
       content_block:
         weight: 10
         enabled: false
+      timeline_period:
+        enabled: true
+        weight: 11
       content_list:
         weight: 11
         enabled: false
@@ -42,6 +47,9 @@ settings:
         enabled: false
       projekt_billede_galleri:
         weight: 14
+        enabled: false
+      info_box:
+        weight: 15
         enabled: false
       teaser_row:
         weight: 15

@@ -39,6 +39,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           header: div
           left: div
@@ -160,7 +161,7 @@ content:
     type: hoeringsportal_data_map_default
     weight: 20
     region: footer
-    label: hidden
+    label: above
     settings: {  }
     third_party_settings: {  }
   field_media_document:
