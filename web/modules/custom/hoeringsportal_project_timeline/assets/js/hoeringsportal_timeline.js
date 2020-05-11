@@ -107,7 +107,8 @@ for (var i = 0; i < items.length; i++) {
       'data-placement': 'top',
       'data-content':  formatted_content
     }).html('<i></i><div>' + item.title + '</div>').prop('outerHTML'),
-    start: item.startDate
+    start: item.startDate,
+    end: item.endDate
   });
 
   // Prepare coloring for dots and lines.

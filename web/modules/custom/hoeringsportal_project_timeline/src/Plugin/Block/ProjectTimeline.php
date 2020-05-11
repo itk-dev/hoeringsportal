@@ -51,7 +51,7 @@ class ProjectTimeline extends BlockBase {
     if (isset($node->field_project_start->date)) {
       $project_start_timestamp = $node->field_project_start->date->getTimestamp();
       $timeline_items[] = [
-        'title' => t('Project start'),
+        'title' => t('Start'),
         'startDate' => $node->field_project_start->date->format(DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
@@ -59,7 +59,7 @@ class ProjectTimeline extends BlockBase {
         'state' => $project_start_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
-        'color' => '#333333',
+        'color' => '#858585',
         'label' => t('Project start'),
       ];
     }
@@ -67,7 +67,7 @@ class ProjectTimeline extends BlockBase {
     if (isset($node->field_project_finish->date)) {
       $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
       $timeline_items[] = [
-        'title' => t('Expected end date'),
+        'title' => t('Expected finish'),
         'startDate' => $node->field_project_finish->date->format(DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
@@ -75,7 +75,7 @@ class ProjectTimeline extends BlockBase {
         'state' => $project_end_timestamp < $now_timestamp ? 'passed' : 'upcomming',
         'nid' => 0,
         'link' => NULL,
-        'color' => '#333333',
+        'color' => '#858585',
         'label' => t('Expected end date'),
       ];
     }
@@ -132,7 +132,7 @@ class ProjectTimeline extends BlockBase {
             'state' => $last_meeting->time_from < $now ? 'passed' : 'upcomming',
             'nid' => $meeting_node->nid->value,
             'link' => NULL,
-            'color' => '#B2DADA',
+            'color' => '#333333',
             'label' => t('Public meeting'),
           ];
         }
@@ -143,13 +143,13 @@ class ProjectTimeline extends BlockBase {
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
       $timeline_type_term_id = $paragraph_obj->field_timeline_taxonomy_type->target_id;
-      $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#333';
+      $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#858585';
       $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->getTitle();
       if (isset($paragraph_obj->field_timeline_date->date)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
           'startDate' => $paragraph_obj->field_timeline_date->date->format(DateTimeInterface::ATOM),
-          'endDate' => NULL,
+          'endDate' => isset($paragraph_obj->field_timeline_end_date->date) ? $paragraph_obj->field_timeline_end_date->date->format(DateTimeInterface::ATOM) : NULL,
           'type' => isset($label) ? str_replace(' ', '_', $label) : '',
           'description' => $paragraph_obj->field_timeline_description->value,
           'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',
