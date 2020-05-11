@@ -98,18 +98,15 @@ class HearingTicketAddForm extends FormBase {
     }
 
     $form['representation'] = [
-      // '#type' => 'fieldset',
-      // '#title' => $this->t('Representation'),
       '#attributes' => ['class' => ['group-representation']],
       '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
       '#description_position' => 'top',
     ];
 
-    $form['person'] = [
+    $form['contact'] = [
       '#type' => 'container',
-      '#title' => $this->t('Personal information'),
-      '#attributes' => ['class' => ['group-personal-information']],
-      // '#description' => $this->t('Enter your personal details.'),
+      '#title' => $this->t('Contact information'),
+      '#attributes' => ['class' => ['group-contact-information']],
       '#description_position' => 'top',
 
       '#states' => [
@@ -123,7 +120,6 @@ class HearingTicketAddForm extends FormBase {
       '#type' => 'fieldset',
       '#title' => $this->t('Hearing reply'),
       '#attributes' => ['class' => ['group-hearing-reply']],
-      // '#description' => $this->t('Enter your hearing reply.'),
       '#description_position' => 'top',
 
       '#states' => [
@@ -138,7 +134,6 @@ class HearingTicketAddForm extends FormBase {
       '#title' => $this->t('I represent'),
       '#options' => $options,
       '#required' => TRUE,
-      // '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
     ];
 
     $states = [
@@ -150,33 +145,26 @@ class HearingTicketAddForm extends FormBase {
       ],
     ];
 
-    // $form['representation']['organization'] = [
-    //   '#type' => 'textfield',
-    //   '#title' => $this->t('Organization'),
-    //   '#states' => $states,
-    // ];
-
-    $form['person']['name'] = [
+    $form['contact']['name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Your name'),
       '#required' => TRUE,
     ];
 
-    $form['person']['email'] = [
+    $form['contact']['email'] = [
       '#type' => 'email',
       '#title' => $this->t('Your email address'),
       '#required' => TRUE,
     ];
 
-    $form['person']['email_confirm'] = [
+    $form['contact']['email_confirm'] = [
       '#type' => 'email',
       '#title' => $this->t('Confirm email address'),
       '#required' => TRUE,
     ];
 
-    $form['person']['address'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Your address'),
+    $form['contact']['address'] = [
+      '#type' => 'container',
       '#description' => $this->t('Your address will not be shown on the website.'),
       '#description_position' => 'top',
 
@@ -190,23 +178,25 @@ class HearingTicketAddForm extends FormBase {
       ],
     ];
 
-    $form['address']['postal_code_and_city'] = [
+    $form['contact']['address']['postal_code_and_city'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Postal code and city'),
       '#attributes' => ['autocomplete' => 'off'],
+      '#required' => TRUE,
     ];
 
-    $form['address']['street_and_number'] = [
+    $form['contact']['address']['street_and_number'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Street and number'),
       '#attributes' => ['autocomplete' => 'off'],
+      '#required' => TRUE,
     ];
 
-    $form['person']['postal_code'] = [
+    $form['contact']['postal_code'] = [
       '#type' => 'hidden',
     ];
 
-    $form['person']['address_secret'] = [
+    $form['contact']['address_secret'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('My address is secret'),
 
@@ -282,7 +272,8 @@ class HearingTicketAddForm extends FormBase {
     $representations = $this->config->getRepresentations();
 
     if ($representations[$representation]['require_organization'] && empty($organization)) {
-      $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
+      // @TODO Customer has to decide if we need an organization name.
+      // $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
     }
   }
 
