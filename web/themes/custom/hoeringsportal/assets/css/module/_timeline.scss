@@ -42,6 +42,10 @@
       }
     }
 
+    &.vis-item.vis-range {
+      border-radius: .3rem;
+    }
+
     &.vis-item.vis-line,
     &.vis-item.vis-dot {
       border-color: $primary;

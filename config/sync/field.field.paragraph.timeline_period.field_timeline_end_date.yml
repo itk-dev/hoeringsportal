@@ -1,0 +1,21 @@
+uuid: dd3f011b-9deb-4b5b-a10f-38db0b8f35eb
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_end_date
+    - paragraphs.paragraphs_type.timeline_period
+  module:
+    - datetime
+id: paragraph.timeline_period.field_timeline_end_date
+field_name: field_timeline_end_date
+entity_type: paragraph
+bundle: timeline_period
+label: Slutdato
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

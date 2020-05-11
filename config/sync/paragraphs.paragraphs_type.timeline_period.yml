@@ -1,0 +1,10 @@
+uuid: 8fc01a28-1340-4969-b7ba-e031cf7edaf7
+langcode: da
+status: true
+dependencies: {  }
+id: timeline_period
+label: 'Tidslinje periode'
+icon_uuid: null
+icon_default: null
+description: 'Tilføj perioder til tidslinjen'
+behavior_plugins: {  }

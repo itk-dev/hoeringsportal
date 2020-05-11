@@ -1,0 +1,65 @@
+uuid: 5dde8c1e-f5fd-4d2e-9fb8-bb69d4bfe7a3
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.timeline_period.field_timeline_date
+    - field.field.paragraph.timeline_period.field_timeline_description
+    - field.field.paragraph.timeline_period.field_timeline_end_date
+    - field.field.paragraph.timeline_period.field_timeline_link
+    - field.field.paragraph.timeline_period.field_timeline_taxonomy_type
+    - field.field.paragraph.timeline_period.field_timeline_title
+    - paragraphs.paragraphs_type.timeline_period
+  module:
+    - datetime
+    - link
+id: paragraph.timeline_period.default
+targetEntityType: paragraph
+bundle: timeline_period
+mode: default
+content:
+  field_timeline_date:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_timeline_description:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_timeline_end_date:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_timeline_link:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  field_timeline_taxonomy_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_timeline_title:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true

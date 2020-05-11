@@ -53,12 +53,12 @@
       <h3 class="mt-0 pt-4">{{ label }}</h3>
       <div class="project-timeline-period row">
         <div class="col-2">
-          <label>{{ 'Project start'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_start.date.getTimestamp()|format_date('hoeringsportal_date') }}</div>
+          <label>{{ 'Start'|t }}</label>
+          <div>{{ items[0].content[0]['#node'].field_project_start.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
         </div>
         <div class="col-2">
-          <label>{{ 'Expected end date'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_finish.date.getTimestamp()|format_date('hoeringsportal_date') }}</div>
+          <label>{{ 'Expected finish'|t }}</label>
+          <div>{{ items[0].content[0]['#node'].field_project_finish.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
         </div>
       </div>
     </div>
@@ -75,10 +75,6 @@
   <div class="container">
     <div class="row">
       <div class="project-type-label-wrapper mt-5 mb-5">
-        <div class="project-type-label hearing"><i class="fa fa-circle pr-1"></i>{{ 'Hearing'|t }}</div>
-        <!-- Awaiting future releases -->
-        <!--<div class="project-type-label meeting"><i class="fa fa-circle pr-1"></i>{{ 'Meeting'|t }}</div>-->
-        <!--<div class="project-type-label debate"><i class="fa fa-circle pr-1"></i>{{ 'Debate'|t }}</div>-->
         {% for term in timeline_terms %}
           <div class="project-type-label" style="color: {{ term.color }}"><i class="fa fa-circle pr-1"></i>{{ term.name }}</div>
         {% endfor %}

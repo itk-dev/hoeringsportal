@@ -1,0 +1,21 @@
+uuid: 5b76fd61-eaa9-41ae-9660-5b2eb2d51f63
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_timeline_date
+    - paragraphs.paragraphs_type.timeline_period
+  module:
+    - datetime
+id: paragraph.timeline_period.field_timeline_date
+field_name: field_timeline_date
+entity_type: paragraph
+bundle: timeline_period
+label: Dato
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
