@@ -54,11 +54,11 @@
       <div class="project-timeline-period row">
         <div class="col-2">
           <label>{{ 'Start'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_start.date.getTimestamp()|format_date('long') }}</div>
+          <div>{{ items[0].content[0]['#node'].field_project_start.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
         </div>
         <div class="col-2">
           <label>{{ 'Expected finish'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_finish.date.getTimestamp()|format_date('long') }}</div>
+          <div>{{ items[0].content[0]['#node'].field_project_finish.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
         </div>
       </div>
     </div>
