@@ -16,6 +16,7 @@ Encore
 
   // Will create public/build/app.js and public/build/app.css.
   .addEntry('project-timeline', './js/project-timeline.js')
+  .addEntry('project-timeline-backend', './js/project-timeline-backend.js')
 
   // Allow legacy applications to use $/jQuery as a global variable.
   .autoProvidejQuery()

@@ -5,6 +5,8 @@
  * Contains hoeringsportal_project_timeline.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+
 /**
  * Implements hook_theme().
  */
@@ -17,4 +19,13 @@ function hoeringsportal_project_timeline_theme() {
       ],
     ],
   ];
+}
+
+/**
+ * Implements hook_form_FORMID_alter().
+ */
+function hoeringsportal_project_timeline_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ('node_project_form' === $form_id || 'node_project_edit_form' === $form_id) {
+    $form['#attached']['library'][] = 'hoeringsportal_project_timeline/project_timeline_backend';
+  }
 }
