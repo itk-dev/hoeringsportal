@@ -9,3 +9,7 @@ project_timeline:
     - core/jquery
     - core/drupalSettings
     - core/jquery.once
+
+project_timeline_backend:
+  js:
+    assets/public/build/project-timeline-backend.js: {preprocess: false}
