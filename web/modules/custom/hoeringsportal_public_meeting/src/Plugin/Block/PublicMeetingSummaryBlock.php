@@ -2,7 +2,6 @@
 
 namespace Drupal\hoeringsportal_public_meeting\Plugin\Block;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -73,7 +72,7 @@ class PublicMeetingSummaryBlock extends BlockBase implements ContainerFactoryPlu
     $node = \Drupal::routeMatch()->getParameter('node');
 
     if (!$this->helper->isPublicMeeting($node)) {
-      throw new NotFoundHttpException();
+      return [];
     }
 
     $cacheTags = $node->getCacheTags();
