@@ -7,5 +7,5 @@
 let helpText = document.getElementById('edit-field-timeline-items--description')
 let timelineWrapper = document.getElementById('edit-field-project-start-wrapper')
 let helpTextWrapper = document.createElement('div')
-timelineWrapper.insertBefore(helpTextWrapper, timelineWrapper.childNodes[0])
+timelineWrapper.insertBefore(helpTextWrapper, timelineWrapper.firstChild)
 helpTextWrapper.appendChild(helpText)
