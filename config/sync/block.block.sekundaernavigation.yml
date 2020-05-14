@@ -11,7 +11,7 @@ dependencies:
 id: sekundaernavigation
 theme: hoeringsportal
 region: header
-weight: 1
+weight: 0
 provider: null
 plugin: 'system_menu_block:secondary-navigation'
 settings:

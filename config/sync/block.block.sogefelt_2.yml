@@ -1,0 +1,21 @@
+uuid: c0764f90-b1c4-44fe-8e46-efa1ae097aa5
+langcode: da
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - hoeringsportal
+id: sogefelt_2
+theme: hoeringsportal
+region: header
+weight: 1
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: Søgefelt
+  provider: search
+  label_display: '0'
+  page_id: ''
+visibility: {  }

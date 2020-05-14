@@ -11,7 +11,7 @@ dependencies:
 id: primaernavigation
 theme: hoeringsportal
 region: header
-weight: -1
+weight: -2
 provider: null
 plugin: 'system_menu_block:main'
 settings:

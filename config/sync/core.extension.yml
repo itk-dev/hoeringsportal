@@ -71,6 +71,7 @@ module:
   responsive_image: 0
   samlauth: 0
   search: 0
+  search_autocomplete: 0
   system: 0
   system_status: 0
   taxonomy: 0
