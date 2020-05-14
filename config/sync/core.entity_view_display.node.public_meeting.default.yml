@@ -63,7 +63,6 @@ third_party_settings:
         - field_teaser
         - field_description
         - field_media_document
-        - field_media_image_single
       right:
         - 'dynamic_block_field:node-public_meeting_summary'
         - 'dynamic_block_field:node-quicklinks'
@@ -74,12 +73,12 @@ third_party_settings:
       footer:
         - field_hidden_signup
         - field_signup_selection
-        - field_pretix_dates
         - group_signup
-        - 'dynamic_block_field:node-project_timeline'
+        - field_pretix_dates
         - field_registration_deadline
-        - field_section
+        - 'dynamic_block_field:node-project_timeline'
         - field_signup_link
+        - field_section
         - field_map
         - field_signup_text
         - 'dynamic_block_field:node-related_public_meeting'
@@ -91,7 +90,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-public_meeting_summary':
         plugin_id: 'dynamic_block_field:node-public_meeting_summary'
-        weight: 6
+        weight: 5
         label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_warning':
@@ -101,7 +100,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 7
+        weight: 6
         label: above
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
@@ -153,7 +152,7 @@ bundle: public_meeting
 mode: default
 content:
   field_area:
-    weight: 8
+    weight: 7
     label: above
     settings:
       link: true
@@ -200,15 +199,6 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_entity_view
-    region: left
-  field_media_image_single:
-    weight: 5
-    label: hidden
-    settings:
-      view_mode: teaser_display
-      link: false
-    third_party_settings: {  }
     type: entity_reference_entity_view
     region: left
   field_pretix_dates:
@@ -280,6 +270,7 @@ hidden:
   field_content_state: true
   field_first_meeting_time: true
   field_last_meeting_time: true
+  field_media_image_single: true
   field_pretix_event_settings: true
   field_project_reference: true
   langcode: true

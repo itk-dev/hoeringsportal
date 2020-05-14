@@ -80,14 +80,6 @@ display:
                 is_secondary: false
                 rewrite:
                   filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vælg område"
-            field_hearing_type_target_id:
-              bef_format: bef_links
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Alle typer\r\n- Enhver -|Vælg type"
             field_content_state_value:
               bef_format: default
               more_options:
@@ -95,7 +87,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: "- Enhver -|Alle\r\nKommende|Aktive\r\nAfsluttet|Afsluttede"
+                  filter_rewrite_values: "- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nKommende|Aktive\r\nI gang|"
             field_type_target_id:
               bef_format: bef_links
               more_options:
@@ -299,9 +291,7 @@ display:
           admin_label: ''
           operator: or
           value:
-            all: all
             upcoming: upcoming
-            finished: finished
           group: 1
           exposed: true
           expose:
@@ -310,6 +300,8 @@ display:
             description: ''
             use_operator: false
             operator: field_content_state_value_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: field_content_state_value
             required: false
             remember: false
@@ -319,9 +311,7 @@ display:
               anonymous: '0'
               editor: '0'
               administrator: '0'
-            reduce: true
-            operator_limit_selection: false
-            operator_list: {  }
+            reduce: false
           is_grouped: false
           group_info:
             label: ''
