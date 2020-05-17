@@ -100,6 +100,10 @@
       </div>
     </div>
   {% endif %}
+  {% if (content.field_public_meeting_cancelled['#items'].value == 1) %}
+    {% set overlay = 'TRUE' %}
+    {% set overlay_text = 'Cancelled' | t %}
+  {% endif %}
 
   <div class="activity-teaser-image">
     {{ content.field_media_image_single }}
