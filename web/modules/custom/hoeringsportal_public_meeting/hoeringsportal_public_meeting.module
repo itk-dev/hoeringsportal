@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\NodeInterface;
+use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Implements hook_theme().
@@ -41,6 +42,7 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
     $pretix_field = $node->hasField($pretix_field_name) ? $node->get($pretix_field_name) : NULL;
     $first_meeting = $node->hasField($first_meeting_field_name) ? $node->get($first_meeting_field_name) : NULL;
     $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
+    $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
     if ('pretix' === $node->field_signup_selection->value) {
       if ($pretix_field) {
         $pretix_type = $pretix_field->getFieldDefinition()->getType();
@@ -60,11 +62,26 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
                 }
               }
 
-              $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
               $node->set($first_meeting_field_name, $first_time->format($format, ['timezone' => 'UTC']));
               $node->set($last_meeting_field_name, $last_time->format($format, ['timezone' => 'UTC']));
             }
           }
+        }
+      }
+    }
+
+    // If cancelled value changed.
+    if ((int) $node->field_public_meeting_cancelled->value !== (int) $node->original->field_public_meeting_cancelled->value) {
+      if ($node->field_public_meeting_cancelled->value > 0) {
+        $now = new DateTime('now', new DateTimeZone('UTC'));
+        $node->set('field_cancelled_date', $now->format($format));
+      }
+      else {
+        if (!$node->get('field_cancelled_date')->isEmpty()) {
+          $node->get('field_cancelled_date')->removeItem(0);
+        }
+        if (!$node->get('field_cancelled_text')->isEmpty()) {
+          $node->get('field_cancelled_text')->removeItem(0);
         }
       }
     }
@@ -81,6 +98,14 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
     $signUpPretix = [':input[name="field_signup_selection"]' => ['value' => 'pretix']];
     $signUpManual = [':input[name="field_signup_selection"]' => ['value' => 'manual']];
     $signUpHidden = [':input[name="field_hidden_signup[value]"]' => ['checked' => TRUE]];
+
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ('pretix' === $node->field_signup_selection->value) {
+      $cancelLink = _get_cancel_link($node);
+      $form['field_public_meeting_cancelled']['#prefix'] = '<div class="messages messages--warning">' . t('Note: If this public meeting is cancelled you should go to @cancelLink to cancel all orders.', ['@cancelLink' => $cancelLink]) . '</div>';
+    }
+
+    $form['field_cancelled_date']['#disabled'] = TRUE;
 
     $form['field_last_meeting_time']['#states'] = [
       'visible' => $signUpManual,
@@ -241,4 +266,49 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
       $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
     }
   }
+}
+
+/**
+ * Implements hook_itk_pretix_shop_live_alter().
+ */
+function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, $node) {
+  // Set pretix event to not live if event is cancelled.
+  if ($node->field_public_meeting_cancelled->value > 0) {
+    $live = FALSE;
+  }
+}
+
+/**
+ * Create a cancel link for use in warning message.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The node to work on.
+ *
+ * @return \Drupal\Component\Render\FormattableMarkup
+ *   The link to a pretix cancel event page.
+ */
+function _get_cancel_link(NodeInterface $node) {
+  // Create cancel message.
+  $pretixConfig = \Drupal::config('itk_pretix.pretixconfig');
+  $pretixUrl = $pretixConfig->get('pretix_url');
+  $organizerSlug = $pretixConfig->get('organizer_slug');
+  $eventSlug = $pretixConfig->get('pretix_event_slug_template');
+
+  // If no event slug is set in config we must assume default.
+  if (!$eventSlug) {
+    $cancelUrl = $pretixUrl . 'control/event/' . $organizerSlug . '/' . $node->id() . '/cancel';
+  }
+  else {
+    // Remove '-!nid'. This might have been added to config but we don't use it
+    // when creating a URL.
+    $eventSlug = str_replace('-!nid', '', $eventSlug);
+    $cancelUrl = $pretixUrl . 'control/event/' . $organizerSlug . '/' . $eventSlug . '-' . $node->id() . '/cancel';
+  }
+  // Create html for message.
+  $cancelLink = new FormattableMarkup(
+    '<a href="@cancelUrl" target="_blank">@cancelUrl</a>',
+    ['@cancelUrl' => $cancelUrl]
+  );
+
+  return $cancelLink;
 }

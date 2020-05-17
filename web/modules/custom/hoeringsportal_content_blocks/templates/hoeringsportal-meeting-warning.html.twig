@@ -1,16 +1,21 @@
 {#
 /**
  * @file
- * Display of hearing warning
+ * Display of meeting warning
  *
  * Available variables:
  * - config: The available texts
  */
 #}
-{% if config.content_state is same as('finished') %}
+{% if config.content_state is same as('finished') or config.content_state is same as('cancelled') %}
   <div class="bg-danger p-3">
     <div class="container">
-      <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been held.'|t  }}</span>
+      {% if config.content_state is same as('finished') %}
+        <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been held.'|t }}</span>
+      {% endif %}
+      {% if config.content_state is same as('cancelled') %}
+        <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been cancelled.'|t }}</span>
+      {% endif %}
     </div>
   </div>
 {% endif %}
