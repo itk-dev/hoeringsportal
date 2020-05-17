@@ -150,6 +150,8 @@ content:
       native_language: false
     third_party_settings: {  }
 hidden:
+  field_cancelled_date: true
+  field_cancelled_text: true
   field_content_state: true
   field_first_meeting_time: true
   field_hidden_signup: true
@@ -157,6 +159,7 @@ hidden:
   field_map: true
   field_pretix_dates: true
   field_pretix_event_settings: true
+  field_public_meeting_cancelled: true
   field_signup_link: true
   field_signup_selection: true
   field_signup_text: true

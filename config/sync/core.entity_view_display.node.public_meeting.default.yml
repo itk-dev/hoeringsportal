@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_cancelled_date
+    - field.field.node.public_meeting.field_cancelled_text
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
@@ -16,6 +18,7 @@ dependencies:
     - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_public_meeting_cancelled
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
@@ -60,38 +63,40 @@ third_party_settings:
         - 'dynamic_block_field:node-public_meeting_warning'
         - node_title
       left:
+        - field_public_meeting_cancelled
+        - field_cancelled_text
         - field_teaser
         - field_description
         - field_media_document
         - field_media_image_single
-      right:
         - 'dynamic_block_field:node-public_meeting_summary'
+      footer:
+        - field_hidden_signup
+        - field_signup_selection
+        - field_pretix_dates
+        - field_registration_deadline
+        - field_signup_link
+        - group_signup
+        - field_signup_text
+        - 'dynamic_block_field:node-project_timeline'
+        - field_section
+        - field_map
+        - 'dynamic_block_field:node-related_public_meeting'
+      right:
         - 'dynamic_block_field:node-quicklinks'
         - field_area
         - 'dynamic_token_field:node-header_information'
         - field_type
         - field_contact
-      footer:
-        - field_hidden_signup
-        - field_signup_selection
-        - field_pretix_dates
-        - group_signup
-        - 'dynamic_block_field:node-project_timeline'
-        - field_registration_deadline
-        - field_section
-        - field_signup_link
-        - field_map
-        - field_signup_text
-        - 'dynamic_block_field:node-related_public_meeting'
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 12
+        weight: 15
         label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_summary':
         plugin_id: 'dynamic_block_field:node-public_meeting_summary'
-        weight: 6
+        weight: 8
         label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_warning':
@@ -101,17 +106,17 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 7
+        weight: 9
         label: above
         formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 15
+        weight: 18
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 8
+        weight: 11
         label: hidden
         formatter: default
       node_title:
@@ -133,7 +138,7 @@ third_party_settings:
         - field_signup_link
         - field_signup_text
       parent_name: ''
-      weight: 11
+      weight: 14
       format_type: html_element
       format_settings:
         element: div
@@ -153,22 +158,30 @@ bundle: public_meeting
 mode: default
 content:
   field_area:
-    weight: 8
+    weight: 10
     label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: right
+  field_cancelled_text:
+    type: string
+    weight: 3
+    region: left
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_contact:
-    weight: 10
+    weight: 13
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
     region: right
   field_description:
-    weight: 3
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -185,14 +198,14 @@ content:
     type: boolean
     region: footer
   field_map:
-    weight: 14
+    weight: 17
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: hoeringsportal_data_map_default
     region: footer
   field_media_document:
-    weight: 4
+    weight: 6
     label: above
     settings:
       view_mode: material_display
@@ -203,7 +216,7 @@ content:
     type: entity_reference_entity_view
     region: left
   field_media_image_single:
-    weight: 5
+    weight: 7
     label: hidden
     settings:
       view_mode: teaser_display
@@ -212,22 +225,32 @@ content:
     type: entity_reference_entity_view
     region: left
   field_pretix_dates:
-    weight: 11
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: pretix_date_formatter
     region: footer
+  field_public_meeting_cancelled:
+    type: boolean
+    weight: 2
+    region: left
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
   field_registration_deadline:
     type: datetime_plain
-    weight: 12
+    weight: 11
     region: footer
     label: hidden
     settings:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 13
+    weight: 16
     label: hidden
     settings:
       view_mode: default
@@ -262,14 +285,14 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_teaser:
-    weight: 2
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
     region: left
   field_type:
-    weight: 9
+    weight: 12
     label: above
     settings:
       link: true
@@ -277,6 +300,7 @@ content:
     type: entity_reference_label
     region: right
 hidden:
+  field_cancelled_date: true
   field_content_state: true
   field_first_meeting_time: true
   field_last_meeting_time: true
