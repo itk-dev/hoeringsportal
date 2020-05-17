@@ -1,0 +1,23 @@
+uuid: ff0df903-3134-4c6a-8f26-b2f05e228234
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_public_meeting_cancelled
+    - node.type.public_meeting
+id: node.public_meeting.field_public_meeting_cancelled
+field_name: field_public_meeting_cancelled
+entity_type: node
+bundle: public_meeting
+label: Cancelled
+description: 'Check this box if the meeting is cancelled'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Tilsluttet
+  off_label: Afbrudt
+field_type: boolean

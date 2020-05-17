@@ -1,0 +1,24 @@
+uuid: 688e2661-6e23-48a0-9d20-b0fda1472cf1
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cancelled_date
+    - node.type.public_meeting
+  module:
+    - datetime
+id: node.public_meeting.field_cancelled_date
+field_name: field_cancelled_date
+entity_type: node
+bundle: public_meeting
+label: 'Cancelled date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: relative
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

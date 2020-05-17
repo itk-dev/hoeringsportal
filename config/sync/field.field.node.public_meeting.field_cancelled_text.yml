@@ -1,0 +1,19 @@
+uuid: c38a7de2-4974-4cd0-8a86-04520ff455da
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cancelled_text
+    - node.type.public_meeting
+id: node.public_meeting.field_cancelled_text
+field_name: field_cancelled_text
+entity_type: node
+bundle: public_meeting
+label: 'Cancelled text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
