@@ -9,11 +9,12 @@
  * - node: The current node.
  */
 #}
+
 <h5 class="mt-3">{{ 'Date'|t }}</h5>
-{{ pretix_signup.time_from|date('U')|format_date('hoeringsportal_date_long') }}
+{{ node.field_pretix_dates[0].time_from|date('U')|format_date('hoeringsportal_date_long') }}
 
 <h5 class="mt-3">{{ 'Time'|t }}</h5>
-{{ pretix_signup.time_from|date('U')|format_date('hoeringsportal_time') }} - {{ pretix_signup.time_to|date('U')|format_date('hoeringsportal_time') }}
+{{ node.field_pretix_dates[0].time_from|date('U')|format_date('hoeringsportal_time') }} - {{ node.field_pretix_dates[0].time_to|date('U')|format_date('hoeringsportal_time') }}
 
 <h5 class="mt-3">{{ 'Place'|t }}</h5>
 {{ pretix_signup.location }}

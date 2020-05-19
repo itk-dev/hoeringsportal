@@ -71,6 +71,9 @@ class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterfac
     $node = $this->routeMatch->getParameter('node');
     if (isset($node) && $node->field_content_state->value) {
       $config['content_state'] = $node->field_content_state->value;
+      if ($node->field_public_meeting_cancelled->value > 0) {
+        $config['content_state'] = 'cancelled';
+      }
       return [
         '#type' => 'markup',
         '#theme' => 'hoeringsportal_meeting_warning',

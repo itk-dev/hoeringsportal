@@ -5,6 +5,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_cancelled_date
+    - field.field.node.public_meeting.field_cancelled_text
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
@@ -17,6 +19,7 @@ dependencies:
     - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_public_meeting_cancelled
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
@@ -45,6 +48,14 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+  field_cancelled_text:
+    type: string
+    weight: 13
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_content_state:
     type: list_default
     weight: 9
@@ -94,6 +105,16 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  field_public_meeting_cancelled:
+    type: boolean
+    weight: 10
+    region: content
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
   field_registration_deadline:
     type: datetime_default
     weight: 6
@@ -119,6 +140,7 @@ content:
       link: false
     third_party_settings: {  }
 hidden:
+  field_cancelled_date: true
   field_contact: true
   field_description: true
   field_hidden_signup: true
