@@ -99,7 +99,7 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
     $signUpManual = [':input[name="field_signup_selection"]' => ['value' => 'manual']];
     $signUpHidden = [':input[name="field_hidden_signup[value]"]' => ['checked' => TRUE]];
 
-    $node = \Drupal::routeMatch()->getParameter('node');
+    $node = $form_state->getFormObject()->getEntity();
     if ('pretix' === $node->field_signup_selection->value) {
       $cancelLink = _get_cancel_link($node);
       $form['field_public_meeting_cancelled']['#prefix'] = '<div class="messages messages--warning">' . t('Note: If this public meeting is cancelled you should go to @cancelLink to cancel all orders.', ['@cancelLink' => $cancelLink]) . '</div>';
@@ -288,22 +288,14 @@ function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, $node)
  *   The link to a pretix cancel event page.
  */
 function _get_cancel_link(NodeInterface $node) {
-  // Create cancel message.
-  $pretixConfig = \Drupal::config('itk_pretix.pretixconfig');
-  $pretixUrl = $pretixConfig->get('pretix_url');
-  $organizerSlug = $pretixConfig->get('organizer_slug');
-  $eventSlug = $pretixConfig->get('pretix_event_slug_template');
+  // Create cancel link.
+  $helper = \Drupal::service('itk_pretix.event_helper');
+  $info = $helper->loadPretixEventInfo($node);
+  $pretix_event_url = $info['data']['pretix_event_url'];
 
   // If no event slug is set in config we must assume default.
-  if (!$eventSlug) {
-    $cancelUrl = $pretixUrl . 'control/event/' . $organizerSlug . '/' . $node->id() . '/cancel';
-  }
-  else {
-    // Remove '-!nid'. This might have been added to config but we don't use it
-    // when creating a URL.
-    $eventSlug = str_replace('-!nid', '', $eventSlug);
-    $cancelUrl = $pretixUrl . 'control/event/' . $organizerSlug . '/' . $eventSlug . '-' . $node->id() . '/cancel';
-  }
+  $cancelUrl = $pretix_event_url . 'cancel';
+
   // Create html for message.
   $cancelLink = new FormattableMarkup(
     '<a href="@cancelUrl" target="_blank">@cancelUrl</a>',
