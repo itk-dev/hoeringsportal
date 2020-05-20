@@ -11,15 +11,9 @@
  */
 #}
 
-<div class="container content__container">
-  <div class="row">
-    <div class="content group-left col-md-8">
-      <div class="content__main">
-        <form{{ attributes }}>
-          {{ children }}
-        </form>
-      </div>
-    </div>
-  </div>
+<div id="search-block-form-wrapper" class="navbar-collapse collapse">
+  <form{{ attributes.addClass('form-inline') }}>
+    {{ children }}
+  </form>
 </div>
 

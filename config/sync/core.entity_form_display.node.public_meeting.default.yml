@@ -230,13 +230,9 @@ content:
     region: content
   field_project_reference:
     weight: 8
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
+    settings: {  }
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: options_select
     region: content
   field_public_meeting_cancelled:
     type: boolean_checkbox
@@ -259,7 +255,7 @@ content:
       edit_mode: open
       add_mode: dropdown
       form_display_mode: default
-      default_paragraph_type: ''
+      default_paragraph_type: content_block
     third_party_settings: {  }
     type: entity_reference_paragraphs
     region: content

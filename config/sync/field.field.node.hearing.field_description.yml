@@ -13,7 +13,7 @@ entity_type: node
 bundle: hearing
 label: Beskrivelse
 description: 'Beskrivelse af høringen.'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''

@@ -1,0 +1,142 @@
+#search-block-form-wrapper {
+  text-align: right;
+  position: absolute;
+  right: 0px;
+
+  @include media-breakpoint-down(md) {
+    position: relative;
+  }
+}
+
+#search-block-form {
+  position: relative;
+  z-index: 1;
+
+  .form-search {
+    background-position: 88% center;
+    border-radius: $border-radius;
+    height: 50px;
+    vertical-align: middle;
+    outline: none;
+    line-height: 1.5rem;
+    width: 0;
+    margin-right: 25px;
+    transition: width .5s;
+    text-indent: 1rem;
+
+    @include media-breakpoint-down(md) {
+      position: relative;
+      width: 15rem;
+      transition: none;
+    }
+  }
+
+  .btn {
+    border-radius: 25px;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: border-radius .5s;
+
+    @include media-breakpoint-down(md) {
+      border-radius: 0 $border-radius $border-radius 0;
+      left: 14rem;
+      right: auto;
+      width: 5rem;
+    }
+
+    &:after {
+      background-color: unset;
+    }
+  }
+
+  .js-form-submit {
+    display: none;
+
+    @include media-breakpoint-down(md) {
+      display: block;
+    }
+  }
+
+  .js-show-search {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
+  .fa-fw {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: 50%;
+    bottom: 0;
+    transform: translateY(-50%);
+  }
+
+  .fa-times {
+    display: none;
+  }
+
+  .fa-search {
+    display: block;
+  }
+
+  &.is-open {
+    .form-search {
+      width: 15rem;
+      transition: width .5s, padding-right .5s;
+      padding-right: 3rem;
+    }
+
+    .btn {
+      transition: border-radius .5s;
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+
+    .fa-times {
+      display: block;
+    }
+
+    .fa-search {
+      display: none;
+    }
+  }
+}
+
+.ui-autocomplete {
+  right: 1rem;
+  z-index: 1050;
+  left: auto!important;
+  width: 30%!important;
+
+  @include media-breakpoint-down(md) {
+    left: 1rem!important;
+    right: auto;
+  }
+
+  .ui-autocomplete-field-group {
+    display: none;
+  }
+
+  .ui-menu-item-wrapper {
+    display: block;
+    position: relative;
+    padding: .5rem 1rem;
+    transition: none;
+    text-decoration: none;
+  }
+
+  .ui-menu-item {
+    @extend .list-group-item;
+
+    line-height: 1em;
+    padding: 0;
+  }
+
+  .ui-autocomplete-field-created {
+    display: none;
+  }
+}

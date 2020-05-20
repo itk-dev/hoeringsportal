@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff240e54dc81bdf47745222ca993a61f",
+    "content-hash": "67318e51443bb542fb8a45aa04650379",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2032,10 +2032,6 @@
             ],
             "authors": [
                 {
-                    "name": "Etroid",
-                    "homepage": "https://www.drupal.org/user/3048985"
-                },
-                {
                     "name": "chr.fritsch",
                     "homepage": "https://www.drupal.org/user/2103716"
                 },
@@ -2048,6 +2044,10 @@
                     "homepage": "https://www.drupal.org/user/192273"
                 },
                 {
+                    "name": "mortona2k",
+                    "homepage": "https://www.drupal.org/user/1029484"
+                },
+                {
                     "name": "rlhawk",
                     "homepage": "https://www.drupal.org/user/352283"
                 }
@@ -2055,7 +2055,7 @@
             "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
             "homepage": "https://www.drupal.org/project/better_exposed_filters",
             "support": {
-                "source": "https://git.drupalcode.org/project/better_exposed_filters"
+                "source": "http://cgit.drupalcode.org/better_exposed_filters"
             }
         },
         {
@@ -3817,10 +3817,6 @@
                     "homepage": "https://www.drupal.org/user/3057985"
                 },
                 {
-                    "name": "phenaproxima",
-                    "homepage": "https://www.drupal.org/user/205645"
-                },
-                {
                     "name": "slashrsm",
                     "homepage": "https://www.drupal.org/user/744628"
                 },
@@ -4452,10 +4448,6 @@
                 {
                     "name": "roderik",
                     "homepage": "https://www.drupal.org/user/8841"
-                },
-                {
-                    "name": "smfsh",
-                    "homepage": "https://www.drupal.org/user/3348892"
                 }
             ],
             "description": "Allows users to authenticate against an external SAML identity provider.",
@@ -4466,6 +4458,53 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/samlauth",
                 "issues": "http://drupal.org/project/samlauth"
+            }
+        },
+        {
+            "name": "drupal/search_autocomplete",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/search_autocomplete.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_autocomplete-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "f80427ffefbe4b159db91442b6e32b11de448926"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1481975884",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Dom.",
+                    "homepage": "https://www.drupal.org/user/801982"
+                }
+            ],
+            "description": "Provides autocompletion feature for fields in your Drupal site. This module ships with pre-existing autocompletion configurations.",
+            "homepage": "https://www.drupal.org/project/search_autocomplete",
+            "support": {
+                "source": "https://git.drupalcode.org/project/search_autocomplete"
             }
         },
         {
@@ -4520,7 +4559,7 @@
             "description": "Provides an overview of all the available updates for your Drupal website using an external service.",
             "homepage": "https://www.drupal.org/project/system_status",
             "support": {
-                "source": "https://git.drupalcode.org/project/system_status"
+                "source": "http://cgit.drupalcode.org/system_status"
             }
         },
         {
@@ -4639,7 +4678,7 @@
             "description": "Choose theme to show the toobar",
             "homepage": "https://www.drupal.org/project/toolbar_visibility",
             "support": {
-                "source": "https://git.drupalcode.org/project/toolbar_visibility"
+                "source": "http://cgit.drupalcode.org/toolbar_visibility"
             }
         },
         {
@@ -4739,10 +4778,6 @@
                 {
                     "name": "New Zeal",
                     "homepage": "https://www.drupal.org/user/93571"
-                },
-                {
-                    "name": "jasonawant",
-                    "homepage": "https://www.drupal.org/user/589890"
                 },
                 {
                     "name": "joekers",
@@ -8984,7 +9019,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2020-03-11T15:26:34+00:00"
+            "time": "2019-07-15T12:45:29+00:00"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -9137,14 +9172,14 @@
             ],
             "authors": [
                 {
-                    "name": "Pete Otaqui",
-                    "email": "pete@otaqui.com",
-                    "homepage": "https://github.com/pete-otaqui"
-                },
-                {
                     "name": "Konstantin Kudryashov",
                     "email": "ever.zet@gmail.com",
                     "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Pete Otaqui",
+                    "email": "pete@otaqui.com",
+                    "homepage": "https://github.com/pete-otaqui"
                 }
             ],
             "description": "Selenium2 (WebDriver) driver for Mink framework",
@@ -9157,7 +9192,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2020-03-11T14:43:21+00:00"
+            "time": "2018-10-10T12:39:06+00:00"
         },
         {
             "name": "composer/ca-bundle",

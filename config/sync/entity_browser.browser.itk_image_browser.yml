@@ -18,7 +18,7 @@ display: modal
 display_configuration:
   width: ''
   height: ''
-  link_text: 'Select entities'
+  link_text: 'Vælg fil'
   auto_open: false
 selection_display: no_display
 selection_display_configuration: {  }
@@ -29,7 +29,7 @@ widgets:
     settings:
       view: itk_media_browser
       view_display: entity_browser_2
-      submit_text: 'Select entities'
+      submit_text: 'Vælg fil'
       auto_select: false
     uuid: 11d1e481-b183-49c7-b727-0f0e12950bfc
     weight: 1

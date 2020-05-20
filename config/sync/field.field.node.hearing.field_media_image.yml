@@ -12,7 +12,7 @@ entity_type: node
 bundle: hearing
 label: Billeder
 description: 'Vælg billeder der skal vises på høringssiden.'
-required: false
+required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''

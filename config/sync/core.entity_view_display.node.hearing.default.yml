@@ -59,7 +59,6 @@ third_party_settings:
         - field_teaser
         - field_description
         - field_media_document
-        - field_media_image
         - field_video_embed
         - 'dynamic_block_field:node-hearing_tickets'
         - node_changed_date
@@ -81,7 +80,7 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-hearing_tickets':
         plugin_id: 'dynamic_block_field:node-hearing_tickets'
-        weight: 7
+        weight: 6
         label: hidden
         formatter: default
       'dynamic_block_field:node-hearing_warning':
@@ -91,27 +90,27 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-nearest_hearings':
         plugin_id: 'dynamic_block_field:node-nearest_hearings'
-        weight: 21
+        weight: 20
         label: above
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 9
+        weight: 8
         label: above
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 10
+        weight: 9
         label: hidden
         formatter: default
       'dynamic_token_field:node-node_id_hearing':
         plugin_id: 'dynamic_token_field:node-node_id_hearing'
-        weight: 17
+        weight: 16
         label: above
         formatter: default
       node_changed_date:
         plugin_id: node_changed_date
-        weight: 8
+        weight: 7
         label: hidden
         formatter: ds_post_date_short
       node_title:
@@ -130,14 +129,14 @@ mode: default
 content:
   field_area:
     type: entity_reference_label
-    weight: 16
+    weight: 15
     region: right
     label: above
     settings:
       link: false
     third_party_settings: {  }
   field_contact:
-    weight: 18
+    weight: 17
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -152,16 +151,16 @@ content:
     third_party_settings: {  }
   field_lokalplaner:
     type: hoeringsportal_data_localplan_default
-    weight: 14
+    weight: 13
     region: right
     label: above
     settings: {  }
     third_party_settings: {  }
   field_map:
     type: hoeringsportal_data_map_default
-    weight: 20
+    weight: 19
     region: footer
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
   field_media_document:
@@ -175,19 +174,8 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-  field_media_image:
-    weight: 5
-    label: hidden
-    settings:
-      view_mode: teaser_display
-      link: false
-    third_party_settings:
-      ds:
-        ds_limit: ''
-    type: entity_reference_entity_view
-    region: left
   field_more_info:
-    weight: 19
+    weight: 18
     label: above
     settings: {  }
     third_party_settings: {  }
@@ -195,7 +183,7 @@ content:
     region: right
   field_reply_deadline:
     type: datetime_default
-    weight: 12
+    weight: 11
     region: right
     label: above
     settings:
@@ -203,7 +191,7 @@ content:
       format_type: hoeringsportal_datetime
     third_party_settings: {  }
   field_start_date:
-    weight: 11
+    weight: 10
     label: above
     settings:
       timezone_override: ''
@@ -212,7 +200,7 @@ content:
     type: datetime_default
     region: right
   field_tags:
-    weight: 15
+    weight: 14
     label: above
     settings:
       link: false
@@ -227,7 +215,7 @@ content:
     type: basic_string
     region: left
   field_type:
-    weight: 13
+    weight: 12
     label: above
     settings:
       link: false
@@ -235,7 +223,7 @@ content:
     type: entity_reference_label
     region: right
   field_video_embed:
-    weight: 6
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -248,6 +236,7 @@ hidden:
   field_deskpro_department_id: true
   field_edoc_casefile_id: true
   field_map_display: true
+  field_media_image: true
   field_project_reference: true
   langcode: true
   links: true
