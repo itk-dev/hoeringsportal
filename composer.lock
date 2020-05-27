@@ -163,7 +163,7 @@
             "version": "1.8.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:bgrins/spectrum.git",
+                "url": "https://github.com/bgrins/spectrum.git",
                 "reference": "98454b55521cfb495f628db28af01100c029ef76"
             },
             "dist": {
@@ -2032,6 +2032,10 @@
             ],
             "authors": [
                 {
+                    "name": "Etroid",
+                    "homepage": "https://www.drupal.org/user/3048985"
+                },
+                {
                     "name": "chr.fritsch",
                     "homepage": "https://www.drupal.org/user/2103716"
                 },
@@ -2044,10 +2048,6 @@
                     "homepage": "https://www.drupal.org/user/192273"
                 },
                 {
-                    "name": "mortona2k",
-                    "homepage": "https://www.drupal.org/user/1029484"
-                },
-                {
                     "name": "rlhawk",
                     "homepage": "https://www.drupal.org/user/352283"
                 }
@@ -2055,7 +2055,7 @@
             "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
             "homepage": "https://www.drupal.org/project/better_exposed_filters",
             "support": {
-                "source": "http://cgit.drupalcode.org/better_exposed_filters"
+                "source": "https://git.drupalcode.org/project/better_exposed_filters"
             }
         },
         {
@@ -3817,6 +3817,10 @@
                     "homepage": "https://www.drupal.org/user/3057985"
                 },
                 {
+                    "name": "phenaproxima",
+                    "homepage": "https://www.drupal.org/user/205645"
+                },
+                {
                     "name": "slashrsm",
                     "homepage": "https://www.drupal.org/user/744628"
                 },
@@ -4448,6 +4452,10 @@
                 {
                     "name": "roderik",
                     "homepage": "https://www.drupal.org/user/8841"
+                },
+                {
+                    "name": "smfsh",
+                    "homepage": "https://www.drupal.org/user/3348892"
                 }
             ],
             "description": "Allows users to authenticate against an external SAML identity provider.",
@@ -4559,7 +4567,7 @@
             "description": "Provides an overview of all the available updates for your Drupal website using an external service.",
             "homepage": "https://www.drupal.org/project/system_status",
             "support": {
-                "source": "http://cgit.drupalcode.org/system_status"
+                "source": "https://git.drupalcode.org/project/system_status"
             }
         },
         {
@@ -4678,7 +4686,7 @@
             "description": "Choose theme to show the toobar",
             "homepage": "https://www.drupal.org/project/toolbar_visibility",
             "support": {
-                "source": "http://cgit.drupalcode.org/toolbar_visibility"
+                "source": "https://git.drupalcode.org/project/toolbar_visibility"
             }
         },
         {
@@ -4778,6 +4786,10 @@
                 {
                     "name": "New Zeal",
                     "homepage": "https://www.drupal.org/user/93571"
+                },
+                {
+                    "name": "jasonawant",
+                    "homepage": "https://www.drupal.org/user/589890"
                 },
                 {
                     "name": "joekers",
@@ -5528,12 +5540,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/pretix-api-client-php.git",
-                "reference": "8bd3515e5315a0710c95c430172776f401ef1477"
+                "reference": "9f661d4ed66b661cc4d3de462092855374585928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/8bd3515e5315a0710c95c430172776f401ef1477",
-                "reference": "8bd3515e5315a0710c95c430172776f401ef1477",
+                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/9f661d4ed66b661cc4d3de462092855374585928",
+                "reference": "9f661d4ed66b661cc4d3de462092855374585928",
                 "shasum": ""
             },
             "require": {
@@ -5564,7 +5576,7 @@
                 }
             ],
             "description": "PHP client for pretix api",
-            "time": "2020-03-01T17:47:49+00:00"
+            "time": "2020-05-27T10:54:20+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -9019,7 +9031,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2019-07-15T12:45:29+00:00"
+            "time": "2020-03-11T15:26:34+00:00"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -9172,14 +9184,14 @@
             ],
             "authors": [
                 {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                },
-                {
                     "name": "Pete Otaqui",
                     "email": "pete@otaqui.com",
                     "homepage": "https://github.com/pete-otaqui"
+                },
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
                 }
             ],
             "description": "Selenium2 (WebDriver) driver for Mink framework",
@@ -9192,7 +9204,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2018-10-10T12:39:06+00:00"
+            "time": "2020-03-11T14:43:21+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -9452,6 +9464,12 @@
             "keywords": [
                 "Xdebug",
                 "performance"
+            ],
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                }
             ],
             "time": "2020-03-01T12:26:26+00:00"
         },
