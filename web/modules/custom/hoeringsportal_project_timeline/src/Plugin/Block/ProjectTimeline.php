@@ -142,9 +142,16 @@ class ProjectTimeline extends BlockBase {
     // Add paragraph field values to timeline.
     foreach ($node->field_timeline_items->getValue() as $paragraph_item) {
       $paragraph_obj = Paragraph::load($paragraph_item['target_id']);
-      $timeline_type_term_id = $paragraph_obj->field_timeline_taxonomy_type->target_id;
-      $color = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->field_timeline_item_color->color : '#858585';
-      $label = isset($timeline_type_term_id) ? Term::load($timeline_type_term_id)->getName() : $node->getTitle();
+      $color = '#858585';
+      $label = $node->getTitle();
+      if (isset($paragraph_obj->field_timeline_taxonomy_type->target_id)) {
+        $term = Term::load($paragraph_obj->field_timeline_taxonomy_type->target_id);
+        if (NULL !== $term) {
+          $color = $term->field_timeline_item_color->color;
+          $label = $term->getName();
+        }
+      }
+
       if (isset($paragraph_obj->field_timeline_date->date)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
