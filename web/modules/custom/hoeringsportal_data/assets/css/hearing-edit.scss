@@ -50,3 +50,20 @@
 .dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
   background: #f0f0f0;
 }
+
+.field--type-hoeringsportal-data-map {
+  // Don't show "Aktiver kort" above menubar (which has z-index: 502).
+  .widget-container.widget-inactivemap > .widget-map-overlay {
+    z-index: 500;
+  }
+
+  .septima-widget-container {
+    position: relative;
+
+    .reset-point-on-map {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+}
