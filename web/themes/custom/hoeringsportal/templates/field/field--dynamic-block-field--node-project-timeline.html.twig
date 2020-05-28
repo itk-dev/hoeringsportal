@@ -49,19 +49,26 @@
       {% endfor %}
     {% endif %}
   {% else %}
-    <div class="container">
-      <h3 class="mt-0 pt-4">{{ label }}</h3>
-      <div class="project-timeline-period row">
-        <div class="col-2">
-          <label>{{ 'Start'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_start.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
-        </div>
-        <div class="col-2">
-          <label>{{ 'Expected finish'|t }}</label>
-          <div>{{ items[0].content[0]['#node'].field_project_finish.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
+    {% set node = items[0].content[0]['#node']|default(null) %}
+    {% if node %}
+      <div class="container">
+        <h3 class="mt-0 pt-4">{{ label }}</h3>
+        <div class="project-timeline-period row">
+          <div class="col-2">
+            {% if node.field_project_start.date|default(null) %}
+              <label>{{ 'Start'|t }}</label>
+              <div>{{ node.field_project_start.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
+            {% endif %}
+          </div>
+          <div class="col-2">
+            {% if node.field_project_finish.date|default(null) %}
+              <label>{{ 'Expected finish'|t }}</label>
+              <div>{{ node.field_project_finish.date.getTimestamp()|format_date('hoeringsportal_date_long') }}</div>
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
+    {% endif %}
     {% if multiple %}
       <div>
     {% endif %}
