@@ -1,9 +1,13 @@
-/* global WidgetAPI */
+/* global Drupal, WidgetAPI */
+/**
+ * @file
+ * Encore config global WidgetAPI.
+ */
 
 import proj4 from 'proj4'
 
 require('../css/hearing-edit.scss')
-// Define default Septima projection
+// Define default Septima projection.
 proj4.defs('EPSG:25832', '+proj=utm +zone=32 +ellps=GRS80 +units=m +no_defs')
 
 // Aliases for convenience.
@@ -26,8 +30,6 @@ const project = (geojson, fromProjection, toProjection) => {
 window.addEventListener('load', function () {
   const config = {
     'map': {
-      // Apparently, "search" with "dawa" only works as expected with "EPSG:25832".
-      // "srs": "EPSG:25832",
       'maxZoomLevel': 1,
       'minZoomLevel': 22,
       'view': {
@@ -66,6 +68,7 @@ window.addEventListener('load', function () {
             'disable': false
           },
 
+          // @see https://septima.dk/widget/documentation.html#control-draw
           'draw': {
             'disable': false,
             'layer': 'drawlayer',
@@ -73,8 +76,10 @@ window.addEventListener('load', function () {
             'type': 'Point'
           },
 
+          // @see https://septima.dk/widget/documentation.html#control-search
           'search': {
             'displaytext': 'Find adresse',
+            'clearOnMapclick': true,
             'features_style': {
               'namedstyle': '#004'
             },
@@ -82,7 +87,7 @@ window.addEventListener('load', function () {
               {
                 'type': 'dawa',
                 'options': {
-                  'kommunekode': '0751' // Aarhus
+                  'kommunekode': '0751' // Aarhus.
                 }
               }
             ]
@@ -99,19 +104,30 @@ window.addEventListener('load', function () {
         const data = JSON.parse(container.getAttribute('data-value'))
         return project(data, targetMapProjection, config.map.srs || defaultMapProjection)
       } catch (ex) {}
+
       return null
     }())
 
     const target = document.querySelector(container.getAttribute('data-value-target'))
     if (target !== null) {
-      if (data !== null) {
+      const resetMap = (data) => {
         // Center map on point.
         const coordinates = data.features[0].geometry.coordinates
         config.map.view.x = coordinates[0]
         config.map.view.y = coordinates[1]
-
         config.map.layer[1].data = data
-        target.value = JSON.stringify(project(data, config.map.srs || defaultMapProjection, targetMapProjection))
+
+        if (typeof map !== 'undefined') {
+          map.setConfig(config)
+        }
+
+        // project modifies its first argument, so we pass it a deep clone.
+        target.value = JSON.stringify(project(JSON.parse(JSON.stringify(data)), config.map.srs || defaultMapProjection, targetMapProjection))
+      }
+
+      // We have to build map config before initializing the map.
+      if (data !== null) {
+        resetMap(data)
       }
 
       const map = new WidgetAPI(container, config)
@@ -136,6 +152,18 @@ window.addEventListener('load', function () {
           })
         }
       })
+
+      if (data !== null) {
+        const resetMapCtrl = document.createElement('button')
+        resetMapCtrl.type = 'button'
+        resetMapCtrl.classList.add('reset-point-on-map')
+        resetMapCtrl.innerHTML = Drupal.t('Reset point on map')
+        resetMapCtrl.addEventListener('click', function () {
+          resetMap(data)
+        })
+
+        container.parentNode.insertBefore(resetMapCtrl, container.parentNode.lastChild)
+      }
     }
   })
 })

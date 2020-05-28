@@ -98,6 +98,9 @@ class MapDefaultWidget extends WidgetBase {
 
     $element[MapItem::TYPE_POINT . '-widget'] = [
       '#type' => 'container',
+      '#attributes' => [
+        'class' => ['septima-widget-container'],
+      ],
       '#states' => [
         'visible' => [
           ':input[name="' . $parentNameSelector . '[type]"]' => ['value' => MapItem::TYPE_POINT],
