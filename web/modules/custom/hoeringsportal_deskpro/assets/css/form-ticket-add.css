@@ -14,3 +14,12 @@ form .spinner {
 form.is-submitted .spinner {
   display: block;
 }
+
+fieldset .description-top {
+  margin-bottom: 1em;
+  font-style: italic;
+}
+
+fieldset + fieldset {
+  margin-top: 1em;
+}

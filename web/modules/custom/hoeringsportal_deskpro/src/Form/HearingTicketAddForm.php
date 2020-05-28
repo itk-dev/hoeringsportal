@@ -87,61 +87,6 @@ class HearingTicketAddForm extends FormBase {
       '#value' => $this->config->get('intro'),
     ];
 
-    $form['name'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Name'),
-      '#required' => TRUE,
-    ];
-
-    $form['email'] = [
-      '#type' => 'email',
-      '#title' => $this->t('Email address'),
-      '#required' => TRUE,
-    ];
-
-    $form['email_confirm'] = [
-      '#type' => 'email',
-      '#title' => $this->t('Confirm email address'),
-      '#required' => TRUE,
-    ];
-
-    $form['address'] = [
-      '#type' => 'fieldset',
-      '#title' => $this->t('Address'),
-      '#description' => $this->t('Your address will not be shown on the website.'),
-      '#description_position' => 'top',
-
-      '#states' => [
-        'visible' => [
-          ':input[name="address_secret"]' => ['checked' => FALSE],
-        ],
-        'required' => [
-          ':input[name="address_secret"]' => ['checked' => FALSE],
-        ],
-      ],
-    ];
-
-    $form['address']['postal_code_and_city'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Postal code and city'),
-      '#attributes' => ['autocomplete' => 'off'],
-    ];
-
-    $form['address']['street_and_number'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Street and number'),
-      '#attributes' => ['autocomplete' => 'off'],
-    ];
-
-    $form['postal_code'] = [
-      '#type' => 'hidden',
-    ];
-
-    $form['address_secret'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('My address is secret'),
-    ];
-
     $representations = $this->config->getRepresentations();
     $stateCondition = [];
     $options = [];
@@ -153,6 +98,38 @@ class HearingTicketAddForm extends FormBase {
     }
 
     $form['representation'] = [
+      '#attributes' => ['class' => ['group-representation']],
+      '#description' => $this->t('Specify whether you give your personal opinion or represent an organization.'),
+      '#description_position' => 'top',
+    ];
+
+    $form['contact'] = [
+      '#type' => 'container',
+      '#title' => $this->t('Contact information'),
+      '#attributes' => ['class' => ['group-contact-information']],
+      '#description_position' => 'top',
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => ['value' => ''],
+        ],
+      ],
+    ];
+
+    $form['reply'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Hearing reply'),
+      '#attributes' => ['class' => ['group-hearing-reply']],
+      '#description_position' => 'top',
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => ['value' => ''],
+        ],
+      ],
+    ];
+
+    $form['representation']['representation'] = [
       '#type' => 'select',
       '#title' => $this->t('I represent'),
       '#options' => $options,
@@ -168,25 +145,81 @@ class HearingTicketAddForm extends FormBase {
       ],
     ];
 
-    $form['organization'] = [
+    $form['contact']['name'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Organization'),
-      '#states' => $states,
+      '#title' => $this->t('Your name'),
+      '#required' => TRUE,
     ];
 
-    $form['subject'] = [
+    $form['contact']['email'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Your email address'),
+      '#required' => TRUE,
+    ];
+
+    $form['contact']['email_confirm'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Confirm email address'),
+      '#required' => TRUE,
+    ];
+
+    $form['contact']['address'] = [
+      '#type' => 'container',
+      '#description' => $this->t('Your address will not be shown on the website.'),
+      '#description_position' => 'top',
+
+      '#states' => [
+        'visible' => [
+          ':input[name="address_secret"]' => ['checked' => FALSE],
+        ],
+        'required' => [
+          ':input[name="address_secret"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
+
+    $form['contact']['address']['postal_code_and_city'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Postal code and city'),
+      '#attributes' => ['autocomplete' => 'off'],
+      '#required' => TRUE,
+    ];
+
+    $form['contact']['address']['street_and_number'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Street and number'),
+      '#attributes' => ['autocomplete' => 'off'],
+      '#required' => TRUE,
+    ];
+
+    $form['contact']['postal_code'] = [
+      '#type' => 'hidden',
+    ];
+
+    $form['contact']['address_secret'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('My address is secret'),
+
+      '#states' => [
+        'invisible' => [
+          ':input[name="representation"]' => $stateCondition,
+        ],
+      ],
+    ];
+
+    $form['reply']['subject'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Subject'),
       '#required' => TRUE,
     ];
 
-    $form['message'] = [
+    $form['reply']['message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Message'),
       '#required' => TRUE,
     ];
 
-    $form['files'] = [
+    $form['reply']['files'] = [
       '#title' => $this->t('Select a file'),
       '#type' => 'managed_file',
       '#upload_validators' => $file_validators,
@@ -197,21 +230,21 @@ class HearingTicketAddForm extends FormBase {
       '#multiple' => TRUE,
     ];
 
-    $form['hearing_consent_text'] = [
+    $form['reply']['hearing_consent_text'] = [
       '#markup' => $this->config->get('consent'),
     ];
 
-    $form['consent'] = [
+    $form['reply']['consent'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('I have red the terms and give my consent'),
       '#required' => TRUE,
     ];
 
-    $form['spinner'] = [
+    $form['reply']['spinner'] = [
       '#markup' => '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>',
     ];
 
-    $form['submit'] = [
+    $form['reply']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Send'),
       '#button_type' => 'primary',
@@ -239,7 +272,8 @@ class HearingTicketAddForm extends FormBase {
     $representations = $this->config->getRepresentations();
 
     if ($representations[$representation]['require_organization'] && empty($organization)) {
-      $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
+      // @TODO Customer has to decide if we need an organization name.
+      // $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
     }
   }
 
