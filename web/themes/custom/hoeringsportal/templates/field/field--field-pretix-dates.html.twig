@@ -36,40 +36,58 @@
  * @see template_preprocess_field()
  */
 #}
-{% set field_first_content = items[0].content['#variables'].entity.field_pretix_dates[0] %}
 <div class="row">
   <div class="col">
-    <div class="d-block d-lg-none bg-white p-3 signup-responsive">
-      <div>
-        <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
-        {{ field_first_content.location }}
-      </div>
-      <div>
-        <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
-        {{ field_first_content.time_from|date('U')|format_date('hoeringsportal_date_long') }}
-      </div>
-      <div>
-        <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
-        {{ field_first_content.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ field_first_content.time_to|date('U')|format_date('hoeringsportal_time') }}
-      </div>
-      <div>
-        <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
-        {# @TODO Maybe we should clean up this property path … #}
-        {% set availability = data[0].data.availability|first|default(false) %}
-        {% if availability.availability|default(false) %}
-          {% set availability = availability.availability %}
-          {{ availability.available_number }}/{{ availability.total_size }}
-        {% else %}
-          {{ field_first_content.spots }}/{{ field_first_content.spots }}
-        {% endif %}
-        <div class="mt-3">
-          <a href="{{ data[0].data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
-            {{ 'Sign up'|t }}
-            <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
-          </a>
+    {% for item in items %}
+      {% set variables = item.content['#variables'] %}
+      {% set now_timestamp = 'now'|date('U') %}
+      {% set registration_deadline = variables.entity.field_registration_deadline[0].date %}
+      {% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
+      {% set meeting_has_been_held = variables.time_from|date('U') <= now_timestamp %}
+
+      <div class="d-block d-lg-none bg-white p-3 signup-responsive">
+        <div>
+          <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
+          {{ variables.location }}
+        </div>
+        <div>
+          <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
+          {{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}
+        </div>
+        <div>
+          <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
+          {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
+        </div>
+        <div>
+          <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
+          {# @TODO Maybe we should clean up this property path … #}
+          {% set availability = data[0].data.availability|first|default(false) %}
+          {% if availability.availability|default(false) %}
+            {% set availability = availability.availability %}
+            {{ availability.available_number }}/{{ availability.total_size }}
+          {% else %}
+            {{ variables.spots }}/{{ variables.spots }}
+          {% endif %}
+          <div class="mt-3">
+
+            {% if meeting_has_been_held %}
+              <div class="pretix-alert meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
+            {% else %}
+              {% if registration_deadline_passed %}
+                {# @TODO: Design: styling of "alert" #}
+                <div class="pretix-alert pretix-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
+              {% elseif variables.data.data.pretix_subevent_shop_url|default(false) %}
+                <a href="{{ variables.data.data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
+                  {{ 'Sign up'|t }}
+                  <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+                </a>
+              {% endif %}
+            {% endif %}
+          </div>
         </div>
       </div>
-    </div>
+    {% endfor %}
+
     <table class="table d-none d-lg-block pb-5 pt-4">
       <thead>
         <tr>
@@ -82,7 +100,9 @@
         </tr>
       </thead>
       <tbody class="bg-white">
-        {{ items[0].content }}
+        {% for item in items %}
+          {{ item.content }}
+        {% endfor %}
       </tbody>
     </table>
   </div>
