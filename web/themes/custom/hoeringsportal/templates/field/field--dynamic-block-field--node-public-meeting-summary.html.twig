@@ -36,11 +36,12 @@
  * @see template_preprocess_field()
  */
 #}
-{% set variables = drupal_field('field_pretix_dates', 'node', element['#object'].id)[0]['#variables'].data %}
+{% set pretix_dates_field = drupal_field('field_pretix_dates', 'node', element['#object'].id)[0] %}
+{% set variables = pretix_dates_field['#variables'].data %}
+{% set time_to = pretix_dates_field.time_to %}
 {% set now_timestamp = 'now'|date('U') %}
 {% set registration_deadline = drupal_field('field_registration_deadline', 'node', element['#object'].id)[0].date %}
 {% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
-{% set time_to = drupal_field('field_pretix_dates', 'node', element['#object'].id)[0].time_to %}
 {% set meeting_has_been_held = time_to|date('U') <= now_timestamp %}
 {% set cancelled = drupal_field('field_public_meeting_cancelled', 'node', element['#object'].id)[0]['#markup'] %}
 
