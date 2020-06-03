@@ -44,6 +44,7 @@
       {% set registration_deadline = variables.entity.field_registration_deadline[0].date %}
       {% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
       {% set meeting_has_been_held = variables.time_from|date('U') <= now_timestamp %}
+      {% set cancelled = drupal_field('field_public_meeting_cancelled', 'node', element['#object'].id)[0]['#markup'] %}
 
       <div class="d-block d-lg-none bg-white p-3 signup-responsive">
         <div>
@@ -70,7 +71,9 @@
           {% endif %}
           <div class="mt-3">
 
-            {% if meeting_has_been_held %}
+            {% if cancelled == 1 %}
+              <div class="pretix-alert meeting-has-been-cancelled">{{ 'Meeting has been cancelled'|t }}</div>
+            {% elseif meeting_has_been_held %}
               <div class="pretix-alert meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
             {% else %}
               {% if registration_deadline_passed %}
