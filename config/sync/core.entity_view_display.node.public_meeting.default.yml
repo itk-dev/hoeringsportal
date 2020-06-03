@@ -71,31 +71,27 @@ third_party_settings:
       right:
         - 'dynamic_block_field:node-public_meeting_summary'
       footer:
+        - group_signup
         - field_hidden_signup
+        - 'dynamic_block_field:node-project_timeline'
         - field_signup_selection
         - group_signup
         - field_pretix_dates
-        - field_registration_deadline
-        - 'dynamic_block_field:node-project_timeline'
-        - field_signup_link
         - field_section
+        - field_registration_deadline
         - field_map
         - 'dynamic_block_field:node-related_public_meeting'
-      right:
-        - 'dynamic_block_field:node-quicklinks'
-        - field_area
-        - 'dynamic_token_field:node-header_information'
-        - field_type
-        - field_contact
+        - field_signup_link
+        - field_signup_text
     fields:
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 15
+        weight: 9
         label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_summary':
         plugin_id: 'dynamic_block_field:node-public_meeting_summary'
-        weight: 5
+        weight: 7
         label: above
         formatter: default
       'dynamic_block_field:node-public_meeting_warning':
@@ -103,20 +99,10 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
-      'dynamic_block_field:node-quicklinks':
-        plugin_id: 'dynamic_block_field:node-quicklinks'
-        weight: 6
-        label: above
-        formatter: default
       'dynamic_block_field:node-related_public_meeting':
         plugin_id: 'dynamic_block_field:node-related_public_meeting'
-        weight: 18
+        weight: 12
         label: above
-        formatter: default
-      'dynamic_token_field:node-header_information':
-        plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 11
-        label: hidden
         formatter: default
       node_title:
         plugin_id: node_title
@@ -137,7 +123,7 @@ third_party_settings:
         - field_signup_link
         - field_signup_text
       parent_name: ''
-      weight: 14
+      weight: 8
       format_type: html_element
       format_settings:
         element: div
@@ -156,14 +142,6 @@ targetEntityType: node
 bundle: public_meeting
 mode: default
 content:
-  field_area:
-    weight: 7
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: right
   field_cancelled_text:
     type: string
     weight: 3
@@ -172,13 +150,6 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_contact:
-    weight: 13
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: right
   field_description:
     weight: 5
     label: hidden
@@ -197,7 +168,7 @@ content:
     type: boolean
     region: footer
   field_map:
-    weight: 17
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -240,7 +211,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
   field_section:
-    weight: 16
+    weight: 10
     label: hidden
     settings:
       view_mode: default
@@ -281,21 +252,16 @@ content:
     third_party_settings: {  }
     type: basic_string
     region: left
-  field_type:
-    weight: 12
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: right
 hidden:
+  field_area: true
   field_cancelled_date: true
+  field_contact: true
   field_content_state: true
   field_first_meeting_time: true
   field_last_meeting_time: true
   field_media_image_single: true
   field_pretix_event_settings: true
   field_project_reference: true
+  field_type: true
   langcode: true
   links: true
