@@ -83,8 +83,8 @@ class PublicMeetingSummaryBlock extends BlockBase implements ContainerFactoryPlu
 
     return [
       '#theme' => 'hoeringsportal_public_meeting_summary',
-      '#pretix_signup' => $node->field_pretix_dates[0]->getValue(),
-      '#signup_deadline' => $node->field_registration_deadline[0]->getValue(),
+      '#pretix_signup' => isset($node->field_pretix_dates[0]) ? $node->field_pretix_dates[0]->getValue() : NULL,
+      '#signup_deadline' => isset($node->field_registration_deadline[0]) ? $node->field_registration_deadline[0]->getValue() : NULL,
       '#node' => $node,
       '#cache' => [
         'contexts' => $cacheContexts,
