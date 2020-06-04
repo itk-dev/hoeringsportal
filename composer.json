@@ -16,6 +16,13 @@
             "type": "composer",
             "url": "https://asset-packagist.org/"
         },
+        "drupal/hoeringsportal_data": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_data",
+            "options": {
+                "symlink": false
+            }
+        },
         "drupal/hoeringsportal_deskpro": {
             "type": "path",
             "url": "web/modules/custom/hoeringsportal_deskpro",
@@ -44,6 +51,7 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
+        "drupal/hoeringsportal_data": "*",
         "drupal/hoeringsportal_deskpro": "*",
         "drupal/image_widget_crop": "^2.2",
         "drupal/media_entity_usage": "1.x-dev",
@@ -69,7 +77,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "webflo/drupal-core-require-dev": "~8.7.0"
+        "drupal/core-dev": "^8.8"
     },
     "conflict": {
         "drupal/drupal": "*"

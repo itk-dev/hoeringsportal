@@ -55,7 +55,6 @@ function hoeringsportal_preprocess_field(&$variables) {
     }
   }
 
-
   if ($variables['field_name'] == 'field_pretix_dates') {
     foreach ($variables['items'] as $delta => $item) {
       // For some reason ['content']['#variables']['data'] only contains

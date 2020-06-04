@@ -75,7 +75,6 @@ third_party_settings:
         - field_hidden_signup
         - 'dynamic_block_field:node-project_timeline'
         - field_signup_selection
-        - group_signup
         - field_pretix_dates
         - field_section
         - field_registration_deadline

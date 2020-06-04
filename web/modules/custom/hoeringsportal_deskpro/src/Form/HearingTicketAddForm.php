@@ -273,7 +273,10 @@ class HearingTicketAddForm extends FormBase {
 
     if ($representations[$representation]['require_organization'] && empty($organization)) {
       // @TODO Customer has to decide if we need an organization name.
-      // $form_state->setErrorByName('organization', $this->t('Please enter your organization.'));
+      // $form_state->setErrorByName(
+      // 'organization',
+      // $this->t('Please enter your organization.')
+      // );
     }
   }
 

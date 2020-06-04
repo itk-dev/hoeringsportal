@@ -15,7 +15,6 @@
     "apply-coding-standards": "npm run apply-coding-standards-scss; npm run apply-coding-standards-js",
     "build": "encore production --progress",
     "watch": "encore dev --watch"
-
   },
   "author": "ITK",
   "license": "ISC",
