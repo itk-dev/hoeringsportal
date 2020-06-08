@@ -3208,9 +3208,6 @@
             },
             "type": "drupal-module",
             "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
                 "drupal": {
                     "version": "8.x-1.0",
                     "datestamp": "1580243964",
@@ -4971,12 +4968,12 @@
             "version": "0.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/njh/easyrdf.git",
+                "url": "https://github.com/easyrdf/easyrdf.git",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/njh/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
+                "url": "https://api.github.com/repos/easyrdf/easyrdf/zipball/acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "reference": "acd09dfe0555fbcfa254291e433c45fdd4652566",
                 "shasum": ""
             },
@@ -5489,12 +5486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "6a8a3bada4f4f3bf49d612c2852ff581c25b2654"
+                "reference": "65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/6a8a3bada4f4f3bf49d612c2852ff581c25b2654",
-                "reference": "6a8a3bada4f4f3bf49d612c2852ff581c25b2654",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c",
+                "reference": "65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c",
                 "shasum": ""
             },
             "require": {
@@ -5514,7 +5511,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-06-03T13:25:33+00:00"
+            "time": "2020-06-07T14:47:51+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
