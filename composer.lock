@@ -5486,12 +5486,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c"
+                "reference": "5818f1de3aed02f4b9f292e650d27cf1a8f50128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c",
-                "reference": "65cdedd2dd2dd6b3614e89a3faa22b7ccb5b3d1c",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/5818f1de3aed02f4b9f292e650d27cf1a8f50128",
+                "reference": "5818f1de3aed02f4b9f292e650d27cf1a8f50128",
                 "shasum": ""
             },
             "require": {
@@ -5511,7 +5511,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-06-07T14:47:51+00:00"
+            "time": "2020-06-09T09:06:56+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
