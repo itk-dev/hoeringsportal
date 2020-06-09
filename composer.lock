@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36707960ae7710fb3c9b48c6784f2a45",
+    "content-hash": "a99f6556f204a06f5e8448b6518d3f5a",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3892,6 +3892,37 @@
             }
         },
         {
+            "name": "drupal/hoeringsportal_deskpro",
+            "version": "dev-develop",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/hoeringsportal_deskpro",
+                "reference": "e616677e475bc1f8e5d9dd35e0c204ec5f53a23d"
+            },
+            "require": {
+                "deskpro/deskpro-api-client-php": "^2.0",
+                "guzzlehttp/guzzle": "^6.3",
+                "nicoeg/dawa": "^1.0"
+            },
+            "type": "drupal-custom-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Deskpro integration",
+            "homepage": "https://www.drupal.org/project/hoeringsportal_deskpro",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/hoeringsportal_deskpro",
+                "source": "http://cgit.drupalcode.org/hoeringsportal_deskpro"
+            },
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
+        },
+        {
             "name": "drupal/image_widget_crop",
             "version": "2.2.0",
             "source": {
@@ -6051,6 +6082,60 @@
                 "validation"
             ],
             "time": "2020-05-27T09:58:51+00:00"
+        },
+        {
+            "name": "nicoeg/dawa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicoeg/Dawa.git",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicoeg/Dawa/zipball/43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "reference": "43f296b0bafbf2319c9796ee2b38d3252b450966",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nicoeg\\Dawa\\DawaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Dawa": "Nicoeg\\Dawa\\DawaFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nicoeg\\Dawa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolaj Egelund",
+                    "email": "nicomanden@gmail.com"
+                }
+            ],
+            "description": "A PHP package for Dawa http://dawa.aws.dk",
+            "keywords": [
+                "Dawa",
+                "aws.dk",
+                "laravel"
+            ],
+            "time": "2020-01-16T19:03:09+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -9342,55 +9427,6 @@
             "time": "2015-12-17T08:42:14+00:00"
         },
         {
-            "name": "wikimedia/composer-merge-plugin",
-            "version": "v1.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wikimedia/composer-merge-plugin.git",
-                "reference": "81c6ac72a24a67383419c7eb9aa2b3437f2ab100"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/composer-merge-plugin/zipball/81c6ac72a24a67383419c7eb9aa2b3437f2ab100",
-                "reference": "81c6ac72a24a67383419c7eb9aa2b3437f2ab100",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "php": ">=5.3.2"
-            },
-            "require-dev": {
-                "composer/composer": "~1.0.0",
-                "jakub-onderka/php-parallel-lint": "~0.8",
-                "phpunit/phpunit": "~4.8|~5.0",
-                "squizlabs/php_codesniffer": "~2.1.0"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3.x-dev"
-                },
-                "class": "Wikimedia\\Composer\\MergePlugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "Wikimedia\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Bryan Davis",
-                    "email": "bd808@wikimedia.org"
-                }
-            ],
-            "description": "Composer plugin to merge multiple composer.json files",
-            "time": "2017-04-25T02:31:25+00:00"
-        },
-        {
             "name": "zendframework/zend-diactoros",
             "version": "1.8.7",
             "source": {
@@ -12008,6 +12044,55 @@
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
             "time": "2019-06-13T22:48:21+00:00"
+        },
+        {
+            "name": "wikimedia/composer-merge-plugin",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/composer-merge-plugin.git",
+                "reference": "81c6ac72a24a67383419c7eb9aa2b3437f2ab100"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/composer-merge-plugin/zipball/81c6ac72a24a67383419c7eb9aa2b3437f2ab100",
+                "reference": "81c6ac72a24a67383419c7eb9aa2b3437f2ab100",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "composer/composer": "~1.0.0",
+                "jakub-onderka/php-parallel-lint": "~0.8",
+                "phpunit/phpunit": "~4.8|~5.0",
+                "squizlabs/php_codesniffer": "~2.1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                },
+                "class": "Wikimedia\\Composer\\MergePlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wikimedia\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan Davis",
+                    "email": "bd808@wikimedia.org"
+                }
+            ],
+            "description": "Composer plugin to merge multiple composer.json files",
+            "time": "2017-04-25T02:31:25+00:00"
         }
     ],
     "aliases": [
