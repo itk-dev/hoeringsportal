@@ -107,13 +107,12 @@
 }
 
 .ui-autocomplete {
-  right: 1rem;
+  min-width: 0!important;
   z-index: 1050;
-  left: auto!important;
-  width: 30%!important;
+  width: 310px!important;
 
   @include media-breakpoint-down(md) {
-    left: 1rem!important;
+    width: 30%!important;
     right: auto;
   }
 
