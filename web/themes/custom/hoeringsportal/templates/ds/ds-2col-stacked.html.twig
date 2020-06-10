@@ -22,13 +22,30 @@
 #}
 
 <{{ outer_wrapper }}{{ attributes.addClass('ds-2col-stacked', 'clearfix') }}>
-
+{% set image_exists = field_media_image_single['#items'][0].value is not null %}
+{% set header_text = field_teaser['#items'][0].value|striptags %}
   {{ title_suffix.contextual_links }}
-
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
-    <div class="hero hero--image-right">
-      {{ header }}
-    </div>
+    {% if image_exists %}
+      <div class="container-fluid p-0">
+        <div class="hero">
+          {{ header.field_media_image_single }}
+          <div class="hero__content">
+            {{ header|without('field_teaser', 'field_media_image_single') }}
+            {{ header_text }}
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="container">
+        <div class="hero hero--image-right">
+          <div class="hero__content">
+            {{ header|without('field_teaser') }}
+            {{ header_text }}
+          </div>
+        </div>
+      </div>
+    {% endif %}
   </{{ header_wrapper }}>
   <div class="container  content__container">
     <div class="row">

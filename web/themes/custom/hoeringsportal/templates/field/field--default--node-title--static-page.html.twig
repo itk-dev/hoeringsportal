@@ -36,38 +36,27 @@
  * @see template_preprocess_field()
  */
 #}
-{% if (element['#ds_view_mode']) and (element['#ds_view_mode'] == 'hearing_ticket_view' or element['#ds_view_mode'] == 'hearing_ticket_add')%}
-  {% for item in items %}
-    <div class="mb-4">
-      <div class="content-hearign-ticket-title-label">{{ 'Hearing reply for'|t }}</div>
-      <div>{{ item.content }}</div>
-    </div>
-  {% endfor %}
+
+{% if label_hidden %}
+  {% if multiple %}
+    {% for item in items %}
+      <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
+    {% endfor %}
+  {% else %}
+    {% for item in items %}
+      <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
+    {% endfor %}
+  {% endif %}
 {% else %}
-  <div class="container">
-    <div class="hero__content">
-      {% if label_hidden %}
-        {% if multiple %}
-          {% for item in items %}
-            <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
-          {% endfor %}
-        {% else %}
-          {% for item in items %}
-            <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
-          {% endfor %}
-        {% endif %}
-      {% else %}
-        {{ label }}
-        {% if multiple %}
-          <div>
-        {% endif %}
-        {% for item in items %}
-          <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
-        {% endfor %}
-        {% if multiple %}
-          </div>
-        {% endif %}
-      {% endif %}
+  {{ label }}
+  {% if multiple %}
+    <div>
+  {% endif %}
+  {% for item in items %}
+    <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
+  {% endfor %}
+  {% if multiple %}
     </div>
-  </div>
+  {% endif %}
 {% endif %}
+

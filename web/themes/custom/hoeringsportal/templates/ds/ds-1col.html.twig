@@ -9,19 +9,32 @@
  * - ds_content: content region
  */
 #}
-{% if(not is_front) %}
-  {# Add header to overview pages #}
-  <div class="group-header hero-container mb-4">
-    <div class="hero hero--image-right">
-      <div class="container">
+{% set image_exists = field_media_image_single['#items'][0].value is not null %}
+{% set header_text = field_teaser['#items'][0].value|striptags %}
+
+<div class="group-header hero-container">
+  {% if image_exists %}
+    <div class="container-fluid p-0">
+      <div class="hero">
+        {{ ds_content.field_media_image_single }}
         <div class="hero__content">
-          <h1 class="title underlined hero__title pt-4 pb-4">{{ node.title.value }}</h1>
+          <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ node.title.value }}</h1>
+          {{ header_text }}
         </div>
       </div>
     </div>
-  </div>
-{% endif %}
+  {% else %}
+    <div class="container">
+      <div class="hero hero--image-right">
+        <div class="hero__content">
+          <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ node.title.value }}</h1>
+          {{ header_text }}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>
 
 <div {{ attributes.addClass('projects', 'container') }}>
-  {{ ds_content }}
+  {{ ds_content|without('field_teaser', 'field_media_image_single') }}
 </div>

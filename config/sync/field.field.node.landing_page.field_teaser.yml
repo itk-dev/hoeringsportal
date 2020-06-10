@@ -1,14 +1,14 @@
-uuid: a8631aa1-706f-4390-a1d0-6fdfb6e49d8c
+uuid: 103f5424-81ec-4827-b860-3d5423fe1d07
 langcode: da
 status: true
 dependencies:
   config:
     - field.storage.node.field_teaser
-    - node.type.static_page
-id: node.static_page.field_teaser
+    - node.type.landing_page
+id: node.landing_page.field_teaser
 field_name: field_teaser
 entity_type: node
-bundle: static_page
+bundle: landing_page
 label: Teaser/indledning
 description: 'Kort tekst der vises i teasers og ved siden af billede på indhold.'
 required: false

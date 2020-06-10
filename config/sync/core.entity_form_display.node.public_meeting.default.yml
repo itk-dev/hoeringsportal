@@ -217,7 +217,6 @@ content:
   field_pretix_dates:
     weight: 17
     settings:
-      hide_end_date: true
       spots_min: 10
       spots_max: 200
     third_party_settings: {  }
