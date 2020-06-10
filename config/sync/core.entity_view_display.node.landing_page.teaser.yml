@@ -4,7 +4,9 @@ status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.landing_page.field_media_image_single
     - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_teaser
     - node.type.landing_page
   module:
     - user
@@ -17,5 +19,7 @@ content:
     weight: 100
     region: content
 hidden:
+  field_media_image_single: true
   field_section: true
+  field_teaser: true
   langcode: true

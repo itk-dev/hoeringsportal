@@ -3,7 +3,9 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.landing_page.field_media_image_single
     - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_teaser
     - node.type.landing_page
   module:
     - ds
@@ -17,6 +19,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         wrappers:
           ds_content: div
         outer_wrapper: div
@@ -28,11 +31,22 @@ third_party_settings:
     regions:
       ds_content:
         - field_section
+        - field_teaser
+        - field_media_image_single
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
 mode: default
 content:
+  field_media_image_single:
+    weight: 2
+    label: hidden
+    settings:
+      view_mode: content_display
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: ds_content
   field_section:
     type: entity_reference_revisions_entity_view
     weight: 0
@@ -44,6 +58,13 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+  field_teaser:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: ds_content
 hidden:
   langcode: true
   links: true
