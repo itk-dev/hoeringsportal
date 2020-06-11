@@ -13,10 +13,10 @@ settings:
   allowed_values:
     -
       value: pretix
-      label: 'Anvend Pretix'
+      label: 'Benyt tilmeldingssystem'
     -
       value: manual
-      label: 'Manuel tilmelding'
+      label: 'Benyt ikke tilmeldingssystem'
   allowed_values_function: ''
 module: options
 locked: false
