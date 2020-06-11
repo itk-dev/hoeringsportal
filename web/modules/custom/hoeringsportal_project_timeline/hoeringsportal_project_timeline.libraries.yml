@@ -13,3 +13,6 @@ project_timeline:
 project_timeline_backend:
   js:
     assets/public/build/project-timeline-backend.js: {preprocess: false}
+  css:
+    theme:
+      assets/css/backend.css: {}
