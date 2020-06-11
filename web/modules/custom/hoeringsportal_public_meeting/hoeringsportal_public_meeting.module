@@ -332,7 +332,7 @@ function hoeringsportal_public_meeting_node_view(array &$build, EntityInterface 
       }
 
       $title = $build['title'][0]['#context']['value'];
-      $new_title = t('@title @state', ['@title' => $title, '@state' => $state]);
+      $new_title = $title . $state;
       $build['title'][0]['#context']['value'] = $new_title;
     }
   }
