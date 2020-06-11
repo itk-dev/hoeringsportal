@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
@@ -307,4 +309,31 @@ function _get_cancel_link(NodeInterface $node) {
   );
 
   return $cancelLink;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node entities.
+ */
+function hoeringsportal_public_meeting_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->getType() == 'public_meeting') {
+    $view_mode_change_title = [
+      'full',
+    ];
+    $content_state = $entity->field_content_state->value;
+    $cancelled = $entity->field_public_meeting_cancelled->value;
+    if (in_array($view_mode, $view_mode_change_title)) {
+      $state = '';
+      if ($content_state == 'finished') {
+        $state = ' (' . t('Hearing deadline has passed') . ')';
+      }
+
+      if ($cancelled) {
+        $state = ' (' . t('Public meeting cancelled') . ')';
+      }
+
+      $title = $build['title'][0]['#context']['value'];
+      $new_title = t('@title @state', ['@title' => $title, '@state' => $state]);
+      $build['title'][0]['#context']['value'] = $new_title;
+    }
+  }
 }

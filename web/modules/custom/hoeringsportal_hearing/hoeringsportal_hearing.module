@@ -9,6 +9,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements hook_help().
@@ -42,5 +44,39 @@ function hoeringsportal_hearing_form_alter(&$form, FormStateInterface $form_stat
         )
       )->toString();
     }
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node entities.
+ */
+function hoeringsportal_hearing_node_view(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display, $view_mode) {
+  if ($entity->getType() == 'hearing') {
+    $view_mode_change_title = [
+      'full',
+      'hearing_ticket_add',
+      'hearing_ticket_view',
+
+    ];
+    $content_state = $entity->field_content_state->value;
+    if (in_array($view_mode, $view_mode_change_title)) {
+      switch ($content_state) {
+        case 'upcoming':
+          $start_date = $entity->field_start_date->date->format('d/m/Y');
+          $state = ' (' . t('Hearing deadline:') . ' ' . $start_date . ')';
+          break;
+
+        case 'finished':
+          $state = ' (' . t('Hearing deadline has passed') . ')';
+          break;
+
+        default:
+          $state = '';
+      }
+      $title = $build['title'][0]['#context']['value'];
+      $new_title = t('@title @state', ['@title' => $title, '@state' => $state]);
+      $build['title'][0]['#context']['value'] = $new_title;
+    }
+
   }
 }
