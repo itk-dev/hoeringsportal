@@ -16,7 +16,7 @@
   {% if image_exists %}
     <div class="container-fluid p-0">
       <div class="hero">
-        {{ ds_content.field_media_image_single }}
+        <div class="hero__media-container">{{ ds_content.field_media_image_single }}</div>
         <div class="hero__content">
           <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ node.title.value }}</h1>
           {{ header_text }}

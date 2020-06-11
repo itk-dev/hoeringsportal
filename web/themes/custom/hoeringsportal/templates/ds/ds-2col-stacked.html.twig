@@ -29,7 +29,7 @@
     {% if image_exists %}
       <div class="container-fluid p-0">
         <div class="hero">
-          {{ header.field_media_image_single }}
+          <div class="hero__media-container">{{ header.field_media_image_single }}</div>
           <div class="hero__content">
             {{ header|without('field_teaser', 'field_media_image_single') }}
             {{ header_text }}
