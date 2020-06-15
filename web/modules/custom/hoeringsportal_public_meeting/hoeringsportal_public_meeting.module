@@ -148,6 +148,8 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
     }
 
     $form['#after_build'][] = 'hoeringsportal_public_meeting_alter_form_after_build';
+
+    $form['#attached']['library'][] = 'hoeringsportal_public_meeting/public-meeting-form';
   }
 }
 

@@ -11,7 +11,7 @@ field_name: field_area
 entity_type: node
 bundle: public_meeting
 label: Område
-description: ''
+description: "Vælg områder som borgermødet dækker. Markér alle hvis borgermødet dækker hele kommunen."
 required: true
 translatable: true
 default_value: {  }
