@@ -1,0 +1,4 @@
+hearing-form:
+  version: VERSION
+  js:
+    assets/js/form.js: {}
