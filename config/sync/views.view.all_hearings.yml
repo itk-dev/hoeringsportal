@@ -87,7 +87,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Vælg status\r\nAfsluttet|Afsluttede\r\nI gang|Aktive"
+                  filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nI gang|Aktive"
             field_type_target_id:
               bef_format: bef_links
               more_options:
