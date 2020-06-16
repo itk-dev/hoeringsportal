@@ -1,5 +1,13 @@
 .list-filter-link-wrapper {
-  flex: 0 1 9em;
+  flex: 1 0 25%;
+  width: 100px;
+  margin-right: $spacer;
+  align-self: stretch;
+
+  @include media-breakpoint-up(md) {
+    flex: 1 0 9em;
+  }
+
   a {
     background: $white;
     border: 1px solid $gray-400;
@@ -28,5 +36,9 @@
     line-height: 1.1em;
     margin-top: .5em;
     text-align: center;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    flex: 1;
+    align-self: stretch;
   }
 }
