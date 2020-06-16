@@ -79,7 +79,7 @@ display:
                 bef_collapsible: false
                 is_secondary: false
                 rewrite:
-                  filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vælg område"
+                  filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vis alle områder"
             field_content_state_value:
               bef_format: default
               more_options:
