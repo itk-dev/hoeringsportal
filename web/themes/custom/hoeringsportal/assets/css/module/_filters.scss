@@ -34,9 +34,10 @@
 }
 
 .bef-links {
-  display: grid!important;
-  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
-  grid-gap: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-right: -$spacer;
 }
 
 #collapseFilters.collapse:not(.show) {
