@@ -1,0 +1,54 @@
+diff --git a/core/includes/form.inc b/core/includes/form.inc
+index 150da8c..14d8111 100644
+--- a/core/includes/form.inc
++++ b/core/includes/form.inc
+@@ -214,6 +214,7 @@ function template_preprocess_fieldset(&$variables) {
+   }
+ 
+   if (!empty($element['#description'])) {
++    $variables['description_display'] = $element['#description_display'];
+     $description_id = $element['#attributes']['id'] . '--description';
+     $description_attributes['id'] = $description_id;
+     $variables['description']['attributes'] = new Attribute($description_attributes);
+diff --git a/core/themes/classy/templates/form/fieldset.html.twig b/core/themes/classy/templates/form/fieldset.html.twig
+index 0d089ed..bd7b48d 100644
+--- a/core/themes/classy/templates/form/fieldset.html.twig
++++ b/core/themes/classy/templates/form/fieldset.html.twig
+@@ -28,6 +28,12 @@
+     'form-wrapper',
+   ]
+ %}
++{%
++  set description_classes = [
++    'description',
++    description_display == 'invisible' ? 'visually-hidden',
++  ]
++%}
+ <fieldset{{ attributes.addClass(classes) }}>
+   {%
+     set legend_span_classes = [
+@@ -41,6 +47,11 @@
+     <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+   </legend>
+   <div class="fieldset-wrapper">
++    {% if description_display == 'before' and description.content %}
++      <div{{ description.attributes }}>
++        {{ description.content }}
++      </div>
++    {% endif %}
+     {% if errors %}
+       <div class="form-item--error-message">
+         <strong>{{ errors }}</strong>
+@@ -53,8 +65,10 @@
+     {% if suffix %}
+       <span class="field-suffix">{{ suffix }}</span>
+     {% endif %}
+-    {% if description.content %}
+-      <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
++    {% if description_display in ['after', 'invisible'] and description.content %}
++      <div{{ description.attributes.addClass(description_classes) }}>
++        {{ description.content }}
++      </div>
+     {% endif %}
+   </div>
+ </fieldset>

@@ -48,6 +48,7 @@ function hoeringsportal_hearing_form_alter(&$form, FormStateInterface $form_stat
 
   if ('node_hearing_edit_form' === $form_id || 'node_hearing_form' === $form_id) {
     $form['#attached']['library'][] = 'hoeringsportal_hearing/hearing-form';
+    $form['field_area']['widget']['#description_display'] = 'before';
   }
 }
 

@@ -134,6 +134,9 @@
         },
         "enable-patching": true,
         "patches": {
+            "drupal/core": {
+                "fieldset description_display": "patches/core/fieldset-description_display.patch"
+            },
             "drupal/paragraphs": {
                 "Add paragraphs hook": "https://www.drupal.org/files/issues/2868155-16.patch"
             },
