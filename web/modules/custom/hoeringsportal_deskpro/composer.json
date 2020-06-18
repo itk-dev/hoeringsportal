@@ -11,8 +11,9 @@
     "source": "http://cgit.drupalcode.org/hoeringsportal_deskpro"
   },
   "require": {
-      "guzzlehttp/guzzle": "^6.3",
     "deskpro/deskpro-api-client-php": "^2.0",
+    "drupal/advancedqueue": "^1.0",
+    "guzzlehttp/guzzle": "^6.3",
     "nicoeg/dawa": "^1.0"
   }
 }

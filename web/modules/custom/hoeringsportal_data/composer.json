@@ -1,4 +1,10 @@
 {
+    "name": "drupal/hoeringsportal_data",
+    "type": "drupal-custom-module",
+    "description": "Deskpro data",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     }
