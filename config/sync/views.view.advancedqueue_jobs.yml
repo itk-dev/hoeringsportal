@@ -1,20 +1,20 @@
 uuid: 99d8f75d-58d8-4f90-9df3-538ec3517c2f
-langcode: da
+langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - advancedqueue
   module:
     - advancedqueue
     - user
-_core:
-  default_config_hash: UznR_Wwz6P2n6k0oG2pyGiqeIzn_6aY7dQVoCzlh_iw
 id: advancedqueue_jobs
-label: 'Advanced queue jobs'
+label: 'Advanced Queue jobs'
 module: views
 description: ''
 tag: ''
 base_table: advancedqueue
 base_field: job_id
-core: 8.x
 display:
   default:
     display_plugin: default
@@ -48,12 +48,17 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: mini
+        type: full
         options:
           items_per_page: 50
           offset: 0
           id: 0
           total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -62,11 +67,94 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          tags:
-            previous: ‹‹
-            next: ››
+          quantity: 9
       style:
         type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            job_id: job_id
+            num_retries: num_retries
+            state: state
+            type: type
+            payload: payload
+            available: available
+            processed: processed
+            message: message
+            operations: operations
+          info:
+            job_id:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            num_retries:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            state:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            type:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            payload:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            available:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            processed:
+              sortable: true
+              default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            message:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            operations:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: job_id
+          empty_table: false
       row:
         type: fields
       fields:
@@ -287,8 +375,8 @@ display:
           label: Payload
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '<pre>{{ payload }}</pre>'
             make_link: false
             path: ''
             absolute: false
@@ -438,7 +526,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Høringssvar
+          label: Message
           exclude: false
           alter:
             alter_text: false
@@ -556,6 +644,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -595,6 +685,8 @@ display:
               anonymous: '0'
               administrator: '0'
             reduce: false
+            operator_limit_selection: false
+            operator_list: {  }
           is_grouped: false
           group_info:
             label: ''
@@ -625,10 +717,12 @@ display:
           exposed: true
           expose:
             operator_id: available_op
-            label: 'Available date'
+            label: 'Available from'
             description: ''
             use_operator: false
             operator: available_op
+            operator_limit_selection: false
+            operator_list: {  }
             identifier: available
             required: false
             remember: false
@@ -637,18 +731,24 @@ display:
               authenticated: authenticated
               anonymous: '0'
               administrator: '0'
+            placeholder: YYYY-MM-DD
+            min_placeholder: ''
+            max_placeholder: ''
           is_grouped: false
           group_info:
-            label: ''
-            description: ''
-            identifier: ''
+            label: 'Available date'
+            description: null
+            identifier: available
             optional: true
             widget: select
             multiple: false
             remember: false
             default_group: All
             default_group_multiple: {  }
-            group_items: {  }
+            group_items:
+              1: {  }
+              2: {  }
+              3: {  }
           plugin_id: date
       sorts: {  }
       title: Jobs
@@ -723,7 +823,7 @@ display:
   page_1:
     display_plugin: page
     id: page_1
-    display_title: Side
+    display_title: Page
     position: 1
     display_options:
       display_extenders: {  }
