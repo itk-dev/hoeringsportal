@@ -36,14 +36,10 @@
  * @see template_preprocess_field()
  */
 #}
-{% set pretix_dates_field = drupal_field('field_pretix_dates', 'node', element['#object'].id)[0] %}
-{% set variables = pretix_dates_field['#variables'].data %}
-{% set time_to = pretix_dates_field.time_to %}
-{% set now_timestamp = 'now'|date('U') %}
-{% set registration_deadline = drupal_field('field_registration_deadline', 'node', element['#object'].id)[0].date %}
-{% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
-{% set meeting_has_been_held = time_to|date('U') <= now_timestamp %}
-{% set meeting_cancelled = drupal_field('field_public_meeting_cancelled', 'node', element['#object'].id)[0]['#markup'] is same as(1) %}
+{% set node = element['#object'] %}
+{% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
+{% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
+{% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
 
 <div class="d-none d-md-block">
   <section class="container">
@@ -82,9 +78,8 @@
     {% if registration_deadline_passed %}
       {# @TODO: Design: styling of "alert" #}
       <div class="pretix-alert pretix-alert-registration-deadline-passed m-3">{{ 'Registration deadline passed'|t }}</div>
-    {% elseif variables.data.data.pretix_subevent_shop_url|default(false) %}
+    {% else %}
       <a id="sign-up-shortcut" class="btn btn-primary btn-sm m-3" style="display: none">{{ 'Sign up for public meeting'|t }}</a>
     {% endif %}
   {% endif %}
 </div>
-

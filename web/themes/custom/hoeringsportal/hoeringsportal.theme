@@ -9,6 +9,13 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_preprocess().
+ */
+function hoeringsportal_preprocess(&$vars) {
+  $vars['public_meeting_helper'] = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function hoeringsportal_preprocess_field(&$variables) {

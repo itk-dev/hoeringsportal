@@ -98,6 +98,93 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Check if a public meeting has been cancelled.
+   */
+  public function isCancelled(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return 1 === (int) $node->field_public_meeting_cancelled->value;
+  }
+
+  /**
+   * Check if a public meeting has been held.
+   */
+  public function hasBeenHeld(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return 'pretix' === $node->field_signup_selection->value
+      ? $this->hasBeenHeldPretix($node)
+      : $this->hasBeenHeldManual($node);
+  }
+
+  /**
+   * Decide if a meeting with pretix sign up has been held.
+   *
+   * @param \Drupal\node\Entity\NodeInterface $node
+   *   The node.
+   *
+   * @return bool
+   *   False iff one date has an end time in the future.
+   */
+  private function hasBeenHeldPretix(NodeInterface $node) {
+    /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $date */
+    $now = new DrupalDateTime();
+    foreach ($node->field_pretix_dates as $date) {
+      if ($date->time_to > $now) {
+        return FALSE;
+      }
+    }
+
+    // No date has end time in the future.
+    return TRUE;
+  }
+
+  /**
+   * Decide if a meeting with manual sign up has been held.
+   *
+   * @param \Drupal\node\Entity\NodeInterface $node
+   *   The node.
+   *
+   * @return bool
+   *   False iff the meetings meeting time is not in the future.
+   */
+  private function hasBeenHeldManual(NodeInterface $node) {
+    $now = new DrupalDateTime();
+
+    return $node->field_last_meeting_time->value <= $now;
+  }
+
+  /**
+   * Get pretix sign up url from data on Pretix date item.
+   *
+   * @param array $data
+   *   The data.
+   *
+   * @return string|null
+   *   The pretix sign up url if any.
+   */
+  public function getPretixSignUpUrl(array $data) {
+    return $data['data']['pretix_subevent_shop_url'] ?? NULL;
+  }
+
+  /**
+   * Get pretix availabilty from data on Pretix date item.
+   *
+   * @param array $data
+   *   The data.
+   *
+   * @return string|null
+   *   The pretix availability if any.
+   */
+  public function getPretixAvailability(array $data) {
+    return reset($data['data']['availability'])['availability'] ?? NULL;
+  }
+
+  /**
    * A list of conditions.
    *
    * @var array

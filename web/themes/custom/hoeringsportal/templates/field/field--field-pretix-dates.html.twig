@@ -40,11 +40,12 @@
   <div class="col">
     {% for item in items %}
       {% set variables = item.content['#variables'] %}
-      {% set now_timestamp = 'now'|date('U') %}
-      {% set registration_deadline = variables.entity.field_registration_deadline[0].date %}
-      {% set registration_deadline_passed = registration_deadline and registration_deadline|date('U') <= now_timestamp %}
-      {% set meeting_has_been_held = variables.time_from|date('U') <= now_timestamp %}
-      {% set meeting_cancelled = drupal_field('field_public_meeting_cancelled', 'node', element['#object'].id)[0]['#markup'] is same as(1) %}
+      {% set node = variables['entity'] %}
+      {% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
+      {% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
+      {% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
+      {% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
+      {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
 
       <div class="d-block d-lg-none bg-white p-3 signup-responsive">
         <div>
@@ -61,10 +62,7 @@
         </div>
         <div>
           <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
-          {# @TODO Maybe we should clean up this property path … #}
-          {% set availability = data[0].data.availability|first|default(false) %}
-          {% if availability.availability|default(false) %}
-            {% set availability = availability.availability %}
+          {% if availability.available_number|default(false) %}
             {{ availability.available_number }}/{{ availability.total_size }}
           {% else %}
             {{ variables.spots }}/{{ variables.spots }}
@@ -79,8 +77,8 @@
               {% if registration_deadline_passed %}
                 {# @TODO: Design: styling of "alert" #}
                 <div class="pretix-alert pretix-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
-              {% elseif variables.data.data.pretix_subevent_shop_url|default(false) %}
-                <a href="{{ variables.data.data.pretix_subevent_shop_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
+              {% elseif sign_up_url %}
+                <a href="{{ sign_up_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
                   {{ 'Sign up'|t }}
                   <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
                 </a>
