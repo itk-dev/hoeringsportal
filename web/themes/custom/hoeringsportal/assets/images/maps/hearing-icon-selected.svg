@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="51" viewBox="0 0 41 51">
+  <defs>
+    <path id="hearing-icon-selected-b" d="M692.195712,575.612248 C704.682216,557.51053 706.999921,555.652724 706.999921,549.000052 C706.999921,539.887342 699.612671,532.500092 690.499961,532.500092 C681.38725,532.500092 674,539.887342 674,549.000052 C674,555.652724 676.317705,557.51053 688.80421,575.612248 C689.623551,576.7959 691.376286,576.795984 692.195712,575.612248 Z"/>
+    <filter id="hearing-icon-selected-a" width="136.4%" height="127.3%" x="-18.2%" y="-13.6%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0"/>
+    </filter>
+  </defs>
+  <g fill="none" transform="translate(-670 -529)">
+    <use fill="#000" filter="url(#hearing-icon-selected-a)" xlink:href="#hearing-icon-selected-b"/>
+    <use fill="#008486" xlink:href="#hearing-icon-selected-b"/>
+  </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="51" viewBox="0 0 41 51">
+  <defs>
+    <path id="public-meeting-icon-selected-b" d="M603.195712,439.612248 C615.682216,421.51053 617.999921,419.652724 617.999921,413.000052 C617.999921,403.887342 610.612671,396.500092 601.499961,396.500092 C592.38725,396.500092 585,403.887342 585,413.000052 C585,419.652724 587.317705,421.51053 599.80421,439.612248 C600.623551,440.7959 602.376286,440.795984 603.195712,439.612248 Z"/>
+    <filter id="public-meeting-icon-selected-a" width="136.4%" height="127.3%" x="-18.2%" y="-13.6%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0"/>
+    </filter>
+  </defs>
+  <g fill="none" transform="translate(-581 -393)">
+    <use fill="#000" filter="url(#public-meeting-icon-selected-a)" xlink:href="#public-meeting-icon-selected-b"/>
+    <use fill="#000" xlink:href="#public-meeting-icon-selected-b"/>
+  </g>
+</svg>
