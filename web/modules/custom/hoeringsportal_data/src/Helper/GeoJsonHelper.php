@@ -257,6 +257,7 @@ class GeoJsonHelper {
         'meeting_id' => (int) $meeting->id(),
         'meeting_title' => $meeting->getTitle(),
         'meeting_url' => $this->generateUrl('entity.node.canonical', ['node' => $meeting->id()]),
+        'meeting_teaser' => $meeting->get('field_teaser')->value,
         'meeting_description' => $meeting->get('field_description')->value,
         'meeting_area_list' => $this->listify(array_map(function (Term $term) {
           return $term->get('field_area_id')->value;
