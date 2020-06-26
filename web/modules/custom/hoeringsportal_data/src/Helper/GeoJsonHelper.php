@@ -97,7 +97,7 @@ class GeoJsonHelper {
   public function serializeHearing(Node $entity) {
     $areas = $entity->get('field_area')->referencedEntities();
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
-    $hearing_type = $this->getReference($entity, 'field_hearing_type');
+    $hearing_type = $this->getReference($entity, 'field_type');
     $project_reference = $this->getReference($entity, 'field_project_reference');
     $tags = $entity->get('field_tags')->referencedEntities();
 
@@ -189,7 +189,7 @@ class GeoJsonHelper {
   public function serializeGeoJsonHearing(NodeInterface $hearing) {
     $areas = $hearing->get('field_area')->referencedEntities();
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
-    $hearing_type = $this->getReference($hearing, 'field_hearing_type');
+    $hearing_type = $this->getReference($hearing, 'field_type');
     $project = $this->getReference($hearing, 'field_project_reference');
     $data = \json_decode($hearing->get('field_deskpro_data')->value, TRUE);
 
