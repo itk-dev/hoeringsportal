@@ -18,6 +18,7 @@ class DefaultController extends ApiController {
         'geojson' => [
           'projects' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_projects'),
           'hearings' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_hearings'),
+          'public_meeting_dates' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_public_meeting_dates'),
           'tickets' => $this->generateUrl('hoeringsportal_data.api_controller_geojson_tickets'),
         ],
       ],

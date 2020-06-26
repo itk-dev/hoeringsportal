@@ -276,14 +276,13 @@ class GeoJsonHelper {
     $serialized = $this->serializeGeoJsonPublicMeeting($date->meeting);
 
     $properties = &$serialized['properties'];
-
     $data = json_decode(json_encode($date->data), FALSE);
     $properties += [
       'date_uuid' => $data->uuid,
       'date_location' => $data->location,
       'date_address' => $data->address,
-      'date_time_from' => $this->getDrupalDateTime($data->time_from),
-      'date_time_to' => $this->getDrupalDateTime($data->time_to),
+      'date_time_from' => $this->getDrupalDateTime($data->time_from_value),
+      'date_time_to' => $this->getDrupalDateTime($data->time_to_value),
       'date_spots' => (int) $data->spots,
     ];
 
