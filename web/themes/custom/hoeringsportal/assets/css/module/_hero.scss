@@ -13,6 +13,17 @@ $hero-breakpoint:   "sm";
 }
 .hero-container {
   @include element-theme($primary, $gray-100, $white);
+
+  @include media-breakpoint-down($hero-breakpoint) {
+    // Remove padding on small screens.
+    > * {
+      padding: 0;
+    }
+
+    .hero__content {
+      padding: $spacer;
+    }
+  }
 }
 .hero {
   @include clearfix;
@@ -39,7 +50,6 @@ $hero-breakpoint:   "sm";
     position: relative;
     width: 100%;
     float: right;
-    padding: $spacer 0;
     font-size: $font-size-lg;
     @include media-breakpoint-up($hero-breakpoint) {
       width: 50%;
