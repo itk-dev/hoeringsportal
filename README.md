@@ -40,6 +40,16 @@ A number of `cron` jobs must be set up to make things happen automagically; see
 * [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
 * [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
 
+## Translations
+
+https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
+
+Import translations by running:
+
+```sh
+(cd web && symfony php ../vendor/bin/drush --uri=https://127.0.0.1:8000/ locale:import da ../translations/custom-translations.da.po --type=customized --override=all)
+```
+
 ### Built-in server
 
 Create a database connection in settings.local.php
