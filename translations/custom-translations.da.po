@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2020-06-17 13:49+0200\n"
-"PO-Revision-Date: 2020-06-17 21:19+0200\n"
+"POT-Creation-Date: 2020-06-29 09:51+0200\n"
+"PO-Revision-Date: 2020-06-29 09:53+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -1053,9 +1053,6 @@ msgstr "Projektgalleri"
 msgid "Point"
 msgstr "Vælg punkt på kort"
 
-msgid "Available date"
-msgstr ""
-
 msgid "Spots"
 msgstr "Pladser"
 
@@ -1144,9 +1141,6 @@ msgstr ""
 msgid "Advanced Queue jobs"
 msgstr "Advanced queue jobs"
 
-msgid "<pre>{{ payload }}</pre>"
-msgstr ""
-
 msgid "Available from"
 msgstr "Available date"
 
@@ -1185,6 +1179,9 @@ msgstr ""
 "ikke behøver at tilmelde sig eller hvis du vil bruge dit eget system. <br>"
 "\r\n"
 "Bemærk at du ikke kan ændre tilmeldingstypen senere."
+
+msgid "Opens in a new tab"
+msgstr "Åbner i en ny fane"
 
 msgid "Place"
 msgstr "Lokation"

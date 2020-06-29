@@ -42,6 +42,8 @@ A number of `cron` jobs must be set up to make things happen automagically; see
 
 ## Translations
 
+https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
+
 Import translations by running:
 
 ```sh
