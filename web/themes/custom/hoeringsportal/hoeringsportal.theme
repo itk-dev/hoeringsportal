@@ -222,6 +222,10 @@ function hoeringsportal_preprocess_container(&$variables) {
           $type_list[$key]['icon'] = 'fal fa-2x fa-heartbeat';
           break;
 
+        case 'Indkaldelse af ideer og forslag':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-lightbulb';
+          break;
+
         case 'Andet':
           $type_list[$key]['icon'] = 'fal fa-2x fa-star';
           break;
