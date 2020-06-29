@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="51" viewBox="0 0 41 51">
+  <defs>
+    <path id="public-meeting-icon-b" d="M491.195712,479.612248 C503.682216,461.51053 505.999921,459.652724 505.999921,453.000052 C505.999921,443.887342 498.612671,436.500092 489.499961,436.500092 C480.38725,436.500092 473,443.887342 473,453.000052 C473,459.652724 475.317705,461.51053 487.80421,479.612248 C488.623551,480.7959 490.376286,480.795984 491.195712,479.612248 Z M489.499961,459.875036 C485.703026,459.875036 482.624977,456.796987 482.624977,453.000052 C482.624977,449.203118 485.703026,446.125069 489.499961,446.125069 C493.296895,446.125069 496.374944,449.203118 496.374944,453.000052 C496.374944,456.796987 493.296895,459.875036 489.499961,459.875036 Z"/>
+    <filter id="public-meeting-icon-a" width="136.4%" height="127.3%" x="-18.2%" y="-13.6%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0"/>
+    </filter>
+  </defs>
+  <g fill="none" transform="translate(-469 -433)">
+    <use fill="#000" filter="url(#public-meeting-icon-a)" xlink:href="#public-meeting-icon-b"/>
+    <use fill="#000" xlink:href="#public-meeting-icon-b"/>
+  </g>
+</svg>

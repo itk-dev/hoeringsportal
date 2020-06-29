@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="41" height="51" viewBox="0 0 41 51">
+  <defs>
+    <path id="hearing-icon-b" d="M738.195712,449.612248 C750.682216,431.51053 752.999921,429.652724 752.999921,423.000052 C752.999921,413.887342 745.612671,406.500092 736.499961,406.500092 C727.38725,406.500092 720,413.887342 720,423.000052 C720,429.652724 722.317705,431.51053 734.80421,449.612248 C735.623551,450.7959 737.376286,450.795984 738.195712,449.612248 Z M736.499961,429.875036 C732.703026,429.875036 729.624977,426.796987 729.624977,423.000052 C729.624977,419.203118 732.703026,416.125069 736.499961,416.125069 C740.296895,416.125069 743.374944,419.203118 743.374944,423.000052 C743.374944,426.796987 740.296895,429.875036 736.499961,429.875036 Z"/>
+    <filter id="hearing-icon-a" width="136.4%" height="127.3%" x="-18.2%" y="-13.6%" filterUnits="objectBoundingBox">
+      <feOffset in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="2"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.16 0"/>
+    </filter>
+  </defs>
+  <g fill="none" transform="translate(-716 -403)">
+    <use fill="#000" filter="url(#hearing-icon-a)" xlink:href="#hearing-icon-b"/>
+    <use fill="#008486" xlink:href="#hearing-icon-b"/>
+  </g>
+</svg>

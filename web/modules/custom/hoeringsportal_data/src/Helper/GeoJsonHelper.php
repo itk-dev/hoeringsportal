@@ -97,7 +97,7 @@ class GeoJsonHelper {
   public function serializeHearing(Node $entity) {
     $areas = $entity->get('field_area')->referencedEntities();
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
-    $hearing_type = $this->getReference($entity, 'field_hearing_type');
+    $hearing_type = $this->getReference($entity, 'field_type');
     $project_reference = $this->getReference($entity, 'field_project_reference');
     $tags = $entity->get('field_tags')->referencedEntities();
 
@@ -189,7 +189,7 @@ class GeoJsonHelper {
   public function serializeGeoJsonHearing(NodeInterface $hearing) {
     $areas = $hearing->get('field_area')->referencedEntities();
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
-    $hearing_type = $this->getReference($hearing, 'field_hearing_type');
+    $hearing_type = $this->getReference($hearing, 'field_type');
     $project = $this->getReference($hearing, 'field_project_reference');
     $data = \json_decode($hearing->get('field_deskpro_data')->value, TRUE);
 
@@ -257,6 +257,7 @@ class GeoJsonHelper {
         'meeting_id' => (int) $meeting->id(),
         'meeting_title' => $meeting->getTitle(),
         'meeting_url' => $this->generateUrl('entity.node.canonical', ['node' => $meeting->id()]),
+        'meeting_teaser' => $meeting->get('field_teaser')->value,
         'meeting_description' => $meeting->get('field_description')->value,
         'meeting_area_list' => $this->listify(array_map(function (Term $term) {
           return $term->get('field_area_id')->value;
@@ -276,14 +277,13 @@ class GeoJsonHelper {
     $serialized = $this->serializeGeoJsonPublicMeeting($date->meeting);
 
     $properties = &$serialized['properties'];
-
     $data = json_decode(json_encode($date->data), FALSE);
     $properties += [
       'date_uuid' => $data->uuid,
       'date_location' => $data->location,
       'date_address' => $data->address,
-      'date_time_from' => $this->getDrupalDateTime($data->time_from),
-      'date_time_to' => $this->getDrupalDateTime($data->time_to),
+      'date_time_from' => $this->getDrupalDateTime($data->time_from_value),
+      'date_time_to' => $this->getDrupalDateTime($data->time_to_value),
       'date_spots' => (int) $data->spots,
     ];
 
