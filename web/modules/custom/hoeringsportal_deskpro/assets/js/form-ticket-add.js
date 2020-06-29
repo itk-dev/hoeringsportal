@@ -139,29 +139,4 @@ $(() => {
       $(this).addClass('is-submitted')
     }
   })
-
-  const updateUI = () => {
-    const $representation = $('[data-drupal-selector="edit-representation"]')
-    const value = $representation.val()
-    const isPersonal = parseInt(value) === 5
-    const text = $representation.find('option:selected').text()
-
-    if (text) {
-      // Set labels
-      const labels = {
-        // Field name => label
-        'name': isPersonal ? Drupal.t('Your name') : Drupal.t('Name (@organization)', { '@organization': text }),
-        'email': isPersonal ? Drupal.t('Your email address') : Drupal.t('Email address (@organization)', { '@organization': text }),
-        'postal-code-and-city': isPersonal ? Drupal.t('Your postal code and city') : Drupal.t('Postal code and city (@organization)', { '@organization': text }),
-        'street-and-number': isPersonal ? Drupal.t('Your street and number') : Drupal.t('Street and number (@organization)', { '@organization': text })
-      }
-      for (let [key, label] of Object.entries(labels)) {
-        const selector = `[for="edit-${key}"]`
-        $(selector).text(label)
-      }
-    }
-  }
-
-  $('[data-drupal-selector="edit-representation"]').on('change', updateUI)
-  updateUI()
 })

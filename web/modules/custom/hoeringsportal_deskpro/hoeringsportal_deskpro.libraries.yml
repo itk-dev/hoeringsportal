@@ -5,6 +5,3 @@ form_ticket_add:
       build/form-ticket-add.css: {}
   js:
     build/form-ticket-add.js: {}
-  dependencies:
-    # Pull in Drupal.t
-    - core/drupal
