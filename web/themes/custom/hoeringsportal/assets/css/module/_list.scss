@@ -5,7 +5,9 @@
   align-self: stretch;
 
   @include media-breakpoint-up(md) {
-    flex: 1 0 9em;
+    // Using 20% seems to make 8 items line up nicely.
+    // @TODO Make this adapt better to the actual number of items.
+    flex: 1 0 20%;
   }
 
   a {
