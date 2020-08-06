@@ -2,3 +2,4 @@ exclude_admin: 1
 excludes: ''
 exclude_patterns:
   - '/^\/admin(.)*/'
+use_cookieinformation: 1
