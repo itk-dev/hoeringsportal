@@ -145,7 +145,7 @@
             "version": "v1.2.2",
             "source": {
                 "type": "git",
-                "url": "git@github.com:recurser/jquery-simple-color.git",
+                "url": "https://github.com/recurser/jquery-simple-color.git",
                 "reference": "ebe0b2c0db639584e81499bd29d6619abb9a2599"
             },
             "dist": {
@@ -1920,6 +1920,7 @@
                 "GPL-2.0-or-later"
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
+            "abandoned": "drupal / core-composer-scaffold",
             "time": "2019-03-30T10:41:38+00:00"
         },
         {
@@ -5567,12 +5568,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "812d2b25446df7cf65fa9a335913cf62ec6bd1c4"
+                "reference": "36a036ca8d8e4c0055ab6e41ceaceee71320b184"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/812d2b25446df7cf65fa9a335913cf62ec6bd1c4",
-                "reference": "812d2b25446df7cf65fa9a335913cf62ec6bd1c4",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/36a036ca8d8e4c0055ab6e41ceaceee71320b184",
+                "reference": "36a036ca8d8e4c0055ab6e41ceaceee71320b184",
                 "shasum": ""
             },
             "require": {
@@ -5592,7 +5593,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-06-17T11:09:43+00:00"
+            "time": "2020-09-18T10:54:21+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -5625,12 +5626,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/pretix-api-client-php.git",
-                "reference": "a5a208fe1b7a816a982c323a285a30ab88fe01f7"
+                "reference": "ec2c707eaee8359a5fd1f6c7f1c36ff33b19daeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/a5a208fe1b7a816a982c323a285a30ab88fe01f7",
-                "reference": "a5a208fe1b7a816a982c323a285a30ab88fe01f7",
+                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/ec2c707eaee8359a5fd1f6c7f1c36ff33b19daeb",
+                "reference": "ec2c707eaee8359a5fd1f6c7f1c36ff33b19daeb",
                 "shasum": ""
             },
             "require": {
@@ -5661,7 +5662,7 @@
                 }
             ],
             "description": "PHP client for pretix api",
-            "time": "2020-06-04T11:13:44+00:00"
+            "time": "2020-09-18T10:54:02+00:00"
         },
         {
             "name": "league/container",
@@ -11307,6 +11308,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
