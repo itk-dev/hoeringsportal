@@ -3,7 +3,7 @@
 namespace Drupal\hoeringsportal_data\Service;
 
 /**
- * DAWA.
+ * TODO: Description of what the class does.
  */
 class DAWA {
 

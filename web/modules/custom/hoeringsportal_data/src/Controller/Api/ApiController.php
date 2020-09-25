@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Api controller.
+ * TODO: Description of what the class does.
  */
 abstract class ApiController extends ControllerBase {
 

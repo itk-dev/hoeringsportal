@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ApiController.
+ * TODO: Description of what the class does.
  */
 class ApiController extends ControllerBase {
 

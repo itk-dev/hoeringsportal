@@ -2,7 +2,6 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
-use DateTimeInterface;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -52,7 +51,7 @@ class ProjectTimeline extends BlockBase {
       $project_start_timestamp = $node->field_project_start->date->getTimestamp();
       $timeline_items[] = [
         'title' => t('Start'),
-        'startDate' => $node->field_project_start->date->format(DateTimeInterface::ATOM),
+        'startDate' => $node->field_project_start->date->format(\DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
         'description' => NULL,
@@ -68,7 +67,7 @@ class ProjectTimeline extends BlockBase {
       $project_end_timestamp = $node->field_project_finish->date->getTimestamp();
       $timeline_items[] = [
         'title' => t('Expected finish'),
-        'startDate' => $node->field_project_finish->date->format(DateTimeInterface::ATOM),
+        'startDate' => $node->field_project_finish->date->format(\DateTimeInterface::ATOM),
         'endDate' => NULL,
         'type' => 'system',
         'description' => NULL,
@@ -91,7 +90,7 @@ class ProjectTimeline extends BlockBase {
         if (isset($hearing->field_reply_deadline->date)) {
           $timeline_items[] = [
             'title' => $hearing->title->value,
-            'startDate' => $hearing->field_reply_deadline->date->format(DateTimeInterface::ATOM),
+            'startDate' => $hearing->field_reply_deadline->date->format(\DateTimeInterface::ATOM),
             'endDate' => NULL,
             'type' => 'hearing',
             'description' => $hearing->field_teaser->value,
@@ -125,8 +124,8 @@ class ProjectTimeline extends BlockBase {
           $timeline_items[] = [
             'title' => $meeting_node->title->value,
             // Only one date is used in JS and we want it to be end date.
-            'startDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
-            'endDate' => $last_meeting->time_from->format(DateTimeInterface::ATOM),
+            'startDate' => $last_meeting->time_from->format(\DateTimeInterface::ATOM),
+            'endDate' => $last_meeting->time_from->format(\DateTimeInterface::ATOM),
             'type' => 'meeting',
             'description' => NULL,
             'state' => $last_meeting->time_from < $now ? 'passed' : 'upcomming',
@@ -155,8 +154,8 @@ class ProjectTimeline extends BlockBase {
       if (isset($paragraph_obj->field_timeline_date->date)) {
         $timeline_items[] = [
           'title' => $paragraph_obj->field_timeline_title->value,
-          'startDate' => $paragraph_obj->field_timeline_date->date->format(DateTimeInterface::ATOM),
-          'endDate' => isset($paragraph_obj->field_timeline_end_date->date) ? $paragraph_obj->field_timeline_end_date->date->format(DateTimeInterface::ATOM) : NULL,
+          'startDate' => $paragraph_obj->field_timeline_date->date->format(\DateTimeInterface::ATOM),
+          'endDate' => isset($paragraph_obj->field_timeline_end_date->date) ? $paragraph_obj->field_timeline_end_date->date->format(\DateTimeInterface::ATOM) : NULL,
           'type' => isset($label) ? str_replace(' ', '_', $label) : '',
           'description' => $paragraph_obj->field_timeline_description->value,
           'state' => $paragraph_obj->field_timeline_date->date->getTimestamp() < $now_timestamp ? 'passed' : 'upcomming',

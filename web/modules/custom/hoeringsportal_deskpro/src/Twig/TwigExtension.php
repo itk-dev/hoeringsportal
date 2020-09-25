@@ -36,7 +36,16 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return [
-      new \Twig_SimpleFunction('deskpro_ticket_custom_field', [$this, 'getTicketCustomField'], ['is_safe' => ['all']]),
+      new \Twig_SimpleFunction(
+        'deskpro_ticket_custom_field',
+        [
+          $this,
+          'getTicketCustomField',
+        ],
+        [
+          'is_safe' => ['all'],
+        ]
+      ),
     ];
   }
 
