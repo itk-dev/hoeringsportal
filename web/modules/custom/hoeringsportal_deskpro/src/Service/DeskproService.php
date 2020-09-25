@@ -11,7 +11,7 @@ use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use GuzzleHttp\Client;
 
 /**
- * Class DeskproService.
+ * TODO: Description of what the class does.
  */
 class DeskproService {
   /**
@@ -235,7 +235,10 @@ class DeskproService {
    */
   public function getTicketCustomField($name) {
     $id = $this->config->getTicketCustomFieldId($name);
-    $response = $this->get('/ticket_custom_fields/{id}', ['id' => $id, 'no_cache' => TRUE]);
+    $response = $this->get('/ticket_custom_fields/{id}', [
+      'id' => $id,
+      'no_cache' => TRUE,
+    ]);
 
     return $response->getData();
   }
