@@ -84,6 +84,7 @@ module:
   user: 0
   views_ui: 0
   viewsreference: 0
+  web_accessibility_statement: 0
   ds: 1
   menu_link_content: 1
   pathauto: 1

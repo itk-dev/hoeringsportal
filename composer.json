@@ -72,6 +72,7 @@
         "itk-dev/itk_media_entity": "^1.1",
         "itk-dev/itk_pretix": "dev-develop",
         "itk-dev/itk_siteimprove": "^1.0",
+        "itk-dev/web_accessibility_statement": "dev-master",
         "onelogin/php-saml": "dev-3.0.0-namespaceless as 2.5",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",

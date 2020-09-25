@@ -101,7 +101,9 @@ class DeskproSettingsForm extends FormBase {
       '#weight' => '2',
       '#size' => 60,
       '#description' => $this->t('Confirmation text shown after ticket is submitted.')
-      . '<br/>' . $this->t('Available tokens: @tokens', ['@tokens' => implode(' ', $tokens)]),
+      . '<br/>' . $this->t('Available tokens: @tokens', [
+        '@tokens' => implode(' ', $tokens),
+      ]),
     ];
 
     $values = $config->get('representations');
@@ -260,7 +262,10 @@ class DeskproSettingsForm extends FormBase {
     foreach ($values as $name => $id) {
       if (!empty($id) && isset($usedIds[$id])) {
         $titles = $this->getFormConfig()->getTicketCustomFieldTitles();
-        $form_state->setErrorByName('deskpro_ticket_custom_fields][' . $name, $this->t('This field is already used by @name.', ['@id' => $id, '@name' => $titles[$usedIds[$id]] ?? $usedIds[$id]]));
+        $form_state->setErrorByName('deskpro_ticket_custom_fields][' . $name, $this->t('This field is already used by @name.', [
+          '@id' => $id,
+          '@name' => $titles[$usedIds[$id]] ?? $usedIds[$id],
+        ]));
       }
       $usedIds[$id] = $name;
     }

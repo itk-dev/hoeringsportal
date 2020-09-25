@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
- * Class DataController.
+ * TODO: Description of what the class does.
  */
 class DataController extends ControllerBase implements AccessInterface {
 

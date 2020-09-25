@@ -274,7 +274,10 @@ class HearingTicketAddForm extends FormBase {
       return $value;
     }, array_combine($names, $names));
 
-    $data['address'] = implode(', ', [$data['street_and_number'], $data['postal_code_and_city']]);
+    $data['address'] = implode(', ', [
+      $data['street_and_number'],
+      $data['postal_code_and_city'],
+    ]);
     unset($data['street_and_number'], $data['postal_code_and_city']);
 
     if ($form_state->getValue('address_secret')) {
@@ -299,7 +302,11 @@ class HearingTicketAddForm extends FormBase {
 
     try {
       $node = $this->getRouteMatch()->getParameter('node');
-      [$ticket, $message] = $this->helper->createHearingTicket($node, $data, $files);
+      [$ticket, $message] = $this->helper->createHearingTicket(
+        $node,
+        $data,
+        $files
+      );
       $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted and will appear here in a few minutes.'));
 
       // @TODO: Show confirmation page.

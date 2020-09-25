@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf03697927e6dec0939fa353e6d96940",
+    "content-hash": "82f58d834a32e10b1af8592ed1e4c0c9",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -127,7 +127,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -5646,6 +5646,25 @@
             ],
             "description": "PHP client for pretix api",
             "time": "2020-09-18T10:54:02+00:00"
+        },
+        {
+            "name": "itk-dev/web_accessibility_statement",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-dev/web_accessibility_statement.git",
+                "reference": "730c1b4f47d0a5ed6626a86814f84bd1027b2dd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-dev/web_accessibility_statement/zipball/730c1b4f47d0a5ed6626a86814f84bd1027b2dd4",
+                "reference": "730c1b4f47d0a5ed6626a86814f84bd1027b2dd4",
+                "shasum": ""
+            },
+            "type": "drupal-module",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Provides path for accessibility statement",
+            "time": "2020-09-23T13:23:11+00:00"
         },
         {
             "name": "league/container",
@@ -12498,6 +12517,7 @@
         "drupal/flag": 15,
         "drupal/media_entity_usage": 20,
         "itk-dev/itk_pretix": 20,
+        "itk-dev/web_accessibility_statement": 20,
         "onelogin/php-saml": 20
     },
     "prefer-stable": true,
