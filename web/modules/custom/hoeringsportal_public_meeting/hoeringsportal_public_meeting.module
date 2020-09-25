@@ -340,12 +340,3 @@ function hoeringsportal_public_meeting_node_view(array &$build, EntityInterface 
     }
   }
 }
-
-/**
- * Implements hook_views_pre_render().
- */
-function hoeringsportal_public_meeting_views_pre_render(&$view) {
-  header('content-type: text/plain');
-  echo var_export(NULL, TRUE);
-  die(__FILE__ . ':' . __LINE__ . ':' . __METHOD__);
-}
