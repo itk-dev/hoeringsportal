@@ -109,6 +109,17 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Decide if the registration deadline must be showed.
+   */
+  public function showRegistrationDeadline(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return 0 === (int) $node->field_hidden_signup->value;
+  }
+
+  /**
    * Check if a public meeting has been held.
    */
   public function hasBeenHeld(NodeInterface $node) {
