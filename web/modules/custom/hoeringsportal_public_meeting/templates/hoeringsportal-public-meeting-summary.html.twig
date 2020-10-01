@@ -16,6 +16,12 @@
 
   <h5 class="mt-3">{{ 'Time'|t }}</h5>
   {{ node.field_pretix_dates[0].time_from|date('U')|format_date('hoeringsportal_time') }} - {{ node.field_pretix_dates[0].time_to|date('U')|format_date('hoeringsportal_time') }}
+{% elseif node.field_last_meeting_time[0] is defined %}
+  <h5 class="mt-3">{{ 'Date'|t }}</h5>
+  {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_date_long') }}
+
+  <h5 class="mt-3">{{ 'Time'|t }}</h5>
+  {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_time') }}
 {% endif %}
 
 {% if pretix_signup.location is defined %}
