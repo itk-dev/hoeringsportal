@@ -16,7 +16,9 @@ JavaScript and CSS (actually SCSS) assets are put in `assets/js/` and
 First, install tools and requirements:
 
 ```sh
-yarn install
+FONTAWESOME_NPM_AUTH_TOKEN='your-fontawesome-token' \
+  NPM_CONFIG_USERCONFIG=.npmrc.install \
+  yarn install
 ```
 
 Build for development:

@@ -49,16 +49,20 @@
 
       <div class="d-block d-lg-none bg-white p-3 signup-responsive">
         <div>
-          <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
-          {{ variables.location }}
-        </div>
-        <div>
           <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
           {{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}
         </div>
         <div>
           <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
           {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
+        </div>
+        <div>
+          <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
+          {{ variables.location }}
+        </div>
+        <div>
+          <h5 class="h5-responsive">{{ 'Address'|t }}</h5>
+          {{ variables.address }}
         </div>
         <div>
           <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
