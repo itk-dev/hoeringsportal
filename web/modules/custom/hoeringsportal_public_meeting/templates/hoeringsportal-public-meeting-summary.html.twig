@@ -28,6 +28,10 @@
   <h5 class="mt-3">{{ 'Place'|t }}</h5>
   {{ pretix_signup.location }}
 {% endif %}
+{% if pretix_signup.address is defined %}
+  <h5 class="mt-3">{{ 'Address'|t }}</h5>
+  {{ pretix_signup.address }}
+{% endif %}
 
 {% if signup_deadline.value|default(false) %}
   <h5 class="mt-3">{{ 'Last signup date'|t }}</h5>

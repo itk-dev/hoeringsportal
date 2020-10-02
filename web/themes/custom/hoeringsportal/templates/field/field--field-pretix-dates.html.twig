@@ -53,6 +53,10 @@
           {{ variables.location }}
         </div>
         <div>
+          <h5 class="h5-responsive">{{ 'Address'|t }}</h5>
+          {{ variables.address }}
+        </div>
+        <div>
           <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
           {{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}
         </div>
