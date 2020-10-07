@@ -127,7 +127,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -5551,12 +5551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "870f4464f4ab0f19b2b402a8b979059dbd3afd4b"
+                "reference": "21910403f79ff28decc30d5b1a6b63c1d4828c02"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/870f4464f4ab0f19b2b402a8b979059dbd3afd4b",
-                "reference": "870f4464f4ab0f19b2b402a8b979059dbd3afd4b",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/21910403f79ff28decc30d5b1a6b63c1d4828c02",
+                "reference": "21910403f79ff28decc30d5b1a6b63c1d4828c02",
                 "shasum": ""
             },
             "require": {
@@ -5576,7 +5576,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-09-23T11:28:02+00:00"
+            "time": "2020-10-07T11:33:12+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
