@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2020-06-29 09:51+0200\n"
-"PO-Revision-Date: 2020-06-29 09:53+0200\n"
+"POT-Creation-Date: 2020-10-22 15:44+0000\n"
+"PO-Revision-Date: 2020-10-22 17:45+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language: da\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 
 msgid "Primary admin actions"
 msgstr "Primary admin actions"
@@ -991,6 +991,12 @@ msgstr "Vælg fil"
 msgid "Upcoming"
 msgstr "På vej"
 
+msgid "Teaser/indledning"
+msgstr "Teaser/indledning"
+
+msgid "Kort tekst der vises i teasers og i toppen af indholdsviningen"
+msgstr "Kort tekst der vises i teasers og i toppen af indholdsvisningen"
+
 msgid "Beskrivelse af høringen."
 msgstr ""
 "Beskrivelse af høringen. Tænk gerne i korte og præcise afsnit, da mange "
@@ -1010,10 +1016,11 @@ msgid ""
 "retningslinjer. &#13;\n"
 "Hvis du er i tvivl kan du spørge den GDPR ansvarlige i din afdeling."
 msgstr ""
-"Tilføj linket til din video.&#13; Det er redaktørens ansvar at videoen "
-"overholder kommunens GDPR-retningslinjer. &#13; Hvis du er i tvivl kan du "
-"spørge den GDPR-ansvarlige i din afdeling. Vær desuden opmærksom på om "
-"videoen er webtilgængelig."
+"Du kan benytte videoer fra Youtube og Vimeo - Du skal dog være opmærksom "
+"på om videoer fra Vimeo sætter cookies. Grundet regler for Cookie "
+"lovgivningen kan du ikke selv uploade videoer, og du skal derfor sende "
+"linket til den video du vil bruge på support@itkdev.dk for at få hjælp. "
+"Vær desuden opmærksom på om videoen er webtilgængelig."
 
 msgid "https://visplaner.plandata.dk/visplaner/lokalplaner.html"
 msgstr ""
@@ -1052,6 +1059,21 @@ msgstr "Projektgalleri"
 
 msgid "Point"
 msgstr "Vælg punkt på kort"
+
+msgid "Available date"
+msgstr ""
+
+msgid "You can select up to @maximum @entity_type (@remaining left)."
+msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
+
+msgid "Advanced Queue jobs"
+msgstr "Advanced queue jobs"
+
+msgid "<pre>{{ payload }}</pre>"
+msgstr ""
+
+msgid "Available from"
+msgstr "Available date"
 
 msgid "Spots"
 msgstr "Pladser"
@@ -1117,9 +1139,6 @@ msgstr ""
 msgid "Public meeting"
 msgstr "Borgermøde"
 
-msgid "You can select up to @maximum @entity_type (@remaining left)."
-msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
-
 msgid "You can select one @entity_type."
 msgstr "Du kan kun vælge ét @entity_type."
 
@@ -1137,12 +1156,6 @@ msgstr ""
 "Vælg denne hvis mødet er til en lukket gruppe af inviterede, og tilmelding "
 "ikke skal være muligt via hjemmesiden. Når mødet er oprettet vil du her "
 "finde et link du kan sende til de inviterede."
-
-msgid "Advanced Queue jobs"
-msgstr "Advanced queue jobs"
-
-msgid "Available from"
-msgstr "Available date"
 
 msgid ""
 "Start typing the title of a piece of content to select it. You can also "
@@ -1253,3 +1266,6 @@ msgstr ""
 
 msgid "Select none"
 msgstr "Vælg ingen"
+
+msgid "Your full name"
+msgstr "For- og efternavn"
