@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function itkdev_fields_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if (isset($variables['element'])) {
+    $element = $variables['element'];
+
+    if (isset($element['#widget'])) {
+      $theme_hook = $variables['theme_hook_original'] ?? $hook;
+      $suggestions[] = $theme_hook . '__' . $element['#widget'];
+      if (isset($element['#type'])) {
+        $suggestions[] = $theme_hook . '__' . $element['#type'] . '__' . $element['#widget'];
+      }
+      elseif (isset($element['#theme_wrappers'])) {
+        foreach ($element['#theme_wrappers'] as $theme_wrapper) {
+          $suggestions[] = $theme_hook . '__' . $theme_wrapper . '__' . $element['#widget'];
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function itkdev_fields_theme($existing, $type, $theme, $path) {
+  return [
+    'widget_daterange_same_date' => [
+      'render element' => 'element',
+    ],
+  ];
+}

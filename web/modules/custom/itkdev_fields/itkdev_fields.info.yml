@@ -1,0 +1,8 @@
+name: ITK Dev fields
+type: module
+description: 'Fancy fields'
+package: ITK Dev
+core: '8.x'
+
+dependences:
+  - drupal:daterange
