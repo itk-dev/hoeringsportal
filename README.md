@@ -45,14 +45,17 @@ A number of `cron` jobs must be set up to make things happen automagically; see
 Import translations by running
 
 ```sh
-drush --uri=https://127.0.0.1:8000/ locale:import  --type=customized --override=all da translations/custom-translations.da.po
+(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)
 ```
 
 Export translations by running
 
 ```sh
-drush locale:export da --types=customized > translations/custom-translations.da.po
+(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)
 ```
+
+Open `translations/custom-translations.da.po` with the latest version of
+[Poedit](https://poedit.net/) to clean up and then save the file.
 
 See
 https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
