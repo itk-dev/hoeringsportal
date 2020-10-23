@@ -125,12 +125,22 @@ class HearingTicketAddForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Postal code and city'),
       '#attributes' => ['autocomplete' => 'off'],
+      '#states' => [
+        'required' => [
+          ':input[name="address_secret"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
 
     $form['address']['street_and_number'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Street and number'),
       '#attributes' => ['autocomplete' => 'off'],
+      '#states' => [
+        'required' => [
+          ':input[name="address_secret"]' => ['checked' => FALSE],
+        ],
+      ],
     ];
 
     $form['postal_code'] = [
@@ -244,6 +254,15 @@ class HearingTicketAddForm extends FormBase {
       // 'organization',
       // $this->t('Please enter your organization.')
       // );
+    }
+
+    if (!$form_state->getValue('address_secret')) {
+      if (empty(trim($form_state->getValue('postal_code_and_city')))) {
+        $form_state->setErrorByName('postal_code_and_city', $this->t('Please enter your postal code and city.'));
+      }
+      if (empty(trim($form_state->getValue('street_and_number')))) {
+        $form_state->setErrorByName('street_and_number', $this->t('Please enter your street and number.'));
+      }
     }
   }
 
