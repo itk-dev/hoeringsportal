@@ -89,7 +89,7 @@ class HearingTicketAddForm extends FormBase {
 
     $form['name'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Name'),
+      '#title' => $this->t('Your full name'),
       '#required' => TRUE,
     ];
 
