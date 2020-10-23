@@ -1,0 +1,21 @@
+uuid: d3ac730d-a337-4583-884a-21348f96ec70
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_meeting_time_end
+    - node.type.public_meeting
+  module:
+    - datetime
+id: node.public_meeting.field_last_meeting_time_end
+field_name: field_last_meeting_time_end
+entity_type: node
+bundle: public_meeting
+label: Sluttidspunkt
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
+    - field.field.node.public_meeting.field_last_meeting_time_end
     - field.field.node.public_meeting.field_map
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -156,6 +157,7 @@ hidden:
   field_first_meeting_time: true
   field_hidden_signup: true
   field_last_meeting_time: true
+  field_last_meeting_time_end: true
   field_map: true
   field_pretix_dates: true
   field_pretix_event_settings: true
