@@ -11,12 +11,32 @@ networks:
     internal: false
 
 services:
+  traefik:
+    image: 'traefik:v2.3'
+    container_name: 'traefik'
+    command:
+      #- '--log.level=DEBUG'
+      - '--api.insecure=true'
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
+      - '--entrypoints.web.address=:80'
+    networks:
+      - frontend
+    ports:
+      - '80:80'
+      - '8080:8080'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - $PWD/.docker/traefik.yml:/traefik.yml:ro
+
   mariadb:
     image: itkdev/mariadb:latest
     networks:
       - app
     ports:
       - '3306'
+    volumes:
+      - .docker/drupal/dumps:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_USER=db

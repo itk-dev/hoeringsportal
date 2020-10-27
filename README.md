@@ -213,6 +213,12 @@ Start the containers:
 docker-compose up -d
 ```
 
+Sign in to Drupal:
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ user:login
+```
+
 ### `mutagen`
 
 ```sh
@@ -258,4 +264,16 @@ curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqq
 
 ```sh
 gunzip < .docker/pretix/dumps/pretix_2020-02-26.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
+```
+
+### Database dumps
+
+The `docker-compose` setup contains a couple of database dumps, one for Drupal
+and one for pretix, to make it easy to get started. When adding new
+functionality to Drupal, you may need to upgrade the database dump.
+
+#### Drupal
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush sql:dump --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
 ```
