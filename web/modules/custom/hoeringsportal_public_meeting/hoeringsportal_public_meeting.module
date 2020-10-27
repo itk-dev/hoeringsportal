@@ -303,13 +303,11 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
 /**
  * Implements hook_itk_pretix_shop_live_alter().
  */
-function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, $node) {
+function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, NodeInterface $node) {
   /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
   $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
-  // Set pretix event to not live if sign-up deadline is passed or event is
-  // cancelled.
-  if ($helper->isDeadlinePassed($node)
-    || $node->field_public_meeting_cancelled->value > 0) {
+  // Set pretix event to not live if event is cancelled.
+  if ($helper->isCancelled($node)) {
     $live = FALSE;
   }
 }
