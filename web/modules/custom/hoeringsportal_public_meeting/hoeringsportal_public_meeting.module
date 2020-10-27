@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\itk_pretix\Pretix\EventHelper;
 use Drupal\node\NodeInterface;
 use Drupal\Component\Render\FormattableMarkup;
 
@@ -309,6 +310,18 @@ function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, NodeIn
   // Set pretix event to not live if event is cancelled.
   if ($helper->isCancelled($node)) {
     $live = FALSE;
+  }
+}
+
+/**
+ * Implements hook_itk_pretix_subevent_data_alter().
+ */
+function hoeringsportal_public_meeting_itk_pretix_subevent_data_alter(&$data, NodeInterface $node, array $context) {
+  /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
+  $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
+  $deadline = $helper->getDeadline($node);
+  if ($deadline) {
+    $data['presale_end'] = $deadline->format(EventHelper::DATETIME_FORMAT);
   }
 }
 
