@@ -112,6 +112,9 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
     $form['field_last_meeting_time']['#states'] = [
       'visible' => $signUpManual,
     ];
+    $form['field_last_meeting_time_end']['#states'] = [
+      'visible' => $signUpManual,
+    ];
 
     _hoeringsportal_public_meeting_set_states($form['field_pretix_dates'], [
       'required' => $signUpPretix,
@@ -185,6 +188,7 @@ function _hoeringsportal_public_meeting_set_states(array &$element, array $state
 function hoeringsportal_public_meeting_alter_form_after_build(array $form, FormStateInterface &$form_state) {
   // Add custom field validation for last meeting.
   array_unshift($form['field_last_meeting_time']['widget'][0]['value']['#element_validate'], 'hoeringsportal_public_meeting_last_meeting_validate');
+  array_unshift($form['field_last_meeting_time_end']['widget'][0]['value']['#element_validate'], 'hoeringsportal_public_meeting_last_meeting_end_validate');
   return $form;
 }
 
@@ -202,6 +206,25 @@ function hoeringsportal_public_meeting_last_meeting_validate(array $element, For
     $last_time_values = $form_state->getValue('field_last_meeting_time')[0]['value'];
     if (empty($last_time_values['object'])) {
       $form_state->setErrorByName('field_last_meeting_time',
+        t('Please enter a value!'));
+    }
+  }
+}
+
+/**
+ * Custom validation function to ensure that last_meeting_time_end is set.
+ *
+ * @param array $element
+ *   The element.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   The form state.
+ */
+function hoeringsportal_public_meeting_last_meeting_end_validate(array $element, FormStateInterface &$form_state) {
+  $signup_selection = $form_state->getValue('field_signup_selection')[0]['value'];
+  if ($signup_selection == 'manual') {
+    $last_time_end_values = $form_state->getValue('field_last_meeting_time_end')[0]['value'];
+    if (empty($last_time_end_values['object'])) {
+      $form_state->setErrorByName('field_last_meeting_time_end',
         t('Please enter a value!'));
     }
   }
@@ -269,6 +292,10 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
     }
     if ($meeting_start_time < $registration_deadline) {
       $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
+    }
+    $meeting_start_time_end = $formState->getValue('field_last_meeting_time_end')[0]['value'];
+    if ($meeting_start_time_end <= $meeting_start_time) {
+      $formState->setErrorByName('field_last_meeting_time_end', t('The meeting end time must be after the start time.'));
     }
   }
 }
