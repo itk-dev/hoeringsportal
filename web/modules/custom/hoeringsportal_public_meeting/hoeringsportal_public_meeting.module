@@ -41,10 +41,11 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
   if (Drupal::currentUser()->isAuthenticated() && $node->bundle() === 'public_meeting') {
     $pretix_field_name = 'field_pretix_dates';
     $first_meeting_field_name = 'field_first_meeting_time';
-    $last_meeting_field_name = 'field_last_meeting_time';
+    $last_meeting_time_field_name = 'field_last_meeting_time';
+    $last_meeting_time_end_field_name = 'field_last_meeting_time_end';
     $pretix_field = $node->hasField($pretix_field_name) ? $node->get($pretix_field_name) : NULL;
     $first_meeting = $node->hasField($first_meeting_field_name) ? $node->get($first_meeting_field_name) : NULL;
-    $last_meeting = $node->hasField($last_meeting_field_name) ? $node->get($last_meeting_field_name) : NULL;
+    $last_meeting = $node->hasField($last_meeting_time_field_name) ? $node->get($last_meeting_time_field_name) : NULL;
     $format = DateTimeItemInterface::DATETIME_STORAGE_FORMAT;
     if ('pretix' === $node->field_signup_selection->value) {
       if ($pretix_field) {
@@ -66,7 +67,8 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
               }
 
               $node->set($first_meeting_field_name, $first_time->format($format, ['timezone' => 'UTC']));
-              $node->set($last_meeting_field_name, $last_time->format($format, ['timezone' => 'UTC']));
+              $node->set($last_meeting_time_field_name, $last_time->format($format, ['timezone' => 'UTC']));
+              $node->set($last_meeting_time_end_field_name, $last_time->format($format, ['timezone' => 'UTC']));
             }
           }
         }
