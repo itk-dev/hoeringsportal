@@ -39,15 +39,6 @@ class DrushCommands extends BaseDrushCommands {
         $this->helper->setState($meeting, $newState)->save();
         $this->writeln(json_encode([$meeting->id(), $newState]));
       }
-
-      // Set shop not live if deadline is passed.
-      if ($this->helper->isDeadlinePassed($meeting)) {
-        /** @var \Drupal\itk_pretix\Pretix\EventHelper $eventHelper */
-        $eventHelper = \Drupal::service('itk_pretix.event_helper');
-        if ($eventHelper->isEventLive($meeting)) {
-          $eventHelper->setEventLive($meeting, FALSE);
-        }
-      }
     }
   }
 
