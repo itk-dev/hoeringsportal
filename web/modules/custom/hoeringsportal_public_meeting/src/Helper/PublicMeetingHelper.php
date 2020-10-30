@@ -81,7 +81,7 @@ class PublicMeetingHelper {
   }
 
   /**
-   * Check if public_meeting deadline is passed.
+   * Get deadline for a public_meeting.
    */
   public function getDeadline(NodeInterface $node) {
     if (!$this->isPublicMeeting($node)) {
