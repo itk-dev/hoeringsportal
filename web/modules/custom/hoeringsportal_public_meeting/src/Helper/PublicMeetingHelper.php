@@ -81,6 +81,17 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Get deadline for a public_meeting.
+   */
+  public function getDeadline(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return $node->field_registration_deadline->date;
+  }
+
+  /**
    * Check if public_meeting deadline is passed.
    */
   public function isDeadlinePassed(NodeInterface $node) {
@@ -88,13 +99,9 @@ class PublicMeetingHelper {
       return FALSE;
     }
 
-    $deadline = $node->field_registration_deadline->date;
+    $deadline = $this->getDeadline($node);
 
-    if (empty($deadline)) {
-      return FALSE;
-    }
-
-    return $this->getDateTime() > $deadline;
+    return $deadline && $this->getDateTime() > $deadline;
   }
 
   /**
