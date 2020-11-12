@@ -5,6 +5,9 @@ services:
 
   hoeringsportal_public_meeting.commands:
     class: Drupal\hoeringsportal_public_meeting\Commands\DrushCommands
-    arguments: ['@hoeringsportal_public_meeting.public_meeting_helper']
+    arguments:
+      - '@hoeringsportal_public_meeting.public_meeting_helper'
+      - '@datetime.time'
+      - '@state'
     tags:
       - { name: drush.command }

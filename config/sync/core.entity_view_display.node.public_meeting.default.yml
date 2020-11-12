@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
+    - field.field.node.public_meeting.field_last_meeting_time_end
     - field.field.node.public_meeting.field_map
     - field.field.node.public_meeting.field_media_document
     - field.field.node.public_meeting.field_media_image_single
@@ -166,6 +167,15 @@ content:
     third_party_settings: {  }
     type: boolean
     region: footer
+  field_last_meeting_time_end:
+    weight: 15
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
   field_map:
     weight: 11
     label: hidden
