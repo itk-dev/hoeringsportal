@@ -104,7 +104,7 @@ services:
       - "8025"
 
   pretix:
-    image: pretix/standalone:stable
+    image: pretix/standalone:latest
     networks:
       - app
       - pretix
