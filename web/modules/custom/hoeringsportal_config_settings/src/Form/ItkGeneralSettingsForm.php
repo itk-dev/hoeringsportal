@@ -173,6 +173,20 @@ class ItkGeneralSettingsForm extends FormBase {
       '#default_value' => $config->get('users_manual_url'),
     ];
 
+    $form['messages'] = [
+      '#title' => $this->t('Messages'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '2',
+      '#group' => 'general_settings',
+    ];
+
+    $form['messages']['login_message'] = [
+      '#title' => $this->t('Login message'),
+      '#type' => 'textarea',
+      '#default_value' => $config->get('login_message'),
+    ];
+
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => t('Save changes'),
