@@ -210,8 +210,17 @@ function hoeringsportal_forms_form_alter(&$form, FormStateInterface $form_state,
       $form['login_providers'] = [
         '#type' => 'fieldset',
         '#title' => t('Login providers'),
-        '#weight' => -1000,
+        '#weight' => -100,
       ] + $login_providers;
+    }
+
+    $config = \Drupal::getContainer()->get('itk_admin.itk_config');
+    if ($config->get('login_message')) {
+      $form['login_message'] = [
+        '#type' => 'markup',
+        '#markup' => $config->get('login_message'),
+        '#weight' => -200,
+      ];
     }
   }
 

@@ -87,6 +87,9 @@ $card-border-radius: 0;
 $card-border-color: none;
 $card-inner-border-radius: 0;
 
+// Set form input color
+$input-color: $gray-800;
+
 // Import bootstrap scss
 @import "~bootstrap/scss/bootstrap.scss";
 // If you need to import components individually you can find the
