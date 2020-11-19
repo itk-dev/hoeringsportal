@@ -105,7 +105,7 @@ class ItkGeneralSettingsForm extends FormBase {
       '#group' => 'general_settings',
     ];
 
-    $node_reference = Node::load($config->get('initiative_overview'));
+    $node_reference = Node::load($config->get('initiative_overview') ?? -1);
     $form['overview_pages']['initiative_overview'] = [
       '#title' => $this->t('Initiative overview page'),
       '#type' => 'entity_autocomplete',
@@ -115,7 +115,7 @@ class ItkGeneralSettingsForm extends FormBase {
       '#weight' => '1',
     ];
 
-    $node_reference = Node::load($config->get('hearings_overview'));
+    $node_reference = Node::load($config->get('hearings_overview') ?? -1);
     $form['overview_pages']['hearings_overview'] = [
       '#title' => $this->t('Hearings overview page'),
       '#type' => 'entity_autocomplete',
@@ -158,7 +158,7 @@ class ItkGeneralSettingsForm extends FormBase {
       '#group' => 'general_settings',
     ];
 
-    $node_reference = Node::load($config->get('frontpage_id'));
+    $node_reference = Node::load($config->get('frontpage_id') ?? -1);
     $form['misc']['frontpage_id'] = [
       '#title' => $this->t('Front page'),
       '#type' => 'entity_autocomplete',
@@ -171,6 +171,20 @@ class ItkGeneralSettingsForm extends FormBase {
       '#title' => $this->t("User's manual url"),
       '#type' => 'url',
       '#default_value' => $config->get('users_manual_url'),
+    ];
+
+    $form['messages'] = [
+      '#title' => $this->t('Messages'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '2',
+      '#group' => 'general_settings',
+    ];
+
+    $form['messages']['login_message'] = [
+      '#title' => $this->t('Login message'),
+      '#type' => 'textarea',
+      '#default_value' => $config->get('login_message'),
     ];
 
     $form['submit'] = [
@@ -200,6 +214,7 @@ class ItkGeneralSettingsForm extends FormBase {
       'full_map_hearing_url' => $form_state->getValue('full_map_hearing_url'),
       'frontpage_id' => $form_state->getValue('frontpage_id'),
       'users_manual_url' => $form_state->getValue('users_manual_url'),
+      'login_message' => $form_state->getValue('login_message'),
     ]);
 
     drupal_flush_all_caches();
