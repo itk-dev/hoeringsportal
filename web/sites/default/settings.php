@@ -27,6 +27,8 @@ $settings['install_profile'] = 'minimal';
 // Configuration sync path.
 $config_directories['sync'] = '../config/sync';
 
+$settings['file_private_path'] = DRUPAL_ROOT . '/../private-files';
+
 // Deskpro configuration.
 $settings['hoeringsportal_deskpro.deskpro'] = [
 	// Deskpro API base url, e.g. 'https://demo.deskpro.com'
