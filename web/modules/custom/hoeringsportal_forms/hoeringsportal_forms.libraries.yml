@@ -9,3 +9,5 @@ user-login-form:
   css:
     theme:
       css/user-login-form.css: { media: screen }
+  js:
+    js/user-login-form.js: {}
