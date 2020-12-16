@@ -11,7 +11,7 @@ field_name: field_area
 entity_type: node
 bundle: hearing
 label: Område
-description: "Vælg områder som høringen dækker. Markér alle hvis høringen dækker hele kommunen."
+description: 'Vælg områder som høringen dækker. Markér alle hvis høringen dækker hele kommunen.'
 required: true
 translatable: true
 default_value: {  }
