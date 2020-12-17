@@ -15,9 +15,9 @@ dependencies:
     - taxonomy
     - user
 id: all_meetings
-label: 'Alle borgermøder'
+label: 'Alle begivenheder'
 module: views
-description: 'En liste af alle høringer'
+description: 'En liste af alle begivenheder'
 tag: ''
 base_table: node_field_data
 base_field: nid

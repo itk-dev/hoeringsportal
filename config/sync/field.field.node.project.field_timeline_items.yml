@@ -27,20 +27,17 @@ settings:
       timeline_items: timeline_items
       timeline_period: timeline_period
     target_bundles_drag_drop:
-      timeline_items:
-        enabled: true
-        weight: 9
       content_block:
         weight: 10
         enabled: false
-      timeline_period:
-        enabled: true
-        weight: 11
       content_list:
         weight: 11
         enabled: false
       image:
         weight: 12
+        enabled: false
+      info_box:
+        weight: 15
         enabled: false
       introduction:
         weight: 13
@@ -48,13 +45,16 @@ settings:
       projekt_billede_galleri:
         weight: 14
         enabled: false
-      info_box:
-        weight: 15
-        enabled: false
       teaser_row:
         weight: 15
         enabled: false
       text:
         weight: 16
         enabled: false
+      timeline_items:
+        enabled: true
+        weight: 9
+      timeline_period:
+        enabled: true
+        weight: 11
 field_type: entity_reference_revisions

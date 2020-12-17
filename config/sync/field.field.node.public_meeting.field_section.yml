@@ -30,15 +30,15 @@ settings:
       content_block:
         enabled: true
         weight: 9
-      info_box:
-        enabled: true
-        weight: 10
       content_list:
         weight: 10
         enabled: false
       image:
         weight: 11
         enabled: false
+      info_box:
+        enabled: true
+        weight: 10
       introduction:
         weight: 12
         enabled: false
