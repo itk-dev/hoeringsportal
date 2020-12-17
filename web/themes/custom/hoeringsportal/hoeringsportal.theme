@@ -230,6 +230,13 @@ function hoeringsportal_preprocess_container(&$variables) {
           $type_list[$key]['icon'] = 'fal fa-2x fa-star';
           break;
       }
+
+      // @TODO: We need to attach some icon metadata to the taxonomy term.
+      switch ($term->tid) {
+        case '77':
+          $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';
+          break;
+      }
     }
 
     // Add All option to array.
