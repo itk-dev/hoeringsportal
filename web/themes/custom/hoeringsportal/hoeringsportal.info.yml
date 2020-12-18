@@ -15,8 +15,9 @@ regions:
   footer: Footer
 stylesheets-remove:
   - normalize.css
-dependencies:
-  - hoeringsportal_public_meeting
+# @see https://www.drupal.org/docs/8/theming-drupal-8/defining-a-theme-with-an-infoyml-file#dependencies
+# dependencies:
+#   - module:hoeringsportal_public_meeting
 
 'interface translation project': hoeringsportal
 'interface translation server pattern': themes/custom/%project/translations/%project.%language.po

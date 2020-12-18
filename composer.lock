@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0d272cb63689b59a360d42631327c03",
+    "content-hash": "04ba3bdcb3bdfcdb2e7a8a69b7840c86",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -127,7 +127,7 @@
             "version": "3.5.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "4c0e4becb8263bb5b3e6dadc448d8e7305ef8215"
             },
             "dist": {
@@ -5626,21 +5626,22 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-develop",
+            "version": "dev-exporters",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "9776985a44996df39d07ab8d45dee639ff262dfb"
+                "reference": "7e18b0f4796d9d138b8ab79ac94c488038137afd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/9776985a44996df39d07ab8d45dee639ff262dfb",
-                "reference": "9776985a44996df39d07ab8d45dee639ff262dfb",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/7e18b0f4796d9d138b8ab79ac94c488038137afd",
+                "reference": "7e18b0f4796d9d138b8ab79ac94c488038137afd",
                 "shasum": ""
             },
             "require": {
                 "itk-dev/pretix-api-client-php": "dev-develop",
-                "nicoeg/dawa": "^1.0"
+                "nicoeg/dawa": "^1.0",
+                "php": "^7.2"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
@@ -5655,7 +5656,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-10-28T10:32:01+00:00"
+            "time": "2020-12-18T13:34:13+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",

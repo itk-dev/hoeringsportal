@@ -210,8 +210,35 @@ COMPOSE_DOMAIN=hoeringsportal.local.itkdev.dk
 Start the containers:
 
 ```sh
+docker-compose pull
 docker-compose up -d
 ```
+
+Make sure that everything is up to date:
+
+```sh
+# Drupal
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
+
+# pretix
+docker-compose exec pretix python /pretix/src/manage.py migrate
+docker-compose exec pretix python /pretix/src/manage.py compress
+docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
+```
+
+Sign in to Drupal:
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ user:login
+```
+
+Sign in to Pretix:
+
+Go to http://pretix.hoeringsportal.local.itkdev.dk/control/ and sign in with
+username `admin@localhost` and password `admin`.
 
 ### `mutagen`
 
@@ -258,4 +285,33 @@ curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqq
 
 ```sh
 gunzip < .docker/pretix/dumps/pretix_2020-02-26.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
+```
+
+### Database dumps
+
+The `docker-compose` setup contains a couple of database dumps, one for Drupal
+and one for pretix, to make it easy to get started. When adding new
+functionality to Drupal, you may need to upgrade the database dump.
+
+#### Drupal
+
+```sh
+# Make sure that everything is up to date
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
+# Dump the database
+docker-compose exec phpfpm vendor/bin/drush sql:dump --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+```
+
+#### Pretix
+
+```sh
+# Make sure that everything is up to date
+docker-compose exec pretix python /pretix/src/manage.py migrate
+docker-compose exec pretix python /pretix/src/manage.py compress
+docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
+# Dump the database
+mysqldump --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix | gzip > .docker/pretix/dumps/pretix.sql.gz
 ```
