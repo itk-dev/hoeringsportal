@@ -27,3 +27,4 @@ drush/sites/self.site.yml
 
 /.env.local
 /.env.*.local
+private-files
