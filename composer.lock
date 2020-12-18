@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04ba3bdcb3bdfcdb2e7a8a69b7840c86",
+    "content-hash": "e0d272cb63689b59a360d42631327c03",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5626,22 +5626,21 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-exporters",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "7e18b0f4796d9d138b8ab79ac94c488038137afd"
+                "reference": "9776985a44996df39d07ab8d45dee639ff262dfb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/7e18b0f4796d9d138b8ab79ac94c488038137afd",
-                "reference": "7e18b0f4796d9d138b8ab79ac94c488038137afd",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/9776985a44996df39d07ab8d45dee639ff262dfb",
+                "reference": "9776985a44996df39d07ab8d45dee639ff262dfb",
                 "shasum": ""
             },
             "require": {
                 "itk-dev/pretix-api-client-php": "dev-develop",
-                "nicoeg/dawa": "^1.0",
-                "php": "^7.2"
+                "nicoeg/dawa": "^1.0"
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
@@ -5656,7 +5655,7 @@
             "keywords": [
                 "drupal"
             ],
-            "time": "2020-12-18T13:34:13+00:00"
+            "time": "2020-10-28T10:32:01+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
