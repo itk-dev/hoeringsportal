@@ -115,3 +115,17 @@ function _hoeringsportal_data_translate_element(&$element, FormStateInterface $f
     }
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_data_theme($existing, $type, $theme, $path) {
+  return [
+    'hoeringsportal_data_statistics_export' => [
+      'variables' => [
+        'data' => NULL,
+        'options' => [],
+      ],
+    ],
+  ];
+}
