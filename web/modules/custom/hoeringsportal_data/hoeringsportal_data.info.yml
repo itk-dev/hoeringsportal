@@ -4,5 +4,7 @@ description: Custom data stuff.
 package: Hoeringsportal
 core: 8.x
 
-dependences:
+dependencies:
   - field
+  - serialization
+  - csv_serialization

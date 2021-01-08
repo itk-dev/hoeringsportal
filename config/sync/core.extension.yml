@@ -13,6 +13,7 @@ module:
   config_ignore: 0
   config_import_locale: 0
   crop: 0
+  csv_serialization: 0
   ctools: 0
   datetime: 0
   datetime_range: 0
@@ -73,6 +74,7 @@ module:
   samlauth: 0
   search: 0
   search_autocomplete: 0
+  serialization: 0
   system: 0
   system_status: 0
   taxonomy: 0
