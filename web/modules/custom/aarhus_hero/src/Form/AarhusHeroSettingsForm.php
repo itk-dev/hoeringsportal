@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\Entity\File;
 
 /**
- * TODO: Description of what the class does.
+ * Aarhus hero settings form.
  *
  * @package Drupal\aarhus_hero\Form
  */
