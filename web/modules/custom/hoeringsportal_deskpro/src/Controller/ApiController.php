@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * TODO: Description of what the class does.
+ * Api controller.
  */
 class ApiController extends ControllerBase {
 
@@ -99,7 +99,7 @@ class ApiController extends ControllerBase {
     $query = \Drupal::entityQuery('node')
       ->condition('type', 'hearing')
       ->condition('status', NodeInterface::PUBLISHED)
-      // @TODO Get only active hearings.
+      // @todo Get only active hearings.
       ->sort('title', 'ASC');
 
     if ($name = $request->query->get('name')) {

@@ -21,7 +21,7 @@ class MapConfigurationValidator extends ConstraintValidator {
    * {@inheritdoc}
    */
   public function __construct() {
-    // @TODO: Use dependency injection for this.
+    // @todo Use dependency injection for this.
     $this->helper = \Drupal::getContainer()->get('hoeringsportal_data.map_helper');
   }
 

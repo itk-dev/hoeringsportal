@@ -8,7 +8,7 @@ use Drupal\node\Entity\Node;
 use Drupal\Core\Url;
 
 /**
- * TODO: Description of what the class does.
+ * Itk general settings form.
  *
  * @package Drupal\itk_admin\Form
  */

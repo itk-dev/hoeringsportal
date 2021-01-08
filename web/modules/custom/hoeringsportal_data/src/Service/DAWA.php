@@ -3,7 +3,7 @@
 namespace Drupal\hoeringsportal_data\Service;
 
 /**
- * TODO: Description of what the class does.
+ * Danmarks Adressers Web API (DAWA) service.
  */
 class DAWA {
 

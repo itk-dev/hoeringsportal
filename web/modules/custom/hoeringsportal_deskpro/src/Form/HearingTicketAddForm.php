@@ -249,7 +249,7 @@ class HearingTicketAddForm extends FormBase {
     $representations = $this->config->getRepresentations();
 
     if ($representations[$representation]['require_organization'] && empty($organization)) {
-      // @TODO Customer has to decide if we need an organization name.
+      // @todo Customer has to decide if we need an organization name.
       // $form_state->setErrorByName(
       // 'organization',
       // $this->t('Please enter your organization.')
@@ -328,7 +328,7 @@ class HearingTicketAddForm extends FormBase {
       );
       $this->messenger()->addMessage($this->t('Your hearing ticket has being submitted and will appear here in a few minutes.'));
 
-      // @TODO: Show confirmation page.
+      // @todo Show confirmation page.
       $ticket['url'] = $this->helper->getTicketUrl($ticket);
       $message = $this->helper->replaceTokens($this->config->get('ticket_created_confirmation'), [
         'ticket' => $ticket,

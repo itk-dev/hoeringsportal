@@ -11,7 +11,7 @@ use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use GuzzleHttp\Client;
 
 /**
- * TODO: Description of what the class does.
+ * Deskpro service.
  */
 class DeskproService {
   /**
