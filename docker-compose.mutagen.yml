@@ -25,7 +25,7 @@ services:
       #- ENCRYPT=1 # Uncomment to enable database encryptionn.
 
   phpfpm:
-    image: itkdev/php7.2-fpm:latest
+    image: itkdev/php7.4-fpm:latest
     container_name: hoeringsportal-phpfpm
     networks:
       - app
