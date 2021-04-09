@@ -231,7 +231,7 @@ function hoeringsportal_preprocess_container(&$variables) {
           break;
       }
 
-      // @TODO: We need to attach some icon metadata to the taxonomy term.
+      // @todo We need to attach some icon metadata to the taxonomy term.
       switch ($term->tid) {
         case '77':
           $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';

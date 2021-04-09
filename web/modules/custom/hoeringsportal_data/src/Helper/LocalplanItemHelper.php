@@ -33,7 +33,7 @@ class LocalplanItemHelper {
       if (LocalplanItem::FIELD_TYPE === $field->getType()) {
         /** @var \Drupal\Core\Field\FieldItemListInterface $item */
         $items = $node->{$field->getName()};
-        // @TODO: Improve this by only making a single call with all ids.
+        // @todo Improve this by only making a single call with all ids.
         foreach ($items as $item) {
           $data = $this->plandata->getGeojsonFromIds('planid', [$item->id]);
           $item->data = json_encode($data);

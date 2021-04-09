@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * TODO: Description of what the class does.
+ * Autocomplete controller.
  */
 class AutocompleteController extends ControllerBase {
 

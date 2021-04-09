@@ -6,7 +6,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * TODO: Description of what the class does.
+ * Hearing settings form.
  *
  * @package Drupal\itk_admin\Form
  */

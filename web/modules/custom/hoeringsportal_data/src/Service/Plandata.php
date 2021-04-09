@@ -32,7 +32,7 @@ class Plandata {
    * Constructor.
    */
   public function __construct(Settings $settings) {
-    // @TODO: Make this configurable.
+    // @todo Make this configurable.
     $this->wsfUrl = 'https://geoserver.plandata.dk/geoserver/wfs';
     $this->wsfBaseQuery = [
       'servicename' => 'wfs',
