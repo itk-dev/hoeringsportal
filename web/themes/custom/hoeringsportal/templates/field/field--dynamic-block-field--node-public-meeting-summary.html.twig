@@ -41,45 +41,42 @@
 {% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
 {% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
 
-<div class="d-none d-md-block">
-  <section class="container">
-    {% if label_hidden %}
-      {% if multiple %}
-        {% for item in items %}
-          {{ item.content }}
-        {% endfor %}
-      {% else %}
-        {% for item in items %}
-          {{ item.content }}
-        {% endfor %}
-      {% endif %}
-    {% else %}
-      <h3>{{ label }}</h3>
-      {% if multiple %}
-      <div>
-        {% endif %}
-        {% for item in items %}
-          <div class="row">
-            <div class="col">
-              {{ item.content }}
-            </div>
-          </div>
-        {% endfor %}
-        {% if multiple %}
-      </div>
-      {% endif %}
-    {% endif %}
-  </section>
-  {% if meeting_cancelled %}
-    <div class="pretix-alert meeting-has-been-cancelled m-3">{{ 'Meeting has been cancelled'|t }}</div>
-  {% elseif meeting_has_been_held %}
-    <div class="pretix-alert meeting-has-been-held m-3">{{ 'Meeting has already been held'|t }}</div>
+{% if label_hidden %}
+  {% if multiple %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
   {% else %}
-    {% if registration_deadline_passed %}
-      {# @TODO: Design: styling of "alert" #}
-      <div class="pretix-alert pretix-alert-registration-deadline-passed m-3">{{ 'Registration deadline passed'|t }}</div>
-    {% else %}
-      <a id="sign-up-shortcut" class="btn btn-primary btn-sm m-3" style="display: none">{{ 'Sign up for public meeting'|t }}</a>
-    {% endif %}
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
   {% endif %}
-</div>
+{% else %}
+  <h3>{{ label }}</h3>
+  {% if multiple %}
+    <div>
+  {% endif %}
+  {% for item in items %}
+    <div class="row">
+      <div class="col">
+        {{ item.content }}
+      </div>
+    </div>
+  {% endfor %}
+  {% if multiple %}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% if meeting_cancelled %}
+  <div class="pretix-alert meeting-has-been-cancelled my-3">{{ 'Meeting has been cancelled'|t }}</div>
+{% elseif meeting_has_been_held %}
+  <div class="pretix-alert meeting-has-been-held my-3">{{ 'Meeting has already been held'|t }}</div>
+{% else %}
+  {% if registration_deadline_passed %}
+    {# @TODO: Design: styling of "alert" #}
+    <div class="pretix-alert pretix-alert-registration-deadline-passed my-3">{{ 'Registration deadline passed'|t }}</div>
+  {% else %}
+    <a id="sign-up-shortcut" class="btn btn-primary btn-sm my-3" style="display: none">{{ 'Sign up for public meeting'|t }}</a>
+  {% endif %}
+{% endif %}
