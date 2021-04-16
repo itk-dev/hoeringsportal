@@ -71,6 +71,7 @@ third_party_settings:
         - field_media_document
       right:
         - 'dynamic_block_field:node-public_meeting_summary'
+        - field_contact
       footer:
         - group_signup
         - field_hidden_signup
@@ -149,6 +150,13 @@ content:
     label: hidden
     settings:
       link_to_entity: false
+    third_party_settings: {  }
+  field_contact:
+    type: text_default
+    weight: 8
+    region: right
+    label: above
+    settings: {  }
     third_party_settings: {  }
   field_description:
     weight: 5
@@ -264,7 +272,6 @@ content:
 hidden:
   field_area: true
   field_cancelled_date: true
-  field_contact: true
   field_content_state: true
   field_first_meeting_time: true
   field_last_meeting_time: true
