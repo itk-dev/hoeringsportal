@@ -149,7 +149,7 @@
                 "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
             },
             "drupal/quick_node_clone": {
-                "Permissions not respected (https://www.drupal.org/project/quick_node_clone/issues/2979426#comment-13544467)": "https://www.drupal.org/files/issues/2020-04-08/quick_node_clone-permissions_not_respected-2979426-19.patch"
+                "Permissions not respected (https://www.drupal.org/project/quick_node_clone/issues/2979426#comment-14025152)": "https://www.drupal.org/files/issues/2021-03-10/2979426-27.patch"
             }
         }
     }
