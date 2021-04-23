@@ -36,15 +36,16 @@
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/spectrum": "^1.8",
         "composer/installers": "^1.7",
-        "cweagans/composer-patches": "^1.6.5",
-        "drupal-composer/drupal-scaffold": "^2.5",
+        "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^3.0@alpha",
         "drupal/captcha": "^1.0@beta",
         "drupal/color_field": "^2.0",
         "drupal/config_ignore": "^2.2",
         "drupal/config_import_locale": "^1.0",
         "drupal/console": "^1.0.2",
-        "drupal/core-recommended": "~8.8.0",
+        "drupal/core-composer-scaffold": "^8.8",
+        "drupal/core-project-message": "^8.8",
+        "drupal/core-recommended": "^8.8",
         "drupal/ds": "^3.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity_browser": "^1.5",
@@ -90,27 +91,7 @@
     "config": {
         "sort-packages": true
     },
-    "autoload": {
-        "classmap": [
-            "scripts/composer/ScriptHandler.php"
-        ],
-        "files": ["load.environment.php"]
-    },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-        "pre-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "pre-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::checkComposerVersion"
-        ],
-        "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles",
-            "ln -sf ../../scripts/git/hooks/pre-commit .git/hooks/pre-commit"
-        ],
-        "post-update-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
-        ],
         "check-coding-standards/phpcs": [
             "vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
@@ -125,16 +106,40 @@
         ]
     },
     "extra": {
-        "installer-paths": {
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library", "name:jquery-simple-color","name:spectrum-colorpicker"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/contrib/{$name}": ["type:drupal-drush"]
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "web/"
+            }
         },
-        "enable-patching": true,
+        "installer-paths": {
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library",
+                "name:jquery-simple-color",
+                "name:spectrum-colorpicker"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
+        },
+        "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
                 "fieldset description_display": "patches/core/fieldset-description_display.patch"
@@ -149,7 +154,7 @@
                 "Configurable 'wantNameId' attribute": "patches/samlauth-wantNameId.patch"
             },
             "drupal/quick_node_clone": {
-                "Permissions not respected (https://www.drupal.org/project/quick_node_clone/issues/2979426#comment-13544467)": "https://www.drupal.org/files/issues/2020-04-08/quick_node_clone-permissions_not_respected-2979426-19.patch"
+                "Permissions not respected (https://www.drupal.org/project/quick_node_clone/issues/2979426#comment-14025152)": "https://www.drupal.org/files/issues/2021-03-10/2979426-27.patch"
             }
         }
     }
