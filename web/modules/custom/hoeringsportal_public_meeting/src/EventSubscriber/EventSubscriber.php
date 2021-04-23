@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_hearing\EventSubscriber;
+namespace Drupal\hoeringsportal_public_meeting\EventSubscriber;
 
 use Drupal\Component\Utility\UrlHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -16,14 +16,14 @@ class EventSubscriber implements EventSubscriberInterface {
   /**
    * Handler for the KernelEvents::REQUEST event.
    *
-   * On the "/hoering" page
+   * On the "/begivenheder" page
    * When the user selects "finished" in "field_content_state_value"
    * We want to default to "field_reply_deadline_value DESC" as sorting.
    */
   public function setDefaultSorting(GetResponseEvent $event) {
     $request = $event->getRequest();
 
-    if ('/hoering' === $request->getPathInfo()) {
+    if ('/begivenheder' === $request->getPathInfo()) {
       $contentState = $request->query->get('field_content_state_value');
       if ('finished' === $contentState) {
         $referer = $request->headers->get('referer');
@@ -32,7 +32,7 @@ class EventSubscriber implements EventSubscriberInterface {
           $previousContentStateValue = $info['query']['field_content_state_value'] ?? NULL;
 
           $sortKey = 'sort_bef_combine';
-          $defaultSort = 'field_reply_deadline_value DESC';
+          $defaultSort = 'field_last_meeting_time_value DESC';
           $currentSort = $request->query->get($sortKey);
 
           if ($previousContentStateValue !== $contentState && $defaultSort !== $currentSort) {
