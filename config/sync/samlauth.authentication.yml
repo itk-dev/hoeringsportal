@@ -1,6 +1,6 @@
-security_authn_requests_sign: 1
-security_messages_sign: 1
-strict: 1
+security_authn_requests_sign: true
+security_messages_sign: false
+strict: true
 _core:
   default_config_hash: xZrT8_AI7UriK8S3VCF6txGozXhDJ4aClCbEaA3-3KE
 langcode: da
@@ -12,14 +12,49 @@ idp_single_sign_on_service: 'https://idp.example.com/adfs/ls/'
 idp_single_log_out_service: 'https://idp.example.com/adfs/ls/'
 idp_x509_certificate: 'IDP x509 Certificate'
 unique_id_attribute: eduPersonTargetedID
-map_users: 1
-create_users: 0
-sync_name: 0
-sync_mail: 0
+map_users: true
+create_users: false
+sync_name: false
+sync_mail: false
 user_name_attribute: email
 user_mail_attribute: email
-security_request_authn_context: 0
+security_request_authn_context: false
 drupal_saml_login: 1
 sp_x509_certificate: 'SP x509 Certificate'
 sp_private_key: 'SP Private Key'
 idp_change_password_service: ''
+login_menu_item_title: ''
+logout_menu_item_title: ''
+logout_different_user: false
+local_login_saml_error: true
+login_redirect_url: ''
+logout_redirect_url: ''
+drupal_login_roles:
+  authenticated: '0'
+  editor: '0'
+  administrator: '0'
+error_redirect_url: ''
+error_throw: false
+metadata_cache_http: true
+idp_cert_type: single
+idp_x509_certificate_multi: ''
+map_users_name: false
+map_users_mail: false
+map_users_roles:
+  editor: '0'
+  administrator: '0'
+security_logout_requests_sign: false
+security_logout_responses_sign: false
+security_assertions_encrypt: false
+security_lowercase_url_encoding: false
+request_set_name_id_policy: true
+security_want_name_id: false
+security_logout_reuse_sigs: false
+security_signature_algorithm: ''
+use_proxy_headers: false
+use_base_url: false
+debug_display_error_details: false
+debug_log_saml_out: false
+debug_log_saml_in: false
+debug_log_in: false
+debug_phpsaml: false
