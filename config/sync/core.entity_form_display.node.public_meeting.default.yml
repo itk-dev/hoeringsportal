@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
@@ -73,6 +74,7 @@ third_party_settings:
     group_contact:
       children:
         - field_contact
+        - field_email_address
       parent_name: ''
       weight: 9
       format_type: details
@@ -162,6 +164,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: text_textarea
+    region: content
+  field_email_address:
+    weight: 51
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: email_default
     region: content
   field_hidden_signup:
     weight: 11
@@ -318,6 +328,11 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
     third_party_settings: {  }
 hidden:
   created: true
