@@ -1,0 +1,19 @@
+uuid: 356475d4-a637-4d25-91b0-cd7099edda92
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email_address
+    - node.type.public_meeting
+id: node.public_meeting.field_email_address
+field_name: field_email_address
+entity_type: node
+bundle: public_meeting
+label: 'Email address'
+description: 'Enter the contact email address.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email
