@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
@@ -144,6 +145,7 @@ hidden:
   field_cancelled_date: true
   field_contact: true
   field_description: true
+  field_email_address: true
   field_hidden_signup: true
   field_last_meeting_time_end: true
   field_map: true

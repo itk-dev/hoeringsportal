@@ -5,9 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.hearing_ticket_add
     - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_cancelled_date
+    - field.field.node.public_meeting.field_cancelled_text
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
@@ -18,6 +21,7 @@ dependencies:
     - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_public_meeting_cancelled
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
@@ -154,6 +158,7 @@ hidden:
   field_cancelled_date: true
   field_cancelled_text: true
   field_content_state: true
+  field_email_address: true
   field_first_meeting_time: true
   field_hidden_signup: true
   field_last_meeting_time: true
