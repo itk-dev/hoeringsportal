@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
@@ -63,6 +64,7 @@ third_party_settings:
       header:
         - 'dynamic_block_field:node-public_meeting_warning'
         - node_title
+        - field_last_meeting_time_end
       left:
         - field_public_meeting_cancelled
         - field_cancelled_text
@@ -73,12 +75,12 @@ third_party_settings:
         - 'dynamic_block_field:node-public_meeting_summary'
         - field_contact
       footer:
-        - group_signup
         - field_hidden_signup
-        - 'dynamic_block_field:node-project_timeline'
+        - group_signup
         - field_signup_selection
-        - field_pretix_dates
+        - 'dynamic_block_field:node-project_timeline'
         - field_section
+        - field_pretix_dates
         - field_registration_deadline
         - field_map
         - 'dynamic_block_field:node-related_public_meeting'
@@ -183,7 +185,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: header
   field_map:
     weight: 11
     label: hidden
@@ -273,6 +275,7 @@ hidden:
   field_area: true
   field_cancelled_date: true
   field_content_state: true
+  field_email_address: true
   field_first_meeting_time: true
   field_last_meeting_time: true
   field_media_image_single: true

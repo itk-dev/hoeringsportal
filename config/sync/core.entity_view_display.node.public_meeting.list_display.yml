@@ -5,9 +5,12 @@ dependencies:
   config:
     - core.entity_view_mode.node.list_display
     - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_cancelled_date
+    - field.field.node.public_meeting.field_cancelled_text
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
     - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
     - field.field.node.public_meeting.field_hidden_signup
     - field.field.node.public_meeting.field_last_meeting_time
@@ -18,6 +21,7 @@ dependencies:
     - field.field.node.public_meeting.field_pretix_dates
     - field.field.node.public_meeting.field_pretix_event_settings
     - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_public_meeting_cancelled
     - field.field.node.public_meeting.field_registration_deadline
     - field.field.node.public_meeting.field_section
     - field.field.node.public_meeting.field_signup_link
@@ -27,150 +31,67 @@ dependencies:
     - field.field.node.public_meeting.field_type
     - node.type.public_meeting
   module:
-    - datetime
-    - ds
-    - entity_reference_revisions
-    - taxonomy
-    - text
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: ds_2col_stacked
-      library: ds/ds_2col_stacked
-      disable_css: false
-      entity_classes: all_classes
-      settings:
-        wrappers:
-          header: div
-          left: div
-          right: div
-          footer: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
-    regions:
-      header:
-        - langcode
-        - field_description
-        - field_hidden_signup
-        - field_contact
-        - field_section
-        - field_project_reference
-        - field_teaser
-        - field_registration_deadline
-        - field_media_document
-        - field_media_image_single
-        - field_area
-        - field_type
 id: node.public_meeting.list_display
 targetEntityType: node
 bundle: public_meeting
 mode: list_display
 content:
   field_area:
-    weight: 10
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: header
-  field_contact:
     weight: 3
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: header
-  field_description:
-    weight: 1
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: header
-  field_media_document:
-    weight: 8
-    label: above
+    label: hidden
     settings:
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
     type: entity_reference_label
-    region: header
+    region: content
   field_media_image_single:
-    weight: 9
-    label: above
+    weight: 0
+    label: hidden
     settings:
-      link: true
+      view_mode: node_form_display
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
-    region: header
-  field_project_reference:
-    weight: 5
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: header
-  field_registration_deadline:
-    weight: 7
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: header
-  field_section:
-    weight: 4
-    label: above
-    settings:
-      view_mode: default
-      link: ''
-    third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
-    region: header
+    type: entity_reference_entity_view
+    region: content
   field_teaser:
-    weight: 6
-    label: above
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: header
+    region: content
   field_type:
-    type: entity_reference_rss_category
-    weight: 11
-    region: header
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-  langcode:
-    type: language
-    weight: 0
-    region: header
-    label: above
+    type: entity_reference_label
+    weight: 2
+    region: content
+    label: hidden
     settings:
-      link_to_entity: false
-      native_language: false
+      link: false
     third_party_settings: {  }
 hidden:
   field_cancelled_date: true
   field_cancelled_text: true
+  field_contact: true
   field_content_state: true
+  field_description: true
+  field_email_address: true
   field_first_meeting_time: true
   field_hidden_signup: true
   field_last_meeting_time: true
   field_last_meeting_time_end: true
   field_map: true
+  field_media_document: true
   field_pretix_dates: true
   field_pretix_event_settings: true
+  field_project_reference: true
   field_public_meeting_cancelled: true
+  field_registration_deadline: true
+  field_section: true
   field_signup_link: true
   field_signup_selection: true
   field_signup_text: true
+  langcode: true
   links: true
