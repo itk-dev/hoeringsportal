@@ -85,3 +85,11 @@ hoeringsportal_data.maps_controller_widget:
     _title: 'Maps configuration'
   requirements:
     _permission: 'access content'
+
+hoeringsportal_data.api_geojson_v2_hearings:
+  path: '/api/v2/geojson/hearings'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\Api\V2\GeoJSON\HearingController::index'
+    _title: 'GeoJSON hearings (v2)'
+  requirements:
+    _permission: 'access content'
