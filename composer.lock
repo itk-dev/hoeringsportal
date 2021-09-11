@@ -6120,12 +6120,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "b4f2b0f81c81b6220b5bc64787b2c7f161b80321"
+                "reference": "caa01be30c7871d8499371e48ecec389722b78b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/b4f2b0f81c81b6220b5bc64787b2c7f161b80321",
-                "reference": "b4f2b0f81c81b6220b5bc64787b2c7f161b80321",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/caa01be30c7871d8499371e48ecec389722b78b7",
+                "reference": "caa01be30c7871d8499371e48ecec389722b78b7",
                 "shasum": ""
             },
             "require": {
@@ -6151,7 +6151,7 @@
                 "issues": "https://github.com/itk-dev/itk_pretix_d8/issues",
                 "source": "https://github.com/itk-dev/itk_pretix_d8/tree/develop"
             },
-            "time": "2021-05-28T10:50:33+00:00"
+            "time": "2021-09-11T05:58:33+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
