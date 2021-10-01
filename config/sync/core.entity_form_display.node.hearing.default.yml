@@ -38,12 +38,10 @@ third_party_settings:
       children:
         - field_start_date
         - field_reply_deadline
-        - field_hearing_type
         - field_type
         - field_lokalplaner
         - field_project_reference
         - field_area
-        - field_tags
       parent_name: ''
       weight: 7
       format_type: details
@@ -245,12 +243,6 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_tags:
-    weight: 33
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
   field_teaser:
     weight: 1
     settings:
@@ -288,11 +280,17 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   created: true
   field_content_state: true
   field_deskpro_data: true
   field_map_display: true
+  field_tags: true
   langcode: true
   path: true
   promote: true
