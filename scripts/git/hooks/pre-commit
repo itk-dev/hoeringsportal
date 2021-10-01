@@ -3,8 +3,7 @@
 # Rebuilt assets if js or scss files are changed.
 if git status --short | grep '^M.*\.\(scs\|j\)s$'; then
   cd web/themes/custom/hoeringsportal/
-  ./node_modules/.bin/encore production
-  git add build/
+  ./node_modules/.bin/encore production && git add build/
   cd -
 fi
 
