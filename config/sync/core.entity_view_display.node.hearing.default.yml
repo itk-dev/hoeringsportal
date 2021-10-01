@@ -70,7 +70,6 @@ third_party_settings:
         - field_reply_deadline
         - field_type
         - field_lokalplaner
-        - field_tags
         - field_area
         - 'dynamic_token_field:node-node_id_hearing'
         - field_contact
@@ -80,30 +79,6 @@ third_party_settings:
         - field_map
         - 'dynamic_block_field:node-nearest_hearings'
     fields:
-      node_title:
-        plugin_id: node_title
-        weight: 1
-        label: hidden
-        formatter: default
-        settings:
-          wrapper: ''
-          class: ''
-          link: false
-      node_changed_date:
-        plugin_id: node_changed_date
-        weight: 8
-        label: hidden
-        formatter: ds_post_date_short
-      'dynamic_token_field:node-header_information':
-        plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 10
-        label: hidden
-        formatter: default
-      'dynamic_token_field:node-node_id_hearing':
-        plugin_id: 'dynamic_token_field:node-node_id_hearing'
-        weight: 17
-        label: above
-        formatter: default
       'dynamic_block_field:node-hearing_tickets':
         plugin_id: 'dynamic_block_field:node-hearing_tickets'
         weight: 7
@@ -129,6 +104,30 @@ third_party_settings:
         weight: 9
         label: above
         formatter: default
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 10
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-node_id_hearing':
+        plugin_id: 'dynamic_token_field:node-node_id_hearing'
+        weight: 17
+        label: above
+        formatter: default
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 8
+        label: hidden
+        formatter: ds_post_date_short
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
@@ -217,14 +216,6 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: right
-  field_tags:
-    weight: 15
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: right
   field_teaser:
     weight: 2
     label: hidden
@@ -255,5 +246,6 @@ hidden:
   field_edoc_casefile_id: true
   field_map_display: true
   field_project_reference: true
+  field_tags: true
   langcode: true
   links: true
