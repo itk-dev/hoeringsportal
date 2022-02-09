@@ -51,16 +51,17 @@ class GeoJsonHelper {
   /**
    * Get hearings.
    */
-  public function getHearings(array $properties = []) {
-    $properties += [
-      'status' => NodeInterface::PUBLISHED,
-      'type' => 'hearing',
-    ];
-    $entities = $this->entityTypeManager
-      ->getStorage('node')
-      ->loadByProperties($properties);
-
-    return $entities;
+  public function getHearings(array $properties = [], array $orderBy = [], $limit = null, $offset = null) {
+    return $this->loadEntities(
+      'node',
+      $properties + [
+        'status' => NodeInterface::PUBLISHED,
+        'type' => 'hearing',
+      ],
+      $orderBy,
+      $limit,
+      $offset
+    );
   }
 
   /**
@@ -489,6 +490,45 @@ class GeoJsonHelper {
     ];
 
     return $this->urlGenerator->generateFromRoute($name, $parameters, $options);
+  }
+
+  /**
+   * Load entities.
+   *
+   * @param $entityTypeId
+   *   The entity type id.
+   * @param array $properties
+   *   The entity properties.
+   * @param array $orderBy
+   *   The order by (field => ASC|DESC)
+   * @param null $limit
+   *   The limit
+   * @param null $offset
+   *   The offset
+   * @return array|\Drupal\Core\Entity\EntityInterface[]
+   *   The loaded entities.
+   *
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   */
+  private function loadEntities($entityTypeId, array $properties = [], array $orderBy = [], $limit = null, $offset = null)
+  {
+    $storage = $this->entityTypeManager
+      ->getStorage($entityTypeId);
+    $query = $storage->getQuery();
+    foreach ($properties as $field => $value) {
+      // Cast scalars to array so we can consistently use an IN condition.
+      $query->condition($field, (array)$value, 'IN');
+    }
+    foreach ($orderBy as $field => $direction) {
+      $query->sort($field, $direction);
+    }
+    if (null !== $limit) {
+      $query->range($offset ?? 0, $limit);
+    }
+    $result = $query->execute();
+
+    return $result ? $storage->loadMultiple($result) : [];
   }
 
 }
