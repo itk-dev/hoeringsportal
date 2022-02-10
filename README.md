@@ -38,7 +38,7 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ### Install site within docker.
 ```sh
-# Stop any running traefik container. This project provides it's own.
+# Stop any running traefik container. This project provides its own.
 itkdev-docker-compose traefik:stop
 
 docker-compose up --detach
