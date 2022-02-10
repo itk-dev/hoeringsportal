@@ -60,7 +60,6 @@ module:
   media_entity: 0
   media_entity_document: 0
   media_entity_image: 0
-  media_entity_usage: 0
   menu_ui: 0
   migrate_subject_data: 0
   node: 0
