@@ -6,7 +6,7 @@ dependencies:
     module:
       - itk_media_entity
   module:
-    - media_entity
+    - media
     - node
 _core:
   default_config_hash: bd2v9FOE5cN290xvkGXC-ZG8UzpwNKNOQnmO3Nj37H8

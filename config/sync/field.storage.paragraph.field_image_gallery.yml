@@ -3,7 +3,7 @@ langcode: da
 status: true
 dependencies:
   module:
-    - media_entity
+    - media
     - paragraphs
 id: paragraph.field_image_gallery
 field_name: field_image_gallery

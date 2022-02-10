@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.media.field_itk_media_mime_type
-    - media_entity.bundle.document
+    - media.type.document
   enforced:
     module:
       - itk_media_entity
