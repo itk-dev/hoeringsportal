@@ -36,6 +36,20 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Installation
 
+### Install site within docker.
+```sh
+# Stop any running traefik container. This project provides it's own.
+itkdev-docker-compose traefik:stop
+
+docker-compose up --detach
+docker-compose exec phpfpm composer install
+docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existing-config
+# Get the site url
+echo "http://$(docker-compose port nginx 80)"
+# Get admin sign in url
+docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://$(docker-compose port nginx 80)" user:login
+```
+
 A number of `cron` jobs must be set up to make things happen automagically; see
 * [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
 * [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
