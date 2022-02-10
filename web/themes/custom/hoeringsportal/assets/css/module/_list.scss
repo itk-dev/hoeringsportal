@@ -1,46 +1,20 @@
 .list-filter-link-wrapper {
-  flex: 1 0 25%;
-  width: 100px;
-  margin-right: $spacer;
-  align-self: stretch;
+  background: $white;
+  border: 1px solid $gray-400;
+  color: $gray-800;
+  display: grid;
+  place-content: center;
+  padding: 1rem;
+  text-decoration: none;
+  text-align: center;
 
-  @include media-breakpoint-up(md) {
-    // Using 20% seems to make 8 items line up nicely.
-    // @TODO Make this adapt better to the actual number of items.
-    flex: 1 0 20%;
-  }
-
-  a {
-    background: $white;
-    border: 1px solid $gray-400;
-    color: $gray-800;
-    display: block;
-    height: 7em;
-    padding: 1em;
-    text-decoration: none;
-
-    &:hover {
-      border: 1px solid $primary;
-      color: $primary;
-    }
-  }
-
-  &.bef-link-active a {
+  &:hover {
     border: 1px solid $primary;
     color: $primary;
   }
-}
 
-.list-filter-link-inner {
-  display: flex;
-
-  span {
-    line-height: 1.1em;
-    margin-top: .5em;
-    text-align: center;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    flex: 1;
-    align-self: stretch;
+  &.bef-link-active {
+    border: 1px solid $primary;
+    color: $primary;
   }
 }

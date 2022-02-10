@@ -1,43 +1,36 @@
-.filters-toggle-wrapper {
-  display: flex;
-  flex: 0 0 100%;
+.filters-wrapper {
+  background-color: $white;
+  border: 1px solid $gray-400;
+  margin-bottom: 3rem;
 }
 
-.filters-toggle {
-  display: none;
-
-  &:hover {
-    border: 1px solid $primary;
-    color: $primary;
-  }
-
-  span {
-    display: none;
-  }
-
-  @include media-breakpoint-down(sm) {
-    background: $white;
-    border: 1px solid $gray-400;
-    color: $gray-800;
-    cursor: pointer;
-    display: block;
-    font-weight: 400;
-    flex: 0 0 100%;
-    margin-bottom: $spacer;
-    padding: $spacer;
-
-    span {
-      display: inline;
-
-    }
-  }
+.filters-wrapper select.form-select {
+  display: inline-block;
 }
 
 .bef-links {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-right: -$spacer;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 16px;
+}
+
+.filters-toggle {
+  color: $gray-800;
+  cursor: pointer;
+  display: block;
+  font-weight: 400;
+  padding: $spacer;
+
+  &:hover {
+    color: $primary;
+  }
+
+  &[aria-expanded="true"] {
+    padding: $spacer;
+    background: $primary;
+    color: $white;
+    margin: 0 $spacer $spacer $spacer;
+  }
 }
 
 #collapseFilters.collapse:not(.show) {
