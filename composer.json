@@ -65,7 +65,6 @@
         "drupal/system_status": "^2.8",
         "drupal/toolbar_visibility": "^1.2",
         "drupal/twig_tweak": "^2.1",
-        "drupal/upgrade_status": "^2.7",
         "drupal/views_data_export": "^1.0",
         "drupal/viewsreference": "^1.2",
         "drupal/xls_serialization": "^1.2",
@@ -83,7 +82,8 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.8"
+        "drupal/core-dev": "^8.8",
+        "drupal/upgrade_status": "^3.13"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -91,7 +91,14 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/console-extend-plugin": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true
+        }
     },
     "scripts": {
         "check-coding-standards/phpcs": [
