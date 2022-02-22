@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d9e118b8003bb8a811550412d7e8fdf",
+    "content-hash": "1ead76986045c09d2535a49307837054",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -6043,20 +6043,20 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "dev-develop",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "caa01be30c7871d8499371e48ecec389722b78b7"
+                "reference": "0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/caa01be30c7871d8499371e48ecec389722b78b7",
-                "reference": "caa01be30c7871d8499371e48ecec389722b78b7",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd",
+                "reference": "0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd",
                 "shasum": ""
             },
             "require": {
-                "itk-dev/pretix-api-client-php": "dev-develop",
+                "itk-dev/pretix-api-client-php": "^1.0",
                 "nicoeg/dawa": "^1.0",
                 "php": "^7.2"
             },
@@ -6064,7 +6064,6 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
                 "drupal/coder": "^8.3.1"
             },
-            "default-branch": true,
             "type": "drupal-module",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -6076,9 +6075,9 @@
             ],
             "support": {
                 "issues": "https://github.com/itk-dev/itk_pretix_d8/issues",
-                "source": "https://github.com/itk-dev/itk_pretix_d8/tree/develop"
+                "source": "https://github.com/itk-dev/itk_pretix_d8/tree/1.0.0"
             },
-            "time": "2021-09-11T05:58:33+00:00"
+            "time": "2022-02-22T11:09:18+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -6111,16 +6110,16 @@
         },
         {
             "name": "itk-dev/pretix-api-client-php",
-            "version": "dev-develop",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/pretix-api-client-php.git",
-                "reference": "68967538f83e875abeb3e60d6f4eff5bb2be00c2"
+                "reference": "23910a43866acac3bdd9321248099321757ad142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/68967538f83e875abeb3e60d6f4eff5bb2be00c2",
-                "reference": "68967538f83e875abeb3e60d6f4eff5bb2be00c2",
+                "url": "https://api.github.com/repos/itk-dev/pretix-api-client-php/zipball/23910a43866acac3bdd9321248099321757ad142",
+                "reference": "23910a43866acac3bdd9321248099321757ad142",
                 "shasum": ""
             },
             "require": {
@@ -6134,7 +6133,6 @@
                 "friendsofphp/php-cs-fixer": "^2.16",
                 "phpunit/phpunit": "^8.5"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6153,10 +6151,9 @@
             ],
             "description": "PHP client for pretix api",
             "support": {
-                "issues": "https://github.com/itk-dev/pretix-api-client-php/issues",
-                "source": "https://github.com/itk-dev/pretix-api-client-php/tree/develop"
+                "source": "https://github.com/itk-dev/pretix-api-client-php/tree/1.0.0"
             },
-            "time": "2021-05-28T09:40:47+00:00"
+            "time": "2022-02-22T10:39:25+00:00"
         },
         {
             "name": "itk-dev/web_accessibility_statement",
@@ -9287,23 +9284,23 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v5.2.4",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce"
+                "reference": "cc1147cb11af1b43f503ac18f31aa3bec213aba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce",
-                "reference": "5d0f633f9bbfcf7ec642a2b5037268e61b0a62ce",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/cc1147cb11af1b43f503ac18f31aa3bec213aba8",
+                "reference": "cc1147cb11af1b43f503ac18f31aa3bec213aba8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
-                "symfony/deprecation-contracts": "^2.1",
+                "symfony/deprecation-contracts": "^2.1|^3",
                 "symfony/polyfill-php73": "~1.0",
-                "symfony/polyfill-php80": "^1.15"
+                "symfony/polyfill-php80": "^1.16"
             },
             "type": "library",
             "autoload": {
@@ -9336,7 +9333,7 @@
                 "options"
             ],
             "support": {
-                "source": "https://github.com/symfony/options-resolver/tree/v5.2.4"
+                "source": "https://github.com/symfony/options-resolver/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -9352,7 +9349,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T12:56:27+00:00"
+            "time": "2022-01-02T09:53:40+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -9883,16 +9880,16 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.23.0",
+            "version": "v1.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010"
+                "reference": "cc5db0e22b3cb4111010e48785a97f670b350ca5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fba8933c384d6476ab14fb7b8526e5287ca7e010",
-                "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/cc5db0e22b3cb4111010e48785a97f670b350ca5",
+                "reference": "cc5db0e22b3cb4111010e48785a97f670b350ca5",
                 "shasum": ""
             },
             "require": {
@@ -9909,12 +9906,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php73\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -9942,7 +9939,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.24.0"
             },
             "funding": [
                 {
@@ -9958,7 +9955,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-19T12:13:01+00:00"
+            "time": "2021-06-05T21:20:04+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -14614,7 +14611,6 @@
         "drupal/entityqueue": 15,
         "drupal/flag": 15,
         "drupal/media_entity_usage": 20,
-        "itk-dev/itk_pretix": 20,
         "itk-dev/web_accessibility_statement": 20
     },
     "prefer-stable": true,
