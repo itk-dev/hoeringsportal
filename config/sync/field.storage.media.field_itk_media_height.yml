@@ -6,7 +6,7 @@ dependencies:
     module:
       - itk_media_entity
   module:
-    - media_entity
+    - media
 _core:
   default_config_hash: kLz6ZRZNKtiGUiFEyk-VARyE53ZViju4qu3W7jfCsro
 id: media.field_itk_media_height

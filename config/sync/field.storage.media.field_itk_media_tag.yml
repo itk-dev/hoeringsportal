@@ -6,7 +6,7 @@ dependencies:
     module:
       - itk_media_entity
   module:
-    - media_entity
+    - media
     - taxonomy
 _core:
   default_config_hash: gY1Vj1B59Dgzy0lt7S26v3qZM9VsO5q0V1VMXUFC6P0

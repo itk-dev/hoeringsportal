@@ -10,7 +10,6 @@ sp_cert_folder: ''
 idp_entity_id: ADFS
 idp_single_sign_on_service: 'https://idp.example.com/adfs/ls/'
 idp_single_log_out_service: 'https://idp.example.com/adfs/ls/'
-idp_x509_certificate: 'IDP x509 Certificate'
 unique_id_attribute: eduPersonTargetedID
 map_users: true
 create_users: false
@@ -36,8 +35,6 @@ drupal_login_roles:
 error_redirect_url: ''
 error_throw: false
 metadata_cache_http: true
-idp_cert_type: single
-idp_x509_certificate_multi: ''
 map_users_name: false
 map_users_mail: true
 map_users_roles:
@@ -58,3 +55,5 @@ debug_log_saml_out: false
 debug_log_saml_in: false
 debug_log_in: false
 debug_phpsaml: false
+idp_certs:
+  - 'IDP x509 Certificate'

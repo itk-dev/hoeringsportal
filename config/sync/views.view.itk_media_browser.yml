@@ -5,8 +5,8 @@ dependencies:
   config:
     - field.storage.media.field_itk_media_tag
     - image.style.thumbnail
-    - media_entity.bundle.document
-    - media_entity.bundle.image
+    - media.type.document
+    - media.type.image
     - taxonomy.vocabulary.media_library
   enforced:
     module:
@@ -14,7 +14,7 @@ dependencies:
   module:
     - entity_browser
     - image
-    - media_entity
+    - media
     - taxonomy
     - user
 _core:
