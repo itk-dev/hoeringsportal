@@ -9,7 +9,7 @@ dependencies:
     - field.field.media.image.field_itk_media_mime_type
     - field.field.media.image.field_itk_media_tag
     - field.field.media.image.field_itk_media_width
-    - media_entity.bundle.image
+    - media.type.image
     - responsive_image.styles.content_image
   enforced:
     module:

@@ -6,7 +6,7 @@ dependencies:
     module:
       - itk_media_entity
   module:
-    - media_entity
+    - media
 _core:
   default_config_hash: wJgipi1QjbnhKZl6Hnbk52DcsXtR7cIaDgkZdaI-Y1s
 id: media.field_itk_media_size
