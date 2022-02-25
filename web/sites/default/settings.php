@@ -25,7 +25,7 @@ $settings['file_scan_ignore_directories'] = [
 $settings['install_profile'] = 'minimal';
 
 // Configuration sync path.
-$config_directories['sync'] = '../config/sync';
+$settings['config_sync_directory'] = '../config/sync';
 
 $settings['file_private_path'] = DRUPAL_ROOT . '/../private-files';
 
