@@ -7,7 +7,7 @@ dependencies:
       - itk_media_entity
   module:
     - file
-    - media_entity
+    - media
 _core:
   default_config_hash: sf6zqlOPWsdoE-VjaDawWljrwH-E9BYGCivCtIDLKfM
 id: media.field_itk_media_file_upload

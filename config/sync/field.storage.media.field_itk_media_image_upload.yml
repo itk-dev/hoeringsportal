@@ -8,7 +8,7 @@ dependencies:
   module:
     - file
     - image
-    - media_entity
+    - media
 _core:
   default_config_hash: na3o8XsN9NKEW4rjTzcTucdlv9XSk4Fn8BRLyGCdr44
 id: media.field_itk_media_image_upload

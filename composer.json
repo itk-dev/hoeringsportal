@@ -55,6 +55,10 @@
         "drupal/hoeringsportal_data": "*",
         "drupal/hoeringsportal_deskpro": "*",
         "drupal/image_widget_crop": "^2.2",
+        "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/media_entity": "^2",
+        "drupal/media_entity_document": "1.x-dev",
+        "drupal/media_entity_image": "^1.3",
         "drupal/media_entity_usage": "1.x-dev",
         "drupal/paragraphs": "^1.3",
         "drupal/pathauto": "^1.3",
@@ -65,7 +69,6 @@
         "drupal/system_status": "^2.8",
         "drupal/toolbar_visibility": "^1.2",
         "drupal/twig_tweak": "^2.1",
-        "drupal/upgrade_status": "^2.7",
         "drupal/views_data_export": "^1.0",
         "drupal/viewsreference": "^1.2",
         "drupal/xls_serialization": "^1.2",
@@ -73,17 +76,18 @@
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^1.1",
         "itk-dev/itk_cookie_message": "^1.0",
-        "itk-dev/itk_media_entity": "^1.1",
-        "itk-dev/itk_pretix": "dev-develop",
+        "itk-dev/itk_media_entity": "^2",
+        "itk-dev/itk_pretix": "^1.0",
         "itk-dev/itk_siteimprove": "^1.0",
-        "itk-dev/web_accessibility_statement": "dev-master",
+        "itk-dev/web_accessibility_statement": "^1.0",
         "onelogin/php-saml": "^4.0",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-        "drupal/core-dev": "^8.8"
+        "drupal/core-dev": "^8.8",
+        "drupal/upgrade_status": "^3.13"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -93,11 +97,12 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "cweagans/composer-patches": true,
             "composer/installers": true,
+            "cweagans/composer-patches": true,
+            "drupal/console-extend-plugin": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
-            "drupal/console-extend-plugin": true
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "scripts": {
@@ -150,18 +155,6 @@
         },
         "composer-exit-on-patch-failure": true,
         "patches": {
-            "drupal/core": {
-                "fieldset description_display": "patches/core/fieldset-description_display.patch"
-            },
-            "drupal/paragraphs": {
-                "Add paragraphs hook": "https://www.drupal.org/files/issues/2868155-16.patch"
-            },
-            "drupal/field_group": {
-                "Possibility to add field group to advanced": "patches/field_group_node_sidebar.patch"
-            },
-            "drupal/quick_node_clone": {
-                "Permissions not respected (https://www.drupal.org/project/quick_node_clone/issues/2979426#comment-14025152)": "https://www.drupal.org/files/issues/2021-03-10/2979426-27.patch"
-            }
         }
     }
 }

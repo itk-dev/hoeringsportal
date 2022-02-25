@@ -8,7 +8,7 @@ dependencies:
     - field.field.media.document.field_itk_media_mime_type
     - field.field.media.document.field_itk_media_size
     - field.field.media.document.field_itk_media_tag
-    - media_entity.bundle.document
+    - media.type.document
   enforced:
     module:
       - itk_media_entity

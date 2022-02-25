@@ -5,17 +5,15 @@ dependencies:
   enforced:
     module:
       - itk_media_entity
-  module:
-    - media_entity_document
 _core:
   default_config_hash: 5b6bXB_RmH_XtufjDGLOpr0usXM9E9a_QJ82tSlA8bM
 id: document
 label: Document
 description: 'A document to be stored in the media library'
-type: document
+source: file
 queue_thumbnail_downloads: false
 new_revision: false
-type_configuration:
+source_configuration:
   source_field: field_itk_media_file_upload
 field_map:
   mime: field_itk_media_mime_type

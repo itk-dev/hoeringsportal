@@ -3,7 +3,7 @@ langcode: da
 status: true
 dependencies:
   module:
-    - media_entity
+    - media
 id: media.material_display
 label: 'Material display'
 targetEntityType: media
