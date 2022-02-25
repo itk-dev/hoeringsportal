@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.storage.media.field_itk_media_size
     - media.type.document
-  enforced:
-    module:
-      - itk_media_entity
 _core:
   default_config_hash: MFDq949lumFSz2z4AjPXd5oarO8mV2aQ8hWuUWIRo-A
 id: media.document.field_itk_media_size

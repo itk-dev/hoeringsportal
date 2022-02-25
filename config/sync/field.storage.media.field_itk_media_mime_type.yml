@@ -2,9 +2,6 @@ uuid: aadef1a3-13c0-41b9-a487-1dee552a74b2
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - media
 _core:

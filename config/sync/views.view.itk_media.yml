@@ -9,9 +9,6 @@ dependencies:
     - image.style.thumbnail
     - system.menu.admin
     - taxonomy.vocabulary.media_library
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - file
     - image

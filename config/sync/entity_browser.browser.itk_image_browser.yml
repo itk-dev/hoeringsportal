@@ -4,9 +4,6 @@ status: true
 dependencies:
   config:
     - views.view.itk_media_browser
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - entity_browser_entity_form
     - views

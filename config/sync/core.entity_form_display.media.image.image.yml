@@ -10,9 +10,6 @@ dependencies:
     - field.field.media.image.field_itk_media_tag
     - field.field.media.image.field_itk_media_width
     - media.type.image
-  enforced:
-    module:
-      - itk_media_entity
 _core:
   default_config_hash: pnXequxZbMqHvY7FiF_G1GuHqFrQU2lR9nl2STjebgA
 id: media.image.image
@@ -28,6 +25,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
+    third_party_settings: {  }
 hidden:
   created: true
   field_itk_media_height: true

@@ -2,9 +2,6 @@ uuid: 22b56e0d-47df-4475-9302-7b1ca0b3e58c
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - media
     - taxonomy
