@@ -2,4 +2,4 @@ name: Hoeringsportal user
 type: module
 description: 'Adds user configuration specific to Hoeringsportal'
 package: Hoeringsportal
-core: '8.x'
+core_version_requirement: ^8.8 || ^9
