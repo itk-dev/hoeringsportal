@@ -19,7 +19,7 @@ class MapsController extends ControllerBase {
    *
    * @var UrlGeneratorInterface
    */
-  protected UrlGeneratorInterface $urlGenerator;
+  protected $urlGenerator;
 
   /**
    * Maps constructor.
