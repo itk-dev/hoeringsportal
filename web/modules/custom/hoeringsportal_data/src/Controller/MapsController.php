@@ -3,6 +3,8 @@
 namespace Drupal\hoeringsportal_data\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Routing\UrlGeneratorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -13,13 +15,39 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class MapsController extends ControllerBase {
 
   /**
+   * The url generator service.
+   *
+   * @var UrlGeneratorInterface
+   */
+  protected UrlGeneratorInterface $urlGenerator;
+
+  /**
+   * Maps constructor.
+   *
+   * @param UrlGeneratorInterface $url_generator
+   */
+  public function __construct(UrlGeneratorInterface $url_generator) {
+    $this->urlGenerator = $url_generator;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    $url_generator = $container->get('url_generator');
+
+    return new static($url_generator);
+  }
+
+
+  /**
    * Index action.
    */
   public function index(Request $request) {
     $widget = $request->get('widget', 'alles-zusammen');
 
     if (NULL !== $widget) {
-      $widgetUrl = $this->getUrlGenerator()->generateFromRoute('hoeringsportal_data.maps_controller_widget', ['id' => $widget]);
+      $widgetUrl = $this->urlGenerator->generateFromRoute('hoeringsportal_data.maps_controller_widget', ['id' => $widget]);
 
       $content['map'] = [
         '#markup' => '<div class="maps-septima" data-widget-height="100%" data-widget-url="' . htmlspecialchars($widgetUrl) . '"></div>',

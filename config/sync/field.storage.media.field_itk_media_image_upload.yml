@@ -2,9 +2,6 @@ uuid: e8cc1f71-0a04-4a92-862c-c4c02e6d8e31
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - file
     - image

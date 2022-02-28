@@ -8,9 +8,6 @@ dependencies:
     - media.type.document
     - media.type.image
     - taxonomy.vocabulary.media_library
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - entity_browser
     - image

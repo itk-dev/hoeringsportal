@@ -11,9 +11,6 @@ dependencies:
     - field.field.media.image.field_itk_media_width
     - media.type.image
     - responsive_image.styles.content_image
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - responsive_image
 _core:

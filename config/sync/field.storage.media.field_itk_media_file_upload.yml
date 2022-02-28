@@ -2,9 +2,6 @@ uuid: cbad2649-1184-4986-b26e-aab7dec8c733
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - file
     - media

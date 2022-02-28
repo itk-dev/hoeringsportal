@@ -1,10 +1,7 @@
 uuid: 3d67e786-acdb-4085-8f54-82dc96c91e46
 langcode: da
 status: true
-dependencies:
-  enforced:
-    module:
-      - itk_media_entity
+dependencies: {  }
 _core:
   default_config_hash: 5b6bXB_RmH_XtufjDGLOpr0usXM9E9a_QJ82tSlA8bM
 id: document

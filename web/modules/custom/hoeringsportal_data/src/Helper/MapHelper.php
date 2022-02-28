@@ -36,7 +36,7 @@ class MapHelper {
 
       /** @var \Drupal\Core\File\FileSystem $fileSystem */
       $fileSystem = \Drupal::service('file_system');
-      $path = $fileSystem->realpath(file_default_scheme() . '://' . $filename);
+      $path = $fileSystem->realpath(\Drupal::config('system.file')->get('default_scheme') . '://' . $filename);
 
       if (!file_exists($path)) {
         throw new MapConfigurationParseException('File ' . $filename . ' not found');

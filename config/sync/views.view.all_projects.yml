@@ -56,37 +56,43 @@ display:
           text_input_required: 'Vælg et filter og klik på Anvend for at se resultater'
           bef:
             general:
-              allow_secondary: false
-              secondary_label: 'Avancerede indstillinger'
               autosubmit: true
               autosubmit_exclude_textfield: true
               autosubmit_hide: true
+              input_required: false
+              text_input_required: 'Vælg et filter og klik på Anvend for at se resultater'
+              text_input_required_format: basic_html
+              allow_secondary: false
+              secondary_label: 'Avancerede indstillinger'
             sort:
-              bef_format: default
+              plugin_id: default
               advanced:
-                collapsible: false
-                collapsible_label: 'Sort options'
                 combine: true
                 combine_rewrite: "Initiativ start Asc|Først kommende\nInitiativ start Desc|Sidst kommende"
                 reset: false
                 reset_label: ''
+                collapsible: false
+                collapsible_label: 'Sort options'
                 is_secondary: false
-            field_area_target_id:
-              bef_format: default
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Område\n- Enhver -|Vælg område"
-            field_tags_target_id:
-              bef_format: default
-              more_options:
-                bef_select_all_none: false
-                bef_collapsible: false
-                is_secondary: false
-                rewrite:
-                  filter_rewrite_values: "- Any -|Alle emner\n- Enhver -|Vælg emne"
+            filter:
+              field_area_target_id:
+                plugin_id: default
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: "- Any -|Område\n- Enhver -|Vælg område"
+                  sort_options: false
+              field_tags_target_id:
+                plugin_id: default
+                advanced:
+                  collapsible: false
+                  is_secondary: false
+                  placeholder_text: ''
+                  rewrite:
+                    filter_rewrite_values: "- Any -|Alle emner\n- Enhver -|Vælg emne"
+                  sort_options: false
           text_input_required_format: filtered_html
       pager:
         type: mini

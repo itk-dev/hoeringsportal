@@ -10,9 +10,6 @@ dependencies:
     - field.field.media.image.field_itk_media_width
     - image.style.crop_thumbnail
     - media.type.image
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - image_widget_crop
     - path
@@ -59,6 +56,13 @@ content:
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 100
+    region: content
     third_party_settings: {  }
 hidden:
   created: true

@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.storage.media.field_itk_media_file_upload
     - media.type.document
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - file
 _core:

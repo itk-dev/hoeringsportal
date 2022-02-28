@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_forms\Plugin\views\filter;
 
 use Drupal\Core\Entity\Element\EntityAutocomplete;
+use Drupal\Core\Entity\EntityRepository;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
@@ -36,6 +37,13 @@ class NodeIndexNid extends ManyToOne {
   protected $nodeStorage;
 
   /**
+   * The entity manager.
+   *
+   * @var \Drupal\Core\Entity\EntityRepository
+   */
+  protected $entityRepository;
+
+  /**
    * Constructs a NodeIndexNid object.
    *
    * @param array $configuration
@@ -48,11 +56,14 @@ class NodeIndexNid extends ManyToOne {
    *   The node storage.
    * @param \Drupal\node\NodeStorageInterface $node_storage
    *   The node storage.
+   * @param \Drupal\Core\Entity\EntityRepository $entity_repository
+   *   The entity manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityStorageInterface $node_type_storage, NodeStorageInterface $node_storage) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityStorageInterface $node_type_storage, NodeStorageInterface $node_storage, EntityRepository $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->nodeTypeStorage = $node_type_storage;
     $this->nodeStorage = $node_storage;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -63,8 +74,9 @@ class NodeIndexNid extends ManyToOne {
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity.manager')->getStorage('node_type'),
-      $container->get('entity.manager')->getStorage('node')
+      $container->get('entity_type.manager')->getStorage('node_type'),
+      $container->get('entity_type.manager')->getStorage('node'),
+      $container->get('entity.repository')
     );
   }
 
@@ -191,9 +203,7 @@ class NodeIndexNid extends ManyToOne {
       }
       $nodes = Node::loadMultiple($query->execute());
       foreach ($nodes as $node) {
-        $options[$node->id()] = \Drupal::entityManager()
-          ->getTranslationFromContext($node)
-          ->label();
+        $options[$node->id()] = $this->entityRepository->getTranslationFromContext($node)->label();
       }
 
       $default_value = (array) $this->value;
@@ -402,9 +412,7 @@ class NodeIndexNid extends ManyToOne {
       $this->value = array_filter($this->value);
       $nodes = Node::loadMultiple($this->value);
       foreach ($nodes as $node) {
-        $this->valueOptions[$node->id()] = \Drupal::entityManager()
-          ->getTranslationFromContext($node)
-          ->label();
+        $this->valueOptions[$node->id()] = $this->entityRepository->getTranslationFromContext($node)->label();
       }
     }
     return parent::adminSummary();

@@ -2,4 +2,4 @@ name: Hoeringsportal content access
 type: module
 description: 'Control access to certain content'
 package: Hoeringsportal
-core: '8.x'
+core_version_requirement: ^8.8 || ^9

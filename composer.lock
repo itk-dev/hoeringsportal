@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39209e5462fb9cb2f3276527ff5ef67e",
+    "content-hash": "15c2b2b77354eb3619316b3d06b3d4e6",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1102,16 +1102,16 @@
         },
         {
             "name": "consolidation/site-alias",
-            "version": "3.1.4",
+            "version": "3.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/consolidation/site-alias.git",
-                "reference": "91b8965b3afae0cab10d2ec01a1dfd193e9cf755"
+                "reference": "ef2eb7d37e59b3d837b4556d4d8070cb345b378c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/consolidation/site-alias/zipball/91b8965b3afae0cab10d2ec01a1dfd193e9cf755",
-                "reference": "91b8965b3afae0cab10d2ec01a1dfd193e9cf755",
+                "url": "https://api.github.com/repos/consolidation/site-alias/zipball/ef2eb7d37e59b3d837b4556d4d8070cb345b378c",
+                "reference": "ef2eb7d37e59b3d837b4556d4d8070cb345b378c",
                 "shasum": ""
             },
             "require": {
@@ -1154,9 +1154,9 @@
             "description": "Manage alias records for local and remote sites.",
             "support": {
                 "issues": "https://github.com/consolidation/site-alias/issues",
-                "source": "https://github.com/consolidation/site-alias/tree/3.1.4"
+                "source": "https://github.com/consolidation/site-alias/tree/3.1.5"
             },
-            "time": "2022-02-21T17:05:04+00:00"
+            "time": "2022-02-23T23:59:18+00:00"
         },
         {
             "name": "consolidation/site-process",
@@ -2067,29 +2067,33 @@
         },
         {
             "name": "drupal/better_exposed_filters",
-            "version": "3.0.0-alpha6",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/better_exposed_filters.git",
-                "reference": "8.x-3.0-alpha6"
+                "reference": "8.x-5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-8.x-3.0-alpha6.zip",
-                "reference": "8.x-3.0-alpha6",
-                "shasum": "0cd9849aa28eea822e18555107e4539d755d95ef"
+                "url": "https://ftp.drupal.org/files/projects/better_exposed_filters-8.x-5.0.zip",
+                "reference": "8.x-5.0",
+                "shasum": "ef575591af202b5c6867841ce58e1f447455e502"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "^8.8 || ^9",
+                "drupal/jquery_ui": "^1.4",
+                "drupal/jquery_ui_datepicker": "^1.0",
+                "drupal/jquery_ui_slider": "^1.1",
+                "drupal/jquery_ui_touch_punch": "^1.0"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0-alpha6",
-                    "datestamp": "1550449381",
+                    "version": "8.x-5.0",
+                    "datestamp": "1634748760",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Alpha releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -2099,16 +2103,16 @@
             ],
             "authors": [
                 {
-                    "name": "Etroid",
-                    "homepage": "https://www.drupal.org/user/3048985"
+                    "name": "Mike Keran",
+                    "homepage": "https://www.drupal.org/u/mikeker"
+                },
+                {
+                    "name": "Martin Keereman",
+                    "homepage": "https://www.drupal.org/u/etroid"
                 },
                 {
                     "name": "Neslee Canil Pinto",
-                    "homepage": "https://www.drupal.org/user/3580850"
-                },
-                {
-                    "name": "chr.fritsch",
-                    "homepage": "https://www.drupal.org/user/2103716"
+                    "homepage": "https://www.drupal.org/u/neslee-canil-pinto"
                 },
                 {
                     "name": "jkopel",
@@ -2123,10 +2127,11 @@
                     "homepage": "https://www.drupal.org/user/352283"
                 }
             ],
-            "description": "Provides advanced options (such as links, checkboxes, or jQueryUI widgets) for exposed Views elements.",
+            "description": "Replaces the Views default single- or multi-select boxes with more advanced options.",
             "homepage": "https://www.drupal.org/project/better_exposed_filters",
             "support": {
-                "source": "https://git.drupalcode.org/project/better_exposed_filters"
+                "source": "https://git.drupalcode.org/project/better_exposed_filters",
+                "issues": "https://www.drupal.org/project/issues/better_exposed_filters"
             }
         },
         {
@@ -3955,7 +3960,7 @@
         },
         {
             "name": "drupal/hoeringsportal_data",
-            "version": "dev-feature/media-update-step-2",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_data",
@@ -3979,7 +3984,7 @@
         },
         {
             "name": "drupal/hoeringsportal_deskpro",
-            "version": "dev-feature/media-update-step-2",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_deskpro",
@@ -4178,6 +4183,257 @@
             }
         },
         {
+            "name": "drupal/jquery_ui",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "64c19ecc8902e2b4b1ab0cc5f5fe28dbc83bfebe"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1582149957",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "jjeff",
+                    "homepage": "https://www.drupal.org/user/17190"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                },
+                {
+                    "name": "litwol",
+                    "homepage": "https://www.drupal.org/user/78134"
+                },
+                {
+                    "name": "mfb",
+                    "homepage": "https://www.drupal.org/user/12302"
+                },
+                {
+                    "name": "mfer",
+                    "homepage": "https://www.drupal.org/user/25701"
+                },
+                {
+                    "name": "mikelutz",
+                    "homepage": "https://www.drupal.org/user/2972409"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "webchick",
+                    "homepage": "https://www.drupal.org/user/24967"
+                },
+                {
+                    "name": "zrpnr",
+                    "homepage": "https://www.drupal.org/user/1448368"
+                }
+            ],
+            "description": "Provides jQuery UI library.",
+            "homepage": "https://www.drupal.org/project/jquery_ui",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jquery_ui"
+            }
+        },
+        {
+            "name": "drupal/jquery_ui_datepicker",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_datepicker.git",
+                "reference": "8.x-1.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui_datepicker-8.x-1.2.zip",
+                "reference": "8.x-1.2",
+                "shasum": "19ffa245970ee4e9d908fa0c5d0761f567e487bb"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/jquery_ui": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.2",
+                    "datestamp": "1642614454",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Andrei Ivnitskii",
+                    "homepage": "https://www.drupal.org/u/ivnish",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "ivnish",
+                    "homepage": "https://www.drupal.org/user/3547706"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                },
+                {
+                    "name": "zrpnr",
+                    "homepage": "https://www.drupal.org/user/1448368"
+                }
+            ],
+            "description": "Provides jQuery UI Datepicker library.",
+            "homepage": "https://www.drupal.org/project/jquery_ui_datepicker",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jquery_ui_datepicker",
+                "issues": "https://www.drupal.org/project/issues/jquery_ui_datepicker"
+            }
+        },
+        {
+            "name": "drupal/jquery_ui_slider",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_slider.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui_slider-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "79b90cf60d45fc33ffdaa84bb2d6563f78a7d3d1"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/jquery_ui": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1584107817",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "bnjmnm",
+                    "homepage": "https://www.drupal.org/user/2369194"
+                },
+                {
+                    "name": "lauriii",
+                    "homepage": "https://www.drupal.org/user/1078742"
+                },
+                {
+                    "name": "zrpnr",
+                    "homepage": "https://www.drupal.org/user/1448368"
+                }
+            ],
+            "description": "Provides jQuery UI Slider library.",
+            "homepage": "https://www.drupal.org/project/jquery_ui_slider",
+            "support": {
+                "source": "https://git.drupalcode.org/project/jquery_ui_slider"
+            }
+        },
+        {
+            "name": "drupal/jquery_ui_touch_punch",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/jquery_ui_touch_punch.git",
+                "reference": "1.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/jquery_ui_touch_punch-1.0.0.zip",
+                "reference": "1.0.0",
+                "shasum": "8444a0ed897ba3d8e8876a9602ec8b3dca678cd1"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9",
+                "drupal/jquery_ui": "^1.0"
+            },
+            "suggest": {
+                "furf/jquery-ui-touch-punch": "Required to use drupal/jquery_ui_touch_punch module."
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.0",
+                    "datestamp": "1591893292",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Naveen Valecha",
+                    "homepage": "https://drupal.org/u/naveenvalecha",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides jQuery UI Touch Punch library.",
+            "homepage": "https://www.drupal.org/project/jquery_ui_touch_punch",
+            "keywords": [
+                "Drupal",
+                "jquery_ui_touch_punch"
+            ],
+            "support": {
+                "source": "https://www.drupal.org/project/jquery_ui_touch_punch",
+                "issues": "https://www.drupal.org/project/issues/jquery_ui_touch_punch",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
             "name": "drupal/media_entity",
             "version": "2.0.0-beta7",
             "source": {
@@ -4192,7 +4448,6 @@
                 "shasum": "953bc6a54217bbb971746990fb9ba22f0b1d00c3"
             },
             "require": {
-                "drupal/core": "^8",
                 "drupal/entity": "*"
             },
             "require-dev": {
@@ -4214,7 +4469,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/8/downloads",
+            "notification-url": "https://packages.drupal.org/lenient/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -4287,7 +4542,6 @@
                 "reference": "b98ec72e303df00d0a9c2af500301828a0d6a160"
             },
             "require": {
-                "drupal/core": "~8.1",
                 "drupal/media_entity": "~1.0 || ~8.1.0 || ~2.0"
             },
             "type": "drupal-module",
@@ -4304,7 +4558,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/8/downloads",
+            "notification-url": "https://packages.drupal.org/lenient/downloads",
             "license": [
                 "GPL-2.0+"
             ],
@@ -4411,7 +4665,6 @@
                 "reference": "a3641cd2180a84eaa76e514e97d5440667cf2489"
             },
             "require": {
-                "drupal/core": "~8.0",
                 "drupal/media_entity": "*"
             },
             "require-dev": {
@@ -4431,7 +4684,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/8/downloads",
+            "notification-url": "https://packages.drupal.org/lenient/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -4770,26 +5023,26 @@
         },
         {
             "name": "drupal/search_autocomplete",
-            "version": "1.3.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/search_autocomplete.git",
-                "reference": "8.x-1.3"
+                "reference": "2.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_autocomplete-8.x-1.3.zip",
-                "reference": "8.x-1.3",
-                "shasum": "1e166bf8af0959fb4ea49e065632066bd4b4473d"
+                "url": "https://ftp.drupal.org/files/projects/search_autocomplete-2.0.1.zip",
+                "reference": "2.0.1",
+                "shasum": "d7386e17f7bc8a2c52b516c0f23d3699b263c41d"
             },
             "require": {
-                "drupal/core": "^8"
+                "drupal/core": "^8.8 || ^9"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.3",
-                    "datestamp": "1591039059",
+                    "version": "2.0.1",
+                    "datestamp": "1591039197",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -4939,47 +5192,19 @@
         },
         {
             "name": "drupal/toolbar_visibility",
-            "version": "1.2.0",
+            "version": "dev-3127402-drupal-9-readiness",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/toolbar_visibility.git",
-                "reference": "8.x-1.2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/toolbar_visibility-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "fc913c213dc5c8a44b17e366ad21a61806a71252"
-            },
-            "require": {
-                "drupal/core": "^8"
+                "url": "https://git.drupalcode.org/issue/toolbar_visibility-3127402",
+                "reference": "ff1c7d7d063c823dbd2c3926b7d6812605d30500"
             },
             "type": "drupal-module",
-            "extra": {
-                "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1440572939",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
-            "authors": [
-                {
-                    "name": "mdespeuilles",
-                    "homepage": "https://www.drupal.org/user/939504"
-                }
-            ],
-            "description": "Choose theme to show the toobar",
-            "homepage": "https://www.drupal.org/project/toolbar_visibility",
-            "support": {
-                "source": "https://git.drupalcode.org/project/toolbar_visibility"
-            }
+            "description": "Toolbar Visibility module allow to remove the Drupal 7 & 8 Toolbar on selected theme(s).",
+            "homepage": "http://drupal.org/project/toolbar_visibility",
+            "time": "2021-09-14T14:34:55+00:00"
         },
         {
             "name": "drupal/twig_tweak",
@@ -5827,12 +6052,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Promise\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Promise\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -5967,16 +6192,16 @@
         },
         {
             "name": "itk-dev/itk_azure_video",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_azure_video.git",
-                "reference": "54cee41873d956a575997d6da9a52d914bec1d8e"
+                "reference": "e348e68df4f5716e53817c933ec482e600ac0bba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_azure_video/zipball/54cee41873d956a575997d6da9a52d914bec1d8e",
-                "reference": "54cee41873d956a575997d6da9a52d914bec1d8e",
+                "url": "https://api.github.com/repos/itk-dev/itk_azure_video/zipball/e348e68df4f5716e53817c933ec482e600ac0bba",
+                "reference": "e348e68df4f5716e53817c933ec482e600ac0bba",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -5990,9 +6215,9 @@
             ],
             "support": {
                 "issues": "https://github.com/itk-dev/itk_azure_video/issues",
-                "source": "https://github.com/itk-dev/itk_azure_video/tree/1.1.0"
+                "source": "https://github.com/itk-dev/itk_azure_video/tree/1.1.1"
             },
-            "time": "2019-02-01T10:25:36+00:00"
+            "time": "2022-02-24T12:00:21+00:00"
         },
         {
             "name": "itk-dev/itk_cookie_message",
@@ -6025,16 +6250,16 @@
         },
         {
             "name": "itk-dev/itk_media_entity",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk-media-entity.git",
-                "reference": "038b93dda3ccba63678e588690514c5cf7c0c0a9"
+                "reference": "93f3cb315c09466f2de69c915fbc8eccb29eaf06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk-media-entity/zipball/038b93dda3ccba63678e588690514c5cf7c0c0a9",
-                "reference": "038b93dda3ccba63678e588690514c5cf7c0c0a9",
+                "url": "https://api.github.com/repos/itk-dev/itk-media-entity/zipball/93f3cb315c09466f2de69c915fbc8eccb29eaf06",
+                "reference": "93f3cb315c09466f2de69c915fbc8eccb29eaf06",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -6048,22 +6273,22 @@
             ],
             "support": {
                 "issues": "https://github.com/itk-dev/itk-media-entity/issues",
-                "source": "https://github.com/itk-dev/itk-media-entity/tree/2.0.1"
+                "source": "https://github.com/itk-dev/itk-media-entity/tree/2.0.2"
             },
-            "time": "2022-02-07T11:32:07+00:00"
+            "time": "2022-02-24T12:14:48+00:00"
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix_d8.git",
-                "reference": "0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd"
+                "reference": "81904550cb1970862bdbd92e627479f58e502c59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd",
-                "reference": "0fb3ac7031abbb3b42ae4c6d9f8dfbcd8f5b5dfd",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix_d8/zipball/81904550cb1970862bdbd92e627479f58e502c59",
+                "reference": "81904550cb1970862bdbd92e627479f58e502c59",
                 "shasum": ""
             },
             "require": {
@@ -6086,9 +6311,9 @@
             ],
             "support": {
                 "issues": "https://github.com/itk-dev/itk_pretix_d8/issues",
-                "source": "https://github.com/itk-dev/itk_pretix_d8/tree/1.0.0"
+                "source": "https://github.com/itk-dev/itk_pretix_d8/tree/1.0.1"
             },
-            "time": "2022-02-22T11:09:18+00:00"
+            "time": "2022-02-25T10:02:57+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
@@ -12569,16 +12794,16 @@
         },
         {
             "name": "mglaman/phpstan-drupal",
-            "version": "1.1.11",
+            "version": "1.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mglaman/phpstan-drupal.git",
-                "reference": "57b5b162749a84b3ae2eae5dd6c30fe6846c4753"
+                "reference": "ef7e62da2114736f69c49af3d02bb6b774093ba0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/57b5b162749a84b3ae2eae5dd6c30fe6846c4753",
-                "reference": "57b5b162749a84b3ae2eae5dd6c30fe6846c4753",
+                "url": "https://api.github.com/repos/mglaman/phpstan-drupal/zipball/ef7e62da2114736f69c49af3d02bb6b774093ba0",
+                "reference": "ef7e62da2114736f69c49af3d02bb6b774093ba0",
                 "shasum": ""
             },
             "require": {
@@ -12654,7 +12879,7 @@
             "description": "Drupal extension and rules for PHPStan",
             "support": {
                 "issues": "https://github.com/mglaman/phpstan-drupal/issues",
-                "source": "https://github.com/mglaman/phpstan-drupal/tree/1.1.11"
+                "source": "https://github.com/mglaman/phpstan-drupal/tree/1.1.12"
             },
             "funding": [
                 {
@@ -12670,7 +12895,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-02-18T21:31:42+00:00"
+            "time": "2022-02-23T22:14:13+00:00"
         },
         {
             "name": "mikey179/vfsstream",
@@ -14822,14 +15047,14 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/better_exposed_filters": 15,
         "drupal/captcha": 10,
         "drupal/email_registration": 5,
         "drupal/entityqueue": 15,
         "drupal/flag": 15,
         "drupal/inline_entity_form": 5,
         "drupal/media_entity_document": 20,
-        "drupal/media_entity_usage": 20
+        "drupal/media_entity_usage": 20,
+        "drupal/toolbar_visibility": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
