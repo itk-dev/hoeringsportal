@@ -48,7 +48,6 @@
         "drupal/config_ignore": "^2.2",
         "drupal/config_import_locale": "^1.0",
         "drupal/core-composer-scaffold": "^9.3",
-        "drupal/core-dev": "^9.3",
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
         "drupal/ds": "^3.1",
@@ -87,6 +86,7 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
+        "drupal/core-dev": "^9.3",
         "drupal/upgrade_status": "^3.13"
     },
     "conflict": {
