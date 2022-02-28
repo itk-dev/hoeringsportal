@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: pfrv6lPS72f5WG1UB4wHkgQV2invlHwVpaCy_mY-ClQ
+langcode: da
 default_challenge: image_captcha/Image
 description: 'Please type the text you see in the captcha image to prove you are human'
 administration_mode: false
@@ -7,6 +10,3 @@ default_validation: 1
 persistence: 1
 enable_stats: false
 log_wrong_responses: false
-_core:
-  default_config_hash: pfrv6lPS72f5WG1UB4wHkgQV2invlHwVpaCy_mY-ClQ
-langcode: da

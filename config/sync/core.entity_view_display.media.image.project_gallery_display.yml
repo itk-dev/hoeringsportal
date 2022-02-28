@@ -22,13 +22,13 @@ mode: project_gallery_display
 content:
   field_itk_media_image_upload:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: carousel_300x168
       image_link: ''
+      image_style: carousel_300x168
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_itk_media_height: true

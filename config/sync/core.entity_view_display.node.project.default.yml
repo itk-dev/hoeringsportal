@@ -21,6 +21,8 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
         wrappers:
           header: div
           left: div
@@ -30,8 +32,6 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
     regions:
       header:
         - node_title
@@ -60,38 +60,38 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: ''
           class: ''
-          link: false
 id: node.project.default
 targetEntityType: node
 bundle: project
 mode: default
 content:
   field_description:
-    weight: 1
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 1
     region: left
   field_project_finish:
-    weight: 4
+    type: datetime_default
     label: above
     settings:
       timezone_override: ''
       format_type: long
     third_party_settings: {  }
-    type: datetime_default
+    weight: 4
     region: right
   field_project_start:
-    weight: 3
+    type: datetime_default
     label: above
     settings:
       timezone_override: ''
       format_type: long
     third_party_settings: {  }
-    type: datetime_default
+    weight: 3
     region: right
 hidden:
   field_timeline_items: true

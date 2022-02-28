@@ -11,13 +11,13 @@ bundle: area
 mode: default
 content:
   field_area_id:
-    weight: -4
+    type: number_integer
     label: above
     settings:
       thousand_separator: ''
       prefix_suffix: true
     third_party_settings: {  }
-    type: number_integer
+    weight: -4
     region: content
 hidden:
   description: true

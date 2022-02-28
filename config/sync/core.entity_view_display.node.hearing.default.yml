@@ -39,7 +39,8 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
         wrappers:
           header: div
           left: div
@@ -49,8 +50,7 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
+        label: ''
     regions:
       header:
         - 'dynamic_block_field:node-hearing_warning'
@@ -125,9 +125,9 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: ''
           class: ''
-          link: false
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
@@ -135,44 +135,42 @@ mode: default
 content:
   field_area:
     type: entity_reference_label
-    weight: 16
-    region: right
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 16
+    region: right
   field_contact:
-    weight: 18
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 18
     region: right
   field_description:
     type: text_default
-    weight: 3
-    region: left
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 3
+    region: left
   field_lokalplaner:
     type: hoeringsportal_data_localplan_default
-    weight: 14
-    region: right
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 14
+    region: right
   field_map:
     type: hoeringsportal_data_map_default
-    weight: 21
-    region: footer
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 21
+    region: footer
   field_media_document:
     type: entity_reference_entity_view
-    weight: 4
-    region: left
     label: above
     settings:
       view_mode: material_display
@@ -180,10 +178,10 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+    weight: 4
+    region: left
   field_media_image:
     type: entity_reference_entity_view
-    weight: 6
-    region: left
     label: hidden
     settings:
       view_mode: teaser_display
@@ -191,52 +189,54 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+    weight: 6
+    region: left
   field_more_info:
-    weight: 19
+    type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 19
     region: right
   field_reply_deadline:
     type: datetime_default
-    weight: 12
-    region: right
     label: above
     settings:
       timezone_override: ''
       format_type: hoeringsportal_datetime
     third_party_settings: {  }
+    weight: 12
+    region: right
   field_start_date:
-    weight: 11
+    type: datetime_default
     label: above
     settings:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    type: datetime_default
+    weight: 11
     region: right
   field_teaser:
-    weight: 2
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 2
     region: left
   field_type:
-    weight: 13
+    type: entity_reference_label
     label: above
     settings:
       link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    weight: 13
     region: right
   field_video_embed:
-    weight: 5
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 5
     region: left
 hidden:
   field_content_state: true

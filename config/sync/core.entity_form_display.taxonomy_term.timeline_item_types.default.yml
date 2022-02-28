@@ -13,17 +13,17 @@ bundle: timeline_item_types
 mode: default
 content:
   field_timeline_item_color:
+    type: color_field_widget_spectrum
     weight: 1
+    region: content
     settings:
+      show_input: '0'
       show_palette: '1'
       palette: '["#008486","#673ab7","#3661d8","#2b3ba2","#B2DADA","#008850","#ffe13d","#d32f2f","#333333"]'
       show_palette_only: '1'
-      show_input: '0'
       show_buttons: '0'
       allow_empty: '0'
     third_party_settings: {  }
-    type: color_field_widget_spectrum
-    region: content
   name:
     type: string_textfield
     weight: 0

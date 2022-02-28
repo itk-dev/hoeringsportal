@@ -14,19 +14,19 @@ bundle: content_list
 mode: default
 content:
   field_content_list:
+    type: viewsreference_select
     weight: 1
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: viewsreference_select
-    region: content
   field_list_title:
+    type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
 hidden:
   created: true
   status: true

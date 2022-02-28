@@ -1,6 +1,6 @@
-langcode: da
 _core:
   default_config_hash: g9NCIjKoz0Dn_IvvhopquSEzIXLlP7zRFEy_27ZxZYA
+langcode: da
 id: search_form_users
 uuid: 6a5fd453-1b40-4c0b-ad0b-cbe1bb97cbdb
 label: 'Search Form (users tab)'

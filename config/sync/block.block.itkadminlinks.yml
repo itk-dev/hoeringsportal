@@ -15,6 +15,6 @@ plugin: itk_admin_links
 settings:
   id: itk_admin_links
   label: 'ITK Admin links'
-  provider: itk_admin_links
   label_display: '0'
+  provider: itk_admin_links
 visibility: {  }

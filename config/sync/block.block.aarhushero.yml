@@ -16,11 +16,11 @@ plugin: aarhus_hero
 settings:
   id: aarhus_hero
   label: 'Aarhus hero'
-  provider: aarhus_hero
   label_display: '0'
+  provider: aarhus_hero
 visibility:
   request_path:
     id: request_path
-    pages: "<front>\r\n/search/*"
     negate: false
     context_mapping: {  }
+    pages: "<front>\r\n/search/*"
