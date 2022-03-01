@@ -157,7 +157,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/search_autocomplete" : {
-                "https://www.drupal.org/project/search_autocomplete/issues/3220334": "https://www.drupal.org/files/issues/2021-06-24/value-autocomplete-not-function-3220334-3.patch"
+                    "https://www.drupal.org/project/search_autocomplete/issues/3220334": "https://www.drupal.org/files/issues/2021-06-24/value-autocomplete-not-function-3220334-3.patch"
             }
         }
     }
