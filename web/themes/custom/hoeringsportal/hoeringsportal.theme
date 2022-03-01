@@ -385,3 +385,41 @@ function _hoeringsportal_is_bef_container($variables) {
 
   return FALSE;
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * Add open graph meta tags.
+ */
+function hoeringsportal_page_attachments_alter(array &$attachments){
+  $route_match = \Drupal::routeMatch();
+
+  if ($route_match->getRouteName() == 'entity.node.canonical') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof \Drupal\node\NodeInterface) {
+      if ($node->hasField('field_media_image')) {
+        $image_entities = $node->field_media_image->referencedEntities();
+      }
+      if ($node->hasField('field_media_image_single')) {
+        $image_entities = $node->field_media_image_single->referencedEntities();
+      }
+      if(isset($image_entities[0])) {
+        $image_entity = $image_entities[0];
+        $image_field = $image_entity->field_itk_media_image_upload;
+        if (isset($image_field)) {
+          $image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_entity->field_itk_media_image_upload->entity->getFileUri());
+          $attachments['#attached']['html_head'][] = [
+            0 => [
+              '#tag' => 'meta',
+              '#attributes' => [
+                'name' => 'og:image',
+                'content' => $image
+              ]
+            ],
+            1 => 'og_image',
+          ];
+        }
+      }
+    }
+  }
+}
