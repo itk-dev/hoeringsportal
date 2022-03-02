@@ -173,6 +173,30 @@ class ItkGeneralSettingsForm extends FormBase {
       '#default_value' => $config->get('users_manual_url'),
     ];
 
+    $node_newsletter = Node::load($config->get('node_newsletter') ?? -1);
+    $form['misc']['node_newsletter'] = [
+      '#title' => $this->t('Newsletter'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'node',
+      '#default_value' => $node_newsletter,
+      '#required' => TRUE,
+    ];
+
+    $form['misc']['newsletter_iframe_source'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Newsletter iframe source'),
+      '#default_value' => $config->get('newsletter_iframe_source') ?? '',
+      '#required' => TRUE,
+    );
+
+    $form['misc']['newsletter_iframe_height'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Newsletter iframe height'),
+      '#default_value' => $config->get('newsletter_iframe_height') ?? '',
+      '#description' => $this->t('The height of the iframe i.e 450px'),
+      '#required' => TRUE,
+    );
+
     $form['messages'] = [
       '#title' => $this->t('Messages'),
       '#type' => 'details',
@@ -200,7 +224,7 @@ class ItkGeneralSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    \Drupal\Core\Messenger\MessengerInterface::addMessage('Settings saved');
+    \Drupal::messenger()->addMessage('Settings saved');
 
     // Set the rest of the configuration values.
     $this->getBaseConfig()->setMultiple([
@@ -215,6 +239,9 @@ class ItkGeneralSettingsForm extends FormBase {
       'frontpage_id' => $form_state->getValue('frontpage_id'),
       'users_manual_url' => $form_state->getValue('users_manual_url'),
       'login_message' => $form_state->getValue('login_message'),
+      'node_newsletter' => $form_state->getValue('node_newsletter'),
+      'newsletter_iframe_source' => $form_state->getValue('newsletter_iframe_source'),
+      'newsletter_iframe_height' => $form_state->getValue('newsletter_iframe_height'),
     ]);
 
     drupal_flush_all_caches();

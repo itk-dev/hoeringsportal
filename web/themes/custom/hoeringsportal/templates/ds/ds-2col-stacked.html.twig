@@ -51,7 +51,13 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
-          {{ left }}
+          {{ left|without('node_changed_date') }}
+          {% if show_newsletter_signup %}
+            <iframe frameborder="0" width="100%" height="{{ newsletter_iframe_height }}" src="{{ newsletter_iframe_source }}">
+              <p>Your browser does not support iframes.</p>
+            </iframe>
+          {% endif %}
+          {{ left.node_changed_date }}
         </div>
       </{{ left_wrapper }}>
 
