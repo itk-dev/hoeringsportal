@@ -58,5 +58,7 @@
 
     {{ footer }}
   </{{ footer_wrapper }}>
-
+  {% if node_newsletter %}
+    {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
+  {% endif %}
 </{{ outer_wrapper }}>
