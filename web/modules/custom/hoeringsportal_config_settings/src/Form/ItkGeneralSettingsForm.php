@@ -175,18 +175,16 @@ class ItkGeneralSettingsForm extends FormBase {
 
     $node_newsletter = Node::load($config->get('node_newsletter') ?? -1);
     $form['misc']['node_newsletter'] = [
-      '#title' => $this->t('Newsletter'),
+      '#title' => $this->t('Newsletter page'),
       '#type' => 'entity_autocomplete',
       '#target_type' => 'node',
       '#default_value' => $node_newsletter,
-      '#required' => TRUE,
     ];
 
     $form['misc']['newsletter_iframe_source'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Newsletter iframe source'),
       '#default_value' => $config->get('newsletter_iframe_source') ?? '',
-      '#required' => TRUE,
     );
 
     $form['misc']['newsletter_iframe_height'] = array(
@@ -194,7 +192,6 @@ class ItkGeneralSettingsForm extends FormBase {
       '#title' => $this->t('Newsletter iframe height'),
       '#default_value' => $config->get('newsletter_iframe_height') ?? '',
       '#description' => $this->t('The height of the iframe i.e 450px'),
-      '#required' => TRUE,
     );
 
     $form['messages'] = [

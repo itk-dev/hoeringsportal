@@ -331,6 +331,7 @@ function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   // Check content type.
   $itk_config = \Drupal::getContainer()->get('itk_admin.itk_config');
   $node_newsletter = $itk_config->get('node_newsletter');
+  $variables['node_newsletter'] = $node_newsletter ?? NULL;
   $variables['show_newsletter_signup'] = FALSE;
   if ($node_newsletter === $variables['content']['#node']->id()) {
     $variables['show_newsletter_signup'] = TRUE;
