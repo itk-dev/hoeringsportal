@@ -133,7 +133,7 @@ class HearingHelper {
 
     $data = $node->field_deskpro_data->value;
 
-    return isset($data['tickets']) ? $data['tickets'] : NULL;
+    return $data['tickets'] ?? NULL;
   }
 
   /**
@@ -303,7 +303,7 @@ class HearingHelper {
     return preg_replace_callback($pattern, function ($matches) use ($data) {
         $type = $matches['type'];
         $key = $matches['key'];
-        return isset($data[$type][$key]) ? $data[$type][$key] : $matches[0];
+        return $data[$type][$key] ?? $matches[0];
     }, $text);
   }
 
