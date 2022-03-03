@@ -313,7 +313,10 @@ class HearingTicketAddForm extends FormBase {
         }
       }
       catch (\Exception $exception) {
-        \Drupal::logger('hoeringsportal_deskpro')->error('@message', ['@message' => $exception->getMessage(), '@values' => $form_state->getValues()]);
+        \Drupal::logger('hoeringsportal_deskpro')->error('@message', [
+          '@message' => $exception->getMessage(),
+          '@values' => $form_state->getValues(),
+        ]);
       }
     }
 
@@ -340,8 +343,10 @@ class HearingTicketAddForm extends FormBase {
     }
     catch (\Exception $exception) {
       $this->messenger()->addError($this->t('Error submitting hearing ticket'));
-      \Drupal::logger('hoeringsportal_deskpro')->error('@message', ['@message' => $exception->getMessage(), '@values' => $form_state->getValues()]);
-      return;
+      \Drupal::logger('hoeringsportal_deskpro')->error('@message', [
+        '@message' => $exception->getMessage(),
+        '@values' => $form_state->getValues(),
+      ]);
     }
   }
 
