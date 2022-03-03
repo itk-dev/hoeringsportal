@@ -53,6 +53,7 @@ module:
   itk_pretix: 0
   itk_siteimprove: 0
   jsonapi: 0
+  jquery_ui: 0
   language: 0
   layout_discovery: 0
   link: 0
