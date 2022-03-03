@@ -53,7 +53,7 @@
         "drupal/ds": "^3.1",
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity": "^1.2",
-        "drupal/entity_browser": "^1.5",
+        "drupal/entity_browser": "^2.6",
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
