@@ -10,9 +10,7 @@
     <div class="col py-2">
       <h5 class="newsletter-signup--header">{{ 'Would you like a direct message when deltag.aarhus.dk has new content?'|t }}</h5>
       <div>
-        {{ 'Sign up to our message service and be informed about you interests'|t }}
-        <span>{{ ' - ' }}</span>
-        <a href="{{ path('entity.node.canonical', {'node': node_newsletter}) }}">{{ 'Click here'|t }}</a>
+        {{ '<a href="@sign_up_url">Sign up to our message service</a> and be informed about your interests'|t({'@sign_up_url': path('entity.node.canonical', {'node': node_newsletter})}) }}
       </div>
     </div>
     <div class="col-md-auto py-2">
