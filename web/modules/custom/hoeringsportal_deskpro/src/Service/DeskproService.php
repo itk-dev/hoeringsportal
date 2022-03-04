@@ -580,7 +580,7 @@ class DeskproService {
       // https://github.com/deskpro/deskpro-api-client-php
       $authKey = $this->config->getDeskproApiCodeKey();
       $client = new Client(['connect_timeout' => 2]);
-      $this->client = new DeskproClient($this->config->getDeskproUrl(), $client);
+      $this->client = new DeskproClient($this->config->getDeskproUrl(), $client, \Drupal::logger('hoeringsportal_deskpro'));
       $this->client->setAuthKey(...$authKey);
     }
 
