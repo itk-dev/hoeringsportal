@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "39209e5462fb9cb2f3276527ff5ef67e",
+    "content-hash": "56c4793895e6cc8edf91703559cb9138",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3979,11 +3979,11 @@
         },
         {
             "name": "drupal/hoeringsportal_deskpro",
-            "version": "dev-feature/media-update-step-2",
+            "version": "dev-feature/HRIN-672-synchronization-improvements",
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_deskpro",
-                "reference": "7c05f5196d8e8adbd4523291f068d91063e7998a"
+                "reference": "ef98875e3a91302a92b0b055c9eee6058809c0c8"
             },
             "require": {
                 "deskpro/deskpro-api-client-php": "^2.0",
@@ -3992,6 +3992,13 @@
                 "nicoeg/dawa": "^1.0"
             },
             "type": "drupal-custom-module",
+            "extra": {
+                "patches": {
+                    "drupal/advancedqueue": {
+                        "Add getJobs() method to database backend (https://www.drupal.org/project/advancedqueue/issues/3244940)": "https://www.drupal.org/files/issues/2021-10-20/add-getjobs-method-database-backend.patch"
+                    }
+                }
+            },
             "license": [
                 "GPL-2.0+"
             ],

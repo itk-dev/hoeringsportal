@@ -33,10 +33,8 @@
           {{ ticket.subject }}
         </h3>
         <div class="card-body">
-          {% if ticket.messages and ticket.messages|length > 0 %}
-            {% set message = ticket.messages[0] %}
-            {{ message.message_preview_text }}
-          {% endif %}
+          {% set message = ticket.fields.message|default('') %}
+          {{ message|length > 180 ? message|slice(0, 180)|raw ~ '…' : message|raw }}
         </div>
         <div class="card-footer">
           {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.person.display_name}) }}
