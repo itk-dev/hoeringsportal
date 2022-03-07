@@ -447,20 +447,44 @@ class HearingHelper {
       throw new \RuntimeException($message);
     }
 
-    $this->logger->debug(
-      NULL === $ticketIndex
-      ? sprintf('Adding ticket %s on hearing %s', $ticketId, $hearing->id())
-      : sprintf('Updating ticket %s on hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
-      [
-        '@ticket' => json_encode($ticket),
-      ]
-    );
-
-    if (NULL === $ticketIndex) {
-      $tickets[] = $ticket;
+    // Remove unpublished or deleted tickets.
+    $remove =
+      // Ticket is unpublished if and only if the field "unpublish_reply" === 1.
+      1 === (int) ($ticket['fields']['unpublish_reply'] ?? NULL)
+      // A deleted ticket has a status starting with "hidden" (and is not really
+      // deleted so it makes sense to get it from the api).
+      || 0 === strpos($ticket['status'], 'hidden');
+    if ($remove) {
+      // Remove ticket (if it exists).
+      if (NULL !== $ticketIndex) {
+        $this->logger->debug(
+          sprintf('Removing ticket %s from hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
+          [
+            '@payload' => json_encode($payload),
+          ]
+        );
+        unset($tickets[$ticketIndex]);
+      }
     }
     else {
-      $tickets[$ticketIndex] = $ticket;
+      if (NULL === $ticketIndex) {
+        $this->logger->debug(
+          sprintf('Adding ticket %s on hearing %s', $ticketId, $hearing->id()),
+          [
+            '@ticket' => json_encode($ticket),
+          ]
+        );
+        $tickets[] = $ticket;
+      }
+      else {
+        $this->logger->debug(
+          sprintf('Updating ticket %s on hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
+          [
+            '@ticket' => json_encode($ticket),
+          ]
+              );
+        $tickets[$ticketIndex] = $ticket;
+      }
     }
 
     // Sort tickets descending by creation time.
