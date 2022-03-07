@@ -397,9 +397,8 @@ class HearingHelper {
       $hearingIdFieldName = $this->getHearingIdFieldName();
       $matchesCurrentPayload = function (array $otherPayload) use ($payload, $hearingIdFieldName) {
         // Payloads must match on both ticket.id and ticket.$hearingIdfieldName.
-        return isset($payload['ticket']['id'], $otherPayload['ticket']['id'])
+        return isset($otherPayload['ticket']['id'], $otherPayload['ticket'][$hearingIdFieldName])
           && $payload['ticket']['id'] === $otherPayload['ticket']['id']
-          && isset($payload['ticket'][$hearingIdFieldName], $otherPayload['ticket'][$hearingIdFieldName])
           && $payload['ticket'][$hearingIdFieldName] === $otherPayload['ticket'][$hearingIdFieldName];
       };
 
@@ -493,6 +492,11 @@ class HearingHelper {
       throw new \RuntimeException(sprintf('Payload must be an array; got %s', gettype($payload)));
     }
 
+    $ticketId = $payload['ticket']['id'] ?? NULL;
+    if (NULL === $ticketId) {
+      throw new \RuntimeException('Missing ticket id');
+    }
+
     $hearingIdFieldName = $this->getHearingIdFieldName();
     if (!isset($payload['ticket'][$hearingIdFieldName])) {
       throw new \RuntimeException(sprintf('Missing hearing id (%s)', $hearingIdFieldName));
@@ -508,11 +512,6 @@ class HearingHelper {
     $hearing = Node::load($hearingId);
     if (!$this->isHearing($hearing)) {
       throw new \RuntimeException('Invalid hearing: ' . $hearingId);
-    }
-
-    $ticketId = $payload['ticket']['id'] ?? NULL;
-    if (NULL === $ticketId) {
-      throw new \RuntimeException('Missing ticket id');
     }
 
     return [$hearing, $ticketId];
