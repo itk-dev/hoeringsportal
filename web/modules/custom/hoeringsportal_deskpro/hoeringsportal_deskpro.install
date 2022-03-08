@@ -113,9 +113,11 @@ function hoeringsportal_deskpro_update_8002() {
   // Copy data from field_deskpro_data to out custom table.
   // @see https://www.drupal.org/docs/drupal-apis/database-api/insert-queries#inserting-result-select
   $query = $connection->select('node__field_deskpro_data', 'n');
-  $query->addField('n', 'bundle');
-  $query->addField('n', 'entity_id');
-  $query->addField('n', 'field_deskpro_data_value');
+  $query->fields('n', [
+    'bundle',
+    'entity_id',
+    'field_deskpro_data_value',
+  ]);
 
   $connection
     ->insert('hoeringsportal_deskpro_deskpro_data')
