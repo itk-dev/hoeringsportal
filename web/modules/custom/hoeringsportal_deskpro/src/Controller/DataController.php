@@ -60,12 +60,12 @@ class DataController extends ControllerBase implements AccessInterface {
   }
 
   /**
-   * Hearing tickets.
+   * Synchronize ticket.
    */
-  public function synchronizeHearing(Request $request) {
+  public function synchronizeTicket(Request $request) {
     try {
-      $data = json_decode($request->getContent(), TRUE);
-      $result = $this->helper->synchronizeHearing($data, $request->query->getBoolean('delayed'));
+      $payload = json_decode($request->getContent(), TRUE);
+      $result = $this->helper->synchronizeTicket($payload, TRUE);
 
       return new JsonResponse($result);
     }
@@ -80,7 +80,7 @@ class DataController extends ControllerBase implements AccessInterface {
    * @see https://www.drupal.org/node/2122195
    * but note that we cannot get the Request directly.
    */
-  public function synchronizeHearingAccess() {
+  public function accessCheck() {
     $token = $this->requestStack->getCurrentRequest()->headers->get('x-deskpro-token');
     return $this->deskpro->isValidToken($token) ? new AccessResultAllowed() : new AccessResultForbidden('Invalid data token');
   }

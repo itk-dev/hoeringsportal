@@ -13,11 +13,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Synchronize hearing job.
  *
  * @AdvancedQueueJobType(
- *   id = "Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType\SynchronizeHearing",
- *   label = @Translation("Update hearing"),
+ *   id = "Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType\SynchronizeTicket",
+ *   label = @Translation("Update or create ticket"),
  * )
  */
-class SynchronizeHearing extends JobTypeBase implements ContainerFactoryPluginInterface {
+class SynchronizeTicket extends JobTypeBase implements ContainerFactoryPluginInterface {
   /**
    * The hearing helper.
    *
@@ -57,7 +57,7 @@ class SynchronizeHearing extends JobTypeBase implements ContainerFactoryPluginIn
     $payload = $job->getPayload();
 
     try {
-      $this->helper->synchronizeHearing($payload);
+      $this->helper->runSynchronizeTicket($payload);
 
       return JobResult::success();
     }
