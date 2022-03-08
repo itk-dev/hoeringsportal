@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "15c2b2b77354eb3619316b3d06b3d4e6",
+    "content-hash": "0b56a9c2570850883087b29eecff0475",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -135,7 +135,7 @@
             "version": "3.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "e786e3d9707ffd9b0dd330ca135b66344dcef85a"
             },
             "dist": {
@@ -3988,7 +3988,7 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_deskpro",
-                "reference": "7c05f5196d8e8adbd4523291f068d91063e7998a"
+                "reference": "ef98875e3a91302a92b0b055c9eee6058809c0c8"
             },
             "require": {
                 "deskpro/deskpro-api-client-php": "^2.0",
@@ -3997,6 +3997,13 @@
                 "nicoeg/dawa": "^1.0"
             },
             "type": "drupal-custom-module",
+            "extra": {
+                "patches": {
+                    "drupal/advancedqueue": {
+                        "Add getJobs() method to database backend (https://www.drupal.org/project/advancedqueue/issues/3244940)": "https://www.drupal.org/files/issues/2021-10-20/add-getjobs-method-database-backend.patch"
+                    }
+                }
+            },
             "license": [
                 "GPL-2.0+"
             ],
@@ -4448,6 +4455,7 @@
                 "shasum": "953bc6a54217bbb971746990fb9ba22f0b1d00c3"
             },
             "require": {
+                "drupal/core": "^8",
                 "drupal/entity": "*"
             },
             "require-dev": {
@@ -4469,7 +4477,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/lenient/downloads",
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -4542,6 +4550,7 @@
                 "reference": "b98ec72e303df00d0a9c2af500301828a0d6a160"
             },
             "require": {
+                "drupal/core": "~8.1",
                 "drupal/media_entity": "~1.0 || ~8.1.0 || ~2.0"
             },
             "type": "drupal-module",
@@ -4558,7 +4567,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/lenient/downloads",
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0+"
             ],
@@ -4665,6 +4674,7 @@
                 "reference": "a3641cd2180a84eaa76e514e97d5440667cf2489"
             },
             "require": {
+                "drupal/core": "~8.0",
                 "drupal/media_entity": "*"
             },
             "require-dev": {
@@ -4684,7 +4694,7 @@
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/lenient/downloads",
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0-or-later"
             ],
@@ -5819,12 +5829,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "HTMLPurifier": "library/"
-                },
                 "files": [
                     "library/HTMLPurifier.composer.php"
                 ],
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
                 "exclude-from-classmap": [
                     "/library/HTMLPurifier/Language/"
                 ]
@@ -9556,12 +9566,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Ctype\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Ctype\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -9860,12 +9870,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php56\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php56\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -9933,12 +9943,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php70\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php70\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]

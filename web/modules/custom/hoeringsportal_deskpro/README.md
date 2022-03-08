@@ -10,12 +10,11 @@ Check out `/hoeringsportal_deskpro/api/docs` for details.
 
 ## Drush commands
 
-```
-hoeringsportal:deskpro:synchronize-data
+```sh
 hoeringsportal:deskpro:synchronize-endpoint
+hoeringsportal:deskpro:synchronize-hearing-ticket
+hoeringsportal:deskpro:synchronize-hearing-tickets
 ```
-Synchronizes hearing data with Deskpro.
-Shows information on data synchronization endpoint.
 
 Process Deskpro queue:
 
