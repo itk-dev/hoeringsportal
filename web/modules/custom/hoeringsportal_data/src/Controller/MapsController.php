@@ -17,14 +17,12 @@ class MapsController extends ControllerBase {
   /**
    * The url generator service.
    *
-   * @var UrlGeneratorInterface
+   * @var \Drupal\Core\Routing\UrlGeneratorInterface
    */
   protected $urlGenerator;
 
   /**
    * Maps constructor.
-   *
-   * @param UrlGeneratorInterface $url_generator
    */
   public function __construct(UrlGeneratorInterface $url_generator) {
     $this->urlGenerator = $url_generator;
@@ -38,7 +36,6 @@ class MapsController extends ControllerBase {
 
     return new static($url_generator);
   }
-
 
   /**
    * Index action.
