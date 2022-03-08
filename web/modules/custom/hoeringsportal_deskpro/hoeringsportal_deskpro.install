@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the itk_pretix module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function hoeringsportal_deskpro_schema() {
+  return [
+    'hoeringsportal_deskpro_deskpro_data' => [
+      'description' => 'Table to hold information about Deskpro data for entities.',
+      'fields' => [
+        'bundle' => [
+          'description' => 'The entity bundle',
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'entity_id' => [
+          'description' => 'The entity id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ],
+        'data' => [
+          'description' => 'Deskpro data (JSON)',
+          'type' => 'text',
+          'size' => 'normal',
+          'not null' => TRUE,
+          'default' => '{}',
+        ],
+      ],
+      'primary key' => [
+        'bundle',
+        'entity_id',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Move Deskpro data to custom table and remove Deskpro data field.
+ */
+function hoeringsportal_deskpro_update_8001() {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal::service('database');
+
+  // Copy data from field_deskpro_data to out custom table.
+  // @see https://www.drupal.org/docs/drupal-apis/database-api/insert-queries#inserting-result-select
+  $query = $connection->select('node__field_deskpro_data', 'n');
+  $query->addField('n', 'bundle');
+  $query->addField('n', 'entity_id');
+  $query->addField('n', 'field_deskpro_data_value');
+
+  $connection
+    ->insert('hoeringsportal_deskpro_deskpro_data')
+    ->fields(['bundle', 'entity_id', 'data'])
+    ->from($query)
+    ->execute();
+}
