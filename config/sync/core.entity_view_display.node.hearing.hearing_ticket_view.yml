@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
-    - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_edoc_casefile_id
     - field.field.node.hearing.field_lokalplaner
@@ -168,7 +167,6 @@ hidden:
   field_content_state: true
   field_description: true
   field_deskpro_agent_email: true
-  field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
   field_edoc_casefile_id: true

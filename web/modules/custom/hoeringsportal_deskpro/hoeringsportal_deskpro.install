@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * @file
+ * Installation file for the itk_pretix module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function hoeringsportal_deskpro_schema() {
+  return [
+    'hoeringsportal_deskpro_deskpro_data' => [
+      'description' => 'Table to hold information about Deskpro data for nodes.',
+      'fields' => [
+        'entity_type' => [
+          'description' => 'The entity type',
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'entity_id' => [
+          'description' => 'The entity id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ],
+        'bundle' => [
+          'description' => 'The entity bundle',
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'data' => [
+          'description' => 'Deskpro data (JSON)',
+          'type' => 'text',
+          'size' => 'normal',
+          'not null' => TRUE,
+          'default' => '{}',
+        ],
+      ],
+      'primary key' => [
+        'entity_type',
+        'entity_id',
+        'bundle',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Create custom Deskpro data table.
+ */
+function hoeringsportal_deskpro_update_8001() {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal::service('database');
+  $schema = $connection->schema();
+
+  $tables = [
+    'hoeringsportal_deskpro_deskpro_data' => [
+      'description' => 'Table to hold information about Deskpro data for nodes.',
+      'fields' => [
+        'entity_type' => [
+          'description' => 'The entity type',
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'entity_id' => [
+          'description' => 'The entity id',
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'not null' => TRUE,
+        ],
+        'bundle' => [
+          'description' => 'The entity bundle',
+          'type' => 'varchar',
+          'length' => 128,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'data' => [
+          'description' => 'Deskpro data (JSON)',
+          'type' => 'text',
+          'size' => 'big',
+          'not null' => TRUE,
+          'default' => '{}',
+        ],
+      ],
+      'primary key' => [
+        'entity_type',
+        'entity_id',
+        'bundle',
+      ],
+    ],
+  ];
+
+  foreach ($tables as $table => $spec) {
+    $schema->createTable($table, $spec);
+  }
+}
+
+/**
+ * Move Deskpro data to custom table and remove Deskpro data field.
+ */
+function hoeringsportal_deskpro_update_8002() {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal::service('database');
+
+  // Copy data from field_deskpro_data to out custom table.
+  // @see https://www.drupal.org/docs/drupal-apis/database-api/insert-queries#inserting-result-select
+  $query = $connection->select('node__field_deskpro_data', 'n');
+  $query->fields('n', [
+    'bundle',
+    'entity_id',
+    'field_deskpro_data_value',
+  ]);
+
+  $connection
+    ->insert('hoeringsportal_deskpro_deskpro_data')
+    ->fields(['bundle', 'entity_id', 'data'])
+    ->from($query)
+    ->execute();
+
+  $connection->update('hoeringsportal_deskpro_deskpro_data')
+    ->fields([
+      'entity_type' => 'node',
+    ])
+    ->execute();
+}
