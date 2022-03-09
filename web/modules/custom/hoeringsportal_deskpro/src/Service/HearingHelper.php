@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_deskpro\Service;
 use Drupal\advancedqueue\Entity\Queue;
 use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\SupportsDeletingJobsInterface;
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
@@ -41,6 +42,13 @@ class HearingHelper {
   private $fileSystem;
 
   /**
+   * The database.
+   *
+   * @var \Drupal\Core\Database\Connection
+   */
+  private $database;
+
+  /**
    * The logger.
    *
    * @var \Psr\Log\LoggerInterface
@@ -50,10 +58,11 @@ class HearingHelper {
   /**
    * Constructs a new DeskproHelper object.
    */
-  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager, FileSystemInterface $fileSystem, LoggerInterface $logger) {
+  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager, FileSystemInterface $fileSystem, Connection $database, LoggerInterface $logger) {
     $this->deskpro = $deskpro;
     $this->entityTypeManager = $entityTypeManager;
     $this->fileSystem = $fileSystem;
+    $this->database = $database;
     $this->logger = $logger;
   }
 
@@ -132,7 +141,7 @@ class HearingHelper {
       return NULL;
     }
 
-    $data = $node->field_deskpro_data->value;
+    $data = $this->getDeskproData($node);
 
     return $data['tickets'] ?? NULL;
   }
@@ -376,7 +385,7 @@ class HearingHelper {
       'tickets' => array_merge(...$tickets),
     ];
 
-    $hearing->field_deskpro_data->value = json_encode($data);
+    $this->setDeskproData($hearing, $data);
     $hearing->save();
 
     return ['hearing' => $hearing->id(), 'data' => $data];
@@ -426,7 +435,7 @@ class HearingHelper {
     /** @var \Drupal\node\Entity\NodeInterface $hearing */
     [$hearing, $ticketId] = $this->validateTicketPayload($payload);
 
-    $data = json_decode($hearing->field_deskpro_data->value, TRUE);
+    $data = $this->getDeskproData($hearing);
     $tickets = $data['tickets'] ?? [];
 
     // Find index of exiting ticket if any.
@@ -494,7 +503,7 @@ class HearingHelper {
 
     $data['tickets'] = $tickets;
 
-    $hearing->field_deskpro_data->value = json_encode($data);
+    $this->setDeskproData($hearing, $data);
     $hearing->save();
 
     return ['hearing' => $hearing->id(), 'ticket' => $ticket];
@@ -549,6 +558,65 @@ class HearingHelper {
    */
   public function getDeskproConfig() {
     return $this->deskpro->getConfig();
+  }
+
+  /**
+   * Get Deskpro data for a node.
+   *
+   * @param \Drupal\node\Entity\NodeInterface $node
+   *   The node.
+   * @param bool $reset
+   *   If set, the data will be reset, i.e. reloaded from database.
+   *
+   * @return array|null
+   *   The Deskpro data for the node.
+   */
+  public function getDeskproData(NodeInterface $node, bool $reset = FALSE): ?array {
+    if (!$this->isHearing($node)) {
+      throw new \RuntimeException('Invalid hearing: ' . $node->id());
+    }
+
+    $info = &drupal_static(__METHOD__, []);
+
+    $bundle = $node->bundle();
+    $entity_id = $node->id();
+    if ($reset || !isset($info[$bundle][$entity_id])) {
+      $record = $this->database
+        ->select('hoeringsportal_deskpro_deskpro_data', 'd')
+        ->fields('d')
+        ->condition('entity_type', 'node', '=')
+        ->condition('entity_id', $node->id(), '=')
+        ->condition('bundle', $node->bundle(), '=')
+        ->execute()
+        ->fetch();
+
+      if (!empty($record)) {
+        $info[$bundle][$entity_id] = json_decode($record->data, TRUE);
+      }
+    }
+
+    return $info[$bundle][$entity_id] ?? NULL;
+  }
+
+  /**
+   * Set Deskpro data for a node.
+   *
+   * @param \Drupal\node\Entity\NodeInterface $node
+   *   The node.
+   * @param array $data
+   *   The data.
+   */
+  private function setDeskproData(NodeInterface $node, array $data) {
+    $this->database->merge('hoeringsportal_deskpro_deskpro_data')
+      ->keys([
+        'entity_type' => 'node',
+        'entity_id' => $node->id(),
+        'bundle' => $node->bundle(),
+      ])
+      ->fields([
+        'data' => json_encode($data),
+      ])
+      ->execute();
   }
 
   /**

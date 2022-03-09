@@ -46,6 +46,16 @@ class TwigExtension extends \Twig_Extension {
           'is_safe' => ['all'],
         ]
       ),
+      new \Twig_SimpleFunction(
+        'deskpro_get_data',
+        [
+          $this->helper,
+          'getDeskproData',
+        ],
+        [
+          'is_safe' => ['all'],
+        ]
+      ),
     ];
   }
 

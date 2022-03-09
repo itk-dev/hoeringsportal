@@ -9,6 +9,7 @@ use Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
+use Drupal\hoeringsportal_deskpro\Service\HearingHelper as DeskproHearingHelper;
 
 /**
  * Helper.
@@ -42,10 +43,11 @@ class GeoJsonHelper {
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager, UrlGeneratorInterface $urlGenerator, HearingHelper $helper) {
+  public function __construct(EntityTypeManagerInterface $entityTypeManager, UrlGeneratorInterface $urlGenerator, HearingHelper $helper, DeskproHearingHelper $deskproHelper) {
     $this->entityTypeManager = $entityTypeManager;
     $this->urlGenerator = $urlGenerator;
     $this->helper = $helper;
+    $this->deskproHelper = $deskproHelper;
   }
 
   /**
@@ -192,7 +194,7 @@ class GeoJsonHelper {
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
     $hearing_type = $this->getReference($hearing, 'field_type');
     $project = $this->getReference($hearing, 'field_project_reference');
-    $data = \json_decode($hearing->get('field_deskpro_data')->value, TRUE);
+    $deskproData = $this->getDeskproData($hearing);
 
     $tags = $hearing->get('field_tags')->referencedEntities();
 
@@ -215,7 +217,7 @@ class GeoJsonHelper {
         'hearing_tags' => array_map([$this, 'getTermName'], $tags),
         'hearing_teaser' => $hearing->get('field_teaser')->value,
         'hearing_geometry_type' => $geometryType,
-        'hearing_replies_count' => isset($data['tickets']) ? \count($data['tickets']) : 0,
+        'hearing_replies_count' => isset($deskproData['tickets']) ? \count($deskproData['tickets']) : 0,
         'hearing_replies_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()], ['fragment' => 'hearing-tickets']),
         'hearing_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()]),
         'hearing_project_id' => $project ? (int) $project->id() : NULL,
@@ -323,6 +325,15 @@ class GeoJsonHelper {
     ];
 
     return $serialized;
+  }
+
+  /**
+   * Get Deskpro data.
+   *
+   * @see DeskproHearingHelper::getDeskproData().
+   */
+  public function getDeskproData(NodeInterface $node): ?array {
+    return $this->deskproHelper->getDeskproData($node);
   }
 
   /**

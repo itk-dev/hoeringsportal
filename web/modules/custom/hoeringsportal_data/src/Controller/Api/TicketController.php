@@ -33,7 +33,7 @@ class TicketController extends ApiController {
 
     $tickets = [];
     foreach ($hearings as $hearing) {
-      $data = \json_decode($hearing->get('field_deskpro_data')->value);
+      $data = $this->helper()->getDeskproData($hearing);
       if (isset($data->tickets)) {
         foreach ($data->tickets as $ticket) {
           $tickets[] = (object) [
