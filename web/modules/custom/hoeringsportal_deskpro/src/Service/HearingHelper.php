@@ -5,7 +5,9 @@ namespace Drupal\hoeringsportal_deskpro\Service;
 use Drupal\advancedqueue\Entity\Queue;
 use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\SupportsDeletingJobsInterface;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Database\Query\Merge;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
@@ -388,17 +390,6 @@ class HearingHelper {
     /** @var \Drupal\node\Entity\NodeInterface $hearing */
     [$hearing, $ticketId] = $this->validateTicketPayload($payload);
 
-    header('content-type: text/plain');
-    echo var_export(NULL, TRUE);
-    die(__FILE__ . ':' . __LINE__ . ':' . __METHOD__);
-    $data = $this->getDeskproData($hearing);
-    $tickets = $data['tickets'] ?? [];
-
-    // Find index of exiting ticket if any.
-    $ticketIndex = array_key_first(array_filter($tickets, static function (array $ticket) use ($ticketId) {
-      return $ticketId === $ticket['id'];
-    }));
-
     $ticket = $this->deskpro->getTicket($ticketId, [
       'expand' => ['fields', 'person', 'messages', 'attachments'],
       'no_cache' => 1,
@@ -412,6 +403,13 @@ class HearingHelper {
       throw new \RuntimeException($message);
     }
 
+    $keys = [
+      'entity_type' => 'node',
+      'bundle' => $hearing->bundle(),
+      'entity_id' => $hearing->id(),
+      'ticket_id' => $ticketId,
+    ];
+
     // Remove unpublished or deleted tickets.
     $remove =
       // Ticket is unpublished if and only if the field "unpublish_reply" === 1.
@@ -421,46 +419,48 @@ class HearingHelper {
       || 0 === strpos($ticket['status'], 'hidden');
     if ($remove) {
       // Remove ticket (if it exists).
-      if (NULL !== $ticketIndex) {
+      $query = $this->database->delete('hoeringsportal_deskpro_deskpro_tickets');
+      foreach ($keys as $field => $value) {
+        $query->condition($field, $value);
+      }
+      $result = $query->execute();
+
+      if (1 === $result) {
         $this->logger->debug(
-          sprintf('Removing ticket %s from hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
+          sprintf('Ticket %d removed from hearing %s', $ticketId, $hearing->id()),
           [
             '@payload' => json_encode($payload),
           ]
         );
-        unset($tickets[$ticketIndex]);
       }
     }
     else {
-      if (NULL === $ticketIndex) {
-        $this->logger->debug(
-          sprintf('Adding ticket %s on hearing %s', $ticketId, $hearing->id()),
-          [
-            '@ticket' => json_encode($ticket),
-          ]
-        );
-        $tickets[] = $ticket;
-      }
-      else {
-        $this->logger->debug(
-          sprintf('Updating ticket %s on hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
-          [
-            '@ticket' => json_encode($ticket),
-          ]
-              );
-        $tickets[$ticketIndex] = $ticket;
-      }
+      $fields = [
+        'updated_at' => (new DrupalDateTime())->format(DrupalDateTime::FORMAT),
+        'data' => json_encode($ticket),
+      ];
+
+      $result = $this->database->merge('hoeringsportal_deskpro_deskpro_tickets')
+        ->keys($keys)
+        ->updateFields($fields)
+        ->insertFields(
+          $keys + $fields + [
+            'created_at' => $fields['updated_at'],
+          ])
+        ->execute();
+
+      $this->logger->debug(
+        $result === Merge::STATUS_INSERT
+        ? sprintf('Ticket %s added on hearing %s', $ticketId, $hearing->id())
+        : sprintf('Ticket %s updated on hearing %s', $ticketId, $hearing->id()),
+        [
+          '@ticket' => json_encode($ticket),
+        ]
+      );
+
     }
 
-    // Sort tickets descending by creation time.
-    usort($tickets, static function ($a, $b) {
-      return -($a['date_created'] <=> $b['date_created']);
-    });
-
-    $data['tickets'] = $tickets;
-
-    $this->setDeskproData($hearing, $data);
-    $hearing->save();
+    Cache::invalidateTags($hearing->getCacheTags());
 
     return ['hearing' => $hearing->id(), 'ticket' => $ticket];
   }
@@ -561,6 +561,7 @@ class HearingHelper {
         ->condition('entity_type', 'node', '=')
         ->condition('entity_id', $node->id(), '=')
         ->condition('bundle', $node->bundle(), '=')
+        ->orderBy('created_at', 'DESC')
         ->execute()
         ->fetchAll();
 
