@@ -332,8 +332,17 @@ class GeoJsonHelper {
    *
    * @see DeskproHearingHelper::getDeskproTicketCount().
    */
-  public function getDeskproTicketCount(NodeInterface $node): ?array {
+  public function getDeskproTicketCount(NodeInterface $node): int {
     return $this->deskproHelper->getDeskproTicketCount($node);
+  }
+
+  /**
+   * Get Deskpro tickets.
+   *
+   * @see DeskproHearingHelper::getDeskproTickets().
+   */
+  public function getDeskproTickets(NodeInterface $node): ?array {
+    return $this->deskproHelper->getDeskproTickets($node);
   }
 
   /**

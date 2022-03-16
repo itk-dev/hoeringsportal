@@ -128,53 +128,6 @@ class HearingHelper {
   }
 
   /**
-   * Get tickets from a hearing.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   The hearing node.
-   *
-   * @return array|null
-   *   The tickets if any.
-   */
-  public function getHearingTickets(NodeInterface $node) {
-    if (!$this->isHearing($node)) {
-      return NULL;
-    }
-
-    $data = $this->getDeskproData($node);
-
-    return $data['tickets'] ?? NULL;
-  }
-
-  /**
-   * Get single ticket from a hearing.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   The hearing node.
-   * @param int $ticketId
-   *   The ticket id.
-   *
-   * @return array|null
-   *   The ticket if is exists.
-   */
-  public function getHearingTicket(NodeInterface $node, int $ticketId) {
-    if (!$this->isHearing($node)) {
-      return NULL;
-    }
-
-    $tickets = $this->getHearingTickets($node);
-    if (is_array($tickets)) {
-      foreach ($tickets as $ticket) {
-        if ($ticket['id'] === $ticketId) {
-          return $ticket;
-        }
-      }
-    }
-
-    return NULL;
-  }
-
-  /**
    * Create a hearing ticket.
    */
   public function createHearingTicket(NodeInterface $node, array $data, array $fileIds = []) {
@@ -435,6 +388,9 @@ class HearingHelper {
     /** @var \Drupal\node\Entity\NodeInterface $hearing */
     [$hearing, $ticketId] = $this->validateTicketPayload($payload);
 
+    header('content-type: text/plain');
+    echo var_export(NULL, TRUE);
+    die(__FILE__ . ':' . __LINE__ . ':' . __METHOD__);
     $data = $this->getDeskproData($hearing);
     $tickets = $data['tickets'] ?? [];
 
@@ -599,21 +555,50 @@ class HearingHelper {
     $bundle = $node->bundle();
     $entity_id = $node->id();
     if ($reset || !isset($info[$bundle][$entity_id])) {
-      $record = $this->database
+      $records = $this->database
         ->select('hoeringsportal_deskpro_deskpro_tickets', 't')
         ->fields('t')
         ->condition('entity_type', 'node', '=')
         ->condition('entity_id', $node->id(), '=')
         ->condition('bundle', $node->bundle(), '=')
         ->execute()
-        ->fetch();
+        ->fetchAll();
 
-      if (!empty($record)) {
-        $info[$bundle][$entity_id] = json_decode($record->data, TRUE);
-      }
+      $info[$bundle][$entity_id] = array_map(static function ($record) {
+        return json_decode($record->data, TRUE);
+      }, $records);
     }
 
     return $info[$bundle][$entity_id] ?? NULL;
+  }
+
+  /**
+   * Get Deskpro ticket.
+   */
+  public function getDeskproTicket(NodeInterface $node, int $ticketId, bool $reset = FALSE): ?array {
+    if (!$this->isHearing($node)) {
+      throw new \RuntimeException('Invalid hearing: ' . $node->id());
+    }
+
+    $info = &drupal_static(__METHOD__, []);
+
+    $bundle = $node->bundle();
+    $entity_id = $node->id();
+    if ($reset || !isset($info[$bundle][$entity_id][$ticketId])) {
+      $record = $this->database
+        ->select('hoeringsportal_deskpro_deskpro_tickets', 't')
+        ->fields('t')
+        ->condition('entity_type', 'node', '=')
+        ->condition('entity_id', $node->id(), '=')
+        ->condition('bundle', $node->bundle(), '=')
+        ->condition('ticket_id', $ticketId, '=')
+        ->execute()
+        ->fetch();
+
+      $info[$bundle][$entity_id][$ticketId] = empty($record) ? NULL : json_decode($record->data, TRUE);
+    }
+
+    return $info[$bundle][$entity_id][$ticketId] ?? NULL;
   }
 
   /**
