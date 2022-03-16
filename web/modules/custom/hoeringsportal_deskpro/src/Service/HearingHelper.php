@@ -561,17 +561,35 @@ class HearingHelper {
   }
 
   /**
-   * Get Deskpro data for a node.
-   *
-   * @param \Drupal\node\Entity\NodeInterface $node
-   *   The node.
-   * @param bool $reset
-   *   If set, the data will be reset, i.e. reloaded from database.
-   *
-   * @return array|null
-   *   The Deskpro data for the node.
+   * Get Deskpro ticket count.
    */
-  public function getDeskproData(NodeInterface $node, bool $reset = FALSE): ?array {
+  public function getDeskproTicketCount(NodeInterface $node, bool $reset = FALSE): int {
+    if (!$this->isHearing($node)) {
+      throw new \RuntimeException('Invalid hearing: ' . $node->id());
+    }
+
+    $info = &drupal_static(__METHOD__, []);
+
+    $bundle = $node->bundle();
+    $entity_id = $node->id();
+    if ($reset || !isset($info[$bundle][$entity_id])) {
+      $query = $this->database
+        ->select('hoeringsportal_deskpro_deskpro_tickets', 't')
+        ->condition('entity_type', 'node', '=')
+        ->condition('entity_id', $node->id(), '=')
+        ->condition('bundle', $node->bundle(), '=');
+      $query->addExpression('COUNT(*)');
+
+      $info[$bundle][$entity_id] = $query->execute()->fetchField();
+    }
+
+    return $info[$bundle][$entity_id];
+  }
+
+  /**
+   * Get Deskpro tickets.
+   */
+  public function getDeskproTickets(NodeInterface $node, bool $reset = FALSE): ?array {
     if (!$this->isHearing($node)) {
       throw new \RuntimeException('Invalid hearing: ' . $node->id());
     }
@@ -582,8 +600,8 @@ class HearingHelper {
     $entity_id = $node->id();
     if ($reset || !isset($info[$bundle][$entity_id])) {
       $record = $this->database
-        ->select('hoeringsportal_deskpro_deskpro_data', 'd')
-        ->fields('d')
+        ->select('hoeringsportal_deskpro_deskpro_tickets', 't')
+        ->fields('t')
         ->condition('entity_type', 'node', '=')
         ->condition('entity_id', $node->id(), '=')
         ->condition('bundle', $node->bundle(), '=')

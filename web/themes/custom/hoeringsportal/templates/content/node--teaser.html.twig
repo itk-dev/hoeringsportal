@@ -79,7 +79,6 @@
 {% if node.bundle == 'hearing' %}
   {% set type = content.field_type[0]['#plain_text'] %}
   {% set project = content.field_project_reference[0]['#plain_text'] %}
-  {% set deskpro_data = deskpro_get_data(node) %}
 {% endif %}
 {% if (content.field_start_date) %}
   {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
@@ -120,9 +119,10 @@
       </div>
 
       {# Add comments if there are any. #}
-      {% if deskpro_data.tickets|default([])|length > 0 %}
+      {% set ticket_count = deskpro_get_ticket_count(node) %}
+      {% if ticket_count > 0 %}
         <div class="splash splash-comments">
-          <span class="splash-comments-count"><i class="fa fa-comment"></i>{{ deskpro_data.tickets|length }}</span>
+          <span class="splash-comments-count"><i class="fa fa-comment"></i>{{ ticket_count }}</span>
         </div>
       {% endif %}
     </div>

@@ -47,10 +47,20 @@ class TwigExtension extends \Twig_Extension {
         ]
       ),
       new \Twig_SimpleFunction(
-        'deskpro_get_data',
+        'deskpro_get_ticket_count',
         [
           $this->helper,
-          'getDeskproData',
+          'getDeskproTicketCount',
+        ],
+        [
+          'is_safe' => ['all'],
+        ]
+      ),
+      new \Twig_SimpleFunction(
+        'deskpro_get_tickets',
+        [
+          $this->helper,
+          'getDeskproTickets',
         ],
         [
           'is_safe' => ['all'],
