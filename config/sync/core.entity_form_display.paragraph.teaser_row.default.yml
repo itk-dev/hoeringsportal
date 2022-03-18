@@ -16,59 +16,59 @@ bundle: teaser_row
 mode: default
 content:
   field_paragraph_title:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: string_textfield
+    weight: 1
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_project_hearing_1:
+    type: entity_reference_autocomplete_tags
     weight: 2
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
   field_project_hearing_2:
+    type: entity_reference_autocomplete_tags
     weight: 3
+    region: content
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
   field_project_hearing_3:
-    weight: 4
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-      match_limit: 10
-    third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+    weight: 4
     region: content
-  field_static_pages:
-    weight: 5
     settings:
       match_operator: CONTAINS
+      match_limit: 10
       size: 60
       placeholder: ''
-      match_limit: 10
     third_party_settings: {  }
+  field_static_pages:
     type: entity_reference_autocomplete
+    weight: 5
     region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_type:
+    type: options_buttons
     weight: 0
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
 hidden:
   created: true
   status: true

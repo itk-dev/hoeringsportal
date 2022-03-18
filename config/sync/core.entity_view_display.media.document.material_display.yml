@@ -20,28 +20,28 @@ mode: material_display
 content:
   field_itk_media_file_upload:
     type: file_default
-    weight: 0
     label: hidden
     settings:
       use_description_as_link_text: true
     third_party_settings: {  }
+    weight: 0
     region: content
   field_itk_media_mime_type:
-    weight: 1
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 1
     region: content
   name:
     type: string
-    weight: 2
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 2
+    region: content
 hidden:
   created: true
   field_itk_media_size: true

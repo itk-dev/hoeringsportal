@@ -72,8 +72,7 @@ function hoeringsportal_data_node_presave(NodeInterface $node) {
 function hoeringsportal_data_user_login(UserInterface $account) {
   if ($account->hasPermission('access content overview')) {
     $url = Url::fromRoute('system.admin_content')->toString();
-    $response = new RedirectResponse($url);
-    $response->send();
+    \Drupal::service('request_stack')->getCurrentRequest()->query->set('destination', $url);
   }
 }
 

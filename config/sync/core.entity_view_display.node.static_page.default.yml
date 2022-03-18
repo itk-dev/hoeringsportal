@@ -22,7 +22,8 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
         wrappers:
           header: div
           left: div
@@ -32,8 +33,7 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
+        label: ''
     regions:
       header:
         - node_title
@@ -56,25 +56,25 @@ third_party_settings:
         label: hidden
         formatter: default
         settings:
+          link: false
           wrapper: ''
           class: ''
-          link: false
 id: node.static_page.default
 targetEntityType: node
 bundle: static_page
 mode: default
 content:
   field_media_image_single:
-    weight: 2
+    type: entity_reference_entity_view
     label: hidden
     settings:
       view_mode: content_display
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 2
     region: header
   field_section:
-    weight: 3
+    type: entity_reference_revisions_entity_view
     label: hidden
     settings:
       view_mode: default
@@ -82,22 +82,22 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_revisions_entity_view
+    weight: 3
     region: left
   field_sidebar:
-    weight: 5
+    type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
+    weight: 5
     region: right
   field_teaser:
     type: basic_string
-    weight: 1
-    region: header
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 1
+    region: header
 hidden:
   field_teaser_color: true
   langcode: true

@@ -5,6 +5,7 @@
  * Høringsportal theme.
  */
 
+use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -180,74 +181,6 @@ function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, a
     $suggestions[] = 'container__' . $variables['element']['submit']['#submit_id'];
   }
   $suggestions[] = 'container__' . $variables['element']['#type'];
-  if (_hoeringsportal_is_bef_container($variables)) {
-    $suggestions[] = 'container__type';
-  }
-}
-
-/**
- * Implements hook_preprocess_container().
- */
-function hoeringsportal_preprocess_container(&$variables) {
-  if (_hoeringsportal_is_bef_container($variables)) {
-    $query = \Drupal::request()->query->get('field_type_target_id');
-    $variables['displayed_target_id'] = $query;
-    // Get "type" taxonomy terms.
-    $vid = 'type';
-    $terms = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree($vid);
-
-    foreach ($terms as $key => $term) {
-      $type_list[] = [
-        'id' => $term->tid,
-        'title' => $term->name,
-      ];
-      switch ($term->name) {
-        case 'Kommuneplan':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-map';
-          break;
-
-        case 'Lokalplan':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-map-marked-alt';
-          break;
-
-        case 'Trafik og mobilitet':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-car-bus';
-          break;
-
-        case 'Dagtilbud og skole':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';
-          break;
-
-        case 'Sundhed og omsorg':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-heartbeat';
-          break;
-
-        case 'Indkaldelse af ideer og forslag':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-lightbulb';
-          break;
-
-        case 'Andet':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-star';
-          break;
-      }
-
-      // @todo We need to attach some icon metadata to the taxonomy term.
-      switch ($term->tid) {
-        case '77':
-          $type_list[$key]['icon'] = 'fal fa-2x fa-chalkboard-teacher';
-          break;
-      }
-    }
-
-    // Add All option to array.
-    array_unshift($type_list, [
-      'id' => 'All',
-      'title' => 'Alle',
-      'icon' => 'fal fa-2x fa-check-double',
-    ]);
-
-    $variables['display_icons'] = $type_list;
-  }
 }
 
 /**
@@ -384,4 +317,42 @@ function _hoeringsportal_is_bef_container($variables) {
   }
 
   return FALSE;
+}
+
+/**
+ * Implements hook_page_attachments_alter().
+ *
+ * Add open graph meta tags.
+ */
+function hoeringsportal_page_attachments_alter(array &$attachments) {
+  $route_match = \Drupal::routeMatch();
+
+  if ($route_match->getRouteName() == 'entity.node.canonical') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof NodeInterface) {
+      if ($node->hasField('field_media_image')) {
+        $image_entities = $node->field_media_image->referencedEntities();
+      }
+      if ($node->hasField('field_media_image_single')) {
+        $image_entities = $node->field_media_image_single->referencedEntities();
+      }
+      if (isset($image_entities[0])) {
+        $image_entity = $image_entities[0];
+        $image_field = $image_entity->field_itk_media_image_upload;
+        if (isset($image_field)) {
+          $image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_entity->field_itk_media_image_upload->entity->getFileUri());
+          $attachments['#attached']['html_head'][] = [
+            0 => [
+              '#tag' => 'meta',
+              '#attributes' => [
+                'name' => 'og:image',
+                'content' => $image,
+              ],
+            ],
+            1 => 'og_image',
+          ];
+        }
+      }
+    }
+  }
 }

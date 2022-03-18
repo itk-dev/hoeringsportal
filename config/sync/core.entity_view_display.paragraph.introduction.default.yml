@@ -15,14 +15,14 @@ bundle: introduction
 mode: default
 content:
   field_intro_body:
-    weight: 1
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: content
   field_intro_link:
-    weight: 2
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -31,14 +31,14 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 2
     region: content
   field_paragraph_title:
-    weight: 0
+    type: string
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+    weight: 0
     region: content
 hidden: {  }

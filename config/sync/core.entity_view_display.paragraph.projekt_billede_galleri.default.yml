@@ -15,7 +15,7 @@ bundle: projekt_billede_galleri
 mode: default
 content:
   field_external_link:
-    weight: 1
+    type: link
     label: hidden
     settings:
       trim_length: 80
@@ -24,10 +24,10 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    weight: 1
     region: content
   field_image_gallery:
-    weight: 0
+    type: entity_reference_entity_view
     label: hidden
     settings:
       view_mode: project_gallery_display
@@ -35,6 +35,6 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_entity_view
+    weight: 0
     region: content
 hidden: {  }

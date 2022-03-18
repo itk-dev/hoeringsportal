@@ -11,12 +11,12 @@ bundle: area
 mode: default
 content:
   field_area_id:
+    type: number
     weight: 1
+    region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
-    type: number
-    region: content
   name:
     type: string_textfield
     weight: 0

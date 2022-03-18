@@ -22,14 +22,14 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       content_block: content_block
       info_box: info_box
+    negate: 0
     target_bundles_drag_drop:
       content_block:
-        enabled: true
         weight: 9
+        enabled: true
       content_list:
         weight: 10
         enabled: false
@@ -37,8 +37,8 @@ settings:
         weight: 11
         enabled: false
       info_box:
-        enabled: true
         weight: 10
+        enabled: true
       introduction:
         weight: 12
         enabled: false

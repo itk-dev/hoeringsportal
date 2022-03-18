@@ -11,12 +11,12 @@ pattern: 'hoering/[node:title]'
 selection_criteria:
   1ce12383-dd92-4d5d-88d3-50351bdd0ea6:
     id: node_type
-    bundles:
-      hearing: hearing
     negate: false
+    uuid: 1ce12383-dd92-4d5d-88d3-50351bdd0ea6
     context_mapping:
       node: node
-    uuid: 1ce12383-dd92-4d5d-88d3-50351bdd0ea6
+    bundles:
+      hearing: hearing
 selection_logic: and
 weight: -5
 relationships: {  }

@@ -11,12 +11,12 @@ pattern: 'initiativ/[node:title]'
 selection_criteria:
   8a2411c8-3d05-4591-b227-d669f3395411:
     id: node_type
-    bundles:
-      project: project
     negate: false
+    uuid: 8a2411c8-3d05-4591-b227-d669f3395411
     context_mapping:
       node: node
-    uuid: 8a2411c8-3d05-4591-b227-d669f3395411
+    bundles:
+      project: project
 selection_logic: and
 weight: -5
 relationships: {  }
