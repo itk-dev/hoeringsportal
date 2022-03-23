@@ -27,13 +27,11 @@
   {{ title_suffix.contextual_links }}
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
     {% if image_exists %}
-      <div class="container">
-        <div class="hero">
-          <div class="hero__media-container p-0">{{ header.field_media_image_single }}</div>
-          <div class="hero__content">
+      <div class="hero">
+        <div class="hero__media-container p-0">{{ header.field_media_image_single }}</div>
+        <div class="hero__content ml-3 ml-md-0 py-5 py-md-3 pr-0 pr-md-3">
             {{ header|without('field_teaser', 'field_media_image_single') }}
             {{ header_text }}
-          </div>
         </div>
       </div>
     {% else %}

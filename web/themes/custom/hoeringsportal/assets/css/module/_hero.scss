@@ -137,3 +137,13 @@ $hero-breakpoint:   "sm";
     }
   }
 }
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 80ch;
+
+  @include media-breakpoint-up($hero-breakpoint) {
+    min-height: 350px;
+  }
+}

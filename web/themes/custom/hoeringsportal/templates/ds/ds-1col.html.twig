@@ -14,15 +14,15 @@
 
 <div class="group-header hero-container">
   {% if image_exists %}
-    <div class="container">
+
       <div class="hero">
         <div class="hero__media-container p-0">{{ ds_content.field_media_image_single }}</div>
-        <div class="hero__content">
-          <h1 class="title underlined hero__title pt-4 pb-4">{{ node.title.value }}</h1>
+        <div class="hero__content ml-3 ml-md-0 py-5 py-md-3 pr-0 pr-md-3">
+          <h1 class="title underlined hero__title m-0 mb-3">{{ node.title.value }}</h1>
           {{ header_text }}
         </div>
       </div>
-    </div>
+
   {% else %}
     <div class="container">
       <div class="hero hero--image-right">
