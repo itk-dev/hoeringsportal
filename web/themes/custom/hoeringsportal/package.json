@@ -53,5 +53,9 @@
   "dependencies": {
     "hyphenopoly": "^2.4.0",
     "slick-carousel": "^1.8.1"
+  },
+  "engines": {
+    "npm": ">=6.14",
+    "node": ">=12.22"
   }
 }

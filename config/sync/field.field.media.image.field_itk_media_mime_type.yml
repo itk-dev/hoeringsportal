@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.storage.media.field_itk_media_mime_type
     - media.type.image
-  enforced:
-    module:
-      - itk_media_entity
 _core:
   default_config_hash: mkrOJlQ29uqCVArLTZesuMZM_U_OnKcaUgimUKCtlfE
 id: media.image.field_itk_media_mime_type

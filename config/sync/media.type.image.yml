@@ -2,9 +2,6 @@ uuid: 580f3233-b567-4a70-b86a-793c11ecdde6
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - crop
 third_party_settings:

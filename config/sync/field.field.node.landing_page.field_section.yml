@@ -24,23 +24,23 @@ default_value_callback: ''
 settings:
   handler: 'default:paragraph'
   handler_settings:
-    negate: 0
     target_bundles:
       introduction: introduction
       content_block: content_block
       content_list: content_list
       teaser_row: teaser_row
+    negate: 0
     target_bundles_drag_drop:
-      introduction:
-        enabled: true
-        weight: 4
       content_block:
-        enabled: true
         weight: 5
+        enabled: true
       content_list:
-        enabled: true
         weight: 5
-      teaser_row:
         enabled: true
+      introduction:
+        weight: 4
+        enabled: true
+      teaser_row:
         weight: 6
+        enabled: true
 field_type: entity_reference_revisions

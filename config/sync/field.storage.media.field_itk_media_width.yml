@@ -2,9 +2,6 @@ uuid: 313ecf1c-19de-41b4-96fb-449a4ea5bc18
 langcode: da
 status: true
 dependencies:
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - media
 _core:
@@ -15,8 +12,8 @@ entity_type: media
 type: string
 settings:
   max_length: 255
-  is_ascii: false
   case_sensitive: false
+  is_ascii: false
 module: core
 locked: false
 cardinality: 1

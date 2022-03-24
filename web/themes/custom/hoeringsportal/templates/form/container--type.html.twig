@@ -26,7 +26,6 @@
   ]
 %}
 
-{% set link_classes = 'list-filter-link-inner d-flex flex-column align-items-center' %}
 {% set id = element['#url'].getOptions.query.field_type_target_id %}
 {% set options = element['#url'].getOptions %}
 
@@ -39,13 +38,12 @@
 
 {% for icon_link in display_icons %}
   {% if (id == icon_link.id)  %}
-    <div{{ attributes.addClass(classes).addClass('mb-3', 'list-filter-link-wrapper') }}>
-      <a href="{{ path(element['#url'].getRouteName, element['#url'].getRouteParameters, element['#url'].getOptions) }}" class="rounded">
-        <div class="{{ link_classes }}">
-          <i class="{{ icon_link.icon }}"></i>
-          <span>{{ icon_link.title|t }}</span>
-        </div>
+
+      <a href="{{ path(element['#url'].getRouteName, element['#url'].getRouteParameters, element['#url'].getOptions) }}" {{ attributes.addClass(classes).addClass('rounded', 'list-filter-link-wrapper') }}>
+
+          {{ icon_link.title|t }}
+
       </a>
-    </div>
+
   {% endif %}
 {% endfor %}

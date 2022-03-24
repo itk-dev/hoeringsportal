@@ -19,15 +19,15 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
-        label: ''
+        classes:
+          layout_class: {  }
         wrappers:
           ds_content: div
         outer_wrapper: div
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
+        label: ''
     regions:
       ds_content:
         - field_section
@@ -39,18 +39,16 @@ bundle: landing_page
 mode: default
 content:
   field_media_image_single:
-    weight: 2
+    type: entity_reference_entity_view
     label: hidden
     settings:
       view_mode: content_display
       link: false
     third_party_settings: {  }
-    type: entity_reference_entity_view
+    weight: 2
     region: ds_content
   field_section:
     type: entity_reference_revisions_entity_view
-    weight: 0
-    region: ds_content
     label: hidden
     settings:
       view_mode: default
@@ -58,12 +56,14 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+    weight: 0
+    region: ds_content
   field_teaser:
-    weight: 1
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: ds_content
 hidden:
   langcode: true

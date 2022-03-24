@@ -1,3 +1,6 @@
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
+langcode: da
 uuid: a130e152-234f-4e15-a1f6-13b2b5896723
 name: 'Høringsportalen - Aarhus kommune'
 mail: info@itkdev.dk
@@ -8,8 +11,5 @@ page:
   front: /frontpage
 admin_compact_mode: false
 weight_select_max: 100
-langcode: da
 default_langcode: da
-_core:
-  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI
 mail_notification: ''

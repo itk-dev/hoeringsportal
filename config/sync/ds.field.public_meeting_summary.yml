@@ -1,11 +1,11 @@
 id: public_meeting_summary
 label: Borgermødet
 ui_limit: 'public_meeting|*'
-properties:
-  block: hoeringsportal_public_meeting_summary_block
-  use_block_title: false
-  add_block_wrappers: false
 type: block
 type_label: 'Block field'
 entities:
   node: node
+properties:
+  block: hoeringsportal_public_meeting_summary_block
+  use_block_title: false
+  add_block_wrappers: false

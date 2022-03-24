@@ -1,10 +1,10 @@
 id: hearing_tickets
 label: 'Hearing tickets'
 ui_limit: 'hearing|*'
-properties:
-  block: hoeringsportal_deskpro_hearingtickets_block
-  use_block_title: true
 type: block
 type_label: 'Block field'
 entities:
   node: node
+properties:
+  block: hoeringsportal_deskpro_hearingtickets_block
+  use_block_title: true

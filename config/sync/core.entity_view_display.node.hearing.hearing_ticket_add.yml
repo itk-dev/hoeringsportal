@@ -38,6 +38,8 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        classes:
+          layout_class: {  }
         wrappers:
           header: div
           left: div
@@ -47,8 +49,6 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        classes:
-          layout_class: {  }
     regions:
       header:
         - 'dynamic_block_field:node-hearing_ticket_title'
@@ -103,60 +103,60 @@ mode: hearing_ticket_add
 content:
   field_area:
     type: entity_reference_label
-    weight: 9
-    region: right
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 9
+    region: right
   field_contact:
     type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
     weight: 11
     region: right
-    label: above
-    settings: {  }
-    third_party_settings: {  }
   field_more_info:
     type: text_default
-    weight: 12
-    region: right
     label: above
     settings: {  }
     third_party_settings: {  }
+    weight: 12
+    region: right
   field_reply_deadline:
     type: datetime_default
-    weight: 5
-    region: right
     label: above
     settings:
       timezone_override: ''
       format_type: hoeringsportal_datetime
     third_party_settings: {  }
+    weight: 5
+    region: right
   field_start_date:
     type: datetime_default
-    weight: 4
-    region: right
     label: above
     settings:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
+    weight: 4
+    region: right
   field_tags:
     type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
     weight: 8
     region: right
-    label: above
-    settings:
-      link: false
-    third_party_settings: {  }
   field_type:
     type: entity_reference_label
-    weight: 7
-    region: right
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 7
+    region: right
 hidden:
   field_content_state: true
   field_description: true

@@ -6,9 +6,6 @@ dependencies:
     - field.storage.media.field_itk_media_tag
     - media.type.document
     - taxonomy.vocabulary.media_library
-  enforced:
-    module:
-      - itk_media_entity
 _core:
   default_config_hash: Mhq-BH4ANP1A8-xxNbC4DtLjEmhuuyYKmzzsxRG565w
 id: media.document.field_itk_media_tag

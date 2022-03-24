@@ -5,9 +5,6 @@ dependencies:
   config:
     - field.storage.media.field_itk_media_file_upload
     - media.type.document
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - file
 _core:
@@ -23,10 +20,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
+  handler: 'default:file'
+  handler_settings: {  }
   file_directory: documents
   file_extensions: 'txt pdf doc docx xls xlsx jpg png'
   max_filesize: ''
   description_field: true
-  handler: 'default:file'
-  handler_settings: {  }
 field_type: file

@@ -1,5 +1,0 @@
-name: Hoeringsportal user
-type: module
-description: 'Adds user configuration specific to Hoeringsportal'
-package: Hoeringsportal
-core: '8.x'

@@ -1,7 +1,19 @@
 uuid: 9380dab3-c605-4e5a-b625-c474f5b8422e
 langcode: da
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.hearing
+    - node.type.project
+    - node.type.static_page
+  module:
+    - entity_browser
+    - locale
+    - media
+    - node
+    - quick_node_clone
+    - system
+    - toolbar
 id: editor
 label: Redaktør
 weight: -8

@@ -41,135 +41,135 @@ third_party_settings:
         - field_lokalplaner
         - field_project_reference
         - field_area
+      label: Informationer
+      region: content
       parent_name: ''
       weight: 7
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: true
         required_fields: false
-      label: Informationer
-      region: content
     group_system_settings:
       children:
         - status
+      label: Systemindstillinger
+      region: content
       parent_name: ''
       weight: 9
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: true
         required_fields: false
-      label: Systemindstillinger
-      region: content
     group_deskpro:
       children:
         - field_deskpro_department_id
         - field_deskpro_agent_email
+      label: Deskpro
+      region: content
       parent_name: ''
       weight: 8
       format_type: details
       format_settings:
-        id: ''
         classes: ''
+        id: ''
         open: true
         required_fields: true
-      label: Deskpro
-      region: content
     group_edoc:
       children:
         - field_edoc_casefile_id
+      label: eDoc
+      region: content
       parent_name: ''
       weight: 10
       format_type: details
       format_settings:
+        classes: ''
+        id: ''
         open: true
         required_fields: true
-        id: ''
-        classes: ''
-      label: eDoc
-      region: content
     group_contact:
       children:
         - field_contact
+      label: Kontakt
+      region: content
       parent_name: ''
       weight: 11
       format_type: details
       format_settings:
-        description: ''
-        open: true
-        id: ''
         classes: ''
+        id: ''
+        open: true
+        description: ''
         required_fields: false
-      label: Kontakt
-      region: content
     group_more_info:
       children:
         - field_more_info
+      label: 'Vil du vide mere?'
+      region: content
       parent_name: ''
       weight: 13
       format_type: details
       format_settings:
-        description: ''
-        open: true
-        id: ''
         classes: ''
+        id: ''
+        open: true
+        description: ''
         required_fields: false
-      label: 'Vil du vide mere?'
-      region: content
 id: node.hearing.default
 targetEntityType: node
 bundle: hearing
 mode: default
 content:
   field_area:
+    type: options_buttons
     weight: 32
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
-    region: content
   field_contact:
+    type: text_textarea
     weight: 12
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_description:
+    type: text_textarea
     weight: 2
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_deskpro_agent_email:
-    weight: 9
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
     type: email_default
+    weight: 9
     region: content
+    settings:
+      placeholder: ''
+      size: 60
+    third_party_settings: {  }
   field_deskpro_department_id:
+    type: string_textfield
     weight: 8
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_edoc_casefile_id:
+    type: string_textfield
     weight: 11
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_lokalplaner:
     type: hoeringsportal_data_localplan_default
     weight: 30
@@ -187,89 +187,89 @@ content:
         localplanids_node: 0
     third_party_settings: {  }
   field_media_document:
+    type: entity_browser_entity_reference
     weight: 3
+    region: content
     settings:
       entity_browser: itk_document_browser
       field_widget_display: rendered_entity
+      field_widget_edit: false
       field_widget_remove: true
+      field_widget_replace: false
       open: true
-      selection_mode: selection_append
       field_widget_display_settings:
         view_mode: node_form_display
-      field_widget_edit: false
-      field_widget_replace: false
+      selection_mode: selection_append
     third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
   field_media_image:
+    type: entity_browser_entity_reference
     weight: 4
+    region: content
     settings:
       entity_browser: itk_image_browser
       field_widget_display: rendered_entity
+      field_widget_edit: false
       field_widget_remove: true
+      field_widget_replace: false
       open: true
-      selection_mode: selection_append
       field_widget_display_settings:
         view_mode: node_form_display
-      field_widget_edit: false
-      field_widget_replace: false
+      selection_mode: selection_append
     third_party_settings: {  }
-    type: entity_browser_entity_reference
-    region: content
   field_more_info:
-    weight: 14
-    settings:
-      rows: 5
-      placeholder: ''
-    third_party_settings: {  }
     type: text_textarea
+    weight: 14
     region: content
-  field_project_reference:
-    weight: 31
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_reply_deadline:
-    weight: 27
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_start_date:
-    weight: 26
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_teaser:
-    weight: 1
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
+  field_project_reference:
+    type: options_select
+    weight: 31
     region: content
-  field_type:
-    weight: 29
     settings: {  }
     third_party_settings: {  }
-    type: options_buttons
+  field_reply_deadline:
+    type: datetime_default
+    weight: 27
     region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_start_date:
+    type: datetime_default
+    weight: 26
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_teaser:
+    type: string_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_type:
+    type: options_buttons
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_video_embed:
+    type: string_textarea
     weight: 5
+    region: content
     settings:
       rows: 3
       placeholder: ''
     third_party_settings: {  }
-    type: string_textarea
-    region: content
   status:
     type: boolean_checkbox
-    settings:
-      display_label: true
     weight: 5
     region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
   title:
     type: string_textfield

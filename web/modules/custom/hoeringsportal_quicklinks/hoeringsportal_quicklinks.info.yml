@@ -1,5 +1,5 @@
 name: 'Hoeringsportal quicklinks'
 type: module
 description: 'Provides quicklinks block'
-core: 8.x
+core_version_requirement: ^8.8 || ^9
 package: Hoeringsportal

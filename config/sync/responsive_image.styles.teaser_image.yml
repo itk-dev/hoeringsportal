@@ -13,54 +13,54 @@ id: teaser_image
 label: 'Teaser image'
 image_style_mappings:
   -
+    image_mapping_type: image_style
+    image_mapping: responsive_small_teaser
     breakpoint_id: hoeringsportal.xlarge
     multiplier: 1x
-    image_mapping_type: image_style
-    image_mapping: responsive_small_teaser
   -
+    image_mapping_type: image_style
+    image_mapping: responsive_small_teaser_x2
     breakpoint_id: hoeringsportal.xlarge
     multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: responsive_small_teaser_x2
   -
+    image_mapping_type: image_style
+    image_mapping: responsive_small_teaser
     breakpoint_id: hoeringsportal.large
     multiplier: 1x
-    image_mapping_type: image_style
-    image_mapping: responsive_small_teaser
   -
+    image_mapping_type: image_style
+    image_mapping: responsive_small_teaser_x2
     breakpoint_id: hoeringsportal.large
     multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: responsive_small_teaser_x2
   -
-    breakpoint_id: hoeringsportal.medium
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: responsive_small_teaser
+    breakpoint_id: hoeringsportal.medium
+    multiplier: 1x
   -
+    image_mapping_type: image_style
+    image_mapping: responsive_small_teaser_x2
     breakpoint_id: hoeringsportal.medium
     multiplier: 2x
-    image_mapping_type: image_style
-    image_mapping: responsive_small_teaser_x2
   -
-    breakpoint_id: hoeringsportal.small
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: responsive_small_teaser
-  -
     breakpoint_id: hoeringsportal.small
-    multiplier: 2x
+    multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: responsive_small_teaser_x2
+    breakpoint_id: hoeringsportal.small
+    multiplier: 2x
   -
-    breakpoint_id: hoeringsportal.xsmall
-    multiplier: 1x
     image_mapping_type: image_style
     image_mapping: responsive_xsmall_teaser
-  -
     breakpoint_id: hoeringsportal.xsmall
-    multiplier: 2x
+    multiplier: 1x
+  -
     image_mapping_type: image_style
     image_mapping: responsive_xsmall_teaser_x2
+    breakpoint_id: hoeringsportal.xsmall
+    multiplier: 2x
 breakpoint_group: hoeringsportal
 fallback_image_style: responsive_xsmall_teaser

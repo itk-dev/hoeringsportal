@@ -10,9 +10,6 @@ dependencies:
     - field.field.media.image.field_itk_media_width
     - image.style.crop_thumbnail
     - media.type.image
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - image_widget_crop
     - path
@@ -24,41 +21,48 @@ bundle: image
 mode: default
 content:
   field_itk_media_image_upload:
+    type: image_widget_crop
     weight: 1
+    region: content
     settings:
-      show_default_crop: true
-      warn_multiple_usages: true
+      progress_indicator: throbber
       preview_image_style: crop_thumbnail
       crop_preview_image_style: crop_thumbnail
       crop_list:
         - content_display
         - medium_squared
         - teaser_display
-      progress_indicator: throbber
       crop_types_required: {  }
+      warn_multiple_usages: true
       show_crop_area: false
+      show_default_crop: true
     third_party_settings: {  }
-    type: image_widget_crop
-    region: content
   field_itk_media_tag:
+    type: options_select
     weight: 2
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: options_select
-    region: content
   name:
     type: string_textfield
     weight: 0
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   path:
     type: path
     weight: 30
     region: content
     settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 100
+    region: content
+    settings:
+      display_label: true
     third_party_settings: {  }
 hidden:
   created: true

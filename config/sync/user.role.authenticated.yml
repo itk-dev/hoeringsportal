@@ -1,7 +1,15 @@
 uuid: 04342185-ae52-47ab-a124-f72d9e4ad8b9
 langcode: da
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - filter.format.filtered_html
+  module:
+    - filter
+    - media
+    - samlauth
+    - search
+    - system
 _core:
   default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
 id: authenticated
@@ -10,7 +18,6 @@ weight: -9
 is_admin: false
 permissions:
   - 'access content'
-  - 'access contextual links'
   - 'search content'
   - 'use text format filtered_html'
   - 'view media'

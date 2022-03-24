@@ -2,8 +2,7 @@ name: Høringsportal data
 type: module
 description: Custom data stuff.
 package: Hoeringsportal
-core: 8.x
-
+core_version_requirement: ^8.8 || ^9
 dependences:
   - field
   - hoeringsportal_deskpro

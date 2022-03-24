@@ -42,105 +42,105 @@ mode: teaser
 content:
   field_area:
     type: entity_reference_label
-    weight: 1
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings:
       ds:
         ds_limit: ''
+    weight: 1
+    region: content
   field_cancelled_text:
     type: string
-    weight: 13
-    region: content
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    weight: 13
+    region: content
   field_content_state:
     type: list_default
-    weight: 9
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 9
+    region: content
   field_first_meeting_time:
     type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: Europe/Copenhagen
+      format_type: html_datetime
+    third_party_settings: {  }
     weight: 7
     region: content
-    label: hidden
-    settings:
-      timezone_override: Europe/Copenhagen
-      format_type: html_datetime
-    third_party_settings: {  }
   field_last_meeting_time:
     type: datetime_default
-    weight: 8
-    region: content
     label: hidden
     settings:
       timezone_override: Europe/Copenhagen
       format_type: html_datetime
     third_party_settings: {  }
+    weight: 8
+    region: content
   field_media_image_single:
     type: entity_reference_entity_view
-    weight: 2
-    region: content
     label: hidden
     settings:
       view_mode: teaser_display
       link: false
     third_party_settings: {  }
+    weight: 2
+    region: content
   field_pretix_dates:
     type: pretix_date_formatter
-    weight: 5
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 5
+    region: content
   field_project_reference:
     type: entity_reference_label
-    weight: 3
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 3
+    region: content
   field_public_meeting_cancelled:
     type: boolean
-    weight: 10
-    region: content
     label: hidden
     settings:
       format: boolean
-      format_custom_true: ''
       format_custom_false: ''
+      format_custom_true: ''
     third_party_settings: {  }
+    weight: 10
+    region: content
   field_registration_deadline:
     type: datetime_default
-    weight: 6
-    region: content
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
+    weight: 6
+    region: content
   field_teaser:
     type: basic_string
-    weight: 0
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
   field_type:
     type: entity_reference_label
-    weight: 4
-    region: content
     label: above
     settings:
       link: false
     third_party_settings: {  }
+    weight: 4
+    region: content
 hidden:
   field_cancelled_date: true
   field_contact: true

@@ -4,9 +4,6 @@ status: true
 dependencies:
   config:
     - views.view.itk_media_browser
-  enforced:
-    module:
-      - itk_media_entity
   module:
     - entity_browser_entity_form
     - views
@@ -26,22 +23,22 @@ widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
   0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1:
+    id: view
+    uuid: 0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1
+    label: Overblik
+    weight: 1
     settings:
-      view: itk_media_browser
-      view_display: entity_browser_4
       submit_text: 'Vælg fil'
       auto_select: false
-    uuid: 0e3d88e5-0fab-4c03-8d1b-ddf26a1303c1
-    weight: 1
-    label: Overblik
-    id: view
+      view: itk_media_browser
+      view_display: entity_browser_4
   faf405e2-6823-4521-b564-698424677624:
+    id: entity_form
+    uuid: faf405e2-6823-4521-b564-698424677624
+    label: 'Upload new document'
+    weight: 2
     settings:
+      submit_text: 'Upload document to media library'
       entity_type: media
       bundle: document
       form_mode: default
-      submit_text: 'Upload document to media library'
-    uuid: faf405e2-6823-4521-b564-698424677624
-    weight: 2
-    label: 'Upload new document'
-    id: entity_form

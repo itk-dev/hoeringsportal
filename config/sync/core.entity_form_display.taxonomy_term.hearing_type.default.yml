@@ -14,13 +14,13 @@ bundle: hearing_type
 mode: default
 content:
   field_contact:
+    type: text_textarea
     weight: 1
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_more_info:
     type: text_textarea
     weight: 2

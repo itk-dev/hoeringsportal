@@ -17,18 +17,24 @@
       <a target="_blank" href="{{ full_map_url }}" class="btn btn-primary">{{ 'Show on map'|t }}</a>
     </div>
   {% endif %}
-  <div class="col-md-12 mb-4">
-    <div class="row justify-content-end collapse" id="collapseFilters">
+  <div class="col-md-12">
+    <div class="row pt-3" id="collapseFilters">
       {% if q is not empty %}
-        {#
-          This ensures that, if clean URLs are off, the 'q' is added first,
-          as a hidden form element, so that it shows up first in the POST URL.
-        #}
         {{ q }}
       {% endif %}
-      {{ form.sort_order }}
-      {{ form|without('sort_order') }}
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        {{ form.field_area_target_id }}
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        {{ form.field_type_target_id }}
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        {{ form.field_content_state_value }}
+      </div>
+      <div class="col-lg-3 col-md-6 col-sm-12">
+        {{ form.sort_bef_combine }}
+      </div>
+      {{ form|without('sort_bef_combine', 'field_area_target_id', 'field_type_target_id', 'field_content_state_value') }}
     </div>
-    <div class="filters-toggle-wrapper"><a class="filters-toggle rounded" data-toggle="collapse" href="#collapseFilters"><span>{{ 'Show filters'|t }}</span><i class="fal fa-sort-alt float-right mt-1"></i></a></div>
   </div>
 </div>
