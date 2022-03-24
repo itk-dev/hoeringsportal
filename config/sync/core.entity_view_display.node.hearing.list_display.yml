@@ -9,7 +9,6 @@ dependencies:
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
-    - field.field.node.hearing.field_deskpro_data
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_edoc_casefile_id
     - field.field.node.hearing.field_lokalplaner
@@ -36,14 +35,14 @@ mode: list_display
 content:
   field_area:
     type: entity_reference_label
-    weight: 4
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 4
+    region: content
   field_media_image:
-    weight: 0
+    type: entity_reference_entity_view
     label: hidden
     settings:
       view_mode: node_form_display
@@ -51,29 +50,28 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
-    type: entity_reference_entity_view
+    weight: 0
     region: content
   field_teaser:
-    weight: 1
+    type: basic_string
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    weight: 1
     region: content
   field_type:
     type: entity_reference_label
-    weight: 3
-    region: content
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
+    weight: 3
+    region: content
 hidden:
   field_contact: true
   field_content_state: true
   field_description: true
   field_deskpro_agent_email: true
-  field_deskpro_data: true
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
   field_edoc_casefile_id: true

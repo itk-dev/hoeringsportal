@@ -2,138 +2,38 @@
 
 $hero-breakpoint:   "sm";
 
-.grid-element__hero-image {
-  //Hover animation
-  &:hover,
-  a.hero:focus {
-    .underlined:after {
-      width: $underline-width-hover;
-    }
-  }
-}
-.hero-container {
+.hero {
   @include element-theme($primary, $gray-100, $white);
 
-  @include media-breakpoint-down($hero-breakpoint) {
-    // Remove padding on small screens.
-    > * {
-      padding: 0;
-    }
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
 
-    .hero__content {
-      padding: $spacer;
-    }
+  @include media-breakpoint-up($hero-breakpoint) {
+    grid-template-columns: 1fr 1fr;
   }
 }
-.hero {
-  @include clearfix;
-  @include equal-height-row;
-  position: relative;
-  display: block;
-  overflow: hidden;
-  &__link {
-    display: block;
-    margin-bottom: $spacer;
-    color: $white;
-  }
-  &:hover,
-  &:focus {
-    .hero__link {
-      text-decoration: underline;
-    }
-  }
-  a {
-    display: inline-block;
-    margin-bottom: $spacer;
-  }
-  &__content {
-    position: relative;
-    width: 100%;
-    float: right;
-    font-size: $font-size-lg;
-    @include media-breakpoint-up($hero-breakpoint) {
-      width: 50%;
-      padding-top: $spacer*3;
-      padding-bottom: $spacer*2; //Because of margin bottom on elements inside
-      padding-left: $spacer*2;
-      background: $primary; //To hide image fade-in blur
-    }
-  }
-  &__media-container {
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    padding-bottom: $aspect-ratio-padding-8-3;
-    @include media-breakpoint-up($hero-breakpoint) {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      max-width: 50%;
-      height: 100%;
-      padding: 0;
-    }
-  }
-  &--image-right {
-    .hero__media-container {
-      right: 0;
-      left: auto;
-    }
 
-    .hero__content {
-      float: left;
-      padding-right: $spacer*2;
-      padding-left: 0;
-    }
-  }
-  .hero__media {
-    img {
-      //To hide blur on fade-in image
-      width: 104% !important;
-      max-width: 104% !important;
+.hero__media-container {
+  width: 100%;
+}
 
-      @include transition-std(transform, ease-in-out, 300ms);
-      will-change: transform;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100% !important; //important, for overriding azure video
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: $spacer;
+  max-width: 65ch;
+  font-size: $font-size-lg;
+  word-break: break-word;
 
-      @include media-breakpoint-up($hero-breakpoint) {
-        height: 104% !important;
-      }
-    }
+  @include media-breakpoint-up($hero-breakpoint) {
+    min-height: 350px;
+    padding: $spacer * 2;
   }
-  &--image-background {
-    .hero__media-container {
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 300px;
-    }
-    .hero__content {
-      position: absolute;
-      left: 0;
-      bottom: 10%;
-      padding-top: $spacer;
-      padding-bottom: $spacer;
-      z-index: 10;
-    }
-  }
-  &--no-image {
-    .hero__media-container {
-      right: 0;
-      left: auto;
-    }
 
-    .hero__content {
-      float: left;
-      padding-right: $spacer*2;
-      padding-left: 0;
-      width: auto;
-    }
+  h1 {
+    margin-top: 0;
   }
 }

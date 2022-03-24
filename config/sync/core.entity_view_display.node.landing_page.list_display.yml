@@ -19,8 +19,6 @@ mode: list_display
 content:
   field_section:
     type: entity_reference_revisions_entity_view
-    weight: 0
-    region: content
     label: hidden
     settings:
       view_mode: default
@@ -28,6 +26,8 @@ content:
     third_party_settings:
       ds:
         ds_limit: ''
+    weight: 0
+    region: content
 hidden:
   field_media_image_single: true
   field_teaser: true

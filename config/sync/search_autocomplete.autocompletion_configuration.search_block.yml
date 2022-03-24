@@ -1,6 +1,6 @@
-langcode: da
 _core:
   default_config_hash: 2lo0hIx3RV2AgnE1fkdPLRQcYWGamMyouBoe2OiYk24
+langcode: da
 id: search_block
 uuid: 2dee15ba-2893-453c-a5d8-74b93a66f870
 label: 'Search Block'

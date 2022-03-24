@@ -1,7 +1,27 @@
 uuid: 253daaf7-35bd-4a58-901d-6e2cf5171efc
 langcode: da
 status: true
-dependencies: {  }
+dependencies:
+  config:
+    - node.type.hearing
+    - node.type.landing_page
+    - node.type.project
+    - node.type.static_page
+    - taxonomy.vocabulary.area
+    - taxonomy.vocabulary.hearing_type
+    - taxonomy.vocabulary.media_library
+  module:
+    - aarhus_hero
+    - entity_browser
+    - hoeringsportal_deskpro
+    - itk_admin
+    - locale
+    - media
+    - node
+    - path
+    - system
+    - taxonomy
+    - toolbar
 id: administrator
 label: Administrator
 weight: -7

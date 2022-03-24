@@ -18,59 +18,60 @@ third_party_settings:
     group_system_settings:
       children:
         - status
+      label: Systemindstillinger
+      region: content
       parent_name: ''
       weight: 10
       format_type: details
       format_settings:
-        open: true
-        id: ''
         classes: ''
+        id: ''
+        open: true
         required_fields: false
-      label: Systemindstillinger
-      region: content
     group_timeline:
       children:
         - field_project_start
         - field_project_finish
         - field_timeline_items
+      label: Tidslinje
+      region: content
       parent_name: ''
       weight: 3
       format_type: details
       format_settings:
-        open: true
-        id: ''
         classes: ''
+        id: ''
+        open: true
         required_fields: false
-      label: Tidslinje
-      region: content
 id: node.project.default
 targetEntityType: node
 bundle: project
 mode: default
 content:
   field_description:
+    type: text_textarea
     weight: 1
+    region: content
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
-    type: text_textarea
-    region: content
   field_project_finish:
+    type: datetime_default
     weight: 5
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_project_start:
+    type: datetime_default
     weight: 4
+    region: content
     settings: {  }
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   field_timeline_items:
     type: entity_reference_paragraphs
     weight: 6
+    region: content
     settings:
       title: Paragraph
       title_plural: Paragraphs
@@ -79,7 +80,6 @@ content:
       form_display_mode: default
       default_paragraph_type: timeline_items
     third_party_settings: {  }
-    region: content
   status:
     type: boolean_checkbox
     weight: 9

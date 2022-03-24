@@ -1,7 +1,0 @@
-name: Høringsportal user validation (ADFS)
-type: module
-description: 'Validate users based on ADFS login process'
-package: Hoeringsportal
-core_version_requirement: ^8.8 || ^9
-dependencies:
-  - samlauth

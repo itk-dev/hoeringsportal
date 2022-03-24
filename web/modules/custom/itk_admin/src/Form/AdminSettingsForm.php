@@ -60,7 +60,7 @@ class AdminSettingsForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    \Drupal\Core\Messenger\MessengerInterface::addMessage('Settings saved');
+    \Drupal::messenger()->addMessage('Settings saved');
   }
 
 }

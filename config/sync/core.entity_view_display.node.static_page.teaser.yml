@@ -19,11 +19,11 @@ mode: teaser
 content:
   field_teaser:
     type: basic_string
-    weight: 0
-    region: content
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   field_media_image_single: true
   field_section: true

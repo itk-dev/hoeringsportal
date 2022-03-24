@@ -21,13 +21,13 @@ mode: default
 content:
   field_itk_media_image_upload:
     type: image
-    weight: 0
-    region: content
     label: hidden
     settings:
-      image_style: responsive_large_default
       image_link: ''
+      image_style: responsive_large_default
     third_party_settings: {  }
+    weight: 0
+    region: content
 hidden:
   created: true
   field_itk_media_height: true
