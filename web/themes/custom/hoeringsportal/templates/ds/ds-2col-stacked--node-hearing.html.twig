@@ -50,8 +50,11 @@
       </{{ right_wrapper }}>
     </div>
   </div>
+
   <{{ footer_wrapper }}{{ footer_attributes.addClass('group-footer container-flex') }}>
     {{ footer }}
   </{{ footer_wrapper }}>
-
+  {% if node_newsletter %}
+    {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
+  {% endif %}
 </{{ outer_wrapper }}>

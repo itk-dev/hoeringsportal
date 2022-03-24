@@ -1,0 +1,25 @@
+.newsletter-signup {
+  &--envelope {
+    color: $petroleum;
+    height: 100%;
+    position: relative;
+    width: 1.5em;
+
+    > div {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .fa-envelope {
+      font-size: 1.5em
+    }
+  }
+  &--header {
+    font-family: $font-family-base;
+    margin-bottom: .5em;
+  }
+  &--logo {
+    height:70px;
+  }
+}
