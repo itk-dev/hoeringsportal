@@ -25,27 +25,14 @@
 {% set image_exists = field_media_image_single['#items'][0].value is not null %}
 {% set header_text = field_teaser['#items'][0].value|striptags %}
   {{ title_suffix.contextual_links }}
-  <{{ header_wrapper }}{{ header_attributes.addClass('group-header') }}>
+  <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
     {% if image_exists %}
-      <div class="hero">
-        <div class="hero__media-container">{{ header.field_media_image_single }}</div>
-        <div class="hero__content">
-            {{ header|without('field_teaser', 'field_media_image_single') }}
-            {{ header_text }}
-        </div>
-      </div>
+      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
     {% else %}
-      <div class="container">
-        <div class="hero">
-          <div class="hero__content">
-            {{ header|without('field_teaser') }}
-            {{ header_text }}
-          </div>
-        </div>
-      </div>
+      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
     {% endif %}
   </{{ header_wrapper }}>
-  <div class="container  content__container">
+  <div class="container content__container">
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">

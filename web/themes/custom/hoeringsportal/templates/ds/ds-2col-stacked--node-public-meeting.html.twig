@@ -25,12 +25,10 @@
 
   {{ title_suffix.contextual_links }}
 
-  <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
-    <div class="hero hero--no-image">
-      {{ header }}
-    </div>
+  <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
+    {% include directory ~ '/templates/componets/header.html.twig' with {'header': header } %}
   </{{ header_wrapper }}>
-  <div class="container  content__container">
+  <div class="container content__container">
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main">
