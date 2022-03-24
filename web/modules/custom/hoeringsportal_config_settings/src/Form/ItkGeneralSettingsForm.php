@@ -173,6 +173,28 @@ class ItkGeneralSettingsForm extends FormBase {
       '#default_value' => $config->get('users_manual_url'),
     ];
 
+    $newsletter_node = Node::load($config->get('newsletter_node') ?? -1);
+    $form['misc']['newsletter_node'] = [
+      '#title' => $this->t('Newsletter node page'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'node',
+      '#default_value' => $newsletter_node,
+      '#description' => $this->t('The node to attach the newsletter signup form to.'),
+    ];
+
+    $form['misc']['newsletter_iframe_source'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Newsletter iframe source'),
+      '#default_value' => $config->get('newsletter_iframe_source') ?? '',
+    );
+
+    $form['misc']['newsletter_iframe_height'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Newsletter iframe height'),
+      '#default_value' => $config->get('newsletter_iframe_height') ?? '',
+      '#description' => $this->t('The height of the iframe i.e 450px'),
+    );
+
     $form['messages'] = [
       '#title' => $this->t('Messages'),
       '#type' => 'details',
@@ -215,6 +237,9 @@ class ItkGeneralSettingsForm extends FormBase {
       'frontpage_id' => $form_state->getValue('frontpage_id'),
       'users_manual_url' => $form_state->getValue('users_manual_url'),
       'login_message' => $form_state->getValue('login_message'),
+      'newsletter_node' => $form_state->getValue('newsletter_node'),
+      'newsletter_iframe_source' => $form_state->getValue('newsletter_iframe_source'),
+      'newsletter_iframe_height' => $form_state->getValue('newsletter_iframe_height'),
     ]);
 
     drupal_flush_all_caches();

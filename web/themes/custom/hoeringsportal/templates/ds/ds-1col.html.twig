@@ -12,26 +12,11 @@
 {% set image_exists = field_media_image_single['#items'][0].value is not null %}
 {% set header_text = field_teaser['#items'][0].value|striptags %}
 
-<div class="group-header hero-container">
+<div class="group-header">
   {% if image_exists %}
-    <div class="container">
-      <div class="hero">
-        <div class="hero__media-container p-0">{{ ds_content.field_media_image_single }}</div>
-        <div class="hero__content">
-          <h1 class="title underlined hero__title pt-4 pb-4">{{ node.title.value }}</h1>
-          {{ header_text }}
-        </div>
-      </div>
-    </div>
+    {% include directory ~ '/templates/componets/hero.html.twig' with {'image': ds_content.field_media_image_single, 'title': node.title.value, 'teaser': header_text } %}
   {% else %}
-    <div class="container">
-      <div class="hero hero--image-right">
-        <div class="hero__content">
-          <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ node.title.value }}</h1>
-          {{ header_text }}
-        </div>
-      </div>
-    </div>
+    {% include directory ~ '/templates/componets/header.html.twig' with {'header': node.title.value, 'teaser': header_text } %}
   {% endif %}
 </div>
 

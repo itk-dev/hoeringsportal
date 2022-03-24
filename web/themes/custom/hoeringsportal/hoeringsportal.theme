@@ -261,6 +261,20 @@ function hoeringsportal_preprocess_ds_1col(&$variables) {
  */
 function hoeringsportal_preprocess_ds_2col_stacked(&$variables) {
   $node_type = $variables['content']['#bundle'] ?? '';
+  // Set variables related to newsletter if any newsletter config is set.
+  // See hoeringsportal_config_settings module.
+  $itk_config = \Drupal::getContainer()->get('itk_admin.itk_config');
+  $newsletter_node = $itk_config->get('newsletter_node');
+  $variables['node_newsletter'] = $newsletter_node ?? NULL;
+  $variables['show_newsletter_signup'] = FALSE;
+
+  // If the node is the newsletter node add some variables.
+  if ($newsletter_node === $variables['content']['#node']->id()) {
+    $variables['show_newsletter_signup'] = TRUE;
+    $variables['newsletter_iframe_source'] = $itk_config->get('newsletter_iframe_source');
+    $variables['newsletter_iframe_height'] = $itk_config->get('newsletter_iframe_height');
+  }
+
   // Check content type.
   if ($node_type == 'project' || $node_type == 'hearing' || $node_type == 'public_meeting') {
     $variables['#attached']['library'][] = 'core/drupal.dialog.ajax';

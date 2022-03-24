@@ -25,33 +25,24 @@
 {% set image_exists = field_media_image_single['#items'][0].value is not null %}
 {% set header_text = field_teaser['#items'][0].value|striptags %}
   {{ title_suffix.contextual_links }}
-  <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
+  <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
     {% if image_exists %}
-      <div class="container">
-        <div class="hero">
-          <div class="hero__media-container p-0">{{ header.field_media_image_single }}</div>
-          <div class="hero__content">
-            {{ header|without('field_teaser', 'field_media_image_single') }}
-            {{ header_text }}
-          </div>
-        </div>
-      </div>
+      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
     {% else %}
-      <div class="container">
-        <div class="hero hero--image-right">
-          <div class="hero__content">
-            {{ header|without('field_teaser') }}
-            {{ header_text }}
-          </div>
-        </div>
-      </div>
+      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
     {% endif %}
   </{{ header_wrapper }}>
-  <div class="container  content__container">
+  <div class="container content__container">
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
-          {{ left }}
+          {{ left|without('node_changed_date') }}
+          {% if show_newsletter_signup %}
+            <iframe frameborder="0" width="100%" height="{{ newsletter_iframe_height }}" src="{{ newsletter_iframe_source }}">
+              <p>Your browser does not support iframes.</p>
+            </iframe>
+          {% endif %}
+          {{ left.node_changed_date }}
         </div>
       </{{ left_wrapper }}>
 
@@ -63,5 +54,7 @@
   <{{ footer_wrapper }}{{ footer_attributes.addClass('group-footer container-flex') }}>
     {{ footer }}
   </{{ footer_wrapper }}>
-
+  {% if node_newsletter %}
+    {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
+  {% endif %}
 </{{ outer_wrapper }}>

@@ -44,30 +44,28 @@
     </div>
   {% endfor %}
 {% else %}
-  <div class="container">
-    <div class="hero__content">
-      {% if label_hidden %}
-        {% if multiple %}
-          {% for item in items %}
-            <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
-          {% endfor %}
+
+        {% if label_hidden %}
+          {% if multiple %}
+            {% for item in items %}
+              <h1 class="title underlined is-white hero__title">{{ item.content }}</h1>
+            {% endfor %}
+          {% else %}
+            {% for item in items %}
+              <h1 class="title underlined is-white hero__title">{{ item.content }}</h1>
+            {% endfor %}
+          {% endif %}
         {% else %}
+          {{ label }}
+          {% if multiple %}
+            <div>
+          {% endif %}
           {% for item in items %}
-            <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
+            <h1 class="title underlined is-white hero__title">{{ item.content }}</h1>
           {% endfor %}
+          {% if multiple %}
+            </div>
+          {% endif %}
         {% endif %}
-      {% else %}
-        {{ label }}
-        {% if multiple %}
-          <div>
-        {% endif %}
-        {% for item in items %}
-          <h1 class="title underlined hero__title pt-4 pb-4 ml-3 ml-md-0">{{ item.content }}</h1>
-        {% endfor %}
-        {% if multiple %}
-          </div>
-        {% endif %}
-      {% endif %}
-    </div>
-  </div>
+
 {% endif %}
