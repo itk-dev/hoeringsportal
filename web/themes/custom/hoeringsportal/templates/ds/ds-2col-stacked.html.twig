@@ -25,20 +25,18 @@
 {% set image_exists = field_media_image_single['#items'][0].value is not null %}
 {% set header_text = field_teaser['#items'][0].value|striptags %}
   {{ title_suffix.contextual_links }}
-  <{{ header_wrapper }}{{ header_attributes.addClass('group-header hero-container') }}>
+  <{{ header_wrapper }}{{ header_attributes.addClass('group-header') }}>
     {% if image_exists %}
-      <div class="container">
-        <div class="hero">
-          <div class="hero__media-container p-0">{{ header.field_media_image_single }}</div>
-          <div class="hero__content">
+      <div class="hero">
+        <div class="hero__media-container">{{ header.field_media_image_single }}</div>
+        <div class="hero__content">
             {{ header|without('field_teaser', 'field_media_image_single') }}
             {{ header_text }}
-          </div>
         </div>
       </div>
     {% else %}
       <div class="container">
-        <div class="hero hero--image-right">
+        <div class="hero">
           <div class="hero__content">
             {{ header|without('field_teaser') }}
             {{ header_text }}
