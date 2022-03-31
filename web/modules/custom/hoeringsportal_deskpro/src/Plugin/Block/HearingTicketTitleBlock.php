@@ -33,7 +33,7 @@ class HearingTicketTitleBlock extends BlockBase {
     return [
       '#theme' => 'hoeringsportal_hearing_ticket_title',
       '#node' => $node,
-      '#ticket' => !empty($ticket) ? $this->helper->getHearingTicket($node, $ticket) : NULL,
+      '#ticket' => !empty($ticket) ? $this->helper->getDeskproTicket($node, $ticket) : NULL,
       '#cache' => [
         'contexts' => $cacheContexts,
         'tags' => $cacheTags,

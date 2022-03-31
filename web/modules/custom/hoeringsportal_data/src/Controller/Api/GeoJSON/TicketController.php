@@ -28,14 +28,11 @@ class TicketController extends ApiController {
 
     $tickets = [];
     foreach ($hearings as $hearing) {
-      $data = $this->helper()->getDeskproData($hearing);
-      if (isset($data->tickets)) {
-        foreach ($data->tickets as $ticket) {
-          $tickets[] = (object) [
-            'data' => $ticket,
-            'hearing' => $hearing,
-          ];
-        }
+      foreach ($this->helper()->getHearingTickets($hearing) as $ticket) {
+        $tickets[] = (object) [
+          'data' => $ticket,
+          'hearing' => $hearing,
+        ];
       }
     }
 

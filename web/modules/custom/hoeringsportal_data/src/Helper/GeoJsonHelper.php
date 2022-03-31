@@ -194,7 +194,7 @@ class GeoJsonHelper {
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
     $hearing_type = $this->getReference($hearing, 'field_type');
     $project = $this->getReference($hearing, 'field_project_reference');
-    $deskproData = $this->getDeskproData($hearing);
+    $ticketCount = $this->getHearingTicketsCount($hearing);
 
     $tags = $hearing->get('field_tags')->referencedEntities();
 
@@ -217,7 +217,7 @@ class GeoJsonHelper {
         'hearing_tags' => array_map([$this, 'getTermName'], $tags),
         'hearing_teaser' => $hearing->get('field_teaser')->value,
         'hearing_geometry_type' => $geometryType,
-        'hearing_replies_count' => isset($deskproData['tickets']) ? \count($deskproData['tickets']) : 0,
+        'hearing_replies_count' => $ticketCount,
         'hearing_replies_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()], ['fragment' => 'hearing-tickets']),
         'hearing_url' => $this->generateUrl('entity.node.canonical', ['node' => $hearing->id()]),
         'hearing_project_id' => $project ? (int) $project->id() : NULL,
@@ -328,12 +328,21 @@ class GeoJsonHelper {
   }
 
   /**
-   * Get Deskpro data.
+   * Get hearing tickets count.
    *
-   * @see DeskproHearingHelper::getDeskproData().
+   * @see DeskproHearingHelper::getHearingTicketsCount().
    */
-  public function getDeskproData(NodeInterface $node): ?array {
-    return $this->deskproHelper->getDeskproData($node);
+  public function getHearingTicketsCount(NodeInterface $node): int {
+    return $this->deskproHelper->getHearingTicketsCount($node);
+  }
+
+  /**
+   * Get hearing tickets.
+   *
+   * @see DeskproHearingHelper::getHearingTickets().
+   */
+  public function getHearingTickets(NodeInterface $node): ?array {
+    return $this->deskproHelper->getHearingTickets($node);
   }
 
   /**

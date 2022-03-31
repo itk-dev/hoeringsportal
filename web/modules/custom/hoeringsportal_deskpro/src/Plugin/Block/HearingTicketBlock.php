@@ -21,7 +21,7 @@ class HearingTicketBlock extends BlockBase {
   public function build() {
     $node = $this->routeMatch->getParameter('node');
     $ticket = $this->routeMatch->getParameter('ticket');
-    $ticket = $this->helper->getHearingTicket($node, $ticket);
+    $ticket = $this->helper->getDeskproTicket($node, $ticket);
 
     if (!$this->helper->isHearing($node) || empty($ticket)) {
       throw new NotFoundHttpException();
