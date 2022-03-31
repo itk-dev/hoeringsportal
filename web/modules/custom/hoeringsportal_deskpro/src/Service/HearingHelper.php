@@ -517,9 +517,9 @@ class HearingHelper {
   }
 
   /**
-   * Get Deskpro ticket count.
+   * Get hearing tickets count.
    */
-  public function getDeskproTicketCount(NodeInterface $node, bool $reset = FALSE): int {
+  public function getHearingTicketsCount(NodeInterface $node, bool $reset = FALSE): int {
     if (!$this->isHearing($node)) {
       throw new \RuntimeException('Invalid hearing: ' . $node->id());
     }
@@ -543,9 +543,9 @@ class HearingHelper {
   }
 
   /**
-   * Get Deskpro tickets.
+   * Get hearing tickets.
    */
-  public function getDeskproTickets(NodeInterface $node, bool $reset = FALSE): ?array {
+  public function getHearingTickets(NodeInterface $node, bool $reset = FALSE): ?array {
     if (!$this->isHearing($node)) {
       throw new \RuntimeException('Invalid hearing: ' . $node->id());
     }
@@ -571,6 +571,20 @@ class HearingHelper {
     }
 
     return $info[$bundle][$entity_id] ?? NULL;
+  }
+
+  /**
+   * Get all tickets.
+   */
+  public function getTickets(): ?array {
+    $records = $this->database
+      ->select('hoeringsportal_deskpro_deskpro_tickets', 't')
+      ->fields('t')
+      ->orderBy('created_at', 'DESC')
+      ->execute()
+      ->fetchAll();
+
+    return [];
   }
 
   /**

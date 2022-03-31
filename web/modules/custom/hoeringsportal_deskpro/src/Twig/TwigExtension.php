@@ -50,7 +50,7 @@ class TwigExtension extends \Twig_Extension {
         'deskpro_get_ticket_count',
         [
           $this->helper,
-          'getDeskproTicketCount',
+          'getHearingTicketsCount',
         ],
         [
           'is_safe' => ['all'],
@@ -60,7 +60,7 @@ class TwigExtension extends \Twig_Extension {
         'deskpro_get_tickets',
         [
           $this->helper,
-          'getDeskproTickets',
+          'getHearingTickets',
         ],
         [
           'is_safe' => ['all'],

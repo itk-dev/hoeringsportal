@@ -33,7 +33,7 @@ class HearingTicketsBlock extends BlockBase {
       '#theme' => 'hoeringsportal_hearing_tickets',
       '#node' => $node,
       '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
-      '#tickets' => $this->helper->getDeskproTickets($node),
+      '#tickets' => $this->helper->getHearingTickets($node),
       '#is_hearing_started' => $is_hearing_started,
     ];
   }

@@ -194,7 +194,7 @@ class GeoJsonHelper {
     /** @var \Drupal\taxonomy\Entity\Term $hearing_type */
     $hearing_type = $this->getReference($hearing, 'field_type');
     $project = $this->getReference($hearing, 'field_project_reference');
-    $ticketCount = $this->getDeskproTicketCount($hearing);
+    $ticketCount = $this->getHearingTicketsCount($hearing);
 
     $tags = $hearing->get('field_tags')->referencedEntities();
 
@@ -328,21 +328,21 @@ class GeoJsonHelper {
   }
 
   /**
-   * Get Deskpro ticket count.
+   * Get hearing tickets count.
    *
-   * @see DeskproHearingHelper::getDeskproTicketCount().
+   * @see DeskproHearingHelper::getHearingTicketsCount().
    */
-  public function getDeskproTicketCount(NodeInterface $node): int {
-    return $this->deskproHelper->getDeskproTicketCount($node);
+  public function getHearingTicketsCount(NodeInterface $node): int {
+    return $this->deskproHelper->getHearingTicketsCount($node);
   }
 
   /**
-   * Get Deskpro tickets.
+   * Get hearing tickets.
    *
-   * @see DeskproHearingHelper::getDeskproTickets().
+   * @see DeskproHearingHelper::getHearingTickets().
    */
-  public function getDeskproTickets(NodeInterface $node): ?array {
-    return $this->deskproHelper->getDeskproTickets($node);
+  public function getHearingTickets(NodeInterface $node): ?array {
+    return $this->deskproHelper->getHearingTickets($node);
   }
 
   /**
