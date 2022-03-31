@@ -69,6 +69,7 @@ class DeskproConfig extends DatabaseStorage {
     'hearing_id' => 'Hearing id',
     'hearing_name' => 'Hearing name',
     'edoc_id' => 'eDoc id',
+    'getorganized_case_id' => 'GetOrganized case id',
     'pdf_download_url' => 'PDF download url',
     'representation' => 'Representation',
     'organization' => 'Organization (used with representation)',

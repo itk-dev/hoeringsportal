@@ -1,0 +1,19 @@
+uuid: 3a5c846b-6c4e-47d4-9505-2de0b51ece2f
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_getorganized_case_id
+    - node.type.hearing
+id: node.hearing.field_getorganized_case_id
+field_name: field_getorganized_case_id
+entity_type: node
+bundle: hearing
+label: GetOrganized-sags-ID
+description: 'Indtast GetOrganized-sags-ID for høringen.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
