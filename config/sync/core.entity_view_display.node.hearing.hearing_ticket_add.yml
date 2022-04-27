@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
     - field.field.node.hearing.field_edoc_casefile_id
+    - field.field.node.hearing.field_getorganized_case_id
     - field.field.node.hearing.field_lokalplaner
     - field.field.node.hearing.field_map
     - field.field.node.hearing.field_map_display
@@ -164,6 +165,7 @@ hidden:
   field_deskpro_department_id: true
   field_deskpro_hearing_id: true
   field_edoc_casefile_id: true
+  field_getorganized_case_id: true
   field_lokalplaner: true
   field_map: true
   field_map_display: true
