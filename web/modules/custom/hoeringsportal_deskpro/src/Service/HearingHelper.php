@@ -204,6 +204,7 @@ class HearingHelper {
       $data['fields'][$this->getTicketFieldId('hearing_id')] = $this->getHearingId($node);
       $data['fields'][$this->getTicketFieldId('hearing_name')] = $node->getTitle();
       $data['fields'][$this->getTicketFieldId('edoc_id')] = $node->field_edoc_casefile_id->value;
+      $data['fields'][$this->getTicketFieldId('getorganized_case_id')] = $node->field_getorganized_case_id->value;
       $data['fields'][$this->getTicketFieldId('accept_terms')] = TRUE;
 
       if (isset($node->field_deskpro_agent_email->value)) {
