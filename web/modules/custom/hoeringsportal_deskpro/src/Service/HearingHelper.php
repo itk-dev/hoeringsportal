@@ -448,7 +448,8 @@ class HearingHelper {
         /** @var \Drupal\node\Entity\NodeInterface $hearing */
         [$hearing, $ticketId] = $this->validateTicketPayload($payload);
 
-        $data = $this->getDeskproData($hearing);
+        // Get un-cached Deskpro data.
+        $data = $this->getDeskproData($hearing, TRUE);
         $tickets = $data['tickets'] ?? [];
 
         // Find index of exiting ticket if any.
