@@ -182,18 +182,18 @@ class ItkGeneralSettingsForm extends FormBase {
       '#description' => $this->t('The node to attach the newsletter signup form to.'),
     ];
 
-    $form['misc']['newsletter_iframe_source'] = array(
+    $form['misc']['newsletter_iframe_source'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Newsletter iframe source'),
       '#default_value' => $config->get('newsletter_iframe_source') ?? '',
-    );
+    ];
 
-    $form['misc']['newsletter_iframe_height'] = array(
+    $form['misc']['newsletter_iframe_height'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Newsletter iframe height'),
       '#default_value' => $config->get('newsletter_iframe_height') ?? '',
       '#description' => $this->t('The height of the iframe i.e 450px'),
-    );
+    ];
 
     $form['messages'] = [
       '#title' => $this->t('Messages'),
