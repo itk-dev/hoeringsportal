@@ -9,6 +9,7 @@ use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType\SynchronizeTicket;
@@ -49,6 +50,13 @@ class HearingHelper {
   private $database;
 
   /**
+   * The lock.
+   *
+   * @var \Drupal\Core\Lock\LockBackendInterface
+   */
+  private $lock;
+
+  /**
    * The logger.
    *
    * @var \Psr\Log\LoggerInterface
@@ -58,11 +66,12 @@ class HearingHelper {
   /**
    * Constructs a new DeskproHelper object.
    */
-  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager, FileSystemInterface $fileSystem, Connection $database, LoggerInterface $logger) {
+  public function __construct(DeskproService $deskpro, EntityTypeManagerInterface $entityTypeManager, FileSystemInterface $fileSystem, Connection $database, LockBackendInterface $lock, LoggerInterface $logger) {
     $this->deskpro = $deskpro;
     $this->entityTypeManager = $entityTypeManager;
     $this->fileSystem = $fileSystem;
     $this->database = $database;
+    $this->lock = $lock;
     $this->logger = $logger;
   }
 
@@ -312,9 +321,9 @@ class HearingHelper {
     $pattern = '/\[(?P<type>[^:]+):(?P<key>[^\]]+)\]/';
 
     return preg_replace_callback($pattern, function ($matches) use ($data) {
-        $type = $matches['type'];
-        $key = $matches['key'];
-        return $data[$type][$key] ?? $matches[0];
+      $type = $matches['type'];
+      $key = $matches['key'];
+      return $data[$type][$key] ?? $matches[0];
     }, $text);
   }
 
@@ -433,81 +442,89 @@ class HearingHelper {
    * Synchronize hearing tickets.
    */
   public function runSynchronizeTicket(array $payload) {
-    /** @var \Drupal\node\Entity\NodeInterface $hearing */
-    [$hearing, $ticketId] = $this->validateTicketPayload($payload);
+    try {
+      $lockName = __METHOD__;
+      if ($this->lock->acquire($lockName)) {
+        /** @var \Drupal\node\Entity\NodeInterface $hearing */
+        [$hearing, $ticketId] = $this->validateTicketPayload($payload);
 
-    $data = $this->getDeskproData($hearing);
-    $tickets = $data['tickets'] ?? [];
+        $data = $this->getDeskproData($hearing);
+        $tickets = $data['tickets'] ?? [];
 
-    // Find index of exiting ticket if any.
-    $ticketIndex = array_key_first(array_filter($tickets, static function (array $ticket) use ($ticketId) {
-      return $ticketId === $ticket['id'];
-    }));
+        // Find index of exiting ticket if any.
+        $ticketIndex = array_key_first(array_filter($tickets, static function (array $ticket) use ($ticketId) {
+          return $ticketId === $ticket['id'];
+        }));
 
-    $ticket = $this->deskpro->getTicket($ticketId, [
-      'expand' => ['fields', 'person', 'messages', 'attachments'],
-      'no_cache' => 1,
-    ])->getData();
+        $ticket = $this->deskpro->getTicket($ticketId, [
+          'expand' => ['fields', 'person', 'messages', 'attachments'],
+          'no_cache' => 1,
+        ])->getData();
 
-    // Check that ticket belongs to hearing.
-    $ticketHearingId = $ticket['fields']['hearing_id'] ?? NULL;
-    if (NULL === $ticketHearingId || (int) $ticketHearingId !== (int) $hearing->id()) {
-      $message = sprintf('Ticket %s does not belong to hearing %s (belongs to hearing %s)', $ticketId, $hearing->id(), $ticketHearingId);
-      $this->logger->error($message);
-      throw new \RuntimeException($message);
-    }
+        // Check that ticket belongs to hearing.
+        $ticketHearingId = $ticket['fields']['hearing_id'] ?? NULL;
+        if (NULL === $ticketHearingId || (int) $ticketHearingId !== (int) $hearing->id()) {
+          $message = sprintf('Ticket %s does not belong to hearing %s (belongs to hearing %s)', $ticketId, $hearing->id(), $ticketHearingId);
+          $this->logger->error($message);
+          throw new \RuntimeException($message);
+        }
 
-    // Remove unpublished or deleted tickets.
-    $remove =
-      // Ticket is unpublished if and only if the field "unpublish_reply" === 1.
-      1 === (int) ($ticket['fields']['unpublish_reply'] ?? NULL)
-      // A deleted ticket has a status starting with "hidden" (and is not really
-      // deleted so it makes sense to get it from the api).
-      || 0 === strpos($ticket['status'], 'hidden');
-    if ($remove) {
-      // Remove ticket (if it exists).
-      if (NULL !== $ticketIndex) {
-        $this->logger->debug(
-          sprintf('Removing ticket %s from hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
-          [
-            '@payload' => json_encode($payload),
-          ]
-        );
-        unset($tickets[$ticketIndex]);
+        // Remove unpublished or deleted tickets.
+        $remove =
+          // Ticket is unpublished if and only if the field
+          // "unpublish_reply" === 1.
+          1 === (int) ($ticket['fields']['unpublish_reply'] ?? NULL)
+          // A deleted ticket has a status starting with "hidden" (and is not
+          // really deleted so it makes sense to get it from the api).
+          || 0 === strpos($ticket['status'], 'hidden');
+        if ($remove) {
+          // Remove ticket (if it exists).
+          if (NULL !== $ticketIndex) {
+            $this->logger->debug(
+              sprintf('Removing ticket %s from hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
+              [
+                '@payload' => json_encode($payload),
+              ]
+            );
+            unset($tickets[$ticketIndex]);
+          }
+        }
+        else {
+          if (NULL === $ticketIndex) {
+            $this->logger->debug(
+              sprintf('Adding ticket %s on hearing %s', $ticketId, $hearing->id()),
+              [
+                '@ticket' => json_encode($ticket),
+              ]
+            );
+            $tickets[] = $ticket;
+          }
+          else {
+            $this->logger->debug(
+              sprintf('Updating ticket %s on hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
+              [
+                '@ticket' => json_encode($ticket),
+              ]
+                  );
+            $tickets[$ticketIndex] = $ticket;
+          }
+        }
+
+        // Sort tickets descending by creation time.
+        usort($tickets, static function ($a, $b) {
+          return -($a['date_created'] <=> $b['date_created']);
+        });
+
+        $data['tickets'] = $tickets;
+
+        $this->setDeskproData($hearing, $data);
+        $hearing->save();
+
+        return ['hearing' => $hearing->id(), 'ticket' => $ticket];
       }
+    } finally {
+      $this->lock->release($lockName);
     }
-    else {
-      if (NULL === $ticketIndex) {
-        $this->logger->debug(
-          sprintf('Adding ticket %s on hearing %s', $ticketId, $hearing->id()),
-          [
-            '@ticket' => json_encode($ticket),
-          ]
-        );
-        $tickets[] = $ticket;
-      }
-      else {
-        $this->logger->debug(
-          sprintf('Updating ticket %s on hearing %s (index: %d)', $ticketId, $hearing->id(), $ticketIndex),
-          [
-            '@ticket' => json_encode($ticket),
-          ]
-              );
-        $tickets[$ticketIndex] = $ticket;
-      }
-    }
-
-    // Sort tickets descending by creation time.
-    usort($tickets, static function ($a, $b) {
-      return -($a['date_created'] <=> $b['date_created']);
-    });
-
-    $data['tickets'] = $tickets;
-
-    $this->setDeskproData($hearing, $data);
-    $hearing->save();
-
-    return ['hearing' => $hearing->id(), 'ticket' => $ticket];
   }
 
   /**
