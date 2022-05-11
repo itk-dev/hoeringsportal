@@ -177,6 +177,7 @@ class DeskproSettingsForm extends FormBase {
       foreach ($allCustomFields as $customField) {
         $options[$customField['id']] = $customField['title'];
       }
+      natcasesort($options);
     }
     catch (\Throwable $throwable) {
       $this->messenger()->addError('Cannot get custom fields from Deskpro.');
