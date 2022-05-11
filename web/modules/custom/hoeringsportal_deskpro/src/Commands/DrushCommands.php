@@ -40,22 +40,50 @@ class DrushCommands extends BaseDrushCommands {
    *
    * @param int $hearingId
    *   Hearing id.
-   * @param int $ticketId
-   *   Ticket id.
+   * @param string $ticketIds
+   *   Comma-separated list of ticket ids.
+   * @param array $options
+   *   The options.
+   *
+   * @option enqueue
+   *   Enqueue the synchronization.
    *
    * @command hoeringsportal:deskpro:synchronize-hearing-ticket
    * @usage hoeringsportal:deskpro:synchronize-hearing-ticket 123 456
    *   Refreshes Deskpro data for ticket 456 on hearing 123.
    */
-  public function synchronizeHearingTicket(int $hearingId, int $ticketId) {
-    $payload = $this->helper->getTicketSynchronizationPayload($hearingId, $ticketId);
+  public function synchronizeHearingTicket(int $hearingId, string $ticketIds, array $options = [
+    'enqueue' => FALSE,
+  ]) {
+    // Get unique list of non-negative integers.
+    $ticketIds = array_unique(
+      array_filter(
+        array_map('intval', preg_split('/\s*,\s*/', $ticketIds)),
+        static function (int $id) {
+          return $id > 0;
+        }
+      )
+    );
+    foreach ($ticketIds as $ticketId) {
+      $payload = $this->helper->getTicketSynchronizationPayload($hearingId, $ticketId);
 
-    $result = $this->helper->runSynchronizeTicket($payload);
-    $this->output->writeln([
-      'Result',
-      json_encode($result, JSON_PRETTY_PRINT),
-      str_repeat('-', 80),
-    ]);
+      if ($options['enqueue']) {
+        $result = $this->helper->synchronizeTicket($payload);
+        $this->output->writeln([
+          'Enqueued',
+          json_encode($result, JSON_PRETTY_PRINT),
+          str_repeat('-', 80),
+        ]);
+      }
+      else {
+        $result = $this->helper->runSynchronizeTicket($payload);
+        $this->output->writeln([
+          'Result',
+          json_encode($result, JSON_PRETTY_PRINT),
+          str_repeat('-', 80),
+        ]);
+      }
+    }
   }
 
   /**
