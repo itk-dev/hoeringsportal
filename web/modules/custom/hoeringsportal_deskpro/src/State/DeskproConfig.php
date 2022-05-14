@@ -157,4 +157,18 @@ class DeskproConfig extends DatabaseStorage {
     return \Drupal::config('hoeringsportal_deskpro.config')->get('deskpro_hearing_id_prefix');
   }
 
+  /**
+   * Get ticket languages.
+   */
+  public function getTicketLanguages() {
+    return $this->get('deskpro_languages', [])['ticket_languages'] ?? [];
+  }
+
+  /**
+   * Get default ticket language.
+   */
+  public function getDefaultTicketLanguage() {
+    return $this->get('deskpro_languages', [])['default_ticket_language'] ?? NULL;
+  }
+
 }
