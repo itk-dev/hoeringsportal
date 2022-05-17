@@ -1,0 +1,19 @@
+uuid: 9f020c17-98d2-4f39-b866-a1d7a100cee6
+langcode: da
+status: true
+dependencies:
+  module:
+    - link
+    - node
+id: node.field_hearing_ticket_add
+field_name: field_hearing_ticket_add
+entity_type: node
+type: link
+settings: {  }
+module: link
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

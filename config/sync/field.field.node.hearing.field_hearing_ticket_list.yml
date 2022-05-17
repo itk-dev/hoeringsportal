@@ -1,0 +1,23 @@
+uuid: 08b34710-9785-4911-a220-0e24b483fca5
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hearing_ticket_list
+    - node.type.hearing
+  module:
+    - link
+id: node.hearing.field_hearing_ticket_list
+field_name: field_hearing_ticket_list
+entity_type: node
+bundle: hearing
+label: 'Vis høringssvar'
+description: 'Her kan du linke til visning af høringssvar i et eksternt høringssvarsystem'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 16
+field_type: link

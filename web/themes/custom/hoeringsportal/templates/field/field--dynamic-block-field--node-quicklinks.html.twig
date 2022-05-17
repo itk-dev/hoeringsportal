@@ -41,9 +41,12 @@
 
 {% set node = element['#object']|default(null)  %}
 {% if null != node and 'active' == node.field_content_state.value|default('') %}
-<a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary btn-sm">
-  {{ 'Add hearing ticket'|trans }}
-</a>
+  {% set has_external_hearing_tickets = node.field_hearing_ticket_add.uri|default(false) %}
+  {% set hearing_ticket_add_url = has_external_hearing_tickets ? node.field_hearing_ticket_add.uri : path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) %}
+  {% set hearing_ticket_add_title = (has_external_hearing_tickets ? node.field_hearing_ticket_add.title)|default('Add hearing ticket'|trans) %}
+  <a href="{{ hearing_ticket_add_url }}" class="btn btn-primary btn-sm">
+    {{ hearing_ticket_add_title }}
+  </a>
 {% endif %}
 
 {% if label_hidden %}
