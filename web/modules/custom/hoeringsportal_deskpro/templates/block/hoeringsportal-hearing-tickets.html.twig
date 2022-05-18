@@ -22,7 +22,7 @@
     <div class="row mb-3">
       <div class="col-md-6">
         {% if not is_deadline_passed and is_hearing_started %}
-          <a href="{{ external_hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
+          <a href="{{ hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
             {{ hearing_ticket_add_title }}
           </a>
         {% endif %}
@@ -30,7 +30,7 @@
       <div class="col-md-6">
         {% if hearing_ticket_list_url %}
           <div class="float-md-right">
-            <a href="{{ hearing_ticket_lis_url }}" class="btn btn-secondary mt-md-3">
+            <a href="{{ hearing_ticket_list_url }}" class="btn btn-secondary mt-md-3">
               {{ hearing_ticket_list_title }}
             </a>
           </div>
