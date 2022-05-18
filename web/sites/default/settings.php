@@ -20,10 +20,6 @@ $settings['file_scan_ignore_directories'] = [
   'bower_components',
 ];
 
-// As the settings.php file is not writable during install, Drupal will refuse to install a profile that is not defined
-// here.
-$settings['install_profile'] = 'minimal';
-
 // Configuration sync path.
 $settings['config_sync_directory'] = '../config/sync';
 
@@ -31,11 +27,11 @@ $settings['file_private_path'] = DRUPAL_ROOT . '/../private-files';
 
 // Deskpro configuration.
 $settings['hoeringsportal_deskpro.deskpro'] = [
-	// Deskpro API base url, e.g. 'https://demo.deskpro.com'
+  // Deskpro API base url, e.g. 'https://demo.deskpro.com'
   'deskpro_url' => null,
-	// See https://manuals.deskpro.com/html/developer-apps/api/managing-api-keys.html
+  // See https://manuals.deskpro.com/html/developer-apps/api/managing-api-keys.html
   'api_code_key' => null,
-	// Deskpro field id of the "hearing" custom field.
+  // Deskpro field id of the "hearing" custom field.
   'hearing_field_id' => null,
 ];
 
