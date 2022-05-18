@@ -17,21 +17,21 @@
   {% set hearing_ticket_list_url = has_external_hearing_tickets ? node.field_hearing_ticket_list.uri|default(null) %}
   {% set hearing_ticket_list_title = has_external_hearing_tickets ? node.field_hearing_ticket_list.title|default('Show hearing tickets'|trans) %}
 
-  {% if false and external_hearing_ticket_add_url %}
-
+  {% if has_external_hearing_tickets %}
+    {# Show Add hearing ticket before optional Show hearing tickets when using external hearing ticket system #}
     <div class="row mb-3">
       <div class="col-md-6">
-        {% if external_hearing_ticket_lis_url %}
-          <a href="{{ external_hearing_ticket_lis_url }}" class="btn btn-secondary mt-md-3">
-            {{ external_hearing_ticket_lis_title }}
+        {% if not is_deadline_passed and is_hearing_started %}
+          <a href="{{ external_hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
+            {{ hearing_ticket_add_title }}
           </a>
         {% endif %}
       </div>
       <div class="col-md-6">
-        {% if not is_deadline_passed and is_hearing_started %}
+        {% if hearing_ticket_list_url %}
           <div class="float-md-right">
-            <a href="{{ external_hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
-              {{ external_hearing_ticket_add_title }}
+            <a href="{{ hearing_ticket_lis_url }}" class="btn btn-secondary mt-md-3">
+              {{ hearing_ticket_list_title }}
             </a>
           </div>
         {% endif %}
