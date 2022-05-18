@@ -17,7 +17,7 @@ services:
     environment:
       - PHP_MAX_EXECUTION_TIME=30
       - PHP_MEMORY_LIMIT=512M
-      - COMPOSER_VERSION=1
+      - COMPOSER_VERSION=2
     depends_on:
       - memcached
     volumes:
