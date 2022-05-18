@@ -1,0 +1,23 @@
+uuid: 5e5b2619-1f68-47d2-9fd2-c8454d496b03
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hearing_ticket_add
+    - node.type.hearing
+  module:
+    - link
+id: node.hearing.field_hearing_ticket_add
+field_name: field_hearing_ticket_add
+entity_type: node
+bundle: hearing
+label: 'Tilføj høringssvar'
+description: 'Her kan du linke til tilføjelse af høringssvar i et eksternt høringssvarsystem'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

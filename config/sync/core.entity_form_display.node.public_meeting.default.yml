@@ -283,7 +283,7 @@ content:
     weight: 15
     region: content
     settings:
-      placeholder_url: ''
+      placeholder_url: 'Url til dit eget tilmeldingssystem'
       placeholder_title: ''
     third_party_settings: {  }
   field_signup_selection:
