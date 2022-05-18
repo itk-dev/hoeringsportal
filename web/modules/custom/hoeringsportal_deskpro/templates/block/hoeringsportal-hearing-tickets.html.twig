@@ -11,37 +11,74 @@
 #}
 
 <div class="tickets" id="hearing-tickets">
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <h2>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h2>
-    </div>
-    <div class="col-md-6">
-      {% if not is_deadline_passed and is_hearing_started %}
-        <div class="float-md-right">
-          <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) }}" class="btn btn-primary mt-md-3">
-            {{ 'Add hearing ticket'|trans }}
-          </a>
-        </div>
-      {% endif %}
-    </div>
-  </div>
+  {% set has_external_hearing_tickets = node.field_hearing_ticket_add.uri|default(false) %}
+  {% set hearing_ticket_add_url = has_external_hearing_tickets ? node.field_hearing_ticket_add.uri : path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) %}
+  {% set hearing_ticket_add_title = (has_external_hearing_tickets ? node.field_hearing_ticket_add.title)|default('Add hearing ticket'|trans) %}
+  {% set hearing_ticket_list_url = has_external_hearing_tickets ? node.field_hearing_ticket_list.uri|default(null) %}
+  {% set hearing_ticket_list_title = has_external_hearing_tickets ? node.field_hearing_ticket_list.title|default('Show hearing tickets'|trans) %}
 
-  {% if tickets %}
-    {% for ticket in tickets %}
-      <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}" class="hearing-ticket card">
-        <h3 class="card-header">
-          {{ ticket.subject }}
-        </h3>
-        <div class="card-body">
-          {% set message = ticket.fields.message|default('') %}
-          {{ message|length > 180 ? message|slice(0, 180)|raw ~ '…' : message|raw }}
-        </div>
-        <div class="card-footer">
-          {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.person.display_name}) }}
-          | <span class="ticket-date_created">{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</span>
-          <i class="fa fa-arrow-right float-right"></i>
-        </div>
-      </a>
-    {% endfor %}
+  {% if has_external_hearing_tickets %}
+    {# Show Add hearing ticket before optional Show hearing tickets when using external hearing ticket system #}
+    <div class="row mb-3">
+      <div class="col-md-6">
+        {% if not is_deadline_passed and is_hearing_started %}
+          <a href="{{ hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
+            {{ hearing_ticket_add_title }}
+          </a>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        {% if hearing_ticket_list_url %}
+          <div class="float-md-right">
+            <a href="{{ hearing_ticket_list_url }}" class="btn btn-secondary mt-md-3">
+              {{ hearing_ticket_list_title }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+  {% else %}
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        {% if hearing_ticket_list_url %}
+          <a href="{{ hearing_ticket_list_url }}" class="btn btn-secondary mt-md-3">
+            {{ hearing_ticket_list_title }}
+          </a>
+        {% else %}
+          <h2>{{ 'Hearing tickets (@count)'|trans({'@count': tickets|length}) }}</h2>
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        {% if not is_deadline_passed and is_hearing_started %}
+          <div class="float-md-right">
+            <a href="{{ hearing_ticket_add_url }}" class="btn btn-primary mt-md-3">
+              {{ hearing_ticket_add_title }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if not has_external_hearing_tickets and tickets %}
+      {% for ticket in tickets %}
+        <a href="{{ path('hoeringsportal_deskpro.hearing.ticket_view', {node: node.id, ticket: ticket.id}) }}" class="hearing-ticket card">
+          <h3 class="card-header">
+            {{ ticket.subject }}
+          </h3>
+          <div class="card-body">
+            {% set message = ticket.fields.message|default('') %}
+            {{ message|length > 180 ? message|slice(0, 180)|raw ~ '…' : message|raw }}
+          </div>
+          <div class="card-footer">
+            {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.person.display_name}) }}
+            | <span class="ticket-date_created">{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</span>
+            <i class="fa fa-arrow-right float-right"></i>
+          </div>
+        </a>
+      {% endfor %}
+    {% endif %}
+
   {% endif %}
 </div>
