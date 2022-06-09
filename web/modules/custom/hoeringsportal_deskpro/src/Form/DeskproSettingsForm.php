@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_deskpro\Form;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -20,19 +21,28 @@ class DeskproSettingsForm extends FormBase {
   private $deskpro;
 
   /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  private $languageManager;
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('hoeringsportal_deskpro.deskpro')
+      $container->get('hoeringsportal_deskpro.deskpro'),
+      $container->get('language_manager')
     );
   }
 
   /**
    * {@inheritdoc}
    */
-  public function __construct(DeskproService $deskpro) {
+  public function __construct(DeskproService $deskpro, LanguageManagerInterface $languageManager) {
     $this->deskpro = $deskpro;
+    $this->languageManager = $languageManager;
   }
 
   /**
@@ -215,6 +225,48 @@ class DeskproSettingsForm extends FormBase {
       '#description' => (count($options) > 0) ? $this->t('The departments that can be attached to hearings.') : $this->t('Please enter a valid Deskpro url and api code key and save the form.'),
     ];
 
+    $form['deskpro_integration']['deskpro_languages'] = [
+      '#type' => 'fieldset',
+      '#tree' => TRUE,
+      '#title' => $this->t('Languages'),
+      '#description' => $this->t('Map Drupal node language to Deskpro ticket language'),
+    ];
+    $options = [];
+    try {
+      $languages = $this->deskpro->getLanguages()->getData();
+      foreach ($languages as $language) {
+        $options[$language['id']] = sprintf('%s (%s)', $language['title'], $language['lang_code']);
+      }
+      natcasesort($options);
+    }
+    catch (\Throwable $throwable) {
+      $this->messenger()->addError('Cannot get languages from Deskpro.');
+    }
+
+    $defaultValues = $config->get('deskpro_languages', [])['ticket_languages'] ?? [];
+    $languages = $this->languageManager->getLanguages();
+    foreach ($languages as $id => $language) {
+      $form['deskpro_integration']['deskpro_languages']['ticket_languages'][$id] = [
+        '#type' => 'select',
+        '#options' => $options,
+        '#empty_value' => '',
+        '#title' => sprintf('%s (%s)', $language->getName(), $language->getId()),
+        '#required' => TRUE,
+        '#default_value' => $defaultValues[$id] ?? NULL,
+        '#description' => $this->t('Select Deskpro ticket language for Drupal node language @language', ['@language' => $language->getName()]),
+      ];
+    }
+
+    $defaultValue = $config->get('deskpro_languages', [])['default_ticket_language'] ?? NULL;
+    $form['deskpro_integration']['deskpro_languages']['default_ticket_language'] = [
+      '#type' => 'select',
+      '#options' => $options,
+      '#empty_value' => '',
+      '#title' => $this->t('Default Deskpro ticket language'),
+      '#required' => TRUE,
+      '#default_value' => $defaultValue,
+    ];
+
     $form['deskpro_integration']['deskpro_data_token'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Deskpro data token'),
@@ -285,6 +337,7 @@ class DeskproSettingsForm extends FormBase {
       'deskpro_url' => $form_state->getValue('deskpro_url'),
       'deskpro_api_code_key' => $form_state->getValue('deskpro_api_code_key'),
       'deskpro_ticket_custom_fields' => $form_state->getValue('deskpro_ticket_custom_fields'),
+      'deskpro_languages' => $form_state->getValue('deskpro_languages'),
       'deskpro_available_department_ids' => array_keys(array_filter($form_state->getValue('deskpro_available_department_ids'))),
       'deskpro_data_token' => $form_state->getValue('deskpro_data_token'),
       'deskpro_cache_ttl' => $form_state->getValue('deskpro_cache_ttl'),
