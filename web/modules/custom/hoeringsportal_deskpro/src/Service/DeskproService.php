@@ -507,6 +507,20 @@ class DeskproService {
   }
 
   /**
+   * Get ticket languages.
+   */
+  public function getTicketLanguages() {
+    return $this->config->getTicketLanguages();
+  }
+
+  /**
+   * Get default ticket language.
+   */
+  public function getDefaultTicketLanguage() {
+    return $this->config->getDefaultTicketLanguage();
+  }
+
+  /**
    * Simple per request response cache.
    *
    * @var array

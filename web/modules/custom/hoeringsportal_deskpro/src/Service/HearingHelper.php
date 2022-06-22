@@ -257,20 +257,13 @@ class HearingHelper {
    * Get Deskpro language id for a hearing.
    */
   private function getLanguageId(NodeInterface $node) {
-    try {
-      $response = $this->deskpro->getLanguages();
-
-      $locale = $node->language()->getId();
-      foreach ($response->getData() as $language) {
-        if ($language['locale'] === $locale) {
-          return $language['id'];
-        }
-      }
-    }
-    catch (\Exception $exception) {
+    $ticketLanguages = $this->deskpro->getTicketLanguages();
+    $locale = $node->language()->getId();
+    if (isset($ticketLanguages[$locale])) {
+      return (int) $ticketLanguages[$locale];
     }
 
-    return 1;
+    return (int) ($this->deskpro->getDefaultTicketLanguage() ?? 1);
   }
 
   /**
