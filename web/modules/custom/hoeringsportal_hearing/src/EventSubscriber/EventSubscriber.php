@@ -32,7 +32,7 @@ class EventSubscriber implements EventSubscriberInterface {
           $previousContentStateValue = $info['query']['field_content_state_value'] ?? NULL;
 
           $sortKey = 'sort_bef_combine';
-          $defaultSort = 'field_reply_deadline_value DESC';
+          $defaultSort = 'field_reply_deadline_value_DESC';
           $currentSort = $request->query->get($sortKey);
 
           if ($previousContentStateValue !== $contentState && $defaultSort !== $currentSort) {
