@@ -3,6 +3,7 @@ type: module
 description: Custom data stuff.
 package: Hoeringsportal
 core_version_requirement: ^8.8 || ^9
-dependences:
+
+dependencies:
   - field
   - hoeringsportal_deskpro
