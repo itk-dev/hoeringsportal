@@ -36,11 +36,46 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Installation
 
-### Install site within docker.
-```sh
-# Stop any running traefik container. This project provides its own.
-itkdev-docker-compose traefik:stop
+Create the file `web/sites/default/settings.local.php`:
 
+```php
+<?php
+/**
+ * Add development service settings.
+ */
+if (file_exists(__DIR__ . '/services.local.yml')) {
+  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
+}
+
+
+/**
+ * Disable CSS and JS aggregation.
+ */
+$config['system.performance']['css']['preprocess'] = FALSE;
+$config['system.performance']['js']['preprocess'] = FALSE;
+
+
+/**
+ * Set Hash salt value
+ */
+$settings['hash_salt'] = 'GIVE_ME_STRING';
+
+
+/**
+ * Set local db
+ */
+$databases['default']['default'] = [
+ 'database' => getenv('DATABASE_DATABASE') ?: 'db',
+ 'username' => getenv('DATABASE_USERNAME') ?: 'db',
+ 'password' => getenv('DATABASE_PASSWORD') ?: 'db',
+ 'host' => getenv('DATABASE_HOST') ?: 'mariadb',
+ 'port' => getenv('DATABASE_PORT') ?: '',
+ 'driver' => getenv('DATABASE_DRIVER') ?: 'mysql',
+ 'prefix' => '',
+];
+```
+
+```sh
 docker-compose up --detach
 docker-compose exec phpfpm composer install
 docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existing-config
@@ -88,75 +123,6 @@ See
 https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
 for further details.
 
-### Built-in server
-
-Create a database connection in `web/sites/default/settings.local.php`:
-
-```php
-<?php
-/**
- * Add development service settings.
- */
-if (file_exists(__DIR__ . '/services.local.yml')) {
-  $settings['container_yamls'][] = __DIR__ . '/services.local.yml';
-}
-
-
-/**
- * Disable CSS and JS aggregation.
- */
-$config['system.performance']['css']['preprocess'] = FALSE;
-$config['system.performance']['js']['preprocess'] = FALSE;
-
-
-/**
- * Set Hash salt value
- */
-$settings['hash_salt'] = 'GIVE_ME_STRING';
-
-
-/**
- * Set local db
- */
-$databases['default']['default'] = [
- 'database' => getenv('DATABASE_DATABASE') ?: 'db',
- 'username' => getenv('DATABASE_USERNAME') ?: 'db',
- 'password' => getenv('DATABASE_PASSWORD') ?: 'db',
- 'host' => getenv('DATABASE_HOST') ?: 'mariadb',
- 'port' => getenv('DATABASE_PORT') ?: '',
- 'driver' => getenv('DATABASE_DRIVER') ?: 'mysql',
- 'prefix' => '',
-];
-```
-
-Create db
-```sh
-composer install
-./vendor/bin/drush  --yes site:install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
-```
-
-Start server
-```sh
-./vendor/bin/drush runserver
-```
-
-Start server with xdebug and PHPStorm
-```sh
-(cd web && \
-XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 remote_host=127.0.0.1 remote_connect_back=0" \
-  php -S 127.0.0.1:8888 ../vendor/drush/drush/misc/d8-rs-router.php)
-```
-
-### Updating
-
-```sh
-composer install
-./vendor/bin/drush --yes updatedb
-./vendor/bin/drush --yes config:import
-./vendor/bin/drush --yes locale:update
-./vendor/bin/drush --yes cache:rebuild
-```
-
 For production you should use
 
 ```sh
@@ -170,13 +136,13 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 Check the code by running
 
 ```sh
-composer check-coding-standards
+docker-compose exec phpfpm composer check-coding-standards
 ```
 
 Apply automatic coding standard fixes by running
 
 ```sh
-composer apply-coding-standards
+docker-compose exec phpfpm composer apply-coding-standards
 ```
 
 ### Drush helper commands
@@ -190,17 +156,6 @@ Then you can pull remote data (database and files) by running
 ```sh
 ./drush/scripts/pull [stg|prod]
 ```
-
-## Composer virtualenv
-
-If you get tired of writing `./vendor/bin/drush`, you can run
-
-```sh
-source ./vendor/bin/activate
-```
-
-to add `vendor/bin` to your path. See
-https://github.com/itk-dev/composer-virtualenv for details.
 
 ## system_status module
 
