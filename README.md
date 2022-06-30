@@ -191,8 +191,7 @@ Make sure that everything is up to date:
 
 ```sh
 # Drupal
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes deploy
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
 
@@ -208,44 +207,10 @@ Sign in to Drupal:
 docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ user:login
 ```
 
-Sign in to Pretix:
+Sign in to pretix:
 
 Go to http://pretix.hoeringsportal.local.itkdev.dk/control/ and sign in with
 username `admin@localhost` and password `admin`.
-
-### `mutagen`
-
-```sh
-brew install mutagen-io/mutagen/mutagen
-mutagen project start
-```
-
-### `symfony`
-
-Install `symfony` from https://symfony.com/download
-
-```sh
-docker-compose up -d
-symfony serve
-```
-
-### Drupal
-
-```sh
-docker-compose exec phpfpm composer install
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
-```
-
-### pretix
-
-```sh
-docker-compose exec pretix python /pretix/src/manage.py migrate
-docker-compose exec pretix python /pretix/src/manage.py compress
-docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
-```
 
 #### API
 
@@ -270,8 +235,7 @@ functionality to Drupal, you may need to upgrade the database dump.
 
 ```sh
 # Make sure that everything is up to date
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes deploy
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
 # Dump the database
