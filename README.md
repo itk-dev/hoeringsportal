@@ -237,9 +237,16 @@ functionality to Drupal, you may need to upgrade the database dump.
 # Make sure that everything is up to date
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes deploy
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig pretix_url 'http://pretix.hoeringsportal.local.itkdev.dk/'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig organizer_slug 'hoeringsportal'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig api_token 'v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig template_event_slugs 'template-series'
+
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
+
 # Dump the database
-docker-compose exec phpfpm vendor/bin/drush sql:dump --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+docker-compose exec phpfpm vendor/bin/drush sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
 ```
 
 #### Pretix
