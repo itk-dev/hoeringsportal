@@ -50,6 +50,19 @@ echo "http://$(docker-compose port nginx 80)"
 docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://$(docker-compose port nginx 80)" user:login
 ```
 
+### Connect Drupal to pretix
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig pretix_url 'http://pretix.hoeringsportal.local.itkdev.dk/'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig organizer_slug 'hoeringsportal'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig api_token 'v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig template_event_slugs 'template-series'
+```
+
+Go to
+<http://hoeringsportal.local.itkdev.dk/admin/config/itk_pretix/pretixconfig> for
+more pretix configuration.
+
 A number of `cron` jobs must be set up to make things happen automagically; see
 * [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
 * [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
@@ -77,7 +90,8 @@ for further details.
 
 ### Built-in server
 
-Create a database connection in settings.local.php
+Create a database connection in `web/sites/default/settings.local.php`:
+
 ```php
 <?php
 /**
@@ -104,23 +118,21 @@ $settings['hash_salt'] = 'GIVE_ME_STRING';
 /**
  * Set local db
  */
-$databases['default']['default'] = array (
-  'database' => 'hoeringsportal',
-  'username' => 'dev',
-  'password' => 'password',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-
+$databases['default']['default'] = [
+ 'database' => getenv('DATABASE_DATABASE') ?: 'db',
+ 'username' => getenv('DATABASE_USERNAME') ?: 'db',
+ 'password' => getenv('DATABASE_PASSWORD') ?: 'db',
+ 'host' => getenv('DATABASE_HOST') ?: 'mariadb',
+ 'port' => getenv('DATABASE_PORT') ?: '',
+ 'driver' => getenv('DATABASE_DRIVER') ?: 'mysql',
+ 'prefix' => '',
+];
 ```
 
 Create db
 ```sh
 composer install
-./vendor/bin/drush  --yes site-install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
+./vendor/bin/drush  --yes site:install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
 ```
 
 Start server
@@ -212,13 +224,6 @@ $config['system_status.settings']['system_status_encrypt_token'] = '«system_sta
 ```
 
 ## `docker`
-
-Create `.env` with the following content:
-
-```sh
-COMPOSE_PROJECT_NAME=hoeringsportal
-COMPOSE_DOMAIN=hoeringsportal.local.itkdev.dk
-```
 
 Start the containers:
 
