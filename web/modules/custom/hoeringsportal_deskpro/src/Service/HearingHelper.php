@@ -444,6 +444,7 @@ class HearingHelper {
         else {
           $fields = [
             'updated_at' => (new DrupalDateTime())->format(DrupalDateTime::FORMAT),
+            'email' => $ticket['person_email'],
             'data' => json_encode($ticket),
           ];
 
