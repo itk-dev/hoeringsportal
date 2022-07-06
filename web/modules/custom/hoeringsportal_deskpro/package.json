@@ -38,7 +38,7 @@
     "fetch": "^1.1.0",
     "jquery": "^3.3.1",
     "jquery-ui": "^1.12.1",
-    "jquery-validation": "^1.19.0",
+    "jquery-validation": "^1.19.5",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "standard": "^12.0.1",
