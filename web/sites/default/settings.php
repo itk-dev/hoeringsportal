@@ -23,6 +23,9 @@ $settings['file_scan_ignore_directories'] = [
 // Configuration sync path.
 $settings['config_sync_directory'] = '../config/sync';
 
+// Stop Drupal from removing write permission on settings.php.
+$settings['skip_permissions_hardening'] = TRUE;
+
 $settings['file_private_path'] = DRUPAL_ROOT . '/../private-files';
 
 // Deskpro configuration.
