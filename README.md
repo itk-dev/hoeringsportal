@@ -36,48 +36,8 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Installation
 
-### Install site within docker.
-```sh
-# Stop any running traefik container. This project provides its own.
-itkdev-docker-compose traefik:stop
+Create the file `web/sites/default/settings.local.php`:
 
-docker-compose up --detach
-docker-compose exec phpfpm composer install
-docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existing-config
-# Get the site url
-echo "http://$(docker-compose port nginx 80)"
-# Get admin sign in url
-docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://$(docker-compose port nginx 80)" user:login
-```
-
-A number of `cron` jobs must be set up to make things happen automagically; see
-* [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
-* [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
-
-## Translations
-
-Import translations by running
-
-```sh
-(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)
-```
-
-Export translations by running
-
-```sh
-(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)
-```
-
-Open `translations/custom-translations.da.po` with the latest version of
-[Poedit](https://poedit.net/) to clean up and then save the file.
-
-See
-https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
-for further details.
-
-### Built-in server
-
-Create a database connection in settings.local.php
 ```php
 <?php
 /**
@@ -104,46 +64,64 @@ $settings['hash_salt'] = 'GIVE_ME_STRING';
 /**
  * Set local db
  */
-$databases['default']['default'] = array (
-  'database' => 'hoeringsportal',
-  'username' => 'dev',
-  'password' => 'password',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-
+$databases['default']['default'] = [
+ 'database' => getenv('DATABASE_DATABASE') ?: 'db',
+ 'username' => getenv('DATABASE_USERNAME') ?: 'db',
+ 'password' => getenv('DATABASE_PASSWORD') ?: 'db',
+ 'host' => getenv('DATABASE_HOST') ?: 'mariadb',
+ 'port' => getenv('DATABASE_PORT') ?: '',
+ 'driver' => getenv('DATABASE_DRIVER') ?: 'mysql',
+ 'prefix' => '',
+];
 ```
-
-Create db
-```sh
-composer install
-./vendor/bin/drush  --yes site-install --account-name=admin --account-mail=admin@example.com --config-dir=$PWD/config/sync
-```
-
-Start server
-```sh
-./vendor/bin/drush runserver
-```
-
-Start server with xdebug and PHPStorm
-```sh
-(cd web && \
-XDEBUG_CONFIG="idekey=PHPSTORM remote_enable=1 remote_mode=req remote_port=9000 remote_host=127.0.0.1 remote_connect_back=0" \
-  php -S 127.0.0.1:8888 ../vendor/drush/drush/misc/d8-rs-router.php)
-```
-
-### Updating
 
 ```sh
-composer install
-./vendor/bin/drush --yes updatedb
-./vendor/bin/drush --yes config:import
-./vendor/bin/drush --yes locale:update
-./vendor/bin/drush --yes cache:rebuild
+docker-compose up --detach
+docker-compose exec phpfpm composer install
+docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existing-config
+# Get the site url
+echo "http://$(docker-compose port nginx 80)"
+# Get admin sign in url
+docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://$(docker-compose port nginx 80)" user:login
 ```
+
+### Connect Drupal to pretix
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig pretix_url 'http://pretix.hoeringsportal.local.itkdev.dk/'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig organizer_slug 'hoeringsportal'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig api_token 'v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e'
+docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig template_event_slugs 'template-series'
+```
+
+Go to
+<http://hoeringsportal.local.itkdev.dk/admin/config/itk_pretix/pretixconfig> for
+more pretix configuration.
+
+A number of `cron` jobs must be set up to make things happen automagically; see
+* [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
+* [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
+
+## Translations
+
+Import translations by running
+
+```sh
+(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)
+```
+
+Export translations by running
+
+```sh
+(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)
+```
+
+Open `translations/custom-translations.da.po` with the latest version of
+[Poedit](https://poedit.net/) to clean up and then save the file.
+
+See
+https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
+for further details.
 
 For production you should use
 
@@ -158,13 +136,13 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 Check the code by running
 
 ```sh
-composer check-coding-standards
+docker-compose exec phpfpm composer check-coding-standards
 ```
 
 Apply automatic coding standard fixes by running
 
 ```sh
-composer apply-coding-standards
+docker-compose exec phpfpm composer apply-coding-standards
 ```
 
 ### Drush helper commands
@@ -178,17 +156,6 @@ Then you can pull remote data (database and files) by running
 ```sh
 ./drush/scripts/pull [stg|prod]
 ```
-
-## Composer virtualenv
-
-If you get tired of writing `./vendor/bin/drush`, you can run
-
-```sh
-source ./vendor/bin/activate
-```
-
-to add `vendor/bin` to your path. See
-https://github.com/itk-dev/composer-virtualenv for details.
 
 ## system_status module
 
@@ -213,13 +180,6 @@ $config['system_status.settings']['system_status_encrypt_token'] = '«system_sta
 
 ## `docker`
 
-Create `.env` with the following content:
-
-```sh
-COMPOSE_PROJECT_NAME=hoeringsportal
-COMPOSE_DOMAIN=hoeringsportal.local.itkdev.dk
-```
-
 Start the containers:
 
 ```sh
@@ -231,8 +191,7 @@ Make sure that everything is up to date:
 
 ```sh
 # Drupal
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes deploy
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
 
@@ -248,44 +207,10 @@ Sign in to Drupal:
 docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ user:login
 ```
 
-Sign in to Pretix:
+Sign in to pretix:
 
 Go to http://pretix.hoeringsportal.local.itkdev.dk/control/ and sign in with
 username `admin@localhost` and password `admin`.
-
-### `mutagen`
-
-```sh
-brew install mutagen-io/mutagen/mutagen
-mutagen project start
-```
-
-### `symfony`
-
-Install `symfony` from https://symfony.com/download
-
-```sh
-docker-compose up -d
-symfony serve
-```
-
-### Drupal
-
-```sh
-docker-compose exec phpfpm composer install
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
-```
-
-### pretix
-
-```sh
-docker-compose exec pretix python /pretix/src/manage.py migrate
-docker-compose exec pretix python /pretix/src/manage.py compress
-docker-compose exec pretix python /pretix/src/manage.py collectstatic --no-input
-```
 
 #### API
 
@@ -297,7 +222,7 @@ curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqq
 ### Resetting pretix database
 
 ```sh
-gunzip < .docker/pretix/dumps/pretix_2020-02-26.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
+gunzip < .docker/pretix/dumps/pretix.sql.gz | mysql --host=0.0.0.0 --port=$(docker-compose port pretix_database 3306 | awk -F: '{ print $2 }') --user=pretix --password=pretix pretix
 ```
 
 ### Database dumps
@@ -310,12 +235,18 @@ functionality to Drupal, you may need to upgrade the database dump.
 
 ```sh
 # Make sure that everything is up to date
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes updatedb
-docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes config:import
+docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes deploy
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes locale:update
+
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig pretix_url 'http://pretix.hoeringsportal.local.itkdev.dk/'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig organizer_slug 'hoeringsportal'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig api_token 'v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e'
+docker-compose exec phpfpm vendor/bin/drush --yes --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig template_event_slugs 'template-series'
+
 docker-compose exec phpfpm /app/vendor/bin/drush --root=/app/web --yes cache:rebuild
+
 # Dump the database
-docker-compose exec phpfpm vendor/bin/drush sql:dump --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+docker-compose exec phpfpm vendor/bin/drush sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
 ```
 
 #### Pretix
