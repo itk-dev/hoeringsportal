@@ -6,26 +6,35 @@ Check out
 [`web/modules/custom/hoeringsportal_deskpro/README.md`](web/modules/custom/hoeringsportal_deskpro/README.md)
 for details on configuring the Deskpro integration.
 
-### SAML settings
+### OpenID Connect
 
 Add this to `settings.local.php` and edit to match your actual setup.
 
-```php
-// IDP configuration
-$config['samlauth.authentication']['idp_single_log_out_service'] = 'IDP single log out service url';
-$config['samlauth.authentication']['idp_single_sign_on_service'] = 'IDP single sign on service url';
-$config['samlauth.authentication']['idp_x509_certificate'] = 'IDP x509 certificate';
-// Setting of this depends on your IDP
-$config['samlauth.authentication']['security_request_authn_context'] = false;
+```sh
+$config['openid_connect.client.generic']['settings']['client_id'] = '…'; // Get this from your IdP provider
+$config['openid_connect.client.generic']['settings']['client_secret'] = '…'; // Get this from your IdP provider
+$config['openid_connect.client.generic']['settings']['authorization_endpoint'] = '…'; // Get this from your OpenID Connect Discovery endpoint
+$config['openid_connect.client.generic']['settings']['token_endpoint'] = '…'; // Get this from your OpenID Connect Discovery endpoint
 
-// SP configuration
-$config['samlauth.authentication']['sp_entity_id'] = 'SP entity id';
+$config['openid_connect.settings']['role_mappings']['administrator'] = ['GG-Rolle-B2C-Høringsportalen-Administrator'];
+$config['openid_connect.settings']['role_mappings']['editor']        = ['GG-Rolle-B2C-Høringsportalen-Redaktør'];
 
-// Load certificate and key from certs folder.
-$config['samlauth.authentication']['sp_cert_folder'] = __DIR__;
-// Alternatively, set certificate and key here.
-// $config['samlauth.authentication']['sp_x509_certificate'] = 'SP x509 certificate';
-// $config['samlauth.authentication']['sp_private_key'] = 'SP private key';
+// Custom label on log in button.
+$settings['locale_custom_strings_en'][''] = [
+    'Log in with @client_title' => 'Log in with OpenID Connect (employee)',
+];
+
+$settings['locale_custom_strings_da'][''] = [
+   'Log in with @client_title' => 'Log ind med OpenID Connect (medarbejderlogin)',
+];
+```
+
+Use `drush` to check your actual configuration (with `--include-overridden` to
+include your config from `settings.local.php`):
+
+```sh
+docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
+docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.settings
 ```
 
 ## Ignored configuration
