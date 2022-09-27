@@ -20,3 +20,4 @@ source: 'autocompletion_callbacks_nodes::nodes_autocompletion_callback'
 theme: minimal.css
 editable: true
 deletable: false
+dependencies: {  }

@@ -15,6 +15,7 @@ effects:
     weight: 1
     data:
       crop_type: teaser_display
+      automatic_crop_provider: null
   4eb81028-ca9d-4970-97ec-78f88bfc9c0d:
     uuid: 4eb81028-ca9d-4970-97ec-78f88bfc9c0d
     id: image_scale

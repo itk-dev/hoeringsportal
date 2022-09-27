@@ -20,3 +20,4 @@ source: 'autocompletion_callbacks_users::users_autocompletion_callback'
 theme: basic-blue.css
 editable: true
 deletable: false
+dependencies: {  }
