@@ -18,3 +18,4 @@ hidden:
   field_map_type: true
   langcode: true
   links: true
+  published_at: true
