@@ -51,7 +51,6 @@
   padding: $spacer*2 $spacer*2 $spacer/4 $spacer*2;
   font-weight: 600;
   color: $gray-900;
-  text-transform: uppercase;
   text-decoration: none;
   @include transition-std(color, ease-in, 200ms);
   .media & {
@@ -109,7 +108,6 @@
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
-    text-transform: uppercase;
     font-size: 1.25rem;
     font-family: $headings-font-family;
 
