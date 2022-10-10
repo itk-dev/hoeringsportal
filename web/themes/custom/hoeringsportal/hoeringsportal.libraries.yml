@@ -20,10 +20,3 @@ map-display:
       build/show-map.css: {}
   js:
     build/show-map.js: {preprocess: false}
-
-hyphenate:
-  version: VERSION
-  header: true
-  js:
-    assets/js/hyphenate.js: {preprocess: false}
-    assets/Hyphenopoly/Hyphenopoly_Loader.js: {preprocess: false}

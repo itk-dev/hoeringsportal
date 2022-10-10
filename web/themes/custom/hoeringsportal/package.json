@@ -52,7 +52,6 @@
   "dependencies": {
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
-    "hyphenopoly": "^2.4.0",
     "sass": "^1.55.0",
     "slick-carousel": "^1.8.1",
     "webpack": "^5.74.0",
