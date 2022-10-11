@@ -16,21 +16,19 @@ JavaScript and CSS (actually SCSS) assets are put in `assets/js/` and
 First, install tools and requirements:
 
 ```sh
-FONTAWESOME_NPM_AUTH_TOKEN='your-fontawesome-token' \
-  NPM_CONFIG_USERCONFIG=.npmrc.install \
-  yarn install
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app install
 ```
 
 Build for development:
 
-```
-yarn encore dev --watch
+```sh
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app watch
 ```
 
 Build for production:
 
-```
-yarn encore production
+```sh
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app build
 ```
 
 ## Coding standards
