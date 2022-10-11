@@ -1,1 +1,0 @@
-(self.webpackChunkhoeringsportal=self.webpackChunkhoeringsportal||[]).push([[745],{596:function(n,s,e){e(896)},896:function(n,s,e){"use strict";e.r(s)}},function(n){var s;s=596,n(n.s=s)}]);
