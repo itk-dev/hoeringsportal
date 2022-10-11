@@ -12,12 +12,3 @@ bottom-scripts:
   dependencies:
     - core/jquery
     - core/drupal
-
-map-display:
-  version: VERSION
-  css:
-    theme:
-      build/show-map.css: {}
-  js:
-    build/show-map.js: {preprocess: false}
-    build/runtime.js: {preprocess: false}
