@@ -48,20 +48,20 @@
   font-family: $font-family-black;
   display: block;
   margin: 0;
-  padding: $spacer*2 $spacer*2 $spacer/4 $spacer*2;
+  padding: $spacer*2 $spacer*2 $spacer*0.25 $spacer*2;
   font-weight: 600;
   color: $gray-900;
   text-decoration: none;
   @include transition-std(color, ease-in, 200ms);
   .media & {
     padding-left: 0;
-    padding-top: $spacer/2;
+    padding-top: $spacer* 0.5;
   }
 }
 .activity-teaser-description {
   display: block;
   margin: 0;
-  padding: $spacer/4 $spacer*2 $spacer $spacer*2;
+  padding: $spacer*0.25 $spacer*2 $spacer $spacer*2;
   color: $gray-900;
 }
 .activity-teaser-info {
@@ -88,7 +88,7 @@
 }
 .activity-teaser-area {
   color: $gray-800;
-  padding-right: $spacer/4;
+  padding-right: $spacer * 0.25;
 }
 
 .activity-teaser-overlay {
