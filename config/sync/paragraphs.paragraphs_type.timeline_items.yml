@@ -5,5 +5,6 @@ dependencies: {  }
 id: timeline_items
 label: 'Tidslinje punkter'
 icon_uuid: null
+icon_default: null
 description: 'Tilføj ekstra punkter til tidslinjen'
 behavior_plugins: {  }

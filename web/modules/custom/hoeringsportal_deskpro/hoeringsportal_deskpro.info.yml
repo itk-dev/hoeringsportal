@@ -3,5 +3,6 @@ type: module
 description: 'Deskpro integration'
 package: Hoeringsportal
 core_version_requirement: ^8.8 || ^9
-dependences:
+
+dependencies:
   - itk_admin

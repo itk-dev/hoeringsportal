@@ -5,5 +5,6 @@ dependencies: {  }
 id: teaser_row
 label: 'Teaser række'
 icon_uuid: null
+icon_default: null
 description: 'En række teasers af projekter, høringer og statiske sider'
 behavior_plugins: {  }

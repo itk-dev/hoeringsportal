@@ -56,6 +56,9 @@ module:
   itk_pretix: 0
   itk_siteimprove: 0
   jquery_ui: 0
+  jquery_ui_datepicker: 0
+  jquery_ui_slider: 0
+  jquery_ui_touch_punch: 0
   jsonapi: 0
   language: 0
   layout_discovery: 0
@@ -99,6 +102,7 @@ module:
   ds_extras: 2
   views: 10
   paragraphs: 11
+  publication_date: 99
   minimal: 1000
 theme:
   stark: 0
