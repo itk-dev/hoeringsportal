@@ -12,7 +12,7 @@
     "apply-coding-standards": "npm run apply-coding-standards-js"
   },
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^8.19.2"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.20.1",
