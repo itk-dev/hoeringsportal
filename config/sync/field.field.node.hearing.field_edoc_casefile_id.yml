@@ -11,7 +11,7 @@ entity_type: node
 bundle: hearing
 label: eDoc-sagsnr.
 description: 'Indtast eDoc-sagsnr. for høringen.'
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
