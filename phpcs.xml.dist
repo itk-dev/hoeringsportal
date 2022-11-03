@@ -7,7 +7,6 @@
 
   <!-- Exclude generated files -->
   <exclude-pattern>node_modules</exclude-pattern>
-  <exclude-pattern>Hyphenopoly</exclude-pattern>
   <exclude-pattern>web/modules/custom/*/build/</exclude-pattern>
   <exclude-pattern>web/themes/custom/*/build/</exclude-pattern>
   <exclude-pattern>web/modules/custom/itk_admin_links/css/itk-admin-links.css</exclude-pattern>
