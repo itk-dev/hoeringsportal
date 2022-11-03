@@ -77,7 +77,6 @@ module:
   redirect: 0
   responsive_image: 0
   rest: 0
-  samlauth: 0
   search: 0
   search_autocomplete: 0
   serialization: 0

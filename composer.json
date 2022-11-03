@@ -69,7 +69,6 @@
         "drupal/publication_date": "^2.0",
         "drupal/quick_node_clone": "^1.12",
         "drupal/redirect": "^1.6",
-        "drupal/samlauth": "^3.1",
         "drupal/search_autocomplete": "^2.0",
         "drupal/system_status": "^2.8",
         "drupal/toolbar_visibility": "dev-3127402-drupal-9-readiness",
