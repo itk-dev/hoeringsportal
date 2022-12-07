@@ -13,6 +13,6 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "drupal/csv_serialization": "2.x-dev"
+        "drupal/csv_serialization": "^2"
     }
 }

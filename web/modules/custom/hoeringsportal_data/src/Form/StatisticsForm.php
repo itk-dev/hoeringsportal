@@ -76,7 +76,7 @@ class StatisticsForm extends FormBase {
     ];
 
     // This is a hack!
-    if ('show' === $values['show'] ?? NULL) {
+    if ('show' === ($values['show'] ?? NULL)) {
       $form['export'] = [
         '#type' => 'inline_template',
         '#template' => '<button class="btn" name="export" value="csv">' . $this->t('Export result (CSV)') . '</button>',
