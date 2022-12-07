@@ -133,7 +133,7 @@ $(() => {
       })
   }
 
-  document.querySelector('form').addEventListener('submit', function () {
+  document.querySelector('form#hearing-ticket-add-form').addEventListener('submit', function () {
     if ($(this).valid()) {
       $(this).addClass('is-submitted')
     }
