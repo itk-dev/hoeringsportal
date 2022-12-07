@@ -93,6 +93,10 @@ class StatisticsController extends ControllerBase {
           'title_field' => (string) $this->t('Title'),
         ],
       ],
+
+      '#cache' => [
+        'max-age' => 0,
+      ],
     ];
   }
 
