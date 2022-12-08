@@ -84,6 +84,12 @@ services:
       - "1025"
       - "8025"
 
+  node:
+    image: node:16
+    working_dir: /app
+    volumes:
+      - .:/app:delegated
+
   pretix:
     image: pretix/standalone:latest
     networks:
