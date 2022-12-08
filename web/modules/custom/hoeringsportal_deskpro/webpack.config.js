@@ -8,20 +8,27 @@
 var Encore = require('@symfony/webpack-encore');
 
 Encore
-  // Directory where compiled assets will be stored.
+  // The project directory where all compiled assets will be stored.
   .setOutputPath('build/')
-  // Public path used by the web server to access the output path.
+
+  // The public path used by the web server to access the previous directory.
   .setPublicPath('/build')
 
   .addEntry('form-ticket-add', './assets/js/form-ticket-add.js')
 
-  // Will require an extra script tag for runtime.js but, you probably want this, unless you're building a single-page app.
-  .disableSingleRuntimeChunk()
-
-  .cleanupOutputBeforeBuild()
+  // Enable source maps during development.
   .enableSourceMaps(!Encore.isProduction())
 
-  // Uncomment if you use Sass/SCSS files.
-  .enableSassLoader();
+  // Empty the outputPath dir before each build.
+  .cleanupOutputBeforeBuild()
 
+  // Allow sass/scss files to be processed.
+  .enableSassLoader()
+
+  // Enable css-loader and autoprefixer.
+  .enablePostCssLoader()
+
+  .disableSingleRuntimeChunk()
+
+// Export the final configuration.
 module.exports = Encore.getWebpackConfig();

@@ -1,5 +1,4 @@
-/* global Drupal */
-require('../css/form-ticket-add.css')
+require('../scss/form-ticket-add.scss')
 
 const $ = require('jquery')
 require('jquery-validation')
@@ -7,7 +6,7 @@ require('jquery-ui/ui/widgets/autocomplete')
 
 // @see https://stackoverflow.com/a/11845718
 $.ui.autocomplete.prototype._resizeMenu = function () {
-  var ul = this.menu.element
+  const ul = this.menu.element
   ul.outerWidth(this.element.outerWidth())
 }
 
@@ -32,7 +31,7 @@ $(() => {
         .map(e => encodeURIComponent(e[0]) + '=' + encodeURIComponent(e[1])).join('&')
 
       return $.ajax({
-        url: url
+        url
       })
     }
 
@@ -119,10 +118,10 @@ $(() => {
             break
 
           default:
-          // Decide if we're completing street or street number.
-            const value = $(this).val()
+            // Decide if we're completing street or street number.
             if (address.vejnavn !== null) {
-            // If a street has been selected and the current value if a prefix of the selected value, we autocomplete (a new) street.
+              const value = $(this).val()
+              // If a street has been selected and the current value if a prefix of the selected value, we autocomplete (a new) street.
               if (value === '' || address.vejnavn.indexOf(value) > -1) {
                 autocompleteStreet.apply(this)
               } else {
@@ -134,7 +133,7 @@ $(() => {
       })
   }
 
-  document.querySelector('form').addEventListener('submit', function () {
+  document.querySelector('form#hearing-ticket-add-form').addEventListener('submit', function () {
     if ($(this).valid()) {
       $(this).addClass('is-submitted')
     }
