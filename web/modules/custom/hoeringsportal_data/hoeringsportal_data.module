@@ -11,6 +11,8 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\node\NodeInterface;
 use Drupal\user\UserInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\ResultRow;
 
 /**
  * Implements hook_preprocess_HOOK().
@@ -96,6 +98,19 @@ function hoeringsportal_data_field_group_form_process_build_alter(array &$elemen
   foreach ($element as $key => &$value) {
     if (preg_match('/^group_/', $key)) {
       _hoeringsportal_data_translate_element($value);
+    }
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function hoeringsportal_data_views_pre_render(ViewExecutable $view) {
+  if ($view->id() == "heyloyalty_feed" && $view->current_display == 'rest_export_1') {
+    if (empty($view->result)) {
+      // Add an empty result for views to use field empty results.
+      $emptyResult = new ResultRow([]);
+      $view->result[] = $emptyResult;
     }
   }
 }

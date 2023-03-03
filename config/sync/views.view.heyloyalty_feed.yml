@@ -80,7 +80,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -146,7 +146,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -209,7 +209,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -273,7 +273,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -337,7 +337,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -389,7 +389,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -452,7 +452,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -608,14 +608,14 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ url(''<front>'')|render }}{{ field_itk_media_image_upload|trim(''/'') }}{{ field_itk_media_image_upload_1|trim(''/'') }}'
+            text: "{% if field_itk_media_image_upload is empty and field_itk_media_image_upload_1 is empty %}\r\nTom\r\n{% else %}\r\n{{ url('<front>')|render }}{{ field_itk_media_image_upload|trim('/') }}{{ field_itk_media_image_upload_1|trim('/') }}\r\n{% endif %}"
             make_link: false
             path: ''
             absolute: false
             external: false
             replace_spaces: false
             path_case: none
-            trim_whitespace: false
+            trim_whitespace: true
             alt: ''
             rel: ''
             link_class: ''
@@ -629,7 +629,7 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: false
+            strip_tags: true
             trim: false
             preserve_tags: ''
             html: false
@@ -692,7 +692,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -759,7 +759,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: ''
+          empty: Tom
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
