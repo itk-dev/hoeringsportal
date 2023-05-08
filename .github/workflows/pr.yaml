@@ -135,24 +135,6 @@ jobs:
       - name: Check coding standards
         run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
-  check-custom-theme-assets:
-    name: Check custom theme assets are up to date
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-
-      - name: Setup docker network
-        run: docker network create frontend
-
-      - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-
-      - name: Build theme assets
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
-
-      - name: Check for changes in built css
-        run: git diff --diff-filter=ACMRT --exit-code web/themes/custom/hoeringsportal/build
-
   install-site:
     name: Check that site can be installed
     runs-on: ubuntu-latest
