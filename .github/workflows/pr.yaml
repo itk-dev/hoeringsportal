@@ -130,10 +130,10 @@ jobs:
         run: docker network create frontend
 
       - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/os2forms_selvbetjening_theme install
+        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
 
       - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/os2forms_selvbetjening_theme check-coding-standards
+        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
