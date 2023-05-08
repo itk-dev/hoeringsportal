@@ -126,7 +126,7 @@ jobs:
           composer code-analysis
 
   coding-standards-custom-themes:
-    if: ${{ false }}  # disable for now
+    if: ${{ false }}  # Disable - This job has some file permission errors that need further investigation.
     name: Yarn - Check Coding Standards in custom themes
     runs-on: ubuntu-latest
     steps:
