@@ -16,22 +16,19 @@ JavaScript and CSS (actually SCSS) assets are put in `assets/js/` and
 First, install tools and requirements:
 
 ```sh
-docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd 
-/app install
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app install
 ```
 
 Build for development:
 
 ```sh
-docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd 
-/app watch
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app watch
 ```
 
 Build for production:
 
 ```sh
-docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd
-/app build
+docker run --rm --tty --interactive --volume ${PWD}:/app node:16 yarn --cwd /app build
 ```
 
 ## Coding standards
