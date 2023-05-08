@@ -3,8 +3,6 @@ langcode: da
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.hearing_type.field_contact
-    - field.field.taxonomy_term.hearing_type.field_more_info
     - taxonomy.vocabulary.hearing_type
   module:
     - text
@@ -19,20 +17,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 0
-    region: content
-  field_contact:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_more_info:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 1
     region: content
 hidden:
   langcode: true
