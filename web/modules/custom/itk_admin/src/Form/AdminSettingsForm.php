@@ -41,7 +41,7 @@ class AdminSettingsForm extends FormBase {
     $links = '';
     foreach ($tasks['tabs'] as $tab) {
       $link_array = Link::createFromRoute($tab['#link']['title'], $tab['#link']['url']->getRouteName())->toRenderable();
-      $links .= '<div>' . render($link_array) . '</div>';
+      $links .= '<div>' . \Drupal::service('renderer')->render($link_array) . '</div>';
     }
 
     // Add menu wrapper.

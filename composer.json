@@ -98,7 +98,10 @@
     },
     "require-dev": {
         "drupal/core-dev": "^9.3",
-        "drupal/upgrade_status": "^3.13"
+        "drupal/upgrade_status": "^3.13",
+        "phpstan/extension-installer": "^1.2",
+        "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.1"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -114,10 +117,17 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "oomphinc/composer-installers-extender": true
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {
+        "code-analysis/phpstan": [
+          "phpstan analyse --configuration=phpstan.neon"
+        ],
+        "code-analysis": [
+          "@code-analysis/phpstan"
+        ],
         "check-coding-standards/phpcs": [
             "vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
