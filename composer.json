@@ -114,13 +114,13 @@
         "check-coding-standards/phpcs": [
             "vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
-        "check-coding-standards": [
+        "coding-standards-check": [
             "@check-coding-standards/phpcs"
         ],
         "apply-coding-standards/phpcs": [
             "scripts/phpcbf --standard=phpcs.xml.dist"
         ],
-        "apply-coding-standards": [
+        "coding-standards-apply": [
             "@apply-coding-standards/phpcs"
         ]
     },
@@ -166,7 +166,7 @@
         "enable-patching": true,
         "patches": {
           "deskpro/deskpro-api-client-php": {
-            "Add typehinting to APIResponse": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
+            "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
           }
         }
     }

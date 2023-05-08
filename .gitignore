@@ -7,6 +7,9 @@
 /web/profiles/contrib/
 /web/libraries/
 
+#Ignore node modules
+/node_modules
+
 # Ignore sensitive information
 /web/sites/*/settings.local.php
 
