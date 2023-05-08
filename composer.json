@@ -165,6 +165,9 @@
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "patches": {
+          "deskpro/deskpro-api-client-php": {
+            "Add typehinting to APIResponse": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
+          }
         }
     }
 }
