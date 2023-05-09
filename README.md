@@ -108,6 +108,7 @@ Go to
 more pretix configuration.
 
 A number of `cron` jobs must be set up to make things happen automagically; see
+
 * [web/modules/custom/hoeringsportal_data/README.md](web/modules/custom/hoeringsportal_data/README.md)
 * [web/modules/custom/hoeringsportal_public_meeting/README.md](web/modules/custom/hoeringsportal_public_meeting/README.md)
 
@@ -129,7 +130,7 @@ Open `translations/custom-translations.da.po` with the latest version of
 [Poedit](https://poedit.net/) to clean up and then save the file.
 
 See
-https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
+[How to deploy drupal interface translations](https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6)
 for further details.
 
 For production you should use
@@ -145,20 +146,22 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 Check the code by running
 
 ```sh
-docker-compose exec phpfpm composer check-coding-standards
+docker-compose exec phpfpm composer coding-standards-check
 ```
 
 Apply automatic coding standard fixes by running
 
 ```sh
-docker-compose exec phpfpm composer apply-coding-standards
+docker-compose exec phpfpm composer coding-standards-apply
 ```
 
 ### Drush helper commands
 
-In Drush 9, shell aliases have gone the way of the dodo, so we need other tricks to pull data from remote sites:
+In Drush 9, shell aliases have gone the way of the dodo, so we need other
+tricks to pull data from remote sites:
 
-First, copy `drush/sites/self.site.yml.dist` to `drush/sites/self.site.yml` and edit as needed.
+First, copy `drush/sites/self.site.yml.dist` to `drush/sites/self.site.yml`
+and edit as needed.
 
 Then you can pull remote data (database and files) by running
 
@@ -218,10 +221,10 @@ docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.it
 
 Sign in to pretix:
 
-Go to http://pretix.hoeringsportal.local.itkdev.dk/control/ and sign in with
-username `admin@localhost` and password `admin`.
+Go to [Local pretix](http://pretix.hoeringsportal.local.itkdev.dk/control/) and
+sign in with username `admin@localhost` and password `admin`.
 
-#### API
+### API
 
 ```sh
 curl --header 'Authorization: Token v84pb9f19gv5gkn2d8vbxoih6egx2v00hpbcwzwzqoqqixt22locej5rffmou78e' \

@@ -1,0 +1,25 @@
+parameters:
+  paths:
+    - web/modules/custom
+  level: 0
+  customRulesetUsed: true
+  ignoreErrors:
+      - '#\Drupal calls should be avoided in classes, use dependency injection instead#'
+      - '#Missing cache backend declaration for performance.#'
+      - '#Plugin manager has cache backend specified but does not declare cache tags.#'
+  reportUnmatchedIgnoredErrors: false
+  # Go through one module at a time and remove from list when they pass code analysis.
+  excludePaths:
+      - web/modules/custom/aarhus_hero
+      - web/modules/custom/hoeringsportal_config_setting
+      - web/modules/custom/hoeringsportal_content_access
+      - web/modules/custom/hoeringsportal_content_blocks
+      - web/modules/custom/hoeringsportal_data
+      - web/modules/custom/hoeringsportal_deskpro
+      - web/modules/custom/hoeringsportal_forms
+      - web/modules/custom/hoeringsportal_hearing
+      - web/modules/custom/hoeringsportal_project_timeline
+      - web/modules/custom/hoeringsportal_public_meeting
+      - web/modules/custom/hoeringsportal_quicklinks
+      - web/modules/custom/itk_cookie_message
+      - web/modules/custom/migrate_subject_data

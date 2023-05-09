@@ -21,22 +21,20 @@ link: <https://127.0.0.1:8000/api/v2/geojson/hearings?page=4>; rel="self",
 
 Returns Hearings in descending order by creation time.
 
-
 ## Drush commands
 
 Update `state` on hearings by running
 
-```
+```sh
 drush hoeringsportal:data:hearing-state-update
 ```
 
 This should be done regularly by `cron` or other similar means,
 e.g. every minute
 
-```
+```sh
 */5 * * * * drush hoeringsportal:data:hearing-state-update
 ```
-
 
 ## Building assets
 
@@ -48,12 +46,12 @@ yarn install
 
 Build for development:
 
-```
+```sh
 yarn encore dev --watch
 ```
 
 Build for production:
 
-```
+```sh
 yarn encore production
 ```
