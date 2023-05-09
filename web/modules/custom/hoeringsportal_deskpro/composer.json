@@ -12,15 +12,8 @@
   },
   "require": {
     "deskpro/deskpro-api-client-php": "^2.0",
-    "drupal/advancedqueue": "1.0.0-rc3",
+    "drupal/advancedqueue": "^1.0.0",
     "guzzlehttp/guzzle": "^6.3",
     "nicoeg/dawa": "^1.0"
-  },
-  "extra": {
-    "patches": {
-      "drupal/advancedqueue": {
-        "Add getJobs() method to database backend (https://www.drupal.org/project/advancedqueue/issues/3244940)": "https://www.drupal.org/files/issues/2021-10-20/add-getjobs-method-database-backend.patch"
-      }
-    }
   }
 }
