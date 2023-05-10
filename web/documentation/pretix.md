@@ -7,9 +7,12 @@ to ignore configuration for the [`itk_pretix`
 module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Local setup
-This project ships with a docker environment that includes a local pretix setup for use during development.
+
+This project ships with a docker environment that includes a local pretix setup 
+for use during development.
 
 ### Pretix build
+
 Sign in to pretix:
 
 Go to [Local pretix](http://pretix.hoeringsportal.local.itkdev.dk/control/) and
@@ -26,6 +29,7 @@ gunzip < .docker/pretix/dumps/pretix.sql.gz | mysql --host=0.0.0.0 --port=$(dock
 #### Connect Drupal to pretix
 
 Add this to `settings.local.php`
+
 ```sh
 docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig pretix_url 'http://pretix.hoeringsportal.local.itkdev.dk/'
 docker-compose exec phpfpm vendor/bin/drush --uri=http://hoeringsportal.local.itkdev.dk/ config:set itk_pretix.pretixconfig organizer_slug 'hoeringsportal'

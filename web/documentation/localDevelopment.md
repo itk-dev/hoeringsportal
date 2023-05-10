@@ -2,7 +2,7 @@
 
 ## Local setup
 
-1) Create the file `web/sites/default/settings.local.php` and add:
+Create the file `web/sites/default/settings.local.php` and add:
 
 ```php
 <?php
@@ -62,7 +62,7 @@ $databases['default']['default'] = [
 ];
 ```
 
-2) Start docker
+Start docker
 
 ```sh
 docker-compose pull
@@ -73,7 +73,7 @@ docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existin
 docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```
 
-3) Add fixtures
+Add fixtures
 
 ```sh
 docker-compose exec phpfpm vendor/bin/drush content-fixtures:load
@@ -112,6 +112,7 @@ yarn coding-standards-check
 ```
 
 Apply automatic coding standard fixes by running
+
 ```sh
 yarn coding-standards-apply
 ```
@@ -144,7 +145,6 @@ for further details.
 [Deskpro local setup Readme](../modules/custom/hoeringsportal_deskpro/README.md)
 
 [Pretix local setup Readme](pretix.md#local-setup)
-
 
 ## Production setup
 
