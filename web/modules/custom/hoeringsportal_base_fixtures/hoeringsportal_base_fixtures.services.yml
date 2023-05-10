@@ -1,0 +1,38 @@
+services:
+  Drupal\hoeringsportal_base_fixtures\Helper\Helper:
+    arguments:
+      - '@extension.path.resolver'
+      - '@file.repository'
+      - '@file_system'
+  Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\UserFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermAreaFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermHearingTypeFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermMediaLibraryFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermTagFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermTimelineItemFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermTypeFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\FilesFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+  Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture:
+    tags:
+      - { name: content_fixture }

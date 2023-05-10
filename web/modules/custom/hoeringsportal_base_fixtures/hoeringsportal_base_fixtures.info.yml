@@ -1,0 +1,7 @@
+name: Hoeringsportal fixtures
+type: module
+description: 'Provides base fixtures for the site.'
+core_version_requirement: ^9
+package: ITK
+dependencies:
+  - drupal:content_fixtures
