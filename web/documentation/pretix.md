@@ -8,7 +8,7 @@ module](https://github.com/itk-dev/itk_pretix_d8).
 
 ## Local setup
 
-This project ships with a docker environment that includes a local pretix setup 
+This project ships with a docker environment that includes a local pretix setup
 for use during development.
 
 ### Pretix build
