@@ -34,3 +34,6 @@ drush/sites/self.site.yml
 private-files
 /.editorconfig
 /.gitattributes
+
+# Ignore mac files
+.DS_Store

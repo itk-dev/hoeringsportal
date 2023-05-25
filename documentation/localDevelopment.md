@@ -142,7 +142,7 @@ for further details.
 
 [OpenIdConnect local setup](openIdConnect.md)
 
-[Deskpro local setup Readme](../modules/custom/hoeringsportal_deskpro/README.md)
+[Deskpro local setup Readme](../web/modules/custom/hoeringsportal_deskpro/README.md)
 
 [Pretix local setup Readme](pretix.md#local-setup)
 

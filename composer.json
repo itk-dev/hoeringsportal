@@ -55,7 +55,6 @@
         "drupal/color_field": "^2.0",
         "drupal/config_ignore": "^2.2",
         "drupal/config_import_locale": "^2.0",
-        "drupal/content_fixtures": "^3.1",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
@@ -98,10 +97,11 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
+        "drupal/content_fixtures": "^3.1",
         "drupal/core-dev": "^9.3",
         "drupal/upgrade_status": "^3.13",
-        "phpstan/extension-installer": "^1.2",
         "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan-deprecation-rules": "^1.1"
     },
     "conflict": {

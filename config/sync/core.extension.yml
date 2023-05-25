@@ -15,7 +15,6 @@ module:
   config_filter: 0
   config_ignore: 0
   config_import_locale: 0
-  content_fixtures: 0
   crop: 0
   csv_serialization: 0
   ctools: 0
@@ -40,7 +39,6 @@ module:
   hoeringsportal_content_blocks: 0
   hoeringsportal_data: 0
   hoeringsportal_deskpro: 0
-  hoeringsportal_base_fixtures: 0
   hoeringsportal_forms: 0
   hoeringsportal_hearing: 0
   hoeringsportal_project_timeline: 0
