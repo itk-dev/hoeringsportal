@@ -12,3 +12,4 @@ backend_configuration:
 processor: cron
 processing_time: 90
 locked: false
+threshold: {  }

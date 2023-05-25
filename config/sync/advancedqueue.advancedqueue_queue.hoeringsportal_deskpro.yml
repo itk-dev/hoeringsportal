@@ -10,3 +10,4 @@ backend_configuration:
 processor: daemon
 processing_time: 300
 locked: false
+threshold: {  }

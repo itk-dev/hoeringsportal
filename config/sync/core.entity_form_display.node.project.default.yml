@@ -80,6 +80,12 @@ content:
       form_display_mode: default
       default_paragraph_type: timeline_items
     third_party_settings: {  }
+  published_at:
+    type: publication_date_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 9

@@ -35,3 +35,4 @@ hidden:
   field_project_finish: true
   field_project_start: true
   field_timeline_items: true
+  published_at: true

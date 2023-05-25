@@ -23,3 +23,4 @@ hidden:
   field_map_configuration: true
   field_map_type: true
   langcode: true
+  published_at: true
