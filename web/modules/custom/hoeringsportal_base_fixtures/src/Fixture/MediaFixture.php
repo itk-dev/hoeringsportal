@@ -135,8 +135,41 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
       'field_itk_media_height' => '1060',
       'field_itk_media_width' => '1500',
     ]);
+    $entity = Media::create([
+      'name' => 'Medium1',
+      'bundle' => 'image',
+      'field_itk_media_mime_type' => 'image/jpeg',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:medium1.jpg')->id()],
+      'field_itk_media_tag' => ['target_id' => $this->getReference('media_library:Billede:BA')->id()],
+      'field_itk_media_height' => '2160',
+      'field_itk_media_width' => '3240',
+    ]);
     $entity->save();
-    $this->addReference('media:Map5', $entity);
+    $this->addReference('media:Medium1', $entity);
+
+    $entity = Media::create([
+      'name' => 'Medium2',
+      'bundle' => 'image',
+      'field_itk_media_mime_type' => 'image/jpeg',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:medium2.jpg')->id()],
+      'field_itk_media_tag' => ['target_id' => $this->getReference('media_library:Billede:MKB')->id()],
+      'field_itk_media_height' => '4096',
+      'field_itk_media_width' => '4096',
+    ]);
+    $entity->save();
+    $this->addReference('media:Medium2', $entity);
+
+    $entity = Media::create([
+      'name' => 'Medium3',
+      'bundle' => 'image',
+      'field_itk_media_mime_type' => 'image/jpeg',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:medium3.jpg')->id()],
+      'field_itk_media_tag' => ['target_id' => $this->getReference('media_library:Billede:MKB')->id()],
+      'field_itk_media_height' => '3024',
+      'field_itk_media_width' => '4032',
+    ]);
+    $entity->save();
+    $this->addReference('media:Medium3', $entity);
   }
 
   /**

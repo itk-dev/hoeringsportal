@@ -25,6 +25,7 @@ class ParagraphFixture extends AbstractFixture implements DependentFixtureInterf
       ],
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:image:media:Large1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'content_block',
@@ -40,13 +41,15 @@ BODY,
       'field_paragraph_title' => 'Indholdsblok1',
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:content_block:content_block1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'content_list',
       'field_content_list' => '',
-      'field_list_title' => 'Indholdsblok1',
+      'field_list_title' => 'Indholdsliste1',
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:content_list:content_list1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'info_box',
@@ -59,6 +62,7 @@ BODY,
       'field_paragraph_title' => 'Dette er en info box',
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:info_box:info_box1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'projekt_billede_galleri',
@@ -73,6 +77,7 @@ BODY,
       ],
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:projekt_billede_galleri:projekt_billede_galleri1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'introduction',
@@ -88,6 +93,7 @@ BODY
       'field_paragraph_title' => 'En introduktion er her',
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:introduction:introduction1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'teaser_row',
@@ -99,6 +105,7 @@ BODY
       'field_type' => '',
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:teaser_row:teaser_row1', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'text',
@@ -114,6 +121,7 @@ BODY,
       ],
     ]);
     $paragraph->save();
+    $this->addReference('paragraph:text:text1', $paragraph);
   }
 
   /**

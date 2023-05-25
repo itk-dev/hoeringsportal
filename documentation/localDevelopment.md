@@ -73,10 +73,10 @@ docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existin
 docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```
 
-Add fixtures
+Add all fixtures
 
 ```sh
-docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures -y
+docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures hoeringsportal_hearing_fixtures -y
 docker-compose exec phpfpm vendor/bin/drush content-fixtures:load -y
 docker-compose exec phpfpm vendor/bin/drush pm-uninstall content_fixtures -y
 ```

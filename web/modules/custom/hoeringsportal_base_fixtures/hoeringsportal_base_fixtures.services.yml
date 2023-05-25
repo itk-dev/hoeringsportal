@@ -4,6 +4,7 @@ services:
       - '@extension.path.resolver'
       - '@file.repository'
       - '@file_system'
+      - '@entity_type.manager'
   Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture:
     tags:
       - { name: content_fixture }
@@ -36,3 +37,8 @@ services:
   Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture:
     tags:
       - { name: content_fixture }
+  Drupal\hoeringsportal_base_fixtures\Fixture\MenuItemFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'

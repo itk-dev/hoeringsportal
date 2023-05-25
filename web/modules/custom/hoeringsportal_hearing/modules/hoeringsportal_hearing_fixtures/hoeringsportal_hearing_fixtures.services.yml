@@ -1,0 +1,7 @@
+services:
+  Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingFixture:
+    tags:
+      - { name: content_fixture }
+  Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture:
+    tags:
+      - { name: content_fixture }

@@ -6,6 +6,7 @@ use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\FileRepository;
 use Drupal\Core\File\FileSystem;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * A helper class for the module.
@@ -34,12 +35,20 @@ class Helper {
   protected FileSystem $fileSystem;
 
   /**
+   * The fixtures helper service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected EntityTypeManagerInterface $entityTypeManager;
+
+  /**
    * Constructor.
    */
-  public function __construct(ExtensionPathResolver $pathResolver, FileRepository $fileRepo, FileSystem $fileSystem) {
+  public function __construct(ExtensionPathResolver $pathResolver, FileRepository $fileRepo, FileSystem $fileSystem, EntityTypeManagerInterface $entityTypeManager) {
     $this->pathResolver = $pathResolver;
     $this->fileRepo = $fileRepo;
     $this->fileSystem = $fileSystem;
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
@@ -76,6 +85,16 @@ class Helper {
     }
 
     return $documents;
+  }
+
+  /**
+   * Get all landing pages.
+   */
+  public function getLandingPages(): array {
+    // Get the nodes.
+    return $this->entityTypeManager
+      ->getStorage('node')
+      ->loadByProperties(['type' => 'landing_page']);
   }
 
 }
