@@ -77,7 +77,7 @@ Add fixtures
 
 ```sh
 docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures -y
-docker-compose exec phpfpm vendor/bin/drush content-fixtures:load
+docker-compose exec phpfpm vendor/bin/drush content-fixtures:load -y
 docker-compose exec phpfpm vendor/bin/drush pm-uninstall content_fixtures -y
 ```
 
