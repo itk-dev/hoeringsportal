@@ -97,10 +97,11 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
+        "drupal/content_fixtures": "^3.1",
         "drupal/core-dev": "^9.3",
         "drupal/upgrade_status": "^3.13",
-        "phpstan/extension-installer": "^1.2",
         "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan-deprecation-rules": "^1.1"
     },
     "conflict": {

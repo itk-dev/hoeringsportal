@@ -6,6 +6,8 @@
 * Added public meeting content type
 * syncronize public meeting dates with [pretix](https://pretix.eu)
 * Change backend theme to Claro
+* Add fixtures
+* Update readme
 
 ## 1.4.3
 
