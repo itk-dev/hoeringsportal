@@ -1,0 +1,21 @@
+uuid: 53fb41f6-a0d2-404d-82a9-0e5bef272901
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_proposal
+    - node.type.citizen_proposal
+  module:
+    - text
+id: node.citizen_proposal.field_proposal
+field_name: field_proposal
+entity_type: node
+bundle: citizen_proposal
+label: Forslaget
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
