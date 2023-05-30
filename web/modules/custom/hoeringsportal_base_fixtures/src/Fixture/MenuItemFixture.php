@@ -5,8 +5,8 @@ namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
-use Drupal\hoeringsportal_base_fixtures\Helper\Helper;
 use Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture;
+use Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
@@ -15,26 +15,10 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
 class MenuItemFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
-  const MENU_ITEMS = [
-    'Høringer',
-  ];
-
-  /**
-   * The fixtures helper service.
-   *
-   * @var \Drupal\hoeringsportal_base_fixtures\Helper\Helper
-   */
-  protected Helper $helper;
-
-  /**
-   * Constructor.
-   */
-  public function __construct(Helper $helper) {
-    $this->helper = $helper;
-  }
 
   /**
    * {@inheritdoc}
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load() {
     $hearingPage = $this->getReference('node:landing_page:Hearings');
@@ -43,7 +27,17 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
       'link' => ['uri' => 'entity:node/' . $hearingPage->id()],
       'menu_name' => 'main',
       'expanded' => FALSE,
-    ]);
+      'weight' => 0,
+    ])->save();
+
+    $citizenProposalPage = $this->getReference('node:landing_page:Proposals');
+    MenuLinkContent::create([
+      'title' => $citizenProposalPage->title->value,
+      'link' => ['uri' => 'entity:node/' . $citizenProposalPage->id()],
+      'menu_name' => 'main',
+      'expanded' => FALSE,
+      'weight' => 3,
+    ])->save();
   }
 
   /**
@@ -52,6 +46,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
   public function getDependencies() {
     return [
       HearingLandingPageFixture::class,
+      CitizenProposalLandingPageFixture::class,
     ];
   }
 
