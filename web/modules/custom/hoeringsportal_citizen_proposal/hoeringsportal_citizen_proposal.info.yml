@@ -1,0 +1,5 @@
+name: Hoeringsportal citizen proposal
+type: module
+description: 'Stuff related to citizen proposal content type'
+package: ITK
+core_version_requirement: ^8.8 || ^9
