@@ -1,0 +1,19 @@
+uuid: 7a8a545d-0ad5-462b-99c1-08040787dadb
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_uuid
+    - node.type.citizen_proposal
+id: node.citizen_proposal.field_author_uuid
+field_name: field_author_uuid
+entity_type: node
+bundle: citizen_proposal
+label: 'Author UUID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

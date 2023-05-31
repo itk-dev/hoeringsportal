@@ -45,7 +45,10 @@ BODY,
 
     $paragraph = Paragraph::create([
       'type' => 'content_list',
-      'field_content_list' => '',
+      'field_content_list' => [
+        'target_id' => 'all_citizen_proposals',
+        'display_id' => 'default',
+      ],
       'field_list_title' => 'Indholdsliste1',
     ]);
     $paragraph->save();
