@@ -18,6 +18,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
 
   /**
    * {@inheritdoc}
+   *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load() {
