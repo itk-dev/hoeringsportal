@@ -1,0 +1,17 @@
+# Citizen proposal views
+hoeringsportal_citizen_proposal.citizen_proposal.proposal_add:
+  path: '/citizen_proposal/add'
+  defaults:
+    _entity_view: 'node.citizen_proposal_add'
+  requirements:
+    #@todo link access to nemlogin.
+    _entity_access: 'node.view'
+
+hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
+  path: '/node/{node}/proposal/approve'
+  defaults:
+    _entity_view: 'node.citizen_proposal_approve'
+  requirements:
+    node: '\d+'
+    #@todo link access to nemlogin.
+    _entity_access: 'node.view'

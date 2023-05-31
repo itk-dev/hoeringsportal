@@ -6,6 +6,8 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_name
+    - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_content_state
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
     - field.field.node.citizen_proposal.field_vote_end
@@ -26,6 +28,8 @@ content:
 hidden:
   field_author_email: true
   field_author_name: true
+  field_author_uuid: true
+  field_content_state: true
   field_proposal: true
   field_remarks: true
   field_vote_end: true

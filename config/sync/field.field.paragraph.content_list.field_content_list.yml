@@ -35,24 +35,33 @@ settings:
   plugin_types:
     default: default
     page: 0
+    autocompletion_callback: 0
     entity_reference: 0
     block: 0
+    rest_export: 0
     entity_browser: 0
+    data_export: 0
   preselect_views:
+    all_citizen_proposals: all_citizen_proposals
     all_hearings: all_hearings
     all_meetings: all_meetings
     all_projects: all_projects
     advancedqueue_jobs: 0
+    authmap: 0
+    autocompletion_callbacks_nodes: 0
+    autocompletion_callbacks_words: 0
     block_content: 0
     content: 0
     files: 0
     form_list_active_projects: 0
     hearings_related_to_project: 0
+    heyloyalty_feed: 0
     itk_media: 0
     itk_media_browser: 0
     media: 0
     nearest_hearings: 0
+    redirect: 0
     timeline_related_items: 0
     user_admin_people: 0
-    video_display: 0
+    watchdog: 0
 field_type: viewsreference

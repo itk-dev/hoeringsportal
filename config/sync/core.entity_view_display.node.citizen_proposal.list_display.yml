@@ -1,8 +1,9 @@
-uuid: 3290dbfd-80fa-4117-bfe0-455b762f6d31
+uuid: 6ac5b27d-d1a3-4f38-b137-049567c9f0fe
 langcode: da
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.list_display
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
@@ -15,78 +16,83 @@ dependencies:
   module:
     - datetime
     - text
-id: node.citizen_proposal.default
+    - user
+id: node.citizen_proposal.list_display
 targetEntityType: node
 bundle: citizen_proposal
-mode: default
+mode: list_display
 content:
   field_author_email:
-    type: email_default
-    weight: 1
-    region: content
-    settings:
-      placeholder: ''
-      size: 60
+    type: basic_string
+    label: above
+    settings: {  }
     third_party_settings: {  }
+    weight: 103
+    region: content
   field_author_name:
-    type: string_textfield
-    weight: 0
-    region: content
+    type: string
+    label: above
     settings:
-      size: 60
-      placeholder: ''
+      link_to_entity: false
     third_party_settings: {  }
+    weight: 104
+    region: content
   field_proposal:
-    type: text_textarea
-    weight: 5
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
+    type: text_default
+    label: above
+    settings: {  }
     third_party_settings: {  }
+    weight: 105
+    region: content
   field_remarks:
-    type: text_textarea
-    weight: 6
-    region: content
-    settings:
-      rows: 5
-      placeholder: ''
+    type: text_default
+    label: above
+    settings: {  }
     third_party_settings: {  }
+    weight: 106
+    region: content
   field_vote_end:
     type: datetime_default
-    weight: 3
-    region: content
-    settings: {  }
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
     third_party_settings: {  }
+    weight: 102
+    region: content
   field_vote_start:
     type: datetime_default
-    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 101
     region: content
+  langcode:
+    type: language
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
     settings: {  }
     third_party_settings: {  }
-  status:
-    type: boolean_checkbox
-    weight: 7
+    weight: 100
     region: content
+  published_at:
+    type: timestamp
+    label: above
     settings:
-      display_label: true
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
     third_party_settings: {  }
-  title:
-    type: string_textfield
-    weight: 4
+    weight: 0
     region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
 hidden:
-  created: true
   field_author_uuid: true
   field_content_state: true
-  langcode: true
-  path: true
-  promote: true
-  published_at: true
-  sticky: true
-  uid: true
-  url_redirects: true

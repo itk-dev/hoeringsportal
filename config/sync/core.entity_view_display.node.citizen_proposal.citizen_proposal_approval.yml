@@ -1,8 +1,9 @@
-uuid: e062cffd-6031-4050-9b71-cb69acf3ba5b
+uuid: 0147c0ab-7d85-4216-9602-8427648d1ac8
 langcode: da
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.citizen_proposal_approval
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
@@ -13,7 +14,6 @@ dependencies:
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
   module:
-    - datetime
     - ds
     - text
     - user
@@ -45,9 +45,6 @@ third_party_settings:
         - field_remarks
         - field_author_name
         - field_author_email
-      right:
-        - field_vote_start
-        - field_vote_end
     fields:
       node_title:
         plugin_id: node_title
@@ -59,10 +56,10 @@ third_party_settings:
           'link class': ''
           wrapper: ''
           class: ''
-id: node.citizen_proposal.default
+id: node.citizen_proposal.citizen_proposal_approval
 targetEntityType: node
 bundle: citizen_proposal
-mode: default
+mode: citizen_proposal_approval
 content:
   field_author_email:
     type: basic_string
@@ -93,27 +90,11 @@ content:
     third_party_settings: {  }
     weight: 2
     region: left
-  field_vote_end:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 6
-    region: right
-  field_vote_start:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 5
-    region: right
 hidden:
   field_author_uuid: true
   field_content_state: true
+  field_vote_end: true
+  field_vote_start: true
   langcode: true
   links: true
   published_at: true

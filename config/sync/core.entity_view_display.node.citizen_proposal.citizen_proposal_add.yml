@@ -1,8 +1,9 @@
-uuid: e062cffd-6031-4050-9b71-cb69acf3ba5b
+uuid: 5eb2ae9f-db97-4977-b52f-b5ee9e541430
 langcode: da
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.citizen_proposal_add
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
@@ -59,10 +60,10 @@ third_party_settings:
           'link class': ''
           wrapper: ''
           class: ''
-id: node.citizen_proposal.default
+id: node.citizen_proposal.citizen_proposal_add
 targetEntityType: node
 bundle: citizen_proposal
-mode: default
+mode: citizen_proposal_add
 content:
   field_author_email:
     type: basic_string

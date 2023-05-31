@@ -30,7 +30,12 @@ Her kan du oprette og støtte borgerforslag. Har du et forslag til kommunen, kan
 BODY
       ],
       'field_media_image_single' => ['target_id' => $this->getReference('media:Large2')->id()],
-      'field_section' => [],
+      'field_section' => [
+        [
+          'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
+          'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
+        ],
+      ],
     ]);
     $entity->save();
     $this->addReference('node:landing_page:Proposals', $entity);
