@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+<div class="group-header bg-primary text-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 my-3 my-md-5">
+        <h1 class="title underlined is-white hero__title">{{ 'Create new proposal'|t }}</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container content__container">
+  <div class="row">
+    <div class="content group-left col-md-8">
+      <div class="content__main">
+        <form{{ attributes }}>
+          {{ children }}
+        </form>
+      </div>
+    </div>
+    <div class="group-right col-md-4">
+      <h3>Lorem ipsum</h3>
+      <p>Lorem ipsumLorem ipsum
+        Lorem ipsumLorem ipsum</p>
+    </div>
+  </div>
+</div>
+
+
