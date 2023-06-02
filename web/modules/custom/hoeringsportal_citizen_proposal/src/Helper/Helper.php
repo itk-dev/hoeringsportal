@@ -25,7 +25,7 @@ class Helper {
   }
 
   /**
-   * Validate that the tempstore contains a node.
+   * Validate that the tempstore contains a node and return it.
    *
    * @return object|null
    *   The entity or NULL if no valid entity was found.
