@@ -36,3 +36,10 @@ function hoeringsportal_citizen_proposal_preprocess_form__proposal_add_form(&$va
 function hoeringsportal_citizen_proposal_preprocess_form__proposal_approve_form(&$variables) {
   Drupal::service(Helper::class)->preprocessForm($variables);
 }
+
+/**
+ * Implements hook_page_attachments().
+ */
+function hoeringsportal_citizen_proposal_page_attachments(array &$page) {
+  Drupal::service(Helper::class)->proposalPageAttachments($page);
+}
