@@ -4,3 +4,5 @@ services:
       - '@tempstore.private'
       - '@serializer'
       - '@state'
+      - '@file_url_generator'
+  
