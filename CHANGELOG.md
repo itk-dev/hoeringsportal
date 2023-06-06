@@ -1,5 +1,11 @@
 # Changelog for Høringsportal
 
+## In feature/citizen_proposal
+
+* Add node type citizen proposal
+* Add fixtures for citizen proposal
+* Add form for citizens to add proposal
+
 ## In development
 
 * Upgrade to Drupal 8.8

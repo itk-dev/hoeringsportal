@@ -1,0 +1,17 @@
+uuid: fefa24ee-9785-4638-94ab-035a92c6fa5f
+langcode: da
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Borgerforslag
+type: citizen_proposal
+description: 'Et borgerforslag'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,9 @@
+name: Hoeringsportal citizen proposal fixtures
+type: module
+description: 'Provides citizen proposal fixtures for the site.'
+core_version_requirement: ^9
+package: ITK
+dependencies:
+  - content_fixtures:content_fixtures
+  - hoeringsportal_base_fixtures:hoeringsportal_base_fixtures
+  - hoeringsportal_citizen_proposal:hoeringsportal_citizen_proposal

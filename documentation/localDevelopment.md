@@ -68,7 +68,7 @@ Start docker
 docker-compose pull
 docker-compose up --detach
 docker-compose exec phpfpm composer install
-docker-compose exec phpfpm vendor/bin/drush --yes site:install minimal --existing-config
+docker-compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
 # Get admin sign in url
 docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```
@@ -76,7 +76,7 @@ docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.l
 Add all fixtures
 
 ```sh
-docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures hoeringsportal_hearing_fixtures -y
+docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
 docker-compose exec phpfpm vendor/bin/drush content-fixtures:load -y
 docker-compose exec phpfpm vendor/bin/drush pm-uninstall content_fixtures -y
 ```

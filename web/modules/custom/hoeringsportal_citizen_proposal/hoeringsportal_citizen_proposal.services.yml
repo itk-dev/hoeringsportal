@@ -1,0 +1,6 @@
+services:
+  Drupal\hoeringsportal_citizen_proposal\Helper\Helper:
+    arguments:
+      - '@tempstore.private'
+      - '@serializer'
+      - '@state'

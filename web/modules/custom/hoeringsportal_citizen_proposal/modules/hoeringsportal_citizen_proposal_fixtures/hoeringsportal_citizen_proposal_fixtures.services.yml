@@ -1,0 +1,9 @@
+services:
+  Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+  Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture:
+    tags:
+      - { name: content_fixture }

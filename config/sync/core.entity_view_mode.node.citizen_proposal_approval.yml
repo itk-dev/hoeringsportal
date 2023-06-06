@@ -1,0 +1,10 @@
+uuid: 5d2d4f55-6eea-4955-bc9f-daf4f0a5faf0
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: node.citizen_proposal_approval
+label: 'Citizen proposal approval'
+targetEntityType: node
+cache: true

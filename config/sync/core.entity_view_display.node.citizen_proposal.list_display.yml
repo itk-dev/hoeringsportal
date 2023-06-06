@@ -1,0 +1,98 @@
+uuid: 6ac5b27d-d1a3-4f38-b137-049567c9f0fe
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.list_display
+    - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_name
+    - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_content_state
+    - field.field.node.citizen_proposal.field_proposal
+    - field.field.node.citizen_proposal.field_remarks
+    - field.field.node.citizen_proposal.field_vote_end
+    - field.field.node.citizen_proposal.field_vote_start
+    - node.type.citizen_proposal
+  module:
+    - datetime
+    - text
+    - user
+id: node.citizen_proposal.list_display
+targetEntityType: node
+bundle: citizen_proposal
+mode: list_display
+content:
+  field_author_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_author_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_proposal:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_remarks:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_vote_end:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_vote_start:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  langcode:
+    type: language
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  published_at:
+    type: timestamp
+    label: above
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_author_uuid: true
+  field_content_state: true

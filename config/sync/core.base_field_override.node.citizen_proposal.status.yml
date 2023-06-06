@@ -1,0 +1,22 @@
+uuid: 05e27f1a-1790-4a3f-887a-8977a7a29dfa
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.citizen_proposal
+id: node.citizen_proposal.status
+field_name: status
+entity_type: node
+bundle: citizen_proposal
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

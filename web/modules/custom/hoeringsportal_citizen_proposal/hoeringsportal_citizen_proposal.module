@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Hooks related to hoeringsportal_citizen_proposal module.
+ */
+
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_citizen_proposal_theme() {
+  return [
+    'form__proposal_add_form' => [
+      'template' => 'form--proposal-add-form',
+      'base hook' => 'form',
+    ],
+    'form__proposal_approve_form' => [
+      'template' => 'form--proposal-approve-form',
+      'base hook' => 'form',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_citizen_proposal_preprocess_form__proposal_add_form(&$variables) {
+  Drupal::service(Helper::class)->preprocessForm($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_citizen_proposal_preprocess_form__proposal_approve_form(&$variables) {
+  Drupal::service(Helper::class)->preprocessForm($variables);
+}

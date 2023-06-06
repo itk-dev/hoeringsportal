@@ -1,0 +1,11 @@
+uuid: 94c39c1e-cb76-408b-83fc-d91892a4fa41
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.citizen_proposal
+id: node.citizen_proposal
+target_entity_type_id: node
+target_bundle: citizen_proposal
+default_langcode: site_default
+language_alterable: false

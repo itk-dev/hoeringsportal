@@ -1,0 +1,21 @@
+uuid: b5ee429b-6206-462d-9d2f-01ffcc0f10d2
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_state
+    - node.type.citizen_proposal
+  module:
+    - options
+id: node.citizen_proposal.field_content_state
+field_name: field_content_state
+entity_type: node
+bundle: citizen_proposal
+label: 'Content state'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

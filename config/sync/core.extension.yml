@@ -34,6 +34,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  hoeringsportal_citizen_proposal: 0
   hoeringsportal_config_settings: 0
   hoeringsportal_content_access: 0
   hoeringsportal_content_blocks: 0
