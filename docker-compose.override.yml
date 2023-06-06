@@ -21,6 +21,19 @@ services:
     working_dir: /e2e
     entrypoint: cypress
 
+  playwright:
+    # https://playwright.dev/docs/docker
+    # This Playwright version should match the one in `package.json`.
+    image: mcr.microsoft.com/playwright:v1.34.3-jammy
+    networks:
+      - app
+    depends_on:
+      - nginx
+    volumes:
+      - .:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    working_dir: /app
+
   # https://github.com/Soluto/oidc-server-mock
   idp-citizen:
     image: ghcr.io/soluto/oidc-server-mock:latest

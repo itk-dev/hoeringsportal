@@ -28,3 +28,15 @@ Run interactively using [XQuartz](https://www.xquartz.org/):
 xhost + 127.0.0.1
 docker compose run --rm --env DISPLAY=host.docker.internal:0 cypress open --project .
 ```
+
+# Playwright
+
+```sh
+docker compose run --rm playwright npx playwright test
+open playwright-report/index.html
+```
+
+```sh
+xhost + 127.0.0.1
+docker compose run --rm --env DISPLAY=host.docker.internal:0 playwright npx playwright test --ui
+```
