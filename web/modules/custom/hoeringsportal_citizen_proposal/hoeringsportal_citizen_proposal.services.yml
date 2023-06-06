@@ -3,3 +3,4 @@ services:
     arguments:
       - '@tempstore.private'
       - '@serializer'
+      - '@state'

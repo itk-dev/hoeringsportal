@@ -15,3 +15,11 @@ hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
     _title: 'Create new proposal'
   requirements:
     _access: 'TRUE'
+
+hoeringsportal_citizen_proposal.proposal_admin:
+  path: '/admin/citizen_proposal'
+  defaults:
+    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalAdminForm'
+    _title: 'Administer citizen proposal'
+  requirements:
+    _permission: 'administer citizen proposal'

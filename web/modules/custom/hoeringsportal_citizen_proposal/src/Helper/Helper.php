@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
+use Drupal\Core\State\State;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
@@ -21,6 +22,7 @@ class Helper {
   public function __construct(
     readonly private PrivateTempStoreFactory $tempStoreFactory,
     readonly private Serializer $serializer,
+    readonly private State $state,
   ) {
   }
 
@@ -71,6 +73,13 @@ class Helper {
     $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
     return new RedirectResponse($url->toString());
+  }
+
+  /**
+   * Preprocess forms related to citizen proposal.
+   */
+  public function preprocessForm(&$variables): void {
+    $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
   }
 
 }

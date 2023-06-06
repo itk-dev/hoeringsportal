@@ -30,11 +30,7 @@
       </div>
     </div>
     <div class="group-right col-md-4">
-      <h3>Lorem ipsum</h3>
-      <p>Lorem ipsumLorem ipsum
-        Lorem ipsumLorem ipsum</p>
+      {{ admin_form_state_values.sidebar_text.value|check_markup(admin_form_state_values.sidebar_text.format) }}
     </div>
   </div>
 </div>
-
-
