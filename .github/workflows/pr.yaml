@@ -160,7 +160,8 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - name: Install site
+      - &install-site
+        name: Install site
         run: |
           docker network create frontend
           docker compose pull
