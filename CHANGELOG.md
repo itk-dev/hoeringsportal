@@ -5,6 +5,7 @@
 * Add node type citizen proposal
 * Add fixtures for citizen proposal
 * Add form for citizens to add proposal
+* Add social links for citizen proposal
 
 ## In development
 
