@@ -2,6 +2,8 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
+    "cypress": "^12.13.0",
+    "cypress-mailhog": "^2.2.0",
     "markdownlint-cli": "^0.31.1"
   },
   "scripts": {
