@@ -12,13 +12,13 @@
 
 ## Database dumps
 
-The `docker-compose` setup contains a couple of database dumps, one for Drupal
+The `docker compose` setup contains a couple of database dumps, one for Drupal
 and one for pretix, to make it easy to get started. When adding new
 functionality to Drupal, you may need to upgrade the database dump.
 
 ```sh
 # Dump the database
-docker-compose exec phpfpm vendor/bin/drush sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+docker compose exec phpfpm vendor/bin/drush sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
 ```
 
 ## Setting up cron
