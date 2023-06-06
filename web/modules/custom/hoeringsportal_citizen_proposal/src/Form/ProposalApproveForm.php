@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
+use Drupal\Core\State\State;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\Core\Form\FormBase;
@@ -19,6 +20,7 @@ final class ProposalApproveForm extends FormBase {
    */
   public function __construct(
     readonly private Helper $helper,
+    readonly private State $state,
   ) {
   }
 
@@ -28,6 +30,7 @@ final class ProposalApproveForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('Drupal\hoeringsportal_citizen_proposal\Helper\Helper'),
+      $container->get('state'),
     );
   }
 
@@ -42,14 +45,16 @@ final class ProposalApproveForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): RedirectResponse|array {
+    $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
+
     if (!$entity = $this->helper->tempStoreValid()) {
       return $this->helper->abandonSubmission();
     }
 
     $form['approve_form_help'] = [
       '#type' => 'processed_text',
-      '#text' => '<h2>Godkend og send forslaget.</h2><p>Hent denne tekst fra config.</p>',
-      '#format' => 'filtered_html',
+      '#format' => $adminFormStateValues['approve_intro']['format'] ?? 'filtered_html',
+      '#text' => $adminFormStateValues['approve_intro']['value'] ?? '',
     ];
 
     $form['approve_form_title'] = [

@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\State\State;
 use Drupal\node\Entity\Node;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
@@ -18,6 +19,7 @@ final class ProposalAddForm extends FormBase {
    */
   public function __construct(
     readonly private Helper $helper,
+    readonly private State $state,
   ) {
   }
 
@@ -27,6 +29,7 @@ final class ProposalAddForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('Drupal\hoeringsportal_citizen_proposal\Helper\Helper'),
+      $container->get('state'),
     );
   }
 
@@ -42,11 +45,12 @@ final class ProposalAddForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $entity = $this->helper->tempStoreValid();
+    $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
 
     $form['author_intro'] = [
       '#type' => 'processed_text',
-      '#text' => '<h2>Registrér dig med CPR-nummer og navn.</h2><p>Hent denne tekst fra config.</p>',
-      '#format' => 'filtered_html',
+      '#format' => $adminFormStateValues['author_intro']['format'] ?? 'filtered_html',
+      '#text' => $adminFormStateValues['author_intro']['value'] ?? '',
     ];
 
     $form['name'] = [
@@ -55,6 +59,8 @@ final class ProposalAddForm extends FormBase {
         ->t('Name'),
       '#default_value' => 'GET THIS FROM SESSION',
       '#attributes' => ['readonly' => TRUE],
+      '#description' => $adminFormStateValues['name_help'] ?? '',
+      '#description_display' => 'before',
     ];
 
     $form['email'] = [
@@ -63,12 +69,14 @@ final class ProposalAddForm extends FormBase {
       '#title' => $this
         ->t('Email'),
       '#default_value' => $entity?->field_author_email->value ?? '',
+      '#description' => $adminFormStateValues['email_help'] ?? '',
+      '#description_display' => 'before',
     ];
 
     $form['proposal_intro'] = [
       '#type' => 'processed_text',
-      '#text' => '<h2>Skriv forslag.</h2><p>Hent denne tekst fra config.</p>',
-      '#format' => 'filtered_html',
+      '#format' => $adminFormStateValues['proposal_intro']['format'] ?? 'filtered_html',
+      '#text' => $adminFormStateValues['proposal_intro']['value'] ?? '',
     ];
 
     $form['title'] = [
@@ -77,7 +85,7 @@ final class ProposalAddForm extends FormBase {
       '#rows' => 3,
       '#title' => $this
         ->t('Title'),
-      '#description' => '<div>Hent hjælpetekst fra config</div>',
+      '#description' => $adminFormStateValues['title_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $entity?->title->value ?? '',
     ];
@@ -88,7 +96,7 @@ final class ProposalAddForm extends FormBase {
       '#rows' => 15,
       '#title' => $this
         ->t('Proposal'),
-      '#description' => '<div>Hent hjælpetekst fra config</div>',
+      '#description' => $adminFormStateValues['proposal_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $entity?->field_proposal->value ?? '',
     ];
@@ -99,7 +107,7 @@ final class ProposalAddForm extends FormBase {
       '#rows' => 15,
       '#title' => $this
         ->t('Remarks'),
-      '#description' => '<div>Hent hjælpetekst fra config</div>',
+      '#description' => $adminFormStateValues['remarks_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $entity?->field_remarks->value ?? '',
     ];
