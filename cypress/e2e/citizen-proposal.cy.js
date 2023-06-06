@@ -5,7 +5,7 @@ describe('Citizen proposal', () => {
 
     cy.visit('/citizen_proposal/add')
 
-    cy.getByLabel('E-mail')
+    cy.getByLabel('Email')
       .type('borger87@eksemple.dk')
 
     cy.getByLabel('Overskrift')
@@ -33,7 +33,7 @@ describe('Citizen proposal', () => {
     cy.get('a').contains('Edit proposal')
       .click()
 
-    cy.getByLabel('E-mail')
+    cy.getByLabel('Email')
       .should('have.value', 'borger87@eksemple.dk')
       .clear()
       .type('borger87@eksempel.dk')
@@ -55,7 +55,7 @@ describe('Citizen proposal', () => {
 
     cy.visit('/citizen_proposal/add')
 
-    cy.getByLabel('E-mail')
+    cy.getByLabel('Email')
       .type('borger87@eksemple.dk')
 
     cy.getByLabel('Overskrift')

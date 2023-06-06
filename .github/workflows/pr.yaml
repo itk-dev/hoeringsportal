@@ -176,5 +176,36 @@ jobs:
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
 
+      - name: Open site
+        run: |
           # Open the site
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
+
+  cypress-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+          # Install the site
+          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+
+          # Build theme assets
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+
+      - name: Run cypress
+        run: |
+          docker compose run --user root --rm node yarn install
+          docker compose run --user root --rm cypress run
