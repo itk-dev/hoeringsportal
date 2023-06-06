@@ -28,7 +28,7 @@ final class ProposalAddForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('Helper::class'),
+      $container->get(Helper::class),
       $container->get('state'),
     );
   }
