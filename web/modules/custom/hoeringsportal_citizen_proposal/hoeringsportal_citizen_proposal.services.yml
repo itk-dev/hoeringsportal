@@ -5,4 +5,3 @@ services:
       - '@serializer'
       - '@state'
       - '@file_url_generator'
-  
