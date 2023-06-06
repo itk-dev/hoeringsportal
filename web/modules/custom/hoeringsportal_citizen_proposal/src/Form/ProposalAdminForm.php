@@ -27,7 +27,7 @@ final class ProposalAdminForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('Drupal\hoeringsportal_citizen_proposal\Helper\Helper'),
+      $container->get(Helper::class),
       $container->get('state'),
     );
   }
