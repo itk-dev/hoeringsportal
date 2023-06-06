@@ -28,7 +28,7 @@ final class ProposalAddForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('Drupal\hoeringsportal_citizen_proposal\Helper\Helper'),
+      $container->get('Helper::class'),
       $container->get('state'),
     );
   }
@@ -44,7 +44,7 @@ final class ProposalAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $entity = $this->helper->tempStoreValid();
+    $entity = $this->helper->getDraftProposal();
     $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
 
     $form['author_intro'] = [
@@ -148,7 +148,7 @@ final class ProposalAddForm extends FormBase {
         'format' => 'filtered_html',
       ],
     ]);
-    $this->helper->tempStoreAddEntity($entity);
+    $this->helper->setDraftProposal($entity);
     $form_state
       ->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve');
   }

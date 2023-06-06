@@ -3,6 +3,8 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
 use Drupal\Core\State\State;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
@@ -15,6 +17,9 @@ use Drupal\Core\Messenger\MessengerTrait;
  */
 class Helper {
   use MessengerTrait;
+  use StringTranslationTrait;
+
+  private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -32,19 +37,19 @@ class Helper {
    * @return object|null
    *   The entity or NULL if no valid entity was found.
    */
-  public function tempStoreValid(): ?object {
-    $entitySerialized = $this->tempStoreFactory->get('hoeringsportal_citizen_proposal')->get('citizen_proposal_entity');
+  public function getDraftProposal(): ?object {
+    $entitySerialized = $this->getProposalStorage()->get(self::CITIZEN_PROPOSAL_ENTITY);
     $node = is_string($entitySerialized) ? $this->serializer->deserialize($entitySerialized, Node::class, 'json') : NULL;
 
-    return isset($node) && $node instanceof (Node::class) ? $node : NULL;
+    return isset($node) && $node instanceof Node ? $node : NULL;
   }
 
   /**
    * Delete the citizen_proposal_entity tempstore.
    */
-  public function tempStoreDelete(): void {
+  public function deleteDraftProposal(): void {
     try {
-      $this->tempStoreFactory->get('hoeringsportal_citizen_proposal')->delete('citizen_proposal_entity');
+      $this->getProposalStorage()->delete(self::CITIZEN_PROPOSAL_ENTITY);
     }
     catch (\Exception $e) {
     }
@@ -53,10 +58,10 @@ class Helper {
   /**
    * Add entity to temp store.
    */
-  public function tempStoreAddEntity($entity): void {
+  public function setDraftProposal($entity): void {
     $nodeSerialized = $this->serializer->serialize($entity, 'json');
     try {
-      $this->tempStoreFactory->get('hoeringsportal_citizen_proposal')->set('citizen_proposal_entity', $nodeSerialized);
+      $this->getProposalStorage()->set(self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized);
     }
     catch (\Exception $e) {
     }
@@ -69,7 +74,7 @@ class Helper {
    *   A redirect response.
    */
   public function abandonSubmission(): RedirectResponse {
-    $this->messenger()->addWarning('Could not find a proposal to approve.');
+    $this->messenger()->addWarning($this->t('Could not find a proposal to approve.'));
     $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
     return new RedirectResponse($url->toString());
@@ -80,6 +85,16 @@ class Helper {
    */
   public function preprocessForm(&$variables): void {
     $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
+  }
+
+  /**
+   * The proposal temp store.
+   *
+   * @return \Drupal\Core\TempStore\PrivateTempStore
+   *   The proposal tempstore.
+   */
+  private function getProposalStorage(): PrivateTempStore {
+    return $this->tempStoreFactory->get('hoeringsportal_citizen_proposal');
   }
 
 }
