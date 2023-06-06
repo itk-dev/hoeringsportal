@@ -91,12 +91,6 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}Mailhog.rule=Host(`mailhog-${COMPOSE_DOMAIN}`)"
       - "traefik.http.services.${COMPOSE_PROJECT_NAME}Mailhog.loadbalancer.server.port=8025"
 
-  node:
-    image: node:16
-    working_dir: /app
-    volumes:
-      - .:/app:delegated
-
   pretix:
     image: pretix/standalone:latest
     networks:
