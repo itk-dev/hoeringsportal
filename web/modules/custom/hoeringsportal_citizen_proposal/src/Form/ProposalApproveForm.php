@@ -29,7 +29,7 @@ final class ProposalApproveForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('Drupal\hoeringsportal_citizen_proposal\Helper\Helper'),
+      $container->get('Helper::class'),
       $container->get('state'),
     );
   }
@@ -47,7 +47,7 @@ final class ProposalApproveForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state): RedirectResponse|array {
     $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
 
-    if (!$entity = $this->helper->tempStoreValid()) {
+    if (!$entity = $this->helper->getDraftProposal()) {
       return $this->helper->abandonSubmission();
     }
 
@@ -121,13 +121,13 @@ final class ProposalApproveForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    if (!$entity = $this->helper->tempStoreValid()) {
+    if (!$entity = $this->helper->getDraftProposal()) {
       return $this->helper->abandonSubmission();
     }
 
-    $this->messenger()->addStatus('Thank you for you submission.');
+    $this->messenger()->addStatus($this->t('Thank you for you submission.'));
     $entity->save();
-    $this->helper->tempStoreDelete();
+    $this->helper->deleteDraftProposal();
     $form_state
       ->setRedirect('<front>');
   }
@@ -136,8 +136,8 @@ final class ProposalApproveForm extends FormBase {
    * Custom submit handler for cancelling a submission.
    */
   public function cancelSubmit(array &$form, FormStateInterface $form_state) {
-    $this->messenger()->addStatus('Your submission has been cancelled.');
-    $this->helper->tempStoreDelete();
+    $this->messenger()->addStatus($this->t('Your submission has been cancelled.'));
+    $this->helper->deleteDraftProposal();
     $form_state
       ->setRedirect('<front>');
   }
