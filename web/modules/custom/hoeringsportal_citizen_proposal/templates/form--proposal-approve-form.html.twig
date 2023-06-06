@@ -30,9 +30,9 @@
       </div>
     </div>
     <div class="group-right col-md-4">
-      {{ admin_form_state_values.sidebar_text.value|check_markup(admin_form_state_values.sidebar_text.format) }}
+      {% if admin_form_state_values.sidebar_text.value %}
+        {{ admin_form_state_values.sidebar_text.value|check_markup(admin_form_state_values.sidebar_text.format) }}
+      {% endif %}
     </div>
   </div>
 </div>
-
-
