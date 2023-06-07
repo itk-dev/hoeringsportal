@@ -65,20 +65,21 @@ $databases['default']['default'] = [
 Start docker
 
 ```sh
-docker-compose pull
-docker-compose up --detach
-docker-compose exec phpfpm composer install
-docker-compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
+docker compose pull
+docker compose up --detach
+docker compose exec phpfpm composer install
+docker compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
+
 # Get admin sign in url
-docker-compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
+docker compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```
 
 Add all fixtures
 
 ```sh
-docker-compose exec phpfpm vendor/bin/drush en hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker-compose exec phpfpm vendor/bin/drush content-fixtures:load -y
-docker-compose exec phpfpm vendor/bin/drush pm-uninstall content_fixtures -y
+docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
+docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
 ```
 
 ### Coding standards and code analysis
@@ -88,19 +89,19 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 #### Coding standards
 
 ```sh
-docker-compose exec phpfpm composer coding-standards-check
+docker compose exec phpfpm composer coding-standards-check
 ```
 
 Apply automatic coding standard fixes by running
 
 ```sh
-docker-compose exec phpfpm composer coding-standards-apply
+docker compose exec phpfpm composer coding-standards-apply
 ```
 
 #### Code analysis
 
 ```sh
-docker-compose exec phpfpm composer code-analysis
+docker compose exec phpfpm composer code-analysis
 ```
 
 #### Markdown
