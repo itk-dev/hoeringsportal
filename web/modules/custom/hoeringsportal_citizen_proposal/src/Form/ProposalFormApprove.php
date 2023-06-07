@@ -15,7 +15,7 @@ final class ProposalFormApprove extends ProposalFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'proposal_form_approve';
+    return 'proposal_approve_form';
   }
 
   /**
