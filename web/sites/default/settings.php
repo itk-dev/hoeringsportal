@@ -38,11 +38,6 @@ $settings['hoeringsportal_deskpro.deskpro'] = [
   'hearing_field_id' => null,
 ];
 
-// Local settings. These come last so that they can override anything.
-if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
-}
-
 $databases['default']['default'] = [
   'database' => getenv('DATABASE_DATABASE') ?: 'db',
   'username' => getenv('DATABASE_USERNAME') ?: 'db',
@@ -52,4 +47,10 @@ $databases['default']['default'] = [
   'driver' => getenv('DATABASE_DRIVER') ?: 'mysql',
   'prefix' => '',
 ];
+
 $settings['config_sync_directory'] = '../config/sync';
+
+// Local settings. These come last so that they can override anything.
+if (file_exists(__DIR__ . '/settings.local.php')) {
+  include __DIR__ . '/settings.local.php';
+}
