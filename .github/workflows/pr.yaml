@@ -122,7 +122,6 @@ jobs:
           composer code-analysis
 
   coding-standards-custom-themes:
-    if: ${{ false }}  # Disable - This job has some file permission errors that need further investigation.
     name: Yarn - Check Coding Standards in custom themes
     runs-on: ubuntu-latest
     steps:
@@ -134,7 +133,8 @@ jobs:
         run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
 
       - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
+        run: |
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
@@ -160,8 +160,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
 
-      - &install-site
-        name: Install site
+      - name: Install site
         run: |
           docker network create frontend
           docker compose pull
@@ -183,7 +182,6 @@ jobs:
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
 
   playwright-tests:
-    if: ${{ false }}  # @TODO Make this run succesfully
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -209,4 +207,12 @@ jobs:
 
       - name: Run Playwright
         run: |
-          docker compose run --rm playwright npx playwright test
+          docker compose run --rm node yarn install
+          docker compose run --rm playwright npx playwright test --retries 3
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30
