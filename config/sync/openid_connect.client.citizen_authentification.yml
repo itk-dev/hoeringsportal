@@ -1,0 +1,22 @@
+uuid: f2472213-1401-4b24-af29-05667eb88832
+langcode: da
+status: true
+dependencies:
+  module:
+    - hoeringsportal_openid_connect
+id: citizen_authentification
+label: 'citizen authentification'
+plugin: hoeringsportal_openid_connect_citizen
+settings:
+  client_id: client-id
+  client_secret: client-secret
+  iss_allowed_domains: ''
+  issuer_url: 'http://idp-citizen.hoeringsportal.local.itkdev.dk/'
+  authorization_endpoint: 'http://idp-citizen.hoeringsportal.local.itkdev.dk/connect/authorize'
+  token_endpoint: 'http://idp-citizen.hoeringsportal.local.itkdev.dk/connect/token'
+  userinfo_endpoint: 'http://idp-citizen.hoeringsportal.local.itkdev.dk/connect/userinfo'
+  end_session_endpoint: 'http://idp-citizen.hoeringsportal.local.itkdev.dk/connect/token'
+  scopes:
+    - openid
+    - email
+    - profile
