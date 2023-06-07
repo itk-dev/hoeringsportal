@@ -10,6 +10,7 @@ use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Base form for adding proposal.
@@ -47,24 +48,47 @@ abstract class ProposalFormBase extends FormBase {
     $userData = $this->getUserData();
     if (empty($userData)) {
       $adminFormStateValues = $this->getAdminFormStateValues();
-      $form['authenticate_message'] = [
-        '#type' => 'processed_text',
-        '#format' => $adminFormStateValues['authenticate_message']['format'] ?? 'filtered_html',
-        '#text' => $adminFormStateValues['authenticate_message']['value'] ?? '',
-      ];
 
-      $form['authenticate_link'] = Link::createFromRoute(
-        $adminFormStateValues['authenticate_link_text'] ?? $this->t('Authenticate with MitID'),
-        'hoearingsportal_openid_connect.redirect_controller.authorize',
-        [
-          'client_id' => $this->getClientId(),
-          'destination' => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
+      $form['authenticate'] = [
+        '#type' => 'container',
+
+        'message' => [
+          '#type' => 'processed_text',
+          '#format' => $adminFormStateValues['authenticate_message']['format'] ?? 'filtered_html',
+          '#text' => $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal'),
         ],
-      )->toRenderable()
-        + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'mb-2']]];
+
+        'link' => Link::createFromRoute(
+            $adminFormStateValues['authenticate_link_text'] ?? $this->t('Authenticate with MitID'),
+              'hoearingsportal_openid_connect.redirect_controller.authorize',
+              [
+                'client_id' => $this->getClientId(),
+                'destination' => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
+              ],
+        )->toRenderable()
+        + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'mb-2']]],
+      ];
 
       return $form;
     }
+
+    $form['authenticated'] = [
+      '#type' => 'container',
+
+      'message' => [
+        '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
+      ],
+
+      'sign_out' => [
+        '#type' => 'submit',
+        '#value' => $this->t('Sign out'),
+        '#submit' => [$this->signOut(...)],
+        // We don't want server side validation when signing out.
+        '#limit_validation_errors' => [],
+        // Nor do we want client side validation.
+        '#attributes' => ['formnovalidate' => 'formnovalidate'],
+      ],
+    ];
 
     return $this->buildProposalForm($form, $form_state);
   }
@@ -72,7 +96,7 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * Build proposal form.
    */
-  abstract protected function buildProposalForm(array $form, FormStateInterface $formState): array;
+  abstract protected function buildProposalForm(array $form, FormStateInterface $formState): array|RedirectResponse;
 
   /**
    * Get default form values from any existing draft proposal and any user data.
@@ -118,6 +142,15 @@ abstract class ProposalFormBase extends FormBase {
   private function getClientId(): string {
     // @todo Get this from config.
     return 'citizen_authentification';
+  }
+
+  /**
+   * Custom submit handler for signing out.
+   */
+  public function signOut(array &$form, FormStateInterface $formState) {
+    $this->authenticationHelper->removeUserData($this->getClientId());
+    $this->helper->deleteDraftProposal();
+    $formState->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
   }
 
 }

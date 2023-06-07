@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Form for approving proposal.
@@ -20,9 +21,9 @@ final class ProposalFormApprove extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildProposalForm(array $form, FormStateInterface $formState): array {
+  public function buildProposalForm(array $form, FormStateInterface $formState): array|RedirectResponse {
     if (!$this->helper->hasDraftProposal()) {
-      return $this->abandonSubmission($formState);
+      return $this->abandonSubmission();
     }
 
     $defaltValues = $this->getDefaultFormValues();
@@ -97,10 +98,9 @@ final class ProposalFormApprove extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $formState) {
+  public function submitForm(array &$form, FormStateInterface $formState): array|RedirectResponse {
     if (!$entity = $this->helper->getDraftProposal()) {
-      $this->abandonSubmission($formState);
-      return;
+      return $this->abandonSubmission($formState);
     }
 
     $this->messenger()->addStatus($this->t('Thank you for your submission.'));
@@ -121,10 +121,11 @@ final class ProposalFormApprove extends ProposalFormBase {
   /**
    * Abandon submission and add redirect response to form state.
    */
-  private function abandonSubmission(FormStateInterface $formState) {
+  private function abandonSubmission() {
     $this->messenger()->addWarning($this->t('Could not find a proposal to approve.'));
+    $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
-    $formState->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
+    return new RedirectResponse($url->toString());
   }
 
 }
