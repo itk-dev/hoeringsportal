@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
@@ -23,7 +24,8 @@ abstract class ProposalFormBase extends FormBase {
   final public function __construct(
     readonly protected Helper $helper,
     readonly private State $state,
-    readonly private AuthenticationHelper $authenticationHelper
+    readonly private AuthenticationHelper $authenticationHelper,
+    readonly private ImmutableConfig $config
   ) {
   }
 
@@ -34,7 +36,8 @@ abstract class ProposalFormBase extends FormBase {
     return new static(
       $container->get(Helper::class),
       $container->get('state'),
-      $container->get(AuthenticationHelper::class)
+      $container->get(AuthenticationHelper::class),
+      $container->get('config.factory')->get('hoeringsportal_citizen_proposal.settings')
     );
   }
 
@@ -140,8 +143,7 @@ abstract class ProposalFormBase extends FormBase {
    * Get OpenID Connect client id.
    */
   private function getClientId(): string {
-    // @todo Get this from config.
-    return 'citizen_authentification';
+    return (string) $this->config->get('client_id');
   }
 
   /**
