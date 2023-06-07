@@ -6,7 +6,6 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\State;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 
 /**
  * Form for adding proposal.
@@ -17,7 +16,6 @@ final class ProposalAdminForm extends FormBase {
    * Constructor for the proposal add form.
    */
   public function __construct(
-    readonly private Helper $helper,
     readonly private State $state,
   ) {
   }
@@ -27,7 +25,6 @@ final class ProposalAdminForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get(Helper::class),
       $container->get('state'),
     );
   }
