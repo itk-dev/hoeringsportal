@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Serializer\Serializer;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * A helper class for the module.
@@ -30,6 +31,7 @@ class Helper {
     readonly private Serializer $serializer,
     readonly private State $state,
     readonly private FileUrlGenerator $fileUrlGenerator,
+    readonly private RouteMatchInterface $routeMatch,
   ) {
   }
 
@@ -94,7 +96,7 @@ class Helper {
    */
   public function proposalPageAttachments(&$page): void {
     /** @var \Drupal\node\Entity\Node $node */
-    $node = \Drupal::routeMatch()->getParameter('node');
+    $node = $this->routeMatch->getParameter('node');
     if (!$node) {
       return;
     }
