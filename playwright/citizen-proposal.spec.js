@@ -22,12 +22,12 @@ test('Create proposal', async ({ page }) => {
   expect(page).toHaveURL('/citizen_proposal/approve')
 
   await expect(page.getByRole('button', { name: 'Approve proposal' })).toBeVisible()
-  await expect(page.getByText('Edit proposal', { exact: true })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Edit proposal' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Cancel proposal' })).toBeVisible()
 
   await expect(page.getByText('borger87@eksemple.dk')).toBeVisible()
 
-  await page.getByText('Edit proposal', { exact: true })
+  await page.getByRole('link', { name: 'Edit proposal' })
     .click()
 
   await expect(page.getByLabel('Email'))
@@ -44,7 +44,7 @@ test('Create proposal', async ({ page }) => {
   await page.getByRole('button', { name: 'Approve proposal' })
     .click()
 
-  await expect(page.getByText('Thank you for you submission.')).toBeVisible()
+  await expect(page.getByText('Thank you for your submission.')).toBeVisible()
 })
 
 test('Cancel proposal', async ({ page }) => {
