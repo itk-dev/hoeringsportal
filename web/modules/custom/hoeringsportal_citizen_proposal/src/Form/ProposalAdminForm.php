@@ -106,6 +106,32 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['approve_intro']['value'] ?? '',
     ];
 
+    $form['support_form'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this
+        ->t('Support form'),
+    ];
+
+    $form['support_form']['support_intro'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Support intro'),
+      '#format' => $adminFormStateValues['support_intro']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues['support_intro']['value'] ?? '',
+    ];
+
+    $form['support_form']['support_name_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Name help'),
+      '#default_value' => $adminFormStateValues['support_name_help'] ?? '',
+    ];
+
+    $form['support_form']['support_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Email help'),
+      '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
+    ];
+
     $form['sidebar'] = [
       '#type' => 'details',
       '#open' => TRUE,

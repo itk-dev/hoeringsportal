@@ -23,3 +23,12 @@ hoeringsportal_citizen_proposal.proposal_admin:
     _title: 'Administer citizen proposal'
   requirements:
     _permission: 'administer citizen proposal'
+
+# @todo link access to nemlogin.
+hoeringsportal_citizen_proposal.support:
+  path: '/citizen_proposal/{node}/support'
+  defaults:
+    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalSupportForm'
+    _title: 'Support citizen proposal'
+  requirements:
+    _permission: 'TRUE'
