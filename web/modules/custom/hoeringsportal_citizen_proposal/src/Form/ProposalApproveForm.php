@@ -45,6 +45,9 @@ final class ProposalApproveForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state): RedirectResponse|array {
+    // https://www.drupal.org/forum/support/module-development-and-code-questions/2020-06-01/sessions-and-privatetempstore-for#comment-14016801
+    $form['#cache'] = ['max-age' => 0];
+
     $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
 
     if (!$entity = $this->helper->getDraftProposal()) {
@@ -125,7 +128,7 @@ final class ProposalApproveForm extends FormBase {
       return $this->helper->abandonSubmission();
     }
 
-    $this->messenger()->addStatus($this->t('Thank you for you submission.'));
+    $this->messenger()->addStatus($this->t('Thank you for your submission.'));
     $entity->save();
     $this->helper->deleteDraftProposal();
     $form_state
