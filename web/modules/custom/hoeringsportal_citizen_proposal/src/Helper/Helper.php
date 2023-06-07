@@ -10,7 +10,9 @@ use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Serializer\Serializer;
+use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\Routing\RouteMatchInterface;
 
 /**
  * A helper class for the module.
@@ -28,6 +30,8 @@ class Helper {
     readonly private PrivateTempStoreFactory $tempStoreFactory,
     readonly private Serializer $serializer,
     readonly private State $state,
+    readonly private FileUrlGenerator $fileUrlGenerator,
+    readonly private RouteMatchInterface $routeMatch,
   ) {
   }
 
@@ -85,6 +89,56 @@ class Helper {
    */
   public function preprocessForm(&$variables): void {
     $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
+  }
+
+  /**
+   * Page attachments related to citizen proposal.
+   */
+  public function proposalPageAttachments(&$page): void {
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = $this->routeMatch->getParameter('node');
+    if (!$node) {
+      return;
+    }
+
+    if ('citizen_proposal' !== $node->bundle()) {
+      return;
+    }
+
+    $og = [
+      'title' => [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => 'og:title',
+          'content' => $node->getTitle(),
+        ],
+      ],
+      'image' => [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => 'og:image',
+          'content' => $this->fileUrlGenerator->generateAbsoluteString(\Drupal::config('hoeringsportal.settings')->get('logo.path')),
+        ],
+      ],
+      'description' => [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => 'og:description',
+          'content' => substr($node->field_proposal->value, 0, 150) . '...',
+        ],
+      ],
+      'url' => [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'property' => 'og:url',
+          'content' => Url::fromRoute('<current>', [], ['absolute' => 'true'])->toString(),
+        ],
+      ],
+    ];
+
+    foreach ($og as $key => $attr) {
+      $page['#attached']['html_head'][] = [$attr, $key];
+    }
   }
 
   /**
