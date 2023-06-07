@@ -82,12 +82,12 @@ class Helper {
   /**
    * Set user data.
    */
-  private function setUserData(array $userData, OpenIDConnectClientEntity $client): array {
+  private function setUserData(array $userData, OpenIDConnectClientEntity $client) {
     $data = $this->session->get(self::SESSION_USER_DATA);
     if (!is_array($data)) {
       $data = [];
     }
-    $data[$client->id()] = $context['user_data'];
+    $data[$client->id()] = $userData;
     $this->session->set(self::SESSION_USER_DATA, $data);
   }
 

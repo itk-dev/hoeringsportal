@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * OpenID Connect redirect controller.
  */
-class OpenIDConnectRedirectController extends ControllerBase {
+final class OpenIDConnectRedirectController extends ControllerBase {
 
   /**
    * Constructor.

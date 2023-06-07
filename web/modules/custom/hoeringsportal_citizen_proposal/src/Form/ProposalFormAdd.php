@@ -2,53 +2,27 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
-use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\State\State;
 use Drupal\node\Entity\Node;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 
 /**
  * Form for adding proposal.
  */
-final class ProposalAddForm extends FormBase {
-
-  /**
-   * Constructor for the proposal add form.
-   */
-  public function __construct(
-    readonly private Helper $helper,
-    readonly private State $state,
-  ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get(Helper::class),
-      $container->get('state'),
-    );
-  }
+final class ProposalFormAdd extends ProposalFormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'proposal_add_form';
+    return 'proposal_form_add';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state) {
-    // https://www.drupal.org/forum/support/module-development-and-code-questions/2020-06-01/sessions-and-privatetempstore-for#comment-14016801
-    $form['#cache'] = ['max-age' => 0];
-
-    $entity = $this->helper->getDraftProposal();
-    $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
+  public function buildProposalForm(array $form, FormStateInterface $formState): array {
+    $defaltValues = $this->getDefaultFormValues();
+    $adminFormStateValues = $this->getAdminFormStateValues();
 
     $form['author_intro'] = [
       '#type' => 'processed_text',
@@ -60,7 +34,7 @@ final class ProposalAddForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this
         ->t('Name'),
-      '#default_value' => 'GET THIS FROM SESSION',
+      '#default_value' => $defaltValues['name'],
       '#attributes' => ['readonly' => TRUE],
       '#description' => $adminFormStateValues['name_help'] ?? '',
       '#description_display' => 'before',
@@ -71,7 +45,7 @@ final class ProposalAddForm extends FormBase {
       '#required' => TRUE,
       '#title' => $this
         ->t('Email'),
-      '#default_value' => $entity?->field_author_email->value ?? '',
+      '#default_value' => $defaltValues['email'],
       '#description' => $adminFormStateValues['email_help'] ?? '',
       '#description_display' => 'before',
     ];
@@ -90,7 +64,7 @@ final class ProposalAddForm extends FormBase {
         ->t('Title'),
       '#description' => $adminFormStateValues['title_help'] ?? '',
       '#description_display' => 'before',
-      '#default_value' => $entity?->title->value ?? '',
+      '#default_value' => $defaltValues['title'],
     ];
 
     $form['proposal'] = [
@@ -101,7 +75,7 @@ final class ProposalAddForm extends FormBase {
         ->t('Proposal'),
       '#description' => $adminFormStateValues['proposal_help'] ?? '',
       '#description_display' => 'before',
-      '#default_value' => $entity?->field_proposal->value ?? '',
+      '#default_value' => $defaltValues['proposal'],
     ];
 
     $form['remarks'] = [
@@ -112,47 +86,43 @@ final class ProposalAddForm extends FormBase {
         ->t('Remarks'),
       '#description' => $adminFormStateValues['remarks_help'] ?? '',
       '#description_display' => 'before',
-      '#default_value' => $entity?->field_remarks->value ?? '',
+      '#default_value' => $defaltValues['remarks'],
     ];
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $entity ? $this->t('Update proposal') : $this->t('Create proposal'),
+      '#value' => $this->helper->hasDraftProposal()
+        ? $this->t('Update proposal')
+        : $this->t('Create proposal'),
       '#button_type' => 'primary',
     ];
+
     return $form;
   }
 
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
+  public function submitForm(array &$form, FormStateInterface $formState): void {
     // @todo add real UUID.
     $entity = Node::create([
       'type' => 'citizen_proposal',
-      'title' => $form_state->getValue('title'),
+      'title' => $formState->getValue('title'),
       'field_author_uuid' => 'GET UUID FROM SESSION',
-      'field_author_name' => $form_state->getValue('name'),
-      'field_author_email' => $form_state->getValue('email'),
+      'field_author_name' => $formState->getValue('name'),
+      'field_author_email' => $formState->getValue('email'),
       'field_proposal' => [
-        'value' => $form_state->getValue('proposal'),
+        'value' => $formState->getValue('proposal'),
         'format' => 'filtered_html',
       ],
       'field_remarks' => [
-        'value' => $form_state->getValue('remarks'),
+        'value' => $formState->getValue('remarks'),
         'format' => 'filtered_html',
       ],
     ]);
     $this->helper->setDraftProposal($entity);
-    $form_state
+    $formState
       ->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve');
   }
 

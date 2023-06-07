@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Form for adding proposal.
  */
 final class ProposalAdminForm extends FormBase {
+  public const ADMIN_FORM_VALUES_STATE_KEY = 'citizen_proposal_admin_form_values';
 
   /**
    * Constructor for the proposal add form.
@@ -40,7 +41,28 @@ final class ProposalAdminForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
+    $adminFormStateValues = $this->state->get(self::ADMIN_FORM_VALUES_STATE_KEY);
+
+    $form['authenticate'] = [
+      '#type' => 'details',
+      '#open' => FALSE,
+      '#title' => $this
+        ->t('Authenticate'),
+    ];
+
+    $form['authenticate']['authenticate_message'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Authenticate message'),
+      '#format' => $adminFormStateValues['authenticate_message']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues['authenticate_message']['value'] ?? '',
+    ];
+
+    $form['authenticate']['authenticate_link_text'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Authenticate link text'),
+      '#default_value' => $adminFormStateValues['authenticate_link_text'] ?? '',
+    ];
+
     $form['add_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -133,8 +155,8 @@ final class ProposalAdminForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $this->state->set('citizen_proposal_admin_form_values', $form_state->getValues());
+  public function submitForm(array &$form, FormStateInterface $formState): void {
+    $this->state->set(self::ADMIN_FORM_VALUES_STATE_KEY, $formState->getValues());
   }
 
 }
