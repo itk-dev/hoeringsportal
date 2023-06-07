@@ -60,7 +60,7 @@ abstract class ProposalFormBase extends FormBase {
 
         'link' => Link::createFromRoute(
             $adminFormStateValues['authenticate_link_text'] ?? $this->t('Authenticate with MitID'),
-              'hoearingsportal_openid_connect.redirect_controller.authorize',
+              'hoeringsportal_openid_connect.redirect_controller.authorize',
               [
                 'client_id' => $this->getClientId(),
                 'destination' => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),

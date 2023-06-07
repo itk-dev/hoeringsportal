@@ -1,18 +1,18 @@
-hoearingsportal_openid_connect.redirect_controller.authorize:
-  path: '/hoearingsportal-openid-connect/authorize/{client_id}'
+hoeringsportal_openid_connect.redirect_controller.authorize:
+  path: '/hoeringsportal-openid-connect/authorize/{client_id}'
   defaults:
     _controller: '\Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectRedirectController::authorize'
-    _title: 'Hoearingsportal OpenID Connect authorize'
+    _title: 'Høringsportal OpenID Connect authorize'
   requirements:
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'
 
-hoearingsportal_openid_connect.redirect_controller.authenticate:
-  path: '/hoearingsportal-openid-connect/authenticate/{client_id}'
+hoeringsportal_openid_connect.redirect_controller.authenticate:
+  path: '/hoeringsportal-openid-connect/authenticate/{client_id}'
   defaults:
     _controller: '\Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectRedirectController::authenticate'
-    _title: 'Hoearingsportal OpenID Connect authenticate'
+    _title: 'Høringsportal OpenID Connect authenticate'
   requirements:
     _access: 'TRUE'
   options:

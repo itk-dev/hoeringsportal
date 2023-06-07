@@ -47,7 +47,7 @@ final class OpenIDConnectRedirectController extends ControllerBase {
   public function authorize(Request $request, string $client_id) {
     // Make sure that we're sendt back to our authenticate method.
     $this->session->saveTargetLinkUri(
-      Url::fromRoute('hoearingsportal_openid_connect.redirect_controller.authenticate', [
+      Url::fromRoute('hoeringsportal_openid_connect.redirect_controller.authenticate', [
         'client_id' => $client_id,
         'destination' => $request->get('destination'),
       ])->toString(TRUE)->getGeneratedUrl(),
