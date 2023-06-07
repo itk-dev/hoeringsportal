@@ -104,11 +104,26 @@ services:
             - groups
 
       USERS_CONFIGURATION_INLINE: |
-        - SubjectId: proposer
-          Username: proposer
-          Password: proposer
+        - SubjectId: 1705880000
+          Username: 1705880000
+          Password: 1705880000
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: name
-            Value: Pro Poser
+            Value: 'Troels Bondetest'
+            ValueType: string
+          - Type: zip
+            Value: '9999'
+            ValueType: string
+
+        - SubjectId: 2611740000
+          Username: 2611740000
+          Password: 2611740000
+          Claims:
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
+          - Type: name
+            Value: 'Betina Henningsentest'
+            ValueType: string
+          - Type: zip
+            Value: '9999'
             ValueType: string
