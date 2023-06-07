@@ -19,7 +19,7 @@ function hoeringsportal_citizen_proposal_schema(): array {
         'type' => 'serial',
         'not null' => TRUE,
         'unsigned' => TRUE,
-        'size' => 'medium'
+        'size' => 'medium',
       ],
       'node_id' => [
         'description' => 'The node id',
@@ -75,7 +75,6 @@ function hoeringsportal_citizen_proposal_schema(): array {
   return $schema;
 }
 
-
 /**
  * Add hoeringsportal_citizen_proposal_support table.
  */
@@ -92,7 +91,7 @@ function hoeringsportal_citizen_proposal_update_9001(): void {
         'type' => 'serial',
         'not null' => TRUE,
         'unsigned' => TRUE,
-        'size' => 'medium'
+        'size' => 'medium',
       ],
       'node_id' => [
         'description' => 'The node id',
