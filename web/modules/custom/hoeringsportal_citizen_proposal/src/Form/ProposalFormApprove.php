@@ -98,9 +98,9 @@ final class ProposalFormApprove extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $formState): array|RedirectResponse {
+  public function submitForm(array &$form, FormStateInterface $formState) {
     if (!$entity = $this->helper->getDraftProposal()) {
-      return $this->abandonSubmission($formState);
+      return $this->abandonSubmission();
     }
 
     $this->messenger()->addStatus($this->t('Thank you for your submission.'));
