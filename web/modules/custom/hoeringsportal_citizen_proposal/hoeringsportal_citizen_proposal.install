@@ -1,0 +1,149 @@
+<?php
+
+/**
+ * @file
+ * Code related to installing and updating this module.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * @phpstan-return array<string, mixed>
+ */
+function hoeringsportal_citizen_proposal_schema(): array {
+  $schema['hoeringsportal_citizen_proposal_support'] = [
+    'description' => 'A table to manage support for proposals',
+    'fields' => [
+      'id' => [
+        'description' => 'The proposal support id',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'size' => 'medium'
+      ],
+      'node_id' => [
+        'description' => 'The node id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'user_uuid' => [
+        'description' => 'The user uuid',
+        'type' => 'varchar_ascii',
+        'length' => 36,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'user_name' => [
+        'description' => 'The proposal supporters name',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'user_email' => [
+        'description' => 'The proposal supporters email',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'created' => [
+        'description' => 'The time of creation',
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+    'indexes' => [
+      'id' => [
+        'id',
+      ],
+      'node_id' => [
+        'node_id',
+      ],
+      'user_uuid' => [
+        'user_uuid',
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+
+/**
+ * Add hoeringsportal_citizen_proposal_support table.
+ */
+function hoeringsportal_citizen_proposal_update_9001(): void {
+  $database = \Drupal::database();
+  $schema = $database->schema();
+
+  $table_name = 'hoeringsportal_citizen_proposal_support';
+  $table_schema = [
+    'description' => 'A table to manage support for proposals',
+    'fields' => [
+      'id' => [
+        'description' => 'The proposal support id',
+        'type' => 'serial',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'size' => 'medium'
+      ],
+      'node_id' => [
+        'description' => 'The node id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'user_uuid' => [
+        'description' => 'The user uuid',
+        'type' => 'varchar_ascii',
+        'length' => 36,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'user_name' => [
+        'description' => 'The proposal supporters name',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'user_email' => [
+        'description' => 'The proposal supporters email',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'created' => [
+        'description' => 'The time of creation',
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+    'indexes' => [
+      'id' => [
+        'id',
+      ],
+      'node_id' => [
+        'node_id',
+      ],
+      'user_uuid' => [
+        'user_uuid',
+      ],
+    ],
+  ];
+
+  $schema->createTable($table_name, $table_schema);
+}
