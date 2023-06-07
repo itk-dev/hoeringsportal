@@ -47,7 +47,7 @@ describe('Citizen proposal', () => {
     cy.get('input[type="submit"]').contains('Approve proposal')
       .click()
 
-    cy.contains('Thank you for you submission.')
+    cy.contains('Thank you for your submission.')
   })
 
   it('Cancel proposal', () => {

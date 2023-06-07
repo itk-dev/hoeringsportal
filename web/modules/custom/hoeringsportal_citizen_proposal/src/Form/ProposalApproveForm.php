@@ -128,7 +128,7 @@ final class ProposalApproveForm extends FormBase {
       return $this->helper->abandonSubmission();
     }
 
-    $this->messenger()->addStatus($this->t('Thank you for you submission.'));
+    $this->messenger()->addStatus($this->t('Thank you for your submission.'));
     $entity->save();
     $this->helper->deleteDraftProposal();
     $form_state
