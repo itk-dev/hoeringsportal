@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form for supporting proposal.
  */
-final class ProposalSupportForm extends FormBase {
+final class ProposalFormSupport extends FormBase {
 
   /**
    * Constructor for the proposal approve form.

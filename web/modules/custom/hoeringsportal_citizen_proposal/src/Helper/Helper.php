@@ -93,9 +93,16 @@ class Helper {
    *   The values to save.
    */
   public function saveSupport(array $values): void {
-    $this->connection->insert('hoeringsportal_citizen_proposal_support')
-      ->fields($values)
-      ->execute();
+    try {
+      $this->connection->insert('hoeringsportal_citizen_proposal_support')
+        ->fields($values)
+        ->execute();
+      $this->messenger()->addStatus($this->t('Thank you! Your support has been registered.'));
+    }
+    catch (\Exception) {
+      $this->messenger()->addWarning($this->t('Something went wrong. Your support was not registered.'));
+    }
+
   }
 
   /**

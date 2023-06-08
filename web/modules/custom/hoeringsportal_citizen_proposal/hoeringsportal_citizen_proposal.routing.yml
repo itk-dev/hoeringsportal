@@ -28,7 +28,7 @@ hoeringsportal_citizen_proposal.proposal_admin:
 hoeringsportal_citizen_proposal.support:
   path: '/citizen_proposal/{node}/support'
   defaults:
-    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalSupportForm'
+    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalFormSupport'
     _title: 'Support citizen proposal'
   requirements:
     _permission: 'TRUE'
