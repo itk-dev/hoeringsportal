@@ -14,48 +14,8 @@ dependencies:
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
   module:
-    - ds
     - text
     - user
-third_party_settings:
-  ds:
-    layout:
-      id: ds_2col_stacked
-      library: ds/ds_2col_stacked
-      disable_css: false
-      entity_classes: all_classes
-      settings:
-        classes:
-          layout_class: {  }
-        wrappers:
-          header: div
-          left: div
-          right: div
-          footer: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        label: ''
-    regions:
-      header:
-        - node_title
-      left:
-        - field_proposal
-        - field_remarks
-        - field_author_name
-        - field_author_email
-    fields:
-      node_title:
-        plugin_id: node_title
-        weight: 0
-        label: hidden
-        formatter: default
-        settings:
-          link: false
-          'link class': ''
-          wrapper: ''
-          class: ''
 id: node.citizen_proposal.citizen_proposal_approval
 targetEntityType: node
 bundle: citizen_proposal
@@ -66,30 +26,30 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 4
-    region: left
+    weight: 3
+    region: content
   field_author_name:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 3
-    region: left
+    weight: 2
+    region: content
   field_proposal:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 1
-    region: left
+    weight: 0
+    region: content
   field_remarks:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
-    region: left
+    weight: 1
+    region: content
 hidden:
   field_author_uuid: true
   field_content_state: true
@@ -98,3 +58,4 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  sharing_buttons: true

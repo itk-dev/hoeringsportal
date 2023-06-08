@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   admin_label = @Translation("Citizen proposal support counter"),
  * )
  */
-class CitizenProposalSupportCounter extends BlockBase implements ContainerFactoryPluginInterface {
+final class CitizenProposalSupportCounter extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Constructor for the proposal support counter.
@@ -56,12 +56,12 @@ class CitizenProposalSupportCounter extends BlockBase implements ContainerFactor
    */
   public function build() {
     $node = $this->routeMatch->getParameter('node');
+
     $supportCount = $this->connection->select('hoeringsportal_citizen_proposal_support')
       ->condition('node_id', $node->nid->value ?? 0)
       ->countQuery()
       ->execute()
       ->fetchField();
-
 
     return [
       '#theme' => 'citizen_proposal_support_counter',
@@ -69,7 +69,7 @@ class CitizenProposalSupportCounter extends BlockBase implements ContainerFactor
       '#cache' => [
         'contexts' => [],
         'tags' => [],
-      ]
+      ],
     ];
   }
 
