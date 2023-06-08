@@ -24,6 +24,12 @@ function hoeringsportal_citizen_proposal_theme() {
       'template' => 'form--proposal-support-form',
       'base hook' => 'form',
     ],
+    'citizen_proposal_support_counter' => [
+      'template' => 'citizen-proposal-support-counter',
+      'variables' => [
+        'data' => [],
+      ],
+    ],
   ];
 }
 

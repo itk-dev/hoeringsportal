@@ -126,3 +126,12 @@
     content: "";
   }
 }
+
+.support-counter {
+  border-bottom: 2px solid $gray-500;
+  font-size: 1.2em;
+
+  .count {
+    font-weight: bold;
+  }
+}
