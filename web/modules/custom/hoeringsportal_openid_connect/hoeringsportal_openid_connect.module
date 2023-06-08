@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * @file
+ * Module file.
+ */
+
+use Drupal\hoeringsportal_openid_connect\Helper;
+
+/**
+ * Implements hook_openid_connect_pre_authorize().
+ *
+ * @see Helper::openidConnectPreAuthorize()
+ */
+function hoeringsportal_openid_connect_openid_connect_pre_authorize($account, array $context) {
+  return Drupal::service(Helper::class)->openidConnectPreAuthorize($account, $context);
+}

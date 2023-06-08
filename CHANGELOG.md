@@ -8,6 +8,7 @@
 * Add social links for citizen proposal
 * Add form for supporting proposal
 * Add Cypress tests
+* Add citizen authentication
 
 ## In development
 

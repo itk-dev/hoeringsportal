@@ -9,7 +9,6 @@ use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Serializer\Serializer;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Messenger\MessengerTrait;
@@ -51,6 +50,13 @@ class Helper {
   }
 
   /**
+   * Check if we have a draft proposal.
+   */
+  public function hasDraftProposal(): bool {
+    return !empty($this->getDraftProposal());
+  }
+
+  /**
    * Delete the citizen_proposal_entity tempstore.
    */
   public function deleteDraftProposal(): void {
@@ -71,19 +77,6 @@ class Helper {
     }
     catch (\Exception $e) {
     }
-  }
-
-  /**
-   * Abandon submission and add redirect response.
-   *
-   * @return \Symfony\Component\HttpFoundation\RedirectResponse
-   *   A redirect response.
-   */
-  public function abandonSubmission(): RedirectResponse {
-    $this->messenger()->addWarning($this->t('Could not find a proposal to approve.'));
-    $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
-
-    return new RedirectResponse($url->toString());
   }
 
   /**

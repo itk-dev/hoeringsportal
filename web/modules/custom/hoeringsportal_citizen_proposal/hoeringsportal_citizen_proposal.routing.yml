@@ -3,7 +3,7 @@
 hoeringsportal_citizen_proposal.citizen_proposal.proposal_add:
   path: '/citizen_proposal/add'
   defaults:
-    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalAddForm'
+    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalFormAdd'
     _title: 'Create new proposal'
   requirements:
     _access: 'TRUE'
@@ -11,7 +11,7 @@ hoeringsportal_citizen_proposal.citizen_proposal.proposal_add:
 hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
   path: '/citizen_proposal/approve'
   defaults:
-    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalApproveForm'
+    _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalFormApprove'
     _title: 'Create new proposal'
   requirements:
     _access: 'TRUE'
