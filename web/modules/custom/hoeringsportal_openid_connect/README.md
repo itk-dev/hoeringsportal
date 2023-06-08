@@ -1,41 +1,55 @@
 # Høringsportalen OpenID Connect
 
-This module implements OpenId Connect authentification as a plugin in the
-[OpenID Connect](https://www.drupal.org/project/openid_connect) module. Users
-are not really authorized and created in Drupal, but their claims are stored in
-the session for later retrieval.
+Define settings in `settings.local.php`:
 
-## The hack
-
-This module adds a regular OpenID Connect plugin,
-`hoeringsportal_openid_connect_citizen` and implements
-`hook_openid_connect_pre_authorize` to make sure that no users are ever actually
-authorized.
-
-Authorization is started by sending the user to the
-`hoeringsportal_openid_connect.redirect_controller.authorize` endpoint
-specifying the id of an instance of the `hoeringsportal_openid_connect_citizen`
-plugin and the final destination (after authorizing), e.g.
-
-```sh
-/hoeringsportal-openid-connect/authorize/my_client?destination=/my-page
+```php
+$settings['hoeringsportal_openid_connect']['openid_connect'] = [
+  'clientId'                 => 'client-id',
+  'clientSecret'             => 'client-secret',
+  'openIDConnectMetadataUrl' => 'http://idp-citizen.hoeringsportal.local.itkdev.dk/.well-known/openid-configuration',
+];
 ```
 
-This will start a proper OpenID Connect authorization cycle during which the
-`hook_openid_connect_pre_authorize` implementation stores the user's claims in
-the session. In the end the user ends up on
-`/hoeringsportal-openid-connect/authorize/?destination=/my-page` where *all*
-[Messenger
-messages](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Messenger%21Messenger.php/9)
-are deleted[^1] before the user is sent to the final destination (`/my-page`).
+Start authentication on `/hoeringsportal-openid-connect/authenticate` (route
+name: `hoeringsportal_openid_connect.openid_connect_authenticate`). Set
+`target-destination` (`OpenIDConnectController::QUERY_STRING_DESTINATION`) in
+the query string to set the destination after authentication.
+
+Example:
+
+```php
+
+Link::createFromRoute(
+  'Authenticate',
+  'hoeringsportal_openid_connect.openid_connect_authenticate',
+  [
+    OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
+  ]
+);
+```
 
 ## Getting user data
 
 Calling `getUserData` on the `Drupal\hoeringsportal_openid_connect\Helper`
-service will return the current user data if any. `Helper::removeUserData` will
-remove user data; in effect performing a poor man's sign out.
+service will return the current user data if any. `
 
-This module does not (yet?) support properly signing out from the OIDC identity provider.
+## Local test
 
-[^1]: The OpenID Connect module sets some messages complaining about the user
-    not being authorized, but we suppress these. And all other messages.
+Mock authenticating with local test users can be enabled in `settings.local.php`:
+
+```php
+// Enable local test mode
+$settings['hoeringsportal_openid_connect']['local_test_mode'] = TRUE;
+
+// Define local test users
+//   User id => user info (claims)
+$settings['hoeringsportal_openid_connect']['local_test_users'] = [
+  '1234567890' => [
+    'cpr' => '1234567890',
+    'name' => 'John Doe',
+  ],
+  'another-user' => [
+    …
+  ],
+];
+```

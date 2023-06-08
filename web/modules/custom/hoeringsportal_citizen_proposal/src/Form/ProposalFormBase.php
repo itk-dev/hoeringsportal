@@ -9,6 +9,7 @@ use Drupal\Core\Link;
 use Drupal\Core\State\State;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -63,13 +64,12 @@ abstract class ProposalFormBase extends FormBase {
 
         'link' => Link::createFromRoute(
             $adminFormStateValues['authenticate_link_text'] ?? $this->t('Authenticate with MitID'),
-              'hoeringsportal_openid_connect.redirect_controller.authorize',
+              'hoeringsportal_openid_connect.openid_connect_authenticate',
               [
-                'client_id' => $this->getClientId(),
-                'destination' => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
+                OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
               ],
         )->toRenderable()
-        + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'mb-2']]],
+        + ['#attributes' => ['class' => ['btn', 'btn-primary', 'ml-2']]],
       ];
 
       return $form;
@@ -82,15 +82,14 @@ abstract class ProposalFormBase extends FormBase {
         '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
       ],
 
-      'sign_out' => [
-        '#type' => 'submit',
-        '#value' => $this->t('Sign out'),
-        '#submit' => [$this->signOut(...)],
-        // We don't want server side validation when signing out.
-        '#limit_validation_errors' => [],
-        // Nor do we want client side validation.
-        '#attributes' => ['formnovalidate' => 'formnovalidate'],
-      ],
+      'link' => Link::createFromRoute(
+          $adminFormStateValues['end_session_link_text'] ?? $this->t('Sign out'),
+          'hoeringsportal_openid_connect.openid_connect_end_session',
+          [
+            OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
+          ],
+      )->toRenderable()
+      + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'ml-2']]],
     ];
 
     return $this->buildProposalForm($form, $form_state);
@@ -136,23 +135,7 @@ abstract class ProposalFormBase extends FormBase {
    * Get user data.
    */
   private function getUserData(): ?array {
-    return $this->authenticationHelper->getUserData($this->getClientId());
-  }
-
-  /**
-   * Get OpenID Connect client id.
-   */
-  private function getClientId(): string {
-    return (string) $this->config->get('client_id');
-  }
-
-  /**
-   * Custom submit handler for signing out.
-   */
-  public function signOut(array &$form, FormStateInterface $formState) {
-    $this->authenticationHelper->removeUserData($this->getClientId());
-    $this->helper->deleteDraftProposal();
-    $formState->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
+    return $this->authenticationHelper->getUserData();
   }
 
 }

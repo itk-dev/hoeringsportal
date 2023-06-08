@@ -4,4 +4,4 @@ description: 'OpenID Connect stuff'
 package: ITK
 core_version_requirement: ^9
 dependencies:
-  - drupal:openid_connect
+  - drupal:drupal_psr6_cache

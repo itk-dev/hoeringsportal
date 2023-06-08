@@ -2,16 +2,22 @@
 
 /**
  * @file
- * Module file.
+ * Contains hoeringsportal_openid_connect.module.
  */
-
-use Drupal\hoeringsportal_openid_connect\Helper;
 
 /**
- * Implements hook_openid_connect_pre_authorize().
+ * Implements hook_theme().
  *
- * @see Helper::openidConnectPreAuthorize()
+ * @phpstan-param array<string, mixed> $existing
+ * @phpstan-return array<string, mixed>
  */
-function hoeringsportal_openid_connect_openid_connect_pre_authorize($account, array $context) {
-  return Drupal::service(Helper::class)->openidConnectPreAuthorize($account, $context);
+function hoeringsportal_openid_connect_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'hoeringsportal_openid_connect_local_test_users' => [
+      'variables' => [
+        'users' => NULL,
+        'query' => NULL,
+      ],
+    ],
+  ];
 }

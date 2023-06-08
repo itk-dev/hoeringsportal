@@ -1,5 +1,9 @@
 services:
+  logger.channel.hoeringsportal_openid_connect:
+    parent: logger.channel_base
+    arguments:
+      - 'hoeringsportal_openid_connect'
+
   Drupal\hoeringsportal_openid_connect\Helper:
     arguments:
-      - '@entity_type.manager'
       - '@session'

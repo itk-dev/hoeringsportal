@@ -7,7 +7,7 @@
 * Add form for citizens to add proposal
 * Add social links for citizen proposal
 * Add Cypress tests
-* Add citizen authentication
+* Add OpenID Connect authentication for citizens
 
 ## In development
 
