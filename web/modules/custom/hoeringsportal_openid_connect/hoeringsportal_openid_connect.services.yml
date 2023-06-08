@@ -1,0 +1,5 @@
+services:
+  Drupal\hoeringsportal_openid_connect\Helper:
+    arguments:
+      - '@entity_type.manager'
+      - '@session'
