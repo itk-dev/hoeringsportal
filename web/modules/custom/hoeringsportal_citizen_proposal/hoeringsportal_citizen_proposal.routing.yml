@@ -31,4 +31,4 @@ hoeringsportal_citizen_proposal.support:
     _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalFormSupport'
     _title: 'Support citizen proposal'
   requirements:
-    _permission: 'TRUE'
+    _access: 'TRUE'

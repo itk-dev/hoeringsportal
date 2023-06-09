@@ -47,6 +47,8 @@ final class ProposalFormSupport extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): RedirectResponse|array {
     $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
 
+    $form['#cache'] = ['max-age' => 0];
+
     // Pass the node to the submit handler.
     $form['#node'] = $node;
 
