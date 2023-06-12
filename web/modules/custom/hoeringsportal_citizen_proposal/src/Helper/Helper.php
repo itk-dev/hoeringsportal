@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
+use Drupal\Core\Database\Connection;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
@@ -31,6 +32,7 @@ class Helper {
     readonly private State $state,
     readonly private FileUrlGenerator $fileUrlGenerator,
     readonly private RouteMatchInterface $routeMatch,
+    readonly private Connection $connection,
   ) {
   }
 
@@ -82,6 +84,25 @@ class Helper {
    */
   public function preprocessForm(&$variables): void {
     $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
+  }
+
+  /**
+   * Save proposal support to db.
+   *
+   * @param array $values
+   *   The values to save.
+   */
+  public function saveSupport(array $values): void {
+    try {
+      $this->connection->insert('hoeringsportal_citizen_proposal_support')
+        ->fields($values)
+        ->execute();
+      $this->messenger()->addStatus($this->t('Thank you! Your support has been registered.'));
+    }
+    catch (\Exception) {
+      $this->messenger()->addWarning($this->t('Something went wrong. Your support was not registered.'));
+    }
+
   }
 
   /**

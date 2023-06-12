@@ -6,3 +6,4 @@ services:
       - '@state'
       - '@file_url_generator'
       - '@current_route_match'
+      - '@database'
