@@ -209,6 +209,11 @@ playwright-mailhog@^1.1.0:
   resolved "https://registry.yarnpkg.com/playwright-mailhog/-/playwright-mailhog-1.1.0.tgz#655564052ce5732f621a5de152a8abf11b1521e9"
   integrity sha512-tOpuO0C7ya2+BrrojP5j4DMgl1AjBQ7ioyVOXhXgjaDmZJUonBy5RceOTJ5DiPJEaFc94OmNHMmlo7C7MsPEZg==
 
+prettier@2.8.8:
+  version "2.8.8"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
+  integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
+
 run-con@~1.2.10:
   version "1.2.10"
   resolved "https://registry.yarnpkg.com/run-con/-/run-con-1.2.10.tgz#90de9d43d20274d00478f4c000495bd72f417d22"
