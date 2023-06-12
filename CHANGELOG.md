@@ -9,6 +9,7 @@
 * Add form for supporting proposal
 * Add Cypress tests
 * Add OpenID Connect authentication for citizens
+* Add citizen authentication on support proposal form
 
 ## In development
 

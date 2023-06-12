@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\node\Entity\Node;
 
 /**
@@ -15,6 +16,13 @@ final class ProposalFormAdd extends ProposalFormBase {
    */
   public function getFormId() {
     return 'proposal_add_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
+    return $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal');
   }
 
   /**
@@ -109,7 +117,7 @@ final class ProposalFormAdd extends ProposalFormBase {
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => $formState->getValue('title'),
-      'field_author_uuid' => 'GET UUID FROM SESSION',
+      'field_author_uuid' => $this->getUserUuid(),
       'field_author_name' => $formState->getValue('name'),
       'field_author_email' => $formState->getValue('email'),
       'field_proposal' => [

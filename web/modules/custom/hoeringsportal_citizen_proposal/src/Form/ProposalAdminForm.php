@@ -57,6 +57,13 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['authenticate_message']['value'] ?? '',
     ];
 
+    $form['authenticate']['authenticate_support_message'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Authenticate message (support)'),
+      '#format' => $adminFormStateValues['authenticate_support_message']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues['authenticate_support_message']['value'] ?? '',
+    ];
+
     $form['authenticate']['authenticate_link_text'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Authenticate link text'),
