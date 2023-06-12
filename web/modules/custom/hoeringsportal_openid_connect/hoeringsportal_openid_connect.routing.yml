@@ -1,19 +1,19 @@
-hoeringsportal_openid_connect.redirect_controller.authorize:
-  path: '/hoeringsportal-openid-connect/authorize/{client_id}'
+hoeringsportal_openid_connect.openid_connect_authenticate:
+  path: '/hoeringsportal-openid-connect/authenticate'
   defaults:
-    _controller: '\Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectRedirectController::authorize'
-    _title: 'Høringsportal OpenID Connect authorize'
+    _controller: 'Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController::main'
   requirements:
+    # Anonymous users must be able to access this route.
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'
 
-hoeringsportal_openid_connect.redirect_controller.authenticate:
-  path: '/hoeringsportal-openid-connect/authenticate/{client_id}'
+hoeringsportal_openid_connect.openid_connect_end_session:
+  path: '/hoeringsportal-openid-connect/end-session'
   defaults:
-    _controller: '\Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectRedirectController::authenticate'
-    _title: 'Høringsportal OpenID Connect authenticate'
+    _controller: 'Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController::endSession'
   requirements:
+    # Anonymous users must be able to access this route.
     _access: 'TRUE'
   options:
     no_cache: 'TRUE'

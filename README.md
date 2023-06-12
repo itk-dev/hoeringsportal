@@ -9,6 +9,7 @@
 3. [Deskpro setup](web/modules/custom/hoeringsportal_deskpro/README.md)
 4. [Pretix setup](documentation/pretix.md)
 5. [Custom Høringsportalen theme](web/themes/custom/hoeringsportal/README.md)
+6. [Testing](documentation/Testing.md)
 
 ## Database dumps
 
