@@ -1,0 +1,19 @@
+uuid: 2ddac87e-521e-4a34-a1c8-1042d40e82b2
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.citizen_proposal
+  module:
+    - hoeringsportal_citizen_proposal
+    - node
+    - system
+id: citizen_proposal_editor
+label: 'Citizen proposal editor'
+weight: -8
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'administer citizen proposal'
+  - 'edit any citizen_proposal content'
+  - 'view the administration theme'
