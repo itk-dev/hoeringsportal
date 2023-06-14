@@ -10,6 +10,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Symfony\Component\Serializer\Serializer;
 use Drupal\Core\File\FileUrlGenerator;
@@ -25,7 +26,7 @@ class Helper {
   use StringTranslationTrait;
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
-  private const SUGGESTION_PERIOD_LENGTH = '+180 days';
+  private const PROPOSAL_PERIOD_LENGTH = '+180 days';
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -162,23 +163,29 @@ class Helper {
   }
 
   /**
-   * Implements hook_entity_presave().
+   * Implements hook_ENTITY_TYPE_presave().
    *
    * @param \Drupal\Core\Entity\EntityInterface $entity
    *   A proposal entity.
    */
-  public function proposalEntityPresave(EntityInterface $entity): void {
-    if ('citizen_proposal' !== $entity->bundle()) {
+  public function nodeEntityPresave(EntityInterface $entity): void {
+    if ('citizen_proposal' !== $entity->bundle() || !$entity instanceof Node)  {
       return;
     }
     $proposalOriginal = $entity->original;
     // Allow changing this value in settings.php.
-    $periodLength = Settings::get('suggestion_period_length', self::SUGGESTION_PERIOD_LENGTH);
-    // If content is published.
-    if (1 === (int) $entity->status->value && 0 === (int) $proposalOriginal->status->value) {
-      // Set suggestion period.
-      $entity->set('field_vote_start', DrupalDateTime::createFromFormat('U', strtotime('now'))->format('Y-m-d\TH:i:s'));
-      $entity->set('field_vote_end', DrupalDateTime::createFromFormat('U', strtotime($periodLength))->format('Y-m-d\TH:i:s'));
+    $periodLength = Settings::get('proposal_period_length', self::PROPOSAL_PERIOD_LENGTH);
+
+    $start = new DrupalDateTime();
+    $end = new DrupalDateTime($periodLength);
+    $storageTimezone = new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE);
+
+    // If content is being published in this node->save() action.
+    if ($entity->isPublished() && !$proposalOriginal->isPublished()) {
+      // Set proposal period.
+      $entity->set('field_vote_start', $start->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
+      $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
+      $entity->set('field_content_state', 'active');
     }
   }
 
