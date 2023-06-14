@@ -77,7 +77,9 @@ class Helper {
   public function setDraftProposal($entity): void {
     $nodeSerialized = $this->serializer->serialize($entity, 'json');
     try {
-      $this->getProposalStorage()->set(self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized);
+      $this->getProposalStorage()->set(
+        self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized
+      );
     }
     catch (\Exception $e) {
     }
@@ -170,10 +172,10 @@ class Helper {
       return;
     }
     $proposalOriginal = $entity->original;
-    // Allow changing this value in settings.php $settings['sugggestion_period'] .
+    // Allow changing this value in settings.php.
     $periodLength = Settings::get('suggestion_period_length', self::SUGGESTION_PERIOD_LENGTH);
     // If content is published.
-    if (1 === (int)$entity->status->value && 0 === (int)$proposalOriginal->status->value) {
+    if (1 === (int) $entity->status->value && 0 === (int) $proposalOriginal->status->value) {
       // Set suggestion period.
       $entity->set('field_vote_start', DrupalDateTime::createFromFormat('U', strtotime('now'))->format('Y-m-d\TH:i:s'));
       $entity->set('field_vote_end', DrupalDateTime::createFromFormat('U', strtotime($periodLength))->format('Y-m-d\TH:i:s'));

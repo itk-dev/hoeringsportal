@@ -90,7 +90,11 @@ abstract class ProposalFormBase extends FormBase {
             OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
           ],
       )->toRenderable()
-      + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'ml-2', 'btn-sign-out']]],
+      + [
+        '#attributes' => [
+          'class' => ['btn', 'btn-secondary', 'ml-2', 'btn-sign-out'],
+        ],
+      ],
     ];
 
     return $this->buildProposalForm($form, $form_state);
