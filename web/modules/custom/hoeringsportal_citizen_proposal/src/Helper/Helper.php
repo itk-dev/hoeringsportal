@@ -166,6 +166,9 @@ class Helper {
    *   A proposal entity.
    */
   public function proposalEntityPresave(EntityInterface $entity): void {
+    if ('citizen_proposal' !== $entity->bundle()) {
+      return;
+    }
     $proposalOriginal = $entity->original;
     // Allow changing this value in settings.php $settings['sugggestion_period'] .
     $periodLength = Settings::get('suggestion_period_length', self::SUGGESTION_PERIOD_LENGTH);
