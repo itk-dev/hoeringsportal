@@ -3,6 +3,8 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
@@ -13,6 +15,7 @@ use Symfony\Component\Serializer\Serializer;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Site\Settings;
 
 /**
  * A helper class for the module.
@@ -22,6 +25,7 @@ class Helper {
   use StringTranslationTrait;
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
+  private const SUGGESTION_PERIOD_LENGTH = '+180 days';
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -152,6 +156,24 @@ class Helper {
 
     foreach ($og as $key => $attr) {
       $page['#attached']['html_head'][] = [$attr, $key];
+    }
+  }
+
+  /**
+   * Implements hook_entity_presave().
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   A proposal entity.
+   */
+  public function proposalEntityPresave(EntityInterface $entity): void {
+    $proposalOriginal = $entity->original;
+    // Allow changing this value in settings.php $settings['sugggestion_period'] .
+    $periodLength = Settings::get('suggestion_period_length', self::SUGGESTION_PERIOD_LENGTH);
+    // If content is published.
+    if (1 === (int)$entity->status->value && 0 === (int)$proposalOriginal->status->value) {
+      // Set suggestion period.
+      $entity->set('field_vote_start', DrupalDateTime::createFromFormat('U', strtotime('now'))->format('Y-m-d\TH:i:s'));
+      $entity->set('field_vote_end', DrupalDateTime::createFromFormat('U', strtotime($periodLength))->format('Y-m-d\TH:i:s'));
     }
   }
 

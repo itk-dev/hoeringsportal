@@ -6,6 +6,7 @@
  */
 
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Implements hook_theme().
@@ -52,4 +53,11 @@ function hoeringsportal_citizen_proposal_preprocess_form__proposal_approve_form(
  */
 function hoeringsportal_citizen_proposal_page_attachments(array &$page) {
   Drupal::service(Helper::class)->proposalPageAttachments($page);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function hoeringsportal_citizen_proposal_node_presave(EntityInterface $entity) {
+  Drupal::service(Helper::class)->proposalEntityPresave($entity);
 }
