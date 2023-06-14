@@ -169,7 +169,7 @@ class Helper {
    *   A proposal entity.
    */
   public function nodeEntityPresave(EntityInterface $entity): void {
-    if ('citizen_proposal' !== $entity->bundle() || !$entity instanceof Node)  {
+    if ('citizen_proposal' !== $entity->bundle() || !$entity instanceof Node) {
       return;
     }
     $proposalOriginal = $entity->original;
