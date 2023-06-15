@@ -2,37 +2,15 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
-use Drupal\Core\State\State;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\node\NodeInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
-use Drupal\Core\Form\FormBase;
-use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form for supporting proposal.
  */
-final class ProposalFormSupport extends FormBase {
-
-  /**
-   * Constructor for the proposal approve form.
-   */
-  public function __construct(
-    readonly private Helper $helper,
-    readonly private State $state,
-  ) {
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get(Helper::class),
-      $container->get('state'),
-    );
-  }
+final class ProposalFormSupport extends ProposalFormBase {
 
   /**
    * {@inheritdoc}
@@ -44,13 +22,39 @@ final class ProposalFormSupport extends FormBase {
   /**
    * {@inheritdoc}
    */
+  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
+    return $adminFormStateValues['authenticate_support_message']['value'] ?? $this->t('You have to authenticate to support a proposal');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): RedirectResponse|array {
-    $adminFormStateValues = $this->state->get('citizen_proposal_admin_form_values');
-
-    $form['#cache'] = ['max-age' => 0];
-
     // Pass the node to the submit handler.
     $form['#node'] = $node;
+
+    return parent::buildForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function buildProposalForm(array $form, FormStateInterface $formState): array|RedirectResponse {
+    $node = $form['#node'];
+    assert($node instanceof NodeInterface);
+
+    $supportedAt = $this->helper->getUserSupportedAt($this->getUserUuid(), $node);
+    if (NULL !== $supportedAt) {
+      $form['message'] = [
+        '#markup' => $this->t('You already supported this proposal on @support_date. You can only support a proposal once.', [
+          '@support_date' => $supportedAt->format('d/m/Y'),
+        ]),
+      ];
+      return $form;
+    }
+
+    $defaltValues = $this->getDefaultFormValues();
+    $adminFormStateValues = $this->getAdminFormStateValues();
 
     $form['support_intro'] = [
       '#type' => 'processed_text',
@@ -62,7 +66,7 @@ final class ProposalFormSupport extends FormBase {
       '#type' => 'textfield',
       '#title' => $this
         ->t('Name'),
-      '#default_value' => 'GET THIS FROM SESSION',
+      '#default_value' => $defaltValues['name'],
       '#attributes' => ['readonly' => TRUE],
       '#description' => $adminFormStateValues['support_name_help'] ?? '',
       '#description_display' => 'before',
@@ -73,6 +77,7 @@ final class ProposalFormSupport extends FormBase {
       '#required' => TRUE,
       '#title' => $this
         ->t('Email'),
+      '#default_value' => $defaltValues['email'],
       '#description' => $adminFormStateValues['support_email_help'] ?? '',
       '#description_display' => 'before',
     ];
@@ -90,18 +95,37 @@ final class ProposalFormSupport extends FormBase {
   /**
    * {@inheritdoc}
    */
+  protected function getDefaultFormValues(): array {
+    $userData = $this->getUserData();
+
+    return [
+      'name' => $userData['name'] ?? NULL,
+      'email' => $userData['email'] ?? NULL,
+    ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $this->helper->saveSupport([
-      'node_id' => $form['#node']->nid->value,
-      'user_uuid' => 'UUID FROM SESSION',
+    $userData = $this->getUserData();
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $form['#node'];
+
+    if (empty($userData)) {
+      $form_state
+        ->setRedirect('hoeringsportal_citizen_proposal.support', ['node' => $node->id()]);
+      return;
+    }
+
+    $this->helper->saveSupport($this->getUserUuid(), $node, [
       'user_name' => $form_state->getValue('name'),
       'user_email' => $form_state->getValue('email'),
       'created' => time(),
-
     ]);
 
     $form_state
-      ->setRedirect('entity.node.canonical', ['node' => $form['#node']->nid->value]);
+      ->setRedirect('entity.node.canonical', ['node' => $node->id()]);
   }
 
 }

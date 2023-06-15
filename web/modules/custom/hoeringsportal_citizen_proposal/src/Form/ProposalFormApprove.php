@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -16,6 +17,13 @@ final class ProposalFormApprove extends ProposalFormBase {
    */
   public function getFormId() {
     return 'proposal_approve_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
+    return $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal');
   }
 
   /**

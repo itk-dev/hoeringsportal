@@ -7,6 +7,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\State\State;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
@@ -59,7 +60,7 @@ abstract class ProposalFormBase extends FormBase {
         'message' => [
           '#type' => 'processed_text',
           '#format' => $adminFormStateValues['authenticate_message']['format'] ?? 'filtered_html',
-          '#text' => $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal'),
+          '#text' => $this->getAuthenticateMessage($adminFormStateValues),
         ],
 
         'link' => Link::createFromRoute(
@@ -101,6 +102,11 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * Get message telling user that authentication is needed.
+   */
+  abstract protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup;
+
+  /**
    * Build proposal form.
    */
   abstract protected function buildProposalForm(array $form, FormStateInterface $formState): array|RedirectResponse;
@@ -132,15 +138,35 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * Get admin form state values.
    */
-  protected function getAdminFormStateValues(): ?array {
-    return $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY);
+  protected function getAdminFormStateValues(): array {
+    return $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
   }
 
   /**
    * Get user data.
    */
-  private function getUserData(): ?array {
+  protected function getUserData(): ?array {
     return $this->authenticationHelper->getUserData();
+  }
+
+  /**
+   * Get user UUID.
+   *
+   * @return string
+   *   The user UUID.
+   */
+  protected function getUserUuid(): string {
+    $userData = $this->getUserData();
+    $userUuidClaim = $this->config->get('user_uuid_claim');
+    if (isset($userUuidClaim, $userData[$userUuidClaim])) {
+      return $userData[$userUuidClaim];
+    }
+
+    // Build a user fingerprint.
+    return md5(json_encode([
+      'cpr' => $userData['cpr'] ?? NULL,
+      'name' => $userData['name'] ?? NULL,
+    ]));
   }
 
 }
