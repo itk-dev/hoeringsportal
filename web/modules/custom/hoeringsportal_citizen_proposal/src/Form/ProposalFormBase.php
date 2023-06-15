@@ -77,6 +77,7 @@ abstract class ProposalFormBase extends FormBase {
 
     $form['authenticated'] = [
       '#type' => 'container',
+      '#attributes' => ['class' => ['authenticate-wrapper', 'py-3']],
 
       'message' => [
         '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
@@ -89,7 +90,11 @@ abstract class ProposalFormBase extends FormBase {
             OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
           ],
       )->toRenderable()
-      + ['#attributes' => ['class' => ['btn', 'btn-secondary', 'ml-2']]],
+      + [
+        '#attributes' => [
+          'class' => ['btn', 'btn-secondary', 'ml-2', 'btn-sign-out'],
+        ],
+      ],
     ];
 
     return $this->buildProposalForm($form, $form_state);
