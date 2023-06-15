@@ -3,6 +3,10 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
 use Drupal\Core\Database\Connection;
+use Drupal\Core\File\FileUrlGenerator;
+use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\Messenger\MessengerTrait;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\State\State;
@@ -10,20 +14,24 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
+use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerTrait;
 use Symfony\Component\Serializer\Serializer;
-use Drupal\Core\File\FileUrlGenerator;
-use Drupal\Core\Messenger\MessengerTrait;
-use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Site\Settings;
 
 /**
  * A helper class for the module.
  */
-class Helper {
+class Helper implements LoggerAwareInterface {
   use MessengerTrait;
   use StringTranslationTrait;
+  use LoggerAwareTrait;
+  use LoggerTrait;
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
   private const PROPOSAL_PERIOD_LENGTH = '+180 days';
@@ -38,7 +46,9 @@ class Helper {
     readonly private FileUrlGenerator $fileUrlGenerator,
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
+    LoggerChannel $logger
   ) {
+    $this->setLogger($logger);
   }
 
   /**
@@ -82,7 +92,11 @@ class Helper {
         self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized
       );
     }
-    catch (\Exception $e) {
+    catch (\Exception $exception) {
+      $this->logger->error('Error setting draft proposal: @message', [
+        '@message' => $exception->getMessage(),
+        'entity' => $entity,
+      ]);
     }
   }
 
@@ -96,20 +110,55 @@ class Helper {
   /**
    * Save proposal support to db.
    *
+   * @param string $userUuid
+   *   The user UUID.
+   * @param \Drupal\node\Entity\NodeInterface $node
+   *   The proposal node.
    * @param array $values
    *   The values to save.
    */
-  public function saveSupport(array $values): void {
+  public function saveSupport(string $userUuid, NodeInterface $node, array $values): void {
     try {
+      if (NULL !== $this->getUserSupportedAt($userUuid, $node)) {
+        throw new RuntimeException('User @user already supports proposal @proposal', [
+          '@user' => $userUuid,
+          '@proposal' => $node->id(),
+        ]);
+      }
+
+      $values['user_uuid'] = $userUuid;
+      $values['node_id'] = $node->id();
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
       $this->messenger()->addStatus($this->t('Thank you! Your support has been registered.'));
     }
-    catch (\Exception) {
+    catch (\Exception $exception) {
+      $this->logger->error('Error saving support: @message', [
+        '@message' => $exception->getMessage(),
+        'exception' => $exception,
+        'values' => $values,
+      ]);
       $this->messenger()->addWarning($this->t('Something went wrong. Your support was not registered.'));
     }
+  }
 
+  /**
+   * Get time when user supported a proposal if any.
+   */
+  public function getUserSupportedAt(string $userUuid, NodeInterface $node): ?\DateTimeInterface {
+    $result = $this->connection->select('hoeringsportal_citizen_proposal_support', 's')
+      ->fields('s')
+      ->condition('user_uuid', $userUuid)
+      ->condition('node_id', $node->id())
+      ->execute()
+      ->fetchObject();
+
+    if ($result) {
+      return new \DateTimeImmutable('@' . $result->created);
+    }
+
+    return NULL;
   }
 
   /**
@@ -197,6 +246,13 @@ class Helper {
    */
   private function getProposalStorage(): PrivateTempStore {
     return $this->tempStoreFactory->get('hoeringsportal_citizen_proposal');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function log($level, $message, array $context = []) {
+    $this->logger->log($level, $message, $context);
   }
 
 }

@@ -24,7 +24,6 @@ hoeringsportal_citizen_proposal.proposal_admin:
   requirements:
     _permission: 'administer citizen proposal'
 
-# @todo link access to nemlogin.
 hoeringsportal_citizen_proposal.support:
   path: '/citizen_proposal/{node}/support'
   defaults:
