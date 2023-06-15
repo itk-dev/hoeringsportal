@@ -7,18 +7,22 @@ use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\Serializer\Serializer;
+use Drupal\Core\Site\Settings;
 
 /**
  * A helper class for the module.
@@ -30,6 +34,7 @@ class Helper implements LoggerAwareInterface {
   use LoggerTrait;
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
+  private const PROPOSAL_PERIOD_LENGTH = '+180 days';
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -83,7 +88,9 @@ class Helper implements LoggerAwareInterface {
   public function setDraftProposal($entity): void {
     $nodeSerialized = $this->serializer->serialize($entity, 'json');
     try {
-      $this->getProposalStorage()->set(self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized);
+      $this->getProposalStorage()->set(
+        self::CITIZEN_PROPOSAL_ENTITY, $nodeSerialized
+      );
     }
     catch (\Exception $exception) {
       $this->logger->error('Error setting draft proposal: @message', [
@@ -201,6 +208,33 @@ class Helper implements LoggerAwareInterface {
 
     foreach ($og as $key => $attr) {
       $page['#attached']['html_head'][] = [$attr, $key];
+    }
+  }
+
+  /**
+   * Implements hook_ENTITY_TYPE_presave().
+   *
+   * @param \Drupal\Core\Entity\EntityInterface $entity
+   *   A proposal entity.
+   */
+  public function nodeEntityPresave(EntityInterface $entity): void {
+    if ('citizen_proposal' !== $entity->bundle() || !$entity instanceof Node) {
+      return;
+    }
+    $proposalOriginal = $entity->original;
+    // Allow changing this value in settings.php.
+    $periodLength = Settings::get('proposal_period_length', self::PROPOSAL_PERIOD_LENGTH);
+
+    $start = new DrupalDateTime();
+    $end = new DrupalDateTime($periodLength);
+    $storageTimezone = new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE);
+
+    // If content is being published in this node->save() action.
+    if ($entity->isPublished() && !$proposalOriginal->isPublished()) {
+      // Set proposal period.
+      $entity->set('field_vote_start', $start->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
+      $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
+      $entity->set('field_content_state', 'active');
     }
   }
 

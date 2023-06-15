@@ -65,9 +65,8 @@ final class ProposalFormAdd extends ProposalFormBase {
     ];
 
     $form['title'] = [
-      '#type' => 'textarea',
+      '#type' => 'textfield',
       '#required' => TRUE,
-      '#rows' => 3,
       '#title' => $this
         ->t('Title'),
       '#description' => $adminFormStateValues['title_help'] ?? '',
