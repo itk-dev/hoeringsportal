@@ -35,6 +35,7 @@ class Helper implements LoggerAwareInterface {
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
   private const PROPOSAL_PERIOD_LENGTH = '+180 days';
+  private const PROPOSAL_SUPPORT_REQUIRED = 30000;
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -108,11 +109,25 @@ class Helper implements LoggerAwareInterface {
   }
 
   /**
+   * Preprocess citizen proposal nodes.
+   */
+  public function preprocessNode(&$variables): void {
+    if ('citizen_proposal' !== $variables['node']->bundle()) {
+      return;
+    }
+
+    $proposalSupportCount = $this->getProposalSupportCount((int) $variables['node']->nid->value);
+
+    $variables['proposal_support_count'] = $proposalSupportCount;
+    $variables['proposal_support_percentage'] = $proposalSupportCount ? $this->calculateSupportPercentage((int) $proposalSupportCount) . '%' : '0%';
+  }
+
+  /**
    * Save proposal support to db.
    *
    * @param string $userUuid
    *   The user UUID.
-   * @param \Drupal\node\Entity\NodeInterface $node
+   * @param \Drupal\node\NodeInterface $node
    *   The proposal node.
    * @param array $values
    *   The values to save.
@@ -236,6 +251,42 @@ class Helper implements LoggerAwareInterface {
       $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
       $entity->set('field_content_state', 'active');
     }
+  }
+
+  /**
+   * Get citizen proposal support count.
+   *
+   * @param int $nid
+   *   The id of the citizen proposal to get support count for.
+   *
+   * @return mixed
+   *   A single field from the next record, or FALSE if there is no next record.
+   */
+  public function getProposalSupportCount(int $nid): mixed {
+    return $this->connection->select('hoeringsportal_citizen_proposal_support')
+      ->condition('node_id', $nid)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+  }
+
+  /**
+   * Calculate the support percentage of a proposal, from the support count.
+   *
+   * @param int $proposalSupportCount
+   *   The support count af a proposal.
+   *
+   * @return int
+   *   A percentage value as an integer.
+   */
+  public function calculateSupportPercentage(int $proposalSupportCount): int {
+    // Allow changing this value in settings.php.
+    $proposalSupportRequired = Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
+
+    return min(
+        100,
+        (int) ceil($proposalSupportCount / $proposalSupportRequired * 100)
+      );
   }
 
   /**

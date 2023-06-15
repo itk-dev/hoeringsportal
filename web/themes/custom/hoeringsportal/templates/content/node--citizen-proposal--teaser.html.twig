@@ -75,17 +75,27 @@
   {% set voteEnd = content.field_vote_end['0']['#attributes'].datetime %}
 {% endif %}
 
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
-  <div{{ attributes.addClass('activity-teaser-content') }}>
-    <h3 class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
-    <div class="activity-teaser-description">
-      {{ voteEnd | date('d m. Y') }}
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap d-flex citizen-proposal-teaser">
+  <div{{ attributes.addClass('activity-teaser-content','activity-teaser-description','px-4', 'py-0') }}>
+    <div class="d-flex my-3 justify-content-between">
+      <h3 class="my-0">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
+      <div><span>{{ 'End date'|t }}:</span><strong class="ml-1">{{ voteEnd | date('d M. Y') }}</strong></div>
     </div>
-  </div>
-  <div class="activity-teaser-info">
-    <span class="activity-teaser-meta-wrapper">
-      {{ content.field_content_state }}
-    </span>
-    <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
+    <div class="activity-supporters">
+      <div class="pb-1">
+        <span>{{ 'Number of supporters'|t }}</span>
+        <strong class="ml-1">{{ proposal_support_count }}</strong>
+      </div>
+      <div class="support-progress">
+        <div class="progress">
+          <div class="progress-bar" style="width:{{ proposal_support_percentage }}" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+      </div>
+    </div>
+    <div class="activity-teaser-info d-flex pl-0 border-0">
+      <span class="activity-teaser-meta-wrapper">
+      </span>
+      <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
+    </div>
   </div>
 </a>

@@ -105,7 +105,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: hoeringsportal_date
     third_party_settings: {  }
     weight: 7
     region: right
@@ -114,7 +114,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: hoeringsportal_date
     third_party_settings: {  }
     weight: 6
     region: right

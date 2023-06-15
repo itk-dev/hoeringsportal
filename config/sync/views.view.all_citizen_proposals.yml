@@ -136,7 +136,7 @@ display:
                 advanced:
                   sort_options: false
                   rewrite:
-                    filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nI gang|Aktive"
+                    filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nI gang|Aktive\r\nKommende|"
                   collapsible: false
                   is_secondary: false
       access:
@@ -148,6 +148,20 @@ display:
         options: {  }
       empty: {  }
       sorts:
+        field_vote_start_value:
+          id: field_vote_start_value
+          table: node__field_vote_start
+          field: field_vote_start_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: datetime
+          order: ASC
+          expose:
+            label: 'Afstemning start'
+            field_identifier: field_vote_start_value
+          exposed: true
+          granularity: second
         title:
           id: title
           table: node_field_data
@@ -163,20 +177,6 @@ display:
             label: ''
             field_identifier: title
           exposed: false
-        field_vote_start_value:
-          id: field_vote_start_value
-          table: node__field_vote_start
-          field: field_vote_start_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: datetime
-          order: ASC
-          expose:
-            label: 'Afstemning start'
-            field_identifier: field_vote_start_value
-          exposed: true
-          granularity: second
       arguments: {  }
       filters:
         status:

@@ -7,3 +7,18 @@
   font-size: .9em;
   padding: .4rem;
 }
+
+.support-progress {
+  .progress {
+    height: .25em;
+  }
+}
+
+.citizen-proposal-teaser {
+  border-bottom: 2px solid $gray-300;
+  &:hover {
+    border-bottom: 2px solid $primary;
+
+    @include transition-std(border-bottom, ease-out, 400ms);
+  }
+}
