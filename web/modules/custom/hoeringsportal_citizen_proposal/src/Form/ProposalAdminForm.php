@@ -121,6 +121,24 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['remarks_help'] ?? '',
     ];
 
+    $form['add_form']['characters_title'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Number of allowed characters for title field.'),
+      '#default_value' => $adminFormStateValues['characters_title'] ?? '',
+    ];
+
+    $form['add_form']['characters_proposal'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Number of allowed characters for proposal field.'),
+      '#default_value' => $adminFormStateValues['characters_proposal'] ?? '',
+    ];
+
+    $form['add_form']['characters_remarks'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Number of allowed characters for remarks field.'),
+      '#default_value' => $adminFormStateValues['characters_remarks'] ?? '',
+    ];
+
     $form['approve_form'] = [
       '#type' => 'details',
       '#open' => TRUE,

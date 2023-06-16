@@ -1,3 +1,15 @@
+.proposal-add-form {
+  label {
+    @extend .h5;
+  }
+
+  .form-item--error-message {
+    color: #863131;
+
+    @extend .small;
+  }
+}
+
 .authenticate-wrapper {
   border-top: 1px solid $gray-700;
   border-bottom: 1px solid $gray-700;
@@ -21,4 +33,20 @@
 
     @include transition-std(border-bottom, ease-out, 400ms);
   }
+}
+
+// Move maxlength counter below input box.
+.form-item-title,
+.form-item-proposal,
+.form-item-remarks {
+  display: flex;
+  flex-direction: column;
+}
+
+#edit-title-counter,
+#edit-proposal-counter,
+#edit-remarks-counter {
+  order: 1;
+  text-align: right;
+  color: $gray-700;
 }
