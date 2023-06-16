@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -46,6 +47,7 @@ class Helper implements LoggerAwareInterface {
     readonly private FileUrlGenerator $fileUrlGenerator,
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
+    readonly private EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger
   ) {
     $this->setLogger($logger);
@@ -235,6 +237,86 @@ class Helper implements LoggerAwareInterface {
       $entity->set('field_vote_start', $start->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
       $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
       $entity->set('field_content_state', 'active');
+    }
+  }
+
+  /**
+   * Find overdue proposals.
+   *
+   * @return array|int
+   *   A list of overdue proposals
+   */
+  public function findOverdueProposals() {
+    $now = new DrupalDateTime();
+    try {
+      return $this->entityTypeManager
+        ->getStorage('node')
+        ->getQuery()
+        ->condition('status', 1, '=')
+        ->condition('field_content_state', 'active', '=')
+        ->condition('field_vote_end', $now->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
+        ->execute();
+    }
+    catch (\Exception $exception) {
+      $this->logger->error('Error finding overdue proposals: @message', [
+        '@message' => $exception->getMessage(),
+      ]);
+    }
+
+  }
+
+  /**
+   * Finish a proposal by changing it's state and som other fields.
+   *
+   * @param int $nid
+   *   The id of the proposal to finish.
+   */
+  public function finishProposal(int $nid): void {
+    try {
+      $entity = $this->entityTypeManager
+        ->getStorage('node')
+        ->load($nid);
+
+      if (!$entity instanceof Node) {
+        return;
+      }
+
+      // Set proposal state.
+      $entity->set('field_content_state', 'finished');
+
+      // @todo Use method to determine support count when it is merged.
+      $supportCount = $this->connection->select('hoeringsportal_citizen_proposal_support')
+        ->condition('node_id', $entity->nid->value ?? 0)
+        ->countQuery()
+        ->execute()
+        ->fetchField();
+
+      // @todo Use constant to compare against when it is merged.
+      // Anonymize proposal if it didn't reach enough votes.
+      if ($supportCount < 10) {
+        $entity->set('field_author_name', '');
+        $entity->set('field_author_email', '');
+      }
+
+      $entity->save();
+    }
+    catch (\Exception $exception) {
+      $this->logger->error('Error finishing proposal with id:@nid: @message', [
+        '@nid' => $nid,
+        '@message' => $exception->getMessage(),
+      ]);
+    }
+
+  }
+
+  /**
+   * Implements hook_cron().
+   */
+  public function cron(): void {
+    $overdueProposals = $this->findOverdueProposals();
+
+    foreach ($overdueProposals as $proposalId) {
+      $this->finishProposal($proposalId);
     }
   }
 
