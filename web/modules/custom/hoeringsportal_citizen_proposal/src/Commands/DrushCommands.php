@@ -6,7 +6,7 @@ use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
 
 /**
- * Custom drush commands from hoeringsportal_deskpro.
+ * Custom drush commands for citizen proposal.
  */
 class DrushCommands extends BaseDrushCommands {
 
