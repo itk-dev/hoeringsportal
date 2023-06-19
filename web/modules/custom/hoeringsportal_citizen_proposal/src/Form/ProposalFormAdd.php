@@ -10,6 +10,9 @@ use Drupal\node\Entity\Node;
  * Form for adding proposal.
  */
 final class ProposalFormAdd extends ProposalFormBase {
+  public const ADD_FORM_TITLE_MAXLENGTH = 80;
+  public const ADD_FORM_PROPOSAL_MAXLENGTH = 2000;
+  public const ADD_FORM_REMARKS_MAXLENGTH = 10000;
 
   /**
    * {@inheritdoc}
@@ -72,6 +75,11 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description' => $adminFormStateValues['title_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $defaltValues['title'],
+      '#maxlength_js' => TRUE,
+      '#attributes' => [
+        'data-maxlength' => $this->getMaxLength('characters_title'),
+        'maxlength_js_label' => $this->t('@remaining characters left.'),
+      ],
     ];
 
     $form['proposal'] = [
@@ -83,6 +91,11 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description' => $adminFormStateValues['proposal_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $defaltValues['proposal'],
+      '#maxlength_js' => TRUE,
+      '#attributes' => [
+        'data-maxlength' => $this->getMaxLength('characters_proposal'),
+        'maxlength_js_label' => $this->t('@remaining characters left.'),
+      ],
     ];
 
     $form['remarks'] = [
@@ -94,6 +107,11 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description' => $adminFormStateValues['remarks_help'] ?? '',
       '#description_display' => 'before',
       '#default_value' => $defaltValues['remarks'],
+      '#maxlength_js' => TRUE,
+      '#attributes' => [
+        'data-maxlength' => $this->getMaxLength('characters_remarks'),
+        'maxlength_js_label' => $this->t('@remaining characters left.'),
+      ],
     ];
 
     $form['actions']['#type'] = 'actions';
@@ -111,8 +129,24 @@ final class ProposalFormAdd extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+    if (strlen($form_state->getValue('title')) > $this->getMaxLength('characters_title')) {
+      $form_state->setErrorByName('title', $this->t('Too many characters used.'));
+    }
+
+    if (strlen($form_state->getValue('proposal')) > $this->getMaxLength('characters_proposal')) {
+      $form_state->setErrorByName('proposal', $this->t('Too many characters used.'));
+    }
+
+    if (strlen($form_state->getValue('remarks')) > $this->getMaxLength('characters_remarks')) {
+      $form_state->setErrorByName('remarks', $this->t('Too many characters used.'));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitForm(array &$form, FormStateInterface $formState): void {
-    // @todo add real UUID.
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => $formState->getValue('title'),
@@ -131,6 +165,25 @@ final class ProposalFormAdd extends ProposalFormBase {
     $this->helper->setDraftProposal($entity);
     $formState
       ->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve');
+  }
+
+  /**
+   * Get a number of characters from admin form or constant.
+   *
+   * @return int
+   *   The calculated number of characters .
+   */
+  private function getMaxLength($adminFormElement): int {
+    $adminFormStateValues = $this->getAdminFormStateValues();
+
+    $constant = match ($adminFormElement) {
+      'characters_title' => self::ADD_FORM_TITLE_MAXLENGTH,
+      'characters_proposal' => self::ADD_FORM_PROPOSAL_MAXLENGTH,
+      'characters_remarks' => self::ADD_FORM_REMARKS_MAXLENGTH,
+      default => 0,
+    };
+
+    return !empty($adminFormStateValues[$adminFormElement]) ? (int) $adminFormStateValues[$adminFormElement] : $constant;
   }
 
 }
