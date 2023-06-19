@@ -6,6 +6,7 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,6 +28,7 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
     $plugin_definition,
     readonly private Connection $connection,
     readonly private RouteMatchInterface $routeMatch,
+    readonly protected Helper $helper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -41,6 +43,7 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
       $plugin_definition,
       $container->get('database'),
       $container->get('current_route_match'),
+      $container->get(Helper::class),
     );
   }
 
@@ -56,16 +59,15 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
    */
   public function build() {
     $node = $this->routeMatch->getParameter('node');
-
-    $supportCount = $this->connection->select('hoeringsportal_citizen_proposal_support')
-      ->condition('node_id', $node->nid->value ?? 0)
-      ->countQuery()
-      ->execute()
-      ->fetchField();
+    $supportCount = $this->helper->getProposalSupportCount($node->id());
+    $supportPercentage = $this->helper->calculateSupportPercentage($supportCount);
 
     return [
       '#theme' => 'citizen_proposal_support_counter',
-      '#data' => ['supportCount' => $supportCount],
+      '#data' => [
+        'supportCount' => $supportCount,
+        'supportPercentage' => (int) $supportPercentage,
+      ],
       '#cache' => [
         'contexts' => [],
         'tags' => [],
