@@ -113,4 +113,5 @@ theme:
   stark: 0
   hoeringsportal: 0
   claro: 0
+  hoeringsportal_admin: 0
 profile: minimal

@@ -1,0 +1,20 @@
+uuid: aea7d24a-d31a-42a4-a44f-622ad2dfb7a8
+langcode: da
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hoeringsportal_admin
+id: messages
+theme: hoeringsportal_admin
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

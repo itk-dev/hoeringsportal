@@ -1,0 +1,18 @@
+uuid: 6b39370c-40d4-474c-8f6e-179dc169dcfc
+langcode: da
+status: true
+dependencies:
+  theme:
+    - hoeringsportal_admin
+id: pagetitle
+theme: hoeringsportal_admin
+region: header
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }
