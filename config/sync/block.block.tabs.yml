@@ -1,0 +1,20 @@
+uuid: e9265b61-c173-4666-b18e-f870b6c086f4
+langcode: da
+status: true
+dependencies:
+  theme:
+    - hoeringsportal_admin
+id: tabs
+theme: hoeringsportal_admin
+region: header
+weight: 0
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }
