@@ -112,14 +112,17 @@ class Helper implements LoggerAwareInterface {
    * Preprocess citizen proposal nodes.
    */
   public function preprocessNode(&$variables): void {
-    if ('citizen_proposal' !== $variables['node']->bundle()) {
+    /** @var \Drupal\node\Entity\NodeInterface $node */
+    $node = $variables['node'];
+
+    if ('citizen_proposal' !== $node->bundle()) {
       return;
     }
 
-    $proposalSupportCount = $this->getProposalSupportCount((int) $variables['node']->nid->value);
+    $proposalSupportCount = $this->getProposalSupportCount((int) $node->id());
 
     $variables['proposal_support_count'] = $proposalSupportCount;
-    $variables['proposal_support_percentage'] = $proposalSupportCount ? $this->calculateSupportPercentage((int) $proposalSupportCount) . '%' : '0%';
+    $variables['proposal_support_percentage'] = (int) $this->calculateSupportPercentage($proposalSupportCount);
   }
 
   /**
@@ -259,15 +262,15 @@ class Helper implements LoggerAwareInterface {
    * @param int $nid
    *   The id of the citizen proposal to get support count for.
    *
-   * @return mixed
-   *   A single field from the next record, or FALSE if there is no next record.
+   * @return int
+   *   A single field from the next record, or 0 if there is no next record.
    */
-  public function getProposalSupportCount(int $nid): mixed {
+  public function getProposalSupportCount(int $nid): int {
     return $this->connection->select('hoeringsportal_citizen_proposal_support')
       ->condition('node_id', $nid)
       ->countQuery()
       ->execute()
-      ->fetchField();
+      ->fetchField() ?? 0;
   }
 
   /**
@@ -276,16 +279,19 @@ class Helper implements LoggerAwareInterface {
    * @param int $proposalSupportCount
    *   The support count af a proposal.
    *
-   * @return int
-   *   A percentage value as an integer.
+   * @return float
+   *   A percentage value.
    */
-  public function calculateSupportPercentage(int $proposalSupportCount): int {
+  public function calculateSupportPercentage(int $proposalSupportCount): float {
+    if (!$proposalSupportCount) {
+      return 0;
+    }
     // Allow changing this value in settings.php.
     $proposalSupportRequired = Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
 
     return min(
         100,
-        (int) ceil($proposalSupportCount / $proposalSupportRequired * 100)
+        ceil($proposalSupportCount / $proposalSupportRequired * 100)
       );
   }
 

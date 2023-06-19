@@ -59,14 +59,14 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
    */
   public function build() {
     $node = $this->routeMatch->getParameter('node');
-    $supportCount = $this->helper->getProposalSupportCount($node->nid->value ?? 0);
-    $supportPercentage = $supportCount ? $this->helper->calculateSupportPercentage((int) $supportCount) . '%' : '0%';
+    $supportCount = $this->helper->getProposalSupportCount($node->id());
+    $supportPercentage = $this->helper->calculateSupportPercentage($supportCount);
 
     return [
       '#theme' => 'citizen_proposal_support_counter',
       '#data' => [
         'supportCount' => $supportCount,
-        'supportPercentage' => $supportPercentage,
+        'supportPercentage' => (int) $supportPercentage,
       ],
       '#cache' => [
         'contexts' => [],
