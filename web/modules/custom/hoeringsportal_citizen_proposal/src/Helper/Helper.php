@@ -244,9 +244,9 @@ class Helper implements LoggerAwareInterface {
    * Find overdue proposals.
    *
    * @return array|int
-   *   A list of overdue proposals
+   *   A list of overdue proposal ids.
    */
-  public function findOverdueProposals() {
+  public function findOverdueProposals(): int|array {
     $now = new DrupalDateTime();
     try {
       return $this->entityTypeManager
@@ -255,12 +255,15 @@ class Helper implements LoggerAwareInterface {
         ->condition('status', 1, '=')
         ->condition('field_content_state', 'active', '=')
         ->condition('field_vote_end', $now->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
+        ->accessCheck(FALSE)
         ->execute();
     }
     catch (\Exception $exception) {
       $this->logger->error('Error finding overdue proposals: @message', [
         '@message' => $exception->getMessage(),
       ]);
+
+      return [];
     }
 
   }
@@ -291,9 +294,8 @@ class Helper implements LoggerAwareInterface {
         ->execute()
         ->fetchField();
 
-      // @todo Use constant to compare against when it is merged.
       // Anonymize proposal if it didn't reach enough votes.
-      if ($supportCount < 10) {
+      if ($this->hasEnoughVotes($supportCount)) {
         $entity->set('field_author_name', '');
         $entity->set('field_author_email', '');
       }
@@ -310,17 +312,6 @@ class Helper implements LoggerAwareInterface {
   }
 
   /**
-   * Implements hook_cron().
-   */
-  public function cron(): void {
-    $overdueProposals = $this->findOverdueProposals();
-
-    foreach ($overdueProposals as $proposalId) {
-      $this->finishProposal($proposalId);
-    }
-  }
-
-  /**
    * The proposal temp store.
    *
    * @return \Drupal\Core\TempStore\PrivateTempStore
@@ -328,6 +319,20 @@ class Helper implements LoggerAwareInterface {
    */
   private function getProposalStorage(): PrivateTempStore {
     return $this->tempStoreFactory->get('hoeringsportal_citizen_proposal');
+  }
+
+  /**
+   * Determine if a proposal has enough votes.
+   *
+   * @param int $supportCount
+   *   The support a proposal has received.
+   *
+   * @return bool
+   *   Whether the proposal has enough votes.
+   */
+  private function hasEnoughVotes(int $supportCount): bool {
+    // @todo Use constant to compare against when it is merged.
+    return !($supportCount < 10);
   }
 
   /**
