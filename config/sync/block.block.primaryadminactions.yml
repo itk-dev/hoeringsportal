@@ -1,0 +1,18 @@
+uuid: 1adc81e7-8be4-4b7e-839e-9528562ab0d4
+langcode: da
+status: true
+dependencies:
+  theme:
+    - hoeringsportal_admin
+id: primaryadminactions
+theme: hoeringsportal_admin
+region: content
+weight: -3
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

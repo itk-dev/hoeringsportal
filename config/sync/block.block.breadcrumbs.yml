@@ -1,0 +1,20 @@
+uuid: 7bdac7e6-11b4-4eb3-8bd0-644c99de4a2b
+langcode: da
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hoeringsportal_admin
+id: breadcrumbs
+theme: hoeringsportal_admin
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

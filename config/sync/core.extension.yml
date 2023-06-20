@@ -68,6 +68,7 @@ module:
   layout_discovery: 0
   link: 0
   locale: 0
+  maxlength: 0
   media: 0
   menu_ui: 0
   migrate_subject_data: 0
@@ -113,4 +114,5 @@ theme:
   stark: 0
   hoeringsportal: 0
   claro: 0
+  hoeringsportal_admin: 0
 profile: minimal

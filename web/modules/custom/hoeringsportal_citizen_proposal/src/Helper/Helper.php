@@ -36,6 +36,7 @@ class Helper implements LoggerAwareInterface {
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
   private const PROPOSAL_PERIOD_LENGTH = '+180 days';
+  private const PROPOSAL_SUPPORT_REQUIRED = 30000;
 
   /**
    * Constructor for the citizen proposal helper class.
@@ -110,11 +111,28 @@ class Helper implements LoggerAwareInterface {
   }
 
   /**
+   * Preprocess citizen proposal nodes.
+   */
+  public function preprocessNode(&$variables): void {
+    /** @var \Drupal\node\Entity\NodeInterface $node */
+    $node = $variables['node'];
+
+    if ('citizen_proposal' !== $node->bundle()) {
+      return;
+    }
+
+    $proposalSupportCount = $this->getProposalSupportCount((int) $node->id());
+
+    $variables['proposal_support_count'] = $proposalSupportCount;
+    $variables['proposal_support_percentage'] = (int) $this->calculateSupportPercentage($proposalSupportCount);
+  }
+
+  /**
    * Save proposal support to db.
    *
    * @param string $userUuid
    *   The user UUID.
-   * @param \Drupal\node\Entity\NodeInterface $node
+   * @param \Drupal\node\NodeInterface $node
    *   The proposal node.
    * @param array $values
    *   The values to save.
@@ -243,16 +261,17 @@ class Helper implements LoggerAwareInterface {
   /**
    * Find overdue proposals.
    *
-   * @return array|int
+   * @return array
    *   A list of overdue proposal ids.
    */
-  public function findOverdueProposals(): int|array {
+  public function findOverdueProposals(): array {
     $now = new DrupalDateTime();
     try {
       return $this->entityTypeManager
         ->getStorage('node')
         ->getQuery()
         ->condition('status', 1, '=')
+        ->condition('type', 'citizen_proposal')
         ->condition('field_content_state', 'active', '=')
         ->condition('field_vote_end', $now->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
         ->accessCheck(FALSE)
@@ -287,15 +306,8 @@ class Helper implements LoggerAwareInterface {
       // Set proposal state.
       $entity->set('field_content_state', 'finished');
 
-      // @todo Use method to determine support count when it is merged.
-      $supportCount = $this->connection->select('hoeringsportal_citizen_proposal_support')
-        ->condition('node_id', $entity->nid->value ?? 0)
-        ->countQuery()
-        ->execute()
-        ->fetchField();
-
       // Anonymize proposal if it didn't reach enough votes.
-      if ($this->hasEnoughVotes($supportCount)) {
+      if ($this->hasEnoughVotes($nid)) {
         $entity->set('field_author_name', '');
         $entity->set('field_author_email', '');
       }
@@ -308,7 +320,43 @@ class Helper implements LoggerAwareInterface {
         '@message' => $exception->getMessage(),
       ]);
     }
+  }
 
+  /**
+   * Get citizen proposal support count.
+   *
+   * @param int $nid
+   *   The id of the citizen proposal to get support count for.
+   *
+   * @return int
+   *   A single field from the next record, or 0 if there is no next record.
+   */
+  public function getProposalSupportCount(int $nid): int {
+    return $this->connection->select('hoeringsportal_citizen_proposal_support')
+      ->condition('node_id', $nid)
+      ->countQuery()
+      ->execute()
+      ->fetchField() ?? 0;
+  }
+
+  /**
+   * Calculate the support percentage of a proposal, from the support count.
+   *
+   * @param int $proposalSupportCount
+   *   The support count af a proposal.
+   *
+   * @return float
+   *   A percentage value.
+   */
+  public function calculateSupportPercentage(int $proposalSupportCount): float {
+    if (!$proposalSupportCount) {
+      return 0;
+    }
+
+    return min(
+        100,
+        ceil($proposalSupportCount / $this->getProposalSupportRequired() * 100)
+      );
   }
 
   /**
@@ -324,15 +372,25 @@ class Helper implements LoggerAwareInterface {
   /**
    * Determine if a proposal has enough votes.
    *
-   * @param int $supportCount
+   * @param int $nid
    *   The support a proposal has received.
    *
    * @return bool
    *   Whether the proposal has enough votes.
    */
-  private function hasEnoughVotes(int $supportCount): bool {
-    // @todo Use constant to compare against when it is merged.
-    return !($supportCount < 10);
+  private function hasEnoughVotes(int $nid): bool {
+    return $this->getProposalSupportCount($nid) > $this->getProposalSupportRequired();
+  }
+
+  /**
+   * Get the required support count.
+   *
+   * @return int
+   *   The support proposals require.
+   */
+  private function getProposalSupportRequired(): int {
+    // Allow changing this value in settings.php.
+    return (int) Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
   }
 
   /**

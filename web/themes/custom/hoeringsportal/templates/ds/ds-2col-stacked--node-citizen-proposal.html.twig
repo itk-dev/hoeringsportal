@@ -36,12 +36,28 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
-          {{ left }}
+          <div>
+            {{ left['dynamic_block_field:node-citizen_proposal_support_counter'] }}
+            <div class="d-flex justify-content-between mt-3 border-bottom pb-3">
+              <div>
+                {{ left.field_author_name }}
+              </div>
+              <div>
+                {{ left.field_author_email }}
+              </div>
+            </div>
+          </div>
+          <div class="border-bottom pb-3">
+            {{ left|without('field_author_name', 'field_author_email', 'dynamic_block_field:node-citizen_proposal_support_counter') }}
+          </div>
+          <div class="mt-3">
+            <a class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {'node': content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
+          </div>
         </div>
       </{{ left_wrapper }}>
 
       <{{ right_wrapper }}{{ right_attributes.addClass('group-right col-md-4') }}>
-        <div>
+        <div class="d-none d-md-block">
           <a class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {'node': content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
         </div>
         {{ right }}
