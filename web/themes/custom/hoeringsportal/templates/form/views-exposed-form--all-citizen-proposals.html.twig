@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="row">
+  {% if custom_config_exists and full_map_url %}
+    <div class="col-md-2 mb-4">
+      <a target="_blank" href="{{ full_map_url }}" class="btn btn-primary">{{ 'Show on map'|t }}</a>
+    </div>
+  {% endif %}
+  <div class="col-md-12">
+    <div class="row pt-3" id="collapseFilters">
+      {% if q is not empty %}
+        {{ q }}
+      {% endif %}
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        {{ form.field_content_state_value }}
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-12">
+        {{ form.sort_bef_combine }}
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-md-end">
+        <div class="mb-3">
+          <a class="btn btn-primary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add') }}">{{ 'Create your proposal'|t }}</a>
+        </div>
+      </div>
+      {{ form|without('sort_bef_combine', 'field_area_target_id', 'field_type_target_id', 'field_content_state_value') }}
+    </div>
+  </div>
+</div>

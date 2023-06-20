@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\File\FileUrlGenerator;
 use Drupal\Core\Logger\LoggerChannel;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
@@ -47,6 +48,7 @@ class Helper implements LoggerAwareInterface {
     readonly private FileUrlGenerator $fileUrlGenerator,
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
+    readonly private EntityTypeManagerInterface $entityTypeManager,
     LoggerChannel $logger
   ) {
     $this->setLogger($logger);
@@ -257,6 +259,70 @@ class Helper implements LoggerAwareInterface {
   }
 
   /**
+   * Find overdue proposals.
+   *
+   * @return array
+   *   A list of overdue proposal ids.
+   */
+  public function findOverdueProposals(): array {
+    $now = new DrupalDateTime();
+    try {
+      return $this->entityTypeManager
+        ->getStorage('node')
+        ->getQuery()
+        ->condition('status', 1, '=')
+        ->condition('type', 'citizen_proposal')
+        ->condition('field_content_state', 'active', '=')
+        ->condition('field_vote_end', $now->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
+        ->accessCheck(FALSE)
+        ->execute();
+    }
+    catch (\Exception $exception) {
+      $this->logger->error('Error finding overdue proposals: @message', [
+        '@message' => $exception->getMessage(),
+      ]);
+
+      return [];
+    }
+
+  }
+
+  /**
+   * Finish a proposal by changing it's state and som other fields.
+   *
+   * @param int $nid
+   *   The id of the proposal to finish.
+   */
+  public function finishProposal(int $nid): void {
+    try {
+      $entity = $this->entityTypeManager
+        ->getStorage('node')
+        ->load($nid);
+
+      if (!$entity instanceof Node) {
+        return;
+      }
+
+      // Set proposal state.
+      $entity->set('field_content_state', 'finished');
+
+      // Anonymize proposal if it didn't reach enough votes.
+      if ($this->hasEnoughVotes($nid)) {
+        $entity->set('field_author_name', '');
+        $entity->set('field_author_email', '');
+      }
+
+      $entity->save();
+    }
+    catch (\Exception $exception) {
+      $this->logger->error('Error finishing proposal with id:@nid: @message', [
+        '@nid' => $nid,
+        '@message' => $exception->getMessage(),
+      ]);
+    }
+  }
+
+  /**
    * Get citizen proposal support count.
    *
    * @param int $nid
@@ -286,12 +352,10 @@ class Helper implements LoggerAwareInterface {
     if (!$proposalSupportCount) {
       return 0;
     }
-    // Allow changing this value in settings.php.
-    $proposalSupportRequired = Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
 
     return min(
         100,
-        ceil($proposalSupportCount / $proposalSupportRequired * 100)
+        ceil($proposalSupportCount / $this->getProposalSupportRequired() * 100)
       );
   }
 
@@ -303,6 +367,30 @@ class Helper implements LoggerAwareInterface {
    */
   private function getProposalStorage(): PrivateTempStore {
     return $this->tempStoreFactory->get('hoeringsportal_citizen_proposal');
+  }
+
+  /**
+   * Determine if a proposal has enough votes.
+   *
+   * @param int $nid
+   *   The support a proposal has received.
+   *
+   * @return bool
+   *   Whether the proposal has enough votes.
+   */
+  private function hasEnoughVotes(int $nid): bool {
+    return $this->getProposalSupportCount($nid) > $this->getProposalSupportRequired();
+  }
+
+  /**
+   * Get the required support count.
+   *
+   * @return int
+   *   The support proposals require.
+   */
+  private function getProposalSupportRequired(): int {
+    // Allow changing this value in settings.php.
+    return (int) Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
   }
 
   /**

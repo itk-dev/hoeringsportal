@@ -3,7 +3,6 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Database\Connection;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
@@ -26,7 +25,6 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    readonly private Connection $connection,
     readonly private RouteMatchInterface $routeMatch,
     readonly protected Helper $helper,
   ) {
@@ -41,7 +39,6 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('database'),
       $container->get('current_route_match'),
       $container->get(Helper::class),
     );

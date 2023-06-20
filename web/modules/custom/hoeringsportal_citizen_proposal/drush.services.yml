@@ -1,0 +1,6 @@
+services:
+  Drupal\hoeringsportal_citizen_proposal\Commands\DrushCommands:
+    tags:
+      - { name: drush.command }
+    arguments:
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
