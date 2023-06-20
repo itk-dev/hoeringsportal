@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
@@ -22,12 +23,20 @@ targetEntityType: node
 bundle: citizen_proposal
 mode: teaser
 content:
+  field_author_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_content_state:
     type: list_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 1
+    weight: 0
     region: content
   field_vote_end:
     type: datetime_default
@@ -36,16 +45,16 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 2
     region: content
 hidden:
   field_author_email: true
-  field_author_name: true
+  field_author_email_display: true
   field_author_uuid: true
   field_proposal: true
   field_remarks: true

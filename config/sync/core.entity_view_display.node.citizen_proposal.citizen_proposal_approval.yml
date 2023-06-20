@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.citizen_proposal_approval
     - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
@@ -51,6 +52,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_author_email_display: true
   field_author_uuid: true
   field_content_state: true
   field_vote_end: true

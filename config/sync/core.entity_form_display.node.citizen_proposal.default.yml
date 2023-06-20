@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
@@ -68,6 +69,7 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  field_author_email_display: true
   field_author_uuid: true
   field_content_state: true
   field_vote_end: true

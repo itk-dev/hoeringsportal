@@ -263,10 +263,9 @@ display:
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
+          perm: 'access content overview'
       cache:
         type: tag
       empty:
@@ -588,7 +587,7 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_1:
     id: data_export_1
@@ -848,6 +847,11 @@ display:
           empty_zero: false
           hide_alter_empty: true
           destination: true
+      access:
+        type: role
+        options:
+          role:
+            administrator: administrator
       style:
         type: data_export
         options:
@@ -863,6 +867,7 @@ display:
             utf8_bom: '0'
             use_serializer_encode_only: false
       defaults:
+        access: false
         fields: false
       display_extenders: {  }
       path: admin/content/export
@@ -916,5 +921,5 @@ display:
         - url.query_args
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags: {  }
