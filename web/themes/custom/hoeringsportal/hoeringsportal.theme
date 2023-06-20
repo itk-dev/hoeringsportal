@@ -207,7 +207,7 @@ function hoeringsportal_preprocess_views_exposed_form(&$variables) {
     if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
       $variables['custom_config_exists'] = TRUE;
       $config = \Drupal::getContainer()->get('itk_admin.itk_config');
-      $variables['full_map_url'] = $config->get('full_map_hearing_url');
+      $variables['full_map_url'] = $config->get('full_map_url');
     }
   }
 }

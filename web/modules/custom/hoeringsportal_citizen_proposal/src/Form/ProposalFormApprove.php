@@ -43,6 +43,52 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#text' => $adminFormStateValues['approve_intro']['value'] ?? '',
     ];
 
+    $form['author'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+      '#attributes' => [
+        'class' => [
+          'd-flex', 'justify-content-between', 'mt-3', 'border-bottom', 'pb-3',
+        ],
+      ],
+    ];
+
+    $form['author']['name_wrapper'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+    ];
+
+    $form['author']['name_wrapper']['approve_form_name'] = [
+      '#prefix' => '<h5>' . $this->t('Name') . '</h5>',
+      '#type' => 'processed_text',
+      '#text' => $defaltValues['name'],
+      '#format' => 'filtered_html',
+    ];
+
+    $form['author']['email_wrapper'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+    ];
+
+    $form['author']['email_wrapper']['approve_form_email'] = [
+      '#prefix' => '<h5>' . $this->t('E-mail') . '</h5>',
+      '#type' => 'processed_text',
+      '#text' => $defaltValues['email'],
+      '#format' => 'filtered_html',
+    ];
+
+    $form['author']['email_display_wrapper'] = [
+      '#type' => 'html_tag',
+      '#tag' => 'div',
+    ];
+
+    $form['author']['email_display_wrapper']['approve_form_email_display'] = [
+      '#prefix' => '<h5>' . $this->t('Display E-mail on proposal') . '</h5>',
+      '#type' => 'processed_text',
+      '#text' => $defaltValues['email_display'] ? $this->t('Yes') : $this->t('No'),
+      '#format' => 'filtered_html',
+    ];
+
     $form['approve_form_title'] = [
       '#prefix' => '<h5>' . $this->t('Title') . '</h5>',
       '#type' => 'processed_text',
@@ -61,20 +107,6 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#prefix' => '<h5>' . $this->t('Remarks') . '</h5>',
       '#type' => 'processed_text',
       '#text' => $defaltValues['remarks'],
-      '#format' => 'filtered_html',
-    ];
-
-    $form['approve_form_name'] = [
-      '#prefix' => '<h5>' . $this->t('Name') . '</h5>',
-      '#type' => 'processed_text',
-      '#text' => $defaltValues['name'],
-      '#format' => 'filtered_html',
-    ];
-
-    $form['approve_form_email'] = [
-      '#prefix' => '<h5>' . $this->t('E-mail') . '</h5>',
-      '#type' => 'processed_text',
-      '#text' => $defaltValues['email'],
       '#format' => 'filtered_html',
     ];
 
