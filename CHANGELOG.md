@@ -8,6 +8,7 @@
 * Change backend theme to Claro
 * Add fixtures
 * Update readme
+* Fixed pretix data bug
 
 ## 1.4.3
 

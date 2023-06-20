@@ -199,7 +199,12 @@ class PublicMeetingHelper {
    *   The pretix availability if any.
    */
   public function getPretixAvailability(array $data) {
-    return reset($data['data']['availability'])['availability'] ?? NULL;
+    $availability = $data['data']['availability'] ?? [];
+    if (!is_array($availability)) {
+      return NULL;
+    }
+
+    return reset($availability)['availability'] ?? NULL;
   }
 
   /**
