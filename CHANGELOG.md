@@ -10,6 +10,7 @@
 * Add Cypress tests
 * Add OpenID Connect authentication for citizens
 * Add citizen authentication on support proposal form
+* Add Playwright tests and fixed tests run in GitHub Actions
 
 ## In development
 

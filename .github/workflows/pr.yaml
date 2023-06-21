@@ -122,7 +122,6 @@ jobs:
           composer code-analysis
 
   coding-standards-custom-themes:
-    if: ${{ false }}  # Disable - This job has some file permission errors that need further investigation.
     name: Yarn - Check Coding Standards in custom themes
     runs-on: ubuntu-latest
     steps:
@@ -134,7 +133,8 @@ jobs:
         run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
 
       - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
+        run: |
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
@@ -181,8 +181,7 @@ jobs:
           # Open the site
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
 
-  cypress-tests:
-    if: ${{ false }}  # @TODO Make this run succesfully
+  playwright-tests:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -206,7 +205,24 @@ jobs:
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
 
-      - name: Run cypress
+          cat > web/sites/default/settings.local.php <<'EOL'
+          <?php
+          $settings['hoeringsportal_openid_connect']['openid_connect'] = [
+            'clientId'                 => 'client-id',
+            'clientSecret'             => 'client-secret',
+            'openIDConnectMetadataUrl' => 'http://idp-citizen.hoeringsportal.local.itkdev.dk/.well-known/openid-configuration',
+          ];
+
+          EOL
+
+      - name: Run Playwright
         run: |
-          docker compose run --user root --rm node yarn install
-          docker compose run --user root --rm cypress run
+          docker compose run --rm node yarn install
+          docker compose run --rm playwright npx playwright test --retries 3
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

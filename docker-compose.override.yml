@@ -1,25 +1,22 @@
 services:
   node:
-    image: node:16
+    image: node:18
     working_dir: /app
     volumes:
       - .:/app:delegated
 
-  cypress:
-    # This Cypress version should match the one in `package.json`.
-    image: cypress/included:12.13.0
+  playwright:
+    # https://playwright.dev/docs/docker
+    # This Playwright version should match the one in `package.json`.
+    image: mcr.microsoft.com/playwright:v1.34.3-jammy
     networks:
       - app
     depends_on:
       - nginx
-    environment:
-      - CYPRESS_VIDEO=false
-      - CYPRESS_baseUrl=http://nginx:8080
     volumes:
-      - .:/e2e
+      - .:/app
       - /tmp/.X11-unix:/tmp/.X11-unix
-    working_dir: /e2e
-    entrypoint: cypress
+    working_dir: /app
 
   # https://github.com/Soluto/oidc-server-mock
   idp-citizen:
