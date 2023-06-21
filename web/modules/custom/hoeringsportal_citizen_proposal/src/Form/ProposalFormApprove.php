@@ -44,8 +44,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     ];
 
     $form['author'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
+      '#type' => 'container',
       '#attributes' => [
         'class' => [
           'd-flex', 'justify-content-between', 'mt-3', 'border-bottom', 'pb-3',
@@ -54,8 +53,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     ];
 
     $form['author']['name_wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
+      '#type' => 'container',
     ];
 
     $form['author']['name_wrapper']['approve_form_name'] = [
@@ -66,8 +64,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     ];
 
     $form['author']['email_wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
+      '#type' => 'container',
     ];
 
     $form['author']['email_wrapper']['approve_form_email'] = [
@@ -78,8 +75,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     ];
 
     $form['author']['email_display_wrapper'] = [
-      '#type' => 'html_tag',
-      '#tag' => 'div',
+      '#type' => 'container',
     ];
 
     $form['author']['email_display_wrapper']['approve_form_email_display'] = [
