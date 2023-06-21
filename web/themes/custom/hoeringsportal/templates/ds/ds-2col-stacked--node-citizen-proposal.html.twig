@@ -42,9 +42,11 @@
               <div>
                 {{ left.field_author_name }}
               </div>
-              <div>
-                {{ left.field_author_email }}
-              </div>
+              {% if node.field_author_email_display.value is same as('1') %}
+                <div>
+                  {{ left.field_author_email }}
+                </div>
+              {% endif %}
             </div>
           </div>
           <div class="border-bottom pb-3">

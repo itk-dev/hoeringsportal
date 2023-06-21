@@ -129,6 +129,7 @@ abstract class ProposalFormBase extends FormBase {
     return [
       'name' => $entity?->field_author_name->value ?? $userData['name'] ?? NULL,
       'email' => $entity?->field_author_email->value ?? $userData['email'] ?? NULL,
+      'email_display' => $entity?->field_author_email_display->value ?? NULL,
       'title' => $entity?->title->value ?? NULL,
       'proposal' => $entity?->field_proposal->value ?? '',
       'remarks' => $entity?->field_remarks->value ?? '',

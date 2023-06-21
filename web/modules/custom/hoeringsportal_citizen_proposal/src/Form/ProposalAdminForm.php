@@ -90,6 +90,12 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['name_help'] ?? '',
     ];
 
+    $form['add_form']['email_display_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Email display help'),
+      '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
+    ];
+
     $form['add_form']['email_help'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Email help'),

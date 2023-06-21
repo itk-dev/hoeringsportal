@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
@@ -46,6 +47,7 @@ third_party_settings:
         - field_remarks
         - field_author_name
         - field_author_email
+        - field_author_email_display
       right:
         - field_vote_start
         - field_vote_end
@@ -78,6 +80,16 @@ content:
     third_party_settings: {  }
     weight: 5
     region: left
+  field_author_email_display:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: left
   field_author_name:
     type: string
     label: above
@@ -107,7 +119,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 7
+    weight: 8
     region: right
   field_vote_start:
     type: datetime_default
@@ -116,12 +128,12 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: right
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 8
+    weight: 9
     region: right
 hidden:
   field_author_uuid: true

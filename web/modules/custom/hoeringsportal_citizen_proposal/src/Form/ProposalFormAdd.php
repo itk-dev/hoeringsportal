@@ -61,6 +61,15 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
+    $form['email_display'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Display email'),
+      '#default_value' => $defaltValues['email_display'],
+      '#description' => $adminFormStateValues['email_display_help'] ?? '',
+      '#description_display' => 'before',
+    ];
+
     $form['proposal_intro'] = [
       '#type' => 'processed_text',
       '#format' => $adminFormStateValues['proposal_intro']['format'] ?? 'filtered_html',
@@ -153,6 +162,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       'field_author_uuid' => $this->getUserUuid(),
       'field_author_name' => $formState->getValue('name'),
       'field_author_email' => $formState->getValue('email'),
+      'field_author_email_display' => $formState->getValue('email_display'),
       'field_proposal' => [
         'value' => $formState->getValue('proposal'),
         'format' => 'filtered_html',
