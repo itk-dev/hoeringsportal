@@ -172,3 +172,4 @@ hidden:
   field_signup_text: true
   field_type: true
   links: true
+  published_at: true

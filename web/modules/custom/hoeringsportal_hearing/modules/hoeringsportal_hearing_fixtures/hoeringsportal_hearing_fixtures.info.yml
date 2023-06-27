@@ -1,0 +1,9 @@
+name: Hoeringsportal hearing fixtures
+type: module
+description: 'Provides hearing fixtures for the site.'
+core_version_requirement: ^9
+package: ITK
+dependencies:
+  - content_fixtures:content_fixtures
+  - hoeringsportal_base_fixtures:hoeringsportal_base_fixtures
+  - hoeringsportal_hearing:hoeringsportal_hearing

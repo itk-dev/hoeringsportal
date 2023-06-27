@@ -23,3 +23,4 @@ hidden:
   field_timeline_items: true
   langcode: true
   links: true
+  published_at: true

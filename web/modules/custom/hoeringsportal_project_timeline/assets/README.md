@@ -1,11 +1,10 @@
-#Høringsportal - Project timeline
+# Høringsportal - Project timeline
 
 We use [Webpack
 Encore](http://symfony.com/doc/current/frontend.html#webpack-encore)
 to handle frontend assets, see
-http://symfony.com/doc/current/frontend.html#webpack-encore for
-details.
-
+[Webpack encore](http://symfony.com/doc/current/frontend.html#webpack-encore)
+for details.
 
 JavaScript assets are put in `js/` and built assets are put in `build/`.
 
@@ -20,13 +19,13 @@ npm install
 
 Build for development:
 
-```
+```sh
 ./node_modules/.bin/encore dev --watch
 ```
 
 Build for production:
 
-```
+```sh
 ./node_modules/.bin/encore production
 ```
 

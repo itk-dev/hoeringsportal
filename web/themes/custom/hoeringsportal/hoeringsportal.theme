@@ -193,18 +193,6 @@ function hoeringsportal_preprocess_html(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_form().
- *
- * Manually set the template to use for form since drupal does not automatically
- * detect it.
- */
-function hoeringsportal_preprocess_form(&$variables, $hook, &$info) {
-  if ($variables['element']['#form_id'] == 'search_form') {
-    $info['template'] = 'form--search-form';
-  }
-}
-
-/**
  * Implements hook_preprocess_views_exposed_form().
  *
  * Provide link for external map.

@@ -371,7 +371,7 @@ class HearingHelper {
 
       if ($backend instanceof SupportsDeletingJobsInterface) {
         /** @var \Drupal\advancedqueue\Job $job */
-        foreach ($backend->getJobs(Job::STATE_QUEUED) as $job) {
+        foreach ($this->getJobs(Job::STATE_QUEUED) as $job) {
           if ($matchesCurrentPayload($job->getPayload())) {
             $backend->deleteJob($job->getId());
           }
@@ -653,6 +653,38 @@ class HearingHelper {
    */
   private function getHearingIdFieldName(): string {
     return 'field' . $this->deskpro->getTicketHearingIdFieldId();
+  }
+
+  /**
+   * Get advanced queue jobs related to deskpro.
+   *
+   * @param string|null $state
+   *   The job state.
+   *
+   * @return array
+   *   The jobs requested.
+   */
+  private function getJobs(string $state = NULL): array {
+    $query = $this->database->select('advancedqueue', 'aq');
+    $query->fields('aq');
+    $query->condition('aq.queue_id', 'hoeringsportal_deskpro');
+    if ($state) {
+      $query->condition('aq.state', $state);
+    }
+    $query->orderBy('aq.job_id');
+    $result = $query->execute();
+
+    $jobs_definitions = $result->fetchAll(\PDO::FETCH_BOTH);
+    $jobs = [];
+    foreach ($jobs_definitions as $job_definition) {
+      $job_definition['id'] = $job_definition['job_id'];
+      unset($job_definition['job_id']);
+      $job_definition['payload'] = json_decode($job_definition['payload'], TRUE);
+
+      $jobs[] = new Job($job_definition);
+    }
+
+    return $jobs;
   }
 
 }

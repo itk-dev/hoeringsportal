@@ -1,6 +1,7 @@
 {
     "description": "Høringsportal",
     "type": "project",
+    "name": "itk-dev/hoeringsportal",
     "license": "GPL-2.0-or-later",
     "authors": [
         {
@@ -25,19 +26,25 @@
             "type": "path",
             "url": "web/modules/custom/hoeringsportal_data",
             "options": {
-                "symlink": false
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_data": "1.0-dev"
+                }
             }
         },
         "drupal/hoeringsportal_deskpro": {
             "type": "path",
             "url": "web/modules/custom/hoeringsportal_deskpro",
             "options": {
-                "symlink": false
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_deskpro": "1.0-dev"
+                }
             }
         }
     },
     "require": {
-        "php": "^7.4.0",
+        "php": "^8.1.0",
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/jqueryui-touch-punch": "dev-master",
         "bower-asset/spectrum": "^1.8",
@@ -47,7 +54,7 @@
         "drupal/captcha": "^1.0@beta",
         "drupal/color_field": "^2.0",
         "drupal/config_ignore": "^2.2",
-        "drupal/config_import_locale": "^1.0",
+        "drupal/config_import_locale": "^2.0",
         "drupal/core-composer-scaffold": "^9.3",
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
@@ -58,8 +65,8 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
-        "drupal/hoeringsportal_data": "*",
-        "drupal/hoeringsportal_deskpro": "*",
+        "drupal/hoeringsportal_data": "^1.0",
+        "drupal/hoeringsportal_deskpro": "^1.0",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jquery_ui_accordion": "^1.1",
@@ -90,8 +97,12 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
+        "drupal/content_fixtures": "^3.1",
         "drupal/core-dev": "^9.3",
-        "drupal/upgrade_status": "^3.13"
+        "drupal/upgrade_status": "^3.13",
+        "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-deprecation-rules": "^1.1"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -107,21 +118,34 @@
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "oomphinc/composer-installers-extender": true
+            "oomphinc/composer-installers-extender": true,
+            "phpstan/extension-installer": true
         }
     },
     "scripts": {
-        "check-coding-standards/phpcs": [
+        "code-analysis/phpstan": [
+            "phpstan analyse --configuration=phpstan.neon"
+        ],
+        "code-analysis": [
+            "@code-analysis/phpstan"
+        ],
+        "coding-standards-check/phpcs": [
             "vendor/bin/phpcs --standard=phpcs.xml.dist"
         ],
-        "check-coding-standards": [
-            "@check-coding-standards/phpcs"
+        "coding-standards-check": [
+            "@coding-standards-check/phpcs"
         ],
-        "apply-coding-standards/phpcs": [
+        "coding-standards-apply/phpcs": [
             "scripts/phpcbf --standard=phpcs.xml.dist"
         ],
-        "apply-coding-standards": [
-            "@apply-coding-standards/phpcs"
+        "coding-standards-apply": [
+            "@coding-standards-apply/phpcs"
+        ],
+        "post-install-cmd": [
+            "@install-codestandards"
+        ],
+        "install-codestandards": [
+            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
         ]
     },
     "extra": {
@@ -165,6 +189,9 @@
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "patches": {
+          "deskpro/deskpro-api-client-php": {
+            "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
+          }
         }
     }
 }

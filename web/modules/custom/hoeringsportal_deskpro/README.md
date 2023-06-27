@@ -29,7 +29,8 @@ docker compose run --rm node yarn --cwd web/modules/custom/hoeringsportal_deskpr
 docker compose run --rm node yarn --cwd web/modules/custom/hoeringsportal_deskpro build
 ```
 
-During development you may want to watch for file changes and rebuild when needed:
+During development you may want to watch for file changes and rebuild
+when needed:
 
 ```sh
 docker compose run --rm node yarn --cwd web/modules/custom/hoeringsportal_deskpro watch
