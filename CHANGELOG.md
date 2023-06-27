@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* Applied patch
+  <https://www.drupal.org/project/drupal/issues/3222107#comment-15048236> to
+  make media stuff work
+  [PR-316](https://github.com/itk-dev/hoeringsportal/pull/316)
+
 ## [3.0.0] - 2023-06-27
 
 * Upgrade to Drupal 9.5
