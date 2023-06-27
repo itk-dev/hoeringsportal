@@ -4,8 +4,8 @@ namespace Drupal\hoeringsportal_config_settings\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\node\Entity\Node;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
 
 /**
  * Itk general settings form.

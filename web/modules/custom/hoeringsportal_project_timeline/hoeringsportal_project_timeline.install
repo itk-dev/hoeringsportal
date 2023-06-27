@@ -5,8 +5,8 @@
  * Contains update and install hooks for timeline module.
  */
 
-use Drupal\taxonomy\Entity\Term;
 use Drupal\Core\Utility\UpdateException;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Add taxonomy terms to timeline vocabulary.

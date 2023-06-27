@@ -5,8 +5,8 @@
  * Installation file for the itk_pretix module.
  */
 
-use Drupal\node\Entity\Node;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_schema().

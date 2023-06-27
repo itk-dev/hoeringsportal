@@ -2,9 +2,9 @@
 
 namespace Drupal\itk_admin_links\Plugin\Block;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Access\AccessResult;
 
 /**
  * Provides admin links.

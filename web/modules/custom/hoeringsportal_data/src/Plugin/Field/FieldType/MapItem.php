@@ -2,9 +2,9 @@
 
 namespace Drupal\hoeringsportal_data\Plugin\Field\FieldType;
 
-use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\Core\TypedData\DataDefinition;
 
 /**
  * Field type "hoeringsportal_data_map".
