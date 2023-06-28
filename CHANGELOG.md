@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.0.2] - 2023-06-28
+
 * Allow uploading huge files
   [PR-322](https://github.com/itk-dev/hoeringsportal/pull/322)
 
@@ -36,7 +38,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.0.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...HEAD
+[3.0.2]: https://github.com/itk-dev/hoeringsportal/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/itk-dev/hoeringsportal/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/itk-dev/hoeringsportal/compare/1.4.3...3.0.0
 [1.4.3]: https://github.com/itk-dev/hoeringsportal/compare/1.0.0...1.4.3
