@@ -35,7 +35,12 @@ final class ProposalFormAdd extends ProposalFormBase {
     $defaltValues = $this->getDefaultFormValues();
     $adminFormStateValues = $this->getAdminFormStateValues();
 
-    $form['author_intro'] = [
+    $form['author_intro_container'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['mt-5']],
+    ];
+
+    $form['author_intro_container']['author_intro'] = [
       '#type' => 'processed_text',
       '#format' => $adminFormStateValues['author_intro']['format'] ?? 'filtered_html',
       '#text' => $adminFormStateValues['author_intro']['value'] ?? '',
@@ -46,8 +51,19 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#title' => $this
         ->t('Name'),
       '#default_value' => $defaltValues['name'],
-      '#attributes' => ['readonly' => TRUE],
+      '#attributes' => ['readonly' => TRUE, 'class' => ['mb-3']],
       '#description' => $adminFormStateValues['name_help'] ?? '',
+      '#description_display' => 'before',
+    ];
+
+    $form['phone'] = [
+      '#type' => 'textfield',
+      '#required' => TRUE,
+      '#title' => $this
+        ->t('Phone'),
+      '#default_value' => $defaltValues['phone'],
+      '#attributes' => ['class' => ['mb-3']],
+      '#description' => $adminFormStateValues['phone_help'] ?? '',
       '#description_display' => 'before',
     ];
 
@@ -65,12 +81,17 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#type' => 'checkbox',
       '#title' => $this
         ->t('Display email'),
-      '#default_value' => $defaltValues['email_display'],
+      '#default_value' => $defaltValues['email_display'] ?? TRUE,
       '#description' => $adminFormStateValues['email_display_help'] ?? '',
       '#description_display' => 'before',
     ];
 
-    $form['proposal_intro'] = [
+    $form['proposal_intro_container'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['mt-5']],
+    ];
+
+    $form['proposal_intro_container']['proposal_intro'] = [
       '#type' => 'processed_text',
       '#format' => $adminFormStateValues['proposal_intro']['format'] ?? 'filtered_html',
       '#text' => $adminFormStateValues['proposal_intro']['value'] ?? '',
@@ -161,6 +182,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       'title' => $formState->getValue('title'),
       'field_author_uuid' => $this->getUserUuid(),
       'field_author_name' => $formState->getValue('name'),
+      'field_author_phone' => $formState->getValue('phone'),
       'field_author_email' => $formState->getValue('email'),
       'field_author_email_display' => $formState->getValue('email_display'),
       'field_proposal' => [

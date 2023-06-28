@@ -151,7 +151,6 @@ class Helper implements LoggerAwareInterface {
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
-      $this->messenger()->addStatus($this->t('Thank you! Your support has been registered.'));
     }
     catch (\Exception $exception) {
       $this->logger->error('Error saving support: @message', [

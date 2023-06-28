@@ -58,8 +58,8 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     $form['support_intro'] = [
       '#type' => 'processed_text',
-      '#format' => $adminFormStateValues['author_intro']['format'] ?? 'filtered_html',
-      '#text' => $adminFormStateValues['author_intro']['value'] ?? '',
+      '#format' => $adminFormStateValues['support_intro']['format'] ?? 'filtered_html',
+      '#text' => $adminFormStateValues['support_intro']['value'] ?? '',
     ];
 
     $form['name'] = [
@@ -109,6 +109,8 @@ final class ProposalFormSupport extends ProposalFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $userData = $this->getUserData();
+    $adminFormStateValues = $this->getAdminFormStateValues();
+
     /** @var \Drupal\node\NodeInterface $node */
     $node = $form['#node'];
 
@@ -118,11 +120,21 @@ final class ProposalFormSupport extends ProposalFormBase {
       return;
     }
 
-    $this->helper->saveSupport($this->getUserUuid(), $node, [
-      'user_name' => $form_state->getValue('name'),
-      'user_email' => $form_state->getValue('email'),
-      'created' => time(),
-    ]);
+    try {
+      $this->helper->saveSupport(
+        $this->getUserUuid(),
+        $node,
+        [
+          'user_name' => $form_state->getValue('name'),
+          'user_email' => $form_state->getValue('email'),
+          'created' => time(),
+        ],
+      );
+      $this->messenger->addStatus($adminFormStateValues['support_submission_text']);
+    }
+    catch (\Exception $e) {
+      $this->messenger->addError($this->t('Something went wrong. Your support was not registered.'));
+    }
 
     $form_state
       ->setRedirect('entity.node.canonical', ['node' => $node->id()]);

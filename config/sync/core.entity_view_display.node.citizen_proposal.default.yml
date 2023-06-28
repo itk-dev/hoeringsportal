@@ -6,8 +6,10 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
+    - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
+    - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
     - field.field.node.citizen_proposal.field_vote_end
@@ -52,6 +54,7 @@ third_party_settings:
         - field_vote_start
         - field_vote_end
         - sharing_buttons
+        - field_more_info
     fields:
       'dynamic_block_field:node-citizen_proposal_support_counter':
         plugin_id: 'dynamic_block_field:node-citizen_proposal_support_counter'
@@ -98,6 +101,13 @@ content:
     third_party_settings: {  }
     weight: 4
     region: left
+  field_more_info:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: right
   field_proposal:
     type: text_default
     label: above
@@ -136,6 +146,7 @@ content:
     weight: 9
     region: right
 hidden:
+  field_author_phone: true
   field_author_uuid: true
   field_content_state: true
   langcode: true

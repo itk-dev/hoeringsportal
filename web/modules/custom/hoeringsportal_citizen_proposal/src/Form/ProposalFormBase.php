@@ -117,7 +117,9 @@ abstract class ProposalFormBase extends FormBase {
    * @return array
    *   The form default values with keys
    *   - name
+   *   - phone
    *   - email
+   *   - email_display
    *   - title
    *   - proposal
    *   - remarks
@@ -128,6 +130,7 @@ abstract class ProposalFormBase extends FormBase {
 
     return [
       'name' => $entity?->field_author_name->value ?? $userData['name'] ?? NULL,
+      'phone' => $entity?->field_author_phone->value ?? $userData['phone'] ?? NULL,
       'email' => $entity?->field_author_email->value ?? $userData['email'] ?? NULL,
       'email_display' => $entity?->field_author_email_display->value ?? NULL,
       'title' => $entity?->title->value ?? NULL,

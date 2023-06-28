@@ -90,16 +90,22 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['name_help'] ?? '',
     ];
 
-    $form['add_form']['email_display_help'] = [
+    $form['add_form']['phone_help'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Email display help'),
-      '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
+      '#title' => $this->t('Phone help'),
+      '#default_value' => $adminFormStateValues['phone_help'] ?? '',
     ];
 
     $form['add_form']['email_help'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Email help'),
       '#default_value' => $adminFormStateValues['email_help'] ?? '',
+    ];
+
+    $form['add_form']['email_display_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Email display help'),
+      '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
     ];
 
     $form['add_form']['proposal_intro'] = [
@@ -159,6 +165,18 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['approve_intro']['value'] ?? '',
     ];
 
+    $form['approve_form']['approve_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Goto this url after submission'),
+      '#default_value' => $adminFormStateValues['approve_goto_url'] ?? '',
+    ];
+
+    $form['approve_form']['approve_submission_text'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Submission text when the proposal is approved.'),
+      '#default_value' => $adminFormStateValues['approve_submission_text'] ?? '',
+    ];
+
     $form['support_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -183,6 +201,12 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Email help'),
       '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
+    ];
+
+    $form['support_form']['support_submission_text'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Submission text when the proposal has been supported.'),
+      '#default_value' => $adminFormStateValues['support_submission_text'] ?? '',
     ];
 
     $form['sidebar'] = [
