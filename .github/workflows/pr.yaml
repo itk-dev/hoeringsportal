@@ -122,7 +122,6 @@ jobs:
           composer code-analysis
 
   coding-standards-custom-themes:
-    if: ${{ false }}  # Disable - This job has some file permission errors that need further investigation.
     name: Yarn - Check Coding Standards in custom themes
     runs-on: ubuntu-latest
     steps:
@@ -131,10 +130,12 @@ jobs:
         run: docker network create frontend
 
       - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+        # Set npm_config_cache environment variable to prevent cache errors (cf.
+        # https://stackoverflow.com/questions/59437833/error-your-cache-folder-contains-root-owned-files-due-to-a-bug-in-previous-ver)
+        run: docker compose run --env npm_config_cache=/app/npm-cache --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
 
       - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
+        run: docker compose run --env npm_config_cache=/app/npm-cache --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
