@@ -6,9 +6,9 @@ test("Can authenticate", async ({ page }) => {
 
   await page.getByRole("link", { name: "Authenticate with MitID" }).click();
 
-  await page.getByLabel("Username").fill("citizen1");
+  await page.getByLabel("Username", { exact: true }).fill("citizen1");
 
-  await page.getByLabel("Password").fill("citizen1");
+  await page.getByLabel("Password", { exact: true }).fill("citizen1");
 
   await page.getByRole("button", { name: "Login" }).click();
 
@@ -24,9 +24,9 @@ test("Create proposal", async ({ page }) => {
 
   await page.getByRole("link", { name: "Authenticate with MitID" }).click();
 
-  await page.getByLabel("Username").fill("citizen1");
+  await page.getByLabel("Username", { exact: true }).fill("citizen1");
 
-  await page.getByLabel("Password").fill("citizen1");
+  await page.getByLabel("Password", { exact: true }).fill("citizen1");
 
   await page.getByRole("button", { name: "Login" }).click();
 
@@ -36,18 +36,20 @@ test("Create proposal", async ({ page }) => {
 
   await expect(page.getByRole("link", { name: "Sign out" })).toBeVisible();
 
-  await expect(page.getByLabel("Email")).toHaveValue("");
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
 
-  await page.getByLabel("Email").fill("borger87@eksemple.dk");
-
-  await page.getByLabel("Overskrift").fill("Sådan løser vi alle problemer!");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
-    .getByLabel("Proposal")
+    .getByLabel("Overskrift", { exact: true })
+    .fill("Sådan løser vi alle problemer!");
+
+  await page
+    .getByLabel("Proposal", { exact: true })
     .fill("Jeg synes det er et stort problem at …");
 
   await page
-    .getByLabel("Remarks")
+    .getByLabel("Remarks", { exact: true })
     .fill("Dette vil også løse problemet med at …");
 
   await page.getByRole("button", { name: "Create proposal" }).click();
@@ -68,9 +70,11 @@ test("Create proposal", async ({ page }) => {
 
   await page.getByRole("link", { name: "Edit proposal" }).click();
 
-  await expect(page.getByLabel("Email")).toHaveValue("borger87@eksemple.dk");
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue(
+    "borger87@eksemple.dk"
+  );
 
-  await page.getByLabel("Email").fill("borger87@eksempel.dk");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksempel.dk");
 
   await page.getByRole("button", { name: "Update proposal" }).click();
 
@@ -82,7 +86,7 @@ test("Create proposal", async ({ page }) => {
 
   // Test that form has been emptied
   await page.goto("/citizen_proposal/add");
-  await expect(page.getByLabel("Email")).toHaveValue("");
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
 });
 
 test("Cancel proposal", async ({ page }) => {
@@ -90,22 +94,24 @@ test("Cancel proposal", async ({ page }) => {
 
   await page.getByRole("link", { name: "Authenticate with MitID" }).click();
 
-  await page.getByLabel("Username").fill("citizen1");
+  await page.getByLabel("Username", { exact: true }).fill("citizen1");
 
-  await page.getByLabel("Password").fill("citizen1");
+  await page.getByLabel("Password", { exact: true }).fill("citizen1");
 
   await page.getByRole("button", { name: "Login" }).click();
 
-  await page.getByLabel("Email").fill("borger87@eksemple.dk");
-
-  await page.getByLabel("Overskrift").fill("Sådan løser vi alle problemer!");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
-    .getByLabel("Proposal")
+    .getByLabel("Overskrift", { exact: true })
+    .fill("Sådan løser vi alle problemer!");
+
+  await page
+    .getByLabel("Proposal", { exact: true })
     .fill("Jeg synes det er et stort problem at …");
 
   await page
-    .getByLabel("Remarks")
+    .getByLabel("Remarks", { exact: true })
     .fill("Dette vil også løse problemet med at …");
 
   await page.getByRole("button", { name: "Create proposal" }).click();

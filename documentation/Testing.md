@@ -13,6 +13,11 @@ docker network create frontend
 docker compose up --detach
 docker compose exec phpfpm composer install
 
+# Clean up
+docker compose exec phpfpm vendor/bin/drush sql:query "DELETE FROM locales_target WHERE customized = 1";
+docker compose exec phpfpm vendor/bin/drush state:delete citizen_proposal_admin_form_values --yes
+docker compose exec phpfpm vendor/bin/drush cache:rebuild
+
 # Build theme assets
 docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal install
 docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal build

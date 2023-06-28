@@ -14,7 +14,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * Add Cypress tests
 * Add OpenID Connect authentication for citizens
 * Add citizen authentication on support proposal form
-* Add Playwright tests and fixed tests run in GitHub Actions
+* Add [Playwright](https://playwright.dev/) tests and fixed tests run in GitHub
+  Actions
 
 ## [Unreleased]
 
