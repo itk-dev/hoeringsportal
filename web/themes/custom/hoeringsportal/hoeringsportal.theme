@@ -5,9 +5,9 @@
  * Høringsportal theme.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\NodeInterface;
 use Drupal\taxonomy\Entity\Term;
-use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_preprocess().

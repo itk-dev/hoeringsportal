@@ -3,9 +3,9 @@
 namespace Drupal\hoeringsportal_content_blocks\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Routing\CurrentRouteMatch;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\CurrentRouteMatch;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides meeting warning block content.

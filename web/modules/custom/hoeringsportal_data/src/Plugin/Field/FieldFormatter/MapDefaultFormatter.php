@@ -2,8 +2,8 @@
 
 namespace Drupal\hoeringsportal_data\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\FormatterBase;
 
 /**
  * Field formatter.

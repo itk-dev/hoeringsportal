@@ -2,11 +2,11 @@
 
 namespace Drupal\hoeringsportal_base_fixtures\Helper;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ExtensionPathResolver;
+use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\FileRepository;
-use Drupal\Core\File\FileSystem;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 
 /**
  * A helper class for the module.

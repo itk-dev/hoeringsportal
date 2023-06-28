@@ -133,8 +133,7 @@ jobs:
         run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
 
       - name: Check coding standards
-        run: |
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
+        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date

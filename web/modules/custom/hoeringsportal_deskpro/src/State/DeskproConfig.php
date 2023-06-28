@@ -2,9 +2,9 @@
 
 namespace Drupal\hoeringsportal_deskpro\State;
 
-use Drupal\Core\KeyValueStore\DatabaseStorage;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\KeyValueStore\DatabaseStorage;
 use Drupal\Core\Serialization\Yaml;
 
 /**
