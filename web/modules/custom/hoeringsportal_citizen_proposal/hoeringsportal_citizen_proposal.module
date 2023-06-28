@@ -5,8 +5,8 @@
  * Hooks related to hoeringsportal_citizen_proposal module.
  */
 
-use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 
 /**
  * Implements hook_theme().

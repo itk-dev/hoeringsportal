@@ -5,8 +5,8 @@ namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
-use Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture;
 use Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture;
+use Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
