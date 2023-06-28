@@ -4,8 +4,8 @@ namespace Drupal\hoeringsportal_public_meeting\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a Public meeting summary Block.

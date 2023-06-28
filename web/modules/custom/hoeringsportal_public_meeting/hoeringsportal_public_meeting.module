@@ -5,6 +5,7 @@
  * Module for public meeting content type.
  */
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
@@ -13,7 +14,6 @@ use Drupal\Core\Render\Element;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\itk_pretix\Pretix\EventHelper;
 use Drupal\node\NodeInterface;
-use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Implements hook_theme().

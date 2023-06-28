@@ -2,9 +2,9 @@
 
 namespace Drupal\aarhus_hero\State;
 
-use Drupal\Core\KeyValueStore\DatabaseStorage;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\KeyValueStore\DatabaseStorage;
 
 /**
  * Doc comment is empty.
