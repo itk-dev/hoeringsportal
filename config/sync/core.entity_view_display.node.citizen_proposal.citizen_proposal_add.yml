@@ -7,8 +7,10 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name
+    - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
+    - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
     - field.field.node.citizen_proposal.field_vote_end
@@ -120,8 +122,10 @@ content:
     region: content
 hidden:
   field_author_email_display: true
+  field_author_phone: true
   field_author_uuid: true
   field_content_state: true
+  field_more_info: true
   langcode: true
   links: true
   published_at: true
