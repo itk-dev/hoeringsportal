@@ -2,9 +2,9 @@
 
 namespace Drupal\itk_admin\State;
 
-use Drupal\Core\KeyValueStore\DatabaseStorage;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\KeyValueStore\DatabaseStorage;
 
 /**
  * Base config.

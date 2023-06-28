@@ -2,12 +2,12 @@
 
 namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 
-use Drupal\Core\Datetime\Entity\DateFormat;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\node\Entity\Node;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Datetime\Entity\DateFormat;
+use Drupal\node\Entity\Node;
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides timeline content.
