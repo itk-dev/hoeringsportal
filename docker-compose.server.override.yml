@@ -1,0 +1,13 @@
+services:
+  phpfpm:
+    environment:
+      - PHP_MAX_EXECUTION_TIME=30
+      - PHP_POST_MAX_SIZE=90M
+      - PHP_UPLOAD_MAX_FILESIZE=80M
+      - PHP_OPCACHE_VALIDATE_TIMESTAMPS=0
+      - PHP_MEMORY_LIMIT=528M
+
+  node:
+    image: node:16
+    volumes:
+      - .:/app:delegated

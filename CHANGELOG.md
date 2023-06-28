@@ -8,6 +8,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* Allow uploading huge files
+  [PR-322](https://github.com/itk-dev/hoeringsportal/pull/322)
+
 ## [3.0.1] - 2023-06-28
 
 * Applied patch
