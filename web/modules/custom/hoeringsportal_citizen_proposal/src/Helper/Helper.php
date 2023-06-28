@@ -136,8 +136,10 @@ class Helper implements LoggerAwareInterface {
    *   The proposal node.
    * @param array $values
    *   The values to save.
+   * @param string $submitMessage
+   *   The message to display on submission.
    */
-  public function saveSupport(string $userUuid, NodeInterface $node, array $values): void {
+  public function saveSupport(string $userUuid, NodeInterface $node, array $values, string $submitMessage): void {
     try {
       if (NULL !== $this->getUserSupportedAt($userUuid, $node)) {
         throw new RuntimeException('User @user already supports proposal @proposal', [
@@ -151,7 +153,7 @@ class Helper implements LoggerAwareInterface {
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
-      $this->messenger()->addStatus($this->t('Thank you! Your support has been registered.'));
+      $this->messenger()->addStatus($submitMessage);
     }
     catch (\Exception $exception) {
       $this->logger->error('Error saving support: @message', [

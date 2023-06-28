@@ -67,22 +67,25 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'container',
     ];
 
+    $emailHiddenText = $defaltValues['email_display'] ? '' : '<small><strong>(Hidden)</strong></small>';
     $form['author']['email_wrapper']['approve_form_email'] = [
       '#prefix' => '<h5>' . $this->t('E-mail') . '</h5>',
       '#type' => 'processed_text',
       '#text' => $defaltValues['email'],
       '#format' => 'filtered_html',
+      '#suffix' => $emailHiddenText,
     ];
 
-    $form['author']['email_display_wrapper'] = [
+    $form['author']['phone_display_wrapper'] = [
       '#type' => 'container',
     ];
 
-    $form['author']['email_display_wrapper']['approve_form_email_display'] = [
-      '#prefix' => '<h5>' . $this->t('Display E-mail on proposal') . '</h5>',
+    $form['author']['phone_display_wrapper']['approve_form_phone'] = [
+      '#prefix' => '<h5>' . $this->t('Phone number') . '</h5>',
       '#type' => 'processed_text',
-      '#text' => $defaltValues['email_display'] ? $this->t('Yes') : $this->t('No'),
+      '#text' => $defaltValues['phone'],
       '#format' => 'filtered_html',
+      '#suffix' => '<small><strong>(Hidden)</strong></small>',
     ];
 
     $form['approve_form_title'] = [
@@ -139,10 +142,12 @@ final class ProposalFormApprove extends ProposalFormBase {
       return $this->abandonSubmission();
     }
 
-    $this->messenger()->addStatus($this->t('Thank you for your submission.'));
+    $adminFormStateValues = $this->getAdminFormStateValues();
+    $this->applyRedirect($adminFormStateValues['approve_goto_url'], $formState);
+
+    $this->messenger()->addStatus($adminFormStateValues['approve_submission_text'] ?? '');
     $entity->save();
     $this->helper->deleteDraftProposal();
-    $formState->setRedirect('<front>');
   }
 
   /**
@@ -151,7 +156,9 @@ final class ProposalFormApprove extends ProposalFormBase {
   public function cancelSubmit(array &$form, FormStateInterface $formState) {
     $this->messenger()->addStatus($this->t('Your submission has been cancelled.'));
     $this->helper->deleteDraftProposal();
-    $formState->setRedirect('<front>');
+
+    $adminFormStateValues = $this->getAdminFormStateValues();
+    $this->applyRedirect($adminFormStateValues['approve_goto_url'], $formState);
   }
 
   /**
@@ -162,6 +169,46 @@ final class ProposalFormApprove extends ProposalFormBase {
     $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
     return new RedirectResponse($url->toString());
+  }
+
+  /**
+   * Add redirect to form state.
+   *
+   * @param string $inputUrl
+   *   The url added from admin interface.
+   * @param \Drupal\Core\Form\FormStateInterface $formState
+   *   The state of the form.
+   *
+   * @return \Drupal\Core\Form\FormStateInterface
+   *   The modified form.
+   */
+  private function applyRedirect(string $inputUrl, FormStateInterface &$formState): FormStateInterface {
+    $parsedUrl = parse_url($inputUrl);
+
+    try {
+      if (empty($parsedUrl['path'])) {
+        $formState->setRedirect('<front>');
+
+        return $formState;
+      }
+      $url = URL::fromUserInput($parsedUrl['path']);
+    }
+    catch (\Exception) {
+      $formState->setRedirect('<front>');
+
+      return $formState;
+    }
+
+    if ($url->isExternal() || !$url->isRouted()) {
+      $formState->setRedirect('<front>');
+    }
+    else {
+      $routeName = $url->getRouteName();
+      $routeParameters = $url->getRouteParameters();
+      $formState->setRedirect($routeName, $routeParameters);
+    }
+
+    return $formState;
   }
 
 }
