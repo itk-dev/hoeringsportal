@@ -120,16 +120,21 @@ final class ProposalFormSupport extends ProposalFormBase {
       return;
     }
 
-    $this->helper->saveSupport(
-      $this->getUserUuid(),
-      $node,
-      [
-        'user_name' => $form_state->getValue('name'),
-        'user_email' => $form_state->getValue('email'),
-        'created' => time(),
-      ],
-      $adminFormStateValues['support_submission_text']
-    );
+    try {
+      $this->helper->saveSupport(
+        $this->getUserUuid(),
+        $node,
+        [
+          'user_name' => $form_state->getValue('name'),
+          'user_email' => $form_state->getValue('email'),
+          'created' => time(),
+        ],
+      );
+      $this->messenger->addStatus($adminFormStateValues['support_submission_text']);
+    }
+    catch (\Exception $e) {
+      $this->messenger->addError($this->t('Something went wrong. Your support was not registered.'));
+    }
 
     $form_state
       ->setRedirect('entity.node.canonical', ['node' => $node->id()]);
