@@ -130,23 +130,23 @@ class Helper implements LoggerAwareInterface {
   /**
    * Save proposal support to db.
    *
-   * @param string $userUuid
-   *   The user UUID.
+   * @param string $userIdentifier
+   *   The user identifier.
    * @param \Drupal\node\NodeInterface $node
    *   The proposal node.
    * @param array $values
    *   The values to save.
    */
-  public function saveSupport(string $userUuid, NodeInterface $node, array $values): void {
+  public function saveSupport(string $userIdentifier, NodeInterface $node, array $values): void {
     try {
-      if (NULL !== $this->getUserSupportedAt($userUuid, $node)) {
+      if (NULL !== $this->getUserSupportedAt($userIdentifier, $node)) {
         throw new RuntimeException('User @user already supports proposal @proposal', [
-          '@user' => $userUuid,
+          '@user' => $userIdentifier,
           '@proposal' => $node->id(),
         ]);
       }
 
-      $values['user_uuid'] = $userUuid;
+      $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
@@ -165,10 +165,10 @@ class Helper implements LoggerAwareInterface {
   /**
    * Get time when user supported a proposal if any.
    */
-  public function getUserSupportedAt(string $userUuid, NodeInterface $node): ?\DateTimeInterface {
+  public function getUserSupportedAt(string $userIdentifier, NodeInterface $node): ?\DateTimeInterface {
     $result = $this->connection->select('hoeringsportal_citizen_proposal_support', 's')
       ->fields('s')
-      ->condition('user_uuid', $userUuid)
+      ->condition('user_identifier', $userIdentifier)
       ->condition('node_id', $node->id())
       ->execute()
       ->fetchObject();
@@ -249,7 +249,7 @@ class Helper implements LoggerAwareInterface {
     $storageTimezone = new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE);
 
     // If content is being published in this node->save() action.
-    if ($entity->isPublished() && !$proposalOriginal->isPublished()) {
+    if ($entity->isPublished() && !$proposalOriginal?->isPublished()) {
       // Set proposal period.
       $entity->set('field_vote_start', $start->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
       $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
