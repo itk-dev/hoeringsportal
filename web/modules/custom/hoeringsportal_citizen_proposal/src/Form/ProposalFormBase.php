@@ -51,10 +51,9 @@ abstract class ProposalFormBase extends FormBase {
     // https://www.drupal.org/forum/support/module-development-and-code-questions/2020-06-01/sessions-and-privatetempstore-for#comment-14016801
     $form['#cache'] = ['max-age' => 0];
 
+    $adminFormStateValues = $this->getAdminFormStateValues();
     $userData = $this->getUserData();
     if (empty($userData)) {
-      $adminFormStateValues = $this->getAdminFormStateValues();
-
       $form['authenticate'] = [
         '#type' => 'container',
 
