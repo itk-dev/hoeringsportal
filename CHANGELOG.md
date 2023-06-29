@@ -15,6 +15,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * Add OpenID Connect authentication for citizens
 * Add citizen authentication on support proposal form
 * Add Playwright tests and fixed tests run in GitHub Actions
+* Store hashed citizen identifier in database
 
 ## [Unreleased]
 

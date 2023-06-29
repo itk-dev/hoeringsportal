@@ -9,6 +9,7 @@ use Drupal\Core\Link;
 use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
+use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
@@ -162,15 +163,12 @@ abstract class ProposalFormBase extends FormBase {
   protected function getUserUuid(): string {
     $userData = $this->getUserData();
     $userUuidClaim = $this->config->get('user_uuid_claim');
-    if (isset($userUuidClaim, $userData[$userUuidClaim])) {
-      return $userData[$userUuidClaim];
+    if (!isset($userData[$userUuidClaim])) {
+      throw new RuntimeException('Cannot get user identifier');
     }
 
-    // Build a user fingerprint.
-    return md5(json_encode([
-      'cpr' => $userData['cpr'] ?? NULL,
-      'name' => $userData['name'] ?? NULL,
-    ]));
+    // Compute a GDPR safe and (hopefully) unique user identifier.
+    return sha1($userData[$userUuidClaim]);
   }
 
 }

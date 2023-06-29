@@ -28,12 +28,12 @@ function hoeringsportal_citizen_proposal_schema(): array {
         'not null' => TRUE,
         'default' => 0,
       ],
-      'user_uuid' => [
-        'description' => 'The user uuid',
+      'user_identifier' => [
+        'description' => 'The user identifier',
         'type' => 'varchar_ascii',
-        'length' => 36,
+        'length' => 40,
         'not null' => TRUE,
-        'default' => 0,
+        'default' => '',
       ],
       'user_name' => [
         'description' => 'The proposal supporters name',
@@ -66,8 +66,8 @@ function hoeringsportal_citizen_proposal_schema(): array {
       'node_id' => [
         'node_id',
       ],
-      'user_uuid' => [
-        'user_uuid',
+      'user_identifier' => [
+        'user_identifier',
       ],
     ],
   ];
@@ -145,4 +145,28 @@ function hoeringsportal_citizen_proposal_update_9001(): void {
   ];
 
   $schema->createTable($table_name, $table_schema);
+}
+
+/**
+ * Changes citizen identifier storage.
+ */
+function hoeringsportal_citizen_proposal_update_9002(): void {
+  $schema = \Drupal::database()->schema();
+
+  $table_name = 'hoeringsportal_citizen_proposal_support';
+  $index_name = 'user_uuid';
+  if ($schema->indexExists($table_name, $index_name)) {
+    $schema->dropIndex($table_name, $index_name);
+  }
+  $old_field_name = 'user_uuid';
+  $new_field_name = 'user_identifier';
+  $spec = [
+    'description' => 'The user identifier',
+    'type' => 'varchar_ascii',
+    'length' => 40,
+    'not null' => TRUE,
+    'default' => '',
+  ];
+  $schema->changeField($table_name, $old_field_name, $new_field_name, $spec);
+  $schema->addIndex($table_name, $new_field_name, [$new_field_name], hoeringsportal_citizen_proposal_schema()[$table_name]);
 }
