@@ -249,7 +249,7 @@ class Helper implements LoggerAwareInterface {
     $storageTimezone = new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE);
 
     // If content is being published in this node->save() action.
-    if ($entity->isPublished() && !$proposalOriginal->isPublished()) {
+    if ($entity->isPublished() && !$proposalOriginal?->isPublished()) {
       // Set proposal period.
       $entity->set('field_vote_start', $start->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
       $entity->set('field_vote_end', $end->setTimezone($storageTimezone)->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
