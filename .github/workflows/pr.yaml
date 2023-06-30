@@ -168,6 +168,26 @@ jobs:
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
           docker compose exec --user root phpfpm composer install --no-interaction
 
+          cat > web/sites/default/settings.local.php <<'EOL'
+          <?php
+          $settings['hoeringsportal_openid_connect']['openid_connect'] = [
+            'clientId'                 => 'client-id',
+            'clientSecret'             => 'client-secret',
+            'openIDConnectMetadataUrl' => 'http://idp-citizen.hoeringsportal.local.itkdev.dk/.well-known/openid-configuration',
+          ];
+
+          $settings['hoeringsportal_citizen_proposal_archiving'] = [
+            'archiver' => [
+              'get_organized' => [
+                'api_url' => 'https://example.com',
+                'api_username' => '',
+                'api_password' => '',
+              ],
+            ],
+          ];
+
+          EOL
+
           # Install the site
           docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
@@ -218,6 +238,26 @@ jobs:
           docker compose pull
           docker compose --profile test up --detach
 
+          cat > web/sites/default/settings.local.php <<'EOL'
+          <?php
+          $settings['hoeringsportal_openid_connect']['openid_connect'] = [
+            'clientId'                 => 'client-id',
+            'clientSecret'             => 'client-secret',
+            'openIDConnectMetadataUrl' => 'http://idp-citizen.hoeringsportal.local.itkdev.dk/.well-known/openid-configuration',
+          ];
+
+          $settings['hoeringsportal_citizen_proposal_archiving'] = [
+            'archiver' => [
+              'get_organized' => [
+                'api_url' => 'https://example.com',
+                'api_username' => '',
+                'api_password' => '',
+              ],
+            ],
+          ];
+
+          EOL
+
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
           docker compose exec --user root phpfpm composer install --no-interaction
 
@@ -227,16 +267,6 @@ jobs:
           # Build theme assets
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
           docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
-
-          cat > web/sites/default/settings.local.php <<'EOL'
-          <?php
-          $settings['hoeringsportal_openid_connect']['openid_connect'] = [
-            'clientId'                 => 'client-id',
-            'clientSecret'             => 'client-secret',
-            'openIDConnectMetadataUrl' => 'http://idp-citizen.hoeringsportal.local.itkdev.dk/.well-known/openid-configuration',
-          ];
-
-          EOL
 
       - name: Run Playwright
         run: |

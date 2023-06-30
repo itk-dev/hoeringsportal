@@ -4,7 +4,6 @@ namespace Drupal\hoeringsportal_citizen_proposal_archiving\Archiver;
 
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\GetOrganizedException;
-use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\RuntimeException;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -68,7 +67,7 @@ final class GetOrganizedArchiver extends AbstractArchiver {
         'node' => $node->label(),
         'getOrganizedCaseId' => $caseID,
         'options' => $this->options,
-      ], JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES),
+      ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
     ]);
   }
 
