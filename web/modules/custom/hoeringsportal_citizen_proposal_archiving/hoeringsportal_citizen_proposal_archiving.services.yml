@@ -1,0 +1,16 @@
+services:
+  logger.channel.hoeringsportal_citizen_proposal_archiving:
+    parent: logger.channel_base
+    arguments: [ 'hoeringsportal_citizen_proposal_archiving' ]
+
+  Drupal\hoeringsportal_citizen_proposal_archiving\Archiver:
+    arguments:
+      - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
+
+  Drupal\hoeringsportal_citizen_proposal_archiving\Helper:
+    arguments:
+      - '@entity_type.manager'
+      - '@Drupal\hoeringsportal_citizen_proposal_archiving\Archiver'
+      - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
+    tags:
+      - {name: event_subscriber}

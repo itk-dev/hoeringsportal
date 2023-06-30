@@ -16,6 +16,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * Add citizen authentication on support proposal form
 * Store hashed citizen identifier in database
 * Let editors support proposals on behalf of citizens
+* Add archiving of citizen proposals
 * Add [Playwright](https://playwright.dev/) tests
 
 ## [Unreleased]

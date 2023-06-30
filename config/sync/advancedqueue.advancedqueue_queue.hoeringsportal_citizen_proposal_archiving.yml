@@ -1,0 +1,18 @@
+uuid: 836794d3-6095-4864-aa58-f3c2f71f7f7b
+langcode: da
+status: true
+dependencies:
+  enforced:
+    module:
+      - hoeringsportal_citizen_proposal_archiving
+_core:
+  default_config_hash: 4vDMXXF0ppzcTtn16Aw6wUp53rdOlrCBnSAXIyNtdws
+id: hoeringsportal_citizen_proposal_archiving
+label: 'Citizen proposal archiving'
+backend: database
+backend_configuration:
+  lease_time: 300
+processor: daemon
+processing_time: 90
+locked: false
+threshold: {  }
