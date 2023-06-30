@@ -1,8 +1,6 @@
 langcode: en
 status: true
 dependencies:
-  module:
-    - hoeringsportal_citizen_proposal_archiving
   enforced:
     module:
       - hoeringsportal_citizen_proposal_archiving
