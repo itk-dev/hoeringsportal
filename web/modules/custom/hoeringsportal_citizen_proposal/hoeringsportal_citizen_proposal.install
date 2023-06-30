@@ -168,5 +168,9 @@ function hoeringsportal_citizen_proposal_update_9002(): void {
     'default' => '',
   ];
   $schema->changeField($table_name, $old_field_name, $new_field_name, $spec);
-  $schema->addIndex($table_name, $new_field_name, [$new_field_name], hoeringsportal_citizen_proposal_schema()[$table_name]);
+  $schema->addIndex($table_name, $new_field_name, [$new_field_name], [
+    'fields' => [
+      $new_field_name => $spec,
+    ],
+  ]);
 }
