@@ -13,6 +13,8 @@
         }
     },
     "require": {
-        "drupal/entity_events": "^2.0"
+        "drupal/entity_events": "^2.0",
+        "symfony/options-resolver": "^5.0",
+        "itk-dev/getorganized-api-client-php": "^1.2"
     }
 }

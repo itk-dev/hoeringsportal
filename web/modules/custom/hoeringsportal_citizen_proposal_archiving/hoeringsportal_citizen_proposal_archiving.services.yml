@@ -3,14 +3,14 @@ services:
     parent: logger.channel_base
     arguments: [ 'hoeringsportal_citizen_proposal_archiving' ]
 
-  Drupal\hoeringsportal_citizen_proposal_archiving\Archiver:
+  Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver:
     arguments:
       - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
 
   Drupal\hoeringsportal_citizen_proposal_archiving\Helper:
     arguments:
       - '@entity_type.manager'
-      - '@Drupal\hoeringsportal_citizen_proposal_archiving\Archiver'
+      - '@Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver'
       - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
     tags:
       - {name: event_subscriber}

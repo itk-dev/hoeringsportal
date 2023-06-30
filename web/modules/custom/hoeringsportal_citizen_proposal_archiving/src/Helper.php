@@ -10,6 +10,8 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\entity_events\EntityEventType;
 use Drupal\entity_events\Event\EntityEvent;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\AbstractArchiver;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Plugin\AdvancedQueue\JobType\ArchiveCitizenProposalJob;
 use Drupal\node\NodeInterface;
@@ -46,7 +48,7 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
-    readonly private Archiver $archiver,
+    readonly private AbstractArchiver $archiver,
     LoggerInterface $logger
   ) {
     $this->queueStorage = $entityTypeManager->getStorage('advancedqueue_queue');
