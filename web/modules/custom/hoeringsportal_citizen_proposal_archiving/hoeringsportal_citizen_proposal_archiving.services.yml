@@ -5,12 +5,20 @@ services:
 
   Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver:
     arguments:
+      - '@file_system'
       - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
 
-  Drupal\hoeringsportal_citizen_proposal_archiving\Helper:
+  Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer:
+    arguments:
+      - '@renderer'
+      - '@module_handler'
+
+  Drupal\hoeringsportal_citizen_proposal_archiving\Helper\Helper:
     arguments:
       - '@entity_type.manager'
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
       - '@Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver'
+      - '@Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer'
       - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
     tags:
       - {name: event_subscriber}

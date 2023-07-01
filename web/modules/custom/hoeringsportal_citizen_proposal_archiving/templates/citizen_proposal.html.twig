@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Resolve relative urls relative to this file -->
+  <base href="{{ template_url }}"/>
+  <link href="styles.css" rel="stylesheet"/>
+  <title>{{ node.label }}</title>
+</head>
+<body>
+  <div class="container">
+    <h1>{{ 'Citizen proposal'|t }}: {{ node.label }}</h1>
+
+    <dl>
+      <dt>{{ 'Proposal'|t }}</dt>
+      <dd>{{ node.field_proposal.value|raw }}</dd>
+
+      <dt>{{ 'Remarks'|t }}</dt>
+      <dd>{{ node.field_remarks.value|raw }}</dd>
+    </dl>
+
+    <h2>{{ 'Author'|t }}</h2>
+
+    <dl>
+      <dt>{{ 'Name'|t }}</dt>
+      <dd>{{ node.field_author_name.value }}</dd>
+
+      {% set mail = node.field_author_email.value %}
+      <dt>{{ 'Email'|t }}</dt>
+      <dd><a href="mailto:{{ mail }}">{{ mail }}</dd>
+
+      <dt>{{ 'Phone'|t }}</dt>
+      <dd>{{ node.field_author_phone.value|default('–') }}</dd>
+    </dl>
+
+    <h2>{{ 'Details'|trans }}</h2>
+
+    <dl>
+      <dt>{{ 'State' }}</dt>
+      <dd>{{ node.field_content_state.value }}</dd>
+
+      <dt>{{ 'Supporters' }}</dt>
+      <dd>{{ support.count }} ({{ support.percentage }}&nbsp;%)</dd>
+
+      <dt>{{ 'Vote start'|t }}</dt>
+      <dd>{{ node.field_vote_start.value|date('U')|format_date('hoeringsportal_datetime') }}</dd>
+
+      <dt>{{ 'Vote end'|t }}</dt>
+      <dd>{{ node.field_vote_end.value|date('U')|format_date('hoeringsportal_datetime') }}</dd>
+
+      {% set url = url('entity.node.canonical', {node: node.id}, {absolute: true}) %}
+      <dt>{{ 'Url'|t }}</dt>
+      <dd><a href="{{ url }}">{{ url }}</a></dd>
+
+      <dt>{{ 'Printed at'|t }}</dt>
+      <dd>{{ 'now'|date('U')|format_date('hoeringsportal_datetime') }}</dd>
+    </dl>
+  </div>
+</body>
+</html>

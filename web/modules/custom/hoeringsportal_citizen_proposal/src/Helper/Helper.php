@@ -393,6 +393,28 @@ class Helper implements LoggerAwareInterface {
   }
 
   /**
+   * Load citizen proposal.
+   */
+  public function loadCitizenProposal(int $id): NodeInterface {
+    $node = $this->entityTypeManager->getStorage('node')->load($id);
+    if (NULL === $node) {
+      throw new RuntimeException(sprintf('Cannot load node %s', $id));
+    }
+    if (!$this->isCitizenProposal($node)) {
+      throw new RuntimeException(sprintf('Node %s (%s) is not a citizen proposal', $node->id(), $node->label()));
+    }
+
+    return $node;
+  }
+
+  /**
+   * Check is a node is a citizen proposal.
+   */
+  public function isCitizenProposal(NodeInterface $node): bool {
+    return 'citizen_proposal' === $node->bundle();
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function log($level, $message, array $context = []) {

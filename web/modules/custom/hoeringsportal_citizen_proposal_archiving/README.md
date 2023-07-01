@@ -25,3 +25,9 @@ $settings['hoeringsportal_citizen_proposal_archiving'] = [
 ];
 ];
 ```
+
+## Development
+
+```shell
+docker compose exec phpfpm vendor/bin/drush hoeringsportal_citizen_proposal_archiving:render --help
+```

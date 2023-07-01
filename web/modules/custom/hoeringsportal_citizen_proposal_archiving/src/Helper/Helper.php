@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_citizen_proposal_archiving;
+namespace Drupal\hoeringsportal_citizen_proposal_archiving\Helper;
 
 use Drupal\advancedqueue\Entity\QueueInterface;
 use Drupal\advancedqueue\Job;
@@ -10,11 +10,12 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\entity_events\EntityEventType;
 use Drupal\entity_events\Event\EntityEvent;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper as CitizenProposalHelper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\AbstractArchiver;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Plugin\AdvancedQueue\JobType\ArchiveCitizenProposalJob;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer;
 use Drupal\node\NodeInterface;
-use Drupal\node\NodeStorageInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
@@ -36,22 +37,16 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
   protected ConfigEntityStorage $queueStorage;
 
   /**
-   * The node storage.
-   *
-   * @var \Drupal\Core\Config\Entity\ConfigEntityStorage|\Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected NodeStorageInterface $nodeStorage;
-
-  /**
    * Constructor.
    */
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
+    readonly private CitizenProposalHelper $citizenProposalHelper,
     readonly private AbstractArchiver $archiver,
+    readonly private Renderer $renderer,
     LoggerInterface $logger
   ) {
     $this->queueStorage = $entityTypeManager->getStorage('advancedqueue_queue');
-    $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->setLogger($logger);
   }
 
@@ -134,8 +129,7 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
         'node_id' => $nodeId,
         'node_changed_at' => $nodeChangedAt,
       ] = $job->getPayload();
-      /** @var \Drupal\node\NodeInterface $node */
-      $node = $this->nodeStorage->load($nodeId);
+      $node = $this->citizenProposalHelper->loadCitizenProposal($nodeId);
 
       if ($node->getChangedTime() > $nodeChangedAt) {
         $this->debug('Node @label changed after requested archival time (@some_time > @another_time). Skipping.', [
@@ -147,7 +141,8 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
         return JobResult::success('Skipped');
       }
       else {
-        $this->archiver->archive($node);
+        $content = $this->renderPdf($node);
+        $this->archiver->archive($node, $content, 'pdf');
 
         $this->notice('Citizen proposal @label archived', [
           '@label' => $node->label(),
@@ -164,6 +159,20 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
 
       return JobResult::failure($throwable->getMessage());
     }
+  }
+
+  /**
+   * Render citizen proposal as PDF.
+   */
+  public function renderPdf(NodeInterface $node): string {
+    $supportCount = $this->citizenProposalHelper->getProposalSupportCount($node->id());
+
+    return $this->renderer->renderPdf($node, [
+      'support' => [
+        'count' => $supportCount,
+        'percentage' => $this->citizenProposalHelper->calculateSupportPercentage($supportCount),
+      ],
+    ]);
   }
 
   /**

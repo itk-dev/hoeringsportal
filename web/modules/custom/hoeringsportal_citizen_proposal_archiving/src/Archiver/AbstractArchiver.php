@@ -18,7 +18,7 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
   /**
    * Archive node.
    */
-  abstract public function archive(NodeInterface $node);
+  abstract public function archive(NodeInterface $node, string $content, string $contentType);
 
   /**
    * {@inheritdoc}

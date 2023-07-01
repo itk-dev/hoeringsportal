@@ -6,7 +6,7 @@ use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\hoeringsportal_citizen_proposal_archiving\Helper;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Helper\Helper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
