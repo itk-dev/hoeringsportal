@@ -16,4 +16,5 @@ permissions:
   - 'access content overview'
   - 'administer citizen proposal'
   - 'edit any citizen_proposal content'
+  - 'support citizen proposal on behalf of citizen'
   - 'view the administration theme'
