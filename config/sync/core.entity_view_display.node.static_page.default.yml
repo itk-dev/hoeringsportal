@@ -98,6 +98,11 @@ content:
     third_party_settings: {  }
     weight: 1
     region: header
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_teaser_color: true
   langcode: true

@@ -24,6 +24,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_media_image_single: true
   field_section: true
