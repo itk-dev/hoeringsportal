@@ -67,6 +67,8 @@ Start docker
 ```sh
 docker compose pull
 docker compose up --detach
+# Note: If you want to start pretix and the mock OIDC IdP you have to enable the "pretix" and "oidc" profiles (cf. https://docs.docker.com/compose/profiles/):
+# docker compose --profile pretix --profile oidc up --detach
 docker compose exec phpfpm composer install
 docker compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
 

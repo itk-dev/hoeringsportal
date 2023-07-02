@@ -2,7 +2,7 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "@playwright/test": "^1.34.3",
+    "@playwright/test": "^1.35.0",
     "markdownlint-cli": "^0.31.1",
     "playwright-mailhog": "^1.1.0",
     "prettier": "2.8.8"

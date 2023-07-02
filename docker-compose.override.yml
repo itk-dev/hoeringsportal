@@ -1,6 +1,8 @@
 services:
   node:
     image: node:18
+    profiles:
+      - dev
     working_dir: /app
     volumes:
       - .:/app:delegated
@@ -8,7 +10,9 @@ services:
   playwright:
     # https://playwright.dev/docs/docker
     # This Playwright version should match the one in `package.json`.
-    image: mcr.microsoft.com/playwright:v1.34.3-jammy
+    image: mcr.microsoft.com/playwright:v1.35.0-jammy
+    profiles:
+      - test
     networks:
       - app
     depends_on:
@@ -21,6 +25,9 @@ services:
   # https://github.com/Soluto/oidc-server-mock
   idp-citizen:
     image: ghcr.io/soluto/oidc-server-mock:latest
+    profiles:
+      - oidc
+      - test
     # Let this container be accessible both internally and externally on the same domain.
     container_name: idp-citizen.${COMPOSE_DOMAIN}
     networks:

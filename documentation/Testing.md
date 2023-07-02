@@ -10,10 +10,13 @@ Run the following commands in a terminal:
 docker network create frontend
 # Run “down” only if you need to clean out your database.
 # docker compose down
-docker compose up --detach
+# Notice that we enable the "test" profile (cf. https://docs.docker.com/compose/profiles/)
+docker compose --profile test pull
+docker compose --profile test up --detach
 docker compose exec phpfpm composer install
 
 # Clean up
+docker compose exec phpfpm vendor/bin/drush cache:rebuild
 docker compose exec phpfpm vendor/bin/drush sql:query "DELETE FROM locales_target WHERE customized = 1";
 docker compose exec phpfpm vendor/bin/drush state:delete citizen_proposal_admin_form_values --yes
 docker compose exec phpfpm vendor/bin/drush cache:rebuild
