@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal_archiving\Archiver;
 
+use Drupal\Core\Database\Connection;
 use Drupal\Core\File\FileSystem;
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\GetOrganizedException;
@@ -24,9 +25,10 @@ final class GetOrganizedArchiver extends AbstractArchiver {
    */
   public function __construct(
     readonly private FileSystem $fileSystem,
+    Connection $database,
     LoggerInterface $logger
   ) {
-    $this->setLogger($logger);
+    parent::__construct($database, $logger);
     $settings = Settings::get('hoeringsportal_citizen_proposal_archiving')['archiver']['get_organized'] ?? [];
     if (!is_array($settings)) {
       $settings = [];
@@ -57,6 +59,22 @@ final class GetOrganizedArchiver extends AbstractArchiver {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function getArchivalInfo(NodeInterface $node): ?array {
+    $info = $this->loadArchivalInfo($node);
+
+    if (NULL === $info) {
+      return NULL;
+    }
+
+    return [
+      'archived_at' => $info['updated'],
+      'archive_url' => $info['data']['url'] ?? NULL,
+    ];
+  }
+
+  /**
    * Archive citizen proposal.
    */
   private function archiveCitizenProposal(NodeInterface $node, string $content, string $contentType) {
@@ -71,11 +89,13 @@ final class GetOrganizedArchiver extends AbstractArchiver {
       $documents = $client->api('documents');
       $path = $this->fileSystem->getTempDirectory() . '/citizen-proposal-' . $node->id() . '.pdf';
       file_put_contents($path, $content);
-      $result = $documents->AddToDocumentLibrary($path, $caseID);
 
+      $result = $documents->AddToDocumentLibrary($path, $caseID);
       if (empty($result)) {
         throw new GetOrganizedException(sprintf('Error archiving citizen proposal %s (%s)', $node->id(), $node->label()));
       }
+
+      $this->setArchivalInfo($node, $result);
 
       $this->debug('@message', [
         '@message' => json_encode([

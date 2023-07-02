@@ -6,4 +6,5 @@ package: ITK
 dependencies:
   - drupal:advancedqueue
   - drupal:entity_events
+  - drupal:pluginformalter
   - hoeringsportal_citizen_proposal:hoeringsportal_citizen_proposal

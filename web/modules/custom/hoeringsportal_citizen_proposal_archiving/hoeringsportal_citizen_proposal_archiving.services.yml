@@ -6,6 +6,7 @@ services:
   Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver:
     arguments:
       - '@file_system'
+      - '@database'
       - '@logger.channel.hoeringsportal_citizen_proposal_archiving'
 
   Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer:
