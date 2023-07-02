@@ -218,6 +218,7 @@ jobs:
       - name: Run Playwright
         run: |
           docker compose run --rm node yarn install
+          docker compose run --rm playwright npx playwright install
           docker compose run --rm playwright npx playwright test --retries 3
 
       - uses: actions/upload-artifact@v3

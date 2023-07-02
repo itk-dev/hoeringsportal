@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -51,7 +52,6 @@ abstract class ProposalFormBase extends FormBase {
     // https://www.drupal.org/forum/support/module-development-and-code-questions/2020-06-01/sessions-and-privatetempstore-for#comment-14016801
     $form['#cache'] = ['max-age' => 0];
 
-    $adminFormStateValues = $this->getAdminFormStateValues();
     $userData = $this->getUserData();
     if (empty($userData)) {
       $form['authenticate'] = [
@@ -59,12 +59,15 @@ abstract class ProposalFormBase extends FormBase {
 
         'message' => [
           '#type' => 'processed_text',
-          '#format' => $adminFormStateValues['authenticate_message']['format'] ?? 'filtered_html',
-          '#text' => $this->getAuthenticateMessage($adminFormStateValues),
+          '#format' => $this->getAdminFormStateValue(
+            ['authenticate_message', 'format'],
+            'filtered_html'
+          ),
+          '#text' => $this->getAuthenticateMessage(),
         ],
 
         'link' => Link::createFromRoute(
-            $adminFormStateValues['authenticate_link_text'] ?? $this->t('Authenticate with MitID'),
+            $this->getAdminFormStateValue('authenticate_link_text', $this->t('Authenticate with MitID')),
               'hoeringsportal_openid_connect.openid_connect_authenticate',
               [
                 OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
@@ -85,7 +88,7 @@ abstract class ProposalFormBase extends FormBase {
       ],
 
       'link' => Link::createFromRoute(
-          $adminFormStateValues['end_session_link_text'] ?? $this->t('Sign out'),
+          $this->getAdminFormStateValue('end_session_link_text', $this->t('Sign out')),
           'hoeringsportal_openid_connect.openid_connect_end_session',
           [
             OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
@@ -104,7 +107,7 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * Get message telling user that authentication is needed.
    */
-  abstract protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup;
+  abstract protected function getAuthenticateMessage(): string|TranslatableMarkup;
 
   /**
    * Build proposal form.
@@ -140,10 +143,17 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
-   * Get admin form state values.
+   * Get admin form state value.
    */
-  protected function getAdminFormStateValues(): array {
-    return $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
+  protected function getAdminFormStateValue(string|array $key, string $default = NULL): ?string {
+    $adminFormStateValues = $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
+    $value = NestedArray::getValue($adminFormStateValues, (array) $key);
+
+    if (is_string($value)) {
+      $value = trim($value);
+    }
+
+    return $value ?: $default;
   }
 
   /**

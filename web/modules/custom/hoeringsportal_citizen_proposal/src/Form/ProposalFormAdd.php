@@ -24,8 +24,11 @@ final class ProposalFormAdd extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
-    return $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal');
+  protected function getAuthenticateMessage(): string|TranslatableMarkup {
+    return $this->getAdminFormStateValue(
+      ['authenticate_message', 'value'],
+      $this->t('You have to authenticate to add a proposal')
+    );
   }
 
   /**
@@ -33,7 +36,6 @@ final class ProposalFormAdd extends ProposalFormBase {
    */
   public function buildProposalForm(array $form, FormStateInterface $formState): array {
     $defaltValues = $this->getDefaultFormValues();
-    $adminFormStateValues = $this->getAdminFormStateValues();
 
     $form['author_intro_container'] = [
       '#type' => 'container',
@@ -42,8 +44,8 @@ final class ProposalFormAdd extends ProposalFormBase {
 
     $form['author_intro_container']['author_intro'] = [
       '#type' => 'processed_text',
-      '#format' => $adminFormStateValues['author_intro']['format'] ?? 'filtered_html',
-      '#text' => $adminFormStateValues['author_intro']['value'] ?? '',
+      '#format' => $this->getAdminFormStateValue(['author_intro', 'format'], 'filtered_html'),
+      '#text' => $this->getAdminFormStateValue(['author_intro', 'value'], ''),
     ];
 
     $form['name'] = [
@@ -52,7 +54,7 @@ final class ProposalFormAdd extends ProposalFormBase {
         ->t('Name'),
       '#default_value' => $defaltValues['name'],
       '#attributes' => ['readonly' => TRUE, 'class' => ['mb-3']],
-      '#description' => $adminFormStateValues['name_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('name_help'),
       '#description_display' => 'before',
     ];
 
@@ -63,7 +65,7 @@ final class ProposalFormAdd extends ProposalFormBase {
         ->t('Phone'),
       '#default_value' => $defaltValues['phone'],
       '#attributes' => ['class' => ['mb-3']],
-      '#description' => $adminFormStateValues['phone_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('phone_help'),
       '#description_display' => 'before',
     ];
 
@@ -73,7 +75,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#title' => $this
         ->t('Email'),
       '#default_value' => $defaltValues['email'],
-      '#description' => $adminFormStateValues['email_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('email_help'),
       '#description_display' => 'before',
     ];
 
@@ -82,7 +84,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#title' => $this
         ->t('Display email'),
       '#default_value' => $defaltValues['email_display'] ?? TRUE,
-      '#description' => $adminFormStateValues['email_display_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('email_display_help'),
       '#description_display' => 'before',
     ];
 
@@ -93,8 +95,8 @@ final class ProposalFormAdd extends ProposalFormBase {
 
     $form['proposal_intro_container']['proposal_intro'] = [
       '#type' => 'processed_text',
-      '#format' => $adminFormStateValues['proposal_intro']['format'] ?? 'filtered_html',
-      '#text' => $adminFormStateValues['proposal_intro']['value'] ?? '',
+      '#format' => $this->getAdminFormStateValue(['proposal_intro', 'format'], 'filtered_html'),
+      '#text' => $this->getAdminFormStateValue(['proposal_intro', 'value'], ''),
     ];
 
     $form['title'] = [
@@ -102,7 +104,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#required' => TRUE,
       '#title' => $this
         ->t('Title'),
-      '#description' => $adminFormStateValues['title_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('title_help'),
       '#description_display' => 'before',
       '#default_value' => $defaltValues['title'],
       '#maxlength_js' => TRUE,
@@ -118,7 +120,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#rows' => 15,
       '#title' => $this
         ->t('Proposal'),
-      '#description' => $adminFormStateValues['proposal_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('proposal_help'),
       '#description_display' => 'before',
       '#default_value' => $defaltValues['proposal'],
       '#maxlength_js' => TRUE,
@@ -134,7 +136,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#rows' => 15,
       '#title' => $this
         ->t('Remarks'),
-      '#description' => $adminFormStateValues['remarks_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('remarks_help'),
       '#description_display' => 'before',
       '#default_value' => $defaltValues['remarks'],
       '#maxlength_js' => TRUE,
@@ -203,19 +205,20 @@ final class ProposalFormAdd extends ProposalFormBase {
    * Get a number of characters from admin form or constant.
    *
    * @return int
-   *   The calculated number of characters .
+   *   The calculated number of characters.
    */
   private function getMaxLength($adminFormElement): int {
-    $adminFormStateValues = $this->getAdminFormStateValues();
+    $value = (int) $this->getAdminFormStateValue($adminFormElement);
+    if ($value > 0) {
+      return $value;
+    }
 
-    $constant = match ($adminFormElement) {
+    return match ($adminFormElement) {
       'characters_title' => self::ADD_FORM_TITLE_MAXLENGTH,
       'characters_proposal' => self::ADD_FORM_PROPOSAL_MAXLENGTH,
       'characters_remarks' => self::ADD_FORM_REMARKS_MAXLENGTH,
       default => 0,
     };
-
-    return !empty($adminFormStateValues[$adminFormElement]) ? (int) $adminFormStateValues[$adminFormElement] : $constant;
   }
 
 }

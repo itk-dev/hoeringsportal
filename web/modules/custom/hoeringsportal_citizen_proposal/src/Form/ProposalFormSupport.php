@@ -22,8 +22,11 @@ final class ProposalFormSupport extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
-    return $adminFormStateValues['authenticate_support_message']['value'] ?? $this->t('You have to authenticate to support a proposal');
+  protected function getAuthenticateMessage(): string|TranslatableMarkup {
+    return $this->getAdminFormStateValue(
+      ['authenticate_support_message', 'value'],
+      $this->t('You have to authenticate to support a proposal')
+    );
   }
 
   /**
@@ -54,12 +57,12 @@ final class ProposalFormSupport extends ProposalFormBase {
     }
 
     $defaltValues = $this->getDefaultFormValues();
-    $adminFormStateValues = $this->getAdminFormStateValues();
 
     $form['support_intro'] = [
       '#type' => 'processed_text',
-      '#format' => $adminFormStateValues['support_intro']['format'] ?? 'filtered_html',
-      '#text' => $adminFormStateValues['support_intro']['value'] ?? '',
+      '#format' => $this->getAdminFormStateValue(['support_intro', 'format'], 'filtered_html'),
+      '#text' => $this->getAdminFormStateValue(['support_intro', 'value'], ''),
+
     ];
 
     $form['name'] = [
@@ -68,7 +71,7 @@ final class ProposalFormSupport extends ProposalFormBase {
         ->t('Name'),
       '#default_value' => $defaltValues['name'],
       '#attributes' => ['readonly' => TRUE],
-      '#description' => $adminFormStateValues['support_name_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('support_name_help'),
       '#description_display' => 'before',
     ];
 
@@ -78,7 +81,7 @@ final class ProposalFormSupport extends ProposalFormBase {
       '#title' => $this
         ->t('Email'),
       '#default_value' => $defaltValues['email'],
-      '#description' => $adminFormStateValues['support_email_help'] ?? '',
+      '#description' => $this->getAdminFormStateValue('support_email_help'),
       '#description_display' => 'before',
     ];
 
@@ -109,7 +112,6 @@ final class ProposalFormSupport extends ProposalFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $userData = $this->getUserData();
-    $adminFormStateValues = $this->getAdminFormStateValues();
 
     /** @var \Drupal\node\NodeInterface $node */
     $node = $form['#node'];
@@ -130,7 +132,7 @@ final class ProposalFormSupport extends ProposalFormBase {
           'created' => time(),
         ],
       );
-      $this->messenger->addStatus($adminFormStateValues['support_submission_text']);
+      $this->messenger->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
     }
     catch (\Exception $e) {
       $this->messenger->addError($this->t('Something went wrong. Your support was not registered.'));

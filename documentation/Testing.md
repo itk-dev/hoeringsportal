@@ -29,6 +29,7 @@ docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal build
 # docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
 docker compose run --rm node yarn install
+docker compose run --rm playwright npx playwright install
 docker compose run --rm playwright npx playwright test
 open playwright-report/index.html
 ```
