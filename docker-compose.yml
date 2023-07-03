@@ -93,6 +93,8 @@ services:
 
   pretix:
     image: pretix/standalone:latest
+    profiles:
+      - pretix
     networks:
       - app
       - pretix
@@ -115,6 +117,8 @@ services:
 
   pretix_database:
     image: mariadb:10.3
+    profiles:
+      - pretix
     networks:
       - pretix
     ports:
@@ -129,11 +133,9 @@ services:
 
   pretix_redis:
     image: redis:latest
+    profiles:
+      - pretix
     networks:
       - pretix
     ports:
       - "6379"
-
-# Drush cache volume to persist cache between runs.
-volumes:
-  drush-cache:

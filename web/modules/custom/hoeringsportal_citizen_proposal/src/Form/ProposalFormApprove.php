@@ -22,8 +22,11 @@ final class ProposalFormApprove extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  protected function getAuthenticateMessage(array $adminFormStateValues): string|TranslatableMarkup {
-    return $adminFormStateValues['authenticate_message']['value'] ?? $this->t('You have to authenticate to add a proposal');
+  protected function getAuthenticateMessage(): string|TranslatableMarkup {
+    return $this->getAdminFormStateValue(
+      ['authenticate_message', 'value'],
+      $this->t('You have to authenticate to add a proposal')
+    );
   }
 
   /**
@@ -35,12 +38,11 @@ final class ProposalFormApprove extends ProposalFormBase {
     }
 
     $defaltValues = $this->getDefaultFormValues();
-    $adminFormStateValues = $this->getAdminFormStateValues();
 
     $form['approve_form_help'] = [
       '#type' => 'processed_text',
-      '#format' => $adminFormStateValues['approve_intro']['format'] ?? 'filtered_html',
-      '#text' => $adminFormStateValues['approve_intro']['value'] ?? '',
+      '#format' => $this->getAdminFormStateValue(['approve_intro', 'format'], 'filtered_html'),
+      '#text' => $this->getAdminFormStateValue(['approve_intro', 'value'], ''),
     ];
 
     $form['author'] = [
@@ -142,10 +144,9 @@ final class ProposalFormApprove extends ProposalFormBase {
       return $this->abandonSubmission();
     }
 
-    $adminFormStateValues = $this->getAdminFormStateValues();
-    $this->applyRedirect($adminFormStateValues['approve_goto_url'], $formState);
+    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
 
-    $this->messenger()->addStatus($adminFormStateValues['approve_submission_text'] ?? '');
+    $this->messenger()->addStatus($this->getAdminFormStateValue('approve_submission_text', $this->t('Thank you for your submission.')));
     $entity->save();
     $this->helper->deleteDraftProposal();
   }
@@ -157,8 +158,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->messenger()->addStatus($this->t('Your submission has been cancelled.'));
     $this->helper->deleteDraftProposal();
 
-    $adminFormStateValues = $this->getAdminFormStateValues();
-    $this->applyRedirect($adminFormStateValues['approve_goto_url'], $formState);
+    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
   }
 
   /**

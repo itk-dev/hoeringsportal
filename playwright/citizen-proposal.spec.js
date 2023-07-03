@@ -36,12 +36,16 @@ test("Create proposal", async ({ page }) => {
 
   await expect(page.getByRole("link", { name: "Sign out" })).toBeVisible();
 
-  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Phone", { exact: true })).toHaveValue("");
 
-  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
+  await page.getByLabel("Phone", { exact: true }).fill("12345678");
+
+  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue("");
+
+  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
-    .getByLabel("Overskrift", { exact: true })
+    .getByLabel("Title", { exact: true })
     .fill("Sådan løser vi alle problemer!");
 
   await page
@@ -70,11 +74,11 @@ test("Create proposal", async ({ page }) => {
 
   await page.getByRole("link", { name: "Edit proposal" }).click();
 
-  await expect(page.getByLabel("Email", { exact: true })).toHaveValue(
+  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue(
     "borger87@eksemple.dk"
   );
 
-  await page.getByLabel("Email", { exact: true }).fill("borger87@eksempel.dk");
+  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksempel.dk");
 
   await page.getByRole("button", { name: "Update proposal" }).click();
 
@@ -86,7 +90,7 @@ test("Create proposal", async ({ page }) => {
 
   // Test that form has been emptied
   await page.goto("/citizen_proposal/add");
-  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue("");
 });
 
 test("Cancel proposal", async ({ page }) => {
@@ -100,10 +104,12 @@ test("Cancel proposal", async ({ page }) => {
 
   await page.getByRole("button", { name: "Login" }).click();
 
-  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
+  await page.getByLabel("Phone", { exact: true }).fill("12345678");
+
+  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
-    .getByLabel("Overskrift", { exact: true })
+    .getByLabel("Title", { exact: true })
     .fill("Sådan løser vi alle problemer!");
 
   await page
