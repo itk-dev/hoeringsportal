@@ -52,8 +52,7 @@ abstract class ProposalFormBase extends FormBase {
     // https://www.drupal.org/forum/support/module-development-and-code-questions/2020-06-01/sessions-and-privatetempstore-for#comment-14016801
     $form['#cache'] = ['max-age' => 0];
 
-    $userData = $this->getUserData();
-    if (empty($userData)) {
+    if (!$this->isAuthenticatedAsCitizen() && !$this->isAuthenticatedAsEditor()) {
       $form['authenticate'] = [
         '#type' => 'container',
 
@@ -79,27 +78,30 @@ abstract class ProposalFormBase extends FormBase {
       return $form;
     }
 
-    $form['authenticated'] = [
-      '#type' => 'container',
-      '#attributes' => ['class' => ['authenticate-wrapper', 'py-3']],
+    if ($this->isAuthenticatedAsCitizen()) {
+      $userData = $this->getUserData();
+      $form['authenticated'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['authenticate-wrapper', 'py-3']],
 
-      'message' => [
-        '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
-      ],
+        'message' => [
+          '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
+        ],
 
-      'link' => Link::createFromRoute(
+        'link' => Link::createFromRoute(
           $this->getAdminFormStateValue('end_session_link_text', $this->t('Sign out')),
           'hoeringsportal_openid_connect.openid_connect_end_session',
           [
             OpenIDConnectController::QUERY_STRING_DESTINATION => Url::fromRoute('<current>')->toString(TRUE)->getGeneratedUrl(),
           ],
-      )->toRenderable()
-      + [
-        '#attributes' => [
-          'class' => ['btn', 'btn-secondary', 'ml-2', 'btn-sign-out'],
+        )->toRenderable()
+        + [
+          '#attributes' => [
+            'class' => ['btn', 'btn-secondary', 'ml-2', 'btn-sign-out'],
+          ],
         ],
-      ],
-    ];
+      ];
+    }
 
     return $this->buildProposalForm($form, $form_state);
   }
@@ -157,6 +159,34 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * Check if citizen is authenticated.
+   */
+  protected function isAuthenticatedAsCitizen(): bool {
+    try {
+      $this->getUserUuid(allowEditor: FALSE);
+      return TRUE;
+    }
+    catch (\Exception) {
+      return FALSE;
+    }
+  }
+
+  /**
+   * Check if editor is authenticated.
+   */
+  protected function isAuthenticatedAsEditor(): bool {
+    return $this->currentUser()->isAuthenticated()
+      && $this->currentUser()->hasPermission('support citizen proposal on behalf of citizen');
+  }
+
+  /**
+   * Check if either citizen or editor is authenticated.
+   */
+  protected function isAuthenticated(): bool {
+    return $this->isAuthenticatedAsCitizen() || $this->isAuthenticatedAsEditor();
+  }
+
+  /**
    * Get user data.
    */
   protected function getUserData(): ?array {
@@ -169,15 +199,21 @@ abstract class ProposalFormBase extends FormBase {
    * @return string
    *   The user UUID.
    */
-  protected function getUserUuid(): string {
-    $userData = $this->getUserData();
-    $userUuidClaim = $this->config->get('user_uuid_claim');
-    if (!isset($userData[$userUuidClaim])) {
-      throw new RuntimeException('Cannot get user identifier');
+  protected function getUserUuid($allowEditor = TRUE): string {
+    if ($allowEditor && $this->isAuthenticatedAsEditor()) {
+      $userId = uniqid('editor', TRUE);
+    }
+    else {
+      $userData = $this->getUserData();
+      $userUuidClaim = $this->config->get('user_uuid_claim');
+      if (!isset($userData[$userUuidClaim])) {
+        throw new RuntimeException('Cannot get user identifier');
+      }
+      $userId = $userData[$userUuidClaim];
     }
 
     // Compute a GDPR safe and (hopefully) unique user identifier.
-    return sha1($userData[$userUuidClaim]);
+    return sha1($userId);
   }
 
 }

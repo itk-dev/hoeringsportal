@@ -46,14 +46,31 @@ final class ProposalFormSupport extends ProposalFormBase {
     $node = $form['#node'];
     assert($node instanceof NodeInterface);
 
-    $supportedAt = $this->helper->getUserSupportedAt($this->getUserUuid(), $node);
-    if (NULL !== $supportedAt) {
+    if ($this->isAuthenticatedAsCitizen()) {
+      $supportedAt = $this->helper->getUserSupportedAt($this->getUserUuid(), $node);
+      if (NULL !== $supportedAt) {
+        $form['message'] = [
+          '#markup' => $this->t('You already supported this proposal on @support_date. You can only support a proposal once.',
+            [
+              '@support_date' => $supportedAt->format('d/m/Y'),
+            ]),
+        ];
+        return $form;
+      }
+    }
+    elseif ($this->isAuthenticatedAsEditor()) {
       $form['message'] = [
-        '#markup' => $this->t('You already supported this proposal on @support_date. You can only support a proposal once.', [
-          '@support_date' => $supportedAt->format('d/m/Y'),
-        ]),
+        '#theme' => 'status_messages',
+        '#message_list' => [
+          'warning' => [$this->t("You're supporting @label on behalf of a citizen", [
+            '@label' => $node->label(),
+          ]),
+          ],
+        ],
       ];
-      return $form;
+    }
+    else {
+      return [];
     }
 
     $defaltValues = $this->getDefaultFormValues();
@@ -67,10 +84,11 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     $form['name'] = [
       '#type' => 'textfield',
+      '#required' => TRUE,
       '#title' => $this
         ->t('Name'),
       '#default_value' => $defaltValues['name'],
-      '#attributes' => ['readonly' => TRUE],
+      '#attributes' => ['readonly' => !$this->isAuthenticatedAsEditor()],
       '#description' => $this->getAdminFormStateValue('support_name_help'),
       '#description_display' => 'before',
     ];
@@ -111,12 +129,10 @@ final class ProposalFormSupport extends ProposalFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $userData = $this->getUserData();
-
     /** @var \Drupal\node\NodeInterface $node */
     $node = $form['#node'];
 
-    if (empty($userData)) {
+    if (!$this->isAuthenticated()) {
       $form_state
         ->setRedirect('hoeringsportal_citizen_proposal.support', ['node' => $node->id()]);
       return;
@@ -132,10 +148,10 @@ final class ProposalFormSupport extends ProposalFormBase {
           'created' => time(),
         ],
       );
-      $this->messenger->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
+      $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
     }
     catch (\Exception $e) {
-      $this->messenger->addError($this->t('Something went wrong. Your support was not registered.'));
+      $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
     }
 
     $form_state
