@@ -71,6 +71,11 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_cancelled_date: true
   field_cancelled_text: true
