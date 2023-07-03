@@ -37,18 +37,6 @@ final class GetOrganizedArchiver extends AbstractArchiver {
     LoggerInterface $logger
   ) {
     parent::__construct($database, $logger);
-    $settings = Settings::get('hoeringsportal_citizen_proposal_archiving')['archiver']['get_organized'] ?? [];
-    if (!is_array($settings)) {
-      $settings = [];
-    }
-    $this->options = (new OptionsResolver())
-      ->setRequired('api_url')
-      ->setRequired('api_username')
-      ->setRequired('api_password')
-      ->setDefaults([
-        'admin_url' => NULL,
-      ])
-      ->resolve($settings);
   }
 
   /**
@@ -114,7 +102,6 @@ final class GetOrganizedArchiver extends AbstractArchiver {
           'node' => $node->label(),
           'getOrganizedCaseId' => $caseID,
           'response' => $response,
-          'options' => $this->options,
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
       ]);
     }
@@ -139,10 +126,11 @@ final class GetOrganizedArchiver extends AbstractArchiver {
    */
   public function getDocuments(): Documents {
     if (empty($this->documents)) {
+      $options = $this->getOptions();
       $client = new Client(
-        $this->options['api_username'],
-        $this->options['api_password'],
-        $this->options['api_url']
+        $options['api_username'],
+        $options['api_password'],
+        $options['api_url']
       );
       $this->documents = $client->api('documents');
     }
@@ -189,6 +177,28 @@ final class GetOrganizedArchiver extends AbstractArchiver {
     $this->logger->debug(sprintf('Finalize document %s; response: %s', $docId, json_encode($response)));
 
     return $response;
+  }
+
+  /**
+   * Get options.
+   */
+  private function getOptions(): array {
+    if (!isset($this->options)) {
+      $settings = Settings::get('hoeringsportal_citizen_proposal_archiving')['archiver']['get_organized'] ?? [];
+      if (!is_array($settings)) {
+        $settings = [];
+      }
+      $this->options = (new OptionsResolver())
+        ->setRequired('api_url')
+        ->setRequired('api_username')
+        ->setRequired('api_password')
+        ->setDefaults([
+          'admin_url' => NULL,
+        ])
+        ->resolve($settings);
+    }
+
+    return $this->options;
   }
 
 }
