@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   }
  * )
  */
-class CitizenProposalFormAlter extends FormAlterBase {
+final class CitizenProposalFormAlter extends FormAlterBase {
 
   /**
    * Constructor.

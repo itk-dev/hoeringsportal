@@ -41,7 +41,7 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
   /**
    * Set archival info.
    */
-  protected function setArchivalInfo(NodeInterface $node, array $data) {
+  protected function addArchivalInfo(NodeInterface $node, array $data, $reset = FALSE) {
     $info = $this->loadArchivalInfo($node);
     $now = \Drupal::time()->getCurrentTime();
     if (NULL === $info) {
@@ -53,6 +53,9 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
         ->execute();
     }
     else {
+      if (!$reset) {
+        $data += $info;
+      }
       $this->database->update(self::TABLE_NAME)
         ->condition('archiver', static::class)
         ->condition('node_id', $node->id())

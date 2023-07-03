@@ -8,6 +8,7 @@ use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\GetOrganizedException;
 use Drupal\node\NodeInterface;
 use ItkDev\GetOrganized\Client;
+use ItkDev\GetOrganized\Service\Documents;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,6 +20,13 @@ final class GetOrganizedArchiver extends AbstractArchiver {
    * The options.
    */
   private array $options;
+
+  /**
+   * The GetOrganized documents service.
+   *
+   * @var \ItkDev\GetOrganized\Service\Documents
+   */
+  private Documents $documents;
 
   /**
    * Constructor.
@@ -84,24 +92,28 @@ final class GetOrganizedArchiver extends AbstractArchiver {
     }
 
     try {
-      $client = new Client($this->options['api_username'], $this->options['api_password'], $this->options['api_url']);
-      /** @var \ItkDev\GetOrganized\Service\Documents $documents */
-      $documents = $client->api('documents');
-      $path = $this->fileSystem->getTempDirectory() . '/citizen-proposal-' . $node->id() . '.pdf';
+      $path = $this->fileSystem->getTempDirectory() . '/test-citizen-proposal-' . $node->id() . '.pdf';
       file_put_contents($path, $content);
 
-      $result = $documents->AddToDocumentLibrary($path, $caseID);
-      if (empty($result)) {
-        throw new GetOrganizedException(sprintf('Error archiving citizen proposal %s (%s)', $node->id(), $node->label()));
+      // Unfinalize document in order to be able to update it.
+      $info = $this->getArchivalInfo($node);
+      if (isset($info['response'])) {
+        $this->unfinalizeDocument($info['response']);
       }
 
-      $this->setArchivalInfo($node, $result);
+      $response = $this->addToCase($path, $caseID);
+      if (empty($response)) {
+        throw new GetOrganizedException(sprintf('Error archiving citizen proposal %s (%s); empty response', $node->id(), $node->label()));
+      }
+      $this->addArchivalInfo($node, ['response' => $response]);
+
+      $this->finalizeDocument($response);
 
       $this->debug('@message', [
         '@message' => json_encode([
           'node' => $node->label(),
           'getOrganizedCaseId' => $caseID,
-          'result' => $result,
+          'response' => $response,
           'options' => $this->options,
         ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES),
       ]);
@@ -120,6 +132,63 @@ final class GetOrganizedArchiver extends AbstractArchiver {
    */
   public function log($level, $message, array $context = []) {
     $this->logger->log($level, $message, $context);
+  }
+
+  /**
+   * Get the GetOrganized documents service.
+   */
+  public function getDocuments(): Documents {
+    if (empty($this->documents)) {
+      $client = new Client(
+        $this->options['api_username'],
+        $this->options['api_password'],
+        $this->options['api_url']
+      );
+      $this->documents = $client->api('documents');
+    }
+
+    return $this->documents;
+  }
+
+  /**
+   * Add file to GetOrganized case.
+   */
+  private function addToCase(string $path, string $caseID): ?array {
+    $this->logger->debug(sprintf('Add to case %s: %s', $caseID, $path));
+
+    return $this->getDocuments()->AddToDocumentLibrary($path, $caseID, basename($path));
+  }
+
+  /**
+   * Unfinalize document.
+   */
+  private function unfinalizeDocument(array $response): ?array {
+    if (!isset($response['DocId'])) {
+      $this->logger->error(sprintf('Unfinalize document; unexpected response: %s', json_encode($response)));
+    }
+
+    $docId = (int) $response['DocId'];
+    $this->logger->debug(sprintf('Unfinalize document %s', $docId));
+
+    return $this->getDocuments()->UnmarkFinalized([$docId]);
+  }
+
+  /**
+   * Finalize document.
+   */
+  private function finalizeDocument(array $response): ?array {
+    if (!isset($response['DocId'])) {
+      $this->logger->error(sprintf('Finalize document; unexpected response: %s', json_encode($response)));
+
+      return NULL;
+    }
+
+    $docId = (int) $response['DocId'];
+    $this->logger->debug(sprintf('Finalize document %s', $docId));
+    $response = $this->getDocuments()->Finalize((int) $response['DocId']);
+    $this->logger->debug(sprintf('Finalize document %s; response: %s', $docId, json_encode($response)));
+
+    return $response;
   }
 
 }
