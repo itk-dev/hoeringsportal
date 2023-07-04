@@ -138,14 +138,11 @@ class Helper implements LoggerAwareInterface {
    *   The values to save.
    */
   public function saveSupport(string $userIdentifier, NodeInterface $node, array $values): void {
-    try {
-      if (NULL !== $this->getUserSupportedAt($userIdentifier, $node)) {
-        throw new RuntimeException('User @user already supports proposal @proposal', [
-          '@user' => $userIdentifier,
-          '@proposal' => $node->id(),
-        ]);
-      }
+    if (NULL !== $this->getUserSupportedAt($userIdentifier, $node)) {
+      throw new RuntimeException(sprintf('User %s already supports proposal %s', $userIdentifier, $node->id()));
+    }
 
+    try {
       $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
