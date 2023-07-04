@@ -47,13 +47,6 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
   /**
    * {@inheritdoc}
    */
-  public function getCacheMaxAge() {
-    return 0;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function build() {
     $node = $this->routeMatch->getParameter('node');
     $supportCount = $this->helper->getProposalSupportCount($node->id());

@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
@@ -49,6 +50,7 @@ class Helper implements LoggerAwareInterface {
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
     readonly private EntityTypeManagerInterface $entityTypeManager,
+    readonly private TimeInterface $time,
     LoggerChannel $logger
   ) {
     $this->setLogger($logger);
@@ -148,6 +150,12 @@ class Helper implements LoggerAwareInterface {
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
+
+      // Mark node as changed now, and save to flush cache and notify any node
+      // change listeners.
+      $node
+        ->setChangedTime($this->time->getRequestTime())
+        ->save();
     }
     catch (\Exception $exception) {
       $this->logger->error('Error saving support: @message', [
