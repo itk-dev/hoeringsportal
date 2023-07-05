@@ -12,7 +12,12 @@ id: node.page_map.default
 targetEntityType: node
 bundle: page_map
 mode: default
-content: {  }
+content:
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_map_configuration: true
   field_map_type: true

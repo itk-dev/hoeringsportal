@@ -1,0 +1,22 @@
+uuid: e152d1b2-942e-42c3-ad14-31fbe544b8f4
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.citizen_proposal
+id: node.citizen_proposal.promote
+field_name: promote
+entity_type: node
+bundle: citizen_proposal
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

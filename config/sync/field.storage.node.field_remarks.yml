@@ -1,0 +1,19 @@
+uuid: 7ce98df6-46e6-41e5-8b2f-c7c83803d561
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_remarks
+field_name: field_remarks
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

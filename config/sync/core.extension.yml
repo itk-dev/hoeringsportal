@@ -5,6 +5,7 @@ module:
   aarhus_hero: 0
   advancedqueue: 0
   better_exposed_filters: 0
+  better_social_sharing_buttons: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -21,11 +22,13 @@ module:
   datetime: 0
   datetime_range: 0
   dblog: 0
+  drupal_psr6_cache: 0
   dynamic_page_cache: 0
   editor: 0
   entity: 0
   entity_browser: 0
   entity_browser_entity_form: 0
+  entity_events: 0
   entity_reference_revisions: 0
   entityqueue: 0
   externalauth: 0
@@ -34,6 +37,8 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  hoeringsportal_citizen_proposal: 0
+  hoeringsportal_citizen_proposal_archiving: 0
   hoeringsportal_config_settings: 0
   hoeringsportal_content_access: 0
   hoeringsportal_content_blocks: 0
@@ -41,6 +46,7 @@ module:
   hoeringsportal_deskpro: 0
   hoeringsportal_forms: 0
   hoeringsportal_hearing: 0
+  hoeringsportal_openid_connect: 0
   hoeringsportal_project_timeline: 0
   hoeringsportal_public_meeting: 0
   hoeringsportal_quicklinks: 0
@@ -64,6 +70,7 @@ module:
   layout_discovery: 0
   link: 0
   locale: 0
+  maxlength: 0
   media: 0
   menu_ui: 0
   migrate_subject_data: 0
@@ -74,6 +81,7 @@ module:
   page_cache: 0
   path: 0
   path_alias: 0
+  pluginformalter: 0
   quick_node_clone: 0
   redirect: 0
   responsive_image: 0
@@ -109,4 +117,5 @@ theme:
   stark: 0
   hoeringsportal: 0
   claro: 0
+  hoeringsportal_admin: 0
 profile: minimal

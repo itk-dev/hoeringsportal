@@ -1,0 +1,12 @@
+{
+    "name": "drupal/hoeringsportal_openid_connect",
+    "type": "drupal-custom-module",
+    "description": "OpenID Connect",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "itk-dev/openid-connect": "dev-feature/authorization-code-flow",
+        "itk-dev/drupal_psr6_cache": "dev-main"
+    }
+}

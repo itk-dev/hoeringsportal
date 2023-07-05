@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Hooks related to hoeringsportal_citizen_proposal module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+
+/**
+ * Implements hook_theme().
+ */
+function hoeringsportal_citizen_proposal_theme() {
+  return [
+    'form__proposal_add_form' => [
+      'template' => 'form--proposal-add-form',
+      'base hook' => 'form',
+    ],
+    'form__proposal_approve_form' => [
+      'template' => 'form--proposal-approve-form',
+      'base hook' => 'form',
+    ],
+    'form__proposal_support_form' => [
+      'template' => 'form--proposal-support-form',
+      'base hook' => 'form',
+    ],
+    'citizen_proposal_support_counter' => [
+      'template' => 'citizen-proposal-support-counter',
+      'variables' => [
+        'data' => [],
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_citizen_proposal_preprocess_form__proposal_add_form(&$variables) {
+  Drupal::service(Helper::class)->preprocessForm($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_citizen_proposal_preprocess_form__proposal_approve_form(&$variables) {
+  Drupal::service(Helper::class)->preprocessForm($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function hoeringsportal_citizen_proposal_preprocess_node(&$variables) {
+  Drupal::service(Helper::class)->preprocessNode($variables);
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function hoeringsportal_citizen_proposal_page_attachments(array &$page) {
+  Drupal::service(Helper::class)->proposalPageAttachments($page);
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_presave().
+ */
+function hoeringsportal_citizen_proposal_node_presave(EntityInterface $entity) {
+  Drupal::service(Helper::class)->nodeEntityPresave($entity);
+}
+
+/**
+ * Implements hook_cron().
+ */
+function hoeringsportal_citizen_proposal_cron() {
+  Drupal::service(Helper::class)->cron();
+}

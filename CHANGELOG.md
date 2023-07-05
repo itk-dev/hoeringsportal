@@ -1,10 +1,23 @@
 # Changelog for Høringsportal
 
-All notable changes to this project will be documented in this file.
-
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning](https://semver.org/spec/v2.0.0.html).
+
+## feature/citizen_proposal
+
+* Add node type citizen proposal
+* Add fixtures for citizen proposal
+* Add form for citizens to add proposal
+* Add social links for citizen proposal
+* Add form for supporting proposal
+* Add Cypress tests
+* Add OpenID Connect authentication for citizens
+* Add citizen authentication on support proposal form
+* Store hashed citizen identifier in database
+* Let editors support proposals on behalf of citizens
+* Add archiving of citizen proposals
+* Add [Playwright](https://playwright.dev/) tests
 
 ## [Unreleased]
 

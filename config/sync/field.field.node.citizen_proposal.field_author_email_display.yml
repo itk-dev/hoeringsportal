@@ -1,0 +1,23 @@
+uuid: 0aacff1f-2660-4aad-9513-2fd43f85e661
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_email_display
+    - node.type.citizen_proposal
+id: node.citizen_proposal.field_author_email_display
+field_name: field_author_email_display
+entity_type: node
+bundle: citizen_proposal
+label: 'Author email display'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

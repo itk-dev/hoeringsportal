@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Contains hoeringsportal_openid_connect.module.
+ */
+
+/**
+ * Implements hook_theme().
+ *
+ * @phpstan-param array<string, mixed> $existing
+ * @phpstan-return array<string, mixed>
+ */
+function hoeringsportal_openid_connect_theme(array $existing, string $type, string $theme, string $path): array {
+  return [
+    'hoeringsportal_openid_connect_local_test_users' => [
+      'variables' => [
+        'users' => NULL,
+        'query' => NULL,
+      ],
+    ],
+  ];
+}

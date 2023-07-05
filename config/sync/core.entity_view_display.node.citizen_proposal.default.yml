@@ -1,0 +1,156 @@
+uuid: e062cffd-6031-4050-9b71-cb69acf3ba5b
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.node.citizen_proposal.field_author_email
+    - field.field.node.citizen_proposal.field_author_email_display
+    - field.field.node.citizen_proposal.field_author_name
+    - field.field.node.citizen_proposal.field_author_phone
+    - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_content_state
+    - field.field.node.citizen_proposal.field_getorganized_case_id
+    - field.field.node.citizen_proposal.field_more_info
+    - field.field.node.citizen_proposal.field_proposal
+    - field.field.node.citizen_proposal.field_remarks
+    - field.field.node.citizen_proposal.field_vote_end
+    - field.field.node.citizen_proposal.field_vote_start
+    - node.type.citizen_proposal
+  module:
+    - datetime
+    - ds
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: ds_2col_stacked
+      library: ds/ds_2col_stacked
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        classes:
+          layout_class: {  }
+        wrappers:
+          header: div
+          left: div
+          right: div
+          footer: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        label: ''
+    regions:
+      header:
+        - node_title
+      left:
+        - 'dynamic_block_field:node-citizen_proposal_support_counter'
+        - field_proposal
+        - field_remarks
+        - field_author_name
+        - field_author_email
+        - field_author_email_display
+      right:
+        - field_vote_start
+        - field_vote_end
+        - sharing_buttons
+        - field_more_info
+    fields:
+      'dynamic_block_field:node-citizen_proposal_support_counter':
+        plugin_id: 'dynamic_block_field:node-citizen_proposal_support_counter'
+        weight: 1
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          'link class': ''
+          wrapper: ''
+          class: ''
+id: node.citizen_proposal.default
+targetEntityType: node
+bundle: citizen_proposal
+mode: default
+content:
+  field_author_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: left
+  field_author_email_display:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 6
+    region: left
+  field_author_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: left
+  field_more_info:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
+    region: right
+  field_proposal:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: left
+  field_remarks:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: left
+  field_vote_end:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: hoeringsportal_date
+    third_party_settings: {  }
+    weight: 8
+    region: right
+  field_vote_start:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: hoeringsportal_date
+    third_party_settings: {  }
+    weight: 7
+    region: right
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 9
+    region: right
+hidden:
+  field_author_phone: true
+  field_author_uuid: true
+  field_content_state: true
+  field_getorganized_case_id: true
+  langcode: true
+  links: true
+  published_at: true

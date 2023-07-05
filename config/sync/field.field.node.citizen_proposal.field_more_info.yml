@@ -1,0 +1,21 @@
+uuid: 64490d36-b5ff-463c-9f58-1020b2e0c823
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_more_info
+    - node.type.citizen_proposal
+  module:
+    - text
+id: node.citizen_proposal.field_more_info
+field_name: field_more_info
+entity_type: node
+bundle: citizen_proposal
+label: 'Vil du vide mere?'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

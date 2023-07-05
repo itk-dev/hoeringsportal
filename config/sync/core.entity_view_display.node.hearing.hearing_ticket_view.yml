@@ -166,6 +166,11 @@ content:
     third_party_settings: {  }
     weight: 8
     region: right
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_content_state: true
   field_description: true

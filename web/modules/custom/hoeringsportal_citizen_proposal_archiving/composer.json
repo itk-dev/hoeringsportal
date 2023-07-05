@@ -1,0 +1,30 @@
+{
+    "name": "drupal/hoeringsportal_citizen_proposal_archiving",
+    "type": "drupal-custom-module",
+    "description": "Citizen proposal archiving",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8",
+            "exclude": ["drupal/toolbar_visibility"]
+        }
+    },
+    "require": {
+        "drupal/entity_events": "^2.0",
+        "symfony/options-resolver": "^5.0",
+        "itk-dev/getorganized-api-client-php": "^1.2",
+        "drush/drush": "^11",
+        "dompdf/dompdf": "^2.0",
+        "drupal/pluginformalter": "^1.5"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^11"
+            }
+        }
+    }
+}

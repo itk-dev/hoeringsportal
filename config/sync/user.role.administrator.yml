@@ -24,7 +24,7 @@ dependencies:
     - toolbar
 id: administrator
 label: Administrator
-weight: -7
+weight: -6
 is_admin: null
 permissions:
   - 'access administration pages'

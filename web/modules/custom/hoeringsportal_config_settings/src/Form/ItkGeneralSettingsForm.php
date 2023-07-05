@@ -134,6 +134,14 @@ class ItkGeneralSettingsForm extends FormBase {
       '#group' => 'general_settings',
     ];
 
+    $form['remote_paths']['full_map_url'] = [
+      '#type' => 'url',
+      '#title' => $this->t('Map of all hearings and meetings'),
+      '#size' => 30,
+      '#default_value' => $config->get('full_map_url'),
+      '#description' => $this->t('Used when linking to the map of all hearings and meetings.'),
+    ];
+
     $form['remote_paths']['full_map_project_url'] = [
       '#type' => 'url',
       '#title' => $this->t('Map of all projects'),
@@ -232,6 +240,7 @@ class ItkGeneralSettingsForm extends FormBase {
       'footer_text_4th' => $form_state->getValue('footer_text_4th')['value'],
       'hearings_overview' => $form_state->getValue('hearings_overview'),
       'initiative_overview' => $form_state->getValue('initiative_overview'),
+      'full_map_url' => $form_state->getValue('full_map_url'),
       'full_map_project_url' => $form_state->getValue('full_map_project_url'),
       'full_map_hearing_url' => $form_state->getValue('full_map_hearing_url'),
       'frontpage_id' => $form_state->getValue('frontpage_id'),

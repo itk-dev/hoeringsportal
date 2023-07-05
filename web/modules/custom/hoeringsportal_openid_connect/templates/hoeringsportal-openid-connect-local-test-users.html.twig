@@ -1,0 +1,38 @@
+{% set title = 'OS2Forms NemLogin OpenID Connect local test users' %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>{{ title }}</h1>
+
+      {% if users %}
+        <div class="d-grid gap-2">
+          {% for id, user in users %}
+            <a class="btn btn-outline-primary btn-block" style="text-align: left" href="{{ path('hoeringsportal_openid_connect.openid_connect_authenticate', query|merge({user: id})) }}">
+              {{ user|json_encode(constant('JSON_PRETTY_PRINT')) }}
+            </a>
+        {% endfor %}
+        </div>
+      {% else %}
+        <div class="alert alert-warning">No users defined</div>
+
+        <p>Edit <code>settings.local.php</code> and define local test users:</p>
+
+        <pre><code>// User id => user info
+$config['hoeringsportal_openid_connect']['nemlogin_openid_connect_local_test_users'] = [
+  '1234567890' => [
+    'cpr' => '1234567890',
+    'name' => 'John Doe',
+  ],
+];
+        </code></pre>
+      {% endif %}
+    </div>
+  </body>
+</html>

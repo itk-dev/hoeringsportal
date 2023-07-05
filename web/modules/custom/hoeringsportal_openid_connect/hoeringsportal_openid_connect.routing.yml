@@ -1,0 +1,19 @@
+hoeringsportal_openid_connect.openid_connect_authenticate:
+  path: '/hoeringsportal-openid-connect/authenticate'
+  defaults:
+    _controller: 'Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController::main'
+  requirements:
+    # Anonymous users must be able to access this route.
+    _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'
+
+hoeringsportal_openid_connect.openid_connect_end_session:
+  path: '/hoeringsportal-openid-connect/end-session'
+  defaults:
+    _controller: 'Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController::endSession'
+  requirements:
+    # Anonymous users must be able to access this route.
+    _access: 'TRUE'
+  options:
+    no_cache: 'TRUE'

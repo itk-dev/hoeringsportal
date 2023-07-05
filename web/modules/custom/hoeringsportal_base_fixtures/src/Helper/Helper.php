@@ -88,13 +88,17 @@ class Helper {
   }
 
   /**
-   * Get all landing pages.
+   * Get text from assets/texts folder.
+   *
+   * @param string $filename
+   *   The name of the file in assets/texts folder.
+   *
+   * @return string|null
+   *   The contents of the file.
    */
-  public function getLandingPages(): array {
-    // Get the nodes.
-    return $this->entityTypeManager
-      ->getStorage('node')
-      ->loadByProperties(['type' => 'landing_page']);
+  public function getText(string $filename): ?string {
+    $texts_source_path = $this->pathResolver->getPath('module', 'hoeringsportal_base_fixtures') . '/assets/texts';
+    return file_get_contents($texts_source_path . '/' . $filename) ?? NULL;
   }
 
 }
