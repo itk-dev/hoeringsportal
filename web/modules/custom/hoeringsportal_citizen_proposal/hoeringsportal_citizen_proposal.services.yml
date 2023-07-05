@@ -12,4 +12,5 @@ services:
       - '@current_route_match'
       - '@database'
       - '@entity_type.manager'
+      - '@datetime.time'
       - '@logger.channel.hoeringsportal_citizen_proposal'

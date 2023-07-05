@@ -218,16 +218,6 @@ jobs:
           docker compose pull
           docker compose --profile test up --detach
 
-          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
-
-          # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
-
-          # Build theme assets
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
-
           cat > web/sites/default/settings.local.php <<'EOL'
           <?php
           $settings['hoeringsportal_openid_connect']['openid_connect'] = [
@@ -237,6 +227,16 @@ jobs:
           ];
 
           EOL
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+          # Install the site
+          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+
+          # Build theme assets
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
 
       - name: Run Playwright
         run: |

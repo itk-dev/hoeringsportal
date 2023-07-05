@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - hoeringsportal_citizen_proposal_archiving
+id: hoeringsportal_citizen_proposal_archiving
+label: 'Citizen proposal archiving'
+backend: database
+backend_configuration:
+  lease_time: 300
+processor: daemon
+processing_time: 90
+locked: false

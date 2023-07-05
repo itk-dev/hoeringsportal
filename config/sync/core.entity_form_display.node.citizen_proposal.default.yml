@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
     - field.field.node.citizen_proposal.field_content_state
+    - field.field.node.citizen_proposal.field_getorganized_case_id
     - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
@@ -16,7 +17,25 @@ dependencies:
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
   module:
+    - field_group
     - text
+third_party_settings:
+  field_group:
+    group_getorganized:
+      children:
+        - field_getorganized_case_id
+      label: GetOrganized
+      region: content
+      parent_name: ''
+      weight: 20
+      format_type: details
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        open: true
+        description: ''
+        required_fields: true
 id: node.citizen_proposal.default
 targetEntityType: node
 bundle: citizen_proposal
@@ -48,6 +67,14 @@ content:
   field_author_phone:
     type: string_textfield
     weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_getorganized_case_id:
+    type: string_textfield
+    weight: 26
     region: content
     settings:
       size: 60

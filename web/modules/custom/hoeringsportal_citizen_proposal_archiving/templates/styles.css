@@ -1,0 +1,12 @@
+@page {
+  size: a4 portrait;
+  margin: 20mm;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin: 0;
+}

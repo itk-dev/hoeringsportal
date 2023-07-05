@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
@@ -49,6 +50,7 @@ class Helper implements LoggerAwareInterface {
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
     readonly private EntityTypeManagerInterface $entityTypeManager,
+    readonly private TimeInterface $time,
     LoggerChannel $logger
   ) {
     $this->setLogger($logger);
@@ -138,19 +140,22 @@ class Helper implements LoggerAwareInterface {
    *   The values to save.
    */
   public function saveSupport(string $userIdentifier, NodeInterface $node, array $values): void {
-    try {
-      if (NULL !== $this->getUserSupportedAt($userIdentifier, $node)) {
-        throw new RuntimeException('User @user already supports proposal @proposal', [
-          '@user' => $userIdentifier,
-          '@proposal' => $node->id(),
-        ]);
-      }
+    if (NULL !== $this->getUserSupportedAt($userIdentifier, $node)) {
+      throw new RuntimeException(sprintf('User %s already supports proposal %s', $userIdentifier, $node->id()));
+    }
 
+    try {
       $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
+
+      // Mark node as changed now, and save to flush cache and notify any node
+      // change listeners.
+      $node
+        ->setChangedTime($this->time->getRequestTime())
+        ->save();
     }
     catch (\Exception $exception) {
       $this->logger->error('Error saving support: @message', [
@@ -158,7 +163,7 @@ class Helper implements LoggerAwareInterface {
         'exception' => $exception,
         'values' => $values,
       ]);
-      $this->messenger()->addWarning($this->t('Something went wrong. Your support was not registered.'));
+      $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
     }
   }
 
@@ -390,6 +395,28 @@ class Helper implements LoggerAwareInterface {
   private function getProposalSupportRequired(): int {
     // Allow changing this value in settings.php.
     return (int) Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
+  }
+
+  /**
+   * Load citizen proposal.
+   */
+  public function loadCitizenProposal(int $id): NodeInterface {
+    $node = $this->entityTypeManager->getStorage('node')->load($id);
+    if (NULL === $node) {
+      throw new RuntimeException(sprintf('Cannot load node %s', $id));
+    }
+    if (!$this->isCitizenProposal($node)) {
+      throw new RuntimeException(sprintf('Node %s (%s) is not a citizen proposal', $node->id(), $node->label()));
+    }
+
+    return $node;
+  }
+
+  /**
+   * Check is a node is a citizen proposal.
+   */
+  public function isCitizenProposal(NodeInterface $node): bool {
+    return 'citizen_proposal' === $node->bundle();
   }
 
   /**
