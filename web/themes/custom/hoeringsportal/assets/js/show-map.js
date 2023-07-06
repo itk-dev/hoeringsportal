@@ -16,7 +16,7 @@ import { defaults as defaultInteractions } from 'ol/interaction.js'
 require('./ol.css')
 
 var mapElement = document.getElementById('map')
-if (mapElement !== null) {
+if (mapElement !== null && mapElement.dataset.geojson) {
   var image = new Icon({
     src: '/themes/custom/hoeringsportal/static/images/flag.png',
     anchor: [0.5, 1]
