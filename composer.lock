@@ -3432,11 +3432,11 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_openid_connect",
-                "reference": "02167c8388e0aa8546caf4eb8e022498c6cd9234"
+                "reference": "63b0ab9cbc292dd912eaee0aabbea846f6794e8d"
             },
             "require": {
                 "itk-dev/drupal_psr6_cache": "dev-main",
-                "itk-dev/openid-connect": "dev-feature/authorization-code-flow"
+                "itk-dev/openid-connect": "^3.1"
             },
             "type": "drupal-custom-module",
             "license": [
@@ -5902,16 +5902,16 @@
         },
         {
             "name": "itk-dev/openid-connect",
-            "version": "dev-feature/authorization-code-flow",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/openid-connect.git",
-                "reference": "e0521d4709429b8e9dbfbc945eda902eda748779"
+                "reference": "3d35c63c3bb9bc4424f93135f92973bd20750299"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/openid-connect/zipball/e0521d4709429b8e9dbfbc945eda902eda748779",
-                "reference": "e0521d4709429b8e9dbfbc945eda902eda748779",
+                "url": "https://api.github.com/repos/itk-dev/openid-connect/zipball/3d35c63c3bb9bc4424f93135f92973bd20750299",
+                "reference": "3d35c63c3bb9bc4424f93135f92973bd20750299",
                 "shasum": ""
             },
             "require": {
@@ -5919,7 +5919,7 @@
                 "ext-openssl": "*",
                 "firebase/php-jwt": "^5.2",
                 "league/oauth2-client": "^2.6",
-                "php": "^7.4|^8.0|^8.1",
+                "php": "^8.1",
                 "psr/cache": "^1.0 || ^2.0 || ^3.0",
                 "psr/http-client": "^1.0",
                 "robrichards/xmlseclibs": "^3.1"
@@ -5959,9 +5959,9 @@
             "description": "OpenID connect configuration package",
             "support": {
                 "issues": "https://github.com/itk-dev/openid-connect/issues",
-                "source": "https://github.com/itk-dev/openid-connect/tree/feature/authorization-code-flow"
+                "source": "https://github.com/itk-dev/openid-connect/tree/3.1.0"
             },
-            "time": "2023-05-12T13:37:31+00:00"
+            "time": "2023-07-03T13:49:54+00:00"
         },
         {
             "name": "itk-dev/pretix-api-client-php",
