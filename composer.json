@@ -61,6 +61,19 @@
                     "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev"
                 }
             }
+        },
+        "// @see web/modules/contrib/search_autocomplete/readme.md": {
+            "type": "package",
+            "package": {
+                "name": "cure53/dompurify",
+                "version": "3.0.3",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/cure53/DOMPurify.git",
+                    "type": "git",
+                    "reference": "3.0.3"
+                }
+            }
         }
     },
     "require": {
@@ -69,6 +82,7 @@
         "bower-asset/jqueryui-touch-punch": "dev-master",
         "bower-asset/spectrum": "^1.8",
         "composer/installers": "^1.7",
+        "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^5.0",
         "drupal/better_social_sharing_buttons": "^4.0",

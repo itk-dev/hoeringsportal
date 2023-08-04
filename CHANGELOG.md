@@ -4,24 +4,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic
 Versioning](https://semver.org/spec/v2.0.0.html).
 
-## feature/citizen_proposal
+## [Unreleased]
+
+## [3.1.0] - 2023-08-04 - Citizen proposal
 
 * [PR-331](https://github.com/itk-dev/hoeringsportal/pull/331)
   Bumped `itk-dev/openid-connect` version
-* Add node type citizen proposal
-* Add fixtures for citizen proposal
-* Add form for citizens to add proposal
-* Add social links for citizen proposal
-* Add form for supporting proposal
-* Add Cypress tests
-* Add OpenID Connect authentication for citizens
-* Add citizen authentication on support proposal form
-* Store hashed citizen identifier in database
-* Let editors support proposals on behalf of citizens
-* Add archiving of citizen proposals
-* Add [Playwright](https://playwright.dev/) tests
-
-## [Unreleased]
+* Add node type citizen proposal and fixtures
+* Added form for citizens to add proposal
+* Added form for supporting proposal
+* Added OpenID Connect authentication for citizens
+* Added citizen authentication on support proposal form
+* Added archiving of citizen proposals
 
 ## [3.0.2] - 2023-06-28
 
@@ -53,7 +47,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/itk-dev/hoeringsportal/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/itk-dev/hoeringsportal/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/itk-dev/hoeringsportal/compare/1.4.3...3.0.0
