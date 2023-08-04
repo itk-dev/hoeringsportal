@@ -41,6 +41,39 @@
                     "drupal/hoeringsportal_deskpro": "1.0-dev"
                 }
             }
+        },
+        "drupal/hoeringsportal_openid_connect": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_openid_connect",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_openid_connect": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_citizen_proposal_archiving": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_citizen_proposal_archiving",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev"
+                }
+            }
+        },
+        "// @see web/modules/contrib/search_autocomplete/readme.md": {
+            "type": "package",
+            "package": {
+                "name": "cure53/dompurify",
+                "version": "3.0.3",
+                "type": "drupal-library",
+                "source": {
+                    "url": "https://github.com/cure53/DOMPurify.git",
+                    "type": "git",
+                    "reference": "3.0.3"
+                }
+            }
         }
     },
     "require": {
@@ -49,8 +82,10 @@
         "bower-asset/jqueryui-touch-punch": "dev-master",
         "bower-asset/spectrum": "^1.8",
         "composer/installers": "^1.7",
+        "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^5.0",
+        "drupal/better_social_sharing_buttons": "^4.0",
         "drupal/captcha": "^1.0@beta",
         "drupal/color_field": "^2.0",
         "drupal/config_ignore": "^2.2",
@@ -65,11 +100,14 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
+        "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev",
         "drupal/hoeringsportal_data": "^1.0",
         "drupal/hoeringsportal_deskpro": "^1.0",
+        "drupal/hoeringsportal_openid_connect": "^1.0",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^1.0@RC",
         "drupal/jquery_ui_accordion": "^1.1",
+        "drupal/maxlength": "^2.1",
         "drupal/openid_connect": "^2.0",
         "drupal/paragraphs": "^1.3",
         "drupal/pathauto": "^1.3",
@@ -80,10 +118,10 @@
         "drupal/system_status": "^2.8",
         "drupal/toolbar_visibility": "dev-3127402-drupal-9-readiness",
         "drupal/twig_tweak": "^2.1",
-        "drupal/views_data_export": "^1.0",
+        "drupal/views_data_export": "^1.3",
         "drupal/viewsreference": "^1.2",
         "drupal/xls_serialization": "^1.2",
-        "drush/drush": "^10.3",
+        "drush/drush": "^11",
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^1.1",
         "itk-dev/itk_media_entity": "^2",
@@ -99,6 +137,7 @@
     "require-dev": {
         "drupal/content_fixtures": "^3.1",
         "drupal/core-dev": "^9.3",
+        "drupal/masquerade": "^2.0",
         "drupal/upgrade_status": "^3.13",
         "mglaman/phpstan-drupal": "^1.1",
         "phpstan/extension-installer": "^1.2",

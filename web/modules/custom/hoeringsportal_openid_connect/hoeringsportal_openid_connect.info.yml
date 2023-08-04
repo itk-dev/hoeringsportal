@@ -1,0 +1,7 @@
+name: Hoeringsportal OpenID Connect
+type: module
+description: 'OpenID Connect stuff'
+package: ITK
+core_version_requirement: ^9
+dependencies:
+  - drupal:drupal_psr6_cache

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+<form{{ attributes.addClass('mb-3', 'list--filter-wrapper') }}>
+  <div class="list--filter-wrapper-inner w-100">
+    <div class="d-block w-100">
+      {{ children }}
+    </div>
+  </div>
+</form>

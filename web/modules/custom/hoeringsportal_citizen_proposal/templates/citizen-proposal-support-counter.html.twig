@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Support counter theme implementation.
+ *
+ * Available variables:
+ * - data: Data for the block.
+ * @ingroup themeable
+ */
+#}
+<div>
+  <div class="support-counter py-3">
+    <span class="support-counter-label">{{ 'Number of supporters'|t }}</span>: <span class="count">{{ data.supportCount }}</span>
+  </div>
+  <div class="support-progress">
+    <div class="progress">
+      <div class="progress-bar" style="width:{{ data.supportPercentage }}%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>

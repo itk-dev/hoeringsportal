@@ -18,3 +18,26 @@
     color: $primary;
   }
 }
+
+.list--header {
+  height: 2em;
+  margin-top: 2em;
+}
+
+.list--filter-wrapper {
+  height: 7em;
+
+  position: relative;
+  margin-top: -4em;
+}
+
+
+.list--filter-wrapper-inner {
+  margin-top: -3em;
+}
+
+.list--empty-text {
+  border: 2px dashed $gray-500;
+  padding: 5em 0;
+  margin: 2em 0;
+}

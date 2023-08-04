@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Code related to installing and updating this module.
+ */
+
+/**
+ * Implements hook_schema().
+ *
+ * @phpstan-return array<string, mixed>
+ */
+function hoeringsportal_citizen_proposal_archiving_schema(): array {
+  $schema['hoeringsportal_citizen_proposal_archiving'] = [
+    'description' => 'A table to store archival info for citizen proposals',
+    'fields' => [
+      'archiver' => [
+        'description' => 'The archiver FQN',
+        'type' => 'varchar_ascii',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'node_id' => [
+        'description' => 'The node id',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'data' => [
+        'description' => 'The data.',
+        'type' => 'blob',
+        'not null' => TRUE,
+        'size' => 'normal',
+      ],
+      'created' => [
+        'description' => 'Created at',
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'updated' => [
+        'description' => 'Updated at',
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => [
+      'archiver',
+      'node_id',
+    ],
+    'indexes' => [
+      'id' => [
+        'archiver',
+        'node_id',
+      ],
+    ],
+  ];
+
+  return $schema;
+}

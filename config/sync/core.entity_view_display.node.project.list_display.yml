@@ -30,6 +30,11 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_description: true
   field_project_finish: true

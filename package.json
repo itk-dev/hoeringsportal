@@ -2,12 +2,17 @@
   "license": "UNLICENSED",
   "private": true,
   "devDependencies": {
-    "markdownlint-cli": "^0.31.1"
+    "@playwright/test": "^1.35.0",
+    "markdownlint-cli": "^0.31.1",
+    "playwright-mailhog": "^1.1.0",
+    "prettier": "2.8.8"
   },
   "scripts": {
     "coding-standards-check/markdownlint": "markdownlint '*.md' 'web/modules/custom/**/*.md' 'documentation/*.md'",
-    "coding-standards-check": "yarn coding-standards-check/markdownlint",
+    "coding-standards-check/prettier": "prettier --check playwright",
+    "coding-standards-check": "yarn coding-standards-check/markdownlint && yarn coding-standards-check/prettier",
     "coding-standards-apply/markdownlint": "markdownlint --fix '*.md' 'web/modules/custom/**/*.md' 'documentation/*.md'",
-    "coding-standards-apply": "yarn coding-standards-apply/markdownlint"
+    "coding-standards-apply/prettier": "prettier --write playwright",
+    "coding-standards-apply": "yarn coding-standards-apply/markdownlint && yarn coding-standards-apply/prettier"
   }
 }

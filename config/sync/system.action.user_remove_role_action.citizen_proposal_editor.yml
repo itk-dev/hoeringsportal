@@ -1,0 +1,14 @@
+uuid: bf5e5ffe-c7ef-4690-ba90-e14f82bd0612
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.citizen_proposal_editor
+  module:
+    - user
+id: user_remove_role_action.citizen_proposal_editor
+label: 'Remove the Citizen proposal editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: citizen_proposal_editor

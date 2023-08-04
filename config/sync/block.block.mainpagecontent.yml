@@ -1,0 +1,20 @@
+uuid: 56d37b17-7579-4922-b609-a69aabf4180c
+langcode: da
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - hoeringsportal_admin
+id: mainpagecontent
+theme: hoeringsportal_admin
+region: content
+weight: -2
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

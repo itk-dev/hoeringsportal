@@ -157,6 +157,9 @@ function hoeringsportal_theme_suggestions_input_alter(array &$suggestions, array
     if (!empty($variables['element']['#submit_id'])) {
       $suggestions[] = 'input__submit__' . $variables['element']['#submit_id'];
     }
+    if (!empty($variables['element']['#button_type'])) {
+      $suggestions[] = 'input__submit__' . $variables['element']['#button_type'];
+    }
   }
 }
 
@@ -165,7 +168,7 @@ function hoeringsportal_theme_suggestions_input_alter(array &$suggestions, array
  */
 function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['#id'])) {
-    $suggestions[] = 'form__' . $variables['element']['#id'];
+    $suggestions[] = 'form__' . str_replace('-', '_', $variables['element']['#id']);
   }
 
   if ($variables['element']['#form_id'] == 'search_block_form') {
@@ -178,9 +181,9 @@ function hoeringsportal_theme_suggestions_form_alter(array &$suggestions, array 
  */
 function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, array $variables) {
   if (!empty($variables['element']['submit']['#submit_id'])) {
-    $suggestions[] = 'container__' . $variables['element']['submit']['#submit_id'];
+    $suggestions[] = 'container__' . str_replace('-', '_', $variables['element']['submit']['#submit_id']);
   }
-  $suggestions[] = 'container__' . $variables['element']['#type'];
+  $suggestions[] = 'container__' . str_replace('-', '_', $variables['element']['#type']);
 }
 
 /**
@@ -188,7 +191,7 @@ function hoeringsportal_theme_suggestions_container_alter(array &$suggestions, a
  */
 function hoeringsportal_preprocess_html(&$variables) {
   if ($node = \Drupal::request()->attributes->get('node')) {
-    $variables['attributes']['class'][] = 'page--' . str_replace('_', '-', $node->bundle());
+    $variables['attributes']['class'][] = 'page--' . str_replace('-', '_', $node->bundle());
   }
 }
 
@@ -204,7 +207,7 @@ function hoeringsportal_preprocess_views_exposed_form(&$variables) {
     if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
       $variables['custom_config_exists'] = TRUE;
       $config = \Drupal::getContainer()->get('itk_admin.itk_config');
-      $variables['full_map_url'] = $config->get('full_map_hearing_url');
+      $variables['full_map_url'] = $config->get('full_map_url');
     }
   }
 }

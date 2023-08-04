@@ -1,0 +1,14 @@
+uuid: cbb4f103-e258-4ff7-87bd-96bd1f24c4c5
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.citizen_proposal_editor
+  module:
+    - user
+id: user_add_role_action.citizen_proposal_editor
+label: 'Add the Citizen proposal editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: citizen_proposal_editor

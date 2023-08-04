@@ -75,6 +75,7 @@
   border-spacing: 0;
   flex: 0 0 auto;
   border-bottom: 2px solid $gray-200;
+  min-height: 4em;
   @include transition-std(border-bottom, ease-in, 200ms);
 }
 .activity-teaser-type {

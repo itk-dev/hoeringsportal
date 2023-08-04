@@ -1,0 +1,16 @@
+services:
+  logger.channel.hoeringsportal_citizen_proposal:
+    parent: logger.channel_base
+    arguments: ['hoeringsportal_citizen_proposal']
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\Helper:
+    arguments:
+      - '@tempstore.private'
+      - '@serializer'
+      - '@state'
+      - '@file_url_generator'
+      - '@current_route_match'
+      - '@database'
+      - '@entity_type.manager'
+      - '@datetime.time'
+      - '@logger.channel.hoeringsportal_citizen_proposal'

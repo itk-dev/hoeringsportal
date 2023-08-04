@@ -1,0 +1,10 @@
+uuid: bf168e78-cbd8-421a-a556-517b7a6e9c11
+langcode: da
+status: true
+dependencies:
+  module:
+    - node
+id: node.citizen_proposal_add
+label: 'Citizen proposal add'
+targetEntityType: node
+cache: true

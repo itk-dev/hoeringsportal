@@ -234,6 +234,11 @@ content:
     third_party_settings: {  }
     weight: 5
     region: left
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_content_state: true
   field_deskpro_agent_email: true

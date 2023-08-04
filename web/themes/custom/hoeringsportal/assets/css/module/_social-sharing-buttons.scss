@@ -1,0 +1,16 @@
+.social-sharing-buttons {
+  border-top: 1px solid $gray-800;
+  padding-top: 1em;
+  border-bottom: 1px solid $gray-800;
+  padding-bottom: 1em;
+  flex-direction: column;
+  align-items: start;
+
+  a {
+    margin: .5em 0;
+
+    span {
+      margin-left: .5em;
+    }
+  }
+}

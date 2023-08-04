@@ -261,6 +261,11 @@ content:
     third_party_settings: {  }
     weight: 4
     region: left
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
 hidden:
   field_area: true
   field_cancelled_date: true

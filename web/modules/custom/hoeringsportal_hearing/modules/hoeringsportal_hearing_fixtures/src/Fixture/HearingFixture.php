@@ -21,7 +21,7 @@ class HearingFixture extends AbstractFixture implements DependentFixtureInterfac
    * {@inheritdoc}
    */
   public function load() {
-    // Hearings landing page.
+    // Hearing node.
     $entity = Node::create([
       'type' => 'hearing',
       'title' => 'Høring1',
@@ -74,7 +74,7 @@ Lorem ipsum 1234 Lorem ipsum',
       'field_hearing_ticket_list' => '',
     ]);
     $entity->save();
-    $this->addReference('node:landing_page:Hearing1', $entity);
+    $this->addReference('node:hearing:Hearing1', $entity);
   }
 
   /**
