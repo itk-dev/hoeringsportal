@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## feature/citizen_proposal
 
+* [PR-331](https://github.com/itk-dev/hoeringsportal/pull/331)
+  Bumped `itk-dev/openid-connect` version
 * Add node type citizen proposal
 * Add fixtures for citizen proposal
 * Add form for citizens to add proposal
