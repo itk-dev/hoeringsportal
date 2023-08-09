@@ -7,3 +7,5 @@ core_version_requirement: ^8.8 || ^9
 dependencies:
   - field
   - hoeringsportal_deskpro
+  - serialization
+  - csv_serialization
