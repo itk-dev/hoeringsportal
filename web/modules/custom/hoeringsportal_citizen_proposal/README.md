@@ -27,3 +27,26 @@ $settings['proposal_period_length'] = '+180 days';
 // The required votes for a proposal to pass.
 $settings['proposal_support_required'] = '5000';
 ```
+
+## Mails
+
+We use [Drupal Symfony Mailer](https://www.drupal.org/project/symfony_mailer)
+and a custom mail builder,
+[CitizenEmailBuilder](src/Plugin/EmailBuilder/CitizenEmailBuilder.php), to get
+the recipient email address from the proposal (node).
+
+An confirmation email is sent to the citizen when a new proposal has been added
+and an editor gets a mail notification as well.
+
+When a proposal is published an email is sent to the citizen.
+
+Mail subjects and contents are edited on `/admin/citizen_proposal#edit-emails`.
+
+### Testing and debugging email
+
+The Drush command `hoeringsportal-citizen-proposal:test-mail:send` can be used
+to debug emails:
+
+```sh
+drush hoeringsportal-citizen-proposal:test-mail:send --help
+```

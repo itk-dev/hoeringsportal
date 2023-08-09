@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
@@ -19,6 +20,7 @@ use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
+use Drupal\hoeringsportal_citizen_proposal\Form\ProposalAdminForm;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -110,6 +112,23 @@ class Helper implements LoggerAwareInterface {
    */
   public function preprocessForm(&$variables): void {
     $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
+  }
+
+  /**
+   * Get admin form value.
+   *
+   * @return string|array|null
+   *   The value if any. Otherwise the default value.
+   */
+  public function getAdminFormValue(string|array $key, string $default = NULL) {
+    $adminFormStateValues = $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
+    $value = NestedArray::getValue($adminFormStateValues, (array) $key);
+
+    if (is_string($value)) {
+      $value = trim($value);
+    }
+
+    return $value ?: $default;
   }
 
   /**

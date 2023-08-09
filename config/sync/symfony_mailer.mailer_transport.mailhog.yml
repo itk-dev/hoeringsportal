@@ -1,0 +1,18 @@
+uuid: 19bddb9b-6e38-4452-9745-8e2bcdf2bd5d
+langcode: da
+status: true
+dependencies: {  }
+id: mailhog
+label: MailHog
+plugin: smtp
+configuration:
+  user: ''
+  pass: ''
+  host: mailhog
+  port: 1025
+  query:
+    verify_peer: false
+    local_domain: ''
+    restart_threshold: null
+    restart_threshold_sleep: null
+    ping_threshold: null

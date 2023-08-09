@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\State\State;
+use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -223,12 +224,73 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['sidebar_text']['value'] ?? '',
     ];
 
+    $this->buildEmailsForm($form, $adminFormStateValues);
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
       '#button_type' => 'primary',
     ];
+
+    return $form;
+  }
+
+  /**
+   * Build emails form.
+   *
+   * @param array $form
+   *   The form.
+   * @param array $adminFormStateValues
+   *   The admin form state values.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildEmailsForm(array &$form, array $adminFormStateValues): array {
+    $form['emails'] = [
+      '#type' => 'details',
+      '#tree' => TRUE,
+      '#open' => TRUE,
+      '#title' => $this
+        ->t('Emails'),
+    ];
+
+    $form['emails']['description'] = [
+      '#markup' => $this->t('You can use tokens in email subject and both tokens and Twig in email content.'),
+    ];
+
+    $form['emails']['email_editor'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Editor email address'),
+      '#required' => TRUE,
+      '#default_value' => $adminFormStateValues['emails']['email_editor'] ?? '',
+    ];
+
+    foreach ([
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_CREATED_CITIZEN => $this->t('Proposal created (citizen)'),
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_CREATED_EDITOR => $this->t('Proposal created (editor)'),
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_PUBLISHED_CITIZEN => $this->t('Proposal published (citizen)'),
+    ] as $key => $title) {
+      $form['emails'][$key] = [
+        '#type' => 'fieldset',
+        '#title' => $title,
+
+        'subject' => [
+          '#type' => 'textfield',
+          '#title' => $this->t('Subject'),
+          '#required' => TRUE,
+          '#default_value' => $adminFormStateValues['emails'][$key]['subject'] ?? '',
+        ],
+        'content' => [
+          '#type' => 'text_format',
+          '#title' => $this->t('Content'),
+          '#required' => TRUE,
+          '#format' => $adminFormStateValues['emails'][$key]['content']['format'] ?? 'email_html',
+          '#default_value' => $adminFormStateValues['emails'][$key]['content']['value'] ?? '',
+        ],
+      ];
+    }
 
     return $form;
   }

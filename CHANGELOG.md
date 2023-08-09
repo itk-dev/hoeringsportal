@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-333](https://github.com/itk-dev/hoeringsportal/pull/333)
+  Sent notification mails on citizen proposal creation and publication
+
 ## [3.1.0] - 2023-08-04 - Citizen proposal
 
 * [PR-331](https://github.com/itk-dev/hoeringsportal/pull/331)
