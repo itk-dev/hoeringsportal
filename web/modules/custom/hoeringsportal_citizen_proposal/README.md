@@ -35,6 +35,21 @@ and a custom mail builder,
 [CitizenEmailBuilder](src/Plugin/EmailBuilder/CitizenEmailBuilder.php), to get
 the recipient email address from the proposal (node).
 
+### SMTP
+
+Edit `settings.local.php` and define SMTP host and port, e.g.
+
+```php
+# web/sites/default/settings.local.php
+# For local development
+$config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'mailhog';
+$config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '1025';
+
+# For server deployment
+$config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'host.docker.internal';
+$config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '25';
+```
+
 An confirmation email is sent to the citizen when a new proposal has been added
 and an editor gets a mail notification as well.
 

@@ -1,17 +1,17 @@
-uuid: 19bddb9b-6e38-4452-9745-8e2bcdf2bd5d
+uuid: b2b78709-79c1-424c-9d87-fecb5ac3656d
 langcode: da
 status: true
 dependencies: {  }
-id: mailhog
-label: MailHog
+id: smtp
+label: SMTP
 plugin: smtp
 configuration:
   user: ''
   pass: ''
-  host: mailhog
-  port: 1025
+  host: set.this.in.settings.local.php
+  port: null
   query:
-    verify_peer: false
+    verify_peer: true
     local_domain: ''
     restart_threshold: null
     restart_threshold_sleep: null
