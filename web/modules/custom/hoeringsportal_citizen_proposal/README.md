@@ -40,7 +40,12 @@ and an editor gets a mail notification as well.
 
 When a proposal is published an email is sent to the citizen.
 
+### Templates
+
 Mail subjects and contents are edited on `/admin/citizen_proposal#edit-emails`.
+
+The notification mails use templates in
+`../../../themes/custom/hoeringsportal/templates/email/citizen-proposal/`
 
 ### Testing and debugging email
 
@@ -48,5 +53,14 @@ The Drush command `hoeringsportal-citizen-proposal:test-mail:send` can be used
 to debug emails:
 
 ```sh
-drush hoeringsportal-citizen-proposal:test-mail:send --help
+docker compose exec phpfpm vendor/bin/drush hoeringsportal-citizen-proposal:test-mail:send --help
+```
+
+After [loading fixtures](../../../../documentation/localDevelopment.md), run
+something like
+
+```sh
+# Get a list of citizen proposal ids
+docker compose exec phpfpm vendor/bin/drush sql:query "SELECT nid, title FROM node_field_data WHERE type = 'citizen_proposal'"
+docker compose exec phpfpm vendor/bin/drush hoeringsportal-citizen-proposal:test-mail:send 87 create test@example.com
 ```

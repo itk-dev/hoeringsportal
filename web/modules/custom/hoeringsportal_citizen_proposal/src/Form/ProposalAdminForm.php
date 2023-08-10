@@ -224,7 +224,7 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['sidebar_text']['value'] ?? '',
     ];
 
-    $this->buildEmailsForm($form, $adminFormStateValues);
+    $this->buildEmailsForm($form, $adminFormStateValues ?? []);
 
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [

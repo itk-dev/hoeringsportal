@@ -109,17 +109,17 @@ docker compose exec phpfpm composer code-analysis
 #### Markdown
 
 ```sh
-yarn install
+docker compose run --rm node yarn install
 ```
 
 ```sh
-yarn coding-standards-check
+docker compose run --rm node yarn coding-standards-check
 ```
 
 Apply automatic coding standard fixes by running
 
 ```sh
-yarn coding-standards-apply
+docker compose run --rm node yarn coding-standards-apply
 ```
 
 ## About translations

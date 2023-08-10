@@ -12,6 +12,7 @@ use Drush\Commands\DrushCommands as BaseDrushCommands;
  * Test mail commands for citizen proposal.
  */
 class TestMailCommand extends BaseDrushCommands {
+
   /**
    * Constructor for the citizen proposal commands class.
    */
