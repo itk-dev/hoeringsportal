@@ -59,6 +59,59 @@ When a proposal is published an email is sent to the citizen.
 
 Mail subjects and contents are edited on `/admin/citizen_proposal#edit-emails`.
 
+Example templates:
+
+```text
+# ------------------------------------------------------------------------------
+# proposal_created_citizen
+# ------------------------------------------------------------------------------
+
+Subject
+
+Tak for dit borgerforslag på [site:url-brief]
+
+Content
+
+<p>Hej [node:field_author_name]</p>
+
+<p>Tak for dit borgerforslag <em>[node:title]</em>.</p>
+
+<p>Venlig hilsen<br>
+Deltag aarhus</p>
+
+# ------------------------------------------------------------------------------
+# proposal_created_editor
+# ------------------------------------------------------------------------------
+
+Subject
+
+Nyt borgerforslag på [site:url-brief]
+
+Content
+
+<p>Der er kommet et nyt borgerforslag: <a href="[node:url]">[node:title]</a> <a href="[node:edit-url]">[rediger]</a></p>
+
+<p>Venlig hilsen<br>
+Deltag aarhus</p>
+
+# ------------------------------------------------------------------------------
+# proposal_published_citizen
+# ------------------------------------------------------------------------------
+
+Subject
+
+Dit borgerforslag på [site:url-brief] er blevet offentliggjort
+
+Content
+
+<p>Hej [node:field_author_name]</p>
+
+<p>Dit borgerforslag <a href="[node:url]"><em>[node:title]</em></a> er nu offentliggjort.</p>
+
+<p>Venlig hilsen<br>
+Deltag aarhus</p>
+```
+
 The notification mails use templates in
 `../../../themes/custom/hoeringsportal/templates/email/citizen-proposal/`
 
