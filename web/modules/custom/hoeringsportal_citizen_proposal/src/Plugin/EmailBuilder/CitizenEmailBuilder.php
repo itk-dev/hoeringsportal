@@ -80,7 +80,7 @@ final class CitizenEmailBuilder extends EmailBuilderBase implements ContainerFac
     $to = $node->get('field_author_email')->value;
     $email->setTo($to);
     if (MailHelper::MAILER_SUBTYPE_PROPOSAL_CREATED_EDITOR === $email->getSubType()) {
-      $to = $this->citizenProposalHelper->getAdminFormValue([
+      $to = $this->citizenProposalHelper->getAdminValue([
         'emails',
         'email_editor',
       ]);
@@ -89,7 +89,7 @@ final class CitizenEmailBuilder extends EmailBuilderBase implements ContainerFac
     $email->setVariable('node', $node);
 
     $subType = $email->getSubType();
-    $config = $this->citizenProposalHelper->getAdminFormValue([
+    $config = $this->citizenProposalHelper->getAdminValue([
       'emails',
       $subType,
     ]);

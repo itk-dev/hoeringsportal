@@ -8,12 +8,14 @@ use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
-use Drupal\hoeringsportal_base_fixtures\Helper\Helper;
+use Drupal\hoeringsportal_base_fixtures\Helper\Helper as BaseFixtureHelper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Helper\Helper as ArchiveHelper;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Page fixture.
@@ -26,7 +28,8 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
    * Constructor.
    */
   public function __construct(
-    readonly private Helper $baseFixtureHelper,
+    readonly private BaseFixtureHelper $baseFixtureHelper,
+    readonly private Helper $helper,
     EventDispatcherInterface $eventDispatcher,
     MailHelper $mailHelper,
     ArchiveHelper $archivingHelper
@@ -106,6 +109,12 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     ]);
     $entity->save();
     $this->addReference('node:citizen_proposal:Proposal3', $entity);
+
+    // Set admin values.
+    $data = Yaml::parseFile(__DIR__ . '/CitizenProposalFixture/citizen_proposal_admin_form_values.yaml');
+    if (isset($data['citizen_proposal_admin_form_values'])) {
+      $this->helper->setAdminValues($data['citizen_proposal_admin_form_values']);
+    }
   }
 
   /**

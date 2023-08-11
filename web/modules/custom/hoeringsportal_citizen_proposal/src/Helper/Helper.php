@@ -20,7 +20,6 @@ use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Drupal\Core\Url;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
-use Drupal\hoeringsportal_citizen_proposal\Form\ProposalAdminForm;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -36,6 +35,8 @@ class Helper implements LoggerAwareInterface {
   use StringTranslationTrait;
   use LoggerAwareTrait;
   use LoggerTrait;
+
+  private const ADMIN_FORM_VALUES_STATE_KEY = 'citizen_proposal_admin_form_values';
 
   private const CITIZEN_PROPOSAL_ENTITY = 'citizen_proposal_entity';
   private const PROPOSAL_PERIOD_LENGTH = '+180 days';
@@ -111,24 +112,74 @@ class Helper implements LoggerAwareInterface {
    * Preprocess forms related to citizen proposal.
    */
   public function preprocessForm(&$variables): void {
-    $variables['admin_form_state_values'] = $this->state->get('citizen_proposal_admin_form_values');
+    $variables['admin_form_state_values'] = $this->getAdminValues();
   }
 
   /**
-   * Get admin form value.
+   * Get all admin values.
+   *
+   * @param mixed|null $default
+   *   The default value.
+   */
+  public function getAdminValues(mixed $default = NULL): mixed {
+    return $this->getAdminValue(NULL, NULL);
+  }
+
+  /**
+   * Get admin value.
+   *
+   * @param string|array|null $key
+   *   The key to get. If key is empty all values are returned.
+   * @param mixed|null $default
+   *   The default value.
    *
    * @return string|array|null
    *   The value if any. Otherwise the default value.
    */
-  public function getAdminFormValue(string|array $key, string $default = NULL) {
-    $adminFormStateValues = $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
-    $value = NestedArray::getValue($adminFormStateValues, (array) $key);
+  public function getAdminValue(string|array $key = NULL, mixed $default = NULL) {
+    $values = $this->state->get(self::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
+    $value = empty($key)
+      ? $values
+      : NestedArray::getValue($values, (array) $key);
 
     if (is_string($value)) {
       $value = trim($value);
     }
 
     return $value ?: $default;
+  }
+
+  /**
+   * Set all admin values.
+   *
+   * @param array $values
+   *   The values.
+   */
+  public function setAdminValues(array $values): void {
+    $this->setAdminValue(NULL, $values);
+  }
+
+  /**
+   * Set an admin value.
+   *
+   * @param string|array|null $key
+   *   The key. If the key is empty all admin values are set to the value.
+   * @param mixed $value
+   *   The value.
+   */
+  public function setAdminValue(string|array $key = NULL, mixed $value): void {
+    if (empty($key)) {
+      if (!is_array($value)) {
+        throw new \TypeError('Value must be an array');
+      }
+      $values = $value;
+    }
+    else {
+      $values = $this->getAdminValues();
+      NestedArray::setValue($values, (array) $key, $value);
+    }
+
+    $this->state->set(self::ADMIN_FORM_VALUES_STATE_KEY, $values);
   }
 
   /**
