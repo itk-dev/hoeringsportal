@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-332](https://github.com/itk-dev/hoeringsportal/pull/332)
+  Added data storage consent checkbox on citizen proposal form
+
 ## [3.1.0] - 2023-08-04 - Citizen proposal
 
 * [PR-331](https://github.com/itk-dev/hoeringsportal/pull/331)

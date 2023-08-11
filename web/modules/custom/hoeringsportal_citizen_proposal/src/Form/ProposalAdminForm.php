@@ -133,6 +133,13 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['remarks_help'] ?? '',
     ];
 
+    $form['add_form']['consent_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Consent help'),
+      '#default_value' => $adminFormStateValues['consent_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about GDRP and data storage&lt;/a&gt;</code> to insert a link to details on what is stored and where and how.'),
+    ];
+
     $form['add_form']['characters_title'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of allowed characters for title field.'),

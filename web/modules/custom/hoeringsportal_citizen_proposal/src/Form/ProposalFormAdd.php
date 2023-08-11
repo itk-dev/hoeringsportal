@@ -146,6 +146,15 @@ final class ProposalFormAdd extends ProposalFormBase {
       ],
     ];
 
+    $form['consent'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Personal data storage consent'),
+      '#required' => TRUE,
+      '#default_value' => FALSE,
+      '#description' => $this->getAdminFormStateValue('consent_help'),
+    ];
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
