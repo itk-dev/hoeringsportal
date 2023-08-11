@@ -1,0 +1,55 @@
+citizen_proposal_admin_form_values:
+  authenticate_message:
+    value: '<p>For at oprette et borgerforslag, skal du logge ind med MitID</p>'
+    format: filtered_html
+  authenticate_support_message:
+    value: '<p>For at støtte borgerforslaget, skal du logge ind med MitID</p>'
+    format: filtered_html
+  authenticate_link_text: 'Gå til MitID'
+  author_intro:
+    value: ''
+    format: filtered_html
+  name_help: 'Skriv dit navn. Dit navn kommer til at fremgå på hjemmesiden sammen med dit forslag.'
+  phone_help: 'Skriv dit telefonnummer. Dit telefonnummer kommer ikke til at fremgå offentligt.'
+  email_help: 'Skriv din e-mail.'
+  email_display_help: 'Ønsker du at vise din e-mail på hjemmesiden, så andre har mulighed for at kontakte dig?'
+  proposal_intro:
+    value: '<p>Her kan du skrive dit borgerforslag.&nbsp;</p>'
+    format: filtered_html
+  title_help: 'Her skal du skrive borgerforslagets titel. Titlen skal være kort og dækkende for forslagets indhold.'
+  proposal_help: 'Her skal du beskrive dit forslag kort og præcist. '
+  remarks_help: ' Her skal du begrunde dit forslag, fx hvilke problemer det skal løse.'
+  characters_title: '140'
+  characters_proposal: '2000'
+  characters_remarks: '6000'
+  approve_intro:
+    value: '<p>Du har nu mulighed for at læse dit borgerforslag igennem og evt. rette i det.&nbsp;</p><p>Husk at borgerforslaget skal opfylde følgende formelle krav:</p><ul type="disc"><li>Det skal omhandle et kommunalt anliggende</li><li>Det skal være lovligt</li><li>Det skal være forståeligt</li><li>Det må ikke indeholde oplysninger om enkeltpersoners private forhold</li><li>Det må ikke være injurierende, chikanerende, diskriminerende mv.</li></ul>'
+    format: filtered_html
+  approve_goto_url: /node/638
+  approve_submission_text: 'Dit borgerforslag er nu indsendt. '
+  support_intro:
+    value: ''
+    format: filtered_html
+  support_name_help: 'Skriv dit navn'
+  support_email_help: 'Skriv din e-mail'
+  support_submission_text: ''
+  sidebar_text:
+    value: '<h3>Hjælp til oprettelse af borgerforslag</h3><p><a href="https://deltag.aarhus.dk/hjaelp-til-oprette-et-borgerforslag">Find hjælp til oprettelse af borgerforslag her</a></p><h3>Hvad sker der hvis et borgerforslag får 1.500 støtter?</h3><p><a href="https://deltag.aarhus.dk/borgerforslagsproces">Se hvad der sker, hvis et borgerforslag får 1.500 støtter</a></p><h3>Om borgerforslagsordningen</h3><p><a href="https://deltag.aarhus.dk/indfoerelse-af-borgerforslag">Læs om borgerforslagsordningen her</a></p>'
+    format: filtered_html
+  emails:
+    email_editor: editor@example.com
+    proposal_created_citizen:
+      subject: 'Tak for dit borgerforslag på [site:url-brief]'
+      content:
+        value: "<p>Hej [node:field_author_name]</p>\r\n\r\n<p>Tak for dit borgerforslag <em>[node:title]</em>.</p>\r\n\r\n<p>Venlig hilsen<br>\r\nDeltag aarhus</p>\r\n"
+        format: email_html
+    proposal_created_editor:
+      subject: 'Nyt borgerforslag på [site:url-brief]'
+      content:
+        value: "<p>Der er kommet et nyt borgerforslag: <a href=\"[node:url]\">[node:title]</a> <a href=\"[node:edit-url]\">[rediger]</a></p>\r\n\r\n<p>Venlig hilsen<br>\r\nDeltag aarhus</p>\r\n"
+        format: email_html
+    proposal_published_citizen:
+      subject: 'Dit borgerforslag på [site:url-brief] er blevet offentliggjort'
+      content:
+        value: "<p>Hej [node:field_author_name]</p>\r\n\r\n<p>Dit borgerforslag <a href=\"[node:url]\"><em>[node:title]</em></a> er nu offentliggjort.</p>\r\n\r\n<p>Venlig hilsen<br>\r\nDeltag aarhus</p>\r\n"
+        format: email_html

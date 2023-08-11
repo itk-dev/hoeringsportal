@@ -80,8 +80,8 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
    */
   public function update(EntityEvent $event) {
     $entity = $event->getEntity();
-    if ($entity instanceof NodeInterface &&
-      'citizen_proposal' === $entity->bundle()) {
+    if ($entity instanceof NodeInterface
+      && $this->citizenProposalHelper->isCitizenProposal($entity)) {
       $this->createJob($entity);
     }
   }
