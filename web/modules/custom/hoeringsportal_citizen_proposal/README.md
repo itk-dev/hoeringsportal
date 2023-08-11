@@ -41,10 +41,6 @@ Edit `settings.local.php` and define SMTP host and port, e.g.
 
 ```php
 # web/sites/default/settings.local.php
-# For local development
-$config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'mailhog';
-$config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '1025';
-
 # For server deployment
 $config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'host.docker.internal';
 $config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '25';

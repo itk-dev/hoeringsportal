@@ -77,8 +77,8 @@ services:
     environment:
       - MEMCACHED_CACHE_SIZE=64
 
-  mailhog:
-    image: itkdev/mailhog
+  mail:
+    image: axllent/mailpit
     networks:
       - app
       - frontend
@@ -88,8 +88,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}Mailhog.rule=Host(`mailhog-${COMPOSE_DOMAIN}`)"
-      - "traefik.http.services.${COMPOSE_PROJECT_NAME}Mailhog.loadbalancer.server.port=8025"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}mail.rule=Host(`mail-${COMPOSE_DOMAIN}`)"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}mail.loadbalancer.server.port=8025"
 
   pretix:
     image: pretix/standalone:latest
@@ -102,7 +102,6 @@ services:
     depends_on:
       - pretix_database
       - pretix_redis
-      - mailhog
     ports:
       - '80'
     volumes:
