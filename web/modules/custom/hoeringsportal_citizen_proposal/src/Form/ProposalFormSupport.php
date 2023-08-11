@@ -93,16 +93,6 @@ final class ProposalFormSupport extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
-    $form['email'] = [
-      '#type' => 'email',
-      '#required' => TRUE,
-      '#title' => $this
-        ->t('Email'),
-      '#default_value' => $defaltValues['email'],
-      '#description' => $this->getAdminFormStateValue('support_email_help'),
-      '#description_display' => 'before',
-    ];
-
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -121,7 +111,6 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     return [
       'name' => $userData['name'] ?? NULL,
-      'email' => $userData['email'] ?? NULL,
     ];
   }
 
@@ -144,7 +133,6 @@ final class ProposalFormSupport extends ProposalFormBase {
         $node,
         [
           'user_name' => $form_state->getValue('name'),
-          'user_email' => $form_state->getValue('email'),
           'created' => time(),
         ],
       );
