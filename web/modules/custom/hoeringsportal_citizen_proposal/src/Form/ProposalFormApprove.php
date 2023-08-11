@@ -161,6 +161,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->messenger()->addStatus($this->getAdminFormStateValue('approve_submission_text', $this->t('Thank you for your submission.')));
     $entity->save();
     $this->helper->deleteDraftProposal();
+    $this->deAuthenticateUser();
   }
 
   /**

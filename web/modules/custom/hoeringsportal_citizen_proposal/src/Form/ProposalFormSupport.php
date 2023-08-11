@@ -142,6 +142,7 @@ final class ProposalFormSupport extends ProposalFormBase {
       $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
     }
 
+    $this->deAuthenticateUser();
     $form_state
       ->setRedirect('entity.node.canonical', ['node' => $node->id()]);
   }

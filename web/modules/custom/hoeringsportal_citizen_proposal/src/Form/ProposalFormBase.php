@@ -183,6 +183,13 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * De-authenticate (is that a real word?) user.
+   */
+  protected function deAuthenticateUser() {
+    $this->authenticationHelper->removeUserData();
+  }
+
+  /**
    * Get user UUID.
    *
    * @return string
