@@ -14,7 +14,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Removed email from citizen proposal support form
 * [PR-335](https://github.com/itk-dev/hoeringsportal/pull/335)
   Hid “Author email display” from display
-* [PR-333](https://github.com/itk-dev/hoeringsportal/pull/333)
+* [PR-334](https://github.com/itk-dev/hoeringsportal/pull/334)
   Sent notification mails on citizen proposal creation and publication
 
 ## [3.1.0] - 2023-08-04 - Citizen proposal
