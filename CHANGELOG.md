@@ -5,8 +5,10 @@ and this project adheres to [Semantic
 Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 * [PR-337](https://github.com/itk-dev/hoeringsportal/pull/337)
   Updated drupal core 9.5.10 and contrib modules
+
   * Upgrading consolidation/output-formatters (4.3.1 => 4.3.2)
   * Upgrading doctrine/reflection (1.2.3 => 1.2.4)
   * Upgrading drupal/better_social_sharing_buttons (4.0.4 => 4.0.6)
@@ -41,6 +43,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   * Upgrading symfony/phpunit-bridge (v5.4.25 => v5.4.26)
   * Upgrading symfony/string (v6.3.0 => v6.3.2)
   * Upgrading symfony/var-dumper (v5.4.25 => v5.4.26)
+
 * [PR-332](https://github.com/itk-dev/hoeringsportal/pull/332)
   Added data storage consent checkbox on citizen proposal form
 * [PR-333](https://github.com/itk-dev/hoeringsportal/pull/333)
