@@ -1,0 +1,27 @@
+{
+    "name": "drupal/hoeringsportal_citizen_proposal",
+    "type": "drupal-custom-module",
+    "description": "Citizen proposal",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8",
+            "exclude": ["drupal/toolbar_visibility"]
+        }
+    },
+    "require": {
+        "drupal/entity_events": "^2.0",
+        "drupal/symfony_mailer": "^1.3",
+        "drush/drush": "^11"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^11"
+            }
+        }
+    }
+}

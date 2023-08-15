@@ -1,0 +1,32 @@
+{# @see web/modules/contrib/symfony_mailer/templates/email-wrap.html.twig #}
+{%
+  set classes = [
+    'email-type-' ~ type|clean_class,
+    'email-sub-type-' ~ sub_type|clean_class,
+  ]
+%}
+
+{% if is_html %}
+<html>
+<body>
+<div{{ attributes.addClass(classes) }}>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img alt="Aarhus Kommune Logo" src="https://cdn.aarhus.dk/bundled/static/aak-logo.svg?hash=6780e75ca799a9b45bb0e51ff430010b" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div style="padding: 0px 0px 0px 0px;" class="clearfix">
+          {{ body }}
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
+{% else %}
+{{ body }}
+{% endif %}

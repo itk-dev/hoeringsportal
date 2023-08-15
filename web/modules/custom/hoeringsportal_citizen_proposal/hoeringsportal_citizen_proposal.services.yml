@@ -14,3 +14,11 @@ services:
       - '@entity_type.manager'
       - '@datetime.time'
       - '@logger.channel.hoeringsportal_citizen_proposal'
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper:
+    arguments:
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
+      - '@email_factory'
+      - '@logger.channel.hoeringsportal_citizen_proposal'
+    tags:
+      - {name: event_subscriber}

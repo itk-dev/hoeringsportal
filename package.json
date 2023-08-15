@@ -8,7 +8,7 @@
     "prettier": "2.8.8"
   },
   "scripts": {
-    "coding-standards-check/markdownlint": "markdownlint '*.md' 'web/modules/custom/**/*.md' 'documentation/*.md'",
+    "coding-standards-check/markdownlint": "markdownlint --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/modules/custom/**/*.md' 'documentation/*.md'",
     "coding-standards-check/prettier": "prettier --check playwright",
     "coding-standards-check": "yarn coding-standards-check/markdownlint && yarn coding-standards-check/prettier",
     "coding-standards-apply/markdownlint": "markdownlint --fix '*.md' 'web/modules/custom/**/*.md' 'documentation/*.md'",

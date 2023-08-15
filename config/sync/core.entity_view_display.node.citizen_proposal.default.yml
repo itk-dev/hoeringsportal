@@ -50,7 +50,6 @@ third_party_settings:
         - field_remarks
         - field_author_name
         - field_author_email
-        - field_author_email_display
       right:
         - field_vote_start
         - field_vote_end
@@ -83,16 +82,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 5
-    region: left
-  field_author_email_display:
-    type: boolean
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    weight: 6
     region: left
   field_author_name:
     type: string
@@ -147,6 +136,7 @@ content:
     weight: 9
     region: right
 hidden:
+  field_author_email_display: true
   field_author_phone: true
   field_author_uuid: true
   field_content_state: true
