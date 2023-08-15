@@ -113,7 +113,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     // Set admin values.
     $data = Yaml::parseFile(__DIR__ . '/CitizenProposalFixture/citizen_proposal_admin_form_values.yaml');
     if (isset($data['citizen_proposal_admin_form_values'])) {
-      $this->helper->setAdminValues($data['citizen_proposal_admin_form_values']);
+      $values = $data['citizen_proposal_admin_form_values'];
+      /** @var \Drupal\node\Entity\NodeInterface $node */
+      $node = $this->getReference('node:landing_page:Proposals');
+      $values['approve_goto_url'] = $node->toUrl(options: ['alias' => TRUE])->toString();
+      $this->helper->setAdminValues($values);
     }
   }
 
@@ -124,6 +128,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     return [
       MediaFixture::class,
       ParagraphFixture::class,
+      CitizenProposalLandingPageFixture::class,
     ];
   }
 

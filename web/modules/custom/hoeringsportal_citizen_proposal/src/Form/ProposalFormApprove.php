@@ -156,12 +156,15 @@ final class ProposalFormApprove extends ProposalFormBase {
       return $this->abandonSubmission();
     }
 
-    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
-
     $this->messenger()->addStatus($this->getAdminFormStateValue('approve_submission_text', $this->t('Thank you for your submission.')));
     $entity->save();
     $this->helper->deleteDraftProposal();
-    $this->deAuthenticateUser();
+
+    $formState->setRedirectUrl(
+      $this->deAuthenticateUser(
+        $this->getAdminFormStateValueUrl('approve_goto_url', '/')
+      )
+    );
   }
 
   /**
@@ -171,7 +174,9 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->messenger()->addStatus($this->t('Your submission has been cancelled.'));
     $this->helper->deleteDraftProposal();
 
-    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
+    $formState->setRedirectUrl(
+      $this->getAdminFormStateValueUrl('approve_goto_url', '/')
+    );
   }
 
   /**
@@ -182,46 +187,6 @@ final class ProposalFormApprove extends ProposalFormBase {
     $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
     return new RedirectResponse($url->toString());
-  }
-
-  /**
-   * Add redirect to form state.
-   *
-   * @param string $inputUrl
-   *   The url added from admin interface.
-   * @param \Drupal\Core\Form\FormStateInterface $formState
-   *   The state of the form.
-   *
-   * @return \Drupal\Core\Form\FormStateInterface
-   *   The modified form.
-   */
-  private function applyRedirect(string $inputUrl, FormStateInterface &$formState): FormStateInterface {
-    $parsedUrl = parse_url($inputUrl);
-
-    try {
-      if (empty($parsedUrl['path'])) {
-        $formState->setRedirect('<front>');
-
-        return $formState;
-      }
-      $url = URL::fromUserInput($parsedUrl['path']);
-    }
-    catch (\Exception) {
-      $formState->setRedirect('<front>');
-
-      return $formState;
-    }
-
-    if ($url->isExternal() || !$url->isRouted()) {
-      $formState->setRedirect('<front>');
-    }
-    else {
-      $routeName = $url->getRouteName();
-      $routeParameters = $url->getRouteParameters();
-      $formState->setRedirect($routeName, $routeParameters);
-    }
-
-    return $formState;
   }
 
 }
