@@ -115,7 +115,6 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'checkbox',
       '#title' => $this
         ->t('Personal data storage consent'),
-      '#required' => TRUE,
       '#default_value' => TRUE,
       '#description' => $this->getAdminFormStateValue('consent_help'),
       '#attributes' => [
