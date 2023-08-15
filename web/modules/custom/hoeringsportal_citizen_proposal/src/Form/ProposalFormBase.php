@@ -2,12 +2,10 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
-use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
@@ -27,7 +25,6 @@ abstract class ProposalFormBase extends FormBase {
    */
   final public function __construct(
     readonly protected Helper $helper,
-    readonly private State $state,
     readonly private AuthenticationHelper $authenticationHelper,
     readonly private ImmutableConfig $config
   ) {
@@ -39,7 +36,6 @@ abstract class ProposalFormBase extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get(Helper::class),
-      $container->get('state'),
       $container->get(AuthenticationHelper::class),
       $container->get('config.factory')->get('hoeringsportal_citizen_proposal.settings')
     );
@@ -145,17 +141,10 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
-   * Get admin form state value.
+   * Get admin form value.
    */
-  protected function getAdminFormStateValue(string|array $key, string $default = NULL): ?string {
-    $adminFormStateValues = $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
-    $value = NestedArray::getValue($adminFormStateValues, (array) $key);
-
-    if (is_string($value)) {
-      $value = trim($value);
-    }
-
-    return $value ?: $default;
+  protected function getAdminFormStateValue(string|array $key, string $default = NULL): mixed {
+    return $this->helper->getAdminValue($key, $default);
   }
 
   /**

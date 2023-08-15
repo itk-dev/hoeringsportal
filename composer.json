@@ -52,6 +52,16 @@
                 }
             }
         },
+        "drupal/hoeringsportal_citizen_proposal": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_citizen_proposal",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_citizen_proposal": "1.0-dev"
+                }
+            }
+        },
         "drupal/hoeringsportal_citizen_proposal_archiving": {
             "type": "path",
             "url": "web/modules/custom/hoeringsportal_citizen_proposal_archiving",
@@ -100,6 +110,7 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
+        "drupal/hoeringsportal_citizen_proposal": "1.0-dev",
         "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev",
         "drupal/hoeringsportal_data": "^1.0",
         "drupal/hoeringsportal_deskpro": "^1.0",
@@ -230,10 +241,7 @@
         "patches": {
           "deskpro/deskpro-api-client-php": {
             "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
-          },
-          "drupal/core": {
-            "Library order asset weights do not work properly when a large number of javascript files is loaded between two jQuery UI libraries (https://www.drupal.org/project/drupal/issues/3222107)": "https://www.drupal.org/files/issues/2023-05-12/3222107_95x.patch"
-           }
+          }
         }
     }
 }

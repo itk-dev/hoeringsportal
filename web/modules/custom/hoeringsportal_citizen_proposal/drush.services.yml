@@ -4,3 +4,10 @@ services:
       - { name: drush.command }
     arguments:
       - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
+
+  Drupal\hoeringsportal_citizen_proposal\Commands\TestMailCommand:
+    tags:
+      - { name: drush.command }
+    arguments:
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper'

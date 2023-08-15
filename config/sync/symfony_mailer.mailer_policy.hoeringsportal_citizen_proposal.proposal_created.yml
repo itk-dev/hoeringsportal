@@ -1,0 +1,13 @@
+uuid: 35259a5e-4fa3-40e8-b45c-0fb92d142992
+langcode: da
+status: true
+dependencies:
+  module:
+    - hoeringsportal_citizen_proposal
+id: hoeringsportal_citizen_proposal.proposal_created
+configuration:
+  email_subject:
+    value: 'Tak for dit borgerforslag på [site:url]'
+  email_theme:
+    theme: _active_fallback
+  mailer_url_to_absolute: {  }

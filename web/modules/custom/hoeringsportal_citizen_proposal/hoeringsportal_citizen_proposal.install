@@ -174,3 +174,12 @@ function hoeringsportal_citizen_proposal_update_9002(): void {
     ],
   ]);
 }
+
+/**
+ * Enables System Mailer module.
+ */
+function hoeringsportal_citizen_proposal_update_9003(): void {
+  \Drupal::service('module_installer')->install([
+    'symfony_mailer',
+  ]);
+}
