@@ -230,10 +230,7 @@
         "patches": {
           "deskpro/deskpro-api-client-php": {
             "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
-          },
-          "drupal/core": {
-            "Library order asset weights do not work properly when a large number of javascript files is loaded between two jQuery UI libraries (https://www.drupal.org/project/drupal/issues/3222107)": "https://www.drupal.org/files/issues/2023-05-12/3222107_95x.patch"
-           }
+          }
         }
     }
 }

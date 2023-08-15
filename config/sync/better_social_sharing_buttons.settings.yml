@@ -1,23 +1,23 @@
 _core:
   default_config_hash: 5UHMfSmFu9rzzODqDc4xPCxSBK0u_u9xq0ftLz8uy4Q
+langcode: da
 iconset: social-icons--no-color
 services:
   facebook: facebook
   twitter: twitter
+  whatsapp: '0'
+  facebook_messenger: '0'
   email: email
+  pinterest: '0'
   linkedin: linkedin
+  digg: '0'
+  tumblr: '0'
+  reddit: '0'
+  evernote: '0'
   print: print
-  whatsapp: 0
-  facebook_messenger: 0
-  pinterest: 0
-  digg: 0
-  tumblr: 0
-  reddit: 0
-  evernote: 0
-  copy: 0
+  copy: '0'
 width: 20px
 radius: 3px
 print_css: ''
 facebook_app_id: ''
-node_field: 1
-langcode: da
+node_field: true
