@@ -64,4 +64,5 @@ settings:
     timeline_related_items: 0
     user_admin_people: 0
     watchdog: 0
+  enabled_settings: {  }
 field_type: viewsreference
