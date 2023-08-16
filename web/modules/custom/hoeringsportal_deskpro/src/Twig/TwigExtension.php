@@ -4,11 +4,13 @@ namespace Drupal\hoeringsportal_deskpro\Twig;
 
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Custom Twig extensions for Høringsportal.
  */
-class TwigExtension extends \Twig_Extension {
+class TwigExtension extends AbstractExtension {
   /**
    * The Deskpro service.
    *
@@ -36,7 +38,7 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFunctions() {
     return [
-      new \Twig_SimpleFunction(
+      new TwigFunction(
         'deskpro_ticket_custom_field',
         [
           $this,
@@ -46,7 +48,7 @@ class TwigExtension extends \Twig_Extension {
           'is_safe' => ['all'],
         ]
       ),
-      new \Twig_SimpleFunction(
+      new TwigFunction(
         'deskpro_get_ticket_count',
         [
           $this->helper,
@@ -56,7 +58,7 @@ class TwigExtension extends \Twig_Extension {
           'is_safe' => ['all'],
         ]
       ),
-      new \Twig_SimpleFunction(
+      new TwigFunction(
         'deskpro_get_tickets',
         [
           $this->helper,

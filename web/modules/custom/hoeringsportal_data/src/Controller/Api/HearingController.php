@@ -2,7 +2,7 @@
 
 namespace Drupal\hoeringsportal_data\Controller\Api;
 
-use Zend\Diactoros\Response\JsonResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Hearing controller.
@@ -38,7 +38,7 @@ class HearingController extends ApiController {
 
     $entity = \reset($entities);
 
-    $data = $this->serialize($entity);
+    $data = $this->serializer->serialize($entity, 'json');
 
     return new JsonResponse($data);
   }

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 /**
  * Page controller.
  */
-class PageController extends ControllerBase {
+final class PageController extends ControllerBase {
   /**
    * The configuration.
    *

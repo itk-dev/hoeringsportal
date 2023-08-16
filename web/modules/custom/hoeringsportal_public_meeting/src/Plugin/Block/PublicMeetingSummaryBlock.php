@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   category = @Translation("Public meeting"),
  * )
  */
-class PublicMeetingSummaryBlock extends BlockBase implements ContainerFactoryPluginInterface {
+final class PublicMeetingSummaryBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Helper class for public meetings.
