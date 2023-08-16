@@ -3,7 +3,7 @@ type: theme
 description: 'A theme for Høringsportal'
 package: Hoeringsportal
 base theme: false
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 libraries:
   - hoeringsportal/global-styling
   - hoeringsportal/hyphenate
