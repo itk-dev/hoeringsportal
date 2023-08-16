@@ -174,13 +174,13 @@ final class ProposalAdminForm extends FormBase {
 
     $form['approve_form']['approve_goto_url'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Goto this url after submission'),
+      '#title' => $this->t('Redirect URL after a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_goto_url'] ?? '',
     ];
 
     $form['approve_form']['approve_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal is approved.'),
+      '#title' => $this->t('Submission text when a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_submission_text'] ?? '',
     ];
 
@@ -210,9 +210,16 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
     ];
 
+    $form['support_form']['support_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Redirect URL after a proposal has been supported'),
+      '#default_value' => $adminFormStateValues['support_goto_url'] ?? '',
+      '#description' => $this->t('If not set, the citizen will see the proposal after supporting it.'),
+    ];
+
     $form['support_form']['support_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal has been supported.'),
+      '#title' => $this->t('Submission text when a proposal has been supported'),
       '#default_value' => $adminFormStateValues['support_submission_text'] ?? '',
     ];
 
