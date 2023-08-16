@@ -14,6 +14,18 @@
 <div class="citizen-proposal-support-counter">
   <div class="support-counter py-3">
     <span class="support-counter-label">{{ 'Number of supporters'|t }}</span>: <span class="count">{{ data.supportCount }}</span>
+{#
+    <span class="support-counter-label">{{ '@number_of_supporters of :required_number_of_supporters'|t({
+                                          '@number_of_supporters': '<pre>87</pre>',
+                                          ':required_number_of_supporters': '<pre>87</pre>',
+                                          })|raw }}</span>: <span class="count">{{ data.supportRequired }}</span>
+#}
+{#
+    {{ '%number_of_supporters% of %required_number_of_supporters%'|t|replace({
+      '%number_of_supporters%': '<span class="count">'~(data.supportCount)~'</span>',
+      '%required_number_of_supporters%': '<span class="required">'~(data.supportRequired)~'</span>',
+      })|raw }}
+#}
   </div>
   <div class="support-progress">
     <div class="progress">

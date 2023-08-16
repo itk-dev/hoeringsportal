@@ -27,9 +27,9 @@
   {{ title_suffix.contextual_links }}
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
     {% if image_exists %}
-      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
+      {% include directory ~ '/templates/components/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
     {% else %}
-      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
+      {% include directory ~ '/templates/components/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
     {% endif %}
   </{{ header_wrapper }}>
   <div class="container content__container">
