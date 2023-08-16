@@ -16,7 +16,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Hid “Author email display” from display
 * [PR-334](https://github.com/itk-dev/hoeringsportal/pull/334)
   Sent notification mails on citizen proposal creation and publication
-* [PR-343] (https://github.com/itk-dev/hoeringsportal/pull/343)
+* [PR-343](https://github.com/itk-dev/hoeringsportal/pull/343)
   Make custom modules and themes pass code analysis and compatible with d10
   Update contrib modules (Major versions):
   * better_exposed_filters
@@ -27,8 +27,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   * toolbar_visibility
   * twig_tweak
   * viewsreference
-
-
 
 ## [3.1.0] - 2023-08-04 - Citizen proposal
 
