@@ -8,8 +8,8 @@ plugin: smtp
 configuration:
   user: ''
   pass: ''
-  host: set.this.in.settings.local.php
-  port: null
+  host: mail
+  port: 1025
   query:
     verify_peer: true
     local_domain: ''

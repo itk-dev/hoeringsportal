@@ -41,10 +41,6 @@ Edit `settings.local.php` and define SMTP host and port, e.g.
 
 ```php
 # web/sites/default/settings.local.php
-# For local development
-$config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'mailhog';
-$config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '1025';
-
 # For server deployment
 $config['symfony_mailer.mailer_transport.smtp']['configuration']['host'] = 'host.docker.internal';
 $config['symfony_mailer.mailer_transport.smtp']['configuration']['port'] = '25';
@@ -72,7 +68,7 @@ Tak for dit borgerforslag på [site:url-brief]
 
 Content
 
-<p>Hej [node:field_author_name]</p>
+<p><strong>Hej [node:field_author_name]</strong></p>
 
 <p>Tak for dit borgerforslag <em>[node:title]</em>.</p>
 
@@ -89,10 +85,8 @@ Nyt borgerforslag på [site:url-brief]
 
 Content
 
-<p>Der er kommet et nyt borgerforslag: <a href="[node:url]">[node:title]</a> <a href="[node:edit-url]">[rediger]</a></p>
-
-<p>Venlig hilsen<br>
-Deltag aarhus</p>
+<p>Der er kommet et nyt borgerforslag: <br>
+<strong><a href="[node:url]">[node:title]</a></strong> <a href="[node:edit-url]"> [rediger forslaget]</a></p>
 
 # ------------------------------------------------------------------------------
 # proposal_published_citizen
@@ -104,7 +98,7 @@ Dit borgerforslag på [site:url-brief] er blevet offentliggjort
 
 Content
 
-<p>Hej [node:field_author_name]</p>
+<p><strong>Hej [node:field_author_name]</strong></p>
 
 <p>Dit borgerforslag <a href="[node:url]"><em>[node:title]</em></a> er nu offentliggjort.</p>
 

@@ -4,9 +4,9 @@ langcode: da
 default_challenge: image_captcha/Image
 description: 'Please type the text you see in the captcha image to prove you are human'
 administration_mode: false
-allow_on_admin_pages: false
-add_captcha_description: true
 default_validation: 1
 persistence: 1
 enable_stats: false
 log_wrong_responses: false
+allow_on_admin_pages: false
+add_captcha_description: true
