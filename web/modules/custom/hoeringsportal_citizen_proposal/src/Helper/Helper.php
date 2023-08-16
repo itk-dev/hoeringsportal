@@ -196,7 +196,7 @@ class Helper implements LoggerAwareInterface {
     $proposalSupportCount = $this->getProposalSupportCount((int) $node->id());
 
     $variables['proposal_support_count'] = $proposalSupportCount;
-    $variables['proposal_support_percentage'] = (int) $this->calculateSupportPercentage($proposalSupportCount);
+    $variables['proposal_support_percentage'] = $this->calculateSupportPercentage($proposalSupportCount);
   }
 
   /**
@@ -217,6 +217,10 @@ class Helper implements LoggerAwareInterface {
     try {
       $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
+      // Set some defaults.
+      $values += [
+        'created' => $this->time->getRequestTime(),
+      ];
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
@@ -428,9 +432,9 @@ class Helper implements LoggerAwareInterface {
     }
 
     return min(
-        100,
-        ceil($proposalSupportCount / $this->getProposalSupportRequired() * 100)
-      );
+      100,
+      $proposalSupportCount / $this->getProposalSupportRequired() * 100
+    );
   }
 
   /**

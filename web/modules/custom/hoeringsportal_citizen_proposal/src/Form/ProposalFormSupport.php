@@ -133,7 +133,6 @@ final class ProposalFormSupport extends ProposalFormBase {
         $node,
         [
           'user_name' => $form_state->getValue('name'),
-          'created' => time(),
         ],
       );
       $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));

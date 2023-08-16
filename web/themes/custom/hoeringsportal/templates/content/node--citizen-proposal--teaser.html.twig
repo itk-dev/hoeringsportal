@@ -83,12 +83,11 @@
     </div>
     <div class="activity-supporters">
       <div class="pb-1">
-        <span>{{ 'Number of supporters'|t }}</span>
-        <strong class="ml-1">{{ proposal_support_count }}</strong>
+        <span>{{ 'Number of supporters'|t }}</span>: <strong>{{ proposal_support_count }}</strong>
       </div>
       <div class="support-progress">
         <div class="progress">
-          <div class="progress-bar" style="width:{{ proposal_support_percentage }}%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar" style="width:{{ proposal_support_percentage|number_format(4, '.', '') }}%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
     </div>
