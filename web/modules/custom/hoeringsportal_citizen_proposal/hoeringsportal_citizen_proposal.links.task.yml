@@ -2,3 +2,9 @@ hoeringsportal_citizen_proposal.admin:
   title: 'Citizen proposal'
   route_name: hoeringsportal_citizen_proposal.proposal_admin
   base_route: system.admin_content
+
+hoeringsportal_citizen_proposal.proposal_list:
+  route_name: hoeringsportal_citizen_proposal.admin_supporter
+  base_route: entity.node.canonical
+  title: 'Supporters'
+  weight: 100

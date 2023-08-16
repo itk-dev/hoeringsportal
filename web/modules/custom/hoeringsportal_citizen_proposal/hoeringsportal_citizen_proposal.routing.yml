@@ -31,3 +31,16 @@ hoeringsportal_citizen_proposal.support:
     _title: 'Support citizen proposal'
   requirements:
     _access: 'TRUE'
+
+hoeringsportal_citizen_proposal.admin_supporter:
+  path: '/node/{node}/supporters'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_citizen_proposal\Controller\Controller::supporters'
+    _title: 'Supporters'
+  requirements:
+    _permission: 'administer citizen proposal'
+  options:
+    _admin_route: TRUE
+    parameters:
+      node:
+        type: entity:node
