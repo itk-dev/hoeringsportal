@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-344](https://github.com/itk-dev/hoeringsportal/pull/344)
+  Hid changed date on static page
 * [PR-345](https://github.com/itk-dev/hoeringsportal/pull/345)
   Added support redirect URL
 * [PR-341](https://github.com/itk-dev/hoeringsportal/pull/341)
