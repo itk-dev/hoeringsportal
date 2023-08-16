@@ -11,26 +11,26 @@
  * @ingroup themeable
  */
 #}
+{% macro format_percentage(value) -%}
+  {{ value|number_format(2, '.', '') }}
+{%- endmacro %}
+
 <div class="citizen-proposal-support-counter">
-  <div class="support-counter py-3">
-    <span class="support-counter-label">{{ 'Number of supporters'|t }}</span>: <span class="count">{{ data.supportCount }}</span>
-{#
-    <span class="support-counter-label">{{ '@number_of_supporters of :required_number_of_supporters'|t({
-                                          '@number_of_supporters': '<pre>87</pre>',
-                                          ':required_number_of_supporters': '<pre>87</pre>',
-                                          })|raw }}</span>: <span class="count">{{ data.supportRequired }}</span>
-#}
-{#
-    {{ '%number_of_supporters% of %required_number_of_supporters%'|t|replace({
-      '%number_of_supporters%': '<span class="count">'~(data.supportCount)~'</span>',
-      '%required_number_of_supporters%': '<span class="required">'~(data.supportRequired)~'</span>',
+  <div class="support-counter">
+    {# Building and displaying the label is a three step process:
+       1. Translate the label without replacing placeholders.
+       2. Replace placeholders with markup
+       3. Render the final raw HTML
+      #}
+    {{ 'Number of supporters: @number_of_supporters of @required_number_of_supporters'|t|replace({
+      '@number_of_supporters': '<span class="count">' ~ (data.supportCount) ~ '</span>',
+      '@required_number_of_supporters': '<span class="required">' ~ (data.supportRequired) ~ '</span>',
       })|raw }}
-#}
   </div>
   <div class="support-progress">
     <div class="progress">
-      {% set percentage = data.supportPercentage|number_format(2, '.', '') %}
-      <div class="progress-bar" style="width: {{ percentage }}%" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+      {% set percentage = _self.format_percentage(data.supportPercentage) %}
+      <div class="progress-bar" style="width: {{ percentage }}%" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="{{ _self.format_percentage(0) }}" aria-valuemax="{{ _self.format_percentage(100) }}"></div>
     </div>
   </div>
 </div>
