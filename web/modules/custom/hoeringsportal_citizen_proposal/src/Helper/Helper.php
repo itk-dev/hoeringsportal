@@ -196,6 +196,7 @@ class Helper implements LoggerAwareInterface {
     $proposalSupportCount = $this->getProposalSupportCount((int) $node->id());
 
     $variables['proposal_support_count'] = $proposalSupportCount;
+    $variables['proposal_support_required'] = $this->getProposalSupportRequired();
     $variables['proposal_support_percentage'] = $this->calculateSupportPercentage($proposalSupportCount);
   }
 
@@ -466,7 +467,7 @@ class Helper implements LoggerAwareInterface {
    * @return int
    *   The support proposals require.
    */
-  private function getProposalSupportRequired(): int {
+  public function getProposalSupportRequired(): int {
     // Allow changing this value in settings.php.
     return (int) Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
   }
