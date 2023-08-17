@@ -17,7 +17,7 @@ docker compose exec phpfpm composer install
 
 # Clean up
 docker compose exec phpfpm vendor/bin/drush cache:rebuild
-docker compose exec phpfpm vendor/bin/drush sql:query "DELETE FROM locales_target WHERE customized = 1";
+docker compose exec phpfpm vendor/bin/drush sql:query "DELETE FROM locales_target";
 docker compose exec phpfpm vendor/bin/drush state:delete citizen_proposal_admin_form_values --yes
 docker compose exec phpfpm vendor/bin/drush cache:rebuild
 

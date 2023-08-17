@@ -148,6 +148,18 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * Get admin form value as a URL.
+   */
+  protected function getAdminFormStateValueUrl(string|array $key, string $default = NULL): Url {
+    try {
+      return Url::fromUserInput($this->helper->getAdminValue($key, $default));
+    }
+    catch (\Exception) {
+      return Url::fromRoute('<front>');
+    }
+  }
+
+  /**
    * Check if citizen is authenticated.
    */
   protected function isAuthenticatedAsCitizen(): bool {
@@ -180,6 +192,23 @@ abstract class ProposalFormBase extends FormBase {
    */
   protected function getUserData(): ?array {
     return $this->authenticationHelper->getUserData();
+  }
+
+  /**
+   * De-authenticate (is that a real word?) user.
+   */
+  protected function deAuthenticateUser(Url $url = NULL): Url {
+    if (NULL === $url) {
+      $url = Url::fromRoute('<current>');
+    }
+
+    $this->authenticationHelper->removeUserData();
+    return Url::fromRoute(
+      'hoeringsportal_openid_connect.openid_connect_end_session',
+      [
+        OpenIDConnectController::QUERY_STRING_DESTINATION => $url->toString(TRUE)->getGeneratedUrl(),
+      ],
+    );
   }
 
   /**

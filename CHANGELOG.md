@@ -16,6 +16,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Hid “Author email display” from display
 * [PR-334](https://github.com/itk-dev/hoeringsportal/pull/334)
   Sent notification mails on citizen proposal creation and publication
+* [PR-336](https://github.com/itk-dev/hoeringsportal/pull/336)
+  De-authenticated citizens after creating or supporting proposals
 
 ## [3.1.0] - 2023-08-04 - Citizen proposal
 
