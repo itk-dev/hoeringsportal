@@ -3,3 +3,4 @@ _core:
 langcode: da
 ignored_config_entities:
   - itk_pretix.pretixconfig
+  - 'webform.webform.*'
