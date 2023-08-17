@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
@@ -283,7 +284,9 @@ final class ProposalAdminForm extends FormBase {
       ),
       '#empty_option' => $this->t('Select survey webform'),
       '#default_value' => $adminFormStateValues['survey']['webform'] ?? '',
-      '#description' => $this->t('Select a survey to show as part of the citizen proposal creation form.'),
+      '#description' => $this->t('Select a survey to show as part of the citizen proposal creation form. <a href=":url">Manage surveys</a>.', [
+        ':url' => Url::fromRoute('entity.webform.collection')->toString(TRUE)->getGeneratedUrl(),
+      ]),
     ];
 
     $form['survey']['description'] = [
