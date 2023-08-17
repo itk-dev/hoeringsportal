@@ -128,6 +128,7 @@ display:
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
+                hide_label: true
             filter:
               field_area_target_id:
                 plugin_id: default
@@ -140,6 +141,7 @@ display:
                       - Enhver -|Vælg område
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
               field_tags_target_id:
                 plugin_id: default
                 advanced:
@@ -151,6 +153,7 @@ display:
                       - Enhver -|Vælg emne
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
       access:
         type: perm
         options:

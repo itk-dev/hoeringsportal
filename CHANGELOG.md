@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-346](https://github.com/itk-dev/hoeringsportal/pull/346)
+  Made filter and sort labels visually hidden
 * [PR-344](https://github.com/itk-dev/hoeringsportal/pull/344)
   Hid changed date on static page
 * [PR-345](https://github.com/itk-dev/hoeringsportal/pull/345)
