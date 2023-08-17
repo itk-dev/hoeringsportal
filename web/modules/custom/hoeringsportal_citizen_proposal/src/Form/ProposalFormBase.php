@@ -150,12 +150,12 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * Get admin form value as a URL.
    */
-  protected function getAdminFormStateValueUrl(string|array $key, string $default = NULL): Url {
+  protected function getAdminFormStateValueUrl(string|array $key, string $default = NULL, Url $defaultUrl = NULL): Url {
     try {
-      return Url::fromUserInput($this->helper->getAdminValue($key, $default));
+      return Url::fromUserInput($this->helper->getAdminValue($key, $default) ?? '');
     }
     catch (\Exception) {
-      return Url::fromRoute('<front>');
+      return $defaultUrl ?? Url::fromRoute('<front>');
     }
   }
 
