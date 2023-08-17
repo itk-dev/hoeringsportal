@@ -1,0 +1,52 @@
+diff --git a/config/schema/better_exposed_filters.sort.schema.yml b/config/schema/better_exposed_filters.sort.schema.yml
+index 16dcbed..21b6d73 100644
+--- a/config/schema/better_exposed_filters.sort.schema.yml
++++ b/config/schema/better_exposed_filters.sort.schema.yml
+@@ -31,6 +31,9 @@ better_exposed_filters_sort_widget:
+         is_secondary:
+           type: boolean
+           label: 'Sort is a secondary option'
++        hide_label:
++          type: boolean
++          label: 'Hide the label'
+ 
+ # BEF exposed sort widgets
+ better_exposed_filters.sort.*:
+diff --git a/src/Plugin/better_exposed_filters/sort/SortWidgetBase.php b/src/Plugin/better_exposed_filters/sort/SortWidgetBase.php
+index 5c3b309..7dcfd4e 100644
+--- a/src/Plugin/better_exposed_filters/sort/SortWidgetBase.php
++++ b/src/Plugin/better_exposed_filters/sort/SortWidgetBase.php
+@@ -39,6 +39,7 @@ abstract class SortWidgetBase extends BetterExposedFiltersWidgetBase implements
+         'is_secondary' => FALSE,
+         'reset' => FALSE,
+         'reset_label' => '',
++        'hide_label' => FALSE,
+       ],
+     ];
+   }
+@@ -112,6 +113,13 @@ Title Desc|Z -> A</pre> Leave the replacement text blank to remove an option alt
+       ],
+     ];
+ 
++    $form['advanced']['hide_label'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Hide the label'),
++      '#description' => $this->t('Makes the label hidden using the "visually_hidden" option, so it is still usable for accessibility purposes.'),
++      '#default_value' => !empty($this->configuration['advanced']['hide_label']),
++    ];
++
+     $form['advanced']['collapsible'] = [
+       '#type' => 'checkbox',
+       '#title' => $this->t('Make sort options collapsible'),
+@@ -252,6 +260,11 @@ Title Desc|Z -> A</pre> Leave the replacement text blank to remove an option alt
+ 
+       // Finally, add some metadata to the form element.
+       $this->addContext($form[$element]);
++
++      // Visually hidden label.
++      if (!empty($this->configuration['advanced']['hide_label'])) {
++        $form[$element]['#title_display'] = 'invisible';
++      }
+     }
+   }
+ 

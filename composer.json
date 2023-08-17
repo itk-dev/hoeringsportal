@@ -241,6 +241,10 @@
         "patches": {
           "deskpro/deskpro-api-client-php": {
             "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
+          },
+          "drupal/better_exposed_filters": {
+            "Add option to hide exposed filter field labels (https://www.drupal.org/project/better_exposed_filters/issues/3282228)": "https://www.drupal.org/files/issues/2022-09-08/bef-visually_hidden.3282228.8.patch",
+            "Add option to hide exposed sort field labels (based on “Add option to hide exposed filter field labels”)": "patches/drupal/better_exposed_filters/visually-hidden-label-on-sort.patch"
           }
         }
     }

@@ -130,6 +130,7 @@ display:
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
+                hide_label: true
             filter:
               field_content_state_value:
                 plugin_id: default
@@ -139,6 +140,7 @@ display:
                     filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nI gang|Aktive\r\nKommende|"
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
       access:
         type: perm
         options:
