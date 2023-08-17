@@ -17,4 +17,5 @@ permissions:
   - 'administer citizen proposal'
   - 'edit any citizen_proposal content'
   - 'support citizen proposal on behalf of citizen'
+  - 'use text format email_html'
   - 'view the administration theme'
