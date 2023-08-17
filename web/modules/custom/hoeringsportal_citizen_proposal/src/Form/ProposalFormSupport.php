@@ -93,6 +93,25 @@ final class ProposalFormSupport extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
+    $form['email'] = [
+      '#type' => 'email',
+      '#required' => TRUE,
+      '#title' => $this
+        ->t('Email'),
+      '#default_value' => $defaltValues['email'],
+      '#description' => $this->getAdminFormStateValue('support_email_help'),
+      '#description_display' => 'before',
+    ];
+
+    $form['consent'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Personal data storage consent'),
+      '#required' => TRUE,
+      '#default_value' => FALSE,
+      '#description' => $this->getAdminFormStateValue('consent_help'),
+    ];
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -111,6 +130,7 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     return [
       'name' => $userData['name'] ?? NULL,
+      'email' => $userData['email'] ?? NULL,
     ];
   }
 
@@ -133,6 +153,7 @@ final class ProposalFormSupport extends ProposalFormBase {
         $node,
         [
           'user_name' => $form_state->getValue('name'),
+          'user_email' => $form_state->getValue('email'),
         ],
       );
       $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));

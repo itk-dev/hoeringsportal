@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-342](https://github.com/itk-dev/hoeringsportal/pull/342)
+  Added email and storage consent checkbox on citizen proposal support form.
+  Added supporters view.
 * [PR-346](https://github.com/itk-dev/hoeringsportal/pull/346)
   Made filter and sort labels visually hidden
 * [PR-344](https://github.com/itk-dev/hoeringsportal/pull/344)
