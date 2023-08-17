@@ -6,6 +6,8 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
+use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -17,7 +19,8 @@ final class ProposalAdminForm extends FormBase {
    * Constructor for the proposal add form.
    */
   public function __construct(
-    readonly private Helper $helper
+    readonly private Helper $helper,
+    readonly private WebformHelper $webformHelper
   ) {
   }
 
@@ -27,6 +30,7 @@ final class ProposalAdminForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get(Helper::class),
+      $container->get(WebformHelper::class),
     );
   }
 
@@ -237,6 +241,7 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['sidebar_text']['value'] ?? '',
     ];
 
+    $this->buildSurveyForm($form, $adminFormStateValues ?? []);
     $this->buildEmailsForm($form, $adminFormStateValues ?? []);
 
     $form['actions']['#type'] = 'actions';
@@ -244,6 +249,57 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Save'),
       '#button_type' => 'primary',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * Build survey form.
+   *
+   * @param array $form
+   *   The form.
+   * @param array $adminFormStateValues
+   *   The admin form state values.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildSurveyForm(array &$form, array $adminFormStateValues): array {
+    $form['survey'] = [
+      '#type' => 'details',
+      '#tree' => TRUE,
+      '#open' => TRUE,
+      '#title' => $this
+        ->t('Survey'),
+    ];
+
+    $form['survey']['webform'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Survey webform'),
+      '#options' => array_map(
+        static fn (WebformInterface $webform) => $webform->label(),
+        $this->webformHelper->loadSurveyWebforms()
+      ),
+      '#empty_option' => $this->t('Select survey webform'),
+      '#default_value' => $adminFormStateValues['survey']['webform'] ?? '',
+      '#description' => $this->t('Select a survey to show as part of the citizen proposal creation form.'),
+    ];
+
+    $form['survey']['description'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Survey description'),
+      '#format' => $adminFormStateValues['survey']['description']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues['survey']['description']['value'] ?? '',
+      '#description' => $this->t('Tell a little about why the survey is shown.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        ],
+        'required' => [
+          ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        ],
+      ],
     ];
 
     return $form;
@@ -313,6 +369,16 @@ final class ProposalAdminForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $this->helper->setAdminValues($formState->getValues());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $formState) {
+    if (!empty($formState->getValue(['survey', 'webform']))
+      && empty($formState->getValue(['survey', 'description', 'value']))) {
+      $formState->setError($form['survey']['description']['value'], $this->t('Please enter a survey description.'));
+    }
   }
 
 }
