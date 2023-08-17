@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-340](https://github.com/itk-dev/hoeringsportal/pull/340)
+  Fixed proposal progress bar display
 * [PR-337](https://github.com/itk-dev/hoeringsportal/pull/337)
   Updated drupal core 9.5.10 and contrib modules
 * [PR-332](https://github.com/itk-dev/hoeringsportal/pull/332)

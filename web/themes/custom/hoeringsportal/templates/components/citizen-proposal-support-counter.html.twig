@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Support counter theme implementation.
+ *
+ * Available variables:
+ * - data: Data for the block.
+ *   - supportCount
+ *   - supportRequired
+ *   - supportPercentage
+ * @ingroup themeable
+ */
+#}
+{% macro format_percentage(value) -%}
+  {{ value|number_format(2, '.', '') }}
+{%- endmacro %}
+
+<div class="citizen-proposal-support-counter">
+  <div class="support-counter">
+    {# Building and displaying the label is a three step process:
+       1. Translate the label without replacing placeholders.
+       2. Replace placeholders with markup
+       3. Render the final raw HTML
+      #}
+    {{ 'Number of supporters: @number_of_supporters of @required_number_of_supporters'|t|replace({
+      '@number_of_supporters': '<span class="count">' ~ (data.supportCount) ~ '</span>',
+      '@required_number_of_supporters': '<span class="required">' ~ (data.supportRequired) ~ '</span>',
+      })|raw }}
+  </div>
+  <div class="support-progress">
+    <div class="progress">
+      {% set percentage = _self.format_percentage(data.supportPercentage) %}
+      <div class="progress-bar" style="width: {{ percentage }}%" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="{{ _self.format_percentage(0) }}" aria-valuemax="{{ _self.format_percentage(100) }}"></div>
+    </div>
+  </div>
+</div>

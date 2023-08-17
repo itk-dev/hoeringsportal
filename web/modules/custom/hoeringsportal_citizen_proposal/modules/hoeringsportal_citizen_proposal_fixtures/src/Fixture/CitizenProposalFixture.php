@@ -66,6 +66,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     $entity->save();
     $this->addReference('node:citizen_proposal:Proposal1', $entity);
 
+    // Add some support.
+    for ($i = 0; $i < 87; $i++) {
+      $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
+    }
+
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => 'Borgerforslag nummer 2',
@@ -87,6 +92,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     ]);
     $entity->save();
     $this->addReference('node:citizen_proposal:Proposal2', $entity);
+
+    // Add some support.
+    for ($i = 0; $i < 3; $i++) {
+      $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
+    }
 
     $entity = Node::create([
       'type' => 'citizen_proposal',

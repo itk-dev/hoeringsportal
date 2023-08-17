@@ -82,15 +82,11 @@
       <div><span>{{ 'End date'|t }}:</span><strong class="ml-1">{{ voteEnd | date('d M. Y') }}</strong></div>
     </div>
     <div class="activity-supporters">
-      <div class="pb-1">
-        <span>{{ 'Number of supporters'|t }}</span>
-        <strong class="ml-1">{{ proposal_support_count }}</strong>
-      </div>
-      <div class="support-progress">
-        <div class="progress">
-          <div class="progress-bar" style="width:{{ proposal_support_percentage }}%" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-      </div>
+      {% include 'citizen-proposal-support-counter.html.twig' with {data: {
+        supportCount: proposal_support_count,
+        supportRequired: proposal_support_required,
+        supportPercentage: proposal_support_percentage,
+        }} %}
     </div>
     <div class="activity-teaser-info d-flex pl-0 border-0">
       <span class="activity-teaser-meta-wrapper text-primary">

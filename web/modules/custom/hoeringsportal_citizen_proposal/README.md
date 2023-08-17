@@ -25,7 +25,7 @@ The module supports certain settings in settings.php
 $settings['proposal_period_length'] = '+180 days';
 
 // The required votes for a proposal to pass.
-$settings['proposal_support_required'] = '5000';
+$settings['proposal_support_required'] = 1500;
 ```
 
 ## Mails
