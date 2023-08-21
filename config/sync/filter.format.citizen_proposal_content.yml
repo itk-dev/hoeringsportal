@@ -1,0 +1,23 @@
+uuid: 856e47af-1e4e-4611-9026-3a8f29700f87
+langcode: da
+status: true
+dependencies: {  }
+name: 'Citizen proposal content'
+format: citizen_proposal_content
+weight: 0
+filters:
+  filter_html:
+    id: filter_html
+    provider: filter
+    status: true
+    weight: -10
+    settings:
+      allowed_html: '<br> <p> <strong> <em> <a href> <ul> <ol> <li>'
+      filter_html_help: false
+      filter_html_nofollow: false
+  filter_htmlcorrector:
+    id: filter_htmlcorrector
+    provider: filter
+    status: true
+    weight: 10
+    settings: {  }

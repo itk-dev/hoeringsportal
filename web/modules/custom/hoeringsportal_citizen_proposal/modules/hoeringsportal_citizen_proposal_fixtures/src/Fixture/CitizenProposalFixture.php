@@ -9,6 +9,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
 use Drupal\hoeringsportal_base_fixtures\Helper\Helper as BaseFixtureHelper;
+use Drupal\hoeringsportal_citizen_proposal\Form\ProposalFormBase;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Helper\Helper as ArchiveHelper;
@@ -56,11 +57,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       'field_content_state' => 'upcoming',
       'field_proposal' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlShort.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
       'field_remarks' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlShort.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
     ]);
     $entity->save();
@@ -83,11 +84,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       'field_content_state' => 'finished',
       'field_proposal' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtml1.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
       'field_remarks' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlLong.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
     ]);
     $entity->save();
@@ -110,11 +111,11 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       'field_content_state' => 'active',
       'field_proposal' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlLong.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
       'field_remarks' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlLong.html'),
-        'format' => 'filtered_html',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
       ],
     ]);
     $entity->save();

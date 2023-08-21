@@ -6,7 +6,12 @@ dependencies:
     - field.storage.node.field_more_info
     - node.type.citizen_proposal
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - filtered_html
 id: node.citizen_proposal.field_more_info
 field_name: field_more_info
 entity_type: node
