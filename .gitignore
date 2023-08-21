@@ -40,3 +40,5 @@ private-files
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+config/sync/**/webform.webform.*

@@ -126,3 +126,18 @@ something like
 docker compose exec phpfpm vendor/bin/drush sql:query "SELECT nid, title FROM node_field_data WHERE type = 'citizen_proposal'"
 docker compose exec phpfpm vendor/bin/drush hoeringsportal-citizen-proposal:test-mail:send 87 create test@example.com
 ```
+
+## Surveys
+
+We use the [Webform module](https://www.drupal.org/project/webform) to render
+surveys when creating a citizen proposal, and create webform submission to store
+the survey responses.
+
+To keep things simple we should allow only very few element types in webforms
+(cf. `/admin/structure/webform/config/elements#edit-types`).
+
+When rendering a webform survey, we skip rendering “Entity autocomplete”
+elements and all actions (e.g. “Submit”). However, if a survey webform contains
+an “Entity autocomplete” element allowing references to “Citizen proposal”
+nodes, we set a reference to the proposal on the survey response when saving the
+response (creating a submission).
