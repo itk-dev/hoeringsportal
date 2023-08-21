@@ -206,6 +206,10 @@ abstract class ProposalFormBase extends FormBase {
       $url = Url::fromRoute('<current>');
     }
 
+    if (!$this->isAuthenticatedAsCitizen()) {
+      return $url;
+    }
+
     $this->authenticationHelper->removeUserData();
     return Url::fromRoute(
       'hoeringsportal_openid_connect.openid_connect_end_session',
