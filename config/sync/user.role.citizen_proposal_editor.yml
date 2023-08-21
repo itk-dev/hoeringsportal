@@ -22,5 +22,6 @@ permissions:
   - 'edit any citizen_proposal content'
   - 'edit any webform'
   - 'support citizen proposal on behalf of citizen'
+  - 'use text format email_html'
   - 'view any webform submission'
   - 'view the administration theme'
