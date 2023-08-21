@@ -10,8 +10,10 @@ use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
 use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
+use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -25,6 +27,7 @@ abstract class ProposalFormBase extends FormBase {
    */
   final public function __construct(
     readonly protected Helper $helper,
+    readonly protected WebformHelper $webformHelper,
     readonly private AuthenticationHelper $authenticationHelper,
     readonly private ImmutableConfig $config
   ) {
@@ -36,6 +39,7 @@ abstract class ProposalFormBase extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get(Helper::class),
+      $container->get(WebformHelper::class),
       $container->get(AuthenticationHelper::class),
       $container->get('config.factory')->get('hoeringsportal_citizen_proposal.settings')
     );
@@ -232,6 +236,19 @@ abstract class ProposalFormBase extends FormBase {
 
     // Compute a GDPR safe and (hopefully) unique user identifier.
     return sha1($userId);
+  }
+
+  /**
+   * Load survey webform.
+   *
+   * @return \Drupal\webform\WebformInterface|null
+   *   The webform if any.
+   */
+  protected function loadSurvey(): ?WebformInterface {
+    return $this->webformHelper->loadWebform((string) $this->getAdminFormStateValue([
+      'survey',
+      'webform',
+    ]));
   }
 
 }

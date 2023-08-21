@@ -146,6 +146,8 @@ final class ProposalFormAdd extends ProposalFormBase {
       ],
     ];
 
+    $this->buildSurveyForm($form);
+
     $form['consent'] = [
       '#type' => 'checkbox',
       '#title' => $this
@@ -163,6 +165,45 @@ final class ProposalFormAdd extends ProposalFormBase {
         : $this->t('Create proposal'),
       '#button_type' => 'primary',
     ];
+
+    return $form;
+  }
+
+  /**
+   * Build survey form.
+   *
+   * @param array $form
+   *   The form.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildSurveyForm(array &$form): array {
+    $form['survey'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['survey', 'citizen-proposal-survey'],
+      ],
+      '#tree' => TRUE,
+    ];
+
+    try {
+      $description = $this->getAdminFormStateValue(['survey', 'description']);
+      if (($webform = $this->loadSurvey()) && isset($description['value'])) {
+        // We use a numeric index (implicit 0) here to prevent webform fields
+        // accidentally overwriting the description element.
+        $form['survey'][] = [
+          '#type' => 'processed_text',
+          '#text' => $description['value'],
+          '#format' => $description['format'] ?? 'filtered_html',
+        ];
+
+        $this->webformHelper->renderWebformElements($webform, $form['survey']);
+      }
+    }
+    catch (\Exception $exception) {
+      throw $exception;
+    }
 
     return $form;
   }
@@ -208,6 +249,16 @@ final class ProposalFormAdd extends ProposalFormBase {
     $this->helper->setDraftProposal($entity);
     $formState
       ->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve');
+
+    // Handle survey.
+    try {
+      if ($webform = $this->loadSurvey()) {
+        $surveyData = (array) $formState->getValue('survey');
+        $this->webformHelper->setSurveyResponse($webform, $surveyData);
+      }
+    }
+    catch (\Exception) {
+    }
   }
 
   /**

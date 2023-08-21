@@ -157,7 +157,17 @@ final class ProposalFormApprove extends ProposalFormBase {
 
     $this->messenger()->addStatus($this->getAdminFormStateValue('approve_submission_text', $this->t('Thank you for your submission.')));
     $entity->save();
+
     $this->helper->deleteDraftProposal();
+
+    // Handle survey.
+    try {
+      if ($webform = $this->loadSurvey()) {
+        $this->webformHelper->saveSurveyResponse($webform, $entity);
+      }
+    }
+    catch (\Exception) {
+    }
 
     $formState->setRedirectUrl(
       $this->deAuthenticateUser(
