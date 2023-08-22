@@ -8,6 +8,6 @@ services:
       - PHP_MEMORY_LIMIT=528M
 
   node:
-    image: node:16
+    image: node:18
     volumes:
       - .:/app:delegated
