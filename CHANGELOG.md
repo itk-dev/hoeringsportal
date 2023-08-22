@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-350](https://github.com/itk-dev/hoeringsportal/pull/350)
+  Added superfluous support proposal button
 * [PR-347](https://github.com/itk-dev/hoeringsportal/pull/347)
   Added citizen proposal survey
 * [PR-342](https://github.com/itk-dev/hoeringsportal/pull/342)
