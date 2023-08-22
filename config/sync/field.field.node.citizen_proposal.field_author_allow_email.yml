@@ -1,0 +1,23 @@
+uuid: 8d3748de-e723-46a5-b473-0135dd28153e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_author_allow_email
+    - node.type.citizen_proposal
+id: node.citizen_proposal.field_author_allow_email
+field_name: field_author_allow_email
+entity_type: node
+bundle: citizen_proposal
+label: 'Allow email'
+description: 'Author accepts receiving emails.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

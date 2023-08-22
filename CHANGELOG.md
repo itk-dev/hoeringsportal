@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-353](https://github.com/itk-dev/hoeringsportal/pull/353)
+  Added “Allow email” checkboxes
 * [PR-351](https://github.com/itk-dev/hoeringsportal/pull/351)
   Added and used citizen proposal text format
 * [PR-350](https://github.com/itk-dev/hoeringsportal/pull/350)
