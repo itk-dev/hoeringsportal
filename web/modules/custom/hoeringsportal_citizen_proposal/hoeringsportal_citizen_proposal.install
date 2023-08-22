@@ -47,6 +47,14 @@ function hoeringsportal_citizen_proposal_schema(): array {
         'length' => 255,
         'not null' => FALSE,
       ],
+      'allow_email' => [
+        'description' => 'The proposal supporter allows email',
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
       'created' => [
         'description' => 'The time of creation',
         'type' => 'int',
@@ -182,4 +190,23 @@ function hoeringsportal_citizen_proposal_update_9003(): void {
   \Drupal::service('module_installer')->install([
     'symfony_mailer',
   ]);
+}
+
+/**
+ * Adds allow email column.
+ */
+function hoeringsportal_citizen_proposal_update_9004(): void {
+  $schema = \Drupal::database()->schema();
+
+  $table_name = 'hoeringsportal_citizen_proposal_support';
+  $field_name = 'allow_email';
+  $spec = [
+    'description' => 'The proposal supporter allows email',
+    'type' => 'int',
+    'size' => 'tiny',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'default' => 0,
+  ];
+  $schema->addField($table_name, $field_name, $spec);
 }

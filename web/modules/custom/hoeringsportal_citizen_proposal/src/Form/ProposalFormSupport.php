@@ -95,12 +95,24 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     $form['email'] = [
       '#type' => 'email',
-      '#required' => TRUE,
       '#title' => $this
         ->t('Email'),
       '#default_value' => $defaltValues['email'],
       '#description' => $this->getAdminFormStateValue('support_email_help'),
       '#description_display' => 'before',
+    ];
+
+    $form['allow_email'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Allow email'),
+      '#default_value' => $defaltValues['support_allow_email_help'] ?? FALSE,
+      '#description' => $this->getAdminFormStateValue('support_allow_email_help'),
+      '#states' => [
+        'visible' => [
+          ':input[name="email"]' => ['filled' => TRUE],
+        ],
+      ],
     ];
 
     $form['consent'] = [
@@ -154,6 +166,7 @@ final class ProposalFormSupport extends ProposalFormBase {
         [
           'user_name' => $form_state->getValue('name'),
           'user_email' => $form_state->getValue('email'),
+          'allow_email' => $form_state->getValue('allow_email'),
         ],
       );
       $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
