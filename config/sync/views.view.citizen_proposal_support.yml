@@ -134,11 +134,11 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: numeric
-          label: 'Allow email'
+          label: 'Tillad e-mail'
           exclude: false
           alter:
             alter_text: true
-            text: '{{ allow_email ? 1 }}'
+            text: '{{ allow_email ? ''ja'' }}'
             make_link: false
             path: ''
             absolute: false
@@ -423,7 +423,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Name
+          label: Navn
           exclude: false
           alter:
             alter_text: false
@@ -472,7 +472,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: standard
-          label: Email
+          label: E-mail
           exclude: false
           alter:
             alter_text: false
@@ -521,7 +521,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: numeric
-          label: 'Allow email'
+          label: 'Tillad e-mail'
           exclude: false
           alter:
             alter_text: true

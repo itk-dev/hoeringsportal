@@ -239,7 +239,8 @@ class Helper implements LoggerAwareInterface {
         'exception' => $exception,
         'values' => $values,
       ]);
-      $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
+
+      throw $exception;
     }
   }
 
