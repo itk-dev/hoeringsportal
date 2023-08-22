@@ -88,6 +88,14 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
+    $form['allow_email'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Allow email'),
+      '#default_value' => $defaltValues['allow_email'] ?? FALSE,
+      '#description' => $this->getAdminFormStateValue('allow_email_help'),
+    ];
+
     $form['proposal_intro_container'] = [
       '#type' => 'container',
       '#attributes' => ['class' => ['mt-5']],
@@ -280,6 +288,7 @@ final class ProposalFormAdd extends ProposalFormBase {
       'field_author_email_display' => $formState->getValue('email_display'),
       'field_proposal' => $formState->getValue('proposal'),
       'field_remarks' => $formState->getValue('remarks'),
+      'field_author_allow_email' => $formState->getValue('allow_email'),
     ]);
     $this->helper->setDraftProposal($entity);
     $formState

@@ -142,6 +142,7 @@ abstract class ProposalFormBase extends FormBase {
       'title' => $entity?->title->value ?? NULL,
       'proposal' => $entity?->field_proposal->value ?? '',
       'remarks' => $entity?->field_remarks->value ?? '',
+      'allow_email' => $entity?->field_author_allow_email->value ?? FALSE,
     ];
   }
 
