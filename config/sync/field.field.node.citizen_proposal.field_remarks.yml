@@ -6,14 +6,19 @@ dependencies:
     - field.storage.node.field_remarks
     - node.type.citizen_proposal
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - citizen_proposal_content
 id: node.citizen_proposal.field_remarks
 field_name: field_remarks
 entity_type: node
 bundle: citizen_proposal
 label: Bemærkninger
 description: ''
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

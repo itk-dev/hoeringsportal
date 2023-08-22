@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Base form for adding proposal.
  */
 abstract class ProposalFormBase extends FormBase {
+  public const CONTENT_TEXT_FORMAT = 'citizen_proposal_content';
 
   /**
    * Constructor for the proposal add form.

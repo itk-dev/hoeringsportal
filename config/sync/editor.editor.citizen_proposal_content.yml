@@ -1,0 +1,23 @@
+uuid: 26d84d56-aa25-4c54-b981-acaef1d18139
+langcode: da
+status: true
+dependencies:
+  config:
+    - filter.format.citizen_proposal_content
+  module:
+    - ckeditor5
+format: citizen_proposal_content
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - link
+      - bulletedList
+      - numberedList
+  plugins:
+    ckeditor5_list:
+      reversed: false
+      startIndex: false
+image_upload: {  }
