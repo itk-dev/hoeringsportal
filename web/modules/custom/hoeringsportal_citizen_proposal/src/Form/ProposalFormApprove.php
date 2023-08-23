@@ -122,6 +122,17 @@ final class ProposalFormApprove extends ProposalFormBase {
       ],
     ];
 
+    $form['allow_email'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Allow email'),
+      '#default_value' => $defaltValues['allow_email'],
+      '#description' => $this->getAdminFormStateValue('allow_email_help'),
+      '#attributes' => [
+        'disabled' => 'disabled',
+      ],
+    ];
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',

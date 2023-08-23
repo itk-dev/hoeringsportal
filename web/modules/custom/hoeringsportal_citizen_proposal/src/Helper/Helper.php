@@ -218,6 +218,7 @@ class Helper implements LoggerAwareInterface {
     try {
       $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
+      $values['allow_email'] = ($values['allow_email'] ?? FALSE) ? 1 : 0;
       // Set some defaults.
       $values += [
         'created' => $this->time->getRequestTime(),
@@ -238,7 +239,8 @@ class Helper implements LoggerAwareInterface {
         'exception' => $exception,
         'values' => $values,
       ]);
-      $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
+
+      throw $exception;
     }
   }
 

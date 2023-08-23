@@ -113,6 +113,13 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
     ];
 
+    $form['add_form']['allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
+    ];
+
     $form['add_form']['proposal_intro'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Proposal intro'),
@@ -213,6 +220,13 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Email help'),
       '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
+    ];
+
+    $form['support_form']['support_allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['support_allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
     ];
 
     $form['support_form']['support_goto_url'] = [
