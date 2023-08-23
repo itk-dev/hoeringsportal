@@ -4,6 +4,7 @@ langcode: da
 module:
   aarhus_hero: 0
   advancedqueue: 0
+  allowed_formats: 0
   better_exposed_filters: 0
   better_social_sharing_buttons: 0
   block: 0
@@ -89,6 +90,7 @@ module:
   search: 0
   search_autocomplete: 0
   serialization: 0
+  symfony_mailer: 0
   system: 0
   system_status: 0
   taxonomy: 0
@@ -100,10 +102,13 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
+  view_custom_table: 0
   views_data_export: 0
   views_ui: 0
   viewsreference: 0
   web_accessibility_statement: 0
+  webform: 0
+  webform_ui: 0
   xls_serialization: 0
   ds: 1
   menu_link_content: 1

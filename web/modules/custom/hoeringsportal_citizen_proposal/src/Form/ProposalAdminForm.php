@@ -4,20 +4,24 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\State\State;
+use Drupal\Core\Url;
+use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
+use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Form for adding proposal.
  */
 final class ProposalAdminForm extends FormBase {
-  public const ADMIN_FORM_VALUES_STATE_KEY = 'citizen_proposal_admin_form_values';
 
   /**
    * Constructor for the proposal add form.
    */
   public function __construct(
-    readonly private State $state,
+    readonly private Helper $helper,
+    readonly private WebformHelper $webformHelper
   ) {
   }
 
@@ -26,7 +30,8 @@ final class ProposalAdminForm extends FormBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('state'),
+      $container->get(Helper::class),
+      $container->get(WebformHelper::class),
     );
   }
 
@@ -41,7 +46,7 @@ final class ProposalAdminForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $adminFormStateValues = $this->state->get(self::ADMIN_FORM_VALUES_STATE_KEY);
+    $adminFormStateValues = $this->helper->getAdminValue();
 
     $form['authenticate'] = [
       '#type' => 'details',
@@ -108,6 +113,13 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
     ];
 
+    $form['add_form']['allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
+    ];
+
     $form['add_form']['proposal_intro'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Proposal intro'),
@@ -131,6 +143,13 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Remarks help'),
       '#default_value' => $adminFormStateValues['remarks_help'] ?? '',
+    ];
+
+    $form['add_form']['consent_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Consent help'),
+      '#default_value' => $adminFormStateValues['consent_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about GDRP and data storage&lt;/a&gt;</code> to insert a link to details on what is stored and where and how.'),
     ];
 
     $form['add_form']['characters_title'] = [
@@ -167,13 +186,13 @@ final class ProposalAdminForm extends FormBase {
 
     $form['approve_form']['approve_goto_url'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Goto this url after submission'),
+      '#title' => $this->t('Redirect URL after a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_goto_url'] ?? '',
     ];
 
     $form['approve_form']['approve_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal is approved.'),
+      '#title' => $this->t('Submission text when a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_submission_text'] ?? '',
     ];
 
@@ -203,9 +222,23 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
     ];
 
+    $form['support_form']['support_allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['support_allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
+    ];
+
+    $form['support_form']['support_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Redirect URL after a proposal has been supported'),
+      '#default_value' => $adminFormStateValues['support_goto_url'] ?? '',
+      '#description' => $this->t('If not set, the citizen will see the proposal after supporting it.'),
+    ];
+
     $form['support_form']['support_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal has been supported.'),
+      '#title' => $this->t('Submission text when a proposal has been supported'),
       '#default_value' => $adminFormStateValues['support_submission_text'] ?? '',
     ];
 
@@ -223,6 +256,9 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['sidebar_text']['value'] ?? '',
     ];
 
+    $this->buildSurveyForm($form, $adminFormStateValues ?? []);
+    $this->buildEmailsForm($form, $adminFormStateValues ?? []);
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -234,10 +270,137 @@ final class ProposalAdminForm extends FormBase {
   }
 
   /**
+   * Build survey form.
+   *
+   * @param array $form
+   *   The form.
+   * @param array $adminFormStateValues
+   *   The admin form state values.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildSurveyForm(array &$form, array $adminFormStateValues): array {
+    $form['survey'] = [
+      '#type' => 'details',
+      '#tree' => TRUE,
+      '#open' => TRUE,
+      '#title' => $this
+        ->t('Survey'),
+    ];
+
+    $form['survey']['webform'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Survey webform'),
+      '#options' => array_map(
+        static fn (WebformInterface $webform) => $webform->label(),
+        $this->webformHelper->loadSurveyWebforms()
+      ),
+      '#empty_option' => $this->t('Select survey webform'),
+      '#default_value' => $adminFormStateValues['survey']['webform'] ?? '',
+      '#description' => $this->t('Select a survey to show as part of the citizen proposal creation form. <a href=":url">Manage surveys</a>.', [
+        ':url' => Url::fromRoute('entity.webform.collection')->toString(TRUE)->getGeneratedUrl(),
+      ]),
+    ];
+
+    $form['survey']['description'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Survey description'),
+      '#format' => $adminFormStateValues['survey']['description']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues['survey']['description']['value'] ?? '',
+      '#description' => $this->t('Tell a little about why the survey is shown.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        ],
+        // Setting "required" with states does not work with text_format fields
+        // the first time around. Actual validation is performed in
+        // self::validateForm().
+        // https://www.drupal.org/project/drupal/issues/997826
+        // https://www.drupal.org/project/drupal/issues/3004464
+        // 'required' => [
+        // ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        // ],.
+      ],
+    ];
+
+    return $form;
+  }
+
+  /**
+   * Build emails form.
+   *
+   * @param array $form
+   *   The form.
+   * @param array $adminFormStateValues
+   *   The admin form state values.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildEmailsForm(array &$form, array $adminFormStateValues): array {
+    $form['emails'] = [
+      '#type' => 'details',
+      '#tree' => TRUE,
+      '#open' => TRUE,
+      '#title' => $this
+        ->t('Emails'),
+    ];
+
+    $form['emails']['description'] = [
+      '#markup' => $this->t('You can use tokens in email subject and both tokens and Twig in email content.'),
+    ];
+
+    $form['emails']['email_editor'] = [
+      '#type' => 'email',
+      '#title' => $this->t('Editor email address'),
+      '#required' => TRUE,
+      '#default_value' => $adminFormStateValues['emails']['email_editor'] ?? '',
+    ];
+
+    foreach ([
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_CREATED_CITIZEN => $this->t('Proposal created (citizen)'),
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_CREATED_EDITOR => $this->t('Proposal created (editor)'),
+      MailHelper::MAILER_SUBTYPE_PROPOSAL_PUBLISHED_CITIZEN => $this->t('Proposal published (citizen)'),
+    ] as $key => $title) {
+      $form['emails'][$key] = [
+        '#type' => 'fieldset',
+        '#title' => $title,
+
+        'subject' => [
+          '#type' => 'textfield',
+          '#title' => $this->t('Subject'),
+          '#required' => TRUE,
+          '#default_value' => $adminFormStateValues['emails'][$key]['subject'] ?? '',
+        ],
+        'content' => [
+          '#type' => 'text_format',
+          '#title' => $this->t('Content'),
+          '#required' => TRUE,
+          '#format' => $adminFormStateValues['emails'][$key]['content']['format'] ?? 'email_html',
+          '#default_value' => $adminFormStateValues['emails'][$key]['content']['value'] ?? '',
+        ],
+      ];
+    }
+
+    return $form;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
-    $this->state->set(self::ADMIN_FORM_VALUES_STATE_KEY, $formState->getValues());
+    $this->helper->setAdminValues($formState->getValues());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $formState) {
+    if (!empty($formState->getValue(['survey', 'webform']))
+      && empty($formState->getValue(['survey', 'description', 'value']))) {
+      $formState->setError($form['survey']['description']['value'], $this->t('Please enter a survey description.'));
+    }
   }
 
 }

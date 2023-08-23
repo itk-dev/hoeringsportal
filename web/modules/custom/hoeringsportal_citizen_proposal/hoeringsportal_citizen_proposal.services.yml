@@ -14,3 +14,34 @@ services:
       - '@entity_type.manager'
       - '@datetime.time'
       - '@logger.channel.hoeringsportal_citizen_proposal'
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper:
+    arguments:
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
+      - '@email_factory'
+      - '@logger.channel.hoeringsportal_citizen_proposal'
+    tags:
+      - {name: event_subscriber}
+
+  # @see https://www.drupal.org/project/drupal/issues/2376347
+  # @see https://www.drupal.org/docs/drupal-apis/services-and-dependency-injection/structure-of-a-service-file#s-properties-of-a-service
+  hoeringsportal_citizen_proposal.storage.webform:
+    class: Drupal\webform\WebformEntityStorageInterface
+    factory: ['@entity_type.manager', 'getStorage']
+    arguments: ['webform']
+
+  hoeringsportal_citizen_proposal.storage.webform_survey_temp_store:
+    class: Drupal\Core\TempStore\PrivateTempStore
+    factory: ['@tempstore.private', 'get']
+    arguments: ['hoeringsportal_citizen_proposal_survey']
+
+  hoeringsportal_citizen_proposal.storage.webform_config:
+    class: Drupal\Core\Config\ImmutableConfig
+    factory: ['@config.factory', 'get']
+    arguments: ['webform.settings']
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper:
+    arguments:
+      - '@hoeringsportal_citizen_proposal.storage.webform'
+      - '@hoeringsportal_citizen_proposal.storage.webform_config'
+      - '@hoeringsportal_citizen_proposal.storage.webform_survey_temp_store'

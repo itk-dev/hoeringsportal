@@ -2,18 +2,18 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
-use Drupal\Core\State\State;
 use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
 use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
+use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -21,13 +21,14 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Base form for adding proposal.
  */
 abstract class ProposalFormBase extends FormBase {
+  public const CONTENT_TEXT_FORMAT = 'citizen_proposal_content';
 
   /**
    * Constructor for the proposal add form.
    */
   final public function __construct(
     readonly protected Helper $helper,
-    readonly private State $state,
+    readonly protected WebformHelper $webformHelper,
     readonly private AuthenticationHelper $authenticationHelper,
     readonly private ImmutableConfig $config
   ) {
@@ -39,7 +40,7 @@ abstract class ProposalFormBase extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get(Helper::class),
-      $container->get('state'),
+      $container->get(WebformHelper::class),
       $container->get(AuthenticationHelper::class),
       $container->get('config.factory')->get('hoeringsportal_citizen_proposal.settings')
     );
@@ -141,21 +142,27 @@ abstract class ProposalFormBase extends FormBase {
       'title' => $entity?->title->value ?? NULL,
       'proposal' => $entity?->field_proposal->value ?? '',
       'remarks' => $entity?->field_remarks->value ?? '',
+      'allow_email' => $entity?->field_author_allow_email->value ?? FALSE,
     ];
   }
 
   /**
-   * Get admin form state value.
+   * Get admin form value.
    */
-  protected function getAdminFormStateValue(string|array $key, string $default = NULL): ?string {
-    $adminFormStateValues = $this->state->get(ProposalAdminForm::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
-    $value = NestedArray::getValue($adminFormStateValues, (array) $key);
+  protected function getAdminFormStateValue(string|array $key, string $default = NULL): mixed {
+    return $this->helper->getAdminValue($key, $default);
+  }
 
-    if (is_string($value)) {
-      $value = trim($value);
+  /**
+   * Get admin form value as a URL.
+   */
+  protected function getAdminFormStateValueUrl(string|array $key, string $default = NULL, Url $defaultUrl = NULL): Url {
+    try {
+      return Url::fromUserInput($this->helper->getAdminValue($key, $default) ?? '');
     }
-
-    return $value ?: $default;
+    catch (\Exception) {
+      return $defaultUrl ?? Url::fromRoute('<front>');
+    }
   }
 
   /**
@@ -194,6 +201,27 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * De-authenticate (is that a real word?) user.
+   */
+  protected function deAuthenticateUser(Url $url = NULL): Url {
+    if (NULL === $url) {
+      $url = Url::fromRoute('<current>');
+    }
+
+    if (!$this->isAuthenticatedAsCitizen()) {
+      return $url;
+    }
+
+    $this->authenticationHelper->removeUserData();
+    return Url::fromRoute(
+      'hoeringsportal_openid_connect.openid_connect_end_session',
+      [
+        OpenIDConnectController::QUERY_STRING_DESTINATION => $url->toString(TRUE)->getGeneratedUrl(),
+      ],
+    );
+  }
+
+  /**
    * Get user UUID.
    *
    * @return string
@@ -214,6 +242,19 @@ abstract class ProposalFormBase extends FormBase {
 
     // Compute a GDPR safe and (hopefully) unique user identifier.
     return sha1($userId);
+  }
+
+  /**
+   * Load survey webform.
+   *
+   * @return \Drupal\webform\WebformInterface|null
+   *   The webform if any.
+   */
+  protected function loadSurvey(): ?WebformInterface {
+    return $this->webformHelper->loadWebform((string) $this->getAdminFormStateValue([
+      'survey',
+      'webform',
+    ]));
   }
 
 }

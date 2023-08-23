@@ -27,9 +27,9 @@
   {{ title_suffix.contextual_links }}
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
     {% if image_exists %}
-      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
+      {% include directory ~ '/templates/components/header.html.twig' with {'header': header|without('field_teaser', 'field_media_image_single'), 'teaser': header_text } %}
     {% else %}
-      {% include directory ~ '/templates/componets/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
+      {% include directory ~ '/templates/components/header.html.twig' with {'header': header|without('field_teaser'), 'teaser': header_text } %}
     {% endif %}
   </{{ header_wrapper }}>
   <div class="container content__container">
@@ -60,7 +60,7 @@
 
       <{{ right_wrapper }}{{ right_attributes.addClass('group-right col-md-4') }}>
         <div class="d-none d-md-block">
-          <a class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {'node': content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
+          <a aria-hidden="true" class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {'node': content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
         </div>
         {{ right }}
       </{{ right_wrapper }}>

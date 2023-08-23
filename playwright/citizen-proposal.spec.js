@@ -40,9 +40,9 @@ test("Create proposal", async ({ page }) => {
 
   await page.getByLabel("Phone", { exact: true }).fill("12345678");
 
-  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue("");
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
 
-  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksemple.dk");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
     .getByLabel("Title", { exact: true })
@@ -74,11 +74,11 @@ test("Create proposal", async ({ page }) => {
 
   await page.getByRole("link", { name: "Edit proposal" }).click();
 
-  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue(
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue(
     "borger87@eksemple.dk"
   );
 
-  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksempel.dk");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksempel.dk");
 
   await page.getByRole("button", { name: "Update proposal" }).click();
 
@@ -88,9 +88,10 @@ test("Create proposal", async ({ page }) => {
 
   await expect(page.getByText("Thank you for your submission.")).toBeVisible();
 
-  // Test that form has been emptied
+  // Test that authentication is needed for creating another proposal.
   await page.goto("/citizen_proposal/add");
-  await expect(page.getByLabel("E-mail", { exact: true })).toHaveValue("");
+  await page.getByRole("link", { name: "Authenticate with MitID" }).click();
+  await expect(page.getByLabel("Email", { exact: true })).toHaveValue("");
 });
 
 test("Cancel proposal", async ({ page }) => {
@@ -106,7 +107,7 @@ test("Cancel proposal", async ({ page }) => {
 
   await page.getByLabel("Phone", { exact: true }).fill("12345678");
 
-  await page.getByLabel("E-mail", { exact: true }).fill("borger87@eksemple.dk");
+  await page.getByLabel("Email", { exact: true }).fill("borger87@eksemple.dk");
 
   await page
     .getByLabel("Title", { exact: true })

@@ -8,13 +8,20 @@ dependencies:
     - hoeringsportal_citizen_proposal
     - node
     - system
+    - webform
 id: citizen_proposal_editor
 label: 'Citizen proposal editor'
 weight: -8
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access webform overview'
+  - 'access webform submission user'
   - 'administer citizen proposal'
+  - 'create webform'
   - 'edit any citizen_proposal content'
+  - 'edit any webform'
   - 'support citizen proposal on behalf of citizen'
+  - 'use text format email_html'
+  - 'view any webform submission'
   - 'view the administration theme'

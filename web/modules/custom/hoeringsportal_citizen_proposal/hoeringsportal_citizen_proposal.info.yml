@@ -5,3 +5,4 @@ package: ITK
 core_version_requirement: ^8.8 || ^9
 dependencies:
   - twig_tweak:twig_tweak
+  - drupal:symfony_mailer

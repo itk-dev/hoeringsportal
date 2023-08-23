@@ -52,7 +52,7 @@
   {% if rows is empty %}
     <div class="d-flex justify-content-center list--empty-text">
       <div>
-        <h3>{{ 'The proposal list is empty' }}</h3>
+        <h3>{{ 'The proposal list is empty'|t }}</h3>
         <div class="d-flex justify-content-center">
           <a class="btn btn-primary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add') }}">{{ 'Create your proposal'|t }}</a>
         </div>
