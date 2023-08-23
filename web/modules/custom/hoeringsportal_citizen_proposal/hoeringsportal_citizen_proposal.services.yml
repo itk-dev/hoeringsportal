@@ -3,6 +3,11 @@ services:
     parent: logger.channel_base
     arguments: ['hoeringsportal_citizen_proposal']
 
+  hoeringsportal_citizen_proposal.config.settings:
+    class: Drupal\Core\Config\ImmutableConfig
+    factory: ['@config.factory', 'get']
+    arguments: ['hoeringsportal_citizen_proposal.settings']
+
   Drupal\hoeringsportal_citizen_proposal\Helper\Helper:
     arguments:
       - '@tempstore.private'
@@ -45,3 +50,19 @@ services:
       - '@hoeringsportal_citizen_proposal.storage.webform'
       - '@hoeringsportal_citizen_proposal.storage.webform_config'
       - '@hoeringsportal_citizen_proposal.storage.webform_survey_temp_store'
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\CprHelper:
+
+  Drupal\hoeringsportal_citizen_proposal\Helper\CitizenAccessChecker:
+    arguments:
+      - '@logger.channel.hoeringsportal_citizen_proposal'
+
+  Drupal\hoeringsportal_citizen_proposal\EventSubscriber\CitizenAccessCheckEventSubscriber:
+    arguments:
+      - '@hoeringsportal_citizen_proposal.config.settings'
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\CprHelper'
+      - '@Drupal\hoeringsportal_citizen_proposal\Helper\CitizenAccessChecker'
+      - '@logger.channel.hoeringsportal_citizen_proposal'
+    tags:
+      - { name: 'event_subscriber' }

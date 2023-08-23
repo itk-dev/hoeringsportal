@@ -42,7 +42,7 @@ abstract class ProposalFormBase extends FormBase {
       $container->get(Helper::class),
       $container->get(WebformHelper::class),
       $container->get(AuthenticationHelper::class),
-      $container->get('config.factory')->get('hoeringsportal_citizen_proposal.settings')
+      $container->get('hoeringsportal_citizen_proposal.config.settings')
     );
   }
 

@@ -171,6 +171,28 @@ services:
             Value: '4444'
             ValueType: string
 
+        - SubjectId: 'ikke-aarhusianer'
+          Username: 'ikke-aarhusianer'
+          Password: 'ikke-aarhusianer'
+          Claims:
+          - Type: dk_ssn
+            Value: '1705880000'
+            ValueType: string
+          - Type: name
+            Value: Troels Bondetest
+            ValueType: string
+
+        - SubjectId: 'aarhusianer'
+          Username: 'aarhusianer'
+          Password: 'aarhusianer'
+          Claims:
+          - Type: dk_ssn
+            Value: '2611740000'
+            ValueType: string
+          - Type: name
+            Value: Betina Henningsentest
+            ValueType: string
+
   pretix:
     image: pretix/standalone:latest
     profiles:

@@ -75,6 +75,14 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['authenticate_link_text'] ?? '',
     ];
 
+    $form['authenticate']['authenticate_access_denied_page'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Access denied page'),
+      '#required' => TRUE,
+      '#default_value' => $adminFormStateValues['authenticate_access_denied_page'] ?? '/access-denied',
+      '#description' => $this->t('Send citizens from outside the municipality to this page. Enter a path on the form <code>/node/«id»</code>, e.g. <code>/node/87</code>.'),
+    ];
+
     $form['add_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -391,15 +399,26 @@ final class ProposalAdminForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $this->helper->setAdminValues($formState->getValues());
+
+    $this->messenger()->addStatus($this->t('Citizen proposal settings sucessfully saved.'));
   }
 
   /**
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $formState) {
+    $path = $formState->getValue('authenticate_access_denied_page');
+    if (empty($path) || !preg_match('@^/node/\d+$@', $path)) {
+      $formState->setError(
+        $form['authenticate']['authenticate_access_denied_page'],
+        $this->t('Please enter a path on the form /node/«id».')
+      );
+    }
+
     if (!empty($formState->getValue(['survey', 'webform']))
       && empty($formState->getValue(['survey', 'description', 'value']))) {
-      $formState->setError($form['survey']['description']['value'], $this->t('Please enter a survey description.'));
+      $formState->setError($form['survey']['description']['value'],
+        $this->t('Please enter a survey description.'));
     }
   }
 

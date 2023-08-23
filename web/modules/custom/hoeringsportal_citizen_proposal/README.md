@@ -141,3 +141,59 @@ elements and all actions (e.g. “Submit”). However, if a survey webform conta
 an “Entity autocomplete” element allowing references to “Citizen proposal”
 nodes, we set a reference to the proposal on the survey response when saving the
 response (creating a submission).
+
+## Restricting access to proposals
+
+```php
+# settings.local.php
+$settings['hoeringsportal_citizen_proposal']['cpr_helper'] = [
+  'azure_tenant_id' => '…,
+  'azure_application_id' => '…',
+  'azure_client_secret' => '…,
+
+  'azure_key_vault_name' => '…',
+  'azure_key_vault_secret' => '…',
+  'azure_key_vault_secret_version' => '…',
+
+  'serviceplatformen_service_agreement_uuid' => '…',
+  'serviceplatformen_user_system_uuid' => '…',
+  'serviceplatformen_user_uuid' => '…',
+
+  'serviceplatformen_service_uuid' => '…',
+
+  // Production
+  'serviceplatformen_service_endpoint' => 'https://prod.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/4',
+  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT) . '/vendor/itk-dev/serviceplatformen/resources/person-base-data-extended-service-contract/wsdl/context/PersonBaseDataExtendedService.wsdl',
+  // Test
+  'serviceplatformen_service_endpoint' => 'https://exttest.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/4',
+  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT) . '/vendor/itk-dev/serviceplatformen/resources/person-base-data-extended-service-contract/wsdl/context/PersonBaseDataExtendedService.wsdl',
+];
+
+$settings['hoeringsportal_citizen_proposal']['access_check'] = [
+  // the value must match `drush config:get hoeringsportal_citizen_proposal.settings user_uuid_claim`
+  'cpr_user_claim' => 'dk_ssn',
+
+  // If one of these match, access is granted.
+
+  // Property accessor path => value(s)
+  'cpr_access_checks' => [
+    // https://danmarksadresser.dk/adressedata/kodelister/kommunekodeliste
+    '[adresse][aktuelAdresse][kommunekode]' => 751,
+  ],
+];
+```
+
+For testing purposes (cf. [Testing](../../../../documentation/Testing.md)), use
+
+```php
+# settings.local.php
+$settings['hoeringsportal_citizen_proposal']['access_check']['cpr_result_checks'] = [
+  // https://danmarksadresser.dk/adressedata/kodelister/kommunekodeliste
+  '[adresse][aktuelAdresse][kommunekode]' => 955,
+];
+```
+
+and sign in (in the local IdP) with username `aarhusianer` and password
+`aarhusianer` to get access. Sign in with `ikke-aarhusianer` and
+`ikke-aarhusianer` to be denied access (cf.
+[docker-compose.override.yml](../../../../docker-compose.override.yml)).

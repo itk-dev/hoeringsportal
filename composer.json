@@ -141,6 +141,7 @@
         "itk-dev/itk_media_entity": "^2",
         "itk-dev/itk_pretix": "^1.0",
         "itk-dev/itk_siteimprove": "^1.2",
+        "itk-dev/serviceplatformen": "^1.4",
         "itk-dev/web_accessibility_statement": "^1.0",
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
