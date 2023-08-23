@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.2.0] - 2023-08-23 - Citizen proposal
+
 * [PR-353](https://github.com/itk-dev/hoeringsportal/pull/353)
   Added “Allow email” checkboxes
 * [PR-351](https://github.com/itk-dev/hoeringsportal/pull/351)
@@ -81,7 +83,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.2.0...HEAD
+[3.2.0]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/itk-dev/hoeringsportal/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/itk-dev/hoeringsportal/compare/3.0.0...3.0.1
