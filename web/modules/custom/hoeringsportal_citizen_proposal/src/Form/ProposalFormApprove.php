@@ -69,13 +69,13 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'container',
     ];
 
-    $notShownOnProposalMessage = '<small><strong>'.$this->t('(Not shown on proposal)').'</strong></small>';
+    $notShownOnProposalMessage = '<small><strong>' . $this->t('(Not shown on proposal)') . '</strong></small>';
     $form['author']['email_wrapper']['approve_form_email'] = [
       '#prefix' => '<h5>' . $this->t('E-mail') . '</h5>',
       '#type' => 'processed_text',
       '#text' => $defaltValues['email'],
       '#format' => 'filtered_html',
-      '#suffix' => $defaltValues['email_display'] ? '' : $notShownOnProposalMessage
+      '#suffix' => $defaltValues['email_display'] ? '' : $notShownOnProposalMessage,
     ];
 
     $form['author']['phone_display_wrapper'] = [

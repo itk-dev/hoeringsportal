@@ -313,9 +313,14 @@ final class ProposalAdminForm extends FormBase {
         'visible' => [
           ':input[name="survey[webform]"]' => ['filled' => TRUE],
         ],
-        'required' => [
-          ':input[name="survey[webform]"]' => ['filled' => TRUE],
-        ],
+        // Setting "required" with states does not work with text_format fields
+        // the first time around. Actual validation is performed in
+        // self::validateForm().
+        // https://www.drupal.org/project/drupal/issues/997826
+        // https://www.drupal.org/project/drupal/issues/3004464
+        // 'required' => [
+        // ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        // ],.
       ],
     ];
 
