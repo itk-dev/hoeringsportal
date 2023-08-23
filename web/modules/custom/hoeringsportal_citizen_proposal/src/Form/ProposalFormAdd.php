@@ -58,6 +58,11 @@ final class ProposalFormAdd extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
+    if ($this->isAuthenticatedAsEditor()) {
+      $form['name']['#required'] = TRUE;
+      unset($form['name']['#attributes']['readonly']);
+    }
+
     $form['phone'] = [
       '#type' => 'textfield',
       '#required' => TRUE,
