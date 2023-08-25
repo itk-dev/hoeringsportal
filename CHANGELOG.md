@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-355](https://github.com/itk-dev/hoeringsportal/pull/355)
   Added citizen access check.
+* [PR-356](https://github.com/itk-dev/hoeringsportal/pull/356)
+  Miscellaneous fixes
 
 ## [3.2.0] - 2023-08-23 - Citizen proposal
 
