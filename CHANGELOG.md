@@ -6,10 +6,14 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.3.0] - 2023-08-25
+
+* [PR-355](https://github.com/itk-dev/hoeringsportal/pull/355)
+  Added citizen access check.
 * [PR-356](https://github.com/itk-dev/hoeringsportal/pull/356)
   Miscellaneous fixes
 
-## [3.2.0] - 2023-08-23 - Citizen proposal
+## [3.2.0] - 2023-08-23
 
 * [PR-353](https://github.com/itk-dev/hoeringsportal/pull/353)
   Added “Allow email” checkboxes
@@ -45,7 +49,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-336](https://github.com/itk-dev/hoeringsportal/pull/336)
   De-authenticated citizens after creating or supporting proposals
 
-## [3.1.0] - 2023-08-04 - Citizen proposal
+## [3.1.0] - 2023-08-04
 
 * [PR-331](https://github.com/itk-dev/hoeringsportal/pull/331)
   Bumped `itk-dev/openid-connect` version
@@ -86,7 +90,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.2.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.3.0...HEAD
+[3.3.0]: https://github.com/itk-dev/hoeringsportal/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/itk-dev/hoeringsportal/compare/3.0.1...3.0.2
