@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-359](https://github.com/itk-dev/hoeringsportal/pull/359)
+  Generalized handling of form surveys. Added survey to support form
+
 ## [3.3.0] - 2023-08-25
 
 * [PR-355](https://github.com/itk-dev/hoeringsportal/pull/355)

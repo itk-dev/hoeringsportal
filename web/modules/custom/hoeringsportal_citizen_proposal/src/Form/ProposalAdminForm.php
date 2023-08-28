@@ -178,6 +178,8 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['characters_remarks'] ?? '',
     ];
 
+    $this->buildSurveyForm($form['add_form'], ProposalFormAdd::SURVEY_KEY, $adminFormStateValues ?? []);
+
     $form['approve_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -250,6 +252,8 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['support_submission_text'] ?? '',
     ];
 
+    $this->buildSurveyForm($form['support_form'], ProposalFormSupport::SURVEY_KEY, $adminFormStateValues ?? []);
+
     $form['sidebar'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -264,7 +268,6 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['sidebar_text']['value'] ?? '',
     ];
 
-    $this->buildSurveyForm($form, $adminFormStateValues ?? []);
     $this->buildEmailsForm($form, $adminFormStateValues ?? []);
 
     $form['actions']['#type'] = 'actions';
@@ -282,22 +285,22 @@ final class ProposalAdminForm extends FormBase {
    *
    * @param array $form
    *   The form.
+   * @param string $surveyKey
+   *   The survey key.
    * @param array $adminFormStateValues
    *   The admin form state values.
    *
    * @return array
    *   The form.
    */
-  private function buildSurveyForm(array &$form, array $adminFormStateValues): array {
-    $form['survey'] = [
-      '#type' => 'details',
+  private function buildSurveyForm(array &$form, string $surveyKey, array $adminFormStateValues): array {
+    $form[$surveyKey] = [
+      '#type' => 'container',
       '#tree' => TRUE,
       '#open' => TRUE,
-      '#title' => $this
-        ->t('Survey'),
     ];
 
-    $form['survey']['webform'] = [
+    $form[$surveyKey]['webform'] = [
       '#type' => 'select',
       '#title' => $this->t('Survey webform'),
       '#options' => array_map(
@@ -305,21 +308,21 @@ final class ProposalAdminForm extends FormBase {
         $this->webformHelper->loadSurveyWebforms()
       ),
       '#empty_option' => $this->t('Select survey webform'),
-      '#default_value' => $adminFormStateValues['survey']['webform'] ?? '',
-      '#description' => $this->t('Select a survey to show as part of the citizen proposal creation form. <a href=":url">Manage surveys</a>.', [
+      '#default_value' => $adminFormStateValues[$surveyKey]['webform'] ?? '',
+      '#description' => $this->t('Select a survey to show as part of the form. <a href=":url">Manage surveys</a>.', [
         ':url' => Url::fromRoute('entity.webform.collection')->toString(TRUE)->getGeneratedUrl(),
       ]),
     ];
 
-    $form['survey']['description'] = [
+    $form[$surveyKey]['description'] = [
       '#type' => 'text_format',
       '#title' => $this->t('Survey description'),
-      '#format' => $adminFormStateValues['survey']['description']['format'] ?? 'filtered_html',
-      '#default_value' => $adminFormStateValues['survey']['description']['value'] ?? '',
+      '#format' => $adminFormStateValues[$surveyKey]['description']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues[$surveyKey]['description']['value'] ?? '',
       '#description' => $this->t('Tell a little about why the survey is shown.'),
       '#states' => [
         'visible' => [
-          ':input[name="survey[webform]"]' => ['filled' => TRUE],
+          ':input[name="' . $surveyKey . '[webform]"]' => ['filled' => TRUE],
         ],
         // Setting "required" with states does not work with text_format fields
         // the first time around. Actual validation is performed in
@@ -415,10 +418,13 @@ final class ProposalAdminForm extends FormBase {
       );
     }
 
-    if (!empty($formState->getValue(['survey', 'webform']))
-      && empty($formState->getValue(['survey', 'description', 'value']))) {
-      $formState->setError($form['survey']['description']['value'],
-        $this->t('Please enter a survey description.'));
+    foreach ([ProposalFormAdd::SURVEY_KEY, ProposalFormSupport::SURVEY_KEY] as $key) {
+      if (!empty($formState->getValue([$key, 'webform']))
+        && empty($formState->getValue([$key, 'description', 'value']))) {
+        $formKey = ProposalFormSupport::SURVEY_KEY === $key ? 'support_form' : 'add_form';
+        $formState->setError($form[$formKey][$key]['description']['value'],
+          $this->t('Please enter a survey description.'));
+      }
     }
   }
 
