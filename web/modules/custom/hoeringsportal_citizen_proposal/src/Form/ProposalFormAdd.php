@@ -10,6 +10,8 @@ use Drupal\node\Entity\Node;
  * Form for adding proposal.
  */
 final class ProposalFormAdd extends ProposalFormBase {
+  public const SURVEY_KEY = 'create_proposal_survey';
+
   public const ADD_FORM_TITLE_MAXLENGTH = 80;
   public const ADD_FORM_PROPOSAL_MAXLENGTH = 2000;
   public const ADD_FORM_REMARKS_MAXLENGTH = 10000;
@@ -215,45 +217,6 @@ final class ProposalFormAdd extends ProposalFormBase {
   }
 
   /**
-   * Build survey form.
-   *
-   * @param array $form
-   *   The form.
-   *
-   * @return array
-   *   The form.
-   */
-  private function buildSurveyForm(array &$form): array {
-    $form['survey'] = [
-      '#type' => 'container',
-      '#attributes' => [
-        'class' => ['survey', 'citizen-proposal-survey'],
-      ],
-      '#tree' => TRUE,
-    ];
-
-    try {
-      $description = $this->getAdminFormStateValue(['survey', 'description']);
-      if (($webform = $this->loadSurvey()) && isset($description['value'])) {
-        // We use a numeric index (implicit 0) here to prevent webform fields
-        // accidentally overwriting the description element.
-        $form['survey'][] = [
-          '#type' => 'processed_text',
-          '#text' => $description['value'],
-          '#format' => $description['format'] ?? 'filtered_html',
-        ];
-
-        $this->webformHelper->renderWebformElements($webform, $form['survey']);
-      }
-    }
-    catch (\Exception $exception) {
-      throw $exception;
-    }
-
-    return $form;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
@@ -299,15 +262,7 @@ final class ProposalFormAdd extends ProposalFormBase {
     $formState
       ->setRedirect('hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve');
 
-    // Handle survey.
-    try {
-      if ($webform = $this->loadSurvey()) {
-        $surveyData = (array) $formState->getValue('survey');
-        $this->webformHelper->setSurveyResponse($webform, $surveyData);
-      }
-    }
-    catch (\Exception) {
-    }
+    $this->setSurveyResponse($formState);
   }
 
   /**

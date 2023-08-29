@@ -13,6 +13,7 @@ use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
 use Drupal\hoeringsportal_openid_connect\Controller\OpenIDConnectController;
 use Drupal\hoeringsportal_openid_connect\Helper as AuthenticationHelper;
+use Drupal\node\NodeInterface;
 use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -21,6 +22,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Base form for adding proposal.
  */
 abstract class ProposalFormBase extends FormBase {
+  public const SURVEY_KEY = NULL;
+
   public const CONTENT_TEXT_FORMAT = 'citizen_proposal_content';
 
   /**
@@ -245,16 +248,90 @@ abstract class ProposalFormBase extends FormBase {
   }
 
   /**
+   * Build survey form.
+   *
+   * @param array $form
+   *   The form.
+   */
+  protected function buildSurveyForm(array &$form) {
+    $webform = $this->loadSurvey();
+    if (NULL === $webform) {
+      return;
+    }
+
+    $form['survey'] = [
+      '#type' => 'container',
+      '#attributes' => [
+        'class' => ['survey', 'citizen-proposal-survey'],
+      ],
+      '#tree' => TRUE,
+    ];
+
+    try {
+      $description = $this->getAdminFormStateValue([
+        static::SURVEY_KEY,
+        'description',
+      ]);
+      if (isset($description['value'])) {
+        // We use a numeric index (implicit 0) here to prevent webform fields
+        // accidentally overwriting the description element.
+        $form['survey'][] = [
+          '#type' => 'processed_text',
+          '#text' => $description['value'],
+          '#format' => $description['format'] ?? 'filtered_html',
+        ];
+
+        $this->webformHelper->renderWebformElements($webform, $form['survey']);
+      }
+    }
+    catch (\Exception $exception) {
+      throw $exception;
+    }
+  }
+
+  /**
    * Load survey webform.
    *
    * @return \Drupal\webform\WebformInterface|null
    *   The webform if any.
    */
   protected function loadSurvey(): ?WebformInterface {
+    if (empty(static::SURVEY_KEY)) {
+      return NULL;
+    }
+
     return $this->webformHelper->loadWebform((string) $this->getAdminFormStateValue([
-      'survey',
+      static::SURVEY_KEY,
       'webform',
     ]));
+  }
+
+  /**
+   * Set survey response.
+   */
+  protected function setSurveyResponse(FormStateInterface $formState) {
+    try {
+      if ($webform = $this->loadSurvey()) {
+        $surveyData = (array) $formState->getValue('survey');
+        $this->webformHelper->setSurveyResponse($webform, $surveyData);
+      }
+    }
+    catch (\Exception) {
+    }
+  }
+
+  /**
+   * Save survey response previously set.
+   */
+  protected function saveSurveyResponse(NodeInterface $node) {
+    try {
+      if ($webform = $this->loadSurvey()) {
+        $this->webformHelper->saveSurveyResponse($webform, $node);
+      }
+    }
+    catch (\Exception) {
+    }
+
   }
 
 }

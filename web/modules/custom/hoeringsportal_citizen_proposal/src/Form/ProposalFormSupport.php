@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Form for supporting proposal.
  */
 final class ProposalFormSupport extends ProposalFormBase {
+  public const SURVEY_KEY = 'support_proposal_survey';
 
   /**
    * {@inheritdoc}
@@ -115,6 +116,8 @@ final class ProposalFormSupport extends ProposalFormBase {
       ],
     ];
 
+    $this->buildSurveyForm($form);
+
     $form['consent'] = [
       '#type' => 'checkbox',
       '#title' => $this
@@ -170,6 +173,9 @@ final class ProposalFormSupport extends ProposalFormBase {
         ],
       );
       $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
+
+      $this->setSurveyResponse($form_state);
+      $this->saveSurveyResponse($node);
     }
     catch (\Exception $e) {
       $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
