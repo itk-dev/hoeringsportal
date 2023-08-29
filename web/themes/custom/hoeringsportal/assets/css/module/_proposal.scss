@@ -37,16 +37,14 @@
 
 // Move maxlength counter below input box.
 .form-item-title,
-.form-item-proposal,
-.form-item-remarks {
+.form-item-proposal-value,
+.form-item-remarks-value {
   display: flex;
   flex-direction: column;
-}
 
-#edit-title-counter,
-#edit-proposal-counter,
-#edit-remarks-counter {
-  order: 1;
-  text-align: right;
-  color: $gray-700;
+  .counter {
+    order: 1;
+    text-align: right;
+    color: $gray-700;
+  }
 }

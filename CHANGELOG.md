@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-358](https://github.com/itk-dev/hoeringsportal/pull/358)
+  Fixed display of description and counter
+
 ## [3.3.0] - 2023-08-25
 
 * [PR-355](https://github.com/itk-dev/hoeringsportal/pull/355)
