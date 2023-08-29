@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-364](https://github.com/itk-dev/hoeringsportal/pull/364)
+  Fixed sorting of citizen proposals
+
 ## [3.4.0] - 2023-08-29
 
 * [PR-361](https://github.com/itk-dev/hoeringsportal/pull/361)
