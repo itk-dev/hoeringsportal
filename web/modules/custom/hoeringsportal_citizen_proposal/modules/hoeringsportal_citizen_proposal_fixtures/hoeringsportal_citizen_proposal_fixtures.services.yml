@@ -12,3 +12,7 @@ services:
   Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture:
     tags:
       - { name: content_fixture }
+
+  Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalStaticPageFixture:
+    tags:
+      - { name: content_fixture }

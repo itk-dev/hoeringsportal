@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Form for approving proposal.
  */
 final class ProposalFormApprove extends ProposalFormBase {
+  public const SURVEY_KEY = ProposalFormAdd::SURVEY_KEY;
 
   /**
    * {@inheritdoc}
@@ -171,14 +172,7 @@ final class ProposalFormApprove extends ProposalFormBase {
 
     $this->helper->deleteDraftProposal();
 
-    // Handle survey.
-    try {
-      if ($webform = $this->loadSurvey()) {
-        $this->webformHelper->saveSurveyResponse($webform, $entity);
-      }
-    }
-    catch (\Exception) {
-    }
+    $this->saveSurveyResponse($entity);
 
     $formState->setRedirectUrl(
       $this->deAuthenticateUser(
@@ -195,7 +189,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->helper->deleteDraftProposal();
 
     $formState->setRedirectUrl(
-      $this->getAdminFormStateValueUrl('approve_goto_url', '/')
+      $this->getAdminFormStateValueUrl('cancel_goto_url', '/')
     );
   }
 

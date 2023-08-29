@@ -13,6 +13,7 @@ citizen_proposal_admin_form_values:
   phone_help: 'Skriv dit telefonnummer. Dit telefonnummer kommer ikke til at fremgå offentligt.'
   email_help: 'Skriv din e-mail.'
   email_display_help: 'Ønsker du at vise din e-mail på hjemmesiden, så andre har mulighed for at kontakte dig?'
+  allow_email_help: 'Må vi sende en e-mail til dig?'
   proposal_intro:
     value: '<p>Her kan du skrive dit borgerforslag.&nbsp;</p>'
     format: filtered_html

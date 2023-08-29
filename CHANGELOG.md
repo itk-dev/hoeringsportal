@@ -6,6 +6,17 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.4.0] - 2023-08-29
+
+* [PR-361](https://github.com/itk-dev/hoeringsportal/pull/361)
+  Added cancel proposal redirect URL
+* [PR-360](https://github.com/itk-dev/hoeringsportal/pull/360)
+  Cleaned up display of checkboxes
+* [PR-359](https://github.com/itk-dev/hoeringsportal/pull/359)
+  Generalized handling of form surveys. Added survey to support form
+* [PR-358](https://github.com/itk-dev/hoeringsportal/pull/358)
+  Fixed display of description and counter
+
 ## [3.3.0] - 2023-08-25
 
 * [PR-355](https://github.com/itk-dev/hoeringsportal/pull/355)
@@ -90,7 +101,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.3.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.4.0...HEAD
+[3.4.0]: https://github.com/itk-dev/hoeringsportal/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/itk-dev/hoeringsportal/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/itk-dev/hoeringsportal/compare/3.0.2...3.1.0
