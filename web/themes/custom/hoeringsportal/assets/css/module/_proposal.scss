@@ -3,6 +3,10 @@
     @extend .h5;
   }
 
+  .js-form-type-checkbox label {
+    margin-bottom: 0;
+  }
+
   .form-item--error-message {
     color: #863131;
 

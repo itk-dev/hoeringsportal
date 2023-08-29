@@ -92,7 +92,6 @@ final class ProposalFormAdd extends ProposalFormBase {
         ->t('Display email'),
       '#default_value' => $defaltValues['email_display'] ?? TRUE,
       '#description' => $this->getAdminFormStateValue('email_display_help'),
-      '#description_display' => 'before',
     ];
 
     $form['allow_email'] = [
