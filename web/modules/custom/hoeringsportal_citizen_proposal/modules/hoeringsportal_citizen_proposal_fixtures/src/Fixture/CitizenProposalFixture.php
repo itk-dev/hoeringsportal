@@ -125,9 +125,15 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     $data = Yaml::parseFile(__DIR__ . '/CitizenProposalFixture/citizen_proposal_admin_form_values.yaml');
     if (isset($data['citizen_proposal_admin_form_values'])) {
       $values = $data['citizen_proposal_admin_form_values'];
+
+      /** @var \Drupal\node\Entity\NodeInterface $node */
+      $node = $this->getReference('node:static_page:thanks');
+      $values['approve_goto_url'] = $node->toUrl(options: ['alias' => TRUE])->toString();
+
       /** @var \Drupal\node\Entity\NodeInterface $node */
       $node = $this->getReference('node:landing_page:Proposals');
-      $values['approve_goto_url'] = $node->toUrl(options: ['alias' => TRUE])->toString();
+      $values['cancel_goto_url'] = $node->toUrl(options: ['alias' => TRUE])->toString();
+
       $this->helper->setAdminValues($values);
     }
   }
@@ -140,6 +146,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       MediaFixture::class,
       ParagraphFixture::class,
       CitizenProposalLandingPageFixture::class,
+      CitizenProposalStaticPageFixture::class,
     ];
   }
 

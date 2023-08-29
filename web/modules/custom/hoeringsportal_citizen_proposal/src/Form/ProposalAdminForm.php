@@ -200,6 +200,12 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['approve_goto_url'] ?? '',
     ];
 
+    $form['approve_form']['cancel_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Redirect URL after a proposal has been cancelled'),
+      '#default_value' => $adminFormStateValues['cancel_goto_url'] ?? '',
+    ];
+
     $form['approve_form']['approve_submission_text'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Submission text when a proposal has been submitted'),
