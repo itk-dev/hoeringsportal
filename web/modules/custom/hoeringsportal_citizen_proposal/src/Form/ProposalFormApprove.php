@@ -189,7 +189,7 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->helper->deleteDraftProposal();
 
     $formState->setRedirectUrl(
-      $this->getAdminFormStateValueUrl('approve_goto_url', '/')
+      $this->getAdminFormStateValueUrl('cancel_goto_url', '/')
     );
   }
 

@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-361](https://github.com/itk-dev/hoeringsportal/pull/361)
+  Added cancel proposal redirect URL
 * [PR-359](https://github.com/itk-dev/hoeringsportal/pull/359)
   Generalized handling of form surveys. Added survey to support form
 * [PR-358](https://github.com/itk-dev/hoeringsportal/pull/358)
