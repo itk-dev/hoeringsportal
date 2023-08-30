@@ -3,8 +3,10 @@ langcode: da
 status: true
 dependencies:
   config:
+    - filter.format.email_html
     - node.type.citizen_proposal
   module:
+    - filter
     - hoeringsportal_citizen_proposal
     - node
     - system
