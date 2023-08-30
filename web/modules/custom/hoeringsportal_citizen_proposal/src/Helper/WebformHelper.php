@@ -117,9 +117,16 @@ class WebformHelper {
 
   /**
    * Create temp store key.
+   *
+   * This key will have a user id prepended before being stored in the database
+   * table key_value_expire. The key name in this table allows at most 128
+   * character and for anonymous users a random session id with a length around
+   * 43 will be prepended (cf. Drupal\Core\TempStore\PrivateTempStore::set()).
+   * A webform id can be at most 32 characters which leaves us with at most
+   * 128-43-32 = 53 characters for our key prefix.
    */
   private function createTempStoreKey(WebformInterface $webform): string {
-    return self::class . '_' . $webform->id();
+    return 'citizen_proposal_webform:' . $webform->id();
   }
 
   /**
