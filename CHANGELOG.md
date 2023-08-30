@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
+  Added and used Editor Advanced link
+
 ## [3.5.0] - 2023-08-30
 
 * [PR-363](https://github.com/itk-dev/hoeringsportal/pull/363)

@@ -105,6 +105,7 @@
         "drupal/core-project-message": "^9.3",
         "drupal/core-recommended": "^9.3",
         "drupal/ds": "^3.1",
+        "drupal/editor_advanced_link": "^2.2",
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity": "^1.2",
         "drupal/entity_browser": "^2.6",
