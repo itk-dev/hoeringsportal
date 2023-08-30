@@ -106,6 +106,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     for ($i = 0; $i < 3; $i++) {
       $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
     }
+    $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => 'Ø']);
 
     $entity = Node::create([
       'type' => 'citizen_proposal',
