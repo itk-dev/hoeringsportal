@@ -100,7 +100,7 @@ display:
           submit_button: Apply
           reset_button: false
           reset_button_label: Reset
-          exposed_sorts_label: 'Sortér'
+          exposed_sorts_label: Sortér
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
@@ -124,7 +124,7 @@ display:
               plugin_id: default
               advanced:
                 combine: true
-                combine_rewrite: "Afstemning start Asc|Nyeste\r\nAfstemning start Desc|Ældste"
+                combine_rewrite: "Afstemning start Desc|Nyeste\r\nAfstemning start Asc|Ældste"
                 reset: false
                 reset_label: ''
                 collapsible: false
@@ -158,7 +158,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: datetime
-          order: ASC
+          order: DESC
           expose:
             label: 'Afstemning start'
             field_identifier: field_vote_start_value
