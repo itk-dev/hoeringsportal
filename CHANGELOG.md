@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-364](https://github.com/itk-dev/hoeringsportal/pull/364)
   Fixed sorting of citizen proposals
+* [PR-365](https://github.com/itk-dev/hoeringsportal/pull/365)
+  Fixed use of private temp store
 
 ## [3.4.0] - 2023-08-29
 
