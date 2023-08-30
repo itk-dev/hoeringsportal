@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.5.0] - 2023-08-30
+
 * [PR-363](https://github.com/itk-dev/hoeringsportal/pull/363)
   Fixed issue with storing names containing non-ascii characters
 * [PR-364](https://github.com/itk-dev/hoeringsportal/pull/364)
