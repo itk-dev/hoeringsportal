@@ -11,6 +11,7 @@ use ItkDev\AzureKeyVault\Authorisation\VaultToken;
 use ItkDev\AzureKeyVault\KeyVault\VaultSecret;
 use ItkDev\Serviceplatformen\Certificate\AzureKeyVaultCertificateLocator;
 use ItkDev\Serviceplatformen\Certificate\CertificateLocatorInterface;
+use ItkDev\Serviceplatformen\Certificate\FilesystemCertificateLocator;
 use ItkDev\Serviceplatformen\Request\InvocationContextRequestGenerator;
 use ItkDev\Serviceplatformen\Service\Exception\ServiceException;
 use ItkDev\Serviceplatformen\Service\PersonBaseDataExtendedService;
@@ -51,14 +52,16 @@ class CprHelper {
   private function setUpService() {
     $options = $this->resolveOptions((array) (Settings::get('hoeringsportal_citizen_proposal')['cpr_helper'] ?? []));
 
-    $certificateLocator = $this->getAzureKeyVaultCertificateLocator(
-      $options['azure_tenant_id'],
-      $options['azure_application_id'],
-      $options['azure_client_secret'],
-      $options['azure_key_vault_name'],
-      $options['azure_key_vault_secret'],
-      $options['azure_key_vault_secret_version']
-    );
+    $certificateLocator = isset($options['certificate_path'])
+      ? new FilesystemCertificateLocator($options['certificate_path'])
+      : $this->getAzureKeyVaultCertificateLocator(
+        $options['azure_tenant_id'],
+        $options['azure_application_id'],
+        $options['azure_client_secret'],
+        $options['azure_key_vault_name'],
+        $options['azure_key_vault_secret'],
+        $options['azure_key_vault_secret_version']
+      );
 
     $serviceContractFilename = $options['serviceplatformen_service_contract'];
     $serviceEndpoint = $options['serviceplatformen_service_endpoint'];
@@ -103,6 +106,12 @@ class CprHelper {
         'serviceplatformen_service_endpoint',
         'serviceplatformen_service_contract',
       ])
+
+      // Allow local testing of certificates in the file system.
+      ->setDefault('certificate_path', NULL)
+      ->setAllowedTypes('certificate_path', 'string')
+      ->setAllowedValues('certificate_path', static fn (string $value) => is_file($value))
+
       ->resolve($options);
   }
 
