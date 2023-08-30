@@ -37,7 +37,7 @@ function hoeringsportal_citizen_proposal_schema(): array {
       ],
       'user_name' => [
         'description' => 'The proposal supporters name',
-        'type' => 'varchar_ascii',
+        'type' => 'varchar',
         'length' => 255,
         'not null' => FALSE,
       ],
@@ -209,4 +209,21 @@ function hoeringsportal_citizen_proposal_update_9004(): void {
     'default' => 0,
   ];
   $schema->addField($table_name, $field_name, $spec);
+}
+
+/**
+ * Change user name to allow non-ascii characters.
+ */
+function hoeringsportal_citizen_proposal_update_9005(): void {
+  $schema = \Drupal::database()->schema();
+
+  $table_name = 'hoeringsportal_citizen_proposal_support';
+  $field_name = 'user_name';
+  $spec = [
+    'description' => 'The proposal supporters name',
+    'type' => 'varchar',
+    'length' => 255,
+    'not null' => FALSE,
+  ];
+  $schema->changeField($table_name, $field_name, $field_name, $spec);
 }

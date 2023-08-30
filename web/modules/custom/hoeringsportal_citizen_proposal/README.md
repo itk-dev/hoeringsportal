@@ -155,6 +155,9 @@ $settings['hoeringsportal_citizen_proposal']['cpr_helper'] = [
   'azure_key_vault_secret' => '…',
   'azure_key_vault_secret_version' => '…',
 
+  // Use a path for local testing of certificates.
+  // 'certificate_path' => '…',
+
   'serviceplatformen_service_agreement_uuid' => '…',
   'serviceplatformen_user_system_uuid' => '…',
   'serviceplatformen_user_uuid' => '…',
@@ -162,11 +165,12 @@ $settings['hoeringsportal_citizen_proposal']['cpr_helper'] = [
   'serviceplatformen_service_uuid' => '…',
 
   // Production
-  'serviceplatformen_service_endpoint' => 'https://prod.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/4',
-  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT) . '/vendor/itk-dev/serviceplatformen/resources/person-base-data-extended-service-contract/wsdl/context/PersonBaseDataExtendedService.wsdl',
+  'serviceplatformen_service_endpoint' => 'https://prod.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/5',
+  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT).'/digitaliseringskataloget.dk/sf1520_4.0/PersonBaseDataExtendedService/wsdl/context/PersonBaseDataExtendedService.wsdl',
+
   // Test
-  'serviceplatformen_service_endpoint' => 'https://exttest.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/4',
-  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT) . '/vendor/itk-dev/serviceplatformen/resources/person-base-data-extended-service-contract/wsdl/context/PersonBaseDataExtendedService.wsdl',
+  'serviceplatformen_service_endpoint' => 'https://exttest.serviceplatformen.dk/service/CPR/PersonBaseDataExtended/5',
+  'serviceplatformen_service_contract' => dirname(DRUPAL_ROOT).'/digitaliseringskataloget.dk/sf1520_4.0/PersonBaseDataExtendedService/wsdl/context/PersonBaseDataExtendedService.wsdl',
 ];
 
 $settings['hoeringsportal_citizen_proposal']['access_check'] = [
