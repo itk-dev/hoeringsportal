@@ -109,8 +109,8 @@ class CprHelper {
 
       // Allow local testing of certificates in the file system.
       ->setDefault('certificate_path', NULL)
-      ->setAllowedTypes('certificate_path', 'string')
-      ->setAllowedValues('certificate_path', static fn (string $value) => is_file($value))
+      ->setAllowedTypes('certificate_path', ['null', 'string'])
+      ->setAllowedValues('certificate_path', static fn (?string $value) => NULL === $value || is_file($value))
 
       ->resolve($options);
   }
