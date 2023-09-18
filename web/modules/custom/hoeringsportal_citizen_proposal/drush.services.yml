@@ -11,3 +11,10 @@ services:
     arguments:
       - '@Drupal\hoeringsportal_citizen_proposal\Helper\Helper'
       - '@Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper'
+
+  Drupal\hoeringsportal_citizen_proposal\Commands\TestCommand:
+    tags:
+      - { name: drush.command }
+    arguments:
+      '$accessChecker': '@Drupal\hoeringsportal_citizen_proposal\Helper\CitizenAccessChecker'
+      '$cprHelper': '@Drupal\hoeringsportal_citizen_proposal\Helper\CprHelper'
