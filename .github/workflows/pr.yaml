@@ -355,3 +355,49 @@ jobs:
       - name: Update site
         run: |
           docker compose exec --user root phpfpm vendor/bin/drush deploy --yes
+
+  qualweb:
+    name: Check site with QualWeb [https://github.com/qualweb]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+          # Install the site
+          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+
+          # Build theme assets
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+
+      - name: Open site
+        run: |
+          # Open the site
+          echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
+
+      - name: Install fixtures
+        run: |
+          sudo chmod -R a+w web/sites/default/files
+          docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+          docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
+          docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
+
+      - name: Clean up for tests
+        run: |
+          git apply < tests/qualweb/patches.patch
+          docker compose exec phpfpm vendor/bin/drush --yes cache:rebuild
+
+      - name: Run QualWeb
+        run: |
+          ./tests/qualweb/run
