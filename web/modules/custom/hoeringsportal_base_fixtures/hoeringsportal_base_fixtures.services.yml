@@ -40,5 +40,9 @@ services:
   Drupal\hoeringsportal_base_fixtures\Fixture\MenuItemFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
+  Drupal\hoeringsportal_base_fixtures\Fixture\PublicMeetingFixture:
+     tags:
+       - { name: content_fixture }
+     arguments:
+       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
