@@ -61,7 +61,7 @@ class Helper {
     $this->fileSystem->prepareDirectory($image_target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
     // Loop over .jpg images to add them properly to the file system.
-    foreach (glob($image_source_path . '/*.{jpg}', GLOB_BRACE) as $image) {
+    foreach (glob($image_source_path . '/*.{jpg}') as $image) {
       $destination = $this->fileSystem->copy($image, $image_target_path . '/' . basename($image), FileSystemInterface::EXISTS_REPLACE);
       $images[] = $destination;
     }
