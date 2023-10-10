@@ -79,7 +79,12 @@ class Helper {
     $this->fileSystem->prepareDirectory($document_target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
     // Loop over documents to add them properly to the file system.
-    foreach (glob($document_source_path . '/*.{pdf,docx}', GLOB_BRACE) as $document) {
+    foreach (glob($document_source_path . '/*.{pdf}', GLOB_BRACE) as $document) {
+      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
+      $documents[] = $destination;
+    }
+
+    foreach (glob($document_source_path . '/*.{docx}', GLOB_BRACE) as $document) {
       $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
       $documents[] = $destination;
     }
