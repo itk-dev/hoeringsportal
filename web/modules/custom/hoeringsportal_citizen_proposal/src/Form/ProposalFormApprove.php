@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Form for approving proposal.
  */
 final class ProposalFormApprove extends ProposalFormBase {
+  public const SURVEY_KEY = ProposalFormAdd::SURVEY_KEY;
 
   /**
    * {@inheritdoc}
@@ -69,13 +70,13 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'container',
     ];
 
-    $emailHiddenText = $defaltValues['email_display'] ? '' : '<small><strong>(Hidden)</strong></small>';
+    $notShownOnProposalMessage = '<small><strong>' . $this->t('(Not shown on proposal)') . '</strong></small>';
     $form['author']['email_wrapper']['approve_form_email'] = [
       '#prefix' => '<h5>' . $this->t('E-mail') . '</h5>',
       '#type' => 'processed_text',
       '#text' => $defaltValues['email'],
       '#format' => 'filtered_html',
-      '#suffix' => $emailHiddenText,
+      '#suffix' => $defaltValues['email_display'] ? '' : $notShownOnProposalMessage,
     ];
 
     $form['author']['phone_display_wrapper'] = [
@@ -87,7 +88,7 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'processed_text',
       '#text' => $defaltValues['phone'],
       '#format' => 'filtered_html',
-      '#suffix' => '<small><strong>(Hidden)</strong></small>',
+      '#suffix' => $notShownOnProposalMessage,
     ];
 
     $form['approve_form_title'] = [
@@ -115,9 +116,19 @@ final class ProposalFormApprove extends ProposalFormBase {
       '#type' => 'checkbox',
       '#title' => $this
         ->t('Personal data storage consent'),
-      '#required' => TRUE,
       '#default_value' => TRUE,
       '#description' => $this->getAdminFormStateValue('consent_help'),
+      '#attributes' => [
+        'disabled' => 'disabled',
+      ],
+    ];
+
+    $form['allow_email'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Allow email'),
+      '#default_value' => $defaltValues['allow_email'],
+      '#description' => $this->getAdminFormStateValue('allow_email_help'),
       '#attributes' => [
         'disabled' => 'disabled',
       ],
@@ -156,11 +167,18 @@ final class ProposalFormApprove extends ProposalFormBase {
       return $this->abandonSubmission();
     }
 
-    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
-
     $this->messenger()->addStatus($this->getAdminFormStateValue('approve_submission_text', $this->t('Thank you for your submission.')));
     $entity->save();
+
     $this->helper->deleteDraftProposal();
+
+    $this->saveSurveyResponse($entity);
+
+    $formState->setRedirectUrl(
+      $this->deAuthenticateUser(
+        $this->getAdminFormStateValueUrl('approve_goto_url', '/')
+      )
+    );
   }
 
   /**
@@ -170,7 +188,9 @@ final class ProposalFormApprove extends ProposalFormBase {
     $this->messenger()->addStatus($this->t('Your submission has been cancelled.'));
     $this->helper->deleteDraftProposal();
 
-    $this->applyRedirect($this->getAdminFormStateValue('approve_goto_url', '/'), $formState);
+    $formState->setRedirectUrl(
+      $this->getAdminFormStateValueUrl('cancel_goto_url', '/')
+    );
   }
 
   /**
@@ -181,46 +201,6 @@ final class ProposalFormApprove extends ProposalFormBase {
     $url = Url::fromRoute('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add');
 
     return new RedirectResponse($url->toString());
-  }
-
-  /**
-   * Add redirect to form state.
-   *
-   * @param string $inputUrl
-   *   The url added from admin interface.
-   * @param \Drupal\Core\Form\FormStateInterface $formState
-   *   The state of the form.
-   *
-   * @return \Drupal\Core\Form\FormStateInterface
-   *   The modified form.
-   */
-  private function applyRedirect(string $inputUrl, FormStateInterface &$formState): FormStateInterface {
-    $parsedUrl = parse_url($inputUrl);
-
-    try {
-      if (empty($parsedUrl['path'])) {
-        $formState->setRedirect('<front>');
-
-        return $formState;
-      }
-      $url = URL::fromUserInput($parsedUrl['path']);
-    }
-    catch (\Exception) {
-      $formState->setRedirect('<front>');
-
-      return $formState;
-    }
-
-    if ($url->isExternal() || !$url->isRouted()) {
-      $formState->setRedirect('<front>');
-    }
-    else {
-      $routeName = $url->getRouteName();
-      $routeParameters = $url->getRouteParameters();
-      $formState->setRedirect($routeName, $routeParameters);
-    }
-
-    return $formState;
   }
 
 }

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
  * Form for supporting proposal.
  */
 final class ProposalFormSupport extends ProposalFormBase {
+  public const SURVEY_KEY = 'support_proposal_survey';
 
   /**
    * {@inheritdoc}
@@ -93,6 +94,39 @@ final class ProposalFormSupport extends ProposalFormBase {
       '#description_display' => 'before',
     ];
 
+    $form['email'] = [
+      '#type' => 'email',
+      '#title' => $this
+        ->t('Email'),
+      '#default_value' => $defaltValues['email'],
+      '#description' => $this->getAdminFormStateValue('support_email_help'),
+      '#description_display' => 'before',
+    ];
+
+    $form['allow_email'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Allow email'),
+      '#default_value' => $defaltValues['support_allow_email_help'] ?? FALSE,
+      '#description' => $this->getAdminFormStateValue('support_allow_email_help'),
+      '#states' => [
+        'visible' => [
+          ':input[name="email"]' => ['filled' => TRUE],
+        ],
+      ],
+    ];
+
+    $this->buildSurveyForm($form);
+
+    $form['consent'] = [
+      '#type' => 'checkbox',
+      '#title' => $this
+        ->t('Personal data storage consent'),
+      '#required' => TRUE,
+      '#default_value' => FALSE,
+      '#description' => $this->getAdminFormStateValue('consent_help'),
+    ];
+
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -111,6 +145,7 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     return [
       'name' => $userData['name'] ?? NULL,
+      'email' => $userData['email'] ?? NULL,
     ];
   }
 
@@ -133,17 +168,24 @@ final class ProposalFormSupport extends ProposalFormBase {
         $node,
         [
           'user_name' => $form_state->getValue('name'),
-          'created' => time(),
+          'user_email' => $form_state->getValue('email'),
+          'allow_email' => $form_state->getValue('allow_email'),
         ],
       );
       $this->messenger()->addStatus($this->getAdminFormStateValue('support_submission_text', $this->t('Thank you for your support.')));
+
+      $this->setSurveyResponse($form_state);
+      $this->saveSurveyResponse($node);
     }
     catch (\Exception $e) {
       $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
     }
 
-    $form_state
-      ->setRedirect('entity.node.canonical', ['node' => $node->id()]);
+    $form_state->setRedirectUrl(
+      $this->deAuthenticateUser(
+        $this->getAdminFormStateValueUrl('support_goto_url', NULL, $node->toUrl())
+      )
+    );
   }
 
 }

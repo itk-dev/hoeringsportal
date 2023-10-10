@@ -7,3 +7,4 @@ dependencies:
   - content_fixtures:content_fixtures
   - hoeringsportal_base_fixtures:hoeringsportal_base_fixtures
   - hoeringsportal_citizen_proposal:hoeringsportal_citizen_proposal
+  - hoeringsportal_citizen_proposal_archiving:hoeringsportal_citizen_proposal_archiving

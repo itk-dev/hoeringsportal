@@ -11,6 +11,7 @@ use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\hoeringsportal_openid_connect\Event\AccessCheckEvent;
 use Drupal\hoeringsportal_openid_connect\Helper;
 use ItkDev\OpenIdConnect\Security\OpenIdConfigurationProvider;
 use Psr\Cache\CacheItemPoolInterface;
@@ -18,6 +19,7 @@ use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -67,6 +69,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
     readonly private CacheItemPoolInterface $cacheItemPool,
     readonly private LanguageManagerInterface $languageManager,
     readonly private RendererInterface $renderer,
+    readonly private EventDispatcherInterface $eventDispatcher,
     LoggerInterface $logger
   ) {
     $this->setLogger($logger);
@@ -82,6 +85,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
       $container->get('drupal_psr6_cache.cache_item_pool'),
       $container->get('language_manager'),
       $container->get('renderer'),
+      $container->get('event_dispatcher'),
       $container->get('logger.channel.hoeringsportal_openid_connect')
     );
   }
@@ -338,8 +342,23 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
       $this->setSessionValue(self::SESSION_ID_TOKEN, $idToken);
     }
 
-    $this->helper->setUserData($token);
     $location = $this->getLoginLocation();
+
+    $event = new AccessCheckEvent(token: $token, loginLocation: $location);
+    $this->eventDispatcher->dispatch($event);
+
+    if ($accessDeniedLocation = $event->getAccessDeniedLocation()) {
+      $this->helper->removeUserData();
+
+      return new LocalRedirectResponse(Url::fromRoute(
+        'hoeringsportal_openid_connect.openid_connect_end_session',
+        [
+          OpenIDConnectController::QUERY_STRING_DESTINATION => $accessDeniedLocation,
+        ],
+      )->toString(TRUE)->getGeneratedUrl());
+    }
+
+    $this->helper->setUserData($token);
 
     return new LocalRedirectResponse($location);
   }

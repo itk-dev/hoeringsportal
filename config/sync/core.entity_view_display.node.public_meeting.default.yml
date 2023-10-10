@@ -75,8 +75,8 @@ third_party_settings:
         - field_contact
       footer:
         - field_hidden_signup
-        - field_signup_selection
         - group_signup
+        - field_signup_selection
         - field_pretix_dates
         - 'dynamic_block_field:node-project_timeline'
         - field_registration_deadline
@@ -261,11 +261,6 @@ content:
     third_party_settings: {  }
     weight: 4
     region: left
-  sharing_buttons:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
   field_area: true
   field_cancelled_date: true
@@ -281,3 +276,4 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  sharing_buttons: true

@@ -3,6 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
+    - filter.format.citizen_proposal_content
     - filter.format.filtered_html
   module:
     - filter
@@ -18,5 +19,6 @@ is_admin: false
 permissions:
   - 'access content'
   - 'search content'
+  - 'use text format citizen_proposal_content'
   - 'use text format filtered_html'
   - 'view media'

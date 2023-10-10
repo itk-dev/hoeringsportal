@@ -44,10 +44,10 @@
       <dd>{{ support.count }} ({{ support.percentage }}&nbsp;%)</dd>
 
       <dt>{{ 'Vote start'|t }}</dt>
-      <dd>{{ node.field_vote_start.value|date('U')|format_date('hoeringsportal_datetime') }}</dd>
+      <dd>{{ node.field_vote_start.value ? node.field_vote_start.value|date('U')|format_date('hoeringsportal_datetime') : '–' }}</dd>
 
       <dt>{{ 'Vote end'|t }}</dt>
-      <dd>{{ node.field_vote_end.value|date('U')|format_date('hoeringsportal_datetime') }}</dd>
+      <dd>{{ node.field_vote_end.value ? node.field_vote_end.value|date('U')|format_date('hoeringsportal_datetime') : '–' }}</dd>
 
       {% set url = url('entity.node.canonical', {node: node.id}, {absolute: true}) %}
       <dt>{{ 'Url'|t }}</dt>

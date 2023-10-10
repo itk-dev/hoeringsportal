@@ -196,7 +196,8 @@ class Helper implements LoggerAwareInterface {
     $proposalSupportCount = $this->getProposalSupportCount((int) $node->id());
 
     $variables['proposal_support_count'] = $proposalSupportCount;
-    $variables['proposal_support_percentage'] = (int) $this->calculateSupportPercentage($proposalSupportCount);
+    $variables['proposal_support_required'] = $this->getProposalSupportRequired();
+    $variables['proposal_support_percentage'] = $this->calculateSupportPercentage($proposalSupportCount);
   }
 
   /**
@@ -217,6 +218,11 @@ class Helper implements LoggerAwareInterface {
     try {
       $values['user_identifier'] = $userIdentifier;
       $values['node_id'] = $node->id();
+      $values['allow_email'] = ($values['allow_email'] ?? FALSE) ? 1 : 0;
+      // Set some defaults.
+      $values += [
+        'created' => $this->time->getRequestTime(),
+      ];
       $this->connection->insert('hoeringsportal_citizen_proposal_support')
         ->fields($values)
         ->execute();
@@ -233,7 +239,8 @@ class Helper implements LoggerAwareInterface {
         'exception' => $exception,
         'values' => $values,
       ]);
-      $this->messenger()->addError($this->t('Something went wrong. Your support was not registered.'));
+
+      throw $exception;
     }
   }
 
@@ -428,9 +435,9 @@ class Helper implements LoggerAwareInterface {
     }
 
     return min(
-        100,
-        ceil($proposalSupportCount / $this->getProposalSupportRequired() * 100)
-      );
+      100,
+      $proposalSupportCount / $this->getProposalSupportRequired() * 100
+    );
   }
 
   /**
@@ -462,7 +469,7 @@ class Helper implements LoggerAwareInterface {
    * @return int
    *   The support proposals require.
    */
-  private function getProposalSupportRequired(): int {
+  public function getProposalSupportRequired(): int {
     // Allow changing this value in settings.php.
     return (int) Settings::get('proposal_support_required', self::PROPOSAL_SUPPORT_REQUIRED);
   }

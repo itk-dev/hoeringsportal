@@ -23,7 +23,6 @@ $settings['hoeringsportal_citizen_proposal_archiving'] = [
     ],
   ],
 ];
-];
 ```
 
 ## Development

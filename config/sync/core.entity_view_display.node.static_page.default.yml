@@ -41,15 +41,9 @@ third_party_settings:
         - field_media_image_single
       left:
         - field_section
-        - node_changed_date
       right:
         - field_sidebar
     fields:
-      node_changed_date:
-        plugin_id: node_changed_date
-        weight: 4
-        label: hidden
-        formatter: ds_post_date_short
       node_title:
         plugin_id: node_title
         weight: 0
@@ -98,13 +92,9 @@ content:
     third_party_settings: {  }
     weight: 1
     region: header
-  sharing_buttons:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
   field_teaser_color: true
   langcode: true
   links: true
   published_at: true
+  sharing_buttons: true

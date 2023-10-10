@@ -90,6 +90,7 @@
         "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/better_exposed_filters": "^6.0",
+        "drupal/allowed_formats": "^2.0",
         "drupal/better_social_sharing_buttons": "^4.0",
         "drupal/captcha": "^2.0",
         "drupal/color_field": "^3.0",
@@ -100,6 +101,7 @@
         "drupal/core-recommended": "^9.3",
         "drupal/csv_serialization": "^2.0",
         "drupal/ds": "^3.1",
+        "drupal/editor_advanced_link": "^2.2",
         "drupal/email_registration": "^1.0@RC",
         "drupal/entity": "^1.2",
         "drupal/entity_browser": "^2.6",
@@ -127,6 +129,8 @@
         "drupal/twig_tweak": "^3.2",
         "drupal/views_data_export": "^1.3",
         "drupal/viewsreference": "^2.0@beta",
+        "drupal/view_custom_table": "^2.0",
+        "drupal/webform": "^6.1",
         "drupal/xls_serialization": "^1.2",
         "drush/drush": "^11",
         "itk-dev/composer-virtualenv": "^1.0",
@@ -134,6 +138,7 @@
         "itk-dev/itk_media_entity": "^2",
         "itk-dev/itk_pretix": "^1.0",
         "itk-dev/itk_siteimprove": "^1.2",
+        "itk-dev/serviceplatformen": "^1.4",
         "itk-dev/web_accessibility_statement": "^1.0",
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
@@ -235,9 +240,16 @@
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
         "patches": {
-          "deskpro/deskpro-api-client-php": {
-            "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
-          }
+            "deskpro/deskpro-api-client-php": {
+                "Add typehinting to APIResponse to avoid drupal warnings in log": "patches/deskpro/deskpro-api-client-php/addTypeHinting.patch"
+            },
+            "drupal/better_exposed_filters": {
+                "Add option to hide exposed filter field labels (https://www.drupal.org/project/better_exposed_filters/issues/3282228)": "https://www.drupal.org/files/issues/2022-09-08/bef-visually_hidden.3282228.8.patch",
+                "Add option to hide exposed sort field labels (based on “Add option to hide exposed filter field labels”)": "patches/drupal/better_exposed_filters/visually-hidden-label-on-sort.patch"
+            },
+            "drupal/core": {
+                "Text format wrapper does not take description_display into account (https://www.drupal.org/project/drupal/issues/2421445#comment-14328645)": "https://www.drupal.org/files/issues/2021-12-03/2421445-18_0.patch"
+            }
         }
     }
 }

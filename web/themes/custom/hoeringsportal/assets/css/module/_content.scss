@@ -128,9 +128,19 @@
 }
 
 .support-counter {
-  font-size: 1.2em;
-
   .count {
     font-weight: bold;
+  }
+
+  .page--landing_page & {
+    padding-bottom: 0.25rem;
+  }
+
+  .page--citizen_proposal & {
+    font-size: 1.2em;
+    padding: {
+      top: 1rem;
+      bottom: 1rem;
+    }
   }
 }

@@ -4,8 +4,11 @@ namespace Drupal\hoeringsportal_citizen_proposal\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
+use Drupal\hoeringsportal_citizen_proposal\Helper\WebformHelper;
+use Drupal\webform\WebformInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -17,7 +20,8 @@ final class ProposalAdminForm extends FormBase {
    * Constructor for the proposal add form.
    */
   public function __construct(
-    readonly private Helper $helper
+    readonly private Helper $helper,
+    readonly private WebformHelper $webformHelper
   ) {
   }
 
@@ -27,6 +31,7 @@ final class ProposalAdminForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get(Helper::class),
+      $container->get(WebformHelper::class),
     );
   }
 
@@ -70,6 +75,14 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['authenticate_link_text'] ?? '',
     ];
 
+    $form['authenticate']['authenticate_access_denied_page'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Access denied page'),
+      '#required' => TRUE,
+      '#default_value' => $adminFormStateValues['authenticate_access_denied_page'] ?? '/access-denied',
+      '#description' => $this->t('Send citizens from outside the municipality to this page. Enter a path on the form <code>/node/«id»</code>, e.g. <code>/node/87</code>.'),
+    ];
+
     $form['add_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -106,6 +119,13 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Email display help'),
       '#default_value' => $adminFormStateValues['email_display_help'] ?? '',
+    ];
+
+    $form['add_form']['allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
     ];
 
     $form['add_form']['proposal_intro'] = [
@@ -158,6 +178,8 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['characters_remarks'] ?? '',
     ];
 
+    $this->buildSurveyForm($form['add_form'], ProposalFormAdd::SURVEY_KEY, $adminFormStateValues ?? []);
+
     $form['approve_form'] = [
       '#type' => 'details',
       '#open' => TRUE,
@@ -174,13 +196,19 @@ final class ProposalAdminForm extends FormBase {
 
     $form['approve_form']['approve_goto_url'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Goto this url after submission'),
+      '#title' => $this->t('Redirect URL after a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_goto_url'] ?? '',
+    ];
+
+    $form['approve_form']['cancel_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Redirect URL after a proposal has been cancelled'),
+      '#default_value' => $adminFormStateValues['cancel_goto_url'] ?? '',
     ];
 
     $form['approve_form']['approve_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal is approved.'),
+      '#title' => $this->t('Submission text when a proposal has been submitted'),
       '#default_value' => $adminFormStateValues['approve_submission_text'] ?? '',
     ];
 
@@ -210,11 +238,27 @@ final class ProposalAdminForm extends FormBase {
       '#default_value' => $adminFormStateValues['support_email_help'] ?? '',
     ];
 
+    $form['support_form']['support_allow_email_help'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Allow email help'),
+      '#default_value' => $adminFormStateValues['support_allow_email_help'] ?? '',
+      '#description' => $this->t('Use <code>&lt;a target=&quot;_blank&quot; href=&quot;…&quot;&gt;Read more about the emails we may send&lt;/a&gt;</code> to insert a link to details on what emails might be sent.'),
+    ];
+
+    $form['support_form']['support_goto_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Redirect URL after a proposal has been supported'),
+      '#default_value' => $adminFormStateValues['support_goto_url'] ?? '',
+      '#description' => $this->t('If not set, the citizen will see the proposal after supporting it.'),
+    ];
+
     $form['support_form']['support_submission_text'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Submission text when the proposal has been supported.'),
+      '#title' => $this->t('Submission text when a proposal has been supported'),
       '#default_value' => $adminFormStateValues['support_submission_text'] ?? '',
     ];
+
+    $this->buildSurveyForm($form['support_form'], ProposalFormSupport::SURVEY_KEY, $adminFormStateValues ?? []);
 
     $form['sidebar'] = [
       '#type' => 'details',
@@ -237,6 +281,64 @@ final class ProposalAdminForm extends FormBase {
       '#type' => 'submit',
       '#value' => $this->t('Save'),
       '#button_type' => 'primary',
+    ];
+
+    return $form;
+  }
+
+  /**
+   * Build survey form.
+   *
+   * @param array $form
+   *   The form.
+   * @param string $surveyKey
+   *   The survey key.
+   * @param array $adminFormStateValues
+   *   The admin form state values.
+   *
+   * @return array
+   *   The form.
+   */
+  private function buildSurveyForm(array &$form, string $surveyKey, array $adminFormStateValues): array {
+    $form[$surveyKey] = [
+      '#type' => 'container',
+      '#tree' => TRUE,
+      '#open' => TRUE,
+    ];
+
+    $form[$surveyKey]['webform'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Survey webform'),
+      '#options' => array_map(
+        static fn (WebformInterface $webform) => $webform->label(),
+        $this->webformHelper->loadSurveyWebforms()
+      ),
+      '#empty_option' => $this->t('Select survey webform'),
+      '#default_value' => $adminFormStateValues[$surveyKey]['webform'] ?? '',
+      '#description' => $this->t('Select a survey to show as part of the form. <a href=":url">Manage surveys</a>.', [
+        ':url' => Url::fromRoute('entity.webform.collection')->toString(TRUE)->getGeneratedUrl(),
+      ]),
+    ];
+
+    $form[$surveyKey]['description'] = [
+      '#type' => 'text_format',
+      '#title' => $this->t('Survey description'),
+      '#format' => $adminFormStateValues[$surveyKey]['description']['format'] ?? 'filtered_html',
+      '#default_value' => $adminFormStateValues[$surveyKey]['description']['value'] ?? '',
+      '#description' => $this->t('Tell a little about why the survey is shown.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="' . $surveyKey . '[webform]"]' => ['filled' => TRUE],
+        ],
+        // Setting "required" with states does not work with text_format fields
+        // the first time around. Actual validation is performed in
+        // self::validateForm().
+        // https://www.drupal.org/project/drupal/issues/997826
+        // https://www.drupal.org/project/drupal/issues/3004464
+        // 'required' => [
+        // ':input[name="survey[webform]"]' => ['filled' => TRUE],
+        // ],.
+      ],
     ];
 
     return $form;
@@ -306,6 +408,30 @@ final class ProposalAdminForm extends FormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $this->helper->setAdminValues($formState->getValues());
+
+    $this->messenger()->addStatus($this->t('Citizen proposal settings sucessfully saved.'));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $formState) {
+    $path = $formState->getValue('authenticate_access_denied_page');
+    if (empty($path) || !preg_match('@^/node/\d+$@', $path)) {
+      $formState->setError(
+        $form['authenticate']['authenticate_access_denied_page'],
+        $this->t('Please enter a path on the form /node/«id».')
+      );
+    }
+
+    foreach ([ProposalFormAdd::SURVEY_KEY, ProposalFormSupport::SURVEY_KEY] as $key) {
+      if (!empty($formState->getValue([$key, 'webform']))
+        && empty($formState->getValue([$key, 'description', 'value']))) {
+        $formKey = ProposalFormSupport::SURVEY_KEY === $key ? 'support_form' : 'add_form';
+        $formState->setError($form[$formKey][$key]['description']['value'],
+          $this->t('Please enter a survey description.'));
+      }
+    }
   }
 
 }

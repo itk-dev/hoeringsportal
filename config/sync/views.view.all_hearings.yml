@@ -132,6 +132,7 @@ display:
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
+                hide_label: true
             filter:
               field_area_target_id:
                 plugin_id: default
@@ -141,6 +142,7 @@ display:
                     filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vis alle områder"
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
               field_content_state_value:
                 plugin_id: default
                 advanced:
@@ -149,6 +151,7 @@ display:
                     filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nI gang|Aktive"
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
               field_type_target_id:
                 plugin_id: default
                 advanced:
@@ -157,6 +160,7 @@ display:
                     filter_rewrite_values: "- Any -|Alle typer\r\n- Enhver -|Vælg type"
                   collapsible: false
                   is_secondary: false
+                  hide_label: true
       access:
         type: perm
         options:
