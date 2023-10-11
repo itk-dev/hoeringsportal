@@ -1,5 +1,0 @@
-name: ITK Cookie message
-type: module
-description: 'Placeholder for deactivation'
-core_version_requirement: ^8.8 || ^9 || ^10
-package: ITK
