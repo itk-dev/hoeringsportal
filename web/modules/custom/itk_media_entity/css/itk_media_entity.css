@@ -1,0 +1,6 @@
+/**
+ * Add icon for admin menu.
+ */
+#toolbar-link-view-itk_media-media_page_list:before {
+  background-image: url(../icons/file.svg);
+}
