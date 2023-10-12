@@ -49,13 +49,13 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
           'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
           'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
         ],
-      "field_signup_link" => $this->getReference('paragraph:link1')->id(), // Virker ikke blob ?
+//      "field_signup_link" => $this->getReference('paragraph:link1')->id(), // Virker ikke blob ?
       "field_signup_selection" => 'field_signup_selection' ,
       "field_signup_text" => 'field_signup_text'  ,
       "field_teaser" => 'field_teaser' ,
-      "field_type" => [
-        "taxonomy_index" =>
-          ["tid" => 1283166912]] // ingen fejl men vises ikke i db
+     // "field_type" => [
+       // "taxonomy_index" =>
+         // ["tid" => 1283166912]] // ingen fejl men vises ikke i db
     ]);
     $this->addReference('public_meeting:fixture-1', $node);
     $node->save();
