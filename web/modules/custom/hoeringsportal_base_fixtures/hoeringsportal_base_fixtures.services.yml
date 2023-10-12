@@ -51,3 +51,8 @@ services:
       - { name: content_fixture }
     arguments:
       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+  Drupal\hoeringsportal_base_fixtures\Fixture\ProjectTimeLineFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
