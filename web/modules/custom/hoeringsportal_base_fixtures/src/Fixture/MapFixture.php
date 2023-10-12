@@ -15,20 +15,68 @@ use Drupal\node\NodeInterface;
  */
 class MapFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
+
+
   /**
    * {@inheritdoc}
    */
   public function load() {
 
-    $node = Node::create([
-      'type' => 'public_meeting',
-      'title' => 'public_meeting - Heste Meeting',
-      'status' => NodeInterface::PUBLISHED,
-      "field_pretix_event_settings" => ['template_event' => 'testvej 1', 'synchronize_event' => FALSE],
-    //  "field_map_configuration" => 'field_map_configuration',
-     //: "field_map_type" => ''
 
-          ]);
+    $field_map_configuration_data = [
+      "map" => [
+        "maxZoomLevel" => 0,
+        "minZoomLevel" => 20,
+        "view" => [
+          "zoomLevel" => 5,
+          "x" => 659519,
+          "y" => 6151191,
+        ],
+        "layer" => [
+          [
+            "namedlayer" => "#dk_standard",
+          ],
+          [
+            "features" => true,
+            "features_host" => "../data/boernehaver.json",
+            "features_dataType" => "json",
+            "features_type" => "Point",
+            "features_style" => [
+              "namedstyle" => "#011",
+            ],
+            "template_info" => "<div class='widget-hoverbox-title'>{{navn}}</div><div class=\"widget-hoverbox-sub\"><% if (navn === 'Landsbybørnehaven') { %><div><%= navn %></div><% } %><div>{{Adresse}}, {{Postnr}} {{By}}</div><div><a target=\"blank\" href=\"{{SE_MERE}}\">Hjemmeside</a></div><% if (navn === 'Regnbuen') { %><div>Dette er en meget lang tekst hvor der kan stå en masse, men det er ikke sikkert at der er plads til det på kortet</div><% } %></div>",
+            "name" => "Børnehaver",
+            "type" => "geojson",
+          ],
+        ],
+        "controls" => [
+          [
+            "info" => [
+              "disable" => false,
+              "eventtype" => "click",
+              "multifeature" => 10,
+              "type" => "cloud",
+            ],
+            "overlay" => [
+              "disable" => false,
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    $node = Node::create([
+      'type' => 'page_map',
+      'title' => 'page_map - Heste Kortet',
+      'status' => NodeInterface::PUBLISHED,
+      "field_pretix_event_settings" =>
+        [
+          'template_event' => 'testvej 2',
+          'synchronize_event' => FALSE,
+        ],
+      "field_map_type" => [],
+      "field_map_configuration" => json_encode($field_map_configuration_data),
+    ]);
     $this->addReference('page_map:fixture-1', $node);
     $node->save();
   }
