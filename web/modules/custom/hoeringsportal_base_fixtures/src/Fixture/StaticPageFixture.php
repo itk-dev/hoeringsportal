@@ -23,6 +23,11 @@ class StaticPageFixture extends AbstractFixture implements DependentFixtureInter
       'type' => 'static_page',
       'title' => 'Statisk side 223232323',
       'status' => NodeInterface::PUBLISHED,
+      "field_media_image_single" => '',
+//      "field_section" => '',
+//      "field_teaser" => '',
+//      "field_sidebar" => '',
+//      "field_teaser_color" => '',
     ]);
     $this->addReference('static_page:fixture-1', $node);
     $node->save();
