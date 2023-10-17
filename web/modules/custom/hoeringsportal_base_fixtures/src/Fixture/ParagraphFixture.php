@@ -23,7 +23,12 @@ class ParagraphFixture extends AbstractFixture implements DependentFixtureInterf
       'type' => 'signup_link',
       'field_signup_link' => [
         [
-          "field_signup_link_uri" => ['title' => 'mmmmm', 'field_signup_link_options' => ['value' => 'test']],],
+          "field_signup_link_uri" =>
+            [
+              'title' => 'mmmmm',
+              'field_signup_link_options' => ['value' => 'test'],
+            ],
+        ],
       ],
     ]);
     $paragraph->save();

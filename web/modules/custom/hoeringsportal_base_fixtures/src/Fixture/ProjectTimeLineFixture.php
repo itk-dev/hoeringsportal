@@ -13,9 +13,7 @@ use Drupal\node\NodeInterface;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class ProjectTimeLineFixture  extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
-
-
+class ProjectTimeLineFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
   /**
    * {@inheritdoc}
@@ -24,7 +22,6 @@ class ProjectTimeLineFixture  extends AbstractFixture implements DependentFixtur
 
     $today = strtotime('today');
     $tenDaysLater = strtotime('+10 days', $today);
-
 
     $node = Node::create([
       'type' => 'project',
@@ -35,7 +32,7 @@ class ProjectTimeLineFixture  extends AbstractFixture implements DependentFixtur
       "field_project_start" => date('d-m-Y', $today),
       "field_timeline_items" => [
         'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
-//        'target_revision_id' => $this->getReference(''),
+    // 'target_revision_id' => $this->getReference(''),
       ],
     ]);
     $this->addReference('project:fixture-1', $node);

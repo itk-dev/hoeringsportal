@@ -13,9 +13,7 @@ use Drupal\node\NodeInterface;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class StaticPageFixture  extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
-
-
+class StaticPageFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
   /**
    * {@inheritdoc}

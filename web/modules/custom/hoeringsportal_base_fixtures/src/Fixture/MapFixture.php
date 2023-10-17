@@ -15,13 +15,10 @@ use Drupal\node\NodeInterface;
  */
 class MapFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
-
-
   /**
    * {@inheritdoc}
    */
   public function load() {
-
 
     $field_map_configuration_data = [
       "map" => [
@@ -37,7 +34,7 @@ class MapFixture extends AbstractFixture implements DependentFixtureInterface, F
             "namedlayer" => "#dk_standard",
           ],
           [
-            "features" => true,
+            "features" => TRUE,
             "features_host" => "../data/boernehaver.json",
             "features_dataType" => "json",
             "features_type" => "Point",
@@ -52,13 +49,13 @@ class MapFixture extends AbstractFixture implements DependentFixtureInterface, F
         "controls" => [
           [
             "info" => [
-              "disable" => false,
+              "disable" => FALSE,
               "eventtype" => "click",
               "multifeature" => 10,
               "type" => "cloud",
             ],
             "overlay" => [
-              "disable" => false,
+              "disable" => FALSE,
             ],
           ],
         ],
