@@ -19,10 +19,8 @@ class ProjectTimeLineFixture extends AbstractFixture implements DependentFixture
    * {@inheritdoc}
    */
   public function load() {
-
     $today = strtotime('today');
     $tenDaysLater = strtotime('+10 days', $today);
-
     $node = Node::create([
       'type' => 'project',
       'title' => 'project - Projekt Tidslinje',
@@ -30,10 +28,8 @@ class ProjectTimeLineFixture extends AbstractFixture implements DependentFixture
       "field_description" => "field_description - Her forklare jeg noget",
       "field_project_finish" => date('d-m-Y', $tenDaysLater),
       "field_project_start" => date('d-m-Y', $today),
-      "field_timeline_items" => [
-        'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
-    // 'target_revision_id' => $this->getReference(''),
-      ],
+      "field_timeline_items" =>
+        ['target_id' => $this->getReference('paragraph:content_list:content_list1')->id()],
     ]);
     $this->addReference('project:fixture-1', $node);
     $node->save();
