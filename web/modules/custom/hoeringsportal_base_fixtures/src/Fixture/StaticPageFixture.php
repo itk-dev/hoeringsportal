@@ -24,7 +24,6 @@ class StaticPageFixture extends AbstractFixture implements DependentFixtureInter
       'title' => 'Statisk side 223232323',
       'status' => NodeInterface::PUBLISHED,
       "field_media_image_single" => ['target_id' => $this->getReference('media_library:Billede:MTM')->id()],
-    // "field_section" => [], Hvad er det
       "field_teaser" => 'field teaser',
       "field_sidebar" => ['value' => 'Sidebar ?'],
       "field_teaser_color" => '#fff',

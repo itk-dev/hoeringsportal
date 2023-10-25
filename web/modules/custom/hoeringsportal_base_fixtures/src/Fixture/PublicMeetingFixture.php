@@ -35,31 +35,21 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
       "field_hidden_signup" => 4 ,
       "field_last_meeting_time" => date("Y-m-d", 1283166912) ,
       "field_last_meeting_time_end" => date("Y-m-d", 2222222322222),
-    // "field_map" => 'field_map' ,
       "field_media_document"  => ['target_id' => $this->getReference('media_library:Fil:MTM')->id()],
       "field_media_image_single" => ['target_id' => $this->getReference('media_library:Billede:MTM')->id()] ,
-    // "field_pretix_dates" => 'field_pretix_dates' ,
       "field_pretix_event_settings" =>
         ['template_event' => 'testvej 1', 'synchronize_event' => FALSE],
       "field_email" => 'parent@test.dk ',
       "field_project_reference" => 'field_project_reference' ,
-      // "field_public_meeting_cancelled" =>
-      // 'field_public_meeting_cancelled',
-      // Warning: file_get_contents(themes/custom/hoeringsportal/build/)
       "field_registration_deadline" => ['value' => 'word'],
       'field_section' =>
         [
           'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
           'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
         ],
-      // "field_signup_link" => $this->getReference('paragraph:link1')->id(),
-      // // Virker ikke blob ?
       "field_signup_selection" => 'field_signup_selection' ,
       "field_signup_text" => 'field_signup_text'  ,
       "field_teaser" => 'field_teaser' ,
-      // "field_type" => [
-       // "taxonomy_index" =>
-         // ["tid" => 1283166912]] // ingen fejl men vises ikke i db
     ]);
     $this->addReference('public_meeting:fixture-1', $node);
     $node->save();
