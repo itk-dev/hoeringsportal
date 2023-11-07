@@ -67,6 +67,7 @@ final class GetOrganizedArchiver extends AbstractArchiver {
     return [
       'archived_at' => $info['updated'],
       'archive_url' => $info['data']['url'] ?? NULL,
+      'response' => $info['data']['response'] ?? NULL,
     ];
   }
 
@@ -76,11 +77,16 @@ final class GetOrganizedArchiver extends AbstractArchiver {
   private function archiveCitizenProposal(NodeInterface $node, string $content, string $contentType) {
     $caseID = $node->get('field_getorganized_case_id')->getString();
     if (empty($caseID)) {
-      throw new GetOrganizedException(sprintf('Invalid or missing GetOrganized case ID: %s', $caseID));
+      throw new GetOrganizedException(sprintf('Invalid or missing GetOrganized case ID: %s', $caseID ?? json_encode($caseID)));
     }
 
     try {
-      $path = $this->fileSystem->getTempDirectory() . '/test-citizen-proposal-' . $node->id() . '.pdf';
+      $options = $this->getOptions();
+      $replacements = [
+        '%nid%' => $node->id(),
+      ];
+      $documentName = str_replace(array_keys($replacements), $replacements, $options['document_name_template']);
+      $path = $this->fileSystem->getTempDirectory() . '/' . $documentName;
       file_put_contents($path, $content);
 
       // Unfinalize document in order to be able to update it.
@@ -158,7 +164,12 @@ final class GetOrganizedArchiver extends AbstractArchiver {
     $docId = (int) $response['DocId'];
     $this->logger->debug(sprintf('Unfinalize document %s', $docId));
 
-    return $this->getDocuments()->UnmarkFinalized([$docId]);
+    $result = $this->getDocuments()->UnmarkFinalized([$docId]);
+    if (FALSE === ($result['Success'] ?? NULL)) {
+      throw new GetOrganizedException(sprintf('Error unfinalizing document %s: %s', $docId, $result['Message'] ?? '(no message)'));
+    }
+
+    return $result;
   }
 
   /**
@@ -194,6 +205,7 @@ final class GetOrganizedArchiver extends AbstractArchiver {
         ->setRequired('api_password')
         ->setDefaults([
           'admin_url' => NULL,
+          'document_name_template' => 'citizen-proposal-%nid%.pdf',
         ])
         ->resolve($settings);
     }
