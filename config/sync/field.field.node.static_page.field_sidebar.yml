@@ -6,7 +6,12 @@ dependencies:
     - field.storage.node.field_sidebar
     - node.type.static_page
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - filtered_html
 id: node.static_page.field_sidebar
 field_name: field_sidebar
 entity_type: node

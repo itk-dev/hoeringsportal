@@ -6,7 +6,12 @@ dependencies:
     - field.storage.node.field_description
     - node.type.public_meeting
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - filtered_html
 id: node.public_meeting.field_description
 field_name: field_description
 entity_type: node
