@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-372](https://github.com/itk-dev/hoeringsportal/pull/372)
+  Limited text formats on content
 * [PR-371](https://github.com/itk-dev/hoeringsportal/pull/371)
   Cleaned up archiving of citizen proposals
 
