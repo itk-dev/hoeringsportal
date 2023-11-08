@@ -6,9 +6,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [3.5.3] - 2023-11-08
+
+* [PR-370](https://github.com/itk-dev/hoeringsportal/pull/370)
+  Add additional fixtures
 * [PR-374](https://github.com/itk-dev/hoeringsportal/pull/374)
   Fix hidden mobile filters
-
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
   Added and used Editor Advanced link
 
