@@ -13,7 +13,7 @@ use Drupal\Core\Logger\LoggerChannel;
 use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Site\Settings;
-use Drupal\Core\State\State;
+use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\TempStore\PrivateTempStore;
 use Drupal\Core\TempStore\PrivateTempStoreFactory;
@@ -48,7 +48,7 @@ class Helper implements LoggerAwareInterface {
   public function __construct(
     readonly private PrivateTempStoreFactory $tempStoreFactory,
     readonly private Serializer $serializer,
-    readonly private State $state,
+    readonly private StateInterface $state,
     readonly private FileUrlGenerator $fileUrlGenerator,
     readonly private RouteMatchInterface $routeMatch,
     readonly private Connection $connection,
