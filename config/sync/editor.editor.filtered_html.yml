@@ -33,7 +33,7 @@ settings:
     ckeditor5_sourceEditing:
       allowed_tags:
         - '<cite>'
-        - '<a hreflang>'
+        - '<a hreflang target>'
         - '<blockquote cite>'
         - '<ul type>'
         - '<ol type>'
@@ -43,6 +43,9 @@ settings:
     ckeditor5_list:
       reversed: false
       startIndex: true
+    editor_advanced_link_link:
+      enabled_attributes:
+        - target
 image_upload:
   status: false
   scheme: public

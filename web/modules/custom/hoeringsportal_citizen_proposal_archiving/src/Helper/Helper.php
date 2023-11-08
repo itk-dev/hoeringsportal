@@ -5,7 +5,7 @@ namespace Drupal\hoeringsportal_citizen_proposal_archiving\Helper;
 use Drupal\advancedqueue\Entity\QueueInterface;
 use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\JobResult;
-use Drupal\Core\Config\Entity\ConfigEntityStorage;
+use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\entity_events\EntityEventType;
@@ -34,7 +34,7 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
    *
    * @var \Drupal\Core\Config\Entity\ConfigEntityStorage|\Drupal\Core\Entity\EntityStorageInterface
    */
-  protected ConfigEntityStorage $queueStorage;
+  protected ConfigEntityStorageInterface $queueStorage;
 
   /**
    * Constructor.
