@@ -6,8 +6,18 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-374](https://github.com/itk-dev/hoeringsportal/pull/374)
+  Fix hidden mobile filters
+
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
   Added and used Editor Advanced link
+
+## [3.5.2] - 2023-11-07
+
+* [PR-372](https://github.com/itk-dev/hoeringsportal/pull/372)
+  Limited text formats on content
+* [PR-371](https://github.com/itk-dev/hoeringsportal/pull/371)
+  Cleaned up archiving of citizen proposals
 
 ## [3.5.0] - 2023-08-30
 
@@ -124,7 +134,10 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.4.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...HEAD
+[3.5.2]: https://github.com/itk-dev/hoeringsportal/compare/3.5.1...3.5.2
+[3.5.1]: https://github.com/itk-dev/hoeringsportal/compare/3.5.0...3.5.1
+[3.5.0]: https://github.com/itk-dev/hoeringsportal/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/itk-dev/hoeringsportal/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/itk-dev/hoeringsportal/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/itk-dev/hoeringsportal/compare/3.1.0...3.2.0

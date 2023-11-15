@@ -6,7 +6,12 @@ dependencies:
     - field.storage.node.field_contact
     - node.type.hearing
   module:
+    - allowed_formats
     - text
+third_party_settings:
+  allowed_formats:
+    allowed_formats:
+      - filtered_html
 id: node.hearing.field_contact
 field_name: field_contact
 entity_type: node
