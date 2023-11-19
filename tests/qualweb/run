@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
+IFS=$'\n\t'
+
+script_dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+project_dir=$(cd $(dirname "${BASH_SOURCE[0]}")/../.. && pwd)
+
+cd $project_dir
+
+yarn install
+cat tests/qualweb/paths.txt| while read line; do echo "http://$(docker compose port nginx 8080)$line"; done | tee tests/qualweb/urls.txt
+
+cd $script_dir/reports
+rm -f http*.json
+
+node $project_dir/node_modules/.bin/qw --file $script_dir/urls.txt
+
+for f in http*.json; do docker run --rm --interactive efrecon/jq:1.7 '{completeUrl: .system.url.completeUrl, uri: .system.url.uri, metadata: .metadata}' < $f; done
+
+$(for f in http*.json; do docker run --rm --interactive efrecon/jq:1.7 --exit-status '.metadata.failed == 0' < $f || exit 1; done); echo $?

@@ -3,6 +3,7 @@
   "private": true,
   "devDependencies": {
     "@playwright/test": "^1.35.0",
+    "@qualweb/cli": "^0.6.6",
     "markdownlint-cli": "^0.31.1",
     "playwright-mailhog": "^1.1.0",
     "prettier": "2.8.8"
