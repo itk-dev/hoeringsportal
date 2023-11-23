@@ -79,6 +79,19 @@
                     "reference": "3.0.3"
                 }
             }
+        },
+        "deskpro/deskpro-api-client-php": {
+          "type": "package",
+          "package": {
+            "name": "deskpro/deskpro-api-client-php",
+            "version": "4.1.0",
+            "type": "library",
+            "source": {
+              "url": "https://github.com/itk-dev/deskpro-api-client-php.git",
+              "type": "git",
+              "reference": "dev-hotfix/change-psr-log-dependency"
+            }
+          }
         }
     },
     "require": {
@@ -96,10 +109,11 @@
         "drupal/color_field": "^3.0",
         "drupal/config_ignore": "^2.2",
         "drupal/config_import_locale": "^2.0",
-        "drupal/core-composer-scaffold": "^9.3",
-        "drupal/core-project-message": "^9.3",
-        "drupal/core-recommended": "^9.3",
-        "drupal/csv_serialization": "^2.0 || ^3.0",
+        "drupal/core": "^10.0",
+        "drupal/core-composer-scaffold": "^10.0",
+        "drupal/core-project-message": "^10.0",
+        "drupal/core-recommended": "^10.0",
+        "drupal/csv_serialization": "^4.0",
         "drupal/ds": "^3.1",
         "drupal/editor_advanced_link": "^2.2",
         "drupal/email_registration": "^1.0@RC",
@@ -108,10 +122,9 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
-        "drupal/hoeringsportal_citizen_proposal": "1.0-dev",
-        "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev",
+        "drupal/hoeringsportal_citizen_proposal": "^1.0",
+        "drupal/hoeringsportal_citizen_proposal_archiving": "^1.0",
         "drupal/hoeringsportal_data": "^1.0",
-        "drupal/hoeringsportal_deskpro": "^1.0",
         "drupal/hoeringsportal_openid_connect": "^1.0",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^1.0@RC",
@@ -124,14 +137,12 @@
         "drupal/quick_node_clone": "^1.12",
         "drupal/redirect": "^1.6",
         "drupal/search_autocomplete": "^3.0",
-        "drupal/system_status": "^2.8",
         "drupal/toolbar_visibility": "^2.1",
         "drupal/twig_tweak": "^3.2",
         "drupal/view_custom_table": "^2.0",
         "drupal/views_data_export": "^1.3",
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
-        "drupal/webprofiler": "^9.0",
         "drupal/xls_serialization": "^1.2",
         "drush/drush": "^11",
         "itk-dev/composer-virtualenv": "^1.0",
@@ -145,15 +156,6 @@
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
-    },
-    "require-dev": {
-        "drupal/content_fixtures": "^3.1",
-        "drupal/core-dev": "^9.3",
-        "drupal/masquerade": "^2.0",
-        "drupal/upgrade_status": "^3.13",
-        "mglaman/phpstan-drupal": "^1.1",
-        "phpstan/extension-installer": "^1.2",
-        "phpstan/phpstan-deprecation-rules": "^1.1"
     },
     "conflict": {
         "drupal/drupal": "*"
