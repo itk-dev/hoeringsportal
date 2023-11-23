@@ -7,7 +7,6 @@ dependencies:
     - field.storage.node.field_area
     - field.storage.node.field_teaser
     - field.storage.node.field_type
-    - image.style.responsive_xsmall_teaser
     - node.type.hearing
     - node.type.public_meeting
   module:
@@ -482,7 +481,7 @@ display:
           exclude: true
           alter:
             alter_text: false
-            text: '{{ url(''<front>'')|render ~ field_itk_media_image_upload|trim(''/'') }}'
+            text: "{{ url('<front>')|render ~ field_itk_media_image_upload|trim('/') }}"
             make_link: false
             path: '{{ field_itk_media_image_upload }}'
             absolute: true
@@ -545,7 +544,7 @@ display:
           exclude: true
           alter:
             alter_text: false
-            text: '{{ url(''<front>'')|render ~ field_itk_media_image_upload_1|trim(''/'') }}'
+            text: "{{ url('<front>')|render ~ field_itk_media_image_upload_1|trim('/') }}"
             make_link: false
             path: ''
             absolute: false
@@ -702,6 +701,15 @@ display:
             date_format: html_datetime
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -769,6 +777,15 @@ display:
             date_format: hoeringsportal_date_long
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true

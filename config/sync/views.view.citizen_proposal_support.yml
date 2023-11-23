@@ -138,7 +138,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ allow_email ? ''ja'' }}'
+            text: "{{ allow_email ? 'ja' }}"
             make_link: false
             path: ''
             absolute: false
@@ -195,7 +195,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ created|date(''Y-m-d H:i:s'', ''Europe/Copenhagen'') }}'
+            text: "{{ created|date('Y-m-d H:i:s', 'Europe/Copenhagen') }}"
             make_link: false
             path: ''
             absolute: false
