@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c487f00ea67180fa8d8f5b9ac28bed5",
+    "content-hash": "fe5c927ab4eb357327bf643c7be831a4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -999,6 +999,16 @@
             "time": "2022-12-20T22:53:13+00:00"
         },
         {
+            "name": "deskpro/deskpro-api-client-php",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-dev/deskpro-api-client-php.git",
+                "reference": "hotfix/change-psr-log-dependency"
+            },
+            "type": "library"
+        },
+        {
             "name": "dflydev/dot-access-data",
             "version": "v3.0.2",
             "source": {
@@ -1475,6 +1485,99 @@
                 "source": "https://github.com/dompdf/dompdf/tree/v2.0.3"
             },
             "time": "2023-02-07T12:51:48+00:00"
+        },
+        {
+            "name": "drupal/advancedqueue",
+            "version": "1.0.0-rc7",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/advancedqueue.git",
+                "reference": "8.x-1.0-rc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/advancedqueue-8.x-1.0-rc7.zip",
+                "reference": "8.x-1.0-rc7",
+                "shasum": "b446eda22f5f9a9d13f78f2ce329ff1feef69173"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.0-rc7",
+                    "datestamp": "1673456946",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^11"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "amitaibu",
+                    "homepage": "https://www.drupal.org/user/57511"
+                },
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "Damien Tournoud",
+                    "homepage": "https://www.drupal.org/user/22211"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "jcnventura",
+                    "homepage": "https://www.drupal.org/user/122464"
+                },
+                {
+                    "name": "jsacksick",
+                    "homepage": "https://www.drupal.org/user/972218"
+                },
+                {
+                    "name": "Kazanir",
+                    "homepage": "https://www.drupal.org/user/2279698"
+                },
+                {
+                    "name": "laurentchardin",
+                    "homepage": "https://www.drupal.org/user/87775"
+                },
+                {
+                    "name": "mglaman",
+                    "homepage": "https://www.drupal.org/user/2416470"
+                },
+                {
+                    "name": "pjcdawkins",
+                    "homepage": "https://www.drupal.org/user/1025236"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "skipyT",
+                    "homepage": "https://www.drupal.org/user/350126"
+                }
+            ],
+            "description": "Provides a better Queue API.",
+            "homepage": "https://www.drupal.org/project/advancedqueue",
+            "support": {
+                "source": "https://git.drupalcode.org/project/advancedqueue"
+            }
         },
         {
             "name": "drupal/allowed_formats",
@@ -3336,6 +3439,37 @@
             "keywords": [
                 "Drupal"
             ],
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
+        },
+        {
+            "name": "drupal/hoeringsportal_deskpro",
+            "version": "1.0-dev",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/hoeringsportal_deskpro",
+                "reference": "501a8a4faaf72960003b21831ae90a5375f6059b"
+            },
+            "require": {
+                "deskpro/deskpro-api-client-php": "^4.0",
+                "drupal/advancedqueue": "^1.0",
+                "nicoeg/dawa": "^1.0"
+            },
+            "type": "drupal-custom-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Deskpro integration",
+            "homepage": "https://www.drupal.org/project/hoeringsportal_deskpro",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/hoeringsportal_deskpro",
+                "source": "http://cgit.drupalcode.org/hoeringsportal_deskpro"
+            },
             "transport-options": {
                 "symlink": false,
                 "relative": true
