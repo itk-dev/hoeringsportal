@@ -1,7 +1,16 @@
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - unlabeled
+      - synchronize
+      - reopened
+
 name: PR Review
 jobs:
   fail-for-do-not-merge:
+    if: contains(github.event.pull_request.labels.*.name, 'not ready for merge')
     runs-on: ubuntu-latest
     steps:
       - name: Fail if PR is labeled with not ready for merge
