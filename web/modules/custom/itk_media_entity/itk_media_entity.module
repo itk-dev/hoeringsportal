@@ -2,7 +2,6 @@
 
 /**
  * @file
- *
  * Hooks related to itk_media_entity module.
  */
 
@@ -71,7 +70,7 @@ function itk_media_entity_preprocess_views_view_field__thumbnail__target_id(&$va
  *
  * @param string $file_name
  *   The file name.
- * 
+ *
  * @return string
  *   A file path.
  */
