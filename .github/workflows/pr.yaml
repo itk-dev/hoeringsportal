@@ -15,11 +15,11 @@ jobs:
       - name: Fail if PR is labeled with not ready for merge
         if: contains(github.event.pull_request.labels.*.name, 'not ready for merge')
         run: |
-          echo "This PR can't be merged, due to the 'not ready for merge' label."
+          echo "This PR can't be merged, due to the 'not ready for merge' label"
           exit 1
         if: !contains(github.event.pull_request.labels.*.name, 'not ready for merge')
         run: |
-          echo "This PR is ready for merge."
+          echo "This PR is ready for merge"
           exit 0
 
   changelog:
