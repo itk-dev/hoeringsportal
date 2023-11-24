@@ -158,6 +158,15 @@
         "webflo/drupal-finder": "^1.0.0",
         "webmozart/path-util": "^2.3"
     },
+    "require-dev": {
+      "drupal/content_fixtures": "^3.1",
+      "drupal/core-dev": "^10.0",
+      "drupal/masquerade": "^2.0",
+      "drupal/upgrade_status": "^4.0",
+      "mglaman/phpstan-drupal": "^1.1",
+      "phpstan/extension-installer": "^1.2",
+      "phpstan/phpstan-deprecation-rules": "^1.1"
+    },
     "conflict": {
         "drupal/drupal": "*"
     },
