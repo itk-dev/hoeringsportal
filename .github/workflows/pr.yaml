@@ -1,6 +1,4 @@
-on:
-  pull_request:
-    types: [opened, labeled, unlabeled, synchronize]
+on: pull_request
 name: PR Review
 jobs:
   fail-for-do-not-merge:
