@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Hooks related to itk_media_entity module.
+ */
+
+/**
  * Implements hook_preprocess_html().
  */
 function itk_media_entity_page_attachments(array &$page) {
@@ -8,41 +13,44 @@ function itk_media_entity_page_attachments(array &$page) {
   $page['#attached']['library'][] = 'itk_media_entity/itk_media_entity';
 }
 
-
 /**
- * @param $variables
- *
- * Change thumbnails for documents in media views to be icons.
+ * Implements hook_preprocess_HOOK().
  */
 function itk_media_entity_preprocess_views_view_field__thumbnail__target_id(&$variables) {
   $original_markup = $variables['field']->original_value;
-  $output = array();
+  $output = [];
 
   // Get bundle of the view row.
   $entity_bundle = $variables['row']->_entity->get('bundle')->getValue()['0']['target_id'];
-  if($entity_bundle == 'document') {
+  if ($entity_bundle == 'document') {
 
-    //Possible results for document media bundles.
+    // Possible results for document media bundles.
     $mime_type = $variables['row']->_entity->get('field_itk_media_mime_type')->getValue()['0']['value'];
     switch ($mime_type) {
       case 'application/pdf':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('pdf.png') . '"/>';
         break;
+
       case 'application/msword':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('doc.png') . '"/>';
         break;
+
       case 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('docx.png') . '"/>';
         break;
+
       case 'text/plain':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('txt.png') . '"/>';
         break;
+
       case 'application/vnd.ms-excel':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('xls.png') . '"/>';
         break;
+
       case 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':
         $output['#markup'] = '<img src="' . _itk_media_entity_create_file_path('xlsx.png') . '"/>';
         break;
+
       default:
         // Use the orignial value of the thumbnail, i.e. do nothing.
         $output['#markup'] = $original_markup;
@@ -58,12 +66,14 @@ function itk_media_entity_preprocess_views_view_field__thumbnail__target_id(&$va
 }
 
 /**
- * @param $file_name
- * @return string
- *
  * Set a path to an image icon.
+ *
+ * @param string $file_name
+ *   The file name.
+ *
+ * @return string
+ *   A file path.
  */
-function _itk_media_entity_create_file_path($file_name) {
+function _itk_media_entity_create_file_path(string $file_name): string {
   return '/' . \Drupal::service('extension.path.resolver')->getPath('module', 'itk_media_entity') . '/icons/' . $file_name;
 }
-
