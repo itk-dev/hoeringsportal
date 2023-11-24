@@ -6,6 +6,7 @@ on:
       - unlabeled
       - synchronize
       - reopened
+      - edited
 
 name: PR Review
 jobs:
