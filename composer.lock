@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b8b1d31af83490cc279898898c98f7d",
+    "content-hash": "d5d7c26aaab09b2808f0342d7bdc19f7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -191,6 +191,54 @@
                 "source": "https://github.com/Chi-teck/drupal-code-generator/tree/2.6.2"
             },
             "time": "2022-11-11T15:34:04+00:00"
+        },
+        {
+            "name": "chx/drupal-issue-fork",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chx/drupal-issue-fork.git",
+                "reference": "f2df06fc216a0b29c144ada9c29c7d107fb05fa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chx/drupal-issue-fork/zipball/f2df06fc216a0b29c144ada9c29c7d107fb05fa4",
+                "reference": "f2df06fc216a0b29c144ada9c29c7d107fb05fa4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0",
+                "php": ">=8.1.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.6"
+            },
+            "default-branch": true,
+            "type": "composer-plugin",
+            "extra": {
+                "class": "chx\\Composer\\Plugin\\DrupalIssueFork"
+            },
+            "autoload": {
+                "psr-4": {
+                    "chx\\Composer\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Karoly Negyesi",
+                    "email": "chx1975@gmail.com"
+                }
+            ],
+            "description": "Sets up a project to use an issue fork",
+            "support": {
+                "issues": "https://github.com/chx/drupal-issue-fork/issues",
+                "source": "https://github.com/chx/drupal-issue-fork/tree/main"
+            },
+            "time": "2023-11-03T07:45:34+00:00"
         },
         {
             "name": "composer/installers",

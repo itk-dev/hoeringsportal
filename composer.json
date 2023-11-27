@@ -104,6 +104,7 @@
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/jqueryui-touch-punch": "dev-gh-pages",
         "bower-asset/spectrum": "^1.8",
+        "chx/drupal-issue-fork": "dev-main",
         "composer/installers": "^1.7",
         "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
@@ -187,7 +188,8 @@
             "drupal/core-project-message": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "oomphinc/composer-installers-extender": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "chx/drupal-issue-fork": true
         }
     },
     "scripts": {
