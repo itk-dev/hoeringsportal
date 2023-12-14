@@ -193,7 +193,7 @@
     },
     "scripts": {
         "code-analysis/phpstan": [
-            "phpstan analyse --configuration=phpstan.neon"
+            "phpstan analyse --configuration=phpstan.neon --memory-limit=256M"
         ],
         "code-analysis": [
             "@code-analysis/phpstan"
