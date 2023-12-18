@@ -9,8 +9,10 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Url;
+use Drupal\hoeringsportal_hearing\TokenHelper;
 
 /**
  * Implements hook_help().
@@ -82,6 +84,23 @@ function hoeringsportal_hearing_node_view(array &$build, EntityInterface $entity
       $new_title = $title . $state;
       $build['title'][0]['#context']['value'] = $new_title;
     }
-
   }
+}
+
+/**
+ * Implements hook_token_info().
+ *
+ * @see \Drupal\hoeringsportal_hearing\TokenHelper::tokenInfo()
+ */
+function hoeringsportal_hearing_token_info() {
+  return \Drupal::service(TokenHelper::class)->tokenInfo();
+}
+
+/**
+ * Implements hook_tokens().
+ *
+ * @see \Drupal\hoeringsportal_hearing\TokenHelper::tokens()
+ */
+function hoeringsportal_hearing_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+  return \Drupal::service(TokenHelper::class)->tokens($type, $tokens, $data, $options, $bubbleable_metadata);
 }

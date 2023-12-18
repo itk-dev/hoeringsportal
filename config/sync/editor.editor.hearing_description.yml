@@ -1,0 +1,59 @@
+uuid: d4a16c11-faf2-4617-bd62-c28ad4eb5f31
+langcode: da
+status: true
+dependencies:
+  config:
+    - filter.format.hearing_description
+  module:
+    - ckeditor5
+format: hearing_description
+editor: ckeditor5
+settings:
+  toolbar:
+    items:
+      - bold
+      - italic
+      - '|'
+      - link
+      - '|'
+      - bulletedList
+      - numberedList
+      - '|'
+      - blockQuote
+      - '|'
+      - sourceEditing
+      - '|'
+      - heading
+      - tokenBrowser
+  plugins:
+    ckeditor5_heading:
+      enabled_headings:
+        - heading2
+        - heading3
+        - heading4
+    ckeditor5_list:
+      reversed: false
+      startIndex: true
+    ckeditor5_sourceEditing:
+      allowed_tags:
+        - '<cite>'
+        - '<a hreflang target>'
+        - '<blockquote cite>'
+        - '<ul type>'
+        - '<ol type>'
+        - '<h2 id>'
+        - '<h3 id>'
+        - '<h4 id>'
+    editor_advanced_link_link:
+      enabled_attributes:
+        - target
+    token_filter_token_browser:
+      token_types: {  }
+image_upload:
+  status: false
+  scheme: public
+  directory: inline-images
+  max_size: ''
+  max_dimensions:
+    width: null
+    height: null
