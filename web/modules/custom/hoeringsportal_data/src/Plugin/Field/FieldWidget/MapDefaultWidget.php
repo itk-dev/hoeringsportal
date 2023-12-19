@@ -65,7 +65,7 @@ class MapDefaultWidget extends WidgetBase {
     $geojsonUrl = 'http://geojson.io/';
     $geojsonUrlWithMap = $geojsonUrl . '#map=13/56.1464/10.1739';
     // @see https://github.com/mapbox/geojson.io/blob/gh-pages/API.md#datadataapplicationjson
-    $geojsonUrlWithData = $geojsonUrl . '#data=data:application/json,' . urlencode(json_encode(json_decode($item->geojson)) ?? '');
+    $geojsonUrlWithData = $geojsonUrl . '#data=data:application/json,' . urlencode(json_encode(json_decode($item->geojson ?? 'null')) ?? '');
     $element['geojson'] = [
       '#type' => 'textarea',
       '#title' => t('GeoJSON'),
