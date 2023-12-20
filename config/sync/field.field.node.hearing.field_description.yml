@@ -23,7 +23,5 @@ required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
-settings:
-  allowed_formats:
-    - hearing_description
+settings: {  }
 field_type: text_long
