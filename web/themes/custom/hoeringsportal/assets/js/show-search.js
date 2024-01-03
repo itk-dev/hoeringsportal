@@ -12,8 +12,8 @@
   })
 
   document.addEventListener('keydown', function (event) {
-    if ('edit-keys' === document.activeElement.id) {
-      if ('Enter' === event.key) {
+    if (document.activeElement.id === 'edit-keys') {
+      if (event.key === 'Enter') {
         event.preventDefault()
       }
     }
