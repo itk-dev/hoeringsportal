@@ -1,6 +1,7 @@
 nav.navbar {
   box-shadow: 0 0 10px rgba(0,0,0,.25);
   transition: padding .4s ease-out;
+
   .scrolled & {
     padding: .1rem 1rem;
     transition: padding .2s ease-in;
@@ -23,7 +24,13 @@ nav.navbar {
   }
 }
 .navbar-nav {
+  padding: 0.5rem 0;
+
   .nav-item {
+    &:last-child {
+      border-right: 2px solid $gray-300;
+    }
+
     .nav-link {
       font-family: $font-family-black;
       font-size: 1rem;
@@ -31,33 +38,7 @@ nav.navbar {
       display: block;
       font-weight: $font-weight-black;
       color: $black;
-      margin-top: .5rem;
-      margin-right: 1rem;
-      @include media-breakpoint-up(lg) {
-        &:before {
-          opacity: 0;
-          content: "";
-          position: absolute;
-          height: 0px;
-          left: 8px;
-          right: 8px;
-          bottom: 0;
-          transition: height .2s ease-out, opacity .2s ease-out;
-        }
-        &:hover {
-          color: darken($primary, 10%);
-        }
-        &.is-active {
-          color: $primary;
-        }
-        &:hover, &.is-active {
-          &:before {
-            opacity: 1;
-            transition: height .2s ease-in, opacity .2s ease-in;
-            height: 4px;
-          }
-        }
-      }
+      padding: 0 1em;
     }
   }
 
@@ -67,9 +48,12 @@ nav.navbar {
       float: right;
     }
 
+    .nav-item:last-child {
+      border-right: 0;
+    }
+
     .nav-link {
       color: $gray-800;
-
       line-height: 1em;
       padding-bottom: 0;
       padding-top: 0;
@@ -77,6 +61,7 @@ nav.navbar {
       font-size: 1em;
       margin-top: 1em;
       margin-bottom: 1em;
+      font-weight: normal;
 
       &:hover {
         color: darken($primary, 10%);
@@ -87,23 +72,6 @@ nav.navbar {
         font-size: .9em;
         margin-top: 0;
         margin-bottom: 0;
-      }
-
-      &.has-border {
-        @include media-breakpoint-up(lg) {
-          border-right: 1px solid $gray-600;
-        }
-      }
-    }
-    @include media-breakpoint-up(lg) {
-      .nav-item--secondary-navigation:last-child .nav-link.has-border {
-        border-right: 0;
-      }
-    }
-
-    .nav-item--secondary-navigation {
-      &:last-child .nav-link.has-border {
-        border-right: 0;
       }
     }
 

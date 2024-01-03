@@ -1,7 +1,9 @@
 #search-block-form-wrapper {
   text-align: right;
   position: absolute;
-  right: 0px;
+  right: 15px;
+  top: 30px;
+  min-height: 40px;
 
   @include media-breakpoint-down(md) {
     position: relative;
@@ -9,18 +11,26 @@
 }
 
 #search-block-form {
+  align-items: flex-start;
+  flex-direction: row;
+  padding: 0;
+  padding-top: .5em;
   position: relative;
+  overflow: hidden;
+  min-height: 30px;
+  width: 1.5em;
   z-index: 1;
 
   .form-search {
-    background-position: 88% center;
+    display: none;
+    border-color: rgba(133, 133, 133, 0);
     border-radius: $border-radius;
-    height: 50px;
     vertical-align: middle;
+    height: 30px;
     outline: none;
+    padding: 0;
     line-height: 1.5rem;
     width: 0;
-    margin-right: 25px;
     transition: width .5s;
     text-indent: 1rem;
 
@@ -31,25 +41,19 @@
     }
   }
 
-  .btn {
-    border-radius: 25px;
-    height: 50px;
-    width: 50px;
+  .form-actions {
     position: absolute;
     top: 0;
     right: 0;
-    transition: border-radius .5s;
+  }
 
-    @include media-breakpoint-down(md) {
-      border-radius: 0 $border-radius $border-radius 0;
-      left: 14rem;
-      right: auto;
-      width: 5rem;
-    }
-
-    &:after {
-      background-color: unset;
-    }
+  .btn-search {
+    color: $primary;
+    height: 30px;
+    display: block;
+    margin-top: 13px;
+    width: 30px;
+    cursor: pointer;
   }
 
   .js-form-submit {
@@ -66,34 +70,34 @@
     }
   }
 
-  .fa-fw {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 50%;
-    bottom: 0;
-    transform: translateY(-50%);
-  }
-
   .fa-times {
     display: none;
+    position: absolute;
+    top: 15px;
+    right: 3px;
   }
 
   .fa-search {
     display: block;
+    position: absolute;
+    top: 11px;
+    right: 3px;
   }
 
   &.is-open {
-    .form-search {
-      width: 15rem;
-      transition: width .5s, padding-right .5s;
-      padding-right: 3rem;
-    }
+    border: 1px solid rgba(133, 133, 133, .2);
+    background: $white;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: .5em;
+    width: 32rem;
+    transition: width .5s, top .5s;
 
-    .btn {
-      transition: border-radius .5s;
-      border-radius: 0 $border-radius $border-radius 0;
+    .form-search {
+      border-color: rgba(133, 133, 133, .5);
+      display: block;
+      width: 29rem;
+      padding-right: 3rem;
     }
 
     .fa-times {
@@ -106,14 +110,20 @@
   }
 }
 
-.ui-autocomplete {
+.ui-autocomplete.ui-widget.ui-widget-content {
+  //display: block!important;
   min-width: 0!important;
+  max-height: 100%!important;
+  position: relative!important;
+  text-align: left;
   z-index: 1050;
-  width: 310px!important;
+  width: 464px!important;
+  padding-top: 1em;
+  border: 0;
 
-  @include media-breakpoint-down(md) {
-    width: 30%!important;
-    right: auto;
+  li {
+    border: 0;
+    padding: 1em;
   }
 
   .ui-autocomplete-field-group {
@@ -129,13 +139,57 @@
   }
 
   .ui-menu-item {
-    @extend .list-group-item;
+    border: 0;
+    padding: .5em;
+    margin: .5em 0;
+    list-style: none;
 
-    line-height: 1em;
-    padding: 0;
+    &:hover,
+    &:focus {
+      background: $gray-100;
+      border-left: 3px solid $gray-400;
+    }
   }
 
-  .ui-autocomplete-field-created {
+  .ui-autocomplete-fields {
+    display: flex;
+    flex-direction: column;
+
+    .ui-autocomplete-field-title {
+      @extend .h4;
+      @extend .mb-1;
+
+      order: 1;
+    }
+
+    .ui-autocomplete-field-field_description,
+    .ui-autocomplete-field-field_proposal {
+      @extend .mb-1;
+
+      order: 2;
+    }
+
+    .ui-autocomplete-field-type {
+      @extend .badge;
+      @extend .badge-light;
+
+      background-color: $primary;
+      color: $white;
+      width: fit-content;
+      order: 3;
+    }
+
+    .ui-autocomplete-field-created {
+      display: none;
+    }
+  }
+  .ui-autocomplete-container-no_results li,
+  .ui-autocomplete-container-more_results {
     display: none;
   }
+
+  .ui-autocomplete-container-no_results:before {
+    content: 'Ingen resultater';
+  }
+
 }
