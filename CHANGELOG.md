@@ -6,9 +6,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-378](https://github.com/itk-dev/hoeringsportal/pull/378)
+  New main menu, new search.
 * [PR-374](https://github.com/itk-dev/hoeringsportal/pull/374)
   Fix hidden mobile filters
-
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
   Added and used Editor Advanced link
 
