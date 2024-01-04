@@ -23,12 +23,19 @@ nav.navbar {
     }
   }
 }
+
+#block-navigation {
+  position: relative;
+}
+
 .navbar-nav {
   padding: .5rem 0;
 
   .nav-item {
     &:last-child {
-      border-right: 2px solid $gray-300;
+      @include media-breakpoint-up(lg) {
+        border-right: 2px solid $gray-300;
+      }
     }
 
     .nav-link {
@@ -36,9 +43,16 @@ nav.navbar {
       font-size: 1rem;
       position: relative;
       display: block;
-      font-weight: $font-weight-black;
       color: $black;
       padding: 0 1em;
+      margin-top: 0;
+      margin-bottom: $spacer;
+
+      @include media-breakpoint-up(lg) {
+        font-weight: $font-weight-black;
+        margin-bottom: 0;
+        flex: 0 0 100%;
+      }
     }
   }
 
@@ -54,13 +68,13 @@ nav.navbar {
 
     .nav-link {
       color: $gray-800;
-      line-height: 1em;
+      line-height: 24px;
       padding-bottom: 0;
       padding-top: 0;
       margin-right: 0;
       font-size: 1em;
-      margin-top: 1em;
-      margin-bottom: 1em;
+      margin-top: 0;
+      margin-bottom: $spacer;
       font-weight: normal;
 
       &:hover {
@@ -70,7 +84,7 @@ nav.navbar {
 
       @include media-breakpoint-up(lg) {
         font-size: .9em;
-        margin-top: 0;
+        margin-top: $spacer;
         margin-bottom: 0;
       }
     }

@@ -22,16 +22,18 @@
       {{ elements.hoeringsportal_branding }}
     {% endif %}
 
-    <div class="collapse navbar-collapse d-flex justify-content-end flex-column-reverse align-items-end position-relative" id="block-navigation">
-      {% if elements.primaernavigation %}
-        {{ elements.primaernavigation }}
-      {% endif %}
-      {% if elements.sekundaernavigation %}
-        {{ elements.sekundaernavigation }}
-      {% endif %}
-      {% if elements.sogefelt_2 %}
-        {{ elements.sogefelt_2 }}
-      {% endif %}
+    <div class="collapse navbar-collapse" id="block-navigation">
+      <div class="w-100 d-flex justify-content-end flex-lg-column-reverse flex-column align-items-lg-end align-items-start">
+        {% if elements.primaernavigation %}
+          {{ elements.primaernavigation }}
+        {% endif %}
+        {% if elements.sekundaernavigation %}
+          {{ elements.sekundaernavigation }}
+        {% endif %}
+        {% if elements.sogefelt_2 %}
+          {{ elements.sogefelt_2 }}
+        {% endif %}
+      </div>
     </div>
   </div>
 </nav>
