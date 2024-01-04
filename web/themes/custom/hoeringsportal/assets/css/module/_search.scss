@@ -2,7 +2,7 @@
   text-align: right;
   position: absolute;
   right: 15px;
-  top: 30px;
+  top: 26px;
   min-height: 40px;
 
   @include media-breakpoint-down(md) {
@@ -15,7 +15,7 @@
   border-radius: 5px;
   flex-direction: row;
   padding: 0;
-  padding-top: .35em;
+  padding-top: .65em;
   position: relative;
   overflow: hidden;
   min-height: 30px;
@@ -74,14 +74,14 @@
   .fa-times {
     display: none;
     position: absolute;
-    top: 13px;
+    top: 17px;
     right: 3px;
   }
 
   .fa-search {
     display: block;
     position: absolute;
-    top: 9px;
+    top: 13px;
     right: 3px;
   }
 
@@ -141,8 +141,8 @@
 
   .ui-menu-item {
     border: 0;
-    padding: .75em;
-    margin: .5em 0;
+    padding: .5em .75em;
+    margin: .15em 0;
     list-style: none;
 
     &:hover,
