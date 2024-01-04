@@ -162,6 +162,10 @@
 
       margin-bottom: 0;
       order: 1;
+
+      .ui-autocomplete-field-term {
+        color: $primary;
+      }
     }
 
     .ui-autocomplete-field-field_description,
@@ -169,6 +173,11 @@
       @extend .mb-1;
 
       order: 2;
+
+      .ui-autocomplete-field-term {
+        font-weight: bold;
+        color: $primary;
+      }
     }
 
     .ui-autocomplete-field-type {

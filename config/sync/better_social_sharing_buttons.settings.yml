@@ -4,10 +4,10 @@ langcode: da
 iconset: social-icons--no-color
 services:
   facebook: facebook
-  twitter: twitter
   email: email
   linkedin: linkedin
   print: print
+  twitter: twitter
 width: 20px
 radius: 3px
 print_css: ''
