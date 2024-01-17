@@ -1,0 +1,6 @@
+services:
+  Drupal\hoeringsportal_content_access\Helper:
+    arguments:
+      - '@current_user'
+      - '@current_route_match'
+      - '@entity_type.manager'
