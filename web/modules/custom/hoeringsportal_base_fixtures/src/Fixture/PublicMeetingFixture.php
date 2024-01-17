@@ -51,6 +51,7 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
       "field_signup_text" => 'field_signup_text'  ,
       "field_teaser" => 'field_teaser' ,
       'field_department' => [
+        $this->getReference('department:Department 1')->id(),
         $this->getReference('department:Department 2')->id(),
       ],
     ]);
