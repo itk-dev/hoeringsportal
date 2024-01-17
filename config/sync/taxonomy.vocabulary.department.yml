@@ -1,0 +1,8 @@
+uuid: 361adea4-b349-424d-be01-37f0d84be323
+langcode: da
+status: true
+dependencies: {  }
+name: Afdeling
+vid: department
+description: 'Afdeling (Magistrat) for brugere og indhold'
+weight: 0

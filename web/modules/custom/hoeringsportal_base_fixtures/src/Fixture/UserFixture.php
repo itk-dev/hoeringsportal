@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 
 use Drupal\content_fixtures\Fixture\AbstractFixture;
+use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\user\Entity\User;
 
@@ -11,7 +12,7 @@ use Drupal\user\Entity\User;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class UserFixture extends AbstractFixture implements FixtureGroupInterface {
+class UserFixture extends AbstractFixture implements FixtureGroupInterface, DependentFixtureInterface {
 
   /**
    * {@inheritdoc}
@@ -53,6 +54,24 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface {
     $user->save();
     $this->setReference('user:editor', $user);
 
+    foreach (range(1, 3) as $i) {
+      $name = sprintf('department%d-editor', $i);
+      $user = User::create([
+        'name' => $name,
+        'mail' => $name.'@example.com',
+        'pass' => $name.'-password',
+        'status' => 1,
+        'roles' => [
+          'editor',
+        ],
+        'field_department' => [
+          $this->getReference('department:Department '.$i)->id(),
+        ],
+      ]);
+      $user->save();
+      $this->setReference('user:'.$name, $user);
+    }
+
     $user = User::create([
       'name' => 'user',
       'mail' => 'user@example.com',
@@ -71,6 +90,15 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface {
    */
   public function getGroups() {
     return ['user'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDependencies() {
+    return [
+      TermDepartmentFixture::class,
+    ];
   }
 
 }
