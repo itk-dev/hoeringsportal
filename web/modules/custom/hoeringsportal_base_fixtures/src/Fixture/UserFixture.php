@@ -58,18 +58,18 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
       $name = sprintf('department%d-editor', $i);
       $user = User::create([
         'name' => $name,
-        'mail' => $name.'@example.com',
-        'pass' => $name.'-password',
+        'mail' => $name . '@example.com',
+        'pass' => $name . '-password',
         'status' => 1,
         'roles' => [
           'editor',
         ],
         'field_department' => [
-          $this->getReference('department:Department '.$i)->id(),
+          $this->getReference('department:Department ' . $i)->id(),
         ],
       ]);
       $user->save();
-      $this->setReference('user:'.$name, $user);
+      $this->setReference('user:' . $name, $user);
     }
 
     $user = User::create([

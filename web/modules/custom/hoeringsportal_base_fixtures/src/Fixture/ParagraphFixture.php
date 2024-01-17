@@ -96,6 +96,17 @@ BODY,
     $this->addReference('paragraph:content_list:all_public_meetings', $paragraph);
 
     $paragraph = Paragraph::create([
+      'type' => 'content_list',
+      'field_content_list' => [
+        'target_id' => 'all_hearings',
+        'display_id' => 'default',
+      ],
+      'field_list_title' => 'Alle høringer',
+    ]);
+    $paragraph->save();
+    $this->addReference('paragraph:content_list:all_hearings', $paragraph);
+
+    $paragraph = Paragraph::create([
       'type' => 'info_box',
       'field_content_block_text' => [
         'value' => <<<'BODY'
