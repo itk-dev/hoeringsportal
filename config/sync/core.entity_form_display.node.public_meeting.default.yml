@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.public_meeting.field_cancelled_text
     - field.field.node.public_meeting.field_contact
     - field.field.node.public_meeting.field_content_state
+    - field.field.node.public_meeting.field_department
     - field.field.node.public_meeting.field_description
     - field.field.node.public_meeting.field_email_address
     - field.field.node.public_meeting.field_first_meeting_time
@@ -38,6 +39,7 @@ dependencies:
     - itk_pretix
     - link
     - paragraphs
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -156,6 +158,12 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_department:
+    type: options_buttons
+    weight: 52
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_description:
     type: text_textarea
