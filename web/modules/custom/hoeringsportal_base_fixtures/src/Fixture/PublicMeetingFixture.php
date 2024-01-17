@@ -61,6 +61,10 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
         'data' => '{"type":"Feature","properties":[],"geometry":{"type":"Point","coordinates":[11.704067337123801,56.19625173058858]}}',
         'point' => '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[11.704067337123801,56.19625173058858]}}]}',
       ],
+
+      'field_department' => [
+        $this->getReference('department:Department 2')->id(),
+      ],
     ]);
     $this->addReference('public_meeting:fixture-1', $node);
     $node->save();
