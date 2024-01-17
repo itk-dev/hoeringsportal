@@ -50,6 +50,9 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
       "field_signup_selection" => 'field_signup_selection' ,
       "field_signup_text" => 'field_signup_text'  ,
       "field_teaser" => 'field_teaser' ,
+      'field_department' => [
+        $this->getReference('department:Department 2')->id(),
+      ],
     ]);
     $this->addReference('public_meeting:fixture-1', $node);
     $node->save();
@@ -62,6 +65,7 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
     return [
       MediaFixture::class,
       ParagraphFixture::class,
+      TermDepartmentFixture::class,
     ];
   }
 
