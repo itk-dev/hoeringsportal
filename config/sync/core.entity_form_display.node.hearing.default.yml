@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
+    - field.field.node.hearing.field_department
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -34,6 +35,7 @@ dependencies:
     - field_group
     - hoeringsportal_data
     - link
+    - publication_date
     - text
 third_party_settings:
   field_group:
@@ -172,6 +174,12 @@ content:
     settings:
       rows: 5
       placeholder: ''
+    third_party_settings: {  }
+  field_department:
+    type: options_buttons
+    weight: 35
+    region: content
+    settings: {  }
     third_party_settings: {  }
   field_description:
     type: text_textarea

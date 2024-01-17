@@ -26,7 +26,7 @@ class HearingLandingPageFixture extends AbstractFixture implements DependentFixt
       'title' => 'Høringer',
       'field_teaser' => [
         'value' => <<<'BODY'
-Her har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag. 
+Her har du mulighed for at gøre opmærksom på dine synspunkter om en konkret høringssag.
 
 VIGTIGT: Der kan gå længere tid inden høringssvar bliver vist på siden. Dit svar er modtaget, når du har fået en kvitteringsmail.
 BODY
@@ -34,8 +34,8 @@ BODY
       'field_media_image_single' => ['target_id' => $this->getReference('media:Large2')->id()],
       'field_section' => [
         [
-          'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
-          'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
+          'target_id' => $this->getReference('paragraph:content_list:all_hearings')->id(),
+          'target_revision_id' => $this->getReference('paragraph:content_list:all_hearings')->getRevisionId(),
         ],
         [
           'target_id' => $this->getReference('paragraph:teaser_row:teaser_row1')->id(),
