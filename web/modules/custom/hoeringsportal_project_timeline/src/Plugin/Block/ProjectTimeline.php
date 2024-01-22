@@ -26,7 +26,7 @@ class ProjectTimeline extends BlockBase {
   public function build() {
     $current_node = \Drupal::routeMatch()->getParameter('node');
     if (!$current_node) {
-      return;
+      return [];
     }
 
     if ($current_node->bundle() != 'project') {
@@ -34,7 +34,7 @@ class ProjectTimeline extends BlockBase {
         $node = Node::load($current_node->field_project_reference->target_id);
       }
       else {
-        return;
+        return [];
       }
     }
     else {
