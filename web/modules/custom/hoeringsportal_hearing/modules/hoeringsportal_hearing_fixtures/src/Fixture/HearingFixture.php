@@ -30,7 +30,7 @@ class HearingFixture extends AbstractFixture implements DependentFixtureInterfac
 Lorem ipsum bum bum bum.
 
 Dette er en høring. Den har ID node:landing_page:Hearing1 ',
-        'format' => 'filtered_html',
+        'format' => 'hearing_description',
       ],
       'field_media_image' => [
         ['target_id' => $this->getReference('media:Medium1')->id()],
@@ -46,7 +46,7 @@ Dette er en høring. Den har ID node:landing_page:Hearing1 ',
       'field_reply_deadline' => DrupalDateTime::createFromFormat('U', strtotime('tomorrow'))->format('Y-m-d\TH:i:s'),
       'field_edoc_casefile_id' => '',
       'field_tags' => ['target_id' => $this->getReference('tags:Kultur og borgerservice')->id()],
-      'field_getorganized_case_id' => '',
+      'field_getorganized_case_id' => 'test-case-id',
       'field_contact'  => [
         'value' => '
 This is the contact field.
@@ -54,15 +54,23 @@ This is the contact field.
 Input address here.',
         'format' => 'filtered_html',
       ],
-      'field_map' => '',
+      'field_map' => [
+        'type' => 'point',
+        'data' => '{"type":"Feature","properties":[],"geometry":{"type":"Point","coordinates":[10.213748135074276,56.15345564612786]}}',
+        'geojson' => '',
+        'localplanids' => '',
+        'point' => '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[10.213748135074276,56.15345564612786]}}]}',
+      ],
       'field_map_display' => '',
       'field_lokalplaner' => '',
       'field_area' => ['target_id' => $this->getReference('area:Hele kommunen')->id()],
       'field_project_reference' => '',
-      'field_deskpro_agent_email' => '',
+      // If we're lucky this Deskpro data makes sense.
+      'field_deskpro_department_id' => 12,
+      'field_deskpro_agent_email' => 'deskpro@example.com',
       'field_teaser' => 'Lorem ipsum teaser',
       'field_hearing_ticket_add' => '',
-      'field_type' => ['target_id' => $this->getReference('hearing_type:Kommuneplan:Temaplan detailhandel')->id()],
+      'field_type' => ['target_id' => $this->getReference('type:Kommuneplan')->id()],
       'field_video_embed' => '',
       'field_more_info' => [
         'value' => '
@@ -75,6 +83,26 @@ Lorem ipsum 1234 Lorem ipsum',
     ]);
     $entity->save();
     $this->addReference('node:hearing:Hearing1', $entity);
+
+    $entity = $entity->createDuplicate();
+    $entity->setTitle('Høring med GIS-kort');
+    $entity->set('field_description', [
+      'value' => <<<'EOD'
+<h2>Et GIS-kort</h2>
+
+<p>[gis:minimap:409c1dc9-b604-4f1e-9df9-2768d050acb4]</p>
+
+
+<h2>Et lavt GIS-kort</h2>
+<p>[gis:minimap:409c1dc9-b604-4f1e-9df9-2768d050acb4:height=200px]</p>
+
+<h2>Et ugyldigt kort</h2>
+
+<p>[gis:minimap:hest]</p>
+EOD,
+      'format' => 'hearing_description',
+    ]);
+    $entity->save();
   }
 
   /**

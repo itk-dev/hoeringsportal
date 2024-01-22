@@ -144,6 +144,7 @@
         "drupal/quick_node_clone": "^1.12",
         "drupal/redirect": "^1.6",
         "drupal/search_autocomplete": "^3.0",
+        "drupal/token_filter": "^2.1",
         "drupal/toolbar_visibility": "^2.1",
         "drupal/twig_tweak": "^3.2",
         "drupal/view_custom_table": "^2.0",

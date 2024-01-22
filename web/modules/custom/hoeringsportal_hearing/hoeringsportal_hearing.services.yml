@@ -3,3 +3,5 @@ services:
     class: Drupal\hoeringsportal_hearing\EventSubscriber\EventSubscriber
     tags:
       - {name: event_subscriber}
+
+  Drupal\hoeringsportal_hearing\TokenHelper:
