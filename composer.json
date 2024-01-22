@@ -152,7 +152,7 @@
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
         "drupal/xls_serialization": "^1.2",
-        "drush/drush": "^11",
+        "drush/drush": "^12",
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^2.0",
         "itk-dev/itk_pretix": "^1.0",
@@ -189,7 +189,8 @@
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "oomphinc/composer-installers-extender": true,
             "phpstan/extension-installer": true,
-            "chx/drupal-issue-fork": true
+            "chx/drupal-issue-fork": true,
+            "php-http/discovery": true
         }
     },
     "scripts": {
