@@ -134,7 +134,7 @@
         "drupal/hoeringsportal_deskpro": "^1.0",
         "drupal/hoeringsportal_openid_connect": "^1.0",
         "drupal/image_widget_crop": "^2.2",
-        "drupal/inline_entity_form": "^1.0@RC",
+        "drupal/inline_entity_form": "^3.0",
         "drupal/jquery_ui_accordion": "^2.0",
         "drupal/maxlength": "^2.1",
         "drupal/openid_connect": "^3.0@alpha",
