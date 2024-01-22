@@ -122,6 +122,7 @@ display:
               secondary_open: false
               text_input_required: 'Select any filter and click on Apply to see results'
               text_input_required_format: basic_html
+              reset_button_always_show: false
             sort:
               plugin_id: default
               advanced:
@@ -168,7 +169,18 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<!-- This text is added to prevent the the view and filters from being hidden if the view (i.e. the number of results) is empty -->'
+          tokenize: false
       sorts:
         field_reply_deadline_value:
           id: field_reply_deadline_value
@@ -301,6 +313,7 @@ display:
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              citizen_proposal_editor: '0'
               editor: '0'
               administrator: '0'
             reduce: false
