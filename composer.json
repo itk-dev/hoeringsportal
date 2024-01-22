@@ -125,6 +125,7 @@
         "drupal/redirect": "^1.6",
         "drupal/search_autocomplete": "^3.0",
         "drupal/system_status": "^2.8",
+        "drupal/token_filter": "^2.1",
         "drupal/toolbar_visibility": "^2.1",
         "drupal/twig_tweak": "^3.2",
         "drupal/view_custom_table": "^2.0",
@@ -170,7 +171,8 @@
             "drupal/core-project-message": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "oomphinc/composer-installers-extender": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "chx/drupal-issue-fork": true
         }
     },
     "scripts": {

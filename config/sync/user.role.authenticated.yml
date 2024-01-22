@@ -5,6 +5,7 @@ dependencies:
   config:
     - filter.format.citizen_proposal_content
     - filter.format.filtered_html
+    - filter.format.hearing_description
   module:
     - filter
     - media
@@ -21,4 +22,5 @@ permissions:
   - 'search content'
   - 'use text format citizen_proposal_content'
   - 'use text format filtered_html'
+  - 'use text format hearing_description'
   - 'view media'

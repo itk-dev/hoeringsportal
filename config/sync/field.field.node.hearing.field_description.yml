@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_description
+    - filter.format.hearing_description
     - node.type.hearing
   module:
     - allowed_formats
@@ -11,7 +12,7 @@ dependencies:
 third_party_settings:
   allowed_formats:
     allowed_formats:
-      - filtered_html
+      - hearing_description
 id: node.hearing.field_description
 field_name: field_description
 entity_type: node
