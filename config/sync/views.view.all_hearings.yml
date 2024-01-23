@@ -179,7 +179,7 @@ display:
           admin_label: ''
           plugin_id: text_custom
           empty: true
-          content: '<!-- This text is added to prevent the the view and filters from being hidden if the view (i.e. the number of results) is empty -->'
+          content: '<!-- This text is added to prevent the the view AND filters from being hidden if the view is empty (cf. https://www.drupal.org/project/viewsreference/issues/3399878) -->'
           tokenize: false
       sorts:
         field_reply_deadline_value:
