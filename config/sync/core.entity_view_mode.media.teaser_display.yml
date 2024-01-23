@@ -6,5 +6,6 @@ dependencies:
     - media
 id: media.teaser_display
 label: 'Teaser display'
+description: ''
 targetEntityType: media
 cache: true
