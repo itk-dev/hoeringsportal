@@ -34,7 +34,7 @@ class HearingTypeMoreInfo extends BlockBase {
       }
     }
 
-    return NULL;
+    return [];
   }
 
 }

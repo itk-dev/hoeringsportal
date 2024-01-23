@@ -34,7 +34,7 @@ class HearingTypeAddress extends BlockBase {
       }
     }
 
-    return NULL;
+    return [];
   }
 
 }

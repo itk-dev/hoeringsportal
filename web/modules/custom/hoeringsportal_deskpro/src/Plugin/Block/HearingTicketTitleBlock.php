@@ -21,7 +21,7 @@ class HearingTicketTitleBlock extends BlockBase {
     $ticket = $this->routeMatch->getParameter('ticket');
 
     if (!$this->helper->isHearing($node)) {
-      return NULL;
+      return [];
     }
 
     $cacheTags = $node->getCacheTags();
