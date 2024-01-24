@@ -13,6 +13,7 @@ dependencies:
   module:
     - aarhus_hero
     - entity_browser
+    - file
     - hoeringsportal_deskpro
     - itk_admin
     - locale
@@ -57,6 +58,7 @@ permissions:
   - 'delete any landing_page content'
   - 'delete any project content'
   - 'delete any static_page content'
+  - 'delete own files'
   - 'delete own hearing content'
   - 'delete own landing_page content'
   - 'delete own project content'

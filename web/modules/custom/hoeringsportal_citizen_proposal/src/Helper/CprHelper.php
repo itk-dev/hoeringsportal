@@ -5,7 +5,7 @@ namespace Drupal\hoeringsportal_citizen_proposal\Helper;
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_citizen_proposal\Exception\CprException;
 use GuzzleHttp\Client;
-use Http\Adapter\Guzzle6\Client as GuzzleAdapter;
+use Http\Adapter\Guzzle7\Client as GuzzleAdapter;
 use Http\Factory\Guzzle\RequestFactory;
 use ItkDev\AzureKeyVault\Authorisation\VaultToken;
 use ItkDev\AzureKeyVault\KeyVault\VaultSecret;

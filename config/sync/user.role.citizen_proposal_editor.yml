@@ -6,6 +6,7 @@ dependencies:
     - filter.format.email_html
     - node.type.citizen_proposal
   module:
+    - file
     - filter
     - hoeringsportal_citizen_proposal
     - node
@@ -21,6 +22,7 @@ permissions:
   - 'access webform submission user'
   - 'administer citizen proposal'
   - 'create webform'
+  - 'delete own files'
   - 'edit any citizen_proposal content'
   - 'edit any webform'
   - 'support citizen proposal on behalf of citizen'

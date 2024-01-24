@@ -221,7 +221,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ ''Document''|t }}'
+            text: "{{ 'Document'|t }}"
             make_link: false
             path: ''
             absolute: false
@@ -283,7 +283,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ ''Image''|t }}'
+            text: "{{ 'Image'|t }}"
             make_link: false
             path: ''
             absolute: false
@@ -391,6 +391,15 @@ display:
             date_format: short
             custom_date_format: ''
             timezone: ''
+            tooltip:
+              date_format: ''
+              custom_date_format: ''
+            time_diff:
+              enabled: false
+              future_format: '@interval hence'
+              past_format: '@interval ago'
+              granularity: 2
+              refresh: 60
           group_column: value
           group_columns: {  }
           group_rows: true

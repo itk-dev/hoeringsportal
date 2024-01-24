@@ -47,8 +47,11 @@ final class CitizenProposalSupportCounter extends BlockBase implements Container
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function build(): array {
     $node = $this->routeMatch->getParameter('node');
+    if (!$node) {
+      return [];
+    }
     $supportCount = $this->helper->getProposalSupportCount($node->id());
     $supportRequired = $this->helper->getProposalSupportRequired();
     $supportPercentage = $this->helper->calculateSupportPercentage($supportCount);

@@ -91,7 +91,7 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
   /**
    * {@inheritdoc}
    */
-  public function log($level, $message, array $context = []) {
+  public function log($level, $message, array $context = []): void {
     $this->logger->log($level, $message, $context);
   }
 

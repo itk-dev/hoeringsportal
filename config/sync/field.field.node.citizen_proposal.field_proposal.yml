@@ -4,14 +4,10 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_proposal
+    - filter.format.citizen_proposal_content
     - node.type.citizen_proposal
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - citizen_proposal_content
 id: node.citizen_proposal.field_proposal
 field_name: field_proposal
 entity_type: node
@@ -22,5 +18,7 @@ required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats:
+    - citizen_proposal_content
 field_type: text_long

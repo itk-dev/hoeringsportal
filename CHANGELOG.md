@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-375](https://github.com/itk-dev/hoeringsportal/pull/375)
+  Updated to Drupal 10
 * [PR-343](https://github.com/itk-dev/hoeringsportal/pull/343)
   Make custom modules and themes pass code analysis and compatible with d10
   Update contrib modules (Major versions):

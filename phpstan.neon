@@ -8,5 +8,3 @@ parameters:
       - '#Missing cache backend declaration for performance.#'
       - '#Plugin manager has cache backend specified but does not declare cache tags.#'
   reportUnmatchedIgnoredErrors: false
-  # Go through one module at a time and remove from list when they pass code analysis.
-  excludePaths:

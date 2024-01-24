@@ -7,12 +7,7 @@ dependencies:
     - filter.format.hearing_description
     - node.type.hearing
   module:
-    - allowed_formats
     - text
-third_party_settings:
-  allowed_formats:
-    allowed_formats:
-      - hearing_description
 id: node.hearing.field_description
 field_name: field_description
 entity_type: node
@@ -23,5 +18,7 @@ required: true
 translatable: true
 default_value: {  }
 default_value_callback: ''
-settings: {  }
+settings:
+  allowed_formats:
+    - hearing_description
 field_type: text_long

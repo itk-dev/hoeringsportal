@@ -43,7 +43,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -69,7 +69,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -116,7 +116,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -213,7 +213,7 @@ jobs:
           docker compose exec --user root phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
 
       - name: Export config
         run: docker compose exec --user root phpfpm vendor/bin/drush config:export --yes

@@ -6,5 +6,6 @@ dependencies:
     - entityqueue
 id: entity_subqueue.token
 label: Token
+description: ''
 targetEntityType: entity_subqueue
 cache: true
