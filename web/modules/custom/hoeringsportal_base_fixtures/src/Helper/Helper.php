@@ -61,7 +61,7 @@ class Helper {
     $this->fileSystem->prepareDirectory($image_target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
     // Loop over .jpg images to add them properly to the file system.
-    foreach (glob($image_source_path . '/*.{jpg}', GLOB_BRACE) as $image) {
+    foreach (glob($image_source_path . '/*.jpg') as $image) {
       $destination = $this->fileSystem->copy($image, $image_target_path . '/' . basename($image), FileSystemInterface::EXISTS_REPLACE);
       $images[] = $destination;
     }
@@ -79,7 +79,12 @@ class Helper {
     $this->fileSystem->prepareDirectory($document_target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
 
     // Loop over documents to add them properly to the file system.
-    foreach (glob($document_source_path . '/*.{pdf,docx}', GLOB_BRACE) as $document) {
+    foreach (glob($document_source_path . '/*.pdf') as $document) {
+      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
+      $documents[] = $destination;
+    }
+
+    foreach (glob($document_source_path . '/*.docx') as $document) {
       $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
       $documents[] = $destination;
     }

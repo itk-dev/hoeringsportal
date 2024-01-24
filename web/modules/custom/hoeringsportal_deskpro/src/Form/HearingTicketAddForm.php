@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form form definition for adding a hearing.
  */
-class HearingTicketAddForm extends FormBase {
+final class HearingTicketAddForm extends FormBase {
   /**
    * The form config.
    *

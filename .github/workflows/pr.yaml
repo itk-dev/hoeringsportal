@@ -1,6 +1,23 @@
-on: pull_request
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - unlabeled
+      - synchronize
+      - reopened
+
 name: PR Review
 jobs:
+  fail-for-do-not-merge:
+    if: contains(github.event.pull_request.labels.*.name, 'not ready for merge')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if PR is labeled with not ready for merge
+        run: |
+          echo "This PR can't be merged, due to the 'not ready for merge' label."
+          exit 1
+
   changelog:
     runs-on: ubuntu-latest
     name: Changelog should be updated
@@ -26,7 +43,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -52,7 +69,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -99,7 +116,7 @@ jobs:
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           extensions: ctype, dom, iconv, json, zip, gd, soap
           coverage: none
           tools: composer:v2
@@ -196,7 +213,7 @@ jobs:
           docker compose exec --user root phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
 
       - name: Export config
         run: docker compose exec --user root phpfpm vendor/bin/drush config:export --yes

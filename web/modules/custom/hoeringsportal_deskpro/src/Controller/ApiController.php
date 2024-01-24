@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_deskpro\Controller;
 
 use Deskpro\API\APIResponse;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\Service\DeskproService;
 use Drupal\node\Entity\Node;
@@ -16,7 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Api controller.
  */
-class ApiController extends ControllerBase {
+final class ApiController extends ControllerBase {
 
   /**
    * Drupal\hoeringsportal_deskpro\Service\DeskproService definition.
@@ -26,10 +27,18 @@ class ApiController extends ControllerBase {
   protected $deskpro;
 
   /**
+   * The current path.
+   *
+   * @var \Drupal\Core\Extension\ExtensionPathResolver
+   */
+  protected ExtensionPathResolver $pathResolver;
+
+  /**
    * Constructs a new DeskproController object.
    */
-  public function __construct(DeskproService $deskpro) {
+  public function __construct(DeskproService $deskpro, ExtensionPathResolver $pathResolver) {
     $this->deskpro = $deskpro;
+    $this->pathResolver = $pathResolver;
   }
 
   /**
@@ -37,7 +46,8 @@ class ApiController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('hoeringsportal_deskpro.deskpro')
+      $container->get('hoeringsportal_deskpro.deskpro'),
+      $container->get('extension.path.resolver')
     );
   }
 
@@ -52,7 +62,7 @@ class ApiController extends ControllerBase {
    * Api docs.
    */
   public function docs() {
-    $templatePath = drupal_get_path('module', 'hoeringsportal_deskpro') . '/templates/api/docs.html.twig';
+    $templatePath = $this->pathResolver->getPath('module', 'hoeringsportal_deskpro') . '/templates/api/docs.html.twig';
     $template = \Drupal::service('twig')->load($templatePath);
     $content = $template->render();
 
@@ -97,6 +107,7 @@ class ApiController extends ControllerBase {
    */
   public function hearings(Request $request) {
     $query = \Drupal::entityQuery('node')
+      ->accessCheck(FALSE)
       ->condition('type', 'hearing')
       ->condition('status', NodeInterface::PUBLISHED)
       // @todo Get only active hearings.

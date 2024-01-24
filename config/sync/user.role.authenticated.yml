@@ -7,6 +7,7 @@ dependencies:
     - filter.format.filtered_html
     - filter.format.hearing_description
   module:
+    - file
     - filter
     - media
     - search
@@ -19,6 +20,7 @@ weight: -9
 is_admin: false
 permissions:
   - 'access content'
+  - 'delete own files'
   - 'search content'
   - 'use text format citizen_proposal_content'
   - 'use text format filtered_html'

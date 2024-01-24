@@ -4,18 +4,10 @@ langcode: da
 iconset: social-icons--no-color
 services:
   facebook: facebook
-  twitter: twitter
-  whatsapp: '0'
-  facebook_messenger: '0'
+  x: x
   email: email
-  pinterest: '0'
   linkedin: linkedin
-  digg: '0'
-  tumblr: '0'
-  reddit: '0'
-  evernote: '0'
   print: print
-  copy: '0'
 width: 20px
 radius: 3px
 print_css: ''

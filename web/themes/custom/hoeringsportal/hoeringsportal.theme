@@ -51,6 +51,7 @@ function hoeringsportal_preprocess_field(&$variables) {
 
   if ($variables['field_name'] == 'dynamic_block_field:node-project_timeline') {
     $query = \Drupal::entityQuery('taxonomy_term');
+    $query->accessCheck();
     $query->condition('vid', 'timeline_item_types');
     $tids = $query->execute();
     $terms = Term::loadMultiple($tids);
@@ -302,7 +303,7 @@ function hoeringsportal_theme_suggestions_responsive_image_alter(array &$suggest
  */
 function hoeringsportal_preprocess_file_link(&$variables) {
   if ($variables['link']) {
-    $variables['file_path'] = file_create_url($variables['file']->get('uri')->getValue()['0']['value']);
+    $variables['file_path'] = \Drupal::service('file_url_generator')->generateAbsoluteString($variables['file']->get('uri')->getValue()['0']['value']);
   }
 }
 

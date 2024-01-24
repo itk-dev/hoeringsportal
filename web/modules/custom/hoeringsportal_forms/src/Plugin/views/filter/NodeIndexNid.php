@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ViewsFilter("node_index_nid")
  */
-class NodeIndexNid extends ManyToOne {
+final class NodeIndexNid extends ManyToOne {
 
   /**
    * NodeType storage handler.
@@ -195,6 +195,7 @@ class NodeIndexNid extends ManyToOne {
     else {
       $options = [];
       $query = \Drupal::entityQuery('node')
+        ->accessCheck()
         // @todo Sorting on bundle properties -
         ->sort('title')
         ->addTag('node_access');
@@ -307,66 +308,18 @@ class NodeIndexNid extends ManyToOne {
       $this->operator = $input[$this->options['expose']['operator_id']];
     }
 
-    // If view is an attachment and is inheriting exposed filters, then assume
-    // exposed input has already been validated.
-    if (!empty($this->view->is_attachment) && $this->view->display_handler->usesExposed()) {
-      $this->validated_exposed_input = (array) $this->view->exposed_raw_input[$this->options['expose']['identifier']];
-    }
-
     // If we're checking for EMPTY or NOT, we don't need any input, and we can
     // say that our input conditions are met by just having the right operator.
     if ($this->operator == 'empty' || $this->operator == 'not empty') {
       return TRUE;
     }
 
-    // If it's non-required and there's no value don't bother filtering.
-    if (!$this->options['expose']['required'] && empty($this->validated_exposed_input)) {
+    // If it's non-required don't bother filtering.
+    if (!$this->options['expose']['required']) {
       return FALSE;
     }
 
-    $rc = parent::acceptExposedInput($input);
-    if ($rc) {
-      // If we have previously validated input, override.
-      if (isset($this->validated_exposed_input)) {
-        $this->value = $this->validated_exposed_input;
-      }
-    }
-
-    return $rc;
-  }
-
-  /**
-   * Custom validation for the exposed form.
-   *
-   * @param mixed $form
-   *   The exposed form to validate.
-   * @param \Drupal\Core\Form\FormStateInterface $form_state
-   *   The state of the exposed form.
-   */
-  public function validateExposed(&$form, FormStateInterface $form_state) {
-    if (empty($this->options['exposed'])) {
-      return;
-    }
-
-    $identifier = $this->options['expose']['identifier'];
-
-    // We only validate if they've chosen the text field style.
-    if ($this->options['type'] != 'textfield') {
-      if ($form_state->getValue($identifier) != 'All') {
-        $this->validated_exposed_input = (array) $form_state->getValue($identifier);
-      }
-      return;
-    }
-
-    if (empty($this->options['expose']['identifier'])) {
-      return;
-    }
-
-    if ($values = $form_state->getValue($identifier)) {
-      foreach ($values as $value) {
-        $this->validated_exposed_input[] = $value['target_id'];
-      }
-    }
+    return parent::acceptExposedInput($input);
   }
 
   /**

@@ -5,7 +5,7 @@ namespace Drupal\hoeringsportal_public_meeting\EventSubscriber;
 use Drupal\Component\Utility\UrlHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -20,7 +20,7 @@ class EventSubscriber implements EventSubscriberInterface {
    * When the user selects "finished" in "field_content_state_value"
    * We want to default to "field_reply_deadline_value DESC" as sorting.
    */
-  public function setDefaultSorting(GetResponseEvent $event) {
+  public function setDefaultSorting(RequestEvent $event) {
     $request = $event->getRequest();
 
     if ('/begivenheder' === $request->getPathInfo()) {

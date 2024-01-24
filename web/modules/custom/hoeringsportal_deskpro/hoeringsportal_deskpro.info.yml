@@ -2,7 +2,7 @@ name: Høringsportal Deskpro
 type: module
 description: 'Deskpro integration'
 package: Hoeringsportal
-core_version_requirement: ^8.8 || ^9
+core_version_requirement: ^8.8 || ^9 || ^10
 
 dependencies:
   - itk_admin

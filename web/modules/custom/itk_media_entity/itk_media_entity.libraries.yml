@@ -1,0 +1,4 @@
+itk_media_entity:
+  css:
+    theme:
+      css/itk_media_entity.css: {}

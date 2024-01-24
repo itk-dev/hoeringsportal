@@ -7,6 +7,6 @@
     "minimum-stability": "dev",
     "require": {
         "itk-dev/openid-connect": "^3.1",
-        "itk-dev/drupal_psr6_cache": "dev-main"
+        "itk-dev/drupal_psr6_cache": "^1.1"
     }
 }

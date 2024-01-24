@@ -16,14 +16,14 @@
         "drupal/entity_events": "^2.0",
         "symfony/options-resolver": "^5.0",
         "itk-dev/getorganized-api-client-php": "^1.2",
-        "drush/drush": "^11",
+        "drush/drush": "^12",
         "dompdf/dompdf": "^2.0",
         "drupal/pluginformalter": "^1.5"
     },
     "extra": {
         "drush": {
             "services": {
-                "drush.services.yml": "^11"
+                "drush.services.yml": "^12"
             }
         }
     }

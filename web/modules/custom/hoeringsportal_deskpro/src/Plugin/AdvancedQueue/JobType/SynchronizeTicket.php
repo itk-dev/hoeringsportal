@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Update or create ticket"),
  * )
  */
-class SynchronizeTicket extends JobTypeBase implements ContainerFactoryPluginInterface {
+final class SynchronizeTicket extends JobTypeBase implements ContainerFactoryPluginInterface {
   /**
    * The hearing helper.
    *
