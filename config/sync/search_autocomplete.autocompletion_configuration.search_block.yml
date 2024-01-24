@@ -1,11 +1,12 @@
+uuid: 2dee15ba-2893-453c-a5d8-74b93a66f870
+langcode: da
+status: true
+dependencies: {  }
 _core:
   default_config_hash: 2lo0hIx3RV2AgnE1fkdPLRQcYWGamMyouBoe2OiYk24
-langcode: da
 id: search_block
-uuid: 2dee15ba-2893-453c-a5d8-74b93a66f870
 label: 'Search Block'
 selector: ''
-status: true
 minChar: 3
 autoSubmit: true
 autoRedirect: true
@@ -20,4 +21,3 @@ source: 'autocompletion_callbacks_nodes::nodes_autocompletion_callback'
 theme: minimal.css
 editable: true
 deletable: false
-dependencies: {  }

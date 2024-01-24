@@ -41,6 +41,13 @@ class GeoJsonHelper {
   private $helper;
 
   /**
+   * The hearing helper.
+   *
+   * @var \Drupal\hoeringsportal_deskpro\Service\HearingHelper
+   */
+  private DeskproHearingHelper $deskproHelper;
+
+  /**
    * Constructor.
    */
   public function __construct(EntityTypeManagerInterface $entityTypeManager, UrlGeneratorInterface $urlGenerator, HearingHelper $helper, DeskproHearingHelper $deskproHelper) {
@@ -124,7 +131,6 @@ class GeoJsonHelper {
         'reply_deadline' => $this->getDateTime($entity->get('field_reply_deadline')->value),
         'start_date' => $this->getDateTime($entity->get('field_start_date')->value),
         'tags' => array_map([$this, 'getTermName'], $tags),
-        'teaser' => $entity->get('field_teaser')->value,
         'lokalplaner' => $lokalplaner,
         'geojson' => $geojson,
       ],
@@ -157,7 +163,6 @@ class GeoJsonHelper {
         'project_start' => $this->getDateTime($project->get('field_project_start')->value),
         'project_finish' => $this->getDateTime($project->get('field_project_finish')->value),
         'project_tags' => array_map([$this, 'getTermName'], $tags),
-        'project_teaser' => $project->get('field_teaser')->value,
         'project_contact' => $project->get('field_contact')->value,
         'project_phone' => $project->get('field_phone')->value,
         'project_geometry_type' => $geometryType,
@@ -536,6 +541,7 @@ class GeoJsonHelper {
     $storage = $this->entityTypeManager
       ->getStorage($entityTypeId);
     $query = $storage->getQuery();
+    $query->accessCheck();
     foreach ($properties as $field => $value) {
       // Cast scalars to array so we can consistently use an IN condition.
       $query->condition($field, (array)$value, 'IN');

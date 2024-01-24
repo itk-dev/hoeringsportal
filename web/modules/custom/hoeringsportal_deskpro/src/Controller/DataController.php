@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
 /**
  * Data controller.
  */
-class DataController extends ControllerBase implements AccessInterface {
+final class DataController extends ControllerBase implements AccessInterface {
 
   /**
    * The Deskpro service.

@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form definition for applying configuration for Deskpro module in UI.
  */
-class DeskproSettingsForm extends FormBase {
+final class DeskproSettingsForm extends FormBase {
   /**
    * The Deskpro service.
    *

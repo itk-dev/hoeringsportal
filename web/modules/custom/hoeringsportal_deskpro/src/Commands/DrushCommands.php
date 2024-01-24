@@ -101,6 +101,7 @@ class DrushCommands extends BaseDrushCommands {
 
     $query = $this->entityTypeManager->getStorage('node')
       ->getQuery()
+      ->accessCheck(FALSE)
       ->condition('status', 1)
       ->condition('type', 'hearing')
       ->condition('nid', $ids, 'IN');

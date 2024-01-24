@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Autocomplete controller.
  */
-class AutocompleteController extends ControllerBase {
+final class AutocompleteController extends ControllerBase {
 
   /**
    * Drupal\hoeringsportal_deskpro\Service\DeskproService definition.

@@ -12,7 +12,7 @@ use Drupal\taxonomy\Entity\Term;
  * Add taxonomy terms to timeline vocabulary.
  */
 function hoeringsportal_project_timeline_update_8001() {
-  $vocabularies = taxonomy_vocabulary_get_names();
+  $vocabularies = \Drupal::entityQuery('taxonomy_vocabulary')->execute();
   if (!array_key_exists('timeline_item_types', $vocabularies)) {
     throw new UpdateException('This update requires the timeline_item_types vocabulary. Run config-import to add the vocabulary and rerun this update hook.');
   }
