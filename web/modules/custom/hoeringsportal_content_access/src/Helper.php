@@ -12,6 +12,7 @@ use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;
@@ -93,12 +94,12 @@ final class Helper {
    * Alters query to onyl select nodes that the current user has edit access to.
    */
   public function viewsQueryAlter(ViewExecutable $view, QueryPluginBase $query) {
-    if ($this->bypassAccessCheck()) {
+    if ($this->bypassDepartmentAccessCheck()) {
       return;
     }
 
     if ('content' === $view->id() && $query instanceof Sql) {
-      $nodeIds = $this->getUserNodeIds();
+      $nodeIds = $this->getUserDepartmentNodeIds();
       $query->addWhere(0, 'nid', $nodeIds ?: [0], 'IN');
     }
   }
@@ -107,7 +108,14 @@ final class Helper {
    * Implements hook_form_BASE_FORM_ID_alter() for node_form.
    */
   public function nodeFormAlter(array &$form, FormStateInterface $formState, string $formId) {
-    if ($this->bypassAccessCheck()) {
+    // Remove the department field if no departments are defined.
+    if (isset($form[self::FIELD_DEPARTMENT]['widget']['#options'])
+      && empty($form[self::FIELD_DEPARTMENT]['widget']['#options'])
+    ) {
+      $form[self::FIELD_DEPARTMENT]['#access'] = FALSE;
+    }
+
+    if ($this->bypassDepartmentAccessCheck()) {
       return;
     }
 
@@ -133,7 +141,7 @@ final class Helper {
    * Hides departments the current user does not have access to.
    */
   public function preprocessFormElement(&$variables) {
-    if ($this->bypassAccessCheck()) {
+    if ($this->bypassDepartmentAccessCheck()) {
       return;
     }
 
@@ -168,7 +176,7 @@ final class Helper {
    * Check that user has selected at least one of its own departments.
    */
   private function validateDepartment(array &$form, FormStateInterface $formState) {
-    if ($this->bypassAccessCheck()) {
+    if ($this->bypassDepartmentAccessCheck()) {
       return;
     }
 
@@ -247,7 +255,7 @@ final class Helper {
   /**
    * Get list of node IDs an account has edit access to.
    */
-  private function getUserNodeIds(AccountInterface $account = NULL): array {
+  private function getUserDepartmentNodeIds(AccountInterface $account = NULL): array {
     $account ??= $this->currentUser;
     $departments = $this->getUserDepartments($account);
     $query = $this->nodeStorage->getQuery();
@@ -277,10 +285,11 @@ final class Helper {
   }
 
   /**
-   * Check if access check must be bypassed.
+   * Check if department access check must be bypassed.
    */
-  private function bypassAccessCheck(): bool {
-    return $this->currentUser->hasPermission('bypass node access');
+  private function bypassDepartmentAccessCheck(): bool {
+    return (Settings::get('hoeringsportal_content_access')['bypass_department_access_check'] ?? FALSE)
+      || $this->currentUser->hasPermission('bypass node access');
   }
 
 }
