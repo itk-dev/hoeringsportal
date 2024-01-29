@@ -1,0 +1,14 @@
+uuid: e68ad220-b670-462b-9317-40f4ebfcebc6
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.public_meeting_editor
+  module:
+    - user
+id: user_add_role_action.public_meeting_editor
+label: 'Add the public meeting editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: public_meeting_editor

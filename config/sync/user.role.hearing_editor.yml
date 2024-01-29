@@ -1,0 +1,24 @@
+uuid: 4b24ebf6-2c65-4ba2-85cb-28f5ff8e84aa
+langcode: da
+status: true
+dependencies:
+  config:
+    - filter.format.email_html
+    - node.type.hearing
+  module:
+    - file
+    - filter
+    - node
+    - system
+    - webform
+id: hearing_editor
+label: 'Hearing editor'
+weight: -5
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access webform overview'
+  - 'delete own files'
+  - 'edit any hearing content'
+  - 'use text format email_html'
+  - 'view the administration theme'
