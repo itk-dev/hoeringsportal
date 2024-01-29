@@ -193,6 +193,128 @@ services:
             Value: Betina Henningsentest
             ValueType: string
 
+  # https://github.com/Soluto/oidc-server-mock
+  idp-employee:
+    image: ghcr.io/soluto/oidc-server-mock:latest
+    profiles:
+      - oidc
+      - test
+    # Let this container be accessible both internally and externally on the same domain.
+    container_name: idp-employee.${COMPOSE_DOMAIN}
+    networks:
+      - app
+      - frontend
+    ports:
+      - '80'
+    volumes:
+      - .:/tmp/config:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp-employee.rule=Host(`idp-employee.${COMPOSE_DOMAIN}`)"
+      - "traefik.http.services.${COMPOSE_PROJECT_NAME}_idp-employee.loadbalancer.server.port=80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      SERVER_OPTIONS_INLINE: |
+        AccessTokenJwtType: JWT
+        Discovery:
+          ShowKeySet: true
+        Authentication:
+          CookieSameSiteMode: Lax
+          CheckSessionCookieSameSiteMode: Lax
+
+      LOGIN_OPTIONS_INLINE: |
+        {
+          "AllowRememberLogin": false
+        }
+
+      LOGOUT_OPTIONS_INLINE: |
+        {
+          "AutomaticRedirectAfterSignOut": true
+        }
+
+      CLIENTS_CONFIGURATION_INLINE: |
+        - ClientId: client-id
+          ClientSecrets: [client-secret]
+          Description: Mock IdP
+          AllowedGrantTypes:
+            # - client_credentials
+            # - implicit
+            - authorization_code
+          # https://github.com/Soluto/oidc-server-mock/issues/46#issuecomment-704963181
+          RequireClientSecret: false
+          AllowAccessTokensViaBrowser: true
+          # https://github.com/Soluto/oidc-server-mock/issues/26#issuecomment-705022941
+          AlwaysIncludeUserClaimsInIdToken: true
+          AllowedScopes:
+            - openid
+            - profile
+            - email
+          ClientClaimsPrefix: ''
+          RedirectUris:
+            - '*'
+          # https://github.com/Soluto/oidc-server-mock/issues/60
+          PostLogoutRedirectUris:
+            - '*'
+          # https://github.com/Soluto/oidc-server-mock/issues/46#issuecomment-704845375
+          RequirePkce: false
+
+      # Needed to set custom claim types in "profile"
+      # https://github.com/Soluto/oidc-server-mock/issues/123#issuecomment-1427129278
+      # https://github.com/Soluto/oidc-server-mock/blob/master/README.md#simple-configuration
+      # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
+      OVERRIDE_STANDARD_IDENTITY_RESOURCES: 'true'
+      IDENTITY_RESOURCES_INLINE: |
+        # https://auth0.com/docs/get-started/apis/scopes/openid-connect-scopes#standard-claims
+        - Name: openid
+          ClaimTypes:
+            - sub
+        - Name: email
+          ClaimTypes:
+            - email
+        - Name: profile
+          ClaimTypes:
+            # Add your custom claims here
+            - name
+            - groups
+            - magistratsafdeling
+
+      USERS_CONFIGURATION_INLINE: |
+        - SubjectId: 1
+          Username: employee-department-a
+          Password: employee-department-a
+          Claims:
+            # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
+          - Type: email
+            Value: 'aand@andeby.eksempel.dk'
+            ValueType: string
+          - Type: name
+            Value: 'Anders And'
+            ValueType: string
+          - Type: magistratsafdeling
+            Value: 'Department A'
+            ValueType: string
+          - Type: groups
+            Value: '["administrator"]'
+            ValueType: json
+
+        - SubjectId: 2
+          Username: employee-department-b
+          Password: employee-department-b
+          Claims:
+          - Type: email
+            Value: 'bbob@vesterbro.eksempel.dk'
+            ValueType: string
+          - Type: name
+            Value: 'Bølle-bob'
+            ValueType: string
+          - Type: magistratsafdeling
+            Value: 'Department B'
+            ValueType: string
+          - Type: groups
+            Value: '["editor"]'
+            ValueType: json
+
   pretix:
     image: pretix/standalone:latest
     profiles:

@@ -1,0 +1,37 @@
+uuid: 8af32b14-f745-407e-a71d-08a52882b968
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.department.field_claim_value
+    - taxonomy.vocabulary.department
+id: taxonomy_term.department.default
+targetEntityType: taxonomy_term
+bundle: department
+mode: default
+content:
+  field_claim_value:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      maxlength:
+        maxlength_js: null
+        maxlength_js_label: 'Content limited to @limit characters, remaining: <strong>@remaining</strong>'
+        maxlength_js_enforce: false
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true
+  status: true

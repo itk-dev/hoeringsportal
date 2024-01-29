@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
+    - field.field.node.hearing.field_department
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -57,6 +58,7 @@ third_party_settings:
       header:
         - 'dynamic_block_field:node-hearing_warning'
         - node_title
+        - sharing_buttons
       left:
         - field_teaser
         - field_description
@@ -238,9 +240,10 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 100
-    region: content
+    region: header
 hidden:
   field_content_state: true
+  field_department: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true
   field_edoc_casefile_id: true

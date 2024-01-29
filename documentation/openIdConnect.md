@@ -25,8 +25,8 @@ Use `drush` to check your actual configuration (with `--include-overridden` to
 include your config from `settings.local.php`):
 
 ```sh
-docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
-docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.settings
+docker compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
+docker compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.settings
 ```
 
 ## Citizen authentification
@@ -39,3 +39,18 @@ For local testing we use [OpenId Connect Server
 Mock](https://github.com/Soluto/oidc-server-mock) for (almost) real OpenID
 Connect. Users and their claims are defined in
 [`docker-compose.override.yml`](../../../../docker-compose.override.yml).
+
+## Employee authentification
+
+```php
+# settings.local.php
+$config['openid_connect.settings']['role_mappings']['administrator'][] = 'administrator';
+$config['openid_connect.settings']['role_mappings']['editor'][] = 'editor';
+```
+
+Create department taxonomy terms:
+
+```shell
+docker compose exec phpfpm vendor/bin/drush php:eval "\Drupal\taxonomy\Entity\Term::create(['name' => 'Department A', 'vid' => 'department', 'status' => 1])->save();"
+docker compose exec phpfpm vendor/bin/drush php:eval "\Drupal\taxonomy\Entity\Term::create(['name' => 'Department B', 'vid' => 'department', 'status' => 1])->save();"
+```

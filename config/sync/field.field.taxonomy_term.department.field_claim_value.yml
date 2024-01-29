@@ -1,0 +1,19 @@
+uuid: 62fb1182-87c8-4ca1-a1db-adbb5a7c3f5a
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_claim_value
+    - taxonomy.vocabulary.department
+id: taxonomy_term.department.field_claim_value
+field_name: field_claim_value
+entity_type: taxonomy_term
+bundle: department
+label: 'Claim value'
+description: 'The claim value to match. If not set, the name of the term itself will be used.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
