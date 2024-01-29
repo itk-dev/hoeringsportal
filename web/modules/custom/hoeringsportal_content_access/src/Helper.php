@@ -12,11 +12,13 @@ use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drupal\Core\Site\Settings;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Template\Attribute;
 use Drupal\node\NodeInterface;
 use Drupal\node\NodeStorageInterface;
+use Drupal\taxonomy\TermInterface;
+use Drupal\taxonomy\TermStorageInterface;
+use Drupal\user\UserInterface;
 use Drupal\user\UserStorageInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\Plugin\views\query\Sql;
@@ -45,11 +47,25 @@ final class Helper {
   private UserStorageInterface $userStorage;
 
   /**
+   * The term storage.
+   *
+   * @var \Drupal\taxonomy\TermStorageInterface
+   */
+  private TermStorageInterface $termStorage;
+
+  /**
    * The user departments.
    *
    * @var array
    */
   private array $userDepartments;
+
+  /**
+   * The settings.
+   *
+   * @var \Drupal\hoeringsportal_content_access\Settings
+   */
+  private Settings $settings;
 
   /**
    * The bundles that must be checked for department access.
@@ -71,6 +87,8 @@ final class Helper {
   ) {
     $this->nodeStorage = $entityTypeManager->getStorage('node');
     $this->userStorage = $entityTypeManager->getStorage('user');
+    $this->termStorage = $entityTypeManager->getStorage('taxonomy_term');
+    $this->settings = new Settings();
   }
 
   /**
@@ -108,7 +126,7 @@ final class Helper {
    * Implements hook_form_BASE_FORM_ID_alter() for node_form.
    */
   public function nodeFormAlter(array &$form, FormStateInterface $formState, string $formId) {
-    // Remove the department field if no departments are defined.
+    // Remove the department field if no departments are available.
     if (isset($form[self::FIELD_DEPARTMENT]['widget']['#options'])
       && empty($form[self::FIELD_DEPARTMENT]['widget']['#options'])
     ) {
@@ -205,11 +223,14 @@ final class Helper {
    *   The result.
    */
   private function checkDepartmentAccess(NodeInterface $node, string $operation, AccountInterface $account): AccessResultInterface {
-    if (in_array($operation, ['update', 'delete'], TRUE)) {
-      $userDepartments = $this->getUserDepartments($account);
-      if (empty($userDepartments)
-        || empty(array_intersect($userDepartments, $this->getDepartments($node)))) {
-        return new AccessResultForbidden();
+    if (!$this->bypassDepartmentAccessCheck()) {
+      if (in_array($operation, ['update', 'delete'], TRUE)) {
+        $userDepartments = $this->getUserDepartments($account);
+        if (empty($userDepartments)
+          || empty(array_intersect($userDepartments,
+            $this->getDepartments($node)))) {
+          return new AccessResultForbidden();
+        }
       }
     }
 
@@ -288,8 +309,32 @@ final class Helper {
    * Check if department access check must be bypassed.
    */
   private function bypassDepartmentAccessCheck(): bool {
-    return (Settings::get('hoeringsportal_content_access')['bypass_department_access_check'] ?? FALSE)
+    return $this->settings->bypassDepartmentAccessCheck()
       || $this->currentUser->hasPermission('bypass node access');
+  }
+
+  /**
+   * Implements hook_openid_connect_userinfo_save().
+   */
+  public function userinfoSave(UserInterface $account, array $context) {
+    // @todo Get these values from settings?
+    $vocabularyId = $this->settings->getDepartmentVocabularyId();
+    $claim = $this->settings->getUserDepartmentClaim();
+    if (isset($context['user_data'][$claim])) {
+      $terms = $this->termStorage->loadTree($vocabularyId);
+      // Exchange to IDs to real term entities.
+      $terms = $this->termStorage->loadMultiple(array_column($terms, 'tid'));
+      $values = (array) $context['user_data'][$claim];
+      /** @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $departmentField */
+      $departmentField = $account->get(self::FIELD_DEPARTMENT);
+      // Set terms on user.
+      $departmentField->setValue(
+        array_filter($terms, static fn (TermInterface $term) => in_array(
+          $term->get('field_claim_value')->getString() ?: $term->getName(),
+          $values
+        ))
+      );
+    }
   }
 
 }

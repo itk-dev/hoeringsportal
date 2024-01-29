@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\hoeringsportal_content_access\Helper;
 use Drupal\node\NodeInterface;
+use Drupal\user\UserInterface;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
 
@@ -38,6 +39,13 @@ function hoeringsportal_content_access_preprocess_form_element(&$variables) {
  */
 function hoeringsportal_content_access_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
   _hoeringsportal_content_access_get_helper()->viewsQueryAlter($view, $query);
+}
+
+/**
+ * Implements hook_openid_connect_userinfo_save().
+ */
+function hoeringsportal_content_access_openid_connect_userinfo_save(UserInterface $account, array $context) {
+  _hoeringsportal_content_access_get_helper()->userinfoSave($account, $context);
 }
 
 /**
