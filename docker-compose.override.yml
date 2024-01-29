@@ -276,7 +276,8 @@ services:
           ClaimTypes:
             # Add your custom claims here
             - name
-            - department
+            - groups
+            - magistratsafdeling
 
       USERS_CONFIGURATION_INLINE: |
         - SubjectId: 1
@@ -285,28 +286,34 @@ services:
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: email
-            Value: 'aand@andeby.dk'
+            Value: 'aand@andeby.eksempel.dk'
             ValueType: string
           - Type: name
             Value: 'Anders And'
             ValueType: string
-          - Type: department
+          - Type: magistratsafdeling
             Value: 'Department A'
             ValueType: string
+          - Type: groups
+            Value: '["administrator"]'
+            ValueType: json
 
         - SubjectId: 2
           Username: employee-department-b
           Password: employee-department-b
           Claims:
           - Type: email
-            Value: bbob@vesterbro.dk'
+            Value: 'bbob@vesterbro.eksempel.dk'
             ValueType: string
           - Type: name
             Value: 'Bølle-bob'
             ValueType: string
-          - Type: department
+          - Type: magistratsafdeling
             Value: 'Department B'
             ValueType: string
+          - Type: groups
+            Value: '["editor"]'
+            ValueType: json
 
   pretix:
     image: pretix/standalone:latest
