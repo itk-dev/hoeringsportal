@@ -1,0 +1,24 @@
+uuid: 3b8e4b6b-6c17-48ee-8afa-af33e067840b
+langcode: da
+status: true
+dependencies:
+  config:
+    - filter.format.email_html
+    - node.type.public_meeting
+  module:
+    - file
+    - filter
+    - node
+    - system
+    - webform
+id: public_meeting_editor
+label: 'Public meeting editor'
+weight: -4
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access webform overview'
+  - 'delete own files'
+  - 'edit any public_meeting content'
+  - 'use text format email_html'
+  - 'view the administration theme'

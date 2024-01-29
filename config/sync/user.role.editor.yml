@@ -26,7 +26,6 @@ permissions:
   - 'access media overview'
   - 'access toolbar'
   - 'administer nodes'
-  - 'bypass node access'
   - 'clone public_meeting content'
   - 'create hearing content'
   - 'create media'
