@@ -1,46 +1,40 @@
 <?php
 
-namespace Drupal\hoeringsportal_public_meeting\Commands;
+namespace Drupal\hoeringsportal_public_meeting\Drush\Commands;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\State\StateInterface;
 use Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Custom drush commands from hoeringsportal_public_meeting.
+ * Custom drush commands for hoeringsportal_public_meeting.
  */
-class DrushCommands extends BaseDrushCommands {
-  /**
-   * Public meetings helper.
-   *
-   * @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper
-   */
-  private $helper;
-
-  /**
-   * The time.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-  private $time;
-
-  /**
-   * The state.
-   *
-   * @var \Drupal\Core\State\StateInterface
-   */
-  private $state;
+final class DrushCommands extends BaseDrushCommands {
 
   /**
    * Constructor.
    */
-  public function __construct(PublicMeetingHelper $helper, TimeInterface $time, StateInterface $state) {
+  public function __construct(
+    private readonly PublicMeetingHelper $helper,
+    private readonly TimeInterface $time,
+    private readonly StateInterface $state
+  ) {
     parent::__construct();
-    $this->helper = $helper;
-    $this->time = $time;
-    $this->state = $state;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('hoeringsportal_public_meeting.public_meeting_helper'),
+      $container->get('datetime.time'),
+      $container->get('state')
+    );
   }
 
   /**
@@ -50,6 +44,7 @@ class DrushCommands extends BaseDrushCommands {
    * @usage hoeringsportal:public_meeting:state-update
    *   Update state for all public meetings.
    */
+  #[CLI\Command(name: 'hoeringsportal:public_meeting:state-update')]
   public function updatePublicMeetingState() {
     $lastRunAt = $this->getLastRunAt(__METHOD__);
     $requestTime = $this->getRequestTime();
@@ -85,6 +80,7 @@ class DrushCommands extends BaseDrushCommands {
    * @usage hoeringsportal:public_meeting:state-show
    *   Show state for all public meetings.
    */
+  #[CLI\Command(name: 'hoeringsportal:public_meeting:state-show')]
   public function showPublicMeetingState() {
     $meetings = $this->helper->loadPublicMeetings();
 
