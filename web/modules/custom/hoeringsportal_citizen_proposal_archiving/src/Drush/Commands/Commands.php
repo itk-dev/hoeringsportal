@@ -1,17 +1,18 @@
 <?php
 
-namespace Drupal\hoeringsportal_citizen_proposal_archiving\Commands;
+namespace Drupal\hoeringsportal_citizen_proposal_archiving\Drush\Commands;
 
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper as CitizenProposalHelper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer;
 use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Drush commands.
  */
-class Commands extends DrushCommands {
+final class Commands extends DrushCommands {
 
   /**
    * Constructor.
@@ -21,6 +22,17 @@ class Commands extends DrushCommands {
     readonly private CitizenProposalHelper $citizenProposalHelper,
     readonly private Renderer $renderer
   ) {
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get(Helper::class),
+      $container->get(CitizenProposalHelper::class),
+      $container->get(Renderer::class)
+    );
   }
 
   /**

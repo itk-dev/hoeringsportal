@@ -1,27 +1,33 @@
 <?php
 
-namespace Drupal\hoeringsportal_data\Commands;
+namespace Drupal\hoeringsportal_data\Drush\Commands;
 
 use Drupal\hoeringsportal_data\Helper\HearingHelper;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Custom drush commands from hoeringsportal_deskpro.
+ * Custom drush commands for hoeringsportal_data.
  */
-class DrushCommands extends BaseDrushCommands {
-  /**
-   * Deskpro helper.
-   *
-   * @var \Drupal\hoeringsportal_data\Helper\HearingHelper
-   */
-  private $helper;
+final class DrushCommands extends BaseDrushCommands {
 
   /**
    * Constructor.
    */
-  public function __construct(HearingHelper $helper) {
+  public function __construct(
+    private readonly HearingHelper $helper
+  ) {
     parent::__construct();
-    $this->helper = $helper;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('hoeringsportal_data.hearing_helper'),
+    );
   }
 
   /**
@@ -31,6 +37,7 @@ class DrushCommands extends BaseDrushCommands {
    * @usage hoeringsportal:data:hearing-state-update
    *   Update state for all hearings.
    */
+  #[CLI\Command(name: 'hoeringsportal:data:hearing-state-update')]
   public function updateHearingState() {
     $hearings = $this->helper->loadHearings();
 
@@ -50,6 +57,7 @@ class DrushCommands extends BaseDrushCommands {
    * @usage hoeringsportal:data:hearing-state-show
    *   SHow state for all hearings.
    */
+  #[CLI\Command(name: 'hoeringsportal:data:hearing-state-show')]
   public function showHearingState() {
     $hearings = $this->helper->loadHearings();
 

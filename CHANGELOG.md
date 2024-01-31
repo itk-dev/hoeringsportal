@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-382](https://github.com/itk-dev/hoeringsportal/pull/382)
+  Updated custom Drush commands to work with Drush 12.
+
 ## [4.0.0] - 2024-01-24
 
 * [PR-375](https://github.com/itk-dev/hoeringsportal/pull/375)

@@ -1,17 +1,19 @@
 <?php
 
-namespace Drupal\hoeringsportal_citizen_proposal\Commands;
+namespace Drupal\hoeringsportal_citizen_proposal\Drush\Commands;
 
 use Drupal\entity_events\EntityEventType;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
 use Drupal\hoeringsportal_citizen_proposal\Helper\MailHelper;
 use Drupal\symfony_mailer\AddressInterface;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Test mail commands for citizen proposal.
  */
-class TestMailCommand extends BaseDrushCommands {
+final class TestMailCommand extends BaseDrushCommands {
 
   /**
    * Constructor for the citizen proposal commands class.
@@ -24,17 +26,22 @@ class TestMailCommand extends BaseDrushCommands {
   }
 
   /**
-   * Send mail command.
-   *
-   * @param int $proposalId
-   *   The proposal (node) id.
-   * @param string $event
-   *   The event; "create" or "update".
-   * @param string $recipient
-   *   The mail recipient.
-   *
-   * @command hoeringsportal-citizen-proposal:test-mail:send
+   * {@inheritdoc}
    */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get(Helper::class),
+      $container->get(MailHelper::class)
+    );
+  }
+
+  /**
+   * Send mail command.
+   */
+  #[CLI\Command(name: 'hoeringsportal-citizen-proposal:test-mail:send')]
+  #[CLI\Argument(name: 'proposalId', description: 'The proposal (node) id.')]
+  #[CLI\Argument(name: 'event', description: 'The event; "create" or "update".', suggestedValues: ['create', 'update'])]
+  #[CLI\Argument(name: 'recipient', description: 'The mail recipient.')]
   public function send(int $proposalId, string $event, string $recipient): void {
     $proposal = $this->helper->loadCitizenProposal($proposalId);
     // Overwrite the proposal author.
