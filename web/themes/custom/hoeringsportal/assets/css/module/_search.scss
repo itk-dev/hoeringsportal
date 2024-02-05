@@ -1,7 +1,13 @@
 #search-block-form-wrapper {
   text-align: right;
   position: absolute;
+<<<<<<< Updated upstream
   right: 0px;
+=======
+  right: 15px;
+  top: -5px;
+  min-height: 40px;
+>>>>>>> Stashed changes
 
   @include media-breakpoint-down(md) {
     position: relative;
