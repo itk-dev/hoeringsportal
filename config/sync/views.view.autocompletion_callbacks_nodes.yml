@@ -2,9 +2,13 @@ uuid: 3324f913-1644-4a21-902e-6da2d8d0a7c1
 langcode: da
 status: true
 dependencies:
+  config:
+    - field.storage.node.field_description
+    - field.storage.node.field_proposal
   module:
     - node
     - search_autocomplete
+    - text
     - user
 _core:
   default_config_hash: xL9Hk4AQHs1h4kuPUWFrapn1sZbCxsV3B7omkB1FhMg
@@ -218,7 +222,7 @@ display:
           entity_field: type
           plugin_id: field
           label: ''
-          exclude: true
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -373,6 +377,130 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: false
+        field_description:
+          id: field_description
+          table: node__field_description
+          field: field_description
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 100
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: true
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+        field_proposal:
+          id: field_proposal
+          table: node__field_proposal
+          field: field_proposal
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: field
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 100
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: true
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: full
         options:
@@ -443,36 +571,37 @@ display:
             operator: ''
             operator_limit_selection: false
             operator_list: {  }
-        title:
-          id: title
-          table: node_field_data
-          field: title
+        combine:
+          id: combine
+          table: views
+          field: combine
           relationship: none
           group_type: group
           admin_label: ''
-          entity_type: node
-          entity_field: title
-          plugin_id: string
+          plugin_id: combine
           operator: contains
           value: ''
           group: 1
           exposed: true
           expose:
-            operator_id: title_op
-            label: Overskrift
+            operator_id: combine_op
+            label: Search
             description: ''
             use_operator: false
-            operator: title_op
+            operator: combine_op
             operator_limit_selection: false
             operator_list: {  }
-            identifier: title
+            identifier: combine
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
               anonymous: '0'
+              citizen_proposal_editor: '0'
+              editor: '0'
               administrator: '0'
+            placeholder: ''
           is_grouped: false
           group_info:
             label: ''
@@ -485,6 +614,14 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
+          fields:
+            title: title
+            field_description: field_description
+            field_proposal: field_proposal
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
       style:
         type: default
         options:
@@ -531,7 +668,9 @@ display:
         - url.query_args
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_description'
+        - 'config:field.storage.node.field_proposal'
       cacheable: false
   nodes_autocompletion_callback:
     id: nodes_autocompletion_callback
@@ -574,5 +713,7 @@ display:
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_description'
+        - 'config:field.storage.node.field_proposal'
       cacheable: false
