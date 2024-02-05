@@ -8,6 +8,37 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-378](https://github.com/itk-dev/hoeringsportal/pull/378)
   New main menu, new search.
+
+## [4.0.1] - 2024-01-31
+
+* [PR-382](https://github.com/itk-dev/hoeringsportal/pull/382)
+  Updated custom Drush commands to work with Drush 12.
+
+## [4.0.0] - 2024-01-24
+
+* [PR-375](https://github.com/itk-dev/hoeringsportal/pull/375)
+  Updated to Drupal 10
+* [PR-343](https://github.com/itk-dev/hoeringsportal/pull/343)
+  Make custom modules and themes pass code analysis and compatible with d10
+  Update contrib modules (Major versions):
+  * better_exposed_filters
+  * captcha
+  * color_field
+  * openid_connect
+  * search_autocomplete
+  * toolbar_visibility
+  * twig_tweak
+  * viewsreference
+
+## [3.6.0] - 2023-12-20
+
+* [PR-376](https://github.com/itk-dev/hoeringsportal/pull/376)
+  Added GIS map token
+
+## [3.5.3] - 2023-11-08
+
+* [PR-370](https://github.com/itk-dev/hoeringsportal/pull/370)
+  Add additional fixtures
 * [PR-374](https://github.com/itk-dev/hoeringsportal/pull/374)
   Fix hidden mobile filters
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
@@ -80,17 +111,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Hid “Author email display” from display
 * [PR-334](https://github.com/itk-dev/hoeringsportal/pull/334)
   Sent notification mails on citizen proposal creation and publication
-* [PR-343](https://github.com/itk-dev/hoeringsportal/pull/343)
-  Make custom modules and themes pass code analysis and compatible with d10
-  Update contrib modules (Major versions):
-  * better_exposed_filters
-  * captcha
-  * color_field
-  * openid_connect
-  * search_autocomplete
-  * toolbar_visibility
-  * twig_tweak
-  * viewsreference
 * [PR-336](https://github.com/itk-dev/hoeringsportal/pull/336)
   De-authenticated citizens after creating or supporting proposals
 
@@ -135,7 +155,11 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.0.1...HEAD
+[4.0.1]: https://github.com/itk-dev/hoeringsportal/compare/4.0.0...4.0.1
+[4.0.0]: https://github.com/itk-dev/hoeringsportal/compare/3.6.0...4.0.0
+[3.6.0]: https://github.com/itk-dev/hoeringsportal/compare/3.5.3...3.6.0
+[3.5.3]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...3.5.3
 [3.5.2]: https://github.com/itk-dev/hoeringsportal/compare/3.5.1...3.5.2
 [3.5.1]: https://github.com/itk-dev/hoeringsportal/compare/3.5.0...3.5.1
 [3.5.0]: https://github.com/itk-dev/hoeringsportal/compare/3.4.0...3.5.0

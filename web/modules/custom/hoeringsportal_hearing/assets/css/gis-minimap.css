@@ -1,0 +1,11 @@
+.hoeringsportal-hearing-gis-minimap {
+  /* We use a `span` element to render the map (it's most times inside a `p` element). */
+  display: block;
+  height: 500px;
+}
+
+.hoeringsportal-hearing-gis-minimap.invalid-token {
+  color: #f00;
+  background: #ff0;
+  height: auto;
+}

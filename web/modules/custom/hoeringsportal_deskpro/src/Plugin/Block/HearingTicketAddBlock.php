@@ -21,7 +21,7 @@ class HearingTicketAddBlock extends HearingTicketBlock {
   public function build() {
     $node = $this->routeMatch->getParameter('node');
     if ($this->helper->isDeadlinePassed($node)) {
-      return NULL;
+      return [];
     }
 
     $form = \Drupal::formBuilder()->getForm(HearingTicketAddForm::class, $node);

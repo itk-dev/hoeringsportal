@@ -314,20 +314,12 @@ final class NodeIndexNid extends ManyToOne {
       return TRUE;
     }
 
-    // If it's non-required and there's no value don't bother filtering.
-    if (!$this->options['expose']['required'] && empty($this->validated_exposed_input)) {
+    // If it's non-required don't bother filtering.
+    if (!$this->options['expose']['required']) {
       return FALSE;
     }
 
-    $rc = parent::acceptExposedInput($input);
-    if ($rc) {
-      // If we have previously validated input, override.
-      if (isset($this->validated_exposed_input)) {
-        $this->value = $this->validated_exposed_input;
-      }
-    }
-
-    return $rc;
+    return parent::acceptExposedInput($input);
   }
 
   /**

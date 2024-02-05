@@ -80,7 +80,8 @@ final class MeetingWarning extends BlockBase implements ContainerFactoryPluginIn
         '#config' => $config,
       ];
     }
-    return NULL;
+
+    return [];
   }
 
 }

@@ -15,13 +15,13 @@
     "require": {
         "drupal/entity_events": "^2.0",
         "drupal/symfony_mailer": "^1.3",
-        "drush/drush": "^11",
+        "drush/drush": "^12",
         "itk-dev/serviceplatformen": "^1.5"
     },
     "extra": {
         "drush": {
             "services": {
-                "drush.services.yml": "^11"
+                "drush.services.yml": "^12"
             }
         }
     }
