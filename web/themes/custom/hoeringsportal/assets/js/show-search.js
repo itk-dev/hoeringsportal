@@ -10,4 +10,12 @@
     $('#search-block-form').toggleClass('is-open')
     $('#search-block-form .form-search').focus()
   })
+
+  document.addEventListener('keydown', function (event) {
+    if (document.activeElement.id === 'edit-keys') {
+      if (event.key === 'Enter') {
+        event.preventDefault()
+      }
+    }
+  })
 })(jQuery)
