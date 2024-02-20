@@ -1,14 +1,16 @@
 <?php
 
-namespace Drupal\hoeringsportal_citizen_proposal\Commands;
+namespace Drupal\hoeringsportal_citizen_proposal\Drush\Commands;
 
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Custom drush commands for citizen proposal.
  */
-class DrushCommands extends BaseDrushCommands {
+final class DrushCommands extends BaseDrushCommands {
 
   /**
    * Constructor for the citizen proposal commands class.
@@ -20,26 +22,27 @@ class DrushCommands extends BaseDrushCommands {
   }
 
   /**
-   * A drush command for finishing a specific proposal.
-   *
-   * @param int $proposalId
-   *   A node id to finish.
-   *
-   * @command hoeringsportal-citizen-proposal:finish-proposal
-   *
-   * @aliases hcp-fp
+   * {@inheritdoc}
    */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get(Helper::class),
+    );
+  }
+
+  /**
+   * A drush command for finishing a specific proposal.
+   */
+  #[CLI\Command(name: 'hoeringsportal-citizen-proposal:finish-proposal')]
+  #[CLI\Argument(name: 'proposalId', description: 'The proposal (node) id to finish')]
   public function finishProposal(int $proposalId): void {
     $this->helper->finishProposal($proposalId);
   }
 
   /**
    * A drush command for finishing all overdue proposals.
-   *
-   * @command hoeringsportal-citizen-proposal:finish-overdue-proposals
-   *
-   * @aliases hcp-fop
    */
+  #[CLI\Command(name: 'hoeringsportal-citizen-proposal:finish-overdue-proposals')]
   public function finishOverdueProposals(): void {
     $overdueProposals = $this->helper->findOverdueProposals();
 

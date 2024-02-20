@@ -1,17 +1,19 @@
 <?php
 
-namespace Drupal\hoeringsportal_deskpro\Commands;
+namespace Drupal\hoeringsportal_deskpro\Drush\Commands;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 use Drupal\node\Entity\Node;
+use Drush\Attributes as CLI;
 use Drush\Commands\DrushCommands as BaseDrushCommands;
 use Symfony\Component\Console\Exception\RuntimeException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Custom drush commands from hoeringsportal_deskpro.
  */
-class DrushCommands extends BaseDrushCommands {
+final class DrushCommands extends BaseDrushCommands {
   /**
    * Entity type manager.
    *
@@ -36,22 +38,23 @@ class DrushCommands extends BaseDrushCommands {
   }
 
   /**
-   * Synchronizes hearing ticket data with Deskpro.
-   *
-   * @param int $hearingId
-   *   Hearing id.
-   * @param string $ticketIds
-   *   Comma-separated list of ticket ids.
-   * @param array $options
-   *   The options.
-   *
-   * @option enqueue
-   *   Enqueue the synchronization.
-   *
-   * @command hoeringsportal:deskpro:synchronize-hearing-ticket
-   * @usage hoeringsportal:deskpro:synchronize-hearing-ticket 123 456
-   *   Refreshes Deskpro data for ticket 456 on hearing 123.
+   * {@inheritdoc}
    */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager'),
+      $container->get('hoeringsportal_deskpro.helper'),
+    );
+  }
+
+  /**
+   * Synchronizes hearing ticket data with Deskpro.
+   */
+  #[CLI\Command(name: 'hoeringsportal:deskpro:synchronize-hearing-ticket')]
+  #[CLI\Argument(name: 'hearingId', description: 'Hearing (node) id.')]
+  #[CLI\Argument(name: 'ticketIds', description: 'Comma-separated list of ticket ids.')]
+  #[CLI\Option(name: 'enqueue', description: 'Enqueue the synchronization.')]
+  #[CLI\Usage(name: 'hoeringsportal:deskpro:synchronize-hearing-ticket 123 456', description: 'Refreshes Deskpro data for ticket 456 on hearing 123.')]
   public function synchronizeHearingTicket(int $hearingId, string $ticketIds, array $options = [
     'enqueue' => FALSE,
   ]) {
@@ -88,14 +91,10 @@ class DrushCommands extends BaseDrushCommands {
 
   /**
    * Synchronizes hearing tickets data with Deskpro.
-   *
-   * @param string|null $ids
-   *   Comma-list of hearing ids.
-   *
-   * @command hoeringsportal:deskpro:synchronize-hearing-tickets
-   * @usage hoeringsportal:deskpro:synchronize-hearing-tickets 42,87
-   *   Refreshes Deskpro data for hearings with ids 42 and 87.
    */
+  #[CLI\Command(name: 'hoeringsportal:deskpro:synchronize-hearing-tickets')]
+  #[CLI\Argument(name: 'ids', description: 'Comma-separated list of hearing ids.')]
+  #[CLI\Usage(name: 'hoeringsportal:deskpro:synchronize-hearing-tickets 42,87', description: 'Refreshes Deskpro data for hearings with ids 42 and 87.')]
   public function synchronizeHearingTickets($ids) {
     $ids = preg_split('/\s*,\s*/', $ids, -1, PREG_SPLIT_NO_EMPTY);
 
@@ -127,14 +126,10 @@ class DrushCommands extends BaseDrushCommands {
 
   /**
    * Shows information on data synchronization endpoint.
-   *
-   * @param int $hearingId
-   *   Hearing id.
-   * @param int $ticketId
-   *   Ticket id.
-   *
-   * @command hoeringsportal:deskpro:synchronize-endpoint
    */
+  #[CLI\Command(name: 'hoeringsportal:deskpro:synchronize-endpoint')]
+  #[CLI\Argument(name: 'hearingId', description: 'Hearing (node) id.')]
+  #[CLI\Argument(name: 'ticketId', description: 'Ticket id.')]
   public function synchronizeEndpoint(int $hearingId, int $ticketId) {
     $url = $this->helper->getTicketSynchronizationUrl();
 

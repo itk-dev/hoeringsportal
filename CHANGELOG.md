@@ -8,6 +8,13 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-379](https://github.com/itk-dev/hoeringsportal/pull/379)
   Disabled eDoc casefile ID field on new hearings
+* [PR-378](https://github.com/itk-dev/hoeringsportal/pull/378)
+  New main menu, new search.
+
+## [4.0.1] - 2024-01-31
+
+* [PR-382](https://github.com/itk-dev/hoeringsportal/pull/382)
+  Updated custom Drush commands to work with Drush 12.
 
 ## [4.0.0] - 2024-01-24
 
@@ -150,7 +157,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.0.1...HEAD
+[4.0.1]: https://github.com/itk-dev/hoeringsportal/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/itk-dev/hoeringsportal/compare/3.6.0...4.0.0
 [3.6.0]: https://github.com/itk-dev/hoeringsportal/compare/3.5.3...3.6.0
 [3.5.3]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...3.5.3

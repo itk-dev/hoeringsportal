@@ -39,19 +39,16 @@
   {% endif %}
   {{ title_prefix }}
   <h2{{ title_attributes.setAttribute('id', heading_id) }}>{{ configuration.label }}</h2>
-    <div class="navigation--inner--secondary">
-
-      {# Menu. #}
-      {% block content %}
-        {{ content }}
-        {# Logout link #}
-        {% if (user.id > 0) %}
-          <ul class="navbar-nav is-secondary-navigation">
-            <li class="nav-item nav-item--secondary-navigation">
-              <a href="/user/logout" class="logout-link nav-link">{{ 'Log out'|t }}</a>
-            </li>
-          </ul>
-        {% endif %}
-      {% endblock %}
-    </div>
+    {# Menu. #}
+    {% block content %}
+      {{ content }}
+      {# Logout link #}
+      {% if (user.id > 0) %}
+        <ul class="navbar-nav is-secondary-navigation">
+          <li class="nav-item nav-item--secondary-navigation">
+            <a href="/user/logout" class="logout-link nav-link">{{ 'Log out'|t }}</a>
+          </li>
+        </ul>
+      {% endif %}
+    {% endblock %}
 </div>
