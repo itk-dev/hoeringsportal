@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-379](https://github.com/itk-dev/hoeringsportal/pull/379)
+  Disabled eDoc casefile ID field on new hearings
 * [PR-378](https://github.com/itk-dev/hoeringsportal/pull/378)
   New main menu, new search.
 
