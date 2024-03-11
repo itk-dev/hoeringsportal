@@ -8,7 +8,7 @@
   }
 
   .form-item--error-message {
-    color: #863131;
+    color: $red;
 
     @extend .small;
   }

@@ -51,6 +51,12 @@ function hoeringsportal_hearing_form_alter(&$form, FormStateInterface $form_stat
   if ('node_hearing_edit_form' === $form_id || 'node_hearing_form' === $form_id) {
     $form['#attached']['library'][] = 'hoeringsportal_hearing/hearing-form';
     $form['field_area']['widget']['#description_display'] = 'before';
+    $node = $form_state->getFormObject()->getEntity();
+    // Show eDoc casefile ID field only if it has a value. This will effectively
+    // disable the field for new hearings and leave it as it is for existing
+    // hearings.
+    $form['field_edoc_casefile_id']['#access'] = NULL !== $node
+      && !empty($node->field_edoc_casefile_id->value);
   }
 }
 
