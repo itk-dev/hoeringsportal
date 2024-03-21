@@ -40,10 +40,10 @@ final class HearingTicketAddForm extends FormBase {
    */
   private function initialize() {
     $container = \Drupal::getContainer();
-    if (NULL === $this->config) {
+    if (empty($this->config)) {
       $this->config = $container->get('hoeringsportal_deskpro.config');
     }
-    if (NULL === $this->helper) {
+    if (empty($this->helper)) {
       $this->helper = $container->get('hoeringsportal_deskpro.helper');
     }
   }
