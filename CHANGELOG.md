@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [pr-385](https://github.com/itk-dev/hoeringsportal/pull/385)
+  Fixed initialization error
+
 ## [4.1.0] - 2024-03-11
 
 * [PR-383](https://github.com/itk-dev/hoeringsportal/pull/383)
