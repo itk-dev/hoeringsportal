@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.1.1] - 2024-03-21
+
 * [pr-385](https://github.com/itk-dev/hoeringsportal/pull/385)
   Fixed initialization error
 
@@ -164,7 +166,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.1.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.1.1...HEAD
+[4.1.1]: https://github.com/itk-dev/hoeringsportal/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/itk-dev/hoeringsportal/compare/4.0.1...4.1.0
 [4.0.1]: https://github.com/itk-dev/hoeringsportal/compare/4.0.0...4.0.1
 [4.0.0]: https://github.com/itk-dev/hoeringsportal/compare/3.6.0...4.0.0
