@@ -75,7 +75,7 @@
   {% set voteEnd = content.field_vote_end['0']['#attributes'].datetime %}
 {% endif %}
 
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap d-flex citizen-proposal-teaser">
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap d-flex citizen-proposal-teaser text-decoration-none">
   <div{{ attributes.addClass('activity-teaser-content','activity-teaser-description','px-4', 'py-0') }}>
     <div class="d-flex my-3 justify-content-between">
       <h3 class="my-0">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>

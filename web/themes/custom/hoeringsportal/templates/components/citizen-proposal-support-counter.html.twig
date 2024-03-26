@@ -27,10 +27,10 @@
       '@required_number_of_supporters': '<span class="required">' ~ (data.supportRequired) ~ '</span>',
       })|raw }}
   </div>
-  <div class="support-progress">
-    <div class="progress">
-      {% set percentage = _self.format_percentage(data.supportPercentage) %}
-      <div class="progress-bar" style="width: {{ percentage }}%" role="progressbar" aria-valuenow="{{ percentage }}" aria-valuemin="{{ _self.format_percentage(0) }}" aria-valuemax="{{ _self.format_percentage(100) }}"></div>
+  <div class="support-progress bg-light">
+    {% set percentage = _self.format_percentage(data.supportPercentage) %}
+    <div class="progress bg-primary" role="progressbar" aria-label="{{ 'Progress'|trans }}" aria-valuenow="{{ percentage }}" aria-valuemin="{{ _self.format_percentage(0) }}" aria-valuemax="{{ _self.format_percentage(100) }}" style="width: {{ percentage }}%">
+      <div class="progress-bar"></div>
     </div>
   </div>
 </div>

@@ -91,7 +91,7 @@
     background: $white;
     padding-left: $spacer;
     padding-right: $spacer;
-    padding-bottom: $spacer / 2;
+    padding-bottom: $spacer * 0.5;
     width: 32rem;
     transition: width .5s, top .5s;
 
@@ -181,10 +181,8 @@
     }
 
     .ui-autocomplete-field-type {
-      @extend .badge;
-      @extend .badge-light;
-
       background-color: $primary;
+      border-radius: $border-radius;
       color: $white;
       width: fit-content;
       order: 3;
