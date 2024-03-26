@@ -1,98 +1,49 @@
+.search-collapse-wrapper {
+  .collapse {
+    display: block;
+    width: 100%;
 
-#search-block-form {
-  position: absolute;
-  top: 0;
-  right: 0;
-  // align-items: flex-start;
-  // border-radius: 5px;
-  // flex-direction: row;
-  // padding: 0;
-  // position: relative;
-  // overflow: hidden;
-  // min-height: 30px;
-  // width: 1.5em;
-  // z-index: 1;
-
-  .form-search {
-    display: none;
-    // border-color: rgba(133, 133, 133, 0);
-    // border-radius: $border-radius;
-    // vertical-align: middle;
-    // height: 30px;
-    // outline: none;
-    // padding: 0;
-    // line-height: 1.5rem;
-    // width: 0;
-    // transition: width .5s;
-    // text-indent: 1rem;
-
-    // @include media-breakpoint-down(md) {
-    //   position: relative;
-    //   width: 15rem;
-    //   transition: none;
-    // }
+    button {
+      display: none;
+    }
   }
 
-  // .form-actions {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  // }
+  @include media-breakpoint-up(md) {
+    .collapse:not(.show){
+      display: none;
+    }
+    .collapse {
+      position: absolute;
+      right: 0;
+      top: 0;
+      box-shadow: $box-shadow;
+      padding: $spacer;
+      width: 50%;
+      border-radius: $border-radius;
+
+      button {
+        display: block;
+      }
+    }
+  }
+}
+
+#search-block-form {
 
   .btn-search {
     color: $primary;
-    // height: 30px;
     display: block;
-    // width: 30px;
     cursor: pointer;
   }
 
   .js-form-submit {
     display: none;
-
-    @include media-breakpoint-down(md) {
-      display: block;
-    }
   }
 
-  .js-show-search {
-    @include media-breakpoint-down(md) {
-      display: none;
-    }
-  }
-
-  .fa-times {
-    display: none;
-  }
-
-  .fa-search {
+  .form-search {
+    border-color: rgba(133, 133, 133, .5);
     display: block;
-  }
-
-  &.is-open {
-    border: 1px solid rgba(133, 133, 133, .2);
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .16);
-    background: $white;
-    padding-left: $spacer;
-    padding-right: $spacer;
-    padding-bottom: $spacer * 0.5;
-    width: 32rem;
-    transition: width .5s, top .5s;
-
-    .form-search {
-      border-color: rgba(133, 133, 133, .5);
-      display: block;
-      width: 29rem;
-      padding-right: $spacer * 3;
-    }
-
-    .fa-times {
-      display: block;
-    }
-
-    .fa-search {
-      display: none;
-    }
+    width: 100%;
   }
 }
 
@@ -102,7 +53,7 @@
   position: relative!important;
   text-align: left;
   z-index: 1050;
-  width: 464px!important;
+  // width: 464px!important;
   padding-top: 1em;
   border: 0;
 
@@ -128,12 +79,13 @@
     padding: .5em .75em;
     margin: .15em 0;
     list-style: none;
+    border-left: 3px solid transparent;
 
     &:hover,
     &:focus {
       background: $gray-100;
       border-left: 3px solid $gray-400;
-      border-radius: 5px;
+      border-radius: $border-radius-sm;
     }
   }
 
@@ -144,7 +96,7 @@
     .ui-autocomplete-field-title {
       @extend .h4;
 
-      margin-bottom: 0;
+      margin: 0;
       order: 1;
 
       .ui-autocomplete-field-term {
@@ -155,6 +107,7 @@
     .ui-autocomplete-field-field_description,
     .ui-autocomplete-field-field_proposal {
       @extend .mb-1;
+      line-height: $line-height-sm;
 
       order: 2;
 
@@ -166,10 +119,12 @@
 
     .ui-autocomplete-field-type {
       background-color: $primary;
-      border-radius: $border-radius;
+      border-radius: $border-radius-sm;
+      padding: 0 $spacer * 0.25;
       color: $white;
       width: fit-content;
       order: 3;
+      font-size: $font-size-sm;
     }
 
     .ui-autocomplete-field-created {

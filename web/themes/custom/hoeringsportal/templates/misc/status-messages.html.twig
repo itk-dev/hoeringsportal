@@ -37,8 +37,8 @@
   ]
   %}
   <div role="alert" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label').addClass(classes) }}>
-    <div class="container d-flex">
-      <div>
+    <div class="container d-flex flex-column flex-md-row">
+      <div class="order-1 order-md-0">
       {% if status_headings[type] %}
         <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
       {% endif %}
@@ -53,7 +53,9 @@
       {% endif %}
       </div>
       {% if type != 'warning' %}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
       {% endif %}
     </div>
   </div>
