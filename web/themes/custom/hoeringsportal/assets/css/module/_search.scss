@@ -1,59 +1,49 @@
-#search-block-form-wrapper {
-  text-align: right;
-  position: absolute;
-  right: 0px;
-  top: -5px;
-  min-height: 40px;
-
-  @include media-breakpoint-down(md) {
-    position: relative;
-  }
-}
 
 #search-block-form {
-  align-items: flex-start;
-  border-radius: 5px;
-  flex-direction: row;
-  padding: 0;
-  padding-top: .65em;
-  position: relative;
-  overflow: hidden;
-  min-height: 30px;
-  width: 1.5em;
-  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  // align-items: flex-start;
+  // border-radius: 5px;
+  // flex-direction: row;
+  // padding: 0;
+  // position: relative;
+  // overflow: hidden;
+  // min-height: 30px;
+  // width: 1.5em;
+  // z-index: 1;
 
   .form-search {
     display: none;
-    border-color: rgba(133, 133, 133, 0);
-    border-radius: $border-radius;
-    vertical-align: middle;
-    height: 30px;
-    outline: none;
-    padding: 0;
-    line-height: 1.5rem;
-    width: 0;
-    transition: width .5s;
-    text-indent: 1rem;
+    // border-color: rgba(133, 133, 133, 0);
+    // border-radius: $border-radius;
+    // vertical-align: middle;
+    // height: 30px;
+    // outline: none;
+    // padding: 0;
+    // line-height: 1.5rem;
+    // width: 0;
+    // transition: width .5s;
+    // text-indent: 1rem;
 
-    @include media-breakpoint-down(md) {
-      position: relative;
-      width: 15rem;
-      transition: none;
-    }
+    // @include media-breakpoint-down(md) {
+    //   position: relative;
+    //   width: 15rem;
+    //   transition: none;
+    // }
   }
 
-  .form-actions {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+  // .form-actions {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
 
   .btn-search {
     color: $primary;
-    height: 30px;
+    // height: 30px;
     display: block;
-    margin-top: 13px;
-    width: 30px;
+    // width: 30px;
     cursor: pointer;
   }
 
@@ -73,16 +63,10 @@
 
   .fa-times {
     display: none;
-    position: absolute;
-    top: 17px;
-    right: 3px;
   }
 
   .fa-search {
     display: block;
-    position: absolute;
-    top: 13px;
-    right: 3px;
   }
 
   &.is-open {
