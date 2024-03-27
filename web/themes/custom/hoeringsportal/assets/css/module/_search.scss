@@ -1,5 +1,4 @@
 #search-block-form {
-
   .btn-search {
     color: $primary;
     display: block;
@@ -29,6 +28,7 @@
 
   button svg {
     color: $primary;
+
     &:hover {
       color: $black;
     }
@@ -52,7 +52,7 @@
   }
 
   @include media-breakpoint-up(md) {
-    border-bottom: 0px solid $gray-600;
+    border-bottom: 0 solid $gray-600;
     padding-bottom: 0;
 
     .collapse,
@@ -94,6 +94,7 @@
     border: 0;
     padding-top: $spacer * .25;
     padding-bottom: $spacer * .75;
+
     @include media-breakpoint-up(md) {
       padding: $spacer;
     }
@@ -147,8 +148,8 @@
     .ui-autocomplete-field-field_description,
     .ui-autocomplete-field-field_proposal {
       @extend .mb-1;
-      line-height: $line-height-sm;
 
+      line-height: $line-height-sm;
       order: 2;
 
       .ui-autocomplete-field-term {
@@ -171,12 +172,13 @@
       display: none;
     }
   }
+
   .ui-autocomplete-container-no_results li,
   .ui-autocomplete-container-more_results {
     display: none;
   }
 
-  .ui-autocomplete-container-no_results:before {
+  .ui-autocomplete-container-no_results::before {
     content: "Ingen resultater";
   }
 

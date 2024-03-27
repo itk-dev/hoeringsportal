@@ -1,9 +1,11 @@
 .btn {
   padding: $spacer*.75 $spacer*1.5;
+
   &-primary {
     position: relative;
     border: 0;
-    &:after {
+
+    &::after {
       content: "";
       position: absolute;
       bottom: 0;

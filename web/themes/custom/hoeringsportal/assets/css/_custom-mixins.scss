@@ -17,8 +17,9 @@
   color: $link-color;
   margin-left: $default-spacing*1.5;
 
-  &:before {
+  &::before {
     @include icon-arrow-right-alt;
+
     position: absolute;
     left: 0;
     display: inline-block;
@@ -27,6 +28,7 @@
     color: $arrow-color;
     text-decoration: none !important;
   }
+
   &:hover {
     text-decoration: underline;
   }
@@ -34,8 +36,7 @@
 
 @mixin equal-height-row() {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
 @mixin align-vertically() {
@@ -44,7 +45,7 @@
 }
 
 @mixin material-shadow() {
-  box-shadow: 0 3px 6px rgba(0,0,0,.12), 0 3px 6px rgba(0,0,0,.19);
+  box-shadow: 0 3px 6px rgb(0 0 0 / 12%), 0 3px 6px rgb(0 0 0 / 19%);
 }
 
 @mixin screen-reader-text() {
@@ -57,8 +58,8 @@
 }
 
 @mixin transition-std($target: all, $ease: ease-in-out, $duration: 200ms, $delay: 0ms) {
-  -webkit-transition: $target $ease $duration $delay;
-  -o-transition: $target $ease $duration $delay;
+  transition: $target $ease $duration $delay;
+  transition: $target $ease $duration $delay;
   transition: $target $ease $duration $delay;
 }
 
@@ -73,7 +74,7 @@
 
   a,
   .link,
-  .link:before {
+  .link::before {
     color: $text;
 
     span {
@@ -86,7 +87,7 @@
   }
 
   .underlined {
-    &:after {
+    &::after {
       background: $text;
     }
   }
@@ -108,11 +109,12 @@
 @mixin hover-animation() {
   a {
     @include transition-std(transform, linear, 200ms);
+
     display: block;
     position: relative;
 
     &:hover {
-      @include move-link-right();
+      @include move-link-right;
     }
   }
 }
@@ -120,6 +122,7 @@
 @mixin move-link-right() {
   transform: translateX(10px);
 }
+
 @mixin move-link-left() {
   transform: translateX(-10px);
 }

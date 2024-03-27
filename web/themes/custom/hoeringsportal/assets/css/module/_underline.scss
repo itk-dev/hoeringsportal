@@ -1,8 +1,9 @@
 .underlined {
   margin-bottom: $spacer*1.2;
 
-  &:after {
+  &::after {
     @include transition-std(width, ease-in-out, 200ms);
+
     content: "";
     display: block;
     width: $underline-width;
@@ -11,7 +12,7 @@
     background: $primary;
   }
 
-  &.is-white:after {
+  &.is-white::after {
     background: $white;
   }
 }

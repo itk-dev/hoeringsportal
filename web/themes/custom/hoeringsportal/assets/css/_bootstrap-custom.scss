@@ -5,7 +5,7 @@ $container-max-widths: (
 );
 
 /* stylelint-disable color-no-hex */
-$white:    #fff;
+$white: #fff;
 $gray-100: #f6f6f6;
 $gray-200: #eaeaea;
 $gray-300: #e6e6e6;
@@ -14,9 +14,8 @@ $gray-500: #d6d6d6;
 $gray-600: #9d9d9d;
 $gray-700: #858585;
 $gray-800: #525252;
-$gray-900: #333333;
-$black:    #000;
-
+$gray-900: #333;
+$black: #000;
 $grays: ();
 $grays: map-merge((
   "100": $gray-100,
@@ -31,26 +30,26 @@ $grays: map-merge((
 ), $grays);
 
 // Set default colors
-$white:                             #ffffff;
-$black:                             #333333;
-$pink:                              #ee0043;
-$pink-light:                        #fab2c6;
-$purple:                            #673ab7;
-$purple-light:                      #d1c4e9;
-$blue:                              #3661d8;
-$blue-light:                        #c2cff3;
-$navy:                              #2b3ba2;
-$navy-light:                        #bfc4e3;
-$petroleum:                         #008486;
-$petroleum-light:                   #b2dada;
-$green:                             #008850;
-$green-light:                       #b2dbca;
-$yellow:                            #ffe13d;
-$yellow-light:                      #fff6c4;
-$orange:                            #ff5f31;
-$orange-light:                      #ffcfc1;
-$red:                               #d32f2f;
-$red-light:                         #f2c0c0;
+$white: #fff;
+$black: #333;
+$pink: #ee0043;
+$pink-light: #fab2c6;
+$purple: #673ab7;
+$purple-light: #d1c4e9;
+$blue: #3661d8;
+$blue-light: #c2cff3;
+$navy: #2b3ba2;
+$navy-light: #bfc4e3;
+$petroleum: #008486;
+$petroleum-light: #b2dada;
+$green: #008850;
+$green-light: #b2dbca;
+$yellow: #ffe13d;
+$yellow-light: #fff6c4;
+$orange: #ff5f31;
+$orange-light: #ffcfc1;
+$red: #d32f2f;
+$red-light: #f2c0c0;
 
 // Set primary color
 $primary: $petroleum;
@@ -60,24 +59,20 @@ $secondary: $black;
 /* stylelint-enable */
 
 // Set default font
-$font-family-sans-serif:      Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
-$headings-font-family:        Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
-
+$font-family-sans-serif: arial, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
+$headings-font-family: arial, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
 $spacer: 1rem;
-
-$headings-margin-bottom:      $spacer;
-$headings-margin-top:         $spacer;
-
+$headings-margin-bottom: $spacer;
+$headings-margin-top: $spacer;
 $font-size-base: 1rem;
 $lead-font-size: 1.3rem;
 $lead-font-weight: 400;
-
-$h1-font-size:                $font-size-base * 2.2;
-$h2-font-size:                $font-size-base * 1.4;
-$h3-font-size:                $font-size-base * 1.2;
-$h4-font-size:                $font-size-base * 1.1;
-$h5-font-size:                $font-size-base * 1.0;
-$h6-font-size:                $font-size-base;
+$h1-font-size: $font-size-base * 2.2;
+$h2-font-size: $font-size-base * 1.4;
+$h3-font-size: $font-size-base * 1.2;
+$h4-font-size: $font-size-base * 1.1;
+$h5-font-size: $font-size-base * 1.0;
+$h6-font-size: $font-size-base;
 
 // Disable rounded corners
 $enable-rounded: false;
@@ -91,7 +86,8 @@ $card-inner-border-radius: 0;
 $input-color: $gray-800;
 
 // Import bootstrap scss
-@import "~bootstrap/scss/bootstrap.scss";
+@import "~bootstrap/scss/bootstrap";
+
 // If you need to import components individually you can find the
 // list in the bootstrap.scss file in the node_modules folder and
 // do like this `@import "~bootstrap/scss/_functions.scss";`

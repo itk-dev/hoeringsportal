@@ -1,0 +1,12 @@
+
+{
+  "extends": ["stylelint-config-standard-scss"],
+  "rules": {
+    "color-no-hex": true,
+    "function-disallowed-list": ["rgb", "hwb", "lch"],
+    "no-duplicate-selectors": true,
+    "at-rule-no-unknown": null,
+    "function-no-unknown": null,
+    "no-global-function-names": null
+  }
+}

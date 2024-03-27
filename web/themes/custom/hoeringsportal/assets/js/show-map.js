@@ -15,33 +15,33 @@ import { defaults as defaultInteractions } from 'ol/interaction.js'
 
 require('./ol.css')
 
-var mapElement = document.getElementById('map')
+const mapElement = document.getElementById('map')
 if (mapElement !== null && mapElement.dataset.geojson) {
-  var image = new Icon({
+  const image = new Icon({
     src: '/themes/custom/hoeringsportal/static/images/flag.png',
     anchor: [0.5, 1]
   })
 
-  var styles = {
-    'Point': new Style({
-      image: image
+  const styles = {
+    Point: new Style({
+      image
     }),
-    'LineString': new Style({
+    LineString: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         width: 1
       })
     }),
-    'MultiLineString': new Style({
+    MultiLineString: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         width: 1
       })
     }),
-    'MultiPoint': new Style({
-      image: image
+    MultiPoint: new Style({
+      image
     }),
-    'MultiPolygon': new Style({
+    MultiPolygon: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         width: 1
@@ -50,7 +50,7 @@ if (mapElement !== null && mapElement.dataset.geojson) {
         color: 'rgba(0, 132, 134, 1)'
       })
     }),
-    'Polygon': new Style({
+    Polygon: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         lineDash: [4],
@@ -60,7 +60,7 @@ if (mapElement !== null && mapElement.dataset.geojson) {
         color: 'rgba(0, 132, 134, .1)'
       })
     }),
-    'GeometryCollection': new Style({
+    GeometryCollection: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         width: 2
@@ -76,7 +76,7 @@ if (mapElement !== null && mapElement.dataset.geojson) {
         })
       })
     }),
-    'Circle': new Style({
+    Circle: new Style({
       stroke: new Stroke({
         color: 'rgba(0, 132, 134, 1)',
         width: 4
@@ -87,24 +87,24 @@ if (mapElement !== null && mapElement.dataset.geojson) {
     })
   }
 
-  var styleFunction = function (feature) {
+  const styleFunction = function (feature) {
     return styles[feature.getGeometry().getType()]
   }
 
-  var geojsonObject = mapElement.dataset.geojson
+  const geojsonObject = mapElement.dataset.geojson
 
-  var vectorSource = new VectorSource({
+  const vectorSource = new VectorSource({
     features: (new GeoJSON({})).readFeatures(geojsonObject, {
       featureProjection: 'EPSG:3857'
     })
   })
 
-  var vectorLayer = new VectorLayer({
+  const vectorLayer = new VectorLayer({
     source: vectorSource,
     style: styleFunction
   })
 
-  var map = new Map({
+  const map = new Map({
     layers: [
       new TileLayer({
         source: new OSM()
@@ -124,7 +124,7 @@ if (mapElement !== null && mapElement.dataset.geojson) {
     interactions: defaultInteractions({ mouseWheelZoom: false })
   })
 
-  var source = vectorLayer.getSource()
+  const source = vectorLayer.getSource()
   map.getView().fit(source.getExtent(), map.getSize())
 
   // If the map contains only a single point we have reached max zoom level (which

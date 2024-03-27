@@ -1,6 +1,6 @@
 @import "../_custom-mixins";
 
-$hero-breakpoint:   "sm";
+$hero-breakpoint: "sm";
 
 .hero {
   @include element-theme($primary, $gray-100, $white);

@@ -1,38 +1,46 @@
 .campaign {
   position: relative;
+
   @include media-breakpoint-up(sm) {
     padding-bottom: $spacer*5;
   }
+
   &-media {
     &-image {
       height: 350px;
       background-size: cover;
       background-position: center center;
+
       img {
         max-height: 100%;
         display: none;
       }
     }
   }
+
   &-content {
     position: relative;
     background-color: $white;
     margin: -$spacer*6 $spacer*1 $spacer*1 $spacer*1;
     box-shadow: $shadow;
+
     @include media-breakpoint-up(md) {
       position: absolute;
       left: 40%;
       bottom: 0;
       width: 50%;
     }
+
     a {
       padding: $spacer*2 $spacer*3;
       display: block;
       text-decoration: none;
     }
+
     h2, p {
       color: $gray-900;
     }
+
     h2 {
       line-height: 1.2;
     }

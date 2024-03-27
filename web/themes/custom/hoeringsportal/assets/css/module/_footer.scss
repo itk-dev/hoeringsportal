@@ -1,5 +1,5 @@
-@import "../_custom-variables.scss";
-@import "../_custom-mixins.scss";
+@import "../_custom-variables";
+@import "../_custom-mixins";
 
 .footer {
   font-size: $font-size-sm;
@@ -8,7 +8,7 @@
   padding: $spacer*3 0;
   padding-bottom: $spacer*4;
 
-  > .container >.row:before {
+  > .container >.row::before {
     content: none;
   }
 
@@ -69,6 +69,7 @@
 
   .permalinks {
     @include clearfix;
+
     border-top: 1px solid $gray-500;
     padding-top: $spacer;
     color: lighten($gray-500,10%);
@@ -85,7 +86,7 @@
       }
 
       &:not(:first-child) {
-        &:before {
+        &::before {
           content: "|";
           position: relative;
           display: inline-block;
