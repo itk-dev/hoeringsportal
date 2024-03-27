@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [pr-387](https://github.com/itk-dev/hoeringsportal/pull/387)
+  Upgrade the rest of the frontend
 * [pr-386](https://github.com/itk-dev/hoeringsportal/pull/386)
   Design fixes:
   * Main nav visuals
