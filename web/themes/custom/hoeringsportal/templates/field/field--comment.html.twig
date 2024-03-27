@@ -49,7 +49,7 @@
   <div>
     {% if user_anonymous %}
       <div class="alert alert-primary mt-3" role="alert">
-        {{ 'If you wan\'t to participate in the discussion you must create a user'|t }} <a class="btn btn-sm btn-primary ml-3" href="/user/register">{{ 'Create user'|t }}</a>
+        {{ 'If you wan\'t to participate in the discussion you must create a user'|t }} <a class="btn btn-sm btn-primary ms-3" href="/user/register">{{ 'Create user'|t }}</a>
       </div>
     {% else %}
       {% if not user_validated == 1 %}
