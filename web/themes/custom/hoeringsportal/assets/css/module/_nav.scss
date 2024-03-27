@@ -4,8 +4,8 @@ nav.navbar {
 
   @include media-breakpoint-up(md) {
     .scrolled & {
-      padding-top: $spacer * 0.25;
-      padding-bottom: $spacer * 0.25;
+      padding-top: $spacer * .25;
+      padding-bottom: $spacer * .25;
       transition: padding .2s ease-out;
     }
   }
@@ -30,25 +30,25 @@ nav.navbar {
 }
 
 .navbar-nav {
-  .nav-item {
-    .nav-link {
-      font-family: $font-family-black;
-      font-size: $font-size-base;
-      position: relative;
-      display: block;
-      color: $black;
-      font-weight: $font-weight-bold;
-      @include media-breakpoint-up(md) {
-        .scrolled & {
-          padding-top: $spacer * 0.25;
-        }
-      }
+  .nav-link {
+    font-family: $font-family-black;
+    font-size: $font-size-base;
+    position: relative;
+    display: block;
+    color: $black;
+    font-weight: $font-weight-bold;
 
-      &:hover {
-        color: $primary;
-      }
-      &.active {
-        color: $gray-700;
+    &:hover {
+      color: $primary;
+    }
+
+    &.active {
+      color: $gray-700;
+    }
+
+    @include media-breakpoint-up(md) {
+      .scrolled & {
+        padding-top: $spacer * .25;
       }
     }
   }
@@ -60,13 +60,14 @@ nav.navbar {
       font-size: $font-size-sm;
       @include media-breakpoint-up(md) {
         .scrolled & {
-          padding-bottom: $spacer * 0.25;
+          padding-bottom: $spacer * .25;
         }
       }
 
       &:hover {
         color: $primary;
       }
+
       &.active {
         color: $gray-700;
       }
@@ -95,6 +96,6 @@ nav.navbar {
   @include media-breakpoint-up(md) {
     border-right: 1px $border-color solid;
     margin-right: $spacer;
-    padding-right: $spacer * 0.5;
+    padding-right: $spacer * .5;
   }
 }

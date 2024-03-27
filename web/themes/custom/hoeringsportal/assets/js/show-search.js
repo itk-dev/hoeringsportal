@@ -9,9 +9,8 @@
   })
 })(jQuery)
 
-
 // Focus search input when collapse shown
 const collapseSearch = document.getElementById('collapseSearch')
 collapseSearch.addEventListener('shown.bs.collapse', event => {
-  document.querySelector('#search-block-form .form-search').focus();
+  document.querySelector('#search-block-form .form-search').focus()
 })
