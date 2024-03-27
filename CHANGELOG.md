@@ -14,7 +14,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   * Mobile nav tweaks
   * Upgrade to Bootstrap v5
 
-
 ## [4.1.1] - 2024-03-21
 
 * [pr-385](https://github.com/itk-dev/hoeringsportal/pull/385)
