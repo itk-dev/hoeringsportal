@@ -13,22 +13,21 @@
 
 {%
   set classes = [
-    'form-inline',
-    'w-100'
+    'form-inline'
   ]
 %}
 
-<div class="search-collapse-wrapper d-flex gap-2 my-3 order-0 order-md-1">
-  <button class="btn p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-    <i class="fas fa-search text-primary"></i>
+<div class="search-collapse-wrapper d-flex gap-2 order-0 order-md-1">
+  <button class="btn btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+    <i class="fas fa-search"></i>
   </button>
   <div class="collapse bg-white z-1" id="collapseSearch">
     <div class="d-flex gap-2">
-      <form{{ attributes.addClass(classes)}} }}>
+      <form{{ attributes.addClass(classes)}}>
         {{ children }}
       </form>
-      <button class="btn p-0 align-self-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-        <i class="fas fa-times text-primary"></i>
+      <button class="btn btn-link p-1 align-self-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+        <i class="fas fa-times"></i>
       </button>
     </div>
   </div>
