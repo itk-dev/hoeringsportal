@@ -1,6 +1,5 @@
 @use "sass:color";
 @import "../custom-variables";
-@import "../custom-mixins";
 
 .footer {
   font-size: $font-size-sm;
@@ -48,12 +47,15 @@
     font-size: $font-size-base;
 
     &-col {
-      @include align-vertically;
+      display: flex;
+      align-items: center;
     }
   }
 
   .quicklink {
     text-decoration: none !important;
+    display: block;
+    margin-top: $spacer;
 
     &-text {
       position: relative;
@@ -69,8 +71,6 @@
   }
 
   .permalinks {
-    @include clearfix;
-
     border-top: 1px solid $gray-500;
     padding-top: $spacer;
     color: color.adjust($gray-500, $lightness: -10%);

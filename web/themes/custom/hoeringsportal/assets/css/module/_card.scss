@@ -7,14 +7,13 @@
   .fa-arrow-right {
     color: $primary;
     font-size: 1rem;
-
-    @include transition-std(transform, ease-in, 200ms);
+    transition: transform 200ms ease-in;
   }
 
   &:hover {
     .fa-arrow-right {
-      @include transition-std(transform, ease-out, 400ms);
-      @include move-link-right;
+      transition: transform 400ms ease-out;
+      transform: translateX(10px);
     }
 
     text-decoration: none;

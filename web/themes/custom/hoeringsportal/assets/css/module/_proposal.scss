@@ -35,8 +35,7 @@
 
   &:hover {
     border-bottom: 2px solid $primary;
-
-    @include transition-std(border-bottom, ease-out, 400ms);
+    transition: border-bottom 400ms ease-out;
   }
 }
 

@@ -6,8 +6,7 @@
   position: absolute;
   bottom: 1.1rem;
   right: $spacer * 1.5;
-
-  @include transition-std(transform, ease-in, 200ms);
+  transition: transform 200ms ease-in;
 }
 
 .activity-teaser {
@@ -41,8 +40,7 @@
   picture {
     transform: scale(1);
     transform-origin: center;
-
-    @include transition-std(transform, ease-in, 200ms);
+    transition: transform 200ms ease-in;
   }
 }
 
@@ -53,8 +51,7 @@
   &.media {
     padding-bottom: 1px; // added to remove zoom bug, where the background from .activity-teaser-info covered part of the border.
     border-bottom: 2px solid $gray-200;
-
-    @include transition-std(border-bottom, ease-in, 200ms);
+    transition: border-bottom 200ms ease-in;
   }
 }
 
@@ -66,8 +63,7 @@
   font-weight: 600;
   color: $gray-900;
   text-decoration: none;
-
-  @include transition-std(color, ease-in, 200ms);
+  transition: color 200ms ease-in;
 
   .media & {
     padding-left: 0;
@@ -94,8 +90,7 @@
   flex: 0 0 auto;
   border-bottom: 2px solid $gray-200;
   min-height: 4em;
-
-  @include transition-std(border-bottom, ease-in, 200ms);
+  transition: border-bottom 200ms ease-in;
 }
 
 .activity-teaser-type {
@@ -152,33 +147,29 @@
 
     .activity-teaser-title {
       color: color.adjust($primary, $lightness: -10%);
-
-      @include transition-std(color, ease-out, 400ms);
+      transition: color 400ms ease-out;
     }
 
     .activity-teaser-info {
       border-bottom: 2px solid $primary;
-
-      @include transition-std(border-bottom, ease-out, 400ms);
+      transition: border-bottom 400ms ease-out;
     }
 
     .activity-teaser-image picture {
       transform: scale(1.07);
-
-      @include transition-std(transform, ease-out, 400ms);
+      transition: transform 400ms ease-out;
     }
 
     .activity-teaser-content {
       &.media {
         border-bottom: 2px solid $primary;
-
-        @include transition-std(border-bottom, ease-out, 400ms);
+        transition: border-bottom 400ms ease-out;
       }
     }
 
     .activity-teaser-link {
-      @include transition-std(transform, ease-out, 400ms);
-      @include move-link-right;
+      transition: transform 400ms ease-out;
+      transform: translateX(10px);
     }
 
     .activity-teaser-overlay--text {

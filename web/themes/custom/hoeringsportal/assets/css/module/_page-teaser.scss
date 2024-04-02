@@ -9,8 +9,7 @@
   position: absolute;
   bottom: $spacer;
   right: $spacer * 2.5;
-
-  @include transition-std(transform, ease-in, 200ms);
+  transition: transform 200ms ease-in;
 }
 
 .page-teaser-anchorblock {
@@ -23,47 +22,41 @@
     text-decoration: none;
 
     .page-teaser-link {
-      @include transition-std(transform, ease-out, 400ms);
-      @include move-link-right;
+      transition: transform 400ms ease-out;
+      transform: translateX(10px);
     }
   }
 
   &.bg-gray-900 {
     background-color: $gray-900;
     border-bottom: 2px solid color.adjust($gray-900, $lightness: -10%);
-
-    @include transition-std(background-color, ease-in, 200ms);
+    transition: background-color 200ms ease-in;
 
     &:hover {
       background-color: 2px solid color.adjust($gray-900, $lightness: -10%);
-
-      @include transition-std(background-color, ease-out, 400ms);
+      transition: background-color 400ms ease-out;
     }
   }
 
   &.bg-petroleum-light {
     background-color: $petroleum-light;
     border-bottom: 2px solid color.adjust($petroleum-light, $lightness: -10%);
-
-    @include transition-std(background-color, ease-in, 200ms);
+    transition: background-color 200ms ease-in;
 
     &:hover {
       background-color: color.adjust($petroleum-light, $lightness: -10%);
-
-      @include transition-std(background-color, ease-out, 400ms);
+      transition: background-color 400ms ease-out;
     }
   }
 
   &.bg-petroleum {
     background-color: $petroleum;
     border-bottom: 2px solid color.adjust($petroleum, $lightness: -10%);
-
-    @include transition-std(background-color, ease-in, 200ms);
+    transition: background-color 200ms ease-in;
 
     &:hover {
       background-color: color.adjust($petroleum, $lightness: -10%);
-
-      @include transition-std(background-color, ease-out, 400ms);
+      transition: background-color 400ms ease-out;
     }
   }
 }
