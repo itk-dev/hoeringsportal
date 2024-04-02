@@ -78,3 +78,18 @@ yarn run apply-coding-standards-js
 ```
 
 to apply any possible automatic fixes.
+
+
+### Twig
+
+Check twig standards
+
+```sh
+docker compose exec phpfpm vendor/bin/twig-cs-fixer lint web/themes/custom/hoeringsportal/templates
+```
+
+Fix twig standards
+
+```sh
+docker compose exec phpfpm vendor/bin/twig-cs-fixer lint --fix web/themes/custom/hoeringsportal/templates
+```

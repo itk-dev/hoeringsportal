@@ -76,10 +76,10 @@
 {% endif %}
 
 <a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap d-flex citizen-proposal-teaser text-decoration-none">
-  <div{{ attributes.addClass('activity-teaser-content','activity-teaser-description','px-4', 'py-0') }}>
+  <div{{ attributes.addClass('activity-teaser-content', 'activity-teaser-description', 'px-4', 'py-0') }}>
     <div class="d-flex my-3 justify-content-between">
       <h3 class="my-0">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
-      <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd | date('d M. Y') }}</strong></div>
+      <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|date('d M. Y') }}</strong></div>
     </div>
     <div class="activity-supporters">
       {% include 'citizen-proposal-support-counter.html.twig' with {data: {
