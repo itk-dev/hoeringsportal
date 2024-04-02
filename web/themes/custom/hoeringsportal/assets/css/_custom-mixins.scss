@@ -15,7 +15,7 @@
   position: relative;
   display: inline-block;
   color: $link-color;
-  margin-left: $default-spacing*1.5;
+  margin-left: $default-spacing * 1.5;
 
   &::before {
     @include icon-arrow-right-alt;
@@ -23,8 +23,8 @@
     position: absolute;
     left: 0;
     display: inline-block;
-    margin-right: $default-spacing/2;
-    margin-left: -$default-spacing*1.5;
+    margin-right: $default-spacing / 2;
+    margin-left: -$default-spacing * 1.5;
     color: $arrow-color;
     text-decoration: none !important;
   }
@@ -58,8 +58,6 @@
 }
 
 @mixin transition-std($target: all, $ease: ease-in-out, $duration: 200ms, $delay: 0ms) {
-  transition: $target $ease $duration $delay;
-  transition: $target $ease $duration $delay;
   transition: $target $ease $duration $delay;
 }
 

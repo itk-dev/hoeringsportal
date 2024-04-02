@@ -1,5 +1,7 @@
+@use "sass:color";
+
 .btn {
-  padding: $spacer*.75 $spacer*1.5;
+  padding: $spacer * .75 $spacer * 1.5;
 
   &-primary {
     position: relative;
@@ -12,7 +14,7 @@
       left: 0;
       height: 2px;
       width: 100%;
-      background-color: darken($primary, 10%);
+      background-color: color.adjust($primary, $lightness: -10%);
     }
   }
 }

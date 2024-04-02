@@ -1,12 +1,14 @@
+@use "sass:color";
+
 .page-teaser {
-  margin-bottom: $spacer*2;
+  margin-bottom: $spacer * 2;
 }
 
 .page-teaser-link {
   font-size: .8rem;
   position: absolute;
   bottom: $spacer;
-  right: $spacer*2.5;
+  right: $spacer * 2.5;
 
   @include transition-std(transform, ease-in, 200ms);
 }
@@ -28,12 +30,12 @@
 
   &.bg-gray-900 {
     background-color: $gray-900;
-    border-bottom: 2px solid lighten($gray-900, 10%);
+    border-bottom: 2px solid color.adjust($gray-900, $lightness: -10%);
 
     @include transition-std(background-color, ease-in, 200ms);
 
     &:hover {
-      background-color: lighten($gray-900, 10%);
+      background-color: 2px solid color.adjust($gray-900, $lightness: -10%);
 
       @include transition-std(background-color, ease-out, 400ms);
     }
@@ -41,12 +43,12 @@
 
   &.bg-petroleum-light {
     background-color: $petroleum-light;
-    border-bottom: 2px solid darken($petroleum-light, 10%);
+    border-bottom: 2px solid color.adjust($petroleum-light, $lightness: -10%);
 
     @include transition-std(background-color, ease-in, 200ms);
 
     &:hover {
-      background-color: darken($petroleum-light, 10%);
+      background-color: color.adjust($petroleum-light, $lightness: -10%);
 
       @include transition-std(background-color, ease-out, 400ms);
     }
@@ -54,12 +56,12 @@
 
   &.bg-petroleum {
     background-color: $petroleum;
-    border-bottom: 2px solid darken($petroleum, 10%);
+    border-bottom: 2px solid color.adjust($petroleum, $lightness: -10%);
 
     @include transition-std(background-color, ease-in, 200ms);
 
     &:hover {
-      background-color: darken($petroleum, 10%);
+      background-color: color.adjust($petroleum, $lightness: -10%);
 
       @include transition-std(background-color, ease-out, 400ms);
     }
@@ -68,7 +70,7 @@
 
 .page-teaser-content {
   color: $white;
-  padding: $spacer*2;
+  padding: $spacer * 2;
 
   &:hover {
     color: $white;
