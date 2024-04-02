@@ -85,11 +85,11 @@ to apply any possible automatic fixes.
 Check twig standards
 
 ```sh
-docker compose exec phpfpm vendor/bin/twig-cs-fixer lint web/themes/custom/hoeringsportal/templates
+docker compose exec phpfpm composer coding-standards-check/twig-cs-fixer
 ```
 
-Fix twig standards
+Apply twig standards
 
 ```sh
-docker compose exec phpfpm vendor/bin/twig-cs-fixer lint --fix web/themes/custom/hoeringsportal/templates
+docker compose exec phpfpm composer coding-standards-apply/twig-cs-fixer
 ```
