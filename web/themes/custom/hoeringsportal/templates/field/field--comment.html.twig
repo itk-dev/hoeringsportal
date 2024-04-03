@@ -31,7 +31,7 @@
     {% if comments and not label_hidden %}
     <div class="col-md-12">
       {{ title_prefix }}
-      <h2{{ title_attributes.addClass('mb-3') }}>{% trans %}Contribute{% endtrans %}</h2>
+      <h2{{ title_attributes.addClass('mb-3') }}>{{ 'Contribute'|t }}</h2>
       {{ title_suffix }}
     </div>
     {% endif %}
@@ -59,7 +59,7 @@
             <p class="card-text">{{ 'Before you can contribute you must validate your user account with NemID.'|t }}</p>
             <p class="card-text">{{ 'You only have to do it once, and you can do it now.'|t }}</p>
             {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
-            <a href="{{ path('hoeringsportal_user_validate.saml.login', { ref :  path('<current>') }) }}" class="btn btn-primary">{{ 'Validate'|t }}</a>
+            <a href="{{ path('hoeringsportal_user_validate.saml.login', {ref: path('<current>')}) }}" class="btn btn-primary">{{ 'Validate'|t }}</a>
             <img class="image-fluid float-right" style="width:auto;" src="{{ base_path ~ directory }}/static/images/NEMID_RGB_BLACK.svg" alt="NemID logo">
           </div>
         </div>

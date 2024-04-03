@@ -37,16 +37,14 @@
  */
 #}
 
-
-
 {% if label_hidden %}
   {% if multiple %}
     {% for item in items %}
-      {{ link(item.content['#title'], item.content['#url'], { 'class':['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
+      {{ link(item.content['#title'], item.content['#url'], {'class': ['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
     {% endfor %}
   {% else %}
     {% for item in items %}
-      {{ link(item.content['#title'], item.content['#url'], { 'class':['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
+      {{ link(item.content['#title'], item.content['#url'], {'class': ['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
     {% endfor %}
   {% endif %}
 {% else %}
@@ -55,7 +53,7 @@
     <div>
   {% endif %}
   {% for item in items %}
-    {{ link(item.content['#title'], item.content['#url'], { 'class':['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
+    {{ link(item.content['#title'], item.content['#url'], {'class': ['btn', 'btn-primary', 'btn-arrow-right', 'float-right']}) }}
   {% endfor %}
   {% if multiple %}
     </div>

@@ -37,7 +37,7 @@
 {% endif %}
 
 {% for icon_link in display_icons %}
-  {% if (id == icon_link.id)  %}
+  {% if (id == icon_link.id) %}
 
       <a href="{{ path(element['#url'].getRouteName, element['#url'].getRouteParameters, element['#url'].getOptions) }}" {{ attributes.addClass(classes).addClass('rounded', 'list-filter-link-wrapper') }}>
 
