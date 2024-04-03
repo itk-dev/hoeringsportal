@@ -1,5 +1,5 @@
 nav.navbar {
-  box-shadow: 0 0 10px rgba(0,0,0,.25);
+  box-shadow: 0 0 10px rgb(0 0 0 / 25%);
   transition: padding .2s ease-in;
 
   @include media-breakpoint-up(md) {
@@ -14,12 +14,14 @@ nav.navbar {
     position: relative;
   }
 }
+
 .navbar-brand {
-  margin-right: $spacer*2;
+  margin-right: $spacer * 2;
 
   img {
     height: 70px;
     transition: height .2s ease-out;
+
     @include media-breakpoint-up(md) {
       .scrolled & {
         height: 50px;
@@ -58,6 +60,7 @@ nav.navbar {
       color: $gray-800;
       font-weight: normal;
       font-size: $font-size-sm;
+
       @include media-breakpoint-up(md) {
         .scrolled & {
           padding-bottom: $spacer * .25;

@@ -1,7 +1,10 @@
+{% if header['dynamic_block_field:node-hearing_warning'] is defined %}
+  {{ header['dynamic_block_field:node-hearing_warning'] }}
+{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-md-8 my-3 my-md-5">
-      {{ header }}
+      <h1 class="title underlined is-white hero__title">{{ header|without('dynamic_block_field:node-hearing_warning') }}</h1>
       {% if teaser %}
         {{ teaser }}
       {% endif %}

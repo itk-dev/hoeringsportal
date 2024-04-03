@@ -5,7 +5,7 @@
 
 /* eslint-env jquery */
 (function ($) {
-  let collapseFilterId = '#collapseFilters'
+  const collapseFilterId = '#collapseFilters'
 
   $(collapseFilterId).on('show.bs.collapse', function () {
     $('.filters-toggle span').text('Skjul filtre')

@@ -46,10 +46,10 @@
     <div class="row">
       {% block paragraph %}
         <div class="col-md-6">
-          {{  content | without('field_paragraph_image', 'field_paragraph_title') }}
+          {{ content|without('field_paragraph_image', 'field_paragraph_title') }}
         </div>
         <div class="col-md-6">
-          {{  content.field_paragraph_image }}
+          {{ content.field_paragraph_image }}
         </div>
       {% endblock paragraph %}
     </div>

@@ -1,3 +1,5 @@
+@use "sass:color";
+
 body {
   background: $gray-100;
   word-wrap: break-word;
@@ -9,14 +11,16 @@ h1, h2, h3, h4, h5, legend {
   margin-bottom: $headings-margin-bottom;
   margin-top: $headings-margin-top;
 }
+
 p {
   max-width: 45rem;
 }
 
 a {
   transition: color .2s ease-in, border-bottom .2s ease-in;
+
   &:hover {
-    color: darken($petroleum, 10%);
+    color: color.adjust($petroleum, $lightness: -10%);
     transition: color .4s ease-out, border-bottom .3s ease-out;
   }
 }

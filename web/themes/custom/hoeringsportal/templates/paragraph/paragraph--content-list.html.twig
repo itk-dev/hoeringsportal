@@ -43,7 +43,7 @@
     <h2 class="list--header">{{ paragraph.field_list_title.value }}</h2>
     {% block paragraph %}
       {% block content %}
-        {{ content | without('field_list_title') }}
+        {{ content|without('field_list_title') }}
       {% endblock %}
     {% endblock paragraph %}
   </div>

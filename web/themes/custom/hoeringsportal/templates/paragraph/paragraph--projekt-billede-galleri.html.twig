@@ -43,7 +43,6 @@
     <h2>{{ content.field_paragraph_title }}</h2>
   {% endif %}
   {% block content %}
-    {{ content | without('field_paragraph_title') }}
+    {{ content|without('field_paragraph_title') }}
   {% endblock %}
 {% endblock paragraph %}
-

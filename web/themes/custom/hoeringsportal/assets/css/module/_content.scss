@@ -2,7 +2,8 @@
   background: $white;
   padding-top: $spacer;
   padding-bottom: $spacer;
-  &.group-left:before {
+
+  &.group-left::before {
     content: "";
     position: absolute;
     top: 0;
@@ -17,6 +18,7 @@
   @include media-breakpoint-up(sm) {
     padding-right: 2em;
   }
+
   img {
     @extend .img-fluid;
   }
@@ -62,7 +64,7 @@
 }
 
 .video-embed {
-  padding: 56.25% 0 0 0;
+  padding: 56.25% 0 0;
   position: relative;
 
   > div {
@@ -118,11 +120,11 @@
 
 
 .is-comma-separated {
-  span:after {
+  span::after {
     content: ",";
   }
 
-  span:last-child:after {
+  span:last-child::after {
     content: "";
   }
 }

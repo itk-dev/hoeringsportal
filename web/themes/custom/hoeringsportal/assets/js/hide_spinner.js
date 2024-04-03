@@ -4,13 +4,13 @@
  */
 
 var timer = setInterval(function () {
-  var element = document.querySelector('.node--type-hearing iframe')
+  const element = document.querySelector('.node--type-hearing iframe')
   if (!element) {
     clearInterval(timer)
     return
   }
-  var compStyles = window.getComputedStyle(element)
-  var height = parseInt(compStyles.height, 10)
+  const compStyles = window.getComputedStyle(element)
+  const height = parseInt(compStyles.height, 10)
   if (height > 300) {
     document.querySelector('.spinner').remove()
     clearInterval(timer)

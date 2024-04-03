@@ -97,24 +97,24 @@
 
         {# Alter splash display depending on content state in relation with deadline. #}
         {% if (content_state == 'upcoming') %}
-          <div class="splash-label">{{ 'Start date' | t }}</div>
+          <div class="splash-label">{{ 'Start date'|t }}</div>
           <div class="splash-date-day text-orange p-1">{{ startdate|date('d') }}</div>
-          <div class="splash-date-month">{{ startdate|date('M') | t }}</div>
+          <div class="splash-date-month">{{ startdate|date('M')|t }}</div>
           {% set overlay = 'TRUE' %}
-          {% set overlay_text = 'Upcoming' | t %}
+          {% set overlay_text = 'Upcoming'|t %}
           {% set overlay_text_color = 'text-orange' %}
         {% elseif (content_state == 'finished') %}
-          <div class="splash-label">{{ 'Finished' | t }}</div>
+          <div class="splash-label">{{ 'Finished'|t }}</div>
           <div class="splash-date-day"><i class="fa fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
-          {% set overlay_text = 'Finished' | t %}
+          {% set overlay_text = 'Finished'|t %}
           {% set overlay_sub_text = finishdate|date('U')|format_date('hoeringsportal_date') %}
           {% set overlay_text_color = 'text-green' %}
         {% else %}
-          <div class="splash-label">{{ 'Reply date' | t }}</div>
+          <div class="splash-label">{{ 'Reply date'|t }}</div>
           <div class="splash-date-day p-1">{{ deadline|date('d') }}</div>
-          <div class="splash-date-month">{{ deadline|date('M') | t }}</div>
+          <div class="splash-date-month">{{ deadline|date('M')|t }}</div>
         {% endif %}
       </div>
 

@@ -166,12 +166,13 @@
         "webmozart/path-util": "^2.3"
     },
     "require-dev": {
-      "drupal/content_fixtures": "^3.1",
-      "drupal/core-dev": "^10.0",
-      "drupal/masquerade": "^2.0",
-      "mglaman/phpstan-drupal": "^1.1",
-      "phpstan/extension-installer": "^1.2",
-      "phpstan/phpstan-deprecation-rules": "^1.1"
+        "drupal/content_fixtures": "^3.1",
+        "drupal/core-dev": "^10.0",
+        "drupal/masquerade": "^2.0",
+        "mglaman/phpstan-drupal": "^1.1",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "vincentlanglet/twig-cs-fixer": "^2.6"
     },
     "conflict": {
         "drupal/drupal": "*"
@@ -200,17 +201,25 @@
         "code-analysis": [
             "@code-analysis/phpstan"
         ],
-        "coding-standards-check/phpcs": [
-            "vendor/bin/phpcs --standard=phpcs.xml.dist"
-        ],
-        "coding-standards-check": [
-            "@coding-standards-check/phpcs"
+        "coding-standards-apply": [
+            "@coding-standards-apply/phpcs",
+            "@coding-standards-apply/twig-cs-fixer"
         ],
         "coding-standards-apply/phpcs": [
             "scripts/phpcbf --standard=phpcs.xml.dist"
         ],
-        "coding-standards-apply": [
-            "@coding-standards-apply/phpcs"
+        "coding-standards-apply/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates --fix"
+        ],
+        "coding-standards-check": [
+            "@coding-standards-check/phpcs",
+            "@coding-standards-check/twig-cs-fixer"
+        ],
+        "coding-standards-check/phpcs": [
+            "vendor/bin/phpcs --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-check/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
         ],
         "post-install-cmd": [
             "@install-codestandards"
