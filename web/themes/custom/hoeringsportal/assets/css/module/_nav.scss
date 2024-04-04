@@ -81,9 +81,8 @@ nav.navbar {
     }
 
     .logout-link {
-      @include media-breakpoint-up(md) {
-        border-right: 1px solid $gray-600;
-      }
+      font-weight: $font-weight-bold;
+      color: $black;
     }
   }
 }

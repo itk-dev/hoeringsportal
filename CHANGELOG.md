@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.2.1] - 2024-04-04
+
+* [pr-390](https://github.com/itk-dev/hoeringsportal/pull/390)
+  Fix logout and newsletter banner
+
 ## [4.2.0] - 2024-04-04
 
 * [pr-386](https://github.com/itk-dev/hoeringsportal/pull/386)
@@ -178,7 +183,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...HEAD
+[4.2.1]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...4.2.1
 [4.2.0]: https://github.com/itk-dev/hoeringsportal/compare/4.1.1...4.2.0
 [4.1.1]: https://github.com/itk-dev/hoeringsportal/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/itk-dev/hoeringsportal/compare/4.0.1...4.1.0
