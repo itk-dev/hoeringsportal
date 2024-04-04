@@ -7,7 +7,7 @@ require('../css/hoeringsportal.scss')
 
 const $ = require('jquery')
 
-require('popper.js')
+require('@popperjs/core')
 require('bootstrap')
 require('./hide_password_help.js')
 require('./responsive-image-as-background.js')

@@ -18,7 +18,7 @@
     isNested ? 'bef_nested'
   ]
 %}
-<div{{ attributes.addClass(classes) }} data-toggle="buttons">
+<div{{ attributes.addClass(classes) }} data-bs-toggle="buttons">
   {% set current_nesting_level = 0 %}
   {% for child in children %}
     {% set item = attribute(element, child) %}

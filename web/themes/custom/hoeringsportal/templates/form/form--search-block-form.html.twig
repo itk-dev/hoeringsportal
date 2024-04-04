@@ -11,9 +11,24 @@
  */
 #}
 
-<div id="search-block-form-wrapper" class="navbar-collapse collapse">
-  <form{{ attributes.addClass('form-inline') }}>
-    {{ children }}
-  </form>
-</div>
+{%
+  set classes = [
+    'form-inline'
+  ]
+%}
 
+<div class="search-collapse-wrapper d-flex gap-2 order-0 order-md-1">
+  <button class="btn btn-link p-0 pt-1 align-self-start align-self-md-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+    <i class="fas fa-search"></i>
+  </button>
+  <div class="collapse bg-white z-1" id="collapseSearch">
+    <div class="d-flex gap-2">
+      <form{{ attributes.addClass(classes) }}>
+        {{ children }}
+      </form>
+      <button class="btn btn-link p-1 align-self-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </div>
+</div>

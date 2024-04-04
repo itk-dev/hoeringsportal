@@ -6,6 +6,16 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [pr-386](https://github.com/itk-dev/hoeringsportal/pull/386)
+  Design fixes:
+  * Main nav visuals
+  * Search remove repeated icons
+  * Make search available on mobile
+  * Mobile nav tweaks
+  * Upgrade to Bootstrap v5
+  * Add and apply twig coding standards [pr-388]
+  * Upgrade all frontend dependencies [pr-387]
+
 ## [4.1.1] - 2024-03-21
 
 * [pr-385](https://github.com/itk-dev/hoeringsportal/pull/385)

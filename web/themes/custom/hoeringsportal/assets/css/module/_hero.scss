@@ -1,9 +1,34 @@
-@import "../_custom-mixins";
-
-$hero-breakpoint:   "sm";
+$hero-breakpoint: "sm";
 
 .hero {
-  @include element-theme($primary, $gray-100, $white);
+  color: $white;
+  background: $primary;
+
+  .bg-light {
+    color: $black;
+    background: $gray-100;
+  }
+
+  a,
+  .link,
+  .link::before {
+    color: $white;
+
+    span {
+      color: $white;
+    }
+  }
+
+  a:hover {
+    color: $white;
+  }
+
+  .underlined {
+    &::after {
+      background: $white;
+    }
+  }
+
 
   width: 100%;
   display: grid;

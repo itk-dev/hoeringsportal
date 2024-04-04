@@ -37,9 +37,9 @@
  */
 #}
 
-<h3>{{ 'Content on this page'| t }}</h3>
+<h3>{{ 'Content on this page'|t }}</h3>
 
-{% set node = element['#object']|default(null)  %}
+{% set node = element['#object']|default(null) %}
 {% if null != node and 'active' == node.field_content_state.value|default('') %}
   {% set has_external_hearing_tickets = node.field_hearing_ticket_add.uri|default(false) %}
   {% set hearing_ticket_add_url = has_external_hearing_tickets ? node.field_hearing_ticket_add.uri : path('hoeringsportal_deskpro.hearing.ticket_add', {node: node.id}) %}

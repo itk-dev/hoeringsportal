@@ -36,7 +36,7 @@
  * @see template_preprocess_field()
  */
 #}
-{% if (element['#ds_view_mode']) and (element['#ds_view_mode'] == 'hearing_ticket_view' or element['#ds_view_mode'] == 'hearing_ticket_add')%}
+{% if (element['#ds_view_mode']) and (element['#ds_view_mode'] == 'hearing_ticket_view' or element['#ds_view_mode'] == 'hearing_ticket_add') %}
   {% for item in items %}
     <div class="mb-4">
       <div class="content-hearign-ticket-title-label">{{ 'Hearing reply for'|t }}</div>

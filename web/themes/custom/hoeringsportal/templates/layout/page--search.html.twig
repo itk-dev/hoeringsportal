@@ -44,17 +44,9 @@
  */
 #}
 
-{# TODO: Move <nav> into its own template since its a copy from page.html.twig #}
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#block-primaernavigation, #search-block-form-wrapper, #block-sekundaernavigation" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    {{ page.header }}
-  </div>
-</nav>
+{{ page.header }}
 
-{% if(not is_front) %}
+{% if (not is_front) %}
   <div class="group-header hero-container mb-4">
     <div class="hero hero--image-right">
       <div class="container">

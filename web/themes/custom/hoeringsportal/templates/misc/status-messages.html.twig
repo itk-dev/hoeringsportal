@@ -25,22 +25,20 @@
 {% for type, messages in message_list %}
   {%
   set classes = [
-    type=='error' ? 'alert-danger',
-    type=='warning' ? 'alert-warning',
-    type=='status' ? 'alert-success',
+    'status-messages',
+    type == 'error' ? 'alert-danger',
+    type == 'warning' ? 'alert-warning',
+    type == 'status' ? 'alert-success',
     'alert',
     'alert-dismissable',
-    'fixed'
+    'fade',
+    'show',
+    'mb-0'
   ]
   %}
-  <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label').addClass(classes) }}>
-    <div class="container">
-    {% if type == 'error' %}
-      <div role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    {% endif %}
+  <div role="alert" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label').addClass(classes) }}>
+    <div class="container d-flex flex-column flex-md-row">
+      <div class="order-1 order-md-0">
       {% if status_headings[type] %}
         <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
       {% endif %}
@@ -53,10 +51,12 @@
       {% else %}
         {{ messages|first }}
       {% endif %}
-    {% if type == 'error' %}
       </div>
-    {% endif %}
-
-  </div>
+      {% if type != 'warning' %}
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
     </div>
+  </div>
 {% endfor %}
