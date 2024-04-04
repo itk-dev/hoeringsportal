@@ -3,7 +3,7 @@
  * Set timer for iframe.
  */
 
-var timer = setInterval(function () {
+const timer = setInterval(function () {
   const element = document.querySelector('.node--type-hearing iframe')
   if (!element) {
     clearInterval(timer)
