@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [pr-390](https://github.com/itk-dev/hoeringsportal/pull/390)
+  Fix logout and newsletter banner
+
 ## [4.2.0] - 2024-04-04
 
 * [pr-386](https://github.com/itk-dev/hoeringsportal/pull/386)
