@@ -38,24 +38,19 @@
  */
 #}
 
+{% set mime_type_icons = {
+   'application/pdf': 'fa-file-pdf',
+   'application/vnd.openxmlformats-officedocument.wordprocessingml.document': 'fa-file-word',
+   'application/msword': 'fa-file-word',
+   'text/plain': 'fa-file-alt',
+   'image/png': 'fa-file-image',
+   'image/jpeg': 'fa-file-image',
+   'application/vnd.ms-excel': 'fa-file-excel',
+   'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': 'fa-file-excel',
+   }
+%}
+
 {% for item in items %}
-  {% if item.content['#context'].value == 'application/pdf' %}
-    <i class="fa fa-file-pdf fa-sm ml-2 mr-2 mt-1"></i>
-  {% elseif item.content['#context'].value == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' %}
-    <i class="fa fa-file-word fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'application/msword' %}
-    <i class="fa fa-file-word fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'text/plain' %}
-    <i class="fa fa-file-alt fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'image/png' %}
-    <i class="fa fa-file-image fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'image/jpeg' %}
-    <i class="fa fa-file-image fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'application/vnd.ms-excel' %}
-    <i class="fa fa-file-excel fa-sm ml-2 mr-2  mt-1"></i>
-  {% elseif item.content['#context'].value == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' %}
-    <i class="fa fa-file-excel fa-sm ml-2 mr-2  mt-1"></i>
-  {% else %}
-    <i class="fa fa-file fa-sm ml-2 mr-2  mt-1"></i>
-  {% endif %}
+   {% set icon = mime_type_icons[item.content['#context'].value]|default('fa-file') %}
+   <i class="fa {{ icon }} fa-sm ms-2 me-2 mt-1"></i>
 {% endfor %}

@@ -12,31 +12,38 @@
  * @see template_preprocess_region()
  */
 #}
+<div class="d-flex flex-column sticky-top">
+  <nav class="navbar navbar-expand-md navbar-light bg-white">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#block-navigation" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      {% if elements.hoeringsportal_branding %}
+        {{ elements.hoeringsportal_branding }}
+      {% endif %}
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
-  <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#block-navigation" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    {% if elements.hoeringsportal_branding %}
-      {{ elements.hoeringsportal_branding }}
-    {% endif %}
-
-    <div class="collapse navbar-collapse" id="block-navigation">
-      <div class="w-100 d-flex justify-content-end flex-lg-column-reverse flex-column align-items-lg-end align-items-start position-relative">
-        {% if elements.primaernavigation %}
-          {{ elements.primaernavigation }}
-        {% endif %}
-        {% if elements.sekundaernavigation %}
-          {{ elements.sekundaernavigation }}
-        {% endif %}
-        {% if elements.sogefelt_2 %}
-          {{ elements.sogefelt_2 }}
-        {% endif %}
+      <div class="collapse navbar-collapse" id="block-navigation">
+        <div class="w-100 d-flex flex-column justify-content-md-end align-items-md-end">
+          <div class="order-1 order-md-0">
+            {% if elements.sekundaernavigation %}
+              {{ elements.sekundaernavigation }}
+            {% endif %}
+          </div>
+          <div class="order-0 order-md-1 d-flex flex-column flex-md-row align-items-md-center position-relative w-100 justify-content-end">
+            {% if elements.primaernavigation %}
+              {{ elements.primaernavigation }}
+            {% endif %}
+            {% if elements.sogefelt_2 %}
+              {{ elements.sogefelt_2 }}
+            {% endif %}
+          </div>
+        </div>
       </div>
     </div>
+  </nav>
+  <div>
+    {% if elements.hoeringsportal_messages %}
+      {{ elements.hoeringsportal_messages }}
+    {% endif %}
   </div>
-</nav>
-{% if elements.hoeringsportal_messages %}
-  {{ elements.hoeringsportal_messages }}
-{% endif %}
+</div>

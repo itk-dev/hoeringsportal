@@ -78,3 +78,18 @@ yarn run apply-coding-standards-js
 ```
 
 to apply any possible automatic fixes.
+
+
+### Twig
+
+Check twig standards
+
+```sh
+docker compose exec phpfpm composer coding-standards-check/twig-cs-fixer
+```
+
+Apply twig standards
+
+```sh
+docker compose exec phpfpm composer coding-standards-apply/twig-cs-fixer
+```

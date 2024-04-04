@@ -1,96 +1,87 @@
 nav.navbar {
-  box-shadow: 0 0 10px rgba(0,0,0,.25);
-  transition: padding .4s ease-out;
+  box-shadow: 0 0 10px rgb(0 0 0 / 25%);
+  transition: padding .2s ease-in;
 
-  .scrolled & {
-    padding: .1rem 1rem;
-    transition: padding .2s ease-in;
+  @include media-breakpoint-up(md) {
+    .scrolled & {
+      padding-top: $spacer * .25;
+      padding-bottom: $spacer * .25;
+      transition: padding .2s ease-out;
+    }
   }
 
   .container {
     position: relative;
   }
 }
+
 .navbar-brand {
-  margin-right: $spacer*2;
+  margin-right: $spacer * 2;
 
   img {
     height: 70px;
-    transition: height .4s ease-out;
-    .scrolled & {
-      height: 50px;
-      transition: height .2s ease-in;
+    transition: height .2s ease-out;
+
+    @include media-breakpoint-up(md) {
+      .scrolled & {
+        height: 50px;
+        transition: height .2s ease-out;
+      }
     }
   }
 }
 
-#block-navigation {
-  position: relative;
-}
-
 .navbar-nav {
-  padding: .5rem 0;
+  .nav-link {
+    font-family: $font-family-black;
+    font-size: $font-size-base;
+    position: relative;
+    display: block;
+    color: $black;
+    font-weight: $font-weight-bold;
 
-  .nav-item {
-    &:last-child {
-      @include media-breakpoint-up(lg) {
-        border-right: 2px solid $gray-300;
-      }
+    &:hover {
+      color: $primary;
     }
 
-    .nav-link {
-      font-family: $font-family-black;
-      font-size: 1rem;
-      position: relative;
-      display: block;
-      color: $black;
-      padding: 0 1em;
-      margin-top: 0;
-      margin-bottom: $spacer;
+    &.active {
+      color: $gray-700;
+    }
 
-      @include media-breakpoint-up(lg) {
-        font-weight: $font-weight-black;
-        margin-bottom: 0;
-        flex: 0 0 100%;
+    @include media-breakpoint-up(md) {
+      .scrolled & {
+        padding-top: $spacer * .25;
       }
     }
   }
 
   &.is-secondary-navigation {
-    @include media-breakpoint-up(lg) {
-      margin-right: auto;
-      float: right;
-    }
-
-    .nav-item:last-child {
-      border-right: 0;
-    }
-
     .nav-link {
       color: $gray-800;
-      line-height: 24px;
-      padding-bottom: 0;
-      padding-top: 0;
-      margin-right: 0;
-      font-size: 1em;
-      margin-top: 0;
-      margin-bottom: $spacer;
       font-weight: normal;
+      font-size: $font-size-sm;
 
-      &:hover {
-        color: darken($primary, 10%);
-        text-decoration: underline;
+      @include media-breakpoint-up(md) {
+        .scrolled & {
+          padding-bottom: $spacer * .25;
+        }
       }
 
-      @include media-breakpoint-up(lg) {
-        font-size: .9em;
-        margin-top: $spacer;
-        margin-bottom: 0;
+      &:hover {
+        color: $primary;
+      }
+
+      &.active {
+        color: $gray-700;
+      }
+
+      &:last-child {
+        padding-right: 0;
       }
     }
 
     .logout-link {
-      @include media-breakpoint-up(lg) {
+      @include media-breakpoint-up(md) {
         border-right: 1px solid $gray-600;
       }
     }
@@ -101,5 +92,13 @@ nav.navbar {
   @include media-breakpoint-up(lg) {
     position: absolute;
     right: 80px;
+  }
+}
+
+.nav-divider:last-child {
+  @include media-breakpoint-up(md) {
+    border-right: 1px $border-color solid;
+    margin-right: $spacer;
+    padding-right: $spacer * .5;
   }
 }

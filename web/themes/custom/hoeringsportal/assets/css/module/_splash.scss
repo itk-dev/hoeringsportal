@@ -1,16 +1,19 @@
 .splash {
   background-color: $white;
-  padding: $spacer*.5 $spacer*.5 $spacer*.5 $spacer*.5;
+  padding: $spacer * .5 $spacer * .5 $spacer * .5 $spacer * .5;
   text-align: center;
 }
+
 .splash-label {
   color: $gray-800;
   font-size: .75rem;
   margin-bottom: .25rem;
 }
+
 .splash-date {
   padding: .75rem;
 }
+
 .splash-date-day {
   font-family: $font-family-black;
   font-weight: $font-weight-black;
@@ -22,20 +25,24 @@
     color: $orange;
   }
 }
+
 .splash-date-month {
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: $font-weight-bold;
   color: $black;
 }
+
 .splash-comments {
   border-top: 1px solid $gray-400;
   color: $gray-800;
 }
+
 .splash-comments-count {
   font-size: .8rem;
   line-height: 1;
+
   svg {
-    margin-right: $spacer*.25;
+    margin-right: $spacer * .25;
   }
 }
