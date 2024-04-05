@@ -10,11 +10,14 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_city_council_meeting_date
     - field.field.node.citizen_proposal.field_content_state
     - field.field.node.citizen_proposal.field_getorganized_case_id
     - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
+    - field.field.node.citizen_proposal.field_status_description
+    - field.field.node.citizen_proposal.field_status_title
     - field.field.node.citizen_proposal.field_vote_end
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
@@ -127,9 +130,12 @@ hidden:
   field_author_email_display: true
   field_author_phone: true
   field_author_uuid: true
+  field_city_council_meeting_date: true
   field_content_state: true
   field_getorganized_case_id: true
   field_more_info: true
+  field_status_description: true
+  field_status_title: true
   langcode: true
   links: true
   published_at: true

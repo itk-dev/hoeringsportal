@@ -9,11 +9,14 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_city_council_meeting_date
     - field.field.node.citizen_proposal.field_content_state
     - field.field.node.citizen_proposal.field_getorganized_case_id
     - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
+    - field.field.node.citizen_proposal.field_status_description
+    - field.field.node.citizen_proposal.field_status_title
     - field.field.node.citizen_proposal.field_vote_end
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
@@ -92,6 +95,15 @@ content:
     third_party_settings: {  }
     weight: 4
     region: left
+  field_city_council_meeting_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 11
+    region: content
   field_more_info:
     type: text_default
     label: above
@@ -113,6 +125,21 @@ content:
     third_party_settings: {  }
     weight: 3
     region: left
+  field_status_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 12
+    region: content
+  field_status_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 13
+    region: content
   field_vote_end:
     type: datetime_default
     label: above
