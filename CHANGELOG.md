@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.2.2] - 2024-04-10
+
+* [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)
+  1152: Fixed rendering of headers
+
 ## [4.2.1] - 2024-04-04
 
 * [pr-390](https://github.com/itk-dev/hoeringsportal/pull/390)
@@ -183,7 +188,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...HEAD
+[4.2.2]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...4.2.2
 [4.2.1]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...4.2.1
 [4.2.0]: https://github.com/itk-dev/hoeringsportal/compare/4.1.1...4.2.0
 [4.1.1]: https://github.com/itk-dev/hoeringsportal/compare/4.1.0...4.1.1
