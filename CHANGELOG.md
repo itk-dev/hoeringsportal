@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [pr-394](https://github.com/itk-dev/hoeringsportal/pull/394)
+  Add content type Project page
+
 ## [4.2.2] - 2024-04-10
 
 * [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)
