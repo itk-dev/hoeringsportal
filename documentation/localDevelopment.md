@@ -156,3 +156,10 @@ for further details.
 ```sh
 composer install --no-dev --optimize-autoloader
 ```
+
+## Deskpro local hack patch
+
+Run
+```sh
+git apply < documentation/hoeringsportal_deskpro.hack.patch
+```

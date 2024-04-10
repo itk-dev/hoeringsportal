@@ -1,5 +1,5 @@
 diff --git a/web/modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module b/web/modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module
-index d5026c3..5ce33a3 100644
+index d5026c34..5ce33a38 100644
 --- a/web/modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module
 +++ b/web/modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module
 @@ -73,6 +73,7 @@ function hoeringsportal_deskpro_theme() {
@@ -11,7 +11,7 @@ index d5026c3..5ce33a3 100644
      // Department as select control.
      if (isset($form['field_deskpro_department_id']['widget'][0]['value']['#type'])
 diff --git a/web/modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraintValidator.php b/web/modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraintValidator.php
-index 16f827f..abbdd65 100644
+index a80a11fd..1c8e335b 100644
 --- a/web/modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraintValidator.php
 +++ b/web/modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraintValidator.php
 @@ -41,6 +41,7 @@ public static function create(ContainerInterface $container) {
@@ -23,7 +23,7 @@ index 16f827f..abbdd65 100644
      // validate the first item.
      $item = $value->first();
 diff --git a/web/modules/custom/hoeringsportal_deskpro/src/Service/DeskproService.php b/web/modules/custom/hoeringsportal_deskpro/src/Service/DeskproService.php
-index e020e97..cd206df 100644
+index e020e97c..cd206dfb 100644
 --- a/web/modules/custom/hoeringsportal_deskpro/src/Service/DeskproService.php
 +++ b/web/modules/custom/hoeringsportal_deskpro/src/Service/DeskproService.php
 @@ -531,6 +531,8 @@ public function getDefaultTicketLanguage() {
