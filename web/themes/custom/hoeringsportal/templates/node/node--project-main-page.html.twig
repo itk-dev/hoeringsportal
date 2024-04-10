@@ -21,30 +21,30 @@
  */
 #}
 
-  {# Header #}
-  {% include directory ~ '/templates/components/header-v2.html.twig' with {'image': content.field_project_image, 'title': node.label, 'description': content.field_short_description} %}
+{# Header #}
+{% include directory ~ '/templates/components/header-v2.html.twig' with {'image': content.field_project_image, 'title': node.label, 'description': content.field_short_description} %}
 
-  {# Main container #}
-  <div class="container content__container">
-    <div class="row">
-      <div class="col-md-8">
-        {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'published_at') }}
-      </div>
-      <div class="offset-md-1 col-md-3">
-        {{ content.field_aside_block }}
-      </div>
+{# Main container #}
+<div class="container content__container">
+  <div class="row">
+    <div class="col-md-8">
+      {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'published_at') }}
+    </div>
+    <div class="offset-md-1 col-md-3">
+      {{ content.field_aside_block }}
     </div>
   </div>
-  <div class="sections">
-    {{ content.field_content_sections }}
+</div>
+<div class="sections">
+  {{ content.field_content_sections }}
+</div>
+<div class="container">
+  <div class="row text-muted">
+    {{ content.published_at }}
   </div>
-  <div class="container">
-    <div class="row text-muted">
-      {{ content.published_at }}
-    </div>
-  </div>
+</div>
 
-  {# Newsletter signup #}
-  {% if node_newsletter %}
-    {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
-  {% endif %}
+{# Newsletter signup #}
+{% if node_newsletter %}
+  {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
+{% endif %}
