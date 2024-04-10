@@ -1,11 +1,5 @@
 @use "sass:map";
 
-/* Set container max widths only on lg and xl to utilize more of the screen on small devices */
-$container-max-widths: (
-  lg: 960px,
-  xl: 1140px
-);
-
 /* stylelint-disable color-no-hex */
 $white: #fff;
 $gray-100: #f6f6f6;

@@ -19,8 +19,8 @@
     @include media-breakpoint-up(md) {
       padding-top: $spacer * 5;
       padding-bottom: $spacer * 5;
-      margin-left: 5vw;
-      margin-right: 5vw;
+      margin-left: calc($spacer + 2vw);
+      margin-right: calc($spacer + 2vw);
       margin-top: -$spacer * 5;
     }
   }
