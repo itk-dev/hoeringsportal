@@ -1,0 +1,20 @@
+uuid: f7bfe7e7-d2b0-493c-a79e-1bb34b5b6787
+langcode: da
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.field_phone_number
+field_name: field_phone_number
+entity_type: block_content
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

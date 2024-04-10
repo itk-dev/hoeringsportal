@@ -1,0 +1,59 @@
+uuid: 30cbd187-b0c8-4814-8661-2a61e3f18429
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - field.field.block_content.aside_contact_info.body
+    - field.field.block_content.aside_contact_info.field_department
+    - field.field.block_content.aside_contact_info.field_email
+    - field.field.block_content.aside_contact_info.field_phone_number
+    - field.field.block_content.aside_contact_info.field_title
+  module:
+    - text
+id: block_content.aside_contact_info.default
+targetEntityType: block_content
+bundle: aside_contact_info
+mode: default
+content:
+  body:
+    type: text_default
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_department:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_email:
+    type: basic_string
+    label: visually_hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_phone_number:
+    type: number_integer
+    label: visually_hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_title:
+    type: string
+    label: visually_hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true

@@ -1,0 +1,24 @@
+uuid: 3ce90002-01d0-4a7d-be40-fa48cd799e83
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_short_description
+    - filter.format.filtered_html
+    - node.type.project_main_page
+  module:
+    - text
+id: node.project_main_page.field_short_description
+field_name: field_short_description
+entity_type: node
+bundle: project_main_page
+label: 'Short description'
+description: 'Short description of the project.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - filtered_html
+field_type: text_long

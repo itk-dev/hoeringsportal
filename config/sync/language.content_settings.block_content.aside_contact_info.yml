@@ -1,0 +1,11 @@
+uuid: f7222482-1df5-429f-8792-c9500635c819
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+id: block_content.aside_contact_info
+target_entity_type_id: block_content
+target_bundle: aside_contact_info
+default_langcode: site_default
+language_alterable: false

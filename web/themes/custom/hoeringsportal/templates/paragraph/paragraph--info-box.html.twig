@@ -38,13 +38,15 @@
  * @ingroup themeable
  */
 #}
-<div class="info-box">
-  {% block paragraph %}
-    {% if content.field_paragraph_title['#items'] is not empty %}
-      <h2>{{ content.field_paragraph_title }}</h2>
-    {% endif %}
-    {% block content %}
-      {{ content.field_content_block_text }}
-    {% endblock %}
-  {% endblock paragraph %}
+<div class="container">
+  <div class="info-box">
+    {% block paragraph %}
+      {% if content.field_paragraph_title['#items'] is not empty %}
+        <h2>{{ content.field_paragraph_title }}</h2>
+      {% endif %}
+      {% block content %}
+        {{ content.field_content_block_text }}
+      {% endblock %}
+    {% endblock paragraph %}
+  </div>
 </div>

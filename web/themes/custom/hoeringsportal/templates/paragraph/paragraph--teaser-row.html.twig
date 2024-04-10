@@ -38,25 +38,27 @@
  * @ingroup themeable
  */
 #}
-<div class="row">
-  <div class="col-md-12">
-    {% if content.field_paragraph_title['#items'] is not empty %}
-      <h2>{{ content.field_paragraph_title }}</h2>
-    {% endif %}
-    <div class="row">
-      {% block paragraph %}
-        {% block content %}
-          {% if (paragraph.field_type.value == 'one_project_two_static') %}
-            {{ content|without('field_paragraph_title', 'field_project_hearing_2', 'field_project_hearing_3') }}
-          {% endif %}
-          {% if (paragraph.field_type.value == 'two_projects') %}
-            {{ content|without('field_paragraph_title', 'field_static_pages', 'field_project_hearing_3') }}
-          {% endif %}
-          {% if (paragraph.field_type.value == 'three_projects') %}
-            {{ content|without('field_paragraph_title', 'field_static_pages') }}
-          {% endif %}
-        {% endblock %}
-      {% endblock paragraph %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% if content.field_paragraph_title['#items'] is not empty %}
+        <h2>{{ content.field_paragraph_title }}</h2>
+      {% endif %}
+      <div class="row">
+        {% block paragraph %}
+          {% block content %}
+            {% if (paragraph.field_type.value == 'one_project_two_static') %}
+              {{ content|without('field_paragraph_title', 'field_project_hearing_2', 'field_project_hearing_3') }}
+            {% endif %}
+            {% if (paragraph.field_type.value == 'two_projects') %}
+              {{ content|without('field_paragraph_title', 'field_static_pages', 'field_project_hearing_3') }}
+            {% endif %}
+            {% if (paragraph.field_type.value == 'three_projects') %}
+              {{ content|without('field_paragraph_title', 'field_static_pages') }}
+            {% endif %}
+          {% endblock %}
+        {% endblock paragraph %}
+      </div>
     </div>
   </div>
 </div>

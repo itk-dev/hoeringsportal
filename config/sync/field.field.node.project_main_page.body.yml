@@ -1,0 +1,26 @@
+uuid: 59bde97b-ec4c-4f5d-b4c6-bd06498c95f9
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - filter.format.filtered_html
+    - node.type.project_main_page
+  module:
+    - text
+id: node.project_main_page.body
+field_name: body
+entity_type: node
+bundle: project_main_page
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats:
+    - filtered_html
+field_type: text_with_summary
