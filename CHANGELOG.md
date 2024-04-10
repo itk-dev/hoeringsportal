@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)
+  1152: Fixed rendering of headers
+
 ## [4.2.1] - 2024-04-04
 
 * [pr-390](https://github.com/itk-dev/hoeringsportal/pull/390)
