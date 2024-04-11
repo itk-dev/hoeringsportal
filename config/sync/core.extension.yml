@@ -3,6 +3,7 @@ _core:
 langcode: da
 module:
   aarhus_hero: 0
+  advanced_text_formatter: 0
   advancedqueue: 0
   allowed_formats: 0
   better_exposed_filters: 0
