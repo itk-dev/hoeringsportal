@@ -1,4 +1,8 @@
 services:
+  Drupal\hoeringsportal_project_fixtures\Fixture\BlockContentFixture:
+    tags:
+      - { name: content_fixture }
+
   Drupal\hoeringsportal_project_fixtures\Fixture\ProjectMainPageFixture:
     tags:
       - { name: content_fixture }
