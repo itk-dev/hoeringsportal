@@ -3,13 +3,13 @@ _core:
 langcode: da
 module:
   aarhus_hero: 0
-  advanced_text_formatter: 0
   advancedqueue: 0
   allowed_formats: 0
   better_exposed_filters: 0
   better_social_sharing_buttons: 0
   block: 0
   block_content: 0
+  block_content_suggestions: 0
   breakpoint: 0
   captcha: 0
   ckeditor5: 0
