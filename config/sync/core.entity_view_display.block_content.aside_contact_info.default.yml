@@ -11,16 +11,26 @@ dependencies:
     - field.field.block_content.aside_contact_info.field_phone_number
     - field.field.block_content.aside_contact_info.field_title
   module:
-    - text
+    - advanced_text_formatter
 id: block_content.aside_contact_info.default
 targetEntityType: block_content
 bundle: aside_contact_info
 mode: default
 content:
   field_address:
-    type: text_default
+    type: advanced_text
     label: hidden
-    settings: {  }
+    settings:
+      trim_length: '0'
+      ellipsis: '1'
+      word_boundary: '1'
+      filter: limit_html
+      format: plain_text
+      allowed_html: {  }
+      autop: '1'
+      use_summary: 0
+      token_replace: 0
+      link_to_entity: 0
     third_party_settings: {  }
     weight: 3
     region: content

@@ -1,16 +1,16 @@
-uuid: 05e644e0-b948-4277-b62a-740cf8e2cd97
+uuid: ba1ffa68-1227-41ff-b1a4-aa4cc4d9be1a
 langcode: da
 status: true
 dependencies:
   module:
     - block_content
-    - text
 id: block_content.field_address
 field_name: field_address
 entity_type: block_content
-type: text_long
-settings: {  }
-module: text
+type: string_long
+settings:
+  case_sensitive: false
+module: core
 locked: false
 cardinality: 1
 translatable: true

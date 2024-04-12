@@ -13,14 +13,13 @@ dependencies:
     - field.field.block_content.aside_contact_info.field_title
   module:
     - entity_browser
-    - text
 id: block_content.aside_contact_info.default
 targetEntityType: block_content
 bundle: aside_contact_info
 mode: default
 content:
   field_address:
-    type: text_textarea
+    type: string_textarea
     weight: 5
     region: content
     settings:
