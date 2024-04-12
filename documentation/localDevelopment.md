@@ -157,10 +157,6 @@ for further details.
 composer install --no-dev --optimize-autoloader
 ```
 
-## Deskpro local hack patch
+## Deskpro
 
-Run
-
-```sh
-git apply < documentation/hoeringsportal_deskpro.hack.patch
-```
+See [hoeringsportal_deskpro/README.md](web/modules/custom/hoeringsportal_deskpro/README.md#test-mode).

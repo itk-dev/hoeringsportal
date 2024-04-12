@@ -1,0 +1,19 @@
+data:
+  - id: 1
+    parent: null
+    children: []
+    title: Høringssvar
+    user_title: Høringssvar
+    full_title: Høringssvar
+    is_tickets_enabled: true
+    is_chat_enabled: false
+    display_order: 0
+    avatar:
+      default_url_pattern: https://example.com/file.php/o-avatar/default?s={{IMG_SIZE}}&size-fit=1
+      url_pattern: null
+      base_gravatar_url: null
+    brands:
+      - 1
+
+meta: []
+linked: []
