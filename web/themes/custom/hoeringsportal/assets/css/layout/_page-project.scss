@@ -6,7 +6,7 @@
     font-size: clamp(1.25rem, calc(1.25vw + $font-size-base), 1.6rem);
   }
 
-  h2 + p strong {
+  .abstract {
     font-size: clamp(1.1rem, 0.8vw + 1rem, 1.3rem);
     font-weight: normal;
     line-height: 1.6;

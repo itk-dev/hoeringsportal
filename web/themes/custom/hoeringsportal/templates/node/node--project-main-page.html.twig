@@ -10,14 +10,14 @@
 <div class="container content__container">
   <div class="row">
     <div class="col-md-8">
-      {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'published_at') }}
+      {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'field_area', 'published_at') }}
     </div>
     <div class="col-md-4 pt-md-3">
       {{ content.field_aside_block }}
     </div>
   </div>
 </div>
-<div class="sections">
+<div class="sections d-flex flex-column row-gap-5">
   {{ content.field_content_sections }}
 </div>
 <div class="container">
