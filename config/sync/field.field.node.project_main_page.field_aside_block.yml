@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.aside_contact_info
+    - block_content.type.aside_link_box
     - field.storage.node.field_aside_block
     - node.type.project_main_page
 id: node.project_main_page.field_aside_block
@@ -21,9 +22,10 @@ settings:
   handler_settings:
     target_bundles:
       aside_contact_info: aside_contact_info
+      aside_link_box: aside_link_box
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: ''
+    auto_create_bundle: aside_contact_info
 field_type: entity_reference

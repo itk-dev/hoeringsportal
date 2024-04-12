@@ -1,0 +1,29 @@
+uuid: 1caac72f-f88b-47c8-b440-e835fc524bec
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_area
+    - node.type.project_main_page
+    - taxonomy.vocabulary.area
+id: node.project_main_page.field_area
+field_name: field_area
+entity_type: node
+bundle: project_main_page
+label: Område
+description: 'Vælg områder som projektet vedrører. Markér alle hvis projektet dækker hele kommunen.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      area: area
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

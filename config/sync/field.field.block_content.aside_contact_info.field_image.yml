@@ -1,0 +1,29 @@
+uuid: 829294bf-6966-459b-ac58-d48dd398b05e
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - field.storage.block_content.field_image
+    - media.type.image
+id: block_content.aside_contact_info.field_image
+field_name: field_image
+entity_type: block_content
+bundle: aside_contact_info
+label: Image
+description: 'Used to add image to the top of the box'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

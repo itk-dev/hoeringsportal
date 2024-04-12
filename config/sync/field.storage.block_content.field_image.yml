@@ -1,19 +1,19 @@
-uuid: 1e16e13d-7104-4edc-a028-a02aa5937cc4
+uuid: 16882a14-56d1-476a-9556-db311eb373de
 langcode: da
 status: true
 dependencies:
   module:
     - block_content
-    - node
-id: node.field_aside_block
-field_name: field_aside_block
-entity_type: node
+    - media
+id: block_content.field_image
+field_name: field_image
+entity_type: block_content
 type: entity_reference
 settings:
-  target_type: block_content
+  target_type: media
 module: core
 locked: false
-cardinality: -1
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

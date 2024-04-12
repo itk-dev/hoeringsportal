@@ -1,9 +1,9 @@
-uuid: 044634a5-28aa-44f8-b7a8-2e2ab2bcc205
+uuid: f164aaef-5de2-4584-8cf7-d891df842fd9
 langcode: da
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.list_display
     - field.field.node.project_main_page.body
     - field.field.node.project_main_page.field_area
     - field.field.node.project_main_page.field_aside_block
@@ -12,28 +12,19 @@ dependencies:
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
   module:
-    - text
     - user
-id: node.project_main_page.teaser
+id: node.project_main_page.list_display
 targetEntityType: node
 bundle: project_main_page
-mode: teaser
+mode: list_display
 content:
-  body:
-    type: text_summary_or_trimmed
-    label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
   field_area:
     type: entity_reference_label
     label: hidden
     settings:
       link: false
     third_party_settings: {  }
-    weight: 1
+    weight: 4
     region: content
   links:
     settings: {  }
@@ -46,6 +37,7 @@ content:
     weight: 100
     region: content
 hidden:
+  body: true
   field_aside_block: true
   field_content_sections: true
   field_project_image: true

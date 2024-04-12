@@ -1,4 +1,4 @@
-uuid: 09ad4697-df95-4ca7-9355-41cde5a55122
+uuid: 79faa64c-969d-4a82-9ba4-b09eefd08612
 langcode: da
 status: true
 dependencies:
@@ -10,7 +10,7 @@ field_name: field_address
 entity_type: block_content
 bundle: aside_contact_info
 label: Address
-description: ''
+description: 'Used to add address'
 required: false
 translatable: false
 default_value: {  }
