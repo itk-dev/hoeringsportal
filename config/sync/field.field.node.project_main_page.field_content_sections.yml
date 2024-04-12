@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.introduction
     - paragraphs.paragraphs_type.teaser_row
     - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
   module:
     - entity_reference_revisions
 id: node.project_main_page.field_content_sections
@@ -30,39 +31,43 @@ settings:
       text: text
       image: image
       content_block: content_block
+      text_aside_blocks_2_column: text_aside_blocks_2_column
       info_box: info_box
       introduction: introduction
       teaser_row: teaser_row
     negate: 0
     target_bundles_drag_drop:
       content_block:
-        weight: -19
-        enabled: true
-      content_list:
-        weight: -18
-        enabled: false
-      image:
-        weight: -20
-        enabled: true
-      info_box:
-        weight: -17
-        enabled: true
-      introduction:
-        weight: -16
-        enabled: true
-      projekt_billede_galleri:
-        weight: -15
-        enabled: false
-      teaser_row:
-        weight: -14
-        enabled: true
-      text:
         weight: -21
         enabled: true
+      content_list:
+        weight: -20
+        enabled: false
+      image:
+        weight: -22
+        enabled: true
+      info_box:
+        weight: -18
+        enabled: true
+      introduction:
+        weight: -17
+        enabled: true
+      projekt_billede_galleri:
+        weight: -16
+        enabled: false
+      teaser_row:
+        weight: -15
+        enabled: true
+      text:
+        weight: -23
+        enabled: true
+      text_aside_blocks_2_column:
+        weight: -19
+        enabled: true
       timeline_items:
-        weight: -13
+        weight: -14
         enabled: false
       timeline_period:
-        weight: -12
+        weight: -13
         enabled: false
 field_type: entity_reference_revisions

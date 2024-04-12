@@ -4,29 +4,18 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.project_main_page.body
     - field.field.node.project_main_page.field_area
-    - field.field.node.project_main_page.field_aside_block
     - field.field.node.project_main_page.field_content_sections
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
   module:
-    - text
     - user
 id: node.project_main_page.teaser
 targetEntityType: node
 bundle: project_main_page
 mode: teaser
 content:
-  body:
-    type: text_summary_or_trimmed
-    label: hidden
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-    weight: 101
-    region: content
   field_area:
     type: entity_reference_label
     label: hidden
@@ -46,7 +35,6 @@ content:
     weight: 100
     region: content
 hidden:
-  field_aside_block: true
   field_content_sections: true
   field_project_image: true
   field_short_description: true

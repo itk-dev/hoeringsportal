@@ -1,0 +1,24 @@
+uuid: 709ff36d-2dcc-4cc2-b034-abb785699893
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_body
+    - filter.format.filtered_html
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
+  module:
+    - text
+id: paragraph.text_aside_blocks_2_column.field_body
+field_name: field_body
+entity_type: paragraph
+bundle: text_aside_blocks_2_column
+label: Body
+description: 'Used for the body text'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - filtered_html
+field_type: text_long

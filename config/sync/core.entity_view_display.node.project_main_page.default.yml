@@ -3,9 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
-    - field.field.node.project_main_page.body
     - field.field.node.project_main_page.field_area
-    - field.field.node.project_main_page.field_aside_block
     - field.field.node.project_main_page.field_content_sections
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
@@ -19,13 +17,6 @@ targetEntityType: node
 bundle: project_main_page
 mode: default
 content:
-  body:
-    type: text_default
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_area:
     type: entity_reference_label
     label: hidden
@@ -33,15 +24,6 @@ content:
       link: false
     third_party_settings: {  }
     weight: 6
-    region: content
-  field_aside_block:
-    type: entity_reference_entity_view
-    label: visually_hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    weight: 4
     region: content
   field_content_sections:
     type: entity_reference_revisions_entity_view
