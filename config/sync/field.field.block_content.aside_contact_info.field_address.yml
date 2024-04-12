@@ -1,19 +1,24 @@
-uuid: 09ad4697-df95-4ca7-9355-41cde5a55122
+uuid: 89522a1f-8096-492b-b7ae-f61b44aaeac2
 langcode: da
 status: true
 dependencies:
   config:
     - block_content.type.aside_contact_info
     - field.storage.block_content.field_address
+    - filter.format.filtered_html
+  module:
+    - text
 id: block_content.aside_contact_info.field_address
 field_name: field_address
 entity_type: block_content
 bundle: aside_contact_info
 label: Address
-description: ''
+description: 'Used for address information'
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string_long
+settings:
+  allowed_formats:
+    - filtered_html
+field_type: text_long

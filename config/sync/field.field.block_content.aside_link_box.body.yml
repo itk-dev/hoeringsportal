@@ -1,0 +1,26 @@
+uuid: 94c00d22-d356-4cb8-aee5-b640e5361635
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_link_box
+    - field.storage.block_content.body
+    - filter.format.filtered_html
+  module:
+    - text
+id: block_content.aside_link_box.body
+field_name: body
+entity_type: block_content
+bundle: aside_link_box
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+  required_summary: false
+  allowed_formats:
+    - filtered_html
+field_type: text_with_summary
