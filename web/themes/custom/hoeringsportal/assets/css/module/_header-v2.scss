@@ -1,6 +1,6 @@
 .header-v2 {
   .image-wrapper {
-    max-height: 50vh;
+    max-height: 80vh;
     overflow: hidden;
 
     img {
@@ -19,9 +19,13 @@
     @include media-breakpoint-up(md) {
       padding-top: $spacer * 5;
       padding-bottom: $spacer * 5;
-      margin-left: calc($spacer + 2vw);
-      margin-right: calc($spacer + 2vw);
-      margin-top: -$spacer * 5;
+
+      &.with-image {
+        margin-left: calc($spacer + 2vw);
+        margin-right: calc($spacer + 2vw);
+        margin-top: -$spacer * 5;
+      }
+
     }
   }
 
@@ -31,5 +35,13 @@
 
   p {
     font-size: clamp(1rem, calc(0.75vw + $font-size-base), 1.25rem);
+  }
+
+  .areas {
+    display: flex;
+    column-gap: $spacer * 1.5;
+    span {
+      color: $color-peach-600;
+    }
   }
 }
