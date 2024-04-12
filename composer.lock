@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f3a40258018767b2e9749308bf86398",
+    "content-hash": "ca8bb1614421e468fdeea25d49e19ac0",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1537,6 +1537,54 @@
                 "source": "https://github.com/dompdf/dompdf/tree/v2.0.4"
             },
             "time": "2023-12-12T20:19:39+00:00"
+        },
+        {
+            "name": "drupal/advanced_text_formatter",
+            "version": "3.0.0-rc1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/advanced_text_formatter.git",
+                "reference": "3.0.0-rc1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/advanced_text_formatter-3.0.0-rc1.zip",
+                "reference": "3.0.0-rc1",
+                "shasum": "394729127f44a6398e29f5e5702e6def00a06e20"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0-rc1",
+                    "datestamp": "1675163352",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "RC releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "azovsky",
+                    "homepage": "https://www.drupal.org/user/330533"
+                },
+                {
+                    "name": "thmnhat",
+                    "homepage": "https://www.drupal.org/user/998946"
+                }
+            ],
+            "description": "Provides an additional formatter for text field, text area and text format.",
+            "homepage": "https://www.drupal.org/project/advanced_text_formatter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/advanced_text_formatter"
+            }
         },
         {
             "name": "drupal/advancedqueue",

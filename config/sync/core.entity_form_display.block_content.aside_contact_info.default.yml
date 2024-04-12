@@ -4,27 +4,23 @@ status: true
 dependencies:
   config:
     - block_content.type.aside_contact_info
-    - field.field.block_content.aside_contact_info.body
+    - field.field.block_content.aside_contact_info.field_address
     - field.field.block_content.aside_contact_info.field_department
     - field.field.block_content.aside_contact_info.field_email
     - field.field.block_content.aside_contact_info.field_phone_number
     - field.field.block_content.aside_contact_info.field_title
-  module:
-    - text
 id: block_content.aside_contact_info.default
 targetEntityType: block_content
 bundle: aside_contact_info
 mode: default
 content:
-  body:
-    type: text_textarea_with_summary
+  field_address:
+    type: string_textarea
     weight: 4
     region: content
     settings:
-      rows: 9
-      summary_rows: 3
+      rows: 5
       placeholder: ''
-      show_summary: false
     third_party_settings: {  }
   field_department:
     type: string_textfield

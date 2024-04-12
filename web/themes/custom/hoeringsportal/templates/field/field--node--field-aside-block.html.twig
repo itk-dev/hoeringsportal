@@ -39,6 +39,7 @@
 
 <div class="aside-block p-3 p-md-5">
   {% for item in items %}
+    {% set block = item.content['#block_content'] %}
     {% if item.content.field_department %}
       <div class="text-primary">
         {{ item.content.field_department }}
@@ -49,9 +50,9 @@
         {{ item.content.field_title }}
       </div>
     {% endif %}
-    {% if item.content.body %}
+    {% if item.content.field_address %}
       <div>
-        {{ item.content.body }}
+        {{ item.content.field_address }}
       </div>
     {% endif %}
     {% if item.content.field_phone_number %}
@@ -64,6 +65,5 @@
         {{ 'Email'|trans }}:{{ item.content.field_email }}
       </div>
     {% endif %}
-    {{ item.content|without('field_department', 'field_title', 'body', 'field_phone_number', 'field_email') }}
   {% endfor %}
 </div>
