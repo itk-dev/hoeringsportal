@@ -1,0 +1,10 @@
+uuid: e6054737-c83e-4509-b039-32f91edbde81
+langcode: da
+status: true
+dependencies: {  }
+id: text_aside_blocks_2_column
+label: 'Text + aside blocks (2 column)'
+icon_uuid: null
+icon_default: null
+description: 'Used to create a content section with texts and aside blocks in 2 columns.'
+behavior_plugins: {  }

@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.project_page.body
+    - field.field.node.project_page.field_content_sections
     - node.type.project_page
   module:
     - text
@@ -33,5 +34,6 @@ content:
     weight: 100
     region: content
 hidden:
+  field_content_sections: true
   langcode: true
   published_at: true
