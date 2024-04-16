@@ -1,9 +1,10 @@
 {# Main container #}
 <div class="container content__container">
   <div class="row">
-    <div class="col-md-8">
-      <h1 class="my-3 my-md-5">{{ node.title.value }}</h1>
-      {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'field_area', 'published_at') }}
+    <div class="col-md-8 py-3 py-md-5">
+      {{ content.field_project_category }}
+      <h1>{{ node.title.value }}</h1>
+      {{ content|without('field_project_category', 'field_content_sections', 'published_at') }}
     </div>
     <div class="col-md-4 pt-md-3">
       {{ content.field_aside_block }}
