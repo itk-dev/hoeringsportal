@@ -28,36 +28,7 @@
  * @ingroup themeable
  */
 #}
-<div class="aside-contact-info d-flex flex-column">
-  {% if block_content.field_image %}
-    <img class="aside-contact-info-image" src="{{ block_content.field_image|file_url }}" alt="" />
-  {% endif %}
-  <div class="aside-contact-info-text">
-    {% if block_content.field_department.value %}
-      <div class="text-primary">
-        {{ block_content.field_department.value }}
-      </div>
-    {% endif %}
-    {% if block_content.field_title.value %}
-      <div class="h4">
-        {{ block_content.field_title.value }}
-      </div>
-    {% endif %}
-    {% if block_content.field_address.value %}
-      <p>
-        {# @TODO Which is better; `nl2br` or `style="white-space: pre-line"` #}
-        {{ block_content.field_address.value|nl2br }}
-      </p>
-    {% endif %}
-    {% if block_content.field_phone_number.value %}
-      <p>
-        {{ 'Phone'|trans }}: <a href="tel:{{ block_content.field_phone_number.value }}">{{ block_content.field_phone_number.value }}</a>
-      </p>
-    {% endif %}
-    {% if block_content.field_email.value %}
-      <p>
-        {{ 'Email'|trans }}: <a href="mailto:{{ block_content.field_email.value }}">{{ block_content.field_email.value }}</a>
-      </p>
-    {% endif %}
-  </div>
-</div>
+
+<a href="{{ block_content.field_link.value[0].uri }}" class="aside-link-box my-3 d-flex flex-column {{ block_content.field_color.value }}">
+  {{ block_content.field_title.value }}
+</a>

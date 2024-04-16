@@ -1,15 +1,8 @@
-{# Header #}
-{% include directory ~ '/templates/components/header-v2.html.twig' with {
-  'image': node.field_project_image|file_url,
-  'title': node.label,
-  'description': content.field_short_description,
-  'area': content.field_area}
-%}
-
 {# Main container #}
 <div class="container content__container">
   <div class="row">
     <div class="col-md-8">
+      <h1 class="my-3 my-md-5">{{ node.title.value }}</h1>
       {{ content|without('field_project_image', 'field_short_description', 'field_aside_block', 'field_content_sections', 'field_area', 'published_at') }}
     </div>
     <div class="col-md-4 pt-md-3">

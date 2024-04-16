@@ -19,8 +19,9 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-<ul class="list-unstyled">
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-2 g-lg-3">
   {% for row in rows %}
     {{ row.content }}
   {% endfor %}
-</ul>
+</div>

@@ -1,0 +1,17 @@
+/* Add easy to use line clamping
+*
+*  Use classname 'line-clamp-x' where x is a number from 2 to 5
+*
+*/
+
+$lines: 2, 3, 4, 5;
+
+@each $line-count in $lines {
+  .line-clamp-#{$line-count} {
+    display: -webkit-box;
+    -webkit-line-clamp: #{$line-count};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
