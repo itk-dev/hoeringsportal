@@ -4,7 +4,7 @@
     {{ content.field_project_image }}
   </div>
   <div{{ attributes.addClass('activity-teaser-content') }}>
-    <h3 class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
+    <h3 class="activity-teaser-title pt-3 mb-3 line-clamp-2">{{ label }}</h3>
     <div class="activity-teaser-description py-0 line-clamp-3">
       {{ node.field_short_description.value }}
     </div>

@@ -29,7 +29,7 @@
  */
 #}
 <div class="aside-contact-info d-flex flex-column">
-  {% if block_content.field_image %}
+  {% if block_content.field_image|file_url %}
     <img class="aside-contact-info-image" src="{{ block_content.field_image|file_url }}" alt="" />
   {% endif %}
   <div class="aside-contact-info-text">
