@@ -64,19 +64,11 @@
  *   is an administrator.
  *
  * @see template_preprocess_node()
- *
- * @todo Remove the id attribute (or make it a class), because if that gets
- *   rendered twice on a page this is invalid CSS for example: two lists
- *   in different view modes.
- */
 #}
 
 {%
 set classes = [
 'activity-teaser',
-paragraph_type == 'one_project_two_static' ? 'col-md-6',
-paragraph_type == 'two_projects' ? 'col-md-6',
-paragraph_type == 'three_projects' ? 'col-md-4'
 ]
 %}
 

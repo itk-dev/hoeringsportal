@@ -1,0 +1,19 @@
+
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none shadow-sm">
+  <div class="activity-teaser-image">
+    {{ content.field_project_image }}
+  </div>
+  <div{{ attributes.addClass('activity-teaser-content') }}>
+    <h3 class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
+    <div class="activity-teaser-description py-0 line-clamp-3">
+      {{ node.field_short_description.value }}
+    </div>
+  </div>
+  <div class="activity-teaser-info">
+    <span class="activity-teaser-meta-wrapper">
+      <span class="activity-teaser-type">{{ content.field_project_category }}</span>
+      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
+    </span>
+    <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
+  </div>
+</a>
