@@ -6,10 +6,12 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.project_main_page.field_area
     - field.field.node.project_main_page.field_content_sections
+    - field.field.node.project_main_page.field_project_category
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
   module:
+    - text
     - user
 id: node.project_main_page.teaser
 targetEntityType: node
@@ -22,21 +24,35 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+    weight: 3
+    region: content
+  field_project_category:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
     weight: 1
     region: content
-  links:
-    settings: {  }
+  field_project_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: teaser_display
+      link: false
     third_party_settings: {  }
-    weight: 100
+    weight: 0
     region: content
-  sharing_buttons:
+  field_short_description:
+    type: text_default
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 2
     region: content
 hidden:
   field_content_sections: true
-  field_project_image: true
-  field_short_description: true
   langcode: true
+  links: true
   published_at: true
+  sharing_buttons: true

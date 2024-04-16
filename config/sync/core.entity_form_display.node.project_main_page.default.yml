@@ -6,6 +6,7 @@ dependencies:
     - entity_browser.browser.itk_image_browser
     - field.field.node.project_main_page.field_area
     - field.field.node.project_main_page.field_content_sections
+    - field.field.node.project_main_page.field_project_category
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
@@ -26,7 +27,7 @@ third_party_settings:
       label: 'Project area'
       region: content
       parent_name: ''
-      weight: 5
+      weight: 4
       format_type: details_sidebar
       format_settings:
         classes: ''
@@ -43,7 +44,7 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 8
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -55,7 +56,7 @@ content:
     third_party_settings: {  }
   field_content_sections:
     type: paragraphs
-    weight: 7
+    weight: 5
     region: content
     settings:
       title: Paragraph
@@ -73,9 +74,19 @@ content:
         convert: '0'
         duplicate: duplicate
     third_party_settings: {  }
+  field_project_category:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 100
+      placeholder: ''
+    third_party_settings: {  }
   field_project_image:
     type: entity_browser_entity_reference
-    weight: 2
+    weight: 3
     region: content
     settings:
       entity_browser: itk_image_browser
@@ -90,7 +101,7 @@ content:
     third_party_settings: {  }
   field_short_description:
     type: text_textarea
-    weight: 1
+    weight: 2
     region: content
     settings:
       rows: 5
@@ -105,40 +116,40 @@ content:
         maxlength_js_enforce: false
   langcode:
     type: language_select
-    weight: 8
+    weight: 6
     region: content
     settings:
       include_locked: true
     third_party_settings: {  }
   path:
     type: path
-    weight: 14
+    weight: 12
     region: content
     settings: {  }
     third_party_settings: {  }
   promote:
     type: boolean_checkbox
-    weight: 12
+    weight: 10
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   published_at:
     type: publication_date_timestamp
-    weight: 11
+    weight: 9
     region: content
     settings: {  }
     third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 16
+    weight: 14
     region: content
     settings:
       display_label: true
     third_party_settings: {  }
   sticky:
     type: boolean_checkbox
-    weight: 13
+    weight: 11
     region: content
     settings:
       display_label: true
@@ -157,7 +168,7 @@ content:
         maxlength_js_enforce: false
   uid:
     type: entity_reference_autocomplete
-    weight: 9
+    weight: 7
     region: content
     settings:
       match_operator: CONTAINS
@@ -166,7 +177,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
   url_redirects:
-    weight: 15
+    weight: 13
     region: content
     settings: {  }
     third_party_settings: {  }

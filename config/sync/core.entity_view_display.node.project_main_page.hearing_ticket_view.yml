@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.hearing_ticket_view
     - field.field.node.project_main_page.field_area
     - field.field.node.project_main_page.field_content_sections
+    - field.field.node.project_main_page.field_project_category
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
@@ -36,6 +37,7 @@ content:
     region: content
 hidden:
   field_content_sections: true
+  field_project_category: true
   field_project_image: true
   field_short_description: true
   langcode: true

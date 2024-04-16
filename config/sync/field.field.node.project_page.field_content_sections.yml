@@ -11,6 +11,7 @@ dependencies:
     - paragraphs.paragraphs_type.introduction
     - paragraphs.paragraphs_type.teaser_row
     - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
   module:
     - entity_reference_revisions
 id: node.project_page.field_content_sections
@@ -33,6 +34,7 @@ settings:
       info_box: info_box
       introduction: introduction
       teaser_row: teaser_row
+      text_aside_blocks_2_column: text_aside_blocks_2_column
     negate: 0
     target_bundles_drag_drop:
       content_block:
@@ -58,6 +60,9 @@ settings:
         enabled: true
       text:
         weight: -21
+        enabled: true
+      text_aside_blocks_2_column:
+        weight: 20
         enabled: true
       timeline_items:
         weight: -13

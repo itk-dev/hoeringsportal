@@ -11,7 +11,7 @@ entity_type: block_content
 bundle: aside_link_box
 label: Title
 description: 'Used to show the title'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

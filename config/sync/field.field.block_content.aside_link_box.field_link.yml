@@ -13,7 +13,7 @@ entity_type: block_content
 bundle: aside_link_box
 label: Link
 description: 'Used to point to a target for the link box'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

@@ -1,16 +1,16 @@
-uuid: cfc40177-fbca-4b1c-8fae-66934c9c4714
+uuid: a256a8b2-e970-4ec0-93d8-008be036f215
 langcode: da
 status: true
 dependencies:
   module:
     - node
-    - paragraphs
-id: paragraph.field_project_hearing_1
-field_name: field_project_hearing_1
-entity_type: paragraph
+    - taxonomy
+id: node.field_project_category
+field_name: field_project_category
+entity_type: node
 type: entity_reference
 settings:
-  target_type: node
+  target_type: taxonomy_term
 module: core
 locked: false
 cardinality: 1
