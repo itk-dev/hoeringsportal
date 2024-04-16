@@ -2,9 +2,9 @@
 
 namespace Drupal\hoeringsportal_config_settings\Twig;
 
+use Drupal\itk_admin\State\BaseConfig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Drupal\itk_admin\State\BaseConfig;
 
 /**
  * Custom Twig extensions for Høringsportal.
@@ -29,12 +29,12 @@ class TwigExtension extends AbstractExtension {
         [
           'is_safe' => ['all'],
         ]
-        ),
+      ),
     ];
   }
 
   /**
-   * Get config
+   * Get config.
    */
   public function getConfig(string $key): ?string {
     return $this->config->get($key);
