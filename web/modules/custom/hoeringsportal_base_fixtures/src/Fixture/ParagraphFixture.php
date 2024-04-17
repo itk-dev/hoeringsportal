@@ -64,11 +64,36 @@ BODY,
       'field_content_list' => [
         'target_id' => 'all_citizen_proposals',
         'display_id' => 'default',
+        'data' => '',
       ],
-      'field_list_title' => 'Indholdsliste1',
+      'field_list_title' => 'All citizen proposals',
     ]);
     $paragraph->save();
-    $this->addReference('paragraph:content_list:content_list1', $paragraph);
+    $this->addReference('paragraph:content_list:all_citizen_proposals', $paragraph);
+
+    $paragraph = Paragraph::create([
+      'type' => 'content_list',
+      'field_content_list' => [
+        'target_id' => 'all_hearings',
+        'display_id' => 'default',
+        'data' => '',
+      ],
+      'field_list_title' => 'All hearings',
+    ]);
+    $paragraph->save();
+    $this->addReference('paragraph:content_list:all_hearings', $paragraph);
+
+    $paragraph = Paragraph::create([
+      'type' => 'content_list',
+      'field_content_list' => [
+        'target_id' => 'all_public_meetings',
+        'display_id' => 'default',
+        'data' => '',
+      ],
+      'field_list_title' => 'All public meetings',
+    ]);
+    $paragraph->save();
+    $this->addReference('paragraph:content_list:all_public_meetings', $paragraph);
 
     $paragraph = Paragraph::create([
       'type' => 'info_box',

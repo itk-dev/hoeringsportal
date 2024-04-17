@@ -44,8 +44,8 @@ class PublicMeetingFixture extends AbstractFixture implements DependentFixtureIn
       "field_registration_deadline" => ['value' => 'word'],
       'field_section' =>
         [
-          'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
-          'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
+          'target_id' => $this->getReference('paragraph:content_list:all_public_meetings')->id(),
+          'target_revision_id' => $this->getReference('paragraph:content_list:all_public_meetings')->getRevisionId(),
         ],
       "field_signup_selection" => 'field_signup_selection' ,
       "field_signup_text" => 'field_signup_text'  ,

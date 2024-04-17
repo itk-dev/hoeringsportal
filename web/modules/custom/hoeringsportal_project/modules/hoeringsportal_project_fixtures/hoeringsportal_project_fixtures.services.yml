@@ -3,6 +3,18 @@ services:
     tags:
       - { name: content_fixture }
 
+  Drupal\hoeringsportal_project_fixtures\Fixture\ProjectCategoryFixture:
+    tags:
+      - { name: content_fixture }
+
+  Drupal\hoeringsportal_project_fixtures\Fixture\ProjectLandingPageFixture:
+    tags:
+      - { name: content_fixture }
+
   Drupal\hoeringsportal_project_fixtures\Fixture\ProjectMainPageFixture:
+    tags:
+      - { name: content_fixture }
+
+  Drupal\hoeringsportal_project_fixtures\Fixture\ProjectPageFixture:
     tags:
       - { name: content_fixture }

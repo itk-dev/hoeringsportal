@@ -27,18 +27,12 @@ class ProjectMainPageFixture extends AbstractFixture implements DependentFixture
         'type' => 'project_main_page',
       ])
         ->setTitle('Project')
+        ->set('field_project_category', [
+          $this->getReference('project_categories:Byudvikling'),
+        ])
         ->set('field_short_description', 'This is the first project')
         ->set('field_project_image', [
         ['target_id' => $this->getReference('media:Medium1')->id()],
-        ])
-        ->set('body', [
-          'value' => <<<'BODY'
-<p>This project is the very first project, and will focus on some <strong>stuff</strong>.</p>
-BODY,
-          'format' => 'filtered_html',
-        ])
-        ->set('field_aside_block', [
-        ['target_id' => $this->getReference('block_content:aside_contact_info:the_main_address')->id()],
         ]);
 
     $paragraph = Paragraph
@@ -80,37 +74,22 @@ BODY,
       ->set('field_short_description', 'We have more than one project')
       ->set('field_project_image', [
         ['target_id' => $this->getReference('media:Map1')->id()],
-      ])
-      ->set('body', [
-        'value' => <<<'BODY'
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus accumsan ante sit amet fermentum. Aliquam aliquet massa ut enim vulputate feugiat. Maecenas tincidunt risus rhoncus, interdum neque ac, aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras commodo, odio id scelerisque pulvinar, erat neque fringilla purus, non faucibus metus nibh ullamcorper arcu. In posuere magna ante, in cursus velit lacinia eu. Sed viverra blandit sem. Donec quam orci, tincidunt eget porttitor at, luctus eu est. In sed nulla mauris. Etiam arcu augue, accumsan vitae magna vel, interdum imperdiet magna.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus accumsan ante sit amet fermentum. Aliquam aliquet massa ut enim vulputate feugiat. Maecenas tincidunt risus rhoncus, interdum neque ac, aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras commodo, odio id scelerisque pulvinar, erat neque fringilla purus, non faucibus metus nibh ullamcorper arcu. In posuere magna ante, in cursus velit lacinia eu. Sed viverra blandit sem. Donec quam orci, tincidunt eget porttitor at, luctus eu est. In sed nulla mauris. Etiam arcu augue, accumsan vitae magna vel, interdum imperdiet magna.
-</p>
-BODY,
-        'format' => 'filtered_html',
       ]);
+
     $entity->save();
     $this->addReference('node:project_main_page:2', $entity);
 
     $entity = $entity->createDuplicate();
     $entity
       ->setTitle('The third project')
+      ->set('field_project_category', [
+        $this->getReference('project_categories:Offentlig transport'),
+      ])
       ->set('field_short_description', 'We have more than one project')
       ->set('field_project_image', [
         ['target_id' => $this->getReference('media:Map1')->id()],
-      ])
-      ->set('body', [
-        'value' => <<<'BODY'
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus accumsan ante sit amet fermentum. Aliquam aliquet massa ut enim vulputate feugiat. Maecenas tincidunt risus rhoncus, interdum neque ac, aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras commodo, odio id scelerisque pulvinar, erat neque fringilla purus, non faucibus metus nibh ullamcorper arcu. In posuere magna ante, in cursus velit lacinia eu. Sed viverra blandit sem. Donec quam orci, tincidunt eget porttitor at, luctus eu est. In sed nulla mauris. Etiam arcu augue, accumsan vitae magna vel, interdum imperdiet magna.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed luctus accumsan ante sit amet fermentum. Aliquam aliquet massa ut enim vulputate feugiat. Maecenas tincidunt risus rhoncus, interdum neque ac, aliquet ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras commodo, odio id scelerisque pulvinar, erat neque fringilla purus, non faucibus metus nibh ullamcorper arcu. In posuere magna ante, in cursus velit lacinia eu. Sed viverra blandit sem. Donec quam orci, tincidunt eget porttitor at, luctus eu est. In sed nulla mauris. Etiam arcu augue, accumsan vitae magna vel, interdum imperdiet magna.
-</p>
-BODY,
-        'format' => 'filtered_html',
-      ])
-      ->set('field_aside_block', [
-        ['target_id' => $this->getReference('block_content:aside_contact_info:another_address')->id()],
       ]);
-    ;
+
     $entity->save();
   }
 
@@ -119,9 +98,11 @@ BODY,
    */
   public function getDependencies() {
     return [
+      ProjectCategoryFixture::class,
       BlockContentFixture::class,
       MediaFixture::class,
       ParagraphFixture::class,
+      ProjectPageFixture::class,
     ];
   }
 
