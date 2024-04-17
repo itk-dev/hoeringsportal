@@ -1,19 +1,19 @@
-uuid: 99448220-965b-4e77-8ee1-6f5aa2a24712
+uuid: a256a8b2-e970-4ec0-93d8-008be036f215
 langcode: da
 status: true
 dependencies:
   module:
     - node
-    - paragraphs
-id: paragraph.field_static_pages
-field_name: field_static_pages
-entity_type: paragraph
+    - taxonomy
+id: node.field_project_category
+field_name: field_project_category
+entity_type: node
 type: entity_reference
 settings:
-  target_type: node
+  target_type: taxonomy_term
 module: core
 locked: false
-cardinality: 2
+cardinality: 1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

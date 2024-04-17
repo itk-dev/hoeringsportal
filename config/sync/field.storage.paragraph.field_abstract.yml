@@ -1,16 +1,15 @@
-uuid: e5873bb0-7d5d-4433-8228-eabab1e80353
+uuid: b0b65e92-cec0-4d4a-a8b8-91c68cadbabd
 langcode: da
 status: true
 dependencies:
   module:
-    - node
     - paragraphs
-id: paragraph.field_project_hearing_2
-field_name: field_project_hearing_2
+id: paragraph.field_abstract
+field_name: field_abstract
 entity_type: paragraph
-type: entity_reference
+type: string_long
 settings:
-  target_type: node
+  case_sensitive: false
 module: core
 locked: false
 cardinality: 1

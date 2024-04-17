@@ -1,19 +1,19 @@
-uuid: cfc40177-fbca-4b1c-8fae-66934c9c4714
+uuid: a9275e8a-41fc-4ed1-b63f-b5f87b139105
 langcode: da
 status: true
 dependencies:
   module:
-    - node
+    - block_content
     - paragraphs
-id: paragraph.field_project_hearing_1
-field_name: field_project_hearing_1
+id: paragraph.field_aside_block
+field_name: field_aside_block
 entity_type: paragraph
 type: entity_reference
 settings:
-  target_type: node
+  target_type: block_content
 module: core
 locked: false
-cardinality: 1
+cardinality: 3
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

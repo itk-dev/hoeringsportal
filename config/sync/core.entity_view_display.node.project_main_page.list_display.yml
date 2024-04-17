@@ -4,14 +4,14 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.list_display
-    - field.field.node.project_main_page.body
     - field.field.node.project_main_page.field_area
-    - field.field.node.project_main_page.field_aside_block
     - field.field.node.project_main_page.field_content_sections
+    - field.field.node.project_main_page.field_project_category
     - field.field.node.project_main_page.field_project_image
     - field.field.node.project_main_page.field_short_description
     - node.type.project_main_page
   module:
+    - text
     - user
 id: node.project_main_page.list_display
 targetEntityType: node
@@ -24,23 +24,34 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 4
+    weight: 1
     region: content
-  links:
+  field_project_category:
+    type: entity_reference_label
+    label: visually_hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_project_image:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_short_description:
+    type: text_default
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 100
-    region: content
-  sharing_buttons:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
+    weight: 3
     region: content
 hidden:
-  body: true
-  field_aside_block: true
   field_content_sections: true
-  field_project_image: true
-  field_short_description: true
   langcode: true
+  links: true
   published_at: true
+  sharing_buttons: true

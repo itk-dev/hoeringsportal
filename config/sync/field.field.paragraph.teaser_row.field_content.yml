@@ -1,24 +1,21 @@
-uuid: 02525aad-132e-40fe-a1fd-7d5a7318d31c
+uuid: 7c9b5029-5a1f-4c21-a2a7-79dfce8b53dd
 langcode: da
 status: true
 dependencies:
   config:
-    - field.storage.paragraph.field_project_hearing_2
+    - field.storage.paragraph.field_content
     - node.type.citizen_proposal
     - node.type.hearing
-    - node.type.landing_page
-    - node.type.page_map
-    - node.type.project
     - node.type.project_main_page
     - node.type.public_meeting
     - node.type.static_page
     - paragraphs.paragraphs_type.teaser_row
-id: paragraph.teaser_row.field_project_hearing_2
-field_name: field_project_hearing_2
+id: paragraph.teaser_row.field_content
+field_name: field_content
 entity_type: paragraph
 bundle: teaser_row
-label: Initiativ/høring
-description: ''
+label: Content
+description: 'Used to select up to 3 content items to show in the row'
 required: false
 translatable: false
 default_value: {  }
@@ -30,14 +27,11 @@ settings:
       public_meeting: public_meeting
       citizen_proposal: citizen_proposal
       hearing: hearing
-      page_map: page_map
-      landing_page: landing_page
       project_main_page: project_main_page
-      project: project
       static_page: static_page
     sort:
       field: _none
       direction: ASC
     auto_create: false
-    auto_create_bundle: hearing
+    auto_create_bundle: public_meeting
 field_type: entity_reference

@@ -37,12 +37,11 @@
  */
 #}
 
-<h5 class="visually-hidden">{{ label }}</h5>
 {% if multiple %}
-  <div>
+  <div class="d-flex gap-3">
 {% endif %}
 {% for item in items %}
-  {{ item.content }}
+  <span class="text-primary">{{ item.content['#title'] }}</span>
 {% endfor %}
 {% if multiple %}
   </div>

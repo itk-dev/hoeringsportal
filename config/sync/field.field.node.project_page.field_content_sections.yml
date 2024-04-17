@@ -1,10 +1,10 @@
-uuid: faa73256-1e67-45f3-9e0b-47d0bd8c8b23
+uuid: a4cc4965-873b-4db0-ba55-e62627603ec0
 langcode: da
 status: true
 dependencies:
   config:
     - field.storage.node.field_content_sections
-    - node.type.project_main_page
+    - node.type.project_page
     - paragraphs.paragraphs_type.content_block
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.info_box
@@ -14,10 +14,10 @@ dependencies:
     - paragraphs.paragraphs_type.text_aside_blocks_2_column
   module:
     - entity_reference_revisions
-id: node.project_main_page.field_content_sections
+id: node.project_page.field_content_sections
 field_name: field_content_sections
 entity_type: node
-bundle: project_main_page
+bundle: project_page
 label: 'Content sections'
 description: 'Used to create page sections with the Drupal Paragraphs module'
 required: false
@@ -31,43 +31,43 @@ settings:
       text: text
       image: image
       content_block: content_block
-      text_aside_blocks_2_column: text_aside_blocks_2_column
       info_box: info_box
       introduction: introduction
       teaser_row: teaser_row
+      text_aside_blocks_2_column: text_aside_blocks_2_column
     negate: 0
     target_bundles_drag_drop:
       content_block:
-        weight: -21
-        enabled: true
-      content_list:
-        weight: -20
-        enabled: false
-      image:
-        weight: -22
-        enabled: true
-      info_box:
-        weight: -18
-        enabled: true
-      introduction:
-        weight: -17
-        enabled: true
-      projekt_billede_galleri:
-        weight: -16
-        enabled: false
-      teaser_row:
-        weight: -15
-        enabled: true
-      text:
-        weight: -23
-        enabled: true
-      text_aside_blocks_2_column:
         weight: -19
         enabled: true
-      timeline_items:
+      content_list:
+        weight: -18
+        enabled: false
+      image:
+        weight: -20
+        enabled: true
+      info_box:
+        weight: -17
+        enabled: true
+      introduction:
+        weight: -16
+        enabled: true
+      projekt_billede_galleri:
+        weight: -15
+        enabled: false
+      teaser_row:
         weight: -14
+        enabled: true
+      text:
+        weight: -21
+        enabled: true
+      text_aside_blocks_2_column:
+        weight: 20
+        enabled: true
+      timeline_items:
+        weight: -13
         enabled: false
       timeline_period:
-        weight: -13
+        weight: -12
         enabled: false
 field_type: entity_reference_revisions

@@ -65,15 +65,12 @@
  *
  * @see template_preprocess_node()
  *
- * @todo Remove the id attribute (or make it a class), because if that gets
- *   rendered twice on a page this is invalid CSS for example: two lists
- *   in different view modes.
  */
 #}
 
 {# Set variables depending on node type. #}
 {% if node.bundle == 'project' %}
-  {% set type = 'Initiative'|t %}
+  {% set type = 'Project'|t %}
   {% set project = content.field_project_label %}
 {% endif %}
 {% if node.bundle == 'hearing' %}
@@ -84,7 +81,7 @@
   {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
 {% endif %}
 
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none shadow-sm">
 
   {# When deadline field exists add splash. #}
   {% if (content.field_reply_deadline) %}

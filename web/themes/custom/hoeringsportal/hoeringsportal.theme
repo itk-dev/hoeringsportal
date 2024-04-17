@@ -22,20 +22,6 @@ function hoeringsportal_preprocess(&$vars) {
 function hoeringsportal_preprocess_field(&$variables) {
   $moduleHandler = \Drupal::service('module_handler');
 
-  if ($variables['element']['#bundle'] == 'teaser_row') {
-
-    // Fields that need a class depending the paragraph type selected.
-    $grid_fields = [
-      'field_project_hearing_1',
-      'field_project_hearing_2',
-      'field_project_hearing_3',
-    ];
-
-    if (in_array($variables['element']['#field_name'], $grid_fields)) {
-      $variables['paragraph_type'] = $variables['element']['#object']->field_type->getValue()['0']['value'];
-    }
-  }
-
   if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
     // Fields that use variables from general settings module.
     $require_settings_fields = [
@@ -198,8 +184,6 @@ function hoeringsportal_preprocess_html(&$variables) {
 
 /**
  * Implements hook_preprocess_views_exposed_form().
- *
- * Provide link for external map.
  */
 function hoeringsportal_preprocess_views_exposed_form(&$variables) {
   if ($variables['form']['#id'] = 'views-exposed-form-all-hearings-default') {
@@ -207,8 +191,6 @@ function hoeringsportal_preprocess_views_exposed_form(&$variables) {
     $variables['custom_config_exists'] = FALSE;
     if ($moduleHandler->moduleExists('hoeringsportal_config_settings')) {
       $variables['custom_config_exists'] = TRUE;
-      $config = \Drupal::getContainer()->get('itk_admin.itk_config');
-      $variables['full_map_url'] = $config->get('full_map_url');
     }
   }
 }

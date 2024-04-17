@@ -37,40 +37,6 @@
  */
 #}
 
-{%
-  set classes = [
-    'activity-teaser',
-    paragraph_type == 'one_project_two_static' ? 'col-md-6',
-    paragraph_type == 'two_projects' ? 'col-md-6',
-    paragraph_type == 'three_projects' ? 'col-md-4'
-  ]
-%}
-
-{% if label_hidden %}
-  {% if multiple %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes) }}>
-        {{ item.content }}
-      </div>
-    {% endfor %}
-  {% else %}
-    {% for item in items %}
-      <div{{ attributes.addClass(classes) }}>
-        {{ item.content }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% else %}
-  {{ label }}
-  {% if multiple %}
-    <div>
-  {% endif %}
-  {% for item in items %}
-    <div{{ attributes.addClass(classes) }}>
-      {{ item.content }}
-    </div>
-  {% endfor %}
-  {% if multiple %}
-    </div>
-  {% endif %}
-{% endif %}
+{% for item in items %}
+  <div class="col">{{ item.content }}</div>
+{% endfor %}
