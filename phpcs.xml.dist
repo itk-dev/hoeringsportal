@@ -17,11 +17,14 @@
   <arg value="p"/>
 
   <arg name="extensions" value="php,module,inc,install,test,profile,theme,css,info,txt,yml"/>
-  <config name="drupal_core_version" value="8"/>
-  <rule ref="./vendor/drupal/coder/coder_sniffer/Drupal/ruleset.xml">
+
+  <config name="drupal_core_version" value="10"/>
+
+  <rule ref="Drupal">
     <!-- <exclude name="Drupal.Files.TxtFileLineLength.TooLong"/> -->
     <!-- We want to be able to use "package" and "version" in our custom modules -->
     <exclude name="Drupal.InfoFiles.AutoAddedKeys.Project"/>
     <exclude name="Drupal.InfoFiles.AutoAddedKeys.Version"/>
   </rule>
+   <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
 </ruleset>

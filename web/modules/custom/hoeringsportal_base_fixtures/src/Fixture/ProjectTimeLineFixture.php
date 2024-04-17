@@ -25,9 +25,9 @@ class ProjectTimeLineFixture extends AbstractFixture implements DependentFixture
       'type' => 'project',
       'title' => 'project - Projekt Tidslinje',
       'status' => NodeInterface::PUBLISHED,
-      "field_description" => "field_description - Her forklare jeg noget",
-      "field_project_finish" => date('d-m-Y', $tenDaysLater),
-      "field_project_start" => date('d-m-Y', $today),
+      'field_description' => 'field_description - Her forklare jeg noget',
+      'field_project_finish' => date('d-m-Y', $tenDaysLater),
+      'field_project_start' => date('d-m-Y', $today),
     ]);
     $this->addReference('project:fixture-1', $node);
     $node->save();
