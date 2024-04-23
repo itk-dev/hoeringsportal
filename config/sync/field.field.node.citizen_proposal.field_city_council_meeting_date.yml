@@ -11,8 +11,8 @@ id: node.citizen_proposal.field_city_council_meeting_date
 field_name: field_city_council_meeting_date
 entity_type: node
 bundle: citizen_proposal
-label: 'city ​​council meeting date'
-description: ''
+label: 'City ​​council meeting date'
+description: 'Used to set the date for the when the council will process the proposal on a city council meeting.'
 required: false
 translatable: false
 default_value: {  }

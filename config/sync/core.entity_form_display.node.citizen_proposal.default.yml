@@ -47,7 +47,7 @@ third_party_settings:
         - field_city_council_meeting_date
         - field_status_title
         - field_status_description
-      label: status
+      label: Status
       region: content
       parent_name: ''
       weight: 11
@@ -56,7 +56,7 @@ third_party_settings:
         classes: ''
         show_empty_fields: false
         id: ''
-        description: Hep-hey!
+        description: 'Used to set a status for the proposal.'
         required_fields: true
 id: node.citizen_proposal.default
 targetEntityType: node
