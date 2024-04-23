@@ -62,7 +62,7 @@
           {# Status message processing #}
           {% if node.field_content_state.value == 'processing' %}
             <div class="alert alert-info border-0 d-flex gap-3" role="alert">
-              <i class="fas fa-circle-check mt-1"></i>
+              <i class="fas fa-circle-info mt-1"></i>
               <div>
                 <h4 class="alert-heading mb-1 mt-0">{{ 'The proposal is beeing processed'|t }}</h4>
                 <p class="mb-0">{{ 'The proposal will be proccessed at the citycouncil meeting @meeting_date'|t({'@meeting_date': node.field_city_council_meeting_date.value}) }}</p>

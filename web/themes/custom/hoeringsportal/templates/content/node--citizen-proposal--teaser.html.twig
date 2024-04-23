@@ -79,7 +79,21 @@
   <div{{ attributes.addClass('activity-teaser-content', 'activity-teaser-description', 'px-4', 'py-0') }}>
     <div class="d-flex my-3 justify-content-between">
       <h3 class="my-0">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</h3>
-      <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|date('d M. Y') }}</strong></div>
+      {% if node.field_content_state.value == 'rejected' %}
+        <span class="badge alert-warning d-flex align-items-center gap-1">
+          <i class="fas fa-triangle-exclamation me-1"></i> {{ 'Rejected'|t }}
+        </span>
+      {% elseif node.field_content_state.value == 'approved' %}
+        <span class="badge alert-success d-flex align-items-center gap-1">
+          <i class="fas fa-circle-check me-1"></i> {{ 'Approved'|t }}
+        </span>
+      {% elseif node.field_content_state.value == 'processing' %}
+        <span class="badge alert-info d-flex align-items-center gap-1">
+          <i class="fas fa-circle-info me-1"></i> {{ 'Processing'|t }}
+        </span>
+      {% else %}
+        <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|date('d M. Y') }}</strong></div>
+      {% endif %}
     </div>
     <div class="activity-supporters">
       {% include 'citizen-proposal-support-counter.html.twig' with {data: {

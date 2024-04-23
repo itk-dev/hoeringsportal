@@ -2,7 +2,8 @@
   background-color: transparent;
 }
 
-.alert {
+.alert,
+.badge {
   &.alert-warning {
     background-color: #FEFCE9;
     color: #563310;
