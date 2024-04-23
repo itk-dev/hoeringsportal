@@ -6,6 +6,7 @@ use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
 use Drupal\hoeringsportal_base_fixtures\Helper\Helper as BaseFixtureHelper;
@@ -17,7 +18,6 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Yaml\Yaml;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Page fixture.
@@ -133,7 +133,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     $entity->save();
     $this->addReference('node:citizen_proposal:Proposal3', $entity);
 
-    // Rejected citizen proposal
+    // Rejected citizen proposal.
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => 'Afvist borgerforslag',
@@ -167,7 +167,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
     }
 
-    // Approved citizen proposal
+    // Approved citizen proposal.
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => 'Godkendt borgerforslag',
@@ -201,7 +201,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
     }
 
-    // Processing citizen proposal
+    // Processing citizen proposal.
     $entity = Node::create([
       'type' => 'citizen_proposal',
       'title' => 'Borgerforslag behandles',
