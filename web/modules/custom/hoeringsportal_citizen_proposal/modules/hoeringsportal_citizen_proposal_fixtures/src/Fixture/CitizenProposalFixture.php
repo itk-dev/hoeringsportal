@@ -17,6 +17,7 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Yaml\Yaml;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Page fixture.
@@ -24,6 +25,10 @@ use Symfony\Component\Yaml\Yaml;
  * @package Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture
  */
 class CitizenProposalFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
+
+  const CONTENT_STATE_REJECTED = 'rejected';
+  const CONTENT_STATE_APPROVED = 'approved';
+  const CONTENT_STATE_PROCESSING = 'processing';
 
   /**
    * Constructor.
@@ -114,7 +119,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
       'status' => NodeInterface::NOT_PUBLISHED,
       'field_author_uuid' => '3333',
       'field_author_name' => 'Hexia De Trick',
-      'field_author_email' => 'givmiglykkemønten@itkdev.dk',
+      'field_author_email' => 'hexia@itkdev.dk',
       'field_content_state' => 'active',
       'field_proposal' => [
         'value' => $this->baseFixtureHelper->getText('filteredHtmlLong.html'),
@@ -127,6 +132,103 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     ]);
     $entity->save();
     $this->addReference('node:citizen_proposal:Proposal3', $entity);
+
+    // Rejected citizen proposal
+    $entity = Node::create([
+      'type' => 'citizen_proposal',
+      'title' => 'Afvist borgerforslag',
+      'status' => NodeInterface::PUBLISHED,
+      'field_author_uuid' => '3333',
+      'field_getorganized_case_id' => '0',
+      'field_author_name' => 'Hexia De Trick',
+      'field_author_email' => 'hexia@itkdev.dk',
+      'field_status_title' => 'Dette er en status title',
+      'field_city_council_meeting_date' => (new DrupalDateTime('tomorrow +2 months'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+      'field_status_description' => [
+        'value' => 'Dette er en status description test. Curabitur elit est, tincidunt ac tempor eget, mattis sit amet lectus. Nullam pharetra sollicitudin ex vel tincidunt.',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_proposal' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_remarks' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_more_info' => 'Dette kan du få af vide. Nullam placerat risus ac magna congue feugiat. Suspendisse sed arcu eget massa accumsan maximus ac feugiat nunc.',
+    ]);
+    $entity->save();
+    $entity->field_content_state->setValue(self::CONTENT_STATE_REJECTED);
+    $entity->save();
+
+    // Add support (Do not set this to a too large a number!)
+    for ($i = 0; $i < 1; $i++) {
+      $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
+    }
+
+    // Approved citizen proposal
+    $entity = Node::create([
+      'type' => 'citizen_proposal',
+      'title' => 'Godkendt borgerforslag',
+      'status' => NodeInterface::PUBLISHED,
+      'field_author_uuid' => '3333',
+      'field_getorganized_case_id' => '0',
+      'field_author_name' => 'Hexia De Trick',
+      'field_author_email' => 'hexia@itkdev.dk',
+      'field_status_title' => 'Dette er en status title',
+      'field_city_council_meeting_date' => (new DrupalDateTime('tomorrow +2 months'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+      'field_status_description' => [
+        'value' => 'Dette er en status description test. Curabitur elit est, tincidunt ac tempor eget, mattis sit amet lectus. Nullam pharetra sollicitudin ex vel tincidunt.',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_proposal' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_remarks' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_more_info' => 'Dette kan du få af vide. Nullam placerat risus ac magna congue feugiat. Suspendisse sed arcu eget massa accumsan maximus ac feugiat nunc.',
+    ]);
+    $entity->save();
+    $entity->field_content_state->setValue(self::CONTENT_STATE_APPROVED);
+    $entity->save();
+
+    // Add support (Do not set this to a too large a number!)
+    for ($i = 0; $i < 2; $i++) {
+      $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
+    }
+
+    // Processing citizen proposal
+    $entity = Node::create([
+      'type' => 'citizen_proposal',
+      'title' => 'Borgerforslag behandles',
+      'status' => NodeInterface::PUBLISHED,
+      'field_author_uuid' => '3333',
+      'field_getorganized_case_id' => '0',
+      'field_author_name' => 'Hexia De Trick',
+      'field_author_email' => 'hexia@itkdev.dk',
+      'field_city_council_meeting_date' => (new DrupalDateTime('tomorrow +2 months'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+      'field_proposal' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_remarks' => [
+        'value' => 'Her kommer teksten som en streng',
+        'format' => ProposalFormBase::CONTENT_TEXT_FORMAT,
+      ],
+      'field_more_info' => 'Dette kan du få af vide. Nullam placerat risus ac magna congue feugiat. Suspendisse sed arcu eget massa accumsan maximus ac feugiat nunc.',
+    ]);
+    $entity->save();
+    $entity->field_content_state->setValue(self::CONTENT_STATE_PROCESSING);
+    $entity->save();
+
+    // Add support (Do not set this to a too large a number!)
+    for ($i = 0; $i < 3; $i++) {
+      $this->helper->saveSupport(uniqid('', TRUE), $entity, ['user_name' => self::class]);
+    }
 
     // Set admin values.
     $data = Yaml::parseFile(__DIR__ . '/CitizenProposalFixture/citizen_proposal_admin_form_values.yaml');
