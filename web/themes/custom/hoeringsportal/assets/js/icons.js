@@ -14,7 +14,9 @@ import {
   faSearch,
   faTimes,
   faCopy,
-  faPrint
+  faPrint,
+  faTriangleExclamation,
+  faCircleCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 // Import icons from the free brands package
@@ -48,5 +50,7 @@ library.add(
   faReddit,
   faEvernote,
   faCopy,
-  faPrint
+  faPrint,
+  faTriangleExclamation,
+  faCircleCheck
 )

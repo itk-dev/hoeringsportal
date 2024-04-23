@@ -1,3 +1,41 @@
 .status-messages .placeholder {
   background-color: transparent;
 }
+
+.alert {
+  &.alert-warning {
+    background-color: #FEFCE9;
+    color: #563310;
+
+    svg {
+      color: #FACD34;
+    }
+  }
+
+  &.alert-success {
+    background-color: #F0FDF4;
+    color: #1A5631;
+
+    svg {
+      color: #15AC4E;
+    }
+  }
+
+  &.alert-info {
+    background-color: #EFF6FF;
+    color: #244DC1;
+
+    svg {
+      color: #2A81EC;
+    }
+  }
+
+  &.alert-light {
+    background-color: #F5F5F5;
+    color: #333333;
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

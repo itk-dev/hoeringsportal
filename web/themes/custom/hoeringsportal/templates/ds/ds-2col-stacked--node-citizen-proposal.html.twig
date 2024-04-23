@@ -36,6 +36,49 @@
     <div class="row">
       <{{ left_wrapper }}{{ left_attributes.addClass('content group-left col-md-8') }}>
         <div class="content__main ">
+
+          {# Status message rejected #}
+          {% if node.field_content_state.value == 'rejected' %}
+            <div class="alert alert-warning border-0 d-flex gap-3" role="alert">
+              <i class="fas fa-triangle-exclamation mt-1"></i>
+              <div>
+                <h4 class="alert-heading mb-1 mt-0">{{ 'Rejected by the council'|t }}</h4>
+                <p class="mb-0">{{ 'The proposal was rejected at the citycouncil meeting @meeting_date'|t({'@meeting_date': node.field_city_council_meeting_date.value }) }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {# Status message approved #}
+          {% if node.field_content_state.value == 'approved' %}
+            <div class="alert alert-success border-0 d-flex gap-3" role="alert">
+              <i class="fas fa-circle-check mt-1"></i>
+              <div>
+                <h4 class="alert-heading mb-1 mt-0">{{ 'Approved by the council'|t }}</h4>
+                <p class="mb-0">{{ 'The proposal was approved at the citycouncil meeting @meeting_date'|t({'@meeting_date': node.field_city_council_meeting_date.value }) }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {# Status message processing #}
+          {% if node.field_content_state.value == 'processing' %}
+            <div class="alert alert-info border-0 d-flex gap-3" role="alert">
+              <i class="fas fa-circle-check mt-1"></i>
+              <div>
+                <h4 class="alert-heading mb-1 mt-0">{{ 'The proposal is beeing processed'|t }}</h4>
+                <p class="mb-0">{{ 'The proposal will be proccessed at the citycouncil meeting @meeting_date'|t({'@meeting_date': node.field_city_council_meeting_date.value }) }}</p>
+              </div>
+            </div>
+          {% endif %}
+
+          {# Status explanation #}
+          {% if node.field_status_title.value or node.field_status_description.value %}
+            <div class="alert alert-light border-0" role="alert">
+              <p class="mb-1">{{ 'Last update @date'|t({'@date': node.changed.value|date("d/m/Y")}) }}</p>
+              {% if node.field_status_title.value %}<h2 class="fw-normal">{{ node.field_status_title.value }}</h2>{% endif %}
+              {% if node.field_status_description.value %}{{ content.field_status_description}}{% endif %}
+            </div>
+          {% endif %}
+
           <div>
             {{ left['dynamic_block_field:node-citizen_proposal_support_counter'] }}
             <div class="d-flex justify-content-between mt-3 border-bottom pb-3">
