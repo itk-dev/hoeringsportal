@@ -5,35 +5,35 @@
 .alert,
 .badge {
   &.alert-warning {
-    background-color: #FEFCE9;
-    color: #563310;
+    background-color: $yellow-100;
+    color: $yellow-800;
 
     svg {
-      color: #FACD34;
+      color: $yellow-500;
     }
   }
 
   &.alert-success {
-    background-color: #F0FDF4;
-    color: #1A5631;
+    background-color: $green-100;
+    color: $green-800;
 
     svg {
-      color: #15AC4E;
+      color: $green-500;
     }
   }
 
   &.alert-info {
-    background-color: #EFF6FF;
-    color: #244DC1;
+    background-color: $blue-100;
+    color: $blue-800;
 
     svg {
-      color: #2A81EC;
+      color: $blue-500;
     }
   }
 
   &.alert-light {
-    background-color: #F5F5F5;
-    color: #333333;
+    background-color: $gray-100;
+    color: $gray-900;
 
     p:last-of-type {
       margin-bottom: 0;
