@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-402](https://github.com/itk-dev/hoeringsportal/pull/402)
+  Project list filters: remove categories
 * [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
   Project fixtures
 * [PR-398](https://github.com/itk-dev/hoeringsportal/pull/398)
