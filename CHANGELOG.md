@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-400](https://github.com/itk-dev/hoeringsportal/pull/401)
+  Citizen proposal status fixtures and template
+* [PR-400](https://github.com/itk-dev/hoeringsportal/pull/400)
+  Citizen proposal status
+
 ## [4.2.2] - 2024-04-10
 
 * [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)

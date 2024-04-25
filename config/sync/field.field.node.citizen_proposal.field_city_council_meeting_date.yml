@@ -1,0 +1,21 @@
+uuid: 57aa2690-2319-4322-a864-f02ed06e6bfc
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_council_meeting_date
+    - node.type.citizen_proposal
+  module:
+    - datetime
+id: node.citizen_proposal.field_city_council_meeting_date
+field_name: field_city_council_meeting_date
+entity_type: node
+bundle: citizen_proposal
+label: 'City ​​council meeting date'
+description: 'Used to set the date for the when the council will process the proposal on a city council meeting.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

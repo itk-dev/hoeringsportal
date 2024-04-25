@@ -20,6 +20,15 @@ settings:
     -
       value: finished
       label: Afsluttet
+    -
+      value: processing
+      label: Behandles
+    -
+      value: approved
+      label: Vedtaget
+    -
+      value: rejected
+      label: Afvist
   allowed_values_function: ''
 module: options
 locked: false

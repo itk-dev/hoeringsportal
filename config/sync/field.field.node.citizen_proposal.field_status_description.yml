@@ -1,0 +1,24 @@
+uuid: 823d579c-92db-486e-ae30-5024c66eb415
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_status_description
+    - filter.format.citizen_proposal_content
+    - node.type.citizen_proposal
+  module:
+    - text
+id: node.citizen_proposal.field_status_description
+field_name: field_status_description
+entity_type: node
+bundle: citizen_proposal
+label: 'Status description'
+description: 'Used to show a description for the explanation of the status.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - citizen_proposal_content
+field_type: text_long

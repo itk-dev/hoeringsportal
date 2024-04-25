@@ -9,16 +9,19 @@ dependencies:
     - field.field.node.citizen_proposal.field_author_name
     - field.field.node.citizen_proposal.field_author_phone
     - field.field.node.citizen_proposal.field_author_uuid
+    - field.field.node.citizen_proposal.field_city_council_meeting_date
     - field.field.node.citizen_proposal.field_content_state
     - field.field.node.citizen_proposal.field_getorganized_case_id
     - field.field.node.citizen_proposal.field_more_info
     - field.field.node.citizen_proposal.field_proposal
     - field.field.node.citizen_proposal.field_remarks
+    - field.field.node.citizen_proposal.field_status_description
+    - field.field.node.citizen_proposal.field_status_title
     - field.field.node.citizen_proposal.field_vote_end
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
   module:
-    - allowed_formats
+    - datetime
     - field_group
     - text
 third_party_settings:
@@ -29,7 +32,7 @@ third_party_settings:
       label: GetOrganized
       region: content
       parent_name: ''
-      weight: 20
+      weight: 10
       format_type: details
       format_settings:
         classes: ''
@@ -37,6 +40,23 @@ third_party_settings:
         id: ''
         open: true
         description: ''
+        required_fields: true
+    group_status:
+      children:
+        - field_content_state
+        - field_city_council_meeting_date
+        - field_status_title
+        - field_status_description
+      label: Status
+      region: content
+      parent_name: ''
+      weight: 11
+      format_type: fieldset
+      format_settings:
+        classes: ''
+        show_empty_fields: false
+        id: ''
+        description: 'Used to set a status for the proposal.'
         required_fields: true
 id: node.citizen_proposal.default
 targetEntityType: node
@@ -81,6 +101,18 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_city_council_meeting_date:
+    type: datetime_default
+    weight: 29
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_content_state:
+    type: options_select
+    weight: 28
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_getorganized_case_id:
     type: string_textfield
     weight: 26
@@ -122,6 +154,22 @@ content:
       allowed_formats:
         hide_help: '1'
         hide_guidelines: '1'
+  field_status_description:
+    type: text_textarea
+    weight: 31
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_status_title:
+    type: string_textfield
+    weight: 30
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   status:
     type: boolean_checkbox
     weight: 9
@@ -140,7 +188,6 @@ content:
 hidden:
   created: true
   field_author_uuid: true
-  field_content_state: true
   field_vote_end: true
   field_vote_start: true
   langcode: true
