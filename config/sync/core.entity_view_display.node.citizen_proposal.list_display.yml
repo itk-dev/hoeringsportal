@@ -23,6 +23,7 @@ dependencies:
     - node.type.citizen_proposal
   module:
     - datetime
+    - options
     - text
     - user
 id: node.citizen_proposal.list_display
@@ -35,7 +36,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 103
+    weight: 6
     region: content
   field_author_name:
     type: string
@@ -43,21 +44,28 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 104
+    weight: 7
+    region: content
+  field_content_state:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 10
     region: content
   field_proposal:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 105
+    weight: 8
     region: content
   field_remarks:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 106
+    weight: 9
     region: content
   field_vote_end:
     type: datetime_default
@@ -66,7 +74,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 102
+    weight: 5
     region: content
   field_vote_start:
     type: datetime_default
@@ -75,7 +83,7 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 101
+    weight: 4
     region: content
   langcode:
     type: language
@@ -89,7 +97,7 @@ content:
   links:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 3
     region: content
   published_at:
     type: timestamp
@@ -108,12 +116,12 @@ content:
         granularity: 2
         refresh: 60
     third_party_settings: {  }
-    weight: 0
+    weight: 1
     region: content
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
+    weight: 2
     region: content
 hidden:
   field_author_allow_email: true
@@ -121,7 +129,6 @@ hidden:
   field_author_phone: true
   field_author_uuid: true
   field_city_council_meeting_date: true
-  field_content_state: true
   field_getorganized_case_id: true
   field_more_info: true
   field_status_description: true

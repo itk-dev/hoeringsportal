@@ -49,6 +49,9 @@ third_party_settings:
       header:
         - node_title
       left:
+        - field_city_council_meeting_date
+        - field_status_description
+        - field_status_title
         - 'dynamic_block_field:node-citizen_proposal_support_counter'
         - field_proposal
         - field_remarks
@@ -62,7 +65,7 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-citizen_proposal_support_counter':
         plugin_id: 'dynamic_block_field:node-citizen_proposal_support_counter'
-        weight: 1
+        weight: 4
         label: hidden
         formatter: default
       node_title:
@@ -85,7 +88,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 5
+    weight: 8
     region: left
   field_author_name:
     type: string
@@ -93,7 +96,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 4
+    weight: 7
     region: left
   field_city_council_meeting_date:
     type: datetime_default
@@ -102,44 +105,44 @@ content:
       timezone_override: ''
       format_type: medium
     third_party_settings: {  }
-    weight: 11
-    region: content
+    weight: 1
+    region: left
   field_more_info:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 10
+    weight: 12
     region: right
   field_proposal:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 5
     region: left
   field_remarks:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 3
+    weight: 6
     region: left
   field_status_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 12
-    region: content
+    weight: 2
+    region: left
   field_status_title:
     type: string
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 13
-    region: content
+    weight: 3
+    region: left
   field_vote_end:
     type: datetime_default
     label: above
@@ -147,7 +150,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 8
+    weight: 10
     region: right
   field_vote_start:
     type: datetime_default
@@ -156,12 +159,12 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 7
+    weight: 9
     region: right
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 9
+    weight: 11
     region: right
 hidden:
   field_author_allow_email: true

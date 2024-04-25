@@ -12,8 +12,8 @@ id: node.citizen_proposal.field_status_description
 field_name: field_status_description
 entity_type: node
 bundle: citizen_proposal
-label: 'status description'
-description: ''
+label: 'Status description'
+description: 'Used to show a description for the explanation of the status.'
 required: false
 translatable: false
 default_value: {  }

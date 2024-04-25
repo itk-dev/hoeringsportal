@@ -1,3 +1,42 @@
 .status-messages .placeholder {
   background-color: transparent;
 }
+
+.alert,
+.badge {
+  &.alert-warning {
+    background-color: $yellow-100;
+    color: $yellow-800;
+
+    svg {
+      color: $yellow-500;
+    }
+  }
+
+  &.alert-success {
+    background-color: $green-100;
+    color: $green-800;
+
+    svg {
+      color: $green-500;
+    }
+  }
+
+  &.alert-info {
+    background-color: $blue-100;
+    color: $blue-800;
+
+    svg {
+      color: $blue-500;
+    }
+  }
+
+  &.alert-light {
+    background-color: $gray-100;
+    color: $gray-900;
+
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
