@@ -106,7 +106,7 @@ function hoeringsportal_data_field_group_form_process_build_alter(array &$elemen
  * Implements hook_views_pre_render().
  */
 function hoeringsportal_data_views_pre_render(ViewExecutable $view) {
-  if ($view->id() == "heyloyalty_feed" && $view->current_display == 'rest_export_1') {
+  if ($view->id() == 'heyloyalty_feed' && $view->current_display == 'rest_export_1') {
     if (empty($view->result)) {
       // Add an empty result for views to use field empty results.
       $emptyResult = new ResultRow([]);

@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
+  Project fixtures
 * [PR-398](https://github.com/itk-dev/hoeringsportal/pull/398)
   Added Deskpro test data
 * [pr-399](https://github.com/itk-dev/hoeringsportal/pull/399)
