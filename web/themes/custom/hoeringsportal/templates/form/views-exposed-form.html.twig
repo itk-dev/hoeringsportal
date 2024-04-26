@@ -13,6 +13,6 @@
 #}
 {% set number_of_fields = form|keys|filter(v => v starts with 'field_' or v starts with 'sort_')|length %}
 
-<div id="collapseFilters" class="row row-cols-1 row-cols-md-{{ number_of_fields }} d-flex flex-column flex-md-row">
+<div id="collapseFilters" class="row row-cols-1 row-cols-md-2 row-cols-lg-{{ number_of_fields <= 2 ? 4 : number_of_fields }} d-flex flex-column flex-md-row">
   {{ form }}
 </div>
