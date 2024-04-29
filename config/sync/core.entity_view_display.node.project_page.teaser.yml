@@ -1,0 +1,30 @@
+uuid: 8f494cd5-6a6b-4269-b421-0e4ae5639a54
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.project_page.field_content_sections
+    - field.field.node.project_page.field_project_category
+    - node.type.project_page
+  module:
+    - user
+id: node.project_page.teaser
+targetEntityType: node
+bundle: project_page
+mode: teaser
+content:
+  field_project_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_content_sections: true
+  langcode: true
+  links: true
+  published_at: true
+  sharing_buttons: true

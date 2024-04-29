@@ -1,0 +1,44 @@
+uuid: 8115bb9a-d61d-4452-98c1-5f8428449313
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.hearing_ticket_add
+    - field.field.node.project_main_page.field_area
+    - field.field.node.project_main_page.field_content_sections
+    - field.field.node.project_main_page.field_project_category
+    - field.field.node.project_main_page.field_project_image
+    - field.field.node.project_main_page.field_short_description
+    - node.type.project_main_page
+  module:
+    - user
+id: node.project_main_page.hearing_ticket_add
+targetEntityType: node
+bundle: project_main_page
+mode: hearing_ticket_add
+content:
+  field_area:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 9
+    region: right
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+  sharing_buttons:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_content_sections: true
+  field_project_category: true
+  field_project_image: true
+  field_short_description: true
+  langcode: true
+  published_at: true

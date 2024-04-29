@@ -3,12 +3,15 @@
 namespace Drupal\hoeringsportal_deskpro\Service;
 
 use Deskpro\API\APIResponse;
+use Deskpro\API\APIResponseInterface;
 use Deskpro\API\DeskproClient;
 use Deskpro\API\Exception\APIException;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
 use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use GuzzleHttp\Client;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Deskpro service.
@@ -283,7 +286,7 @@ class DeskproService {
   public function getMessageAttachments($message, array $query = []) {
     $query['ticket'] = $message['ticket'];
     $query['id'] = $message['id'];
-    $response = $this->get('tickets/{ticket}/messages/{id}/attachments', $query);
+    $response = $this->get('/tickets/{ticket}/messages/{id}/attachments', $query);
 
     return $response;
   }
@@ -293,7 +296,7 @@ class DeskproService {
    */
   public function getPerson($id, array $query = []) {
     $query['id'] = $id;
-    $response = $this->get('people/{id}', $query);
+    $response = $this->get('/people/{id}', $query);
 
     return $response;
   }
@@ -503,7 +506,7 @@ class DeskproService {
    * Get agents.
    */
   public function getAgents() {
-    return $this->get('agents');
+    return $this->get('/agents');
   }
 
   /**
@@ -530,7 +533,11 @@ class DeskproService {
   /**
    * Convenience function for getting data from the Deskpro client.
    */
-  private function get($endpoint, array $query = []) {
+  private function get($endpoint, array $query = []): APIResponseInterface {
+    if (self::isTestMode()) {
+      return $this->createMockResponse($endpoint, $query);
+    }
+
     $cache = \Drupal::cache('data');
     $cacheKey = __METHOD__ . '||' . json_encode(func_get_args());
     $cacheTtl = $this->config->getCacheTtl();
@@ -726,6 +733,36 @@ class DeskproService {
     $response = $this->client()->get($endpoint, $query);
 
     return $response;
+  }
+
+  /**
+   * Is test mode?
+   */
+  public static function isTestMode() {
+    return (bool) (Settings::get('hoeringsportal_deskpro')['test_mode'] ?? FALSE);
+  }
+
+  /**
+   * Create mock response.
+   */
+  private function createMockResponse(string $endpoint, array $query): APIResponseInterface {
+    $data = [];
+    $meta = [];
+    $linked = [];
+
+    $filename = __DIR__ . '/mock/' . $endpoint . '.yaml';
+    if (file_exists($filename)) {
+      try {
+        $stuff = Yaml::parseFile($filename);
+        $data = $stuff['data'] ?? [];
+        $meta = $stuff['meta'] ?? [];
+        $linked = $stuff['linked'] ?? [];
+      }
+      catch (\Exception) {
+      }
+    }
+
+    return new APIResponse($data, $meta, $linked);
   }
 
   /**

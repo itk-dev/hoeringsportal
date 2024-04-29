@@ -7,6 +7,7 @@ use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture;
 use Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture;
+use Drupal\hoeringsportal_project_fixtures\Fixture\ProjectLandingPageFixture;
 use Drupal\menu_link_content\Entity\MenuLinkContent;
 
 /**
@@ -22,23 +23,20 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load() {
-    $hearingPage = $this->getReference('node:landing_page:Hearings');
-    MenuLinkContent::create([
-      'title' => $hearingPage->title->value,
-      'link' => ['uri' => 'entity:node/' . $hearingPage->id()],
-      'menu_name' => 'main',
-      'expanded' => FALSE,
-      'weight' => 0,
-    ])->save();
-
-    $citizenProposalPage = $this->getReference('node:landing_page:Proposals');
-    MenuLinkContent::create([
-      'title' => $citizenProposalPage->title->value,
-      'link' => ['uri' => 'entity:node/' . $citizenProposalPage->id()],
-      'menu_name' => 'main',
-      'expanded' => FALSE,
-      'weight' => 3,
-    ])->save();
+    foreach ([
+      'node:landing_page:Hearings',
+      'node:landing_page:Proposals',
+      'node:landing_page:Projects',
+    ] as $weight => $name) {
+      $page = $this->getReference($name);
+      MenuLinkContent::create([
+        'title' => $page->title->value,
+        'link' => ['uri' => 'entity:node/' . $page->id()],
+        'menu_name' => 'main',
+        'expanded' => FALSE,
+        'weight' => $weight,
+      ])->save();
+    }
   }
 
   /**
@@ -48,6 +46,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
     return [
       HearingLandingPageFixture::class,
       CitizenProposalLandingPageFixture::class,
+      ProjectLandingPageFixture::class,
     ];
   }
 

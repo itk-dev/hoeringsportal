@@ -8,6 +8,16 @@ Edit configuration on `/admin/site-setup/deskpro`.
 
 Check out `/hoeringsportal_deskpro/api/docs` for details.
 
+## Test mode
+
+During testing and development, you can make this module run in test mode and
+not call an actual Deskpro API. Enable test mode in `settings.local.php`:
+
+```php
+# settings.local.php
+$settings['hoeringsportal_deskpro']['test_mode'] = TRUE;
+```
+
 ## Drush commands
 
 ```sh

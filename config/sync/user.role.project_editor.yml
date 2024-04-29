@@ -1,0 +1,67 @@
+uuid: 9938fa7b-7b20-435a-a454-039413fc4bf2
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - media.type.document
+    - media.type.image
+    - node.type.project
+    - node.type.project_main_page
+    - taxonomy.vocabulary.timeline_item_types
+  module:
+    - block_content
+    - entity_browser
+    - media
+    - node
+    - quick_node_clone
+    - system
+    - taxonomy
+    - toolbar
+id: project_editor
+label: 'Project editor'
+weight: -5
+is_admin: null
+permissions:
+  - 'access block library'
+  - 'access content'
+  - 'access content overview'
+  - 'access itk_document_browser entity browser pages'
+  - 'access itk_image_browser entity browser pages'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'clone project content'
+  - 'clone project_main_page content'
+  - 'create aside_contact_info block content'
+  - 'create document media'
+  - 'create image media'
+  - 'create project content'
+  - 'create project_main_page content'
+  - 'create terms in timeline_item_types'
+  - 'delete any aside_contact_info block content'
+  - 'delete any aside_contact_info block content revisions'
+  - 'delete any project content'
+  - 'delete any project_main_page content'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own project content'
+  - 'delete own project_main_page content'
+  - 'delete project revisions'
+  - 'delete project_main_page revisions'
+  - 'delete terms in timeline_item_types'
+  - 'edit any aside_contact_info block content'
+  - 'edit any project content'
+  - 'edit any project_main_page content'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit terms in timeline_item_types'
+  - 'revert any aside_contact_info block content revisions'
+  - 'revert project revisions'
+  - 'revert project_main_page revisions'
+  - 'view any aside_contact_info block content history'
+  - 'view media'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view project revisions'
+  - 'view project_main_page revisions'
+  - 'view the administration theme'

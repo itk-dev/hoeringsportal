@@ -1,0 +1,19 @@
+uuid: 513cf7bd-93af-4cf2-86da-267e6200942d
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - field.storage.block_content.field_email
+id: block_content.aside_contact_info.field_email
+field_name: field_email
+entity_type: block_content
+bundle: aside_contact_info
+label: Email
+description: 'Used to show the email address'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

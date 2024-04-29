@@ -1,0 +1,23 @@
+uuid: e9a256b2-d205-48f6-ac91-dc867b6a9fe9
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_link_box
+    - field.storage.block_content.field_link
+  module:
+    - link
+id: block_content.aside_link_box.field_link
+field_name: field_link
+entity_type: block_content
+bundle: aside_link_box
+label: Link
+description: 'Used to point to a target for the link box'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 17
+field_type: link

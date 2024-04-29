@@ -1,0 +1,11 @@
+uuid: 443acb1b-8079-475e-8c87-300d5cf37643
+langcode: da
+status: true
+dependencies:
+  config:
+    - node.type.project_main_page
+id: node.project_main_page
+target_entity_type_id: node
+target_bundle: project_main_page
+default_langcode: site_default
+language_alterable: false

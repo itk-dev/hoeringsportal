@@ -1,0 +1,37 @@
+uuid: 7c9b5029-5a1f-4c21-a2a7-79dfce8b53dd
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_content
+    - node.type.citizen_proposal
+    - node.type.hearing
+    - node.type.project_main_page
+    - node.type.public_meeting
+    - node.type.static_page
+    - paragraphs.paragraphs_type.teaser_row
+id: paragraph.teaser_row.field_content
+field_name: field_content
+entity_type: paragraph
+bundle: teaser_row
+label: Content
+description: 'Used to select up to 3 content items to show in the row'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      public_meeting: public_meeting
+      citizen_proposal: citizen_proposal
+      hearing: hearing
+      project_main_page: project_main_page
+      static_page: static_page
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: public_meeting
+field_type: entity_reference

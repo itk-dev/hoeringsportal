@@ -1,0 +1,20 @@
+data:
+  - id: 007
+    primary_email: 007@example.com
+    first_name: James
+    last_name: Bond
+    title_prefix: ''
+    name: James Bond
+    display_name: James Bond
+    is_agent: true
+    avatar:
+      default_url_pattern: https://example.com/file.php/avatar/{{IMG_SIZE}}/default.jpg?size-fit=1
+      url_pattern: null
+      base_gravatar_url: null
+    online: false
+    online_for_chat: false
+    last_seen: null
+    agent_data: null
+
+meta: []
+linked: []

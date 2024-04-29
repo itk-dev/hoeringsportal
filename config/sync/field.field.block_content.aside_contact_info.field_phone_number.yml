@@ -1,0 +1,23 @@
+uuid: c4654dcf-a9fa-4ac0-aed6-ff1c9cbd34dc
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - field.storage.block_content.field_phone_number
+id: block_content.aside_contact_info.field_phone_number
+field_name: field_phone_number
+entity_type: block_content
+bundle: aside_contact_info
+label: 'Phone number'
+description: 'Used to show the phone number'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 8
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

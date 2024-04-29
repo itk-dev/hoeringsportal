@@ -1,0 +1,30 @@
+uuid: 14942a3d-63d1-4835-b4df-2ca3de72205c
+langcode: da
+status: true
+dependencies:
+  module:
+    - block_content
+    - options
+id: block_content.field_color
+field_name: field_color
+entity_type: block_content
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: mint
+      label: Mint
+    -
+      value: peach
+      label: Peach
+    -
+      value: stone
+      label: Stone
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
