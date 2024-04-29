@@ -3,57 +3,15 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.paragraph.teaser_row.field_content
     - field.field.paragraph.teaser_row.field_paragraph_title
-    - field.field.paragraph.teaser_row.field_project_hearing_1
-    - field.field.paragraph.teaser_row.field_project_hearing_2
-    - field.field.paragraph.teaser_row.field_project_hearing_3
-    - field.field.paragraph.teaser_row.field_static_pages
-    - field.field.paragraph.teaser_row.field_type
     - paragraphs.paragraphs_type.teaser_row
 id: paragraph.teaser_row.default
 targetEntityType: paragraph
 bundle: teaser_row
 mode: default
 content:
-  field_paragraph_title:
-    type: string_textfield
-    weight: 1
-    region: content
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_project_hearing_1:
-    type: entity_reference_autocomplete_tags
-    weight: 2
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_project_hearing_2:
-    type: entity_reference_autocomplete_tags
-    weight: 3
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_project_hearing_3:
-    type: entity_reference_autocomplete_tags
-    weight: 4
-    region: content
-    settings:
-      match_operator: CONTAINS
-      match_limit: 10
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-  field_static_pages:
+  field_content:
     type: entity_reference_autocomplete
     weight: 5
     region: content
@@ -63,11 +21,13 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_type:
-    type: options_buttons
-    weight: 0
+  field_paragraph_title:
+    type: string_textfield
+    weight: 1
     region: content
-    settings: {  }
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
 hidden:
   created: true

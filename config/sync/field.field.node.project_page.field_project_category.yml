@@ -1,0 +1,29 @@
+uuid: ee04d6cd-993c-4109-8002-1beeba985e1d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_category
+    - node.type.project_page
+    - taxonomy.vocabulary.project_categories
+id: node.project_page.field_project_category
+field_name: field_project_category
+entity_type: node
+bundle: project_page
+label: 'Project category'
+description: 'Used to categorize the project. <a href="/admin/structure/taxonomy/manage/project_categories/overview">Create new categories here</a>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      project_categories: project_categories
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

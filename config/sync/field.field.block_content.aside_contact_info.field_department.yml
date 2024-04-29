@@ -1,0 +1,19 @@
+uuid: d5371c92-4311-44aa-9c77-0dc93f87de6f
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - field.storage.block_content.field_department
+id: block_content.aside_contact_info.field_department
+field_name: field_department
+entity_type: block_content
+bundle: aside_contact_info
+label: Department
+description: 'Used as the name of the department'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

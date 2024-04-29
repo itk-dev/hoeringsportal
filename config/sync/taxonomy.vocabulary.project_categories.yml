@@ -1,0 +1,8 @@
+uuid: 3828b1ee-839d-45c5-872c-caf54c1e50d4
+langcode: da
+status: true
+dependencies: {  }
+name: 'Project categories'
+vid: project_categories
+description: 'Used to categorize project pages'
+weight: 0

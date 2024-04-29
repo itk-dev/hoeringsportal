@@ -32,8 +32,8 @@ BODY
       'field_media_image_single' => ['target_id' => $this->getReference('media:Large2')->id()],
       'field_section' => [
         [
-          'target_id' => $this->getReference('paragraph:content_list:content_list1')->id(),
-          'target_revision_id' => $this->getReference('paragraph:content_list:content_list1')->getRevisionId(),
+          'target_id' => $this->getReference('paragraph:content_list:all_citizen_proposals')->id(),
+          'target_revision_id' => $this->getReference('paragraph:content_list:all_citizen_proposals')->getRevisionId(),
         ],
       ],
     ]);

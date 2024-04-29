@@ -6,6 +6,19 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-402](https://github.com/itk-dev/hoeringsportal/pull/402)
+  Project list filters: remove categories
+* [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
+  Project fixtures
+* [PR-398](https://github.com/itk-dev/hoeringsportal/pull/398)
+  Added Deskpro test data
+* [pr-399](https://github.com/itk-dev/hoeringsportal/pull/399)
+  * Add content type Project subpage
+  * Update paragraphs for projects
+  * Add list view for project
+* [pr-394](https://github.com/itk-dev/hoeringsportal/pull/394)
+  Add content type Project page
+
 ## [4.2.2] - 2024-04-10
 
 * [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)
