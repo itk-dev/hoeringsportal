@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.3.0] - 2024-04-29
+
 * [PR-402](https://github.com/itk-dev/hoeringsportal/pull/402)
   Project list filters: remove categories
 * [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
@@ -201,7 +203,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...HEAD
+[4.3.0]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...4.3.0
 [4.2.2]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...4.2.2
 [4.2.1]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...4.2.1
 [4.2.0]: https://github.com/itk-dev/hoeringsportal/compare/4.1.1...4.2.0
