@@ -1,0 +1,8 @@
+uuid: 67fffa3d-fe69-4eeb-884f-b7cd51fc57f8
+langcode: da
+status: true
+dependencies: {  }
+name: 'Infobox variant'
+vid: infobox_variant
+description: 'Different variants of style for the infobox paragraph'
+weight: 0

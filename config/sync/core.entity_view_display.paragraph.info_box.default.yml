@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.info_box.field_content_block_text
     - field.field.paragraph.info_box.field_paragraph_title
+    - field.field.paragraph.info_box.field_variant
     - paragraphs.paragraphs_type.info_box
   module:
     - text
@@ -27,5 +28,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 0
+    region: content
+  field_variant:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 2
     region: content
 hidden: {  }

@@ -1,0 +1,11 @@
+uuid: 65367f97-6fdc-4b16-80f7-a7e1a41cea82
+langcode: da
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.infobox_variant
+id: taxonomy_term.infobox_variant
+target_entity_type_id: taxonomy_term
+target_bundle: infobox_variant
+default_langcode: site_default
+language_alterable: false

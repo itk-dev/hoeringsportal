@@ -1,0 +1,33 @@
+uuid: 43046247-65e5-4511-bb5c-d3bf8d8c93fe
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_variant
+    - paragraphs.paragraphs_type.info_box
+    - taxonomy.vocabulary.infobox_variant
+  content:
+    - 'taxonomy_term:infobox_variant:64ea88e3-60b8-4090-ad7f-58fb5ab4498b'
+id: paragraph.info_box.field_variant
+field_name: field_variant
+entity_type: paragraph
+bundle: info_box
+label: Variant
+description: 'Used to select the variant'
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 64ea88e3-60b8-4090-ad7f-58fb5ab4498b
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      infobox_variant: infobox_variant
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
