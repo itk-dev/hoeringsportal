@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-406](https://github.com/itk-dev/hoeringsportal/pull/406)
+  Infobox styling
+
 ## [4.3.0] - 2024-04-29
 
 * [PR-402](https://github.com/itk-dev/hoeringsportal/pull/402)
