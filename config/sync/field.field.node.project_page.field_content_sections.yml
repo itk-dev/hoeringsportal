@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_content_sections
     - node.type.project_page
     - paragraphs.paragraphs_type.content_block
+    - paragraphs.paragraphs_type.files
     - paragraphs.paragraphs_type.image
     - paragraphs.paragraphs_type.info_box
     - paragraphs.paragraphs_type.introduction
@@ -34,6 +35,7 @@ settings:
       info_box: info_box
       introduction: introduction
       teaser_row: teaser_row
+      files: files
       text_aside_blocks_2_column: text_aside_blocks_2_column
     negate: 0
     target_bundles_drag_drop:
@@ -43,6 +45,9 @@ settings:
       content_list:
         weight: -18
         enabled: false
+      files:
+        weight: 13
+        enabled: true
       image:
         weight: -20
         enabled: true

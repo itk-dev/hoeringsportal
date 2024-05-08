@@ -1,0 +1,10 @@
+uuid: 50378b6f-ed0f-41ae-98af-1afa956943b0
+langcode: da
+status: true
+dependencies: {  }
+id: files
+label: Files
+icon_uuid: null
+icon_default: null
+description: 'Used to upload files that the user can download'
+behavior_plugins: {  }
