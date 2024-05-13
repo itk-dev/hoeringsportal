@@ -1,0 +1,23 @@
+uuid: 0c6fc12b-e5a7-4bea-95f2-3b82a2da0124
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_variant_select
+    - paragraphs.paragraphs_type.info_box
+  module:
+    - options
+id: paragraph.info_box.field_variant_select
+field_name: field_variant_select
+entity_type: paragraph
+bundle: info_box
+label: Variant
+description: 'Used to set the variant style for the info box.'
+required: false
+translatable: false
+default_value:
+  -
+    value: petroleum_light
+default_value_callback: ''
+settings: {  }
+field_type: list_string

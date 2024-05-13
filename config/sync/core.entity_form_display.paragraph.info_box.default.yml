@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.paragraph.info_box.field_content_block_text
     - field.field.paragraph.info_box.field_paragraph_title
-    - field.field.paragraph.info_box.field_variant
+    - field.field.paragraph.info_box.field_variant_select
     - paragraphs.paragraphs_type.info_box
   module:
     - text
@@ -30,9 +30,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_variant:
+  field_variant_select:
     type: options_select
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
