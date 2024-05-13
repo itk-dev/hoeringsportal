@@ -5,8 +5,8 @@ dependencies:
   module:
     - options
     - paragraphs
-id: paragraph.field_variant_select
-field_name: field_variant_select
+id: paragraph.field_variant
+field_name: field_variant
 entity_type: paragraph
 type: list_string
 settings:
