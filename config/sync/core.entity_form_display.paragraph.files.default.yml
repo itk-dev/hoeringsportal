@@ -1,0 +1,34 @@
+uuid: 458df720-e0e0-4169-bdcb-c3b73826dfaf
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.files.field_files
+    - field.field.paragraph.files.field_title
+    - paragraphs.paragraphs_type.files
+id: paragraph.files.default
+targetEntityType: paragraph
+bundle: files
+mode: default
+content:
+  field_files:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

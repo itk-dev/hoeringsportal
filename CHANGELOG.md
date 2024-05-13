@@ -8,11 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-406](https://github.com/itk-dev/hoeringsportal/pull/406)
   Infobox styling
+* [PR-405](https://github.com/itk-dev/hoeringsportal/pull/405)
+  Add paragraph for files
 
 ## [4.3.0] - 2024-04-29
 
-* [PR-402](https://github.com/itk-dev/hoeringsportal/pull/402)
-  Project list filters: remove categories
 * [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
   Project fixtures
 * [PR-398](https://github.com/itk-dev/hoeringsportal/pull/398)
