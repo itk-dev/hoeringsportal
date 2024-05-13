@@ -75,7 +75,7 @@
 {% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
 
   {# When deadline field exists add splash. #}
   {% if (content.field_first_meeting_time) %}

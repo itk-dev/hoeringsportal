@@ -10,6 +10,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Infobox styling
 * [PR-405](https://github.com/itk-dev/hoeringsportal/pull/405)
   Add paragraph for files
+* [PR-404](https://github.com/itk-dev/hoeringsportal/pull/404)
+  UI fixes after project release
 
 ## [4.3.0] - 2024-04-29
 
