@@ -24,7 +24,7 @@ import {
   faFileAlt,
   faFileImage,
   faFileExcel,
-  faTicketAlt,
+  faTicketAlt
 } from '@fortawesome/free-solid-svg-icons'
 
 // Import icons from the free brands package
@@ -38,7 +38,7 @@ import {
   faReddit,
   faTumblr,
   faWhatsapp,
-  faXTwitter,
+  faXTwitter
 } from '@fortawesome/free-brands-svg-icons'
 
 // Add the icons to the library for replacing <i class="fa-solid fa-sort"></i> with the intended svg.
@@ -60,7 +60,7 @@ library.add(
   faSort,
   faTimes,
   faTicketAlt,
-  //Brand
+  // Brand
   faDigg,
   faEvernote,
   faFacebook,
@@ -70,6 +70,6 @@ library.add(
   faReddit,
   faTumblr,
   faWhatsapp,
-  faXTwitter,
+  faXTwitter
 )
-dom.i2svg();
+dom.i2svg()
