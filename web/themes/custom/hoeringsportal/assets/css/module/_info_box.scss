@@ -1,22 +1,58 @@
-// @TODO We may need to have a designer take a look at this!
 .info-box {
-  background-color: $petroleum-light;
-  padding: $spacer;
-  margin-top: $spacer * 3;
+  &.danger {
+    --bg-color: #{$red-100};
+    --secondary-bg-color: #{$red-200};
+    --text-color: #{$red-900};
+    --link-color: #{$red-700};
+  }
+  &.warning {
+    --bg-color: #{$yellow-100};
+    --secondary-bg-color: #{$yellow-200};
+    --text-color: #{$yellow-900};
+    --link-color: #{$yellow-800};
+  }
+  &.info {
+    --bg-color: #{$blue-100};
+    --secondary-bg-color: #{$blue-200};
+    --text-color: #{$blue-900};
+    --link-color: #{$blue-700};
+  }
+  &.petroleum-light {
+    --bg-color: #{$color-petroleum-100};
+    --secondary-bg-color: #{$petroleum-light};
+    --text-color: #{$black};
+    --link-color: inherit;
+  }
+  &.petroleum {
+    --bg-color: #{$petroleum};
+    --secondary-bg-color: #{$petroleum};
+    --text-color: #{$white};
+    --link-color: inherit;
+  }
+
+  --bg-color: #{$color-petroleum-100};
+  --secondary-bg-color: #{$petroleum-light};
+  --text-color: #{$black};
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin-top: $spacer;
   margin-bottom: $spacer;
 
-  p {
-    max-width: none;
-    font-size: $font-size-base * 1.25;
+  a {
+    color: var(--link-color)
   }
+}
 
-  $block-elements: p, ol, ul, h1, h2;
+.info-box-header h2 {
+  margin: 0;
+}
 
-  #{$block-elements} {
-    margin: 0;
+.info-box-header {
+  padding: $spacer;
+  background-color: var(--secondary-bg-color);
+}
 
-    & + #{$block-elements} {
-      margin-top: 1rem;
-    }
-  }
+.info-box-content {
+  padding: $spacer;
 }
