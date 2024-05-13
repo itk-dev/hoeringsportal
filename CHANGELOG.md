@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-407](https://github.com/itk-dev/hoeringsportal/pull/407)
+  Fix fontawesome issues
 * [PR-406](https://github.com/itk-dev/hoeringsportal/pull/406)
   Infobox styling
 * [PR-405](https://github.com/itk-dev/hoeringsportal/pull/405)
