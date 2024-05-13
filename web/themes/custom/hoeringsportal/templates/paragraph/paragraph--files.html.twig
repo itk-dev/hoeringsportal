@@ -1,0 +1,18 @@
+{# Paragraph for exposing downloadable files #}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      {% block paragraph %}
+        {% if content.field_title['#items'] is not empty %}
+          <h2>{{ content.field_title }}</h2>
+        {% endif %}
+        {% block content %}
+          <div class="paragraph-files d-flex flex-column">
+            {{ content|without('field_title') }}
+          </div>
+        {% endblock %}
+      {% endblock paragraph %}
+    </div>
+  </div>
+</div>
