@@ -1,0 +1,14 @@
+.paragraph-files article {
+  background-color: $color-petroleum-100;
+  padding: $spacer;
+  margin-bottom: calc($spacer * 0.25);
+  display: flex;
+}
+
+.paragraph-files article svg {
+  order: 1;
+}
+
+.paragraph-files article span {
+  order: 2;
+}

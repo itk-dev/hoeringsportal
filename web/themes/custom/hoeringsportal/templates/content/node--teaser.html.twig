@@ -102,7 +102,7 @@
           {% set overlay_text_color = 'text-orange' %}
         {% elseif (content_state == 'finished') %}
           <div class="splash-label">{{ 'Finished'|t }}</div>
-          <div class="splash-date-day"><i class="fa fa-check-circle"></i></div>
+          <div class="splash-date-day"><i class="fa-solid fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Finished'|t %}
@@ -119,7 +119,7 @@
       {% set ticket_count = deskpro_get_ticket_count(node) %}
       {% if ticket_count > 0 %}
         <div class="splash splash-comments">
-          <span class="splash-comments-count"><i class="fa fa-comment"></i>{{ ticket_count }}</span>
+          <span class="splash-comments-count"><i class="fa-solid fa-comment"></i>{{ ticket_count }}</span>
         </div>
       {% endif %}
     </div>
@@ -152,6 +152,6 @@
       {% endif %}
       <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
     </span>
-    <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
+    <span class="activity-teaser-link "><i class="fa-solid fa-arrow-right float-right"></i></span>
   </div>
 </a>

@@ -35,24 +35,24 @@
       {% if items.previous %}
         <li class="page-item">
           <a href="{{ items.previous.href }}" title="{{ 'Previous'|t }}" rel="prev"{{ items.previous.attributes|without('href', 'title', 'rel') }} class="page-link">
-            <span><i class="fa fa-arrow-left fa-sm me-2"></i> {{ 'Previous'|t }}</span>
+            <span><i class="fa-solid fa-arrow-left fa-sm me-2"></i> {{ 'Previous'|t }}</span>
           </a>
         </li>
       {% else %}
         <li class="page-item disabled">
-          <span class="page-link"><i class="fa fa-arrow-left fa-sm me-2"></i> {{ 'Previous'|t }}</span>
+          <span class="page-link"><i class="fa-solid fa-arrow-left fa-sm me-2"></i> {{ 'Previous'|t }}</span>
         </li>
       {% endif %}
       <li class="page-item disabled"><span class="page-link">{{ 'Page'|t }} {{ current }} / {{ items.pages|length }}</span></li>
       {% if items.next %}
         <li class="page-item">
           <a href="{{ items.next.href }}" title="{{ 'Next'|t }}" rel="next"{{ items.next.attributes|without('href', 'title', 'rel') }} class="page-link">
-            <span>{{ 'Next'|t }} <i class="fa fa-arrow-right fa-sm ms-2"></i></span>
+            <span>{{ 'Next'|t }} <i class="fa-solid fa-arrow-right fa-sm ms-2"></i></span>
           </a>
         </li>
       {% else %}
         <li class="page-item disabled">
-          <span class="page-link">{{ 'Next'|t }} <i class="fa fa-arrow-right fa-sm ms-2"></i></span>
+          <span class="page-link">{{ 'Next'|t }} <i class="fa-solid fa-arrow-right fa-sm ms-2"></i></span>
         </li>
       {% endif %}
     </ul>
