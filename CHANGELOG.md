@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.4.0] - 2024-05-14
+
 * [PR-407](https://github.com/itk-dev/hoeringsportal/pull/407)
   Fix fontawesome issues
 * [PR-406](https://github.com/itk-dev/hoeringsportal/pull/406)
@@ -210,7 +212,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...HEAD
+[4.4.0]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...4.4.0
 [4.3.0]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...4.3.0
 [4.2.2]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...4.2.2
 [4.2.1]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...4.2.1
