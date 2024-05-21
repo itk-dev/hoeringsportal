@@ -113,6 +113,7 @@
         "drupal/better_social_sharing_buttons": "^4.0",
         "drupal/block_content_suggestions": "^1.0",
         "drupal/captcha": "^2.0",
+        "drupal/clamav": "^2.0",
         "drupal/color_field": "^3.0",
         "drupal/config_ignore": "^3.2",
         "drupal/config_import_locale": "^2.0",
