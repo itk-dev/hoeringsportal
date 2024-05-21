@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-409](https://github.com/itk-dev/hoeringsportal/pull/409)
+  Enabled and configured log_stdout
+
 ## [4.4.0] - 2024-05-14
 
 * [PR-407](https://github.com/itk-dev/hoeringsportal/pull/407)
