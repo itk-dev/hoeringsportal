@@ -137,6 +137,7 @@
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^3.0",
         "drupal/jquery_ui_accordion": "^2.0",
+        "drupal/log_stdout": "^1.5",
         "drupal/maxlength": "^2.1",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/paragraphs": "^1.3",
