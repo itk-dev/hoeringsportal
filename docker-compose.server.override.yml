@@ -11,3 +11,11 @@ services:
     image: node:18
     volumes:
       - .:/app:delegated
+
+  clamav:
+    image: clamav/clamav:1.2
+    networks:
+      - app
+    ports:
+      - '3310'
+      - '7357'
