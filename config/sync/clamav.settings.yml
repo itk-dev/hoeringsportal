@@ -1,5 +1,6 @@
 _core:
   default_config_hash: pfrv6lPS72f5WG1UB4wHkgQV2invlHwVpaCy_mY-ClQ
+langcode: da
 enabled: true
 outage_action: 0
 overridden_schemes:
