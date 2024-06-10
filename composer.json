@@ -165,8 +165,7 @@
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^2.4",
-        "webflo/drupal-finder": "^1.0.0",
-        "webmozart/path-util": "^2.3"
+        "webflo/drupal-finder": "^1.0.0"
     },
     "require-dev": {
         "drupal/content_fixtures": "^3.1",
