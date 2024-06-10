@@ -1,11 +1,11 @@
 {# Header #}
-{% include directory ~ '/templates/components/header-v2.html.twig' with {
-  'image': node.field_project_image|file_url,
-  'category': content.field_project_category,
-  'title': node.label,
-  'description': content.field_short_description,
-  'area': content.field_area}
-%}
+{{ include(directory ~ '/templates/components/header-v2.html.twig', {
+  image: node.field_project_image|file_url,
+  category: content.field_project_category,
+  title: node.label,
+  description: content.field_short_description,
+  area: content.field_area}
+) }}
 
 {# Main container #}
 <div class="container content__container">
@@ -29,5 +29,5 @@
 
 {# Newsletter signup #}
 {% if node_newsletter %}
-  {% include '@hoeringsportal/newsletter-bottom-link.html.twig' %}
+  {{ include('@hoeringsportal/newsletter-bottom-link.html.twig') }}
 {% endif %}

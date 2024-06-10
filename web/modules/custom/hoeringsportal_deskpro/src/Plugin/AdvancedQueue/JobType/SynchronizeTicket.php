@@ -44,7 +44,7 @@ final class SynchronizeTicket extends JobTypeBase implements ContainerFactoryPlu
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    HearingHelper $helper
+    HearingHelper $helper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->helper = $helper;

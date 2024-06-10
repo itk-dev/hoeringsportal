@@ -44,7 +44,7 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
     readonly private CitizenProposalHelper $citizenProposalHelper,
     readonly private AbstractArchiver $archiver,
     readonly private Renderer $renderer,
-    LoggerInterface $logger
+    LoggerInterface $logger,
   ) {
     $this->queueStorage = $entityTypeManager->getStorage('advancedqueue_queue');
     $this->setLogger($logger);

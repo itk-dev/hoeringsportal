@@ -104,11 +104,11 @@
   {# Print share button #}
   {% if items.services.print %}
     {% if items.print_css %}
-      {% set href = "#" %}
+      {% set href = '#' %}
       {% set rel = items.print_css %}
       {{ attach_library('better_social_sharing_buttons/print-css') }}
     {% else %}
-      {% set href = "javascript:window.print()" %}
+      {% set href = 'javascript:window.print()' %}
     {% endif %}
     <a href="{{ href }}" rel="{{ rel }}" class="bssb-printlink" class="share-print">
       <i class="fa-solid fa-print fa-fw text-black"></i>

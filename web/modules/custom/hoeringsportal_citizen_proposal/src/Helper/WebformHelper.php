@@ -21,7 +21,7 @@ class WebformHelper {
   public function __construct(
     readonly private WebformEntityStorageInterface $webformStorage,
     readonly private ImmutableConfig $webformConfig,
-    readonly private PrivateTempStore $tempStore
+    readonly private PrivateTempStore $tempStore,
   ) {
   }
 

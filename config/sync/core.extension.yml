@@ -77,7 +77,6 @@ module:
   maxlength: 0
   media: 0
   menu_ui: 0
-  migrate_subject_data: 0
   mysql: 0
   node: 0
   openid_connect: 0

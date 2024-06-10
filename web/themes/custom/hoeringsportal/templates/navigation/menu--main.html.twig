@@ -36,7 +36,7 @@
     {% endif %}
     {% for item in items %}
       <li{{ item.attributes }} class="nav-item">
-        {{ link(item.title, item.url, {'class': ['nav-link', item.in_active_trail ? 'active' : '']}) }}
+        {{ link(item.title, item.url, {class: ['nav-link', item.in_active_trail ? 'active' : '']}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}

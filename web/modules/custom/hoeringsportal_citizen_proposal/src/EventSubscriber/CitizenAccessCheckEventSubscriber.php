@@ -28,7 +28,7 @@ class CitizenAccessCheckEventSubscriber implements EventSubscriberInterface {
     readonly private Helper $helper,
     readonly private CprHelper $cprHelper,
     readonly private CitizenAccessChecker $accessChecker,
-    LoggerChannel $logger
+    LoggerChannel $logger,
   ) {
     $this->setLogger($logger);
   }
