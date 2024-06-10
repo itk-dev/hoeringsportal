@@ -38,12 +38,37 @@
  * @ingroup themeable
  */
 #}
+
+<div class="row align-items-center my-3 mt-md-5 mb-md-3">
+  <div class="col">
+    <h2>{{ paragraph.field_list_title.value }}</h2>
+  </div>
+  <div class="col-auto ms-auto">
+    {% if paragraph.field_content_list.value.0.target_id == 'all_citizen_proposals' %}
+      <a class="btn btn-secondary btn-sm list--btn-custom-position" href="{{ path('hoeringsportal_citizen_proposal.citizen_proposal.proposal_add') }}">{{ 'Create your proposal'|t }}</a>
+    {% endif %}
+
+    {% set full_map_url = hoeringsportal_config('full_map_url') %}
+    {% if full_map_url %}
+      {% if paragraph.field_content_list.value.0.target_id == 'all_hearings' %}
+        <a class="btn btn-secondary btn-sm list--btn-custom-position" href="{{ full_map_url }}">{{ 'Show on map'|t }}</a>
+      {% endif %}
+
+      {% if paragraph.field_content_list.value.0.target_id == 'all_meetings' %}
+        <a class="btn btn-secondary btn-sm list--btn-custom-position" href="{{ full_map_url }}">{{ 'Show on map'|t }}</a>
+      {% endif %}
+    {% endif %}
+
+    {% if paragraph.field_content_list.value.0.target_id == 'all_projects' %}
+      {# TODO: Add button when projects have been added to the map #}
+    {% endif %}
+  </div>
+</div>
 <div class="row">
-  <div class="col-md-12">
-    <h2 class="list--header">{{ paragraph.field_list_title.value }}</h2>
+  <div class="col">
     {% block paragraph %}
       {% block content %}
-        {{ content | without('field_list_title') }}
+        {{ content|without('field_list_title') }}
       {% endblock %}
     {% endblock paragraph %}
   </div>

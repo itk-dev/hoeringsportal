@@ -16,7 +16,7 @@
 {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
 
 <tr class="pretix-date {{ registration_deadline_passed ? 'pretix-registration-deadline-passed' }} {{ meeting_has_been_held ? 'pretix-meeting-has-been-held' }}">
-  <td><i class="fas fa-ticket-alt"></i></td>
+  <td><i class="fa-solid fa-ticket-alt"></i></td>
   <td>{{ variables.location }}</td>
   <td>{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</td>
   <td>{{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}</td>

@@ -75,7 +75,7 @@
 {% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap">
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
 
   {# When deadline field exists add splash. #}
   {% if (content.field_first_meeting_time) %}
@@ -86,15 +86,15 @@
         {# @todo Add determine content state. #}
         {# Alter splash display depending on content state in relation with deadline. #}
         {% if (content_state == 'upcoming') %}
-          <div class="splash-label">{{ 'Public meeting' | t }}</div>
+          <div class="splash-label">{{ 'Public meeting'|t }}</div>
           <div class="splash-date-day p-1">{{ enddate|date('d') }}</div>
-          <div class="splash-date-month">{{ enddate|date('M') | t }}</div>
+          <div class="splash-date-month">{{ enddate|date('M')|t }}</div>
         {% elseif (content_state == 'finished') %}
-          <div class="splash-label">{{ 'Finished' | t }}</div>
-          <div class="splash-date-day"><i class="fa fa-check-circle"></i></div>
+          <div class="splash-label">{{ 'Finished'|t }}</div>
+          <div class="splash-date-day"><i class="fa-solid fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
           {% set overlay = 'TRUE' %}
-          {% set overlay_text = 'Finished' | t %}
+          {% set overlay_text = 'Finished'|t %}
           {% set overlay_sub_text = finishdate|date('U')|format_date('hoeringsportal_date') %}
         {% endif %}
       </div>
@@ -102,7 +102,7 @@
   {% endif %}
   {% if (content.field_public_meeting_cancelled['#items'].value == 1) %}
     {% set overlay = 'TRUE' %}
-    {% set overlay_text = 'Cancelled' | t %}
+    {% set overlay_text = 'Cancelled'|t %}
   {% endif %}
 
   <div class="activity-teaser-image">
@@ -132,6 +132,6 @@
       {% endif %}
       <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
     </span>
-    <span class="activity-teaser-link "><i class="fa fa-arrow-right float-right"></i></span>
+    <span class="activity-teaser-link "><i class="fa-solid fa-arrow-right float-right"></i></span>
   </div>
 </a>

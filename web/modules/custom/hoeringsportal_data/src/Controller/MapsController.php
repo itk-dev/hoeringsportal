@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 /**
  * Maps controller.
  */
-class MapsController extends ControllerBase {
+final class MapsController extends ControllerBase {
 
   /**
    * The url generator service.

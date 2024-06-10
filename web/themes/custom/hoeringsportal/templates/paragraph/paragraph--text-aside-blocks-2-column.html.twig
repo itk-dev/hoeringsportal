@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="{{ paragraph.field_aside_block.value ? 'col-md-8' : 'col-md-12' }}">
+      {% if paragraph.field_title.value %}
+        <h2>{{ paragraph.field_title.value }}</h2>
+      {% endif %}
+      {% if paragraph.field_abstract.value %}
+        <p class="abstract">{{ paragraph.field_abstract.value }}</p>
+      {% endif %}
+      {{ content.field_body }}
+    </div>
+    {% if paragraph.field_aside_block.value %}
+      <div class="col-md-4">
+        {{ content.field_aside_block }}
+      </div>
+    {% endif %}
+  </div>
+</div>

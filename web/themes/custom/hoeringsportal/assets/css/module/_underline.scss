@@ -1,17 +1,17 @@
 .underlined {
-  margin-bottom: $spacer*1.2;
+  margin-bottom: $spacer * 1.2;
 
-  &:after {
-    @include transition-std(width, ease-in-out, 200ms);
+  &::after {
+    transition: width 200ms ease-in-out;
     content: "";
     display: block;
     width: $underline-width;
     height: 4px;
-    margin-top: $spacer*.5;
+    margin-top: $spacer * .5;
     background: $primary;
   }
 
-  &.is-white:after {
+  &.is-white::after {
     background: $white;
   }
 }

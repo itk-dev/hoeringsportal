@@ -23,10 +23,10 @@ class StaticPageFixture extends AbstractFixture implements DependentFixtureInter
       'type' => 'static_page',
       'title' => 'Statisk side 223232323',
       'status' => NodeInterface::PUBLISHED,
-      "field_media_image_single" => ['target_id' => $this->getReference('media_library:Billede:MTM')->id()],
-      "field_teaser" => 'field teaser',
-      "field_sidebar" => ['value' => 'Sidebar ?'],
-      "field_teaser_color" => '#fff',
+      'field_media_image_single' => ['target_id' => $this->getReference('media_library:Billede:MTM')->id()],
+      'field_teaser' => 'field teaser',
+      'field_sidebar' => ['value' => 'Sidebar ?'],
+      'field_teaser_color' => '#fff',
     ]);
     $this->addReference('static_page:fixture-1', $node);
     $node->save();

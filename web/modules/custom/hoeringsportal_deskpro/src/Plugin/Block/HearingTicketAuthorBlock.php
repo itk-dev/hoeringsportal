@@ -2,6 +2,8 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\Block;
 
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 /**
  * Provides a 'Hearing ticket author' Block.
  *

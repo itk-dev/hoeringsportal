@@ -1,20 +1,8 @@
-<div class="container bg-white newsletter-signup">
-  <div class="row">
-    <div class="col-md-auto py-2">
-      <div class="newsletter-signup--envelope pt-4">
-        <div>
-          <i class="fas fa-envelope"></i>
-        </div>
-      </div>
-    </div>
-    <div class="col py-2">
-      <h5 class="newsletter-signup--header">{{ 'Would you like a direct message when deltag.aarhus.dk has new content?'|t }}</h5>
-      <div>
-        {{ '<a href="@sign_up_url">Sign up to our message service</a> and be informed about your interests'|t({'@sign_up_url': path('entity.node.canonical', {'node': node_newsletter})}) }}
-      </div>
-    </div>
-    <div class="col-md-auto py-2">
-      <img class="newsletter-signup--logo" src="{{ drupal_url(active_theme_path() ~ '/AAK_02_hojre_70.png', {absolute: true}) }}" alt="{{ 'Aarhus Municipality'|t }}"/>
-    </div>
+<div class="container bg-white d-flex flex-column flex-md-row newsletter-signup p-3 justify-content-md-around align-items-center row-gap-3">
+  <i class="fa-solid fa-envelope fa-2x text-primary"></i>
+  <div>
+    <h5 class="newsletter-signup--header p-0 m-0 h4">{{ 'Would you like a direct message when deltag.aarhus.dk has new content?'|t }}</h5>
+    {{ '<a href="@sign_up_url">Sign up to our message service</a> and be informed about your interests'|t({'@sign_up_url': path('entity.node.canonical', {'node': node_newsletter})}) }}
   </div>
+  <img class="newsletter-signup--logo d-none d-md-block" src="{{ drupal_url(active_theme_path() ~ '/AAK_02_hoejrejusteret_dark.svg', {absolute: true}) }}" alt="{{ 'Aarhus Municipality'|t }}">
 </div>

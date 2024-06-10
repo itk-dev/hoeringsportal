@@ -223,6 +223,7 @@ class PublicMeetingHelper {
   public function loadPublicMeetings(array $conditions = []) {
     $effectiveConditions = array_merge($this->defaultConditions, $conditions);
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
+    $query->accessCheck();
     foreach ($effectiveConditions as $condition) {
       $query->condition(...$condition);
     }

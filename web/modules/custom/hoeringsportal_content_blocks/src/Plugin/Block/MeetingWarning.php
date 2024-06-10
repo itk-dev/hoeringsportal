@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   admin_label = @Translation("Node public meeting warning"),
  * )
  */
-class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterface {
+final class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * The route match.
@@ -80,7 +80,8 @@ class MeetingWarning extends BlockBase implements ContainerFactoryPluginInterfac
         '#config' => $config,
       ];
     }
-    return NULL;
+
+    return [];
   }
 
 }

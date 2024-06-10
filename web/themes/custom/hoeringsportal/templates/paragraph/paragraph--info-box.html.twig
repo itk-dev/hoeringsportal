@@ -38,13 +38,23 @@
  * @ingroup themeable
  */
 #}
-<div class="info-box">
-  {% block paragraph %}
-    {% if content.field_paragraph_title['#items'] is not empty %}
-      <h2>{{ content.field_paragraph_title }}</h2>
-    {% endif %}
-    {% block content %}
-      {{ content.field_content_block_text }}
-    {% endblock %}
-  {% endblock paragraph %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="info-box rounded overflow-hidden {{ elements.field_variant_select.0['#markup']|clean_class }}">
+        {% block paragraph %}
+          {% if content.field_paragraph_title['#items'] is not empty %}
+          <div class="info-box-header">
+            <h2>{{ content.field_paragraph_title }}</h2>
+          </div>
+          {% endif %}
+          {% block content %}
+            <div class="info-box-content">
+              {{ content.field_content_block_text }}
+            </div>
+          {% endblock %}
+        {% endblock paragraph %}
+      </div>
+    </div>
+  </div>
 </div>

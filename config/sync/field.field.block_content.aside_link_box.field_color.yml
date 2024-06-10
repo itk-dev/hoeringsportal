@@ -1,0 +1,23 @@
+uuid: b9da27d9-193f-445e-b52b-122efae5e747
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_link_box
+    - field.storage.block_content.field_color
+  module:
+    - options
+id: block_content.aside_link_box.field_color
+field_name: field_color
+entity_type: block_content
+bundle: aside_link_box
+label: Color
+description: 'Used to set the color of the box'
+required: false
+translatable: false
+default_value:
+  -
+    value: mint
+default_value_callback: ''
+settings: {  }
+field_type: list_string

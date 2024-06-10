@@ -1,0 +1,49 @@
+uuid: 3e87c3c3-a21a-409c-9b07-396a0282c043
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.text_aside_blocks_2_column.field_abstract
+    - field.field.paragraph.text_aside_blocks_2_column.field_aside_block
+    - field.field.paragraph.text_aside_blocks_2_column.field_body
+    - field.field.paragraph.text_aside_blocks_2_column.field_title
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
+  module:
+    - text
+id: paragraph.text_aside_blocks_2_column.default
+targetEntityType: paragraph
+bundle: text_aside_blocks_2_column
+mode: default
+content:
+  field_abstract:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_aside_block:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

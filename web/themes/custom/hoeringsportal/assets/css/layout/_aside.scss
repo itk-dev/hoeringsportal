@@ -1,10 +1,38 @@
-.group-right {
-  @include media-breakpoint-up(md) {
-    padding-top: $spacer*2.5;
-    padding-bottom: $spacer*2.5;
-    padding-left: $spacer*2.5;
-    padding-right: 0;
+.aside-contact-info-text {
+  background-color: $color-petroleum-100;
+  padding: $spacer;
+
+  p {
+    margin: 0;
   }
-  padding-top: $spacer*2;
-  padding-bottom: $spacer*2;
+
+  @include media-breakpoint-up(md) {
+    padding: $spacer * 2.5 0 $spacer * 2.5 $spacer * 2.5;
+  }
+}
+
+.aside-link-box {
+  padding: $spacer;
+  text-decoration: none;
+  font-size: clamp(1.25rem, calc(1.25vw + $font-size-base), 1.6rem);
+  font-weight: $font-weight-bold;
+
+  @include media-breakpoint-up(md) {
+    padding: $spacer * 2.5 0 $spacer * 2.5 $spacer * 2.5;
+  }
+
+  &.mint {
+    background-color: $color-petroleum-100;
+    color: $petroleum;
+  }
+
+  &.peach {
+    background-color: $color-peach-100;
+    color: $color-peach-600;
+  }
+
+  &.stone {
+    background-color: $color-stone-100;
+    color: $color-stone-600;
+  }
 }

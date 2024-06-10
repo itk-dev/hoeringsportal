@@ -2,3 +2,11 @@ hearing-form:
   version: VERSION
   js:
     assets/js/form.js: {}
+
+gis-minimap:
+  version: VERSION
+  css:
+    theme:
+      assets/css/gis-minimap.css: {}
+  js:
+    https://webkort.aarhuskommune.dk/clientapi/minimap2/mmloader.js: { type: external, minified: true }

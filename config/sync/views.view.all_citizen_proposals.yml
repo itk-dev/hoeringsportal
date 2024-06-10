@@ -148,7 +148,18 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<!-- This text is added to prevent the the view AND filters from being hidden if the view is empty (cf. https://www.drupal.org/project/viewsreference/issues/3399878) -->'
+          tokenize: false
       sorts:
         field_vote_start_value:
           id: field_vote_start_value

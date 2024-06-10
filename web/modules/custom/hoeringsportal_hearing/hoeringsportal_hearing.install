@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Code related to installing and updating this module.
+ */
+
+/**
+ * Update text format on hearing description.
+ */
+function hoeringsportal_hearing_update_9001() {
+  $storage = \Drupal::entityTypeManager()
+    ->getStorage('node');
+  $ids = $storage->getQuery()
+    ->condition('type', 'hearing')
+    ->accessCheck(FALSE)
+    ->execute();
+  $hearings = $storage->loadMultiple($ids);
+
+  $field_name = 'field_description';
+  $text_format = 'hearing_description';
+  foreach ($hearings as $hearing) {
+    if ($value = ($hearing->get($field_name)->getValue()[0] ?? NULL)) {
+      $value['format'] = $text_format;
+      $hearing->set($field_name, $value);
+
+      $hearing->save();
+    }
+  }
+}

@@ -8,6 +8,7 @@ dependencies:
     - node.type.static_page
   module:
     - entity_browser
+    - file
     - locale
     - media
     - node
@@ -31,6 +32,7 @@ permissions:
   - 'create media'
   - 'create project content'
   - 'create static_page content'
+  - 'delete own files'
   - 'delete own hearing content'
   - 'delete own project content'
   - 'delete own static_page content'

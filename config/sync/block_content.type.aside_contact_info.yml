@@ -1,0 +1,8 @@
+uuid: b76efb53-f492-4eff-9b4f-894978914ed2
+langcode: da
+status: true
+dependencies: {  }
+id: aside_contact_info
+label: 'Aside contact info'
+revision: 0
+description: 'Used to show contact info on a page'

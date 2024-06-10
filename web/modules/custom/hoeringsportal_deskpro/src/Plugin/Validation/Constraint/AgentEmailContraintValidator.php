@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ConstraintValidator;
 /**
  * Validates the AgentEmail constraint.
  */
-class AgentEmailContraintValidator extends ConstraintValidator implements ContainerInjectionInterface {
+final class AgentEmailContraintValidator extends ConstraintValidator implements ContainerInjectionInterface {
 
   /**
    * Drupal\hoeringsportal_deskpro\Service\DeskproService definition.

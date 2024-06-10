@@ -16,7 +16,8 @@
 {% block content %}
   {% if site_logo %}
     <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="navbar-brand">
-      <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      <img class="d-none d-lg-block" src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      <img class="d-lg-none" src="/{{ directory }}/AAK_02_hoejrejusteret_dark.svg" alt="{{ 'Home'|t }}" />
     </a>
   {% endif %}
   {% if site_name %}

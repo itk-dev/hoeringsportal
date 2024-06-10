@@ -11,30 +11,8 @@
  * @ingroup themeable
  */
 #}
-<div class="row">
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-12 d-flex justify-content-end">
-        <a class="btn btn-secondary btn-sm list--btn-custom-position" href="{{ full_map_url }}">{{ 'Show on map'|t }}</a>
-      </div>
-    </div>
-    <div class="row pt-3" id="collapseFilters">
-      {% if q is not empty %}
-        {{ q }}
-      {% endif %}
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        {{ form.field_area_target_id }}
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        {{ form.field_type_target_id }}
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        {{ form.field_content_state_value }}
-      </div>
-      <div class="col-lg-3 col-md-6 col-sm-12">
-        {{ form.sort_bef_combine }}
-      </div>
-      {{ form|without('sort_bef_combine', 'field_area_target_id', 'field_type_target_id', 'field_content_state_value') }}
-    </div>
-  </div>
+{% set number_of_fields = form|keys|filter(v => v starts with 'field_' or v starts with 'sort_')|length %}
+
+<div id="collapseFilters" class="row row-cols-1 row-cols-md-2 row-cols-lg-{{ number_of_fields <= 2 ? 4 : number_of_fields }} d-flex flex-column flex-md-row">
+  {{ form }}
 </div>

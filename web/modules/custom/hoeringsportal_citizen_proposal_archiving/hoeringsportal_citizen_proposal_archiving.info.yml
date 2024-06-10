@@ -1,7 +1,7 @@
 name: Hoeringsportal citizen proposal archiving
 type: module
 description: 'Archives citizen proposals in GetOrganized.'
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 package: ITK
 dependencies:
   - drupal:advancedqueue

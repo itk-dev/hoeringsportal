@@ -3,6 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
+    - field.field.node.citizen_proposal.field_author_allow_email
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_email_display
     - field.field.node.citizen_proposal.field_author_name

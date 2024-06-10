@@ -21,7 +21,7 @@ class ResponsiveBackgroundImage {
 
   // Update the background image used.
   update () {
-    let src = typeof this.img.currentSrc !== 'undefined' ? this.img.currentSrc : this.img.src
+    const src = typeof this.img.currentSrc !== 'undefined' ? this.img.currentSrc : this.img.src
     if (this.src !== src) {
       this.src = src
       this.element.style.backgroundImage = 'url("' + this.src + '")'
@@ -34,7 +34,7 @@ Drupal.behaviors.applyResponsiveBackground = {
 
   attach: function (context, settings) {
     // Look for data attribute.
-    let elements = document.querySelectorAll('[data-responsive-background-image]')
+    const elements = document.querySelectorAll('[data-responsive-background-image]')
     for (let i = 0; i < elements.length; i++) {
       new ResponsiveBackgroundImage(elements[i]) /* eslint-disable-line no-new */
     }

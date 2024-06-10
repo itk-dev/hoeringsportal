@@ -1,0 +1,36 @@
+uuid: b05341ee-5214-44ae-8e24-6666af4f22f7
+langcode: da
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_variant
+field_name: field_variant
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: danger
+      label: Danger
+    -
+      value: warning
+      label: Warning
+    -
+      value: info
+      label: Info
+    -
+      value: petroleum_light
+      label: 'Petroleum light'
+    -
+      value: petroleum
+      label: Petroleum
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

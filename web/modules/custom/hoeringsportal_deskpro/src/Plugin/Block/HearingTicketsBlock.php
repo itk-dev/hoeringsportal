@@ -26,7 +26,7 @@ class HearingTicketsBlock extends BlockBase {
     $now_timestamp = $now->getTimestamp();
     $is_hearing_started = (!empty($start_date) && $now_timestamp > $start_date) ? TRUE : FALSE;
     if (!$this->helper->isHearing($node)) {
-      return NULL;
+      return [];
     }
 
     return [

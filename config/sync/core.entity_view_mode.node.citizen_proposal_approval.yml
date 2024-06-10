@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.citizen_proposal_approval
 label: 'Citizen proposal approval'
+description: ''
 targetEntityType: node
 cache: true

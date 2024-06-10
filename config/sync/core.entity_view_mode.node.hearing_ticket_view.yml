@@ -6,5 +6,6 @@ dependencies:
     - node
 id: node.hearing_ticket_view
 label: 'Hearing ticket view'
+description: ''
 targetEntityType: node
 cache: true

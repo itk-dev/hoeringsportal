@@ -20,7 +20,10 @@ class MigrateSubjectDataCommands extends DrushCommands {
     if (!\Drupal::state()->get('subject_data_migrated')) {
       $terms = $this->getTerms('hearing_type');
 
-      $nids = \Drupal::entityQuery('node')->condition('type', 'hearing')->execute();
+      $nids = \Drupal::entityQuery('node')
+        ->accessCheck()
+        ->condition('type', 'hearing')
+        ->execute();
 
       // We do multiple loads because there aren't too many nodes yet.
       $nodes = Node::loadMultiple($nids);

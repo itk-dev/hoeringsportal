@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_project_timeline\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Datetime\Entity\DateFormat;
+use Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\taxonomy\Entity\Term;
@@ -25,7 +26,7 @@ class ProjectTimeline extends BlockBase {
   public function build() {
     $current_node = \Drupal::routeMatch()->getParameter('node');
     if (!$current_node) {
-      return;
+      return [];
     }
 
     if ($current_node->bundle() != 'project') {
@@ -33,7 +34,7 @@ class ProjectTimeline extends BlockBase {
         $node = Node::load($current_node->field_project_reference->target_id);
       }
       else {
-        return;
+        return [];
       }
     }
     else {
@@ -81,6 +82,7 @@ class ProjectTimeline extends BlockBase {
 
     // Add hearings to timeline items.
     $query = \Drupal::entityQuery('node');
+    $query->accessCheck();
     $query->condition('field_project_reference', $nid);
     $query->condition('type', 'hearing');
     $entity_ids = $query->execute();
@@ -106,6 +108,7 @@ class ProjectTimeline extends BlockBase {
 
     // Add public meetings to timeline items.
     $query = \Drupal::entityQuery('node');
+    $query->accessCheck();
     $query->condition('field_project_reference', $nid);
     $query->condition('type', 'public_meeting');
     $entity_ids = $query->execute();

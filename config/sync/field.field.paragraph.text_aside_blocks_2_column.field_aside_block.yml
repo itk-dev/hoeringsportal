@@ -1,0 +1,31 @@
+uuid: 5e90e8e4-d55c-47a0-8b53-36543466f6b5
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_contact_info
+    - block_content.type.aside_link_box
+    - field.storage.paragraph.field_aside_block
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
+id: paragraph.text_aside_blocks_2_column.field_aside_block
+field_name: field_aside_block
+entity_type: paragraph
+bundle: text_aside_blocks_2_column
+label: 'Aside block'
+description: 'Used to add a block with contact information. The blocks can be <a href="/admin/content/block">managed under the blocks section</a>'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      aside_contact_info: aside_contact_info
+      aside_link_box: aside_link_box
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: aside_contact_info
+field_type: entity_reference

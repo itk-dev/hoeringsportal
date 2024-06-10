@@ -1,0 +1,16 @@
+<div class="col">
+  <div class="card">
+    <a href="{{ url }}" class="text-decoration-none">
+      <img src="{{ node.field_project_image|file_url }}" class="card-img-top" alt="">
+      <div class="card-body bg-white shadow-sm py-3">
+        <div>{{ content.field_project_category }}</div>
+        <h2 class="card-title text-black mt-1">{{ node.title.value }}</h2>
+        <p class="card-text line-clamp-3 text-black">
+          {{ node.field_short_description.value }}
+        </p>
+        {{ content.field_area }}
+        <span class="activity-teaser-link "><i class="fa-solid fa-arrow-right float-right"></i></span>
+      </div>
+    </a>
+  </div>
+</div>

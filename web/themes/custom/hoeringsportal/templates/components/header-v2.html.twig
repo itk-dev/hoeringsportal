@@ -1,0 +1,19 @@
+<div class="header-v2 mb-5">
+  {% if image %}
+    <div class="image-wrapper">
+      <img src="{{ image }}" alt="">
+    </div>
+  {% endif %}
+  <div class="content-wrapper position-relative {{ image ? 'with-image' : '' }}">
+    <div class="container">
+      {% if category %}
+        {{ category }}
+      {% endif %}
+      <h1>{{ title }}</h1>
+      {{ description }}
+      {% if area %}
+        <div class="areas">{{ area }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

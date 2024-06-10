@@ -1,0 +1,78 @@
+uuid: a4cc4965-873b-4db0-ba55-e62627603ec0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_sections
+    - node.type.project_page
+    - paragraphs.paragraphs_type.content_block
+    - paragraphs.paragraphs_type.files
+    - paragraphs.paragraphs_type.image
+    - paragraphs.paragraphs_type.info_box
+    - paragraphs.paragraphs_type.introduction
+    - paragraphs.paragraphs_type.teaser_row
+    - paragraphs.paragraphs_type.text
+    - paragraphs.paragraphs_type.text_aside_blocks_2_column
+  module:
+    - entity_reference_revisions
+id: node.project_page.field_content_sections
+field_name: field_content_sections
+entity_type: node
+bundle: project_page
+label: 'Content sections'
+description: 'Used to create page sections with the Drupal Paragraphs module'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      text: text
+      image: image
+      content_block: content_block
+      info_box: info_box
+      introduction: introduction
+      teaser_row: teaser_row
+      files: files
+      text_aside_blocks_2_column: text_aside_blocks_2_column
+    negate: 0
+    target_bundles_drag_drop:
+      content_block:
+        weight: -19
+        enabled: true
+      content_list:
+        weight: -18
+        enabled: false
+      files:
+        weight: 13
+        enabled: true
+      image:
+        weight: -20
+        enabled: true
+      info_box:
+        weight: -17
+        enabled: true
+      introduction:
+        weight: -16
+        enabled: true
+      projekt_billede_galleri:
+        weight: -15
+        enabled: false
+      teaser_row:
+        weight: -14
+        enabled: true
+      text:
+        weight: -21
+        enabled: true
+      text_aside_blocks_2_column:
+        weight: 20
+        enabled: true
+      timeline_items:
+        weight: -13
+        enabled: false
+      timeline_period:
+        weight: -12
+        enabled: false
+field_type: entity_reference_revisions

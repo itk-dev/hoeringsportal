@@ -1,0 +1,11 @@
+uuid: 7df42fae-ac24-4cd1-862c-7f8583b6d8f4
+langcode: da
+status: true
+dependencies:
+  config:
+    - block_content.type.aside_link_box
+id: block_content.aside_link_box
+target_entity_type_id: block_content
+target_bundle: aside_link_box
+default_langcode: site_default
+language_alterable: false

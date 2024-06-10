@@ -1,119 +1,103 @@
-#search-block-form-wrapper {
-  text-align: right;
-  position: absolute;
-  right: 0px;
-
-  @include media-breakpoint-down(md) {
-    position: relative;
-  }
-}
-
 #search-block-form {
-  position: relative;
-  z-index: 1;
-
-  .form-search {
-    background-position: 88% center;
-    border-radius: $border-radius;
-    height: 50px;
-    vertical-align: middle;
-    outline: none;
-    line-height: 1.5rem;
-    width: 0;
-    margin-right: 25px;
-    transition: width .5s;
-    text-indent: 1rem;
-
-    @include media-breakpoint-down(md) {
-      position: relative;
-      width: 15rem;
-      transition: none;
-    }
-  }
-
-  .btn {
-    border-radius: 25px;
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transition: border-radius .5s;
-
-    @include media-breakpoint-down(md) {
-      border-radius: 0 $border-radius $border-radius 0;
-      left: 14rem;
-      right: auto;
-      width: 5rem;
-    }
-
-    &:after {
-      background-color: unset;
-    }
+  .btn-search {
+    color: $primary;
+    display: block;
+    cursor: pointer;
   }
 
   .js-form-submit {
     display: none;
-
-    @include media-breakpoint-down(md) {
-      display: block;
-    }
   }
 
-  .js-show-search {
-    @include media-breakpoint-down(md) {
-      display: none;
-    }
-  }
-
-  .fa-fw {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    top: 50%;
-    bottom: 0;
-    transform: translateY(-50%);
-  }
-
-  .fa-times {
-    display: none;
-  }
-
-  .fa-search {
+  .form-search {
+    border: 1px solid $gray-500;
     display: block;
-  }
+    width: 100%;
+    padding: $spacer * .25 $spacer * .5;
+    border-radius: $border-radius-sm;
 
-  &.is-open {
-    .form-search {
-      width: 15rem;
-      transition: width .5s, padding-right .5s;
-      padding-right: 3rem;
-    }
-
-    .btn {
-      transition: border-radius .5s;
-      border-radius: 0 $border-radius $border-radius 0;
-    }
-
-    .fa-times {
-      display: block;
-    }
-
-    .fa-search {
-      display: none;
+    &:focus-visible {
+      outline: 2px solid $primary;
     }
   }
 }
 
-.ui-autocomplete {
-  min-width: 0!important;
-  z-index: 1050;
-  width: 310px!important;
+.search-collapse-wrapper {
+  border-bottom: 1px solid $gray-400;
+  padding-bottom: $spacer * .5;
 
-  @include media-breakpoint-down(md) {
-    width: 30%!important;
-    right: auto;
+  button svg {
+    color: $primary;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  .collapse {
+    display: block;
+    width: 100%;
+
+    button {
+      display: none;
+
+      &:active {
+        border: 0;
+      }
+    }
+
+    #search-block-form {
+      width: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    border-bottom: 0 solid $gray-600;
+    padding-bottom: 0;
+
+    .collapse,
+    .collapsing {
+      display: none;
+      position: absolute;
+      right: -$spacer * .75;
+      top: 0;
+    }
+
+    .collapse.show {
+      display: block;
+      box-shadow: $box-shadow;
+      padding: $spacer * .75;
+      border-radius: $border-radius;
+      animation: fade .2s ease-out forwards;
+
+      button {
+        display: block;
+      }
+
+      #search-block-form {
+        width: 400px;
+      }
+    }
+  }
+}
+
+.ui-autocomplete.ui-widget.ui-widget-content {
+  min-width: 0!important;
+  max-height: 100%!important;
+  position: relative!important;
+  text-align: left;
+  z-index: 1050;
+  padding-top: 1em;
+  border: 0;
+
+  li {
+    border: 0;
+    padding-top: $spacer * .25;
+    padding-bottom: $spacer * .75;
+
+    @include media-breakpoint-up(md) {
+      padding: $spacer;
+    }
   }
 
   .ui-autocomplete-field-group {
@@ -123,19 +107,85 @@
   .ui-menu-item-wrapper {
     display: block;
     position: relative;
-    padding: .5rem 1rem;
+    padding: $spacer * .5 $spacer;
     transition: none;
     text-decoration: none;
   }
 
   .ui-menu-item {
-    @extend .list-group-item;
+    border: 0;
+    list-style: none;
 
-    line-height: 1em;
-    padding: 0;
+    @include media-breakpoint-up(md) {
+      border-left: 3px solid transparent;
+      padding: $spacer * .5;
+      margin: $spacer * .25 0;
+    }
+
+    &:hover,
+    &:focus {
+      background: $gray-100;
+      border-left: 3px solid $gray-400;
+      border-radius: $border-radius-sm;
+    }
   }
 
-  .ui-autocomplete-field-created {
+  .ui-autocomplete-fields {
+    display: flex;
+    flex-direction: column;
+
+    .ui-autocomplete-field-title {
+      @extend .h4;
+
+      margin: 0;
+      order: 1;
+
+      .ui-autocomplete-field-term {
+        color: $primary;
+      }
+    }
+
+    .ui-autocomplete-field-field_description,
+    .ui-autocomplete-field-field_proposal {
+      @extend .mb-1;
+
+      line-height: $line-height-sm;
+      order: 2;
+
+      .ui-autocomplete-field-term {
+        font-weight: bold;
+        color: $primary;
+      }
+    }
+
+    .ui-autocomplete-field-type {
+      background-color: $primary;
+      border-radius: $border-radius-sm;
+      padding: 0 $spacer * .25;
+      color: $white;
+      width: fit-content;
+      order: 3;
+      font-size: $font-size-sm;
+    }
+
+    .ui-autocomplete-field-created {
+      display: none;
+    }
+  }
+
+  .ui-autocomplete-container-no_results li,
+  .ui-autocomplete-container-more_results {
     display: none;
   }
+
+  .ui-autocomplete-container-no_results::before {
+    content: "Ingen resultater";
+  }
+
 }
+
+// Remove the clear x from search input
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

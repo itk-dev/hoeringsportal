@@ -35,6 +35,9 @@ private-files
 /.editorconfig
 /.gitattributes
 
+# Ignore twig cs fixer cache file
+.twig-cs-fixer.cache
+
 # Ignore mac files
 .DS_Store
 /test-results/

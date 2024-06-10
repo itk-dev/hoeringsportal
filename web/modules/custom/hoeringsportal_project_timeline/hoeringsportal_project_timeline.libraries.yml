@@ -8,7 +8,7 @@ project_timeline:
   dependencies:
     - core/jquery
     - core/drupalSettings
-    - core/jquery.once
+    - core/once
 
 project_timeline_backend:
   js:

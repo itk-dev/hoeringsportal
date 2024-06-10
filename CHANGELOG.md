@@ -6,8 +6,94 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [3.5.4] -2023-11-10
+## [4.4.0] - 2024-05-14
 
+* [PR-407](https://github.com/itk-dev/hoeringsportal/pull/407)
+  Fix fontawesome issues
+* [PR-406](https://github.com/itk-dev/hoeringsportal/pull/406)
+  Infobox styling
+* [PR-405](https://github.com/itk-dev/hoeringsportal/pull/405)
+  Add paragraph for files
+* [PR-404](https://github.com/itk-dev/hoeringsportal/pull/404)
+  UI fixes after project release
+
+## [4.3.0] - 2024-04-29
+
+* [PR-395](https://github.com/itk-dev/hoeringsportal/pull/395)
+  Project fixtures
+* [PR-398](https://github.com/itk-dev/hoeringsportal/pull/398)
+  Added Deskpro test data
+* [pr-399](https://github.com/itk-dev/hoeringsportal/pull/399)
+  * Add content type Project subpage
+  * Update paragraphs for projects
+  * Add list view for project
+* [pr-394](https://github.com/itk-dev/hoeringsportal/pull/394)
+  Add content type Project page
+
+## [4.2.2] - 2024-04-10
+
+* [PR-392](https://github.com/itk-dev/hoeringsportal/pull/392)
+  1152: Fixed rendering of headers
+
+## [4.2.1] - 2024-04-04
+
+* [pr-390](https://github.com/itk-dev/hoeringsportal/pull/390)
+  Fix logout and newsletter banner
+
+## [4.2.0] - 2024-04-04
+
+* [pr-386](https://github.com/itk-dev/hoeringsportal/pull/386)
+  Design fixes:
+  * Main nav visuals
+  * Search remove repeated icons
+  * Make search available on mobile
+  * Mobile nav tweaks
+  * Upgrade to Bootstrap v5
+  * Add and apply twig coding standards [pr-388]
+  * Upgrade all frontend dependencies [pr-387]
+
+## [4.1.1] - 2024-03-21
+
+* [pr-385](https://github.com/itk-dev/hoeringsportal/pull/385)
+  Fixed initialization error
+
+## [4.1.0] - 2024-03-11
+
+* [PR-383](https://github.com/itk-dev/hoeringsportal/pull/383)
+  Added check for numbers in person name
+* [PR-379](https://github.com/itk-dev/hoeringsportal/pull/379)
+  Disabled eDoc casefile ID field on new hearings
+* [PR-378](https://github.com/itk-dev/hoeringsportal/pull/378)
+  New main menu, new search.
+
+## [4.0.1] - 2024-01-31
+
+* [PR-382](https://github.com/itk-dev/hoeringsportal/pull/382)
+  Updated custom Drush commands to work with Drush 12.
+
+## [4.0.0] - 2024-01-24
+
+* [PR-375](https://github.com/itk-dev/hoeringsportal/pull/375)
+  Updated to Drupal 10
+* [PR-343](https://github.com/itk-dev/hoeringsportal/pull/343)
+  Make custom modules and themes pass code analysis and compatible with d10
+  Update contrib modules (Major versions):
+  * better_exposed_filters
+  * captcha
+  * color_field
+  * openid_connect
+  * search_autocomplete
+  * toolbar_visibility
+  * twig_tweak
+  * viewsreference
+
+## [3.6.0] - 2023-12-20
+
+* [PR-376](https://github.com/itk-dev/hoeringsportal/pull/376)
+  Added GIS map token
+
+## [3.5.4] -2023-11-10
+  
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
   Added and used Editor Advanced link
 
@@ -131,7 +217,18 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...HEAD
+[4.4.0]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...4.4.0
+[4.3.0]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...4.3.0
+[4.2.2]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...4.2.2
+[4.2.1]: https://github.com/itk-dev/hoeringsportal/compare/4.2.0...4.2.1
+[4.2.0]: https://github.com/itk-dev/hoeringsportal/compare/4.1.1...4.2.0
+[4.1.1]: https://github.com/itk-dev/hoeringsportal/compare/4.1.0...4.1.1
+[4.1.0]: https://github.com/itk-dev/hoeringsportal/compare/4.0.1...4.1.0
+[4.0.1]: https://github.com/itk-dev/hoeringsportal/compare/4.0.0...4.0.1
+[4.0.0]: https://github.com/itk-dev/hoeringsportal/compare/3.6.0...4.0.0
+[3.6.0]: https://github.com/itk-dev/hoeringsportal/compare/3.5.3...3.6.0
+[3.5.3]: https://github.com/itk-dev/hoeringsportal/compare/3.5.2...3.5.3
 [3.5.2]: https://github.com/itk-dev/hoeringsportal/compare/3.5.1...3.5.2
 [3.5.1]: https://github.com/itk-dev/hoeringsportal/compare/3.5.0...3.5.1
 [3.5.0]: https://github.com/itk-dev/hoeringsportal/compare/3.4.0...3.5.0

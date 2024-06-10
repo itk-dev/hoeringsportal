@@ -1,0 +1,23 @@
+.page--project_main_page,
+.page--project_page {
+
+  background-color: $color-white;
+
+  h2 {
+    font-size: clamp(1.25rem, calc(1.25vw + $font-size-base), 1.6rem);
+  }
+
+  .abstract {
+    font-size: clamp(1.1rem, 0.8vw + 1rem, 1.3rem);
+    font-weight: normal;
+    line-height: 1.6;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    display: inline-block;
+  }
+
+  p, ul, ol {
+    font-size: 1.1rem;
+    line-height: 1.65;
+  }
+}

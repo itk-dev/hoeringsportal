@@ -30,13 +30,13 @@
   {% import _self as menus %}
   {% if items %}
     {% if menu_level == 0 %}
-      <ul{{ attributes.addClass('navbar-nav mr-auto') }}>
+      <ul{{ attributes.addClass('navbar-nav nav-divider gap-md-3') }}>
     {% else %}
       <ul>
     {% endif %}
     {% for item in items %}
-      <li{{ item.attributes }} class="nav-item {{ item.in_active_trail ? 'active' : '' }}">
-        {{ link(item.title, item.url, { 'class':['nav-link']} ) }}
+      <li{{ item.attributes }} class="nav-item">
+        {{ link(item.title, item.url, {'class': ['nav-link', item.in_active_trail ? 'active' : '']}) }}
         {% if item.below %}
           {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
         {% endif %}

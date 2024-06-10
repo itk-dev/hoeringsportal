@@ -168,7 +168,18 @@ display:
       cache:
         type: tag
         options: {  }
-      empty: {  }
+      empty:
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: text_custom
+          empty: true
+          content: '<!-- This text is added to prevent the the view AND filters from being hidden if the view is empty (cf. https://www.drupal.org/project/viewsreference/issues/3399878) -->'
+          tokenize: false
       sorts:
         field_last_meeting_time_value:
           id: field_last_meeting_time_value
@@ -433,7 +444,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
-      use_ajax: true
+      use_ajax: false
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -446,7 +457,6 @@ display:
         - url.query_args
         - 'url.query_args:sort_by'
         - 'url.query_args:sort_order'
-        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

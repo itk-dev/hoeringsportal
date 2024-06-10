@@ -38,20 +38,22 @@
  * @ingroup themeable
  */
 #}
-<div class="row">
-  <div class="col-md-12">
-    {% if content.field_paragraph_title['#items'] is not empty %}
-      <h2>{{ content.field_paragraph_title }}</h2>
-    {% endif %}
-    <div class="row">
-      {% block paragraph %}
-        <div class="col-md-6">
-          {{  content | without('field_paragraph_image', 'field_paragraph_title') }}
-        </div>
-        <div class="col-md-6">
-          {{  content.field_paragraph_image }}
-        </div>
-      {% endblock paragraph %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      {% if content.field_paragraph_title['#items'] is not empty %}
+        <h2>{{ content.field_paragraph_title }}</h2>
+      {% endif %}
+      <div class="row">
+        {% block paragraph %}
+          <div class="col-md-6">
+            {{ content|without('field_paragraph_image', 'field_paragraph_title') }}
+          </div>
+          <div class="col-md-6">
+            {{ content.field_paragraph_image }}
+          </div>
+        {% endblock paragraph %}
+      </div>
     </div>
   </div>
 </div>

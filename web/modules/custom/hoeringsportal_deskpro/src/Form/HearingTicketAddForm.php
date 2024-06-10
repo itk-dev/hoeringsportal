@@ -12,20 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Form form definition for adding a hearing.
  */
-class HearingTicketAddForm extends FormBase {
-  /**
-   * The form config.
-   *
-   * @var \Drupal\hoeringsportal_deskpro\State\DeskproConfig
-   */
-  private $config;
-
-  /**
-   * The hearing helper.
-   *
-   * @var \Drupal\hoeringsportal_deskpro\Service\HearingHelper
-   */
-  private $helper;
+final class HearingTicketAddForm extends FormBase {
 
   /**
    * {@inheritdoc}
@@ -41,11 +28,9 @@ class HearingTicketAddForm extends FormBase {
    * {@inheritdoc}
    */
   public function __construct(
-    DeskproConfig $config,
-    HearingHelper $helper
+    private readonly DeskproConfig $config,
+    private readonly HearingHelper $helper
   ) {
-    $this->config = $config;
-    $this->helper = $helper;
   }
 
   /**
@@ -55,10 +40,10 @@ class HearingTicketAddForm extends FormBase {
    */
   private function initialize() {
     $container = \Drupal::getContainer();
-    if (NULL === $this->config) {
+    if (empty($this->config)) {
       $this->config = $container->get('hoeringsportal_deskpro.config');
     }
-    if (NULL === $this->helper) {
+    if (empty($this->helper)) {
       $this->helper = $container->get('hoeringsportal_deskpro.helper');
     }
   }
@@ -239,6 +224,13 @@ class HearingTicketAddForm extends FormBase {
     $this->initialize();
 
     parent::validateForm($form, $form_state);
+
+    if ($name = $form_state->getValue('name')) {
+      // @see https://www.php.net/manual/en/regexp.reference.unicode.php
+      if (preg_match('/\p{N}/u', $name)) {
+        $form_state->setErrorByName('name', $this->t('Your name cannot contain numbers.'));
+      }
+    }
 
     if ($form_state->getValue('email_confirm') !== $form_state->getValue('email')) {
       $form_state->setErrorByName('email_confirm', $this->t('Confirmation email does not match email.'));
