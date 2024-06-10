@@ -140,27 +140,33 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vis alle områder"
+                    filter_rewrite_values_key: false
                   collapsible: false
                   is_secondary: false
                   hide_label: true
+                  collapsible_disable_automatic_open: false
               field_content_state_value:
                 plugin_id: default
                 advanced:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nKommende|Aktive"
+                    filter_rewrite_values_key: false
                   collapsible: false
                   is_secondary: false
                   hide_label: true
+                  collapsible_disable_automatic_open: false
               field_type_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Alle typer\r\n- Enhver -|Vælg type"
+                    filter_rewrite_values_key: false
                   collapsible: false
                   is_secondary: false
                   hide_label: true
+                  collapsible_disable_automatic_open: false
       access:
         type: perm
         options:

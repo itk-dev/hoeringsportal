@@ -278,9 +278,6 @@
             },
             "drupal/core": {
                 "Text format wrapper does not take description_display into account (https://www.drupal.org/project/drupal/issues/2421445#comment-14328645)": "https://www.drupal.org/files/issues/2021-12-03/2421445-18_0.patch"
-            },
-            "drupal/publication_date": {
-                "https://www.drupal.org/project/publication_date/issues/3328575": "https://www.drupal.org/files/issues/2023-05-31/3328575-5-fix-bux-publicate-date.patch"
             }
         }
     }

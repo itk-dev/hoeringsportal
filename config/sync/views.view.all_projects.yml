@@ -127,18 +127,22 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vælg område"
+                    filter_rewrite_values_key: false
                   collapsible: false
                   is_secondary: false
                   hide_label: true
+                  collapsible_disable_automatic_open: false
               field_project_category_target_id:
                 plugin_id: default
                 advanced:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle"
+                    filter_rewrite_values_key: false
                   collapsible: false
                   is_secondary: false
                   hide_label: true
+                  collapsible_disable_automatic_open: false
       access:
         type: perm
         options:
