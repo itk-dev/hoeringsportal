@@ -52,7 +52,7 @@ abstract class BlockBase extends BaseBlockBase implements ContainerFactoryPlugin
     ContainerInterface $container,
     array $configuration,
     $plugin_id,
-    $plugin_definition
+    $plugin_definition,
   ) {
     return new static(
       $configuration,
@@ -75,7 +75,7 @@ abstract class BlockBase extends BaseBlockBase implements ContainerFactoryPlugin
     RouteMatchInterface $routeMatch,
     LanguageManagerInterface $languageManager,
     DeskproService $deskpro,
-    HearingHelper $helper
+    HearingHelper $helper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->routeMatch = $routeMatch;

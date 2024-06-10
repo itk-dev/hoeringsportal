@@ -24,7 +24,7 @@ final class Renderer implements LoggerAwareInterface, LoggerInterface {
    */
   public function __construct(
     readonly private DrupalRenderer $renderer,
-    readonly private ModuleHandlerInterface $moduleHandler
+    readonly private ModuleHandlerInterface $moduleHandler,
   ) {
   }
 

@@ -21,7 +21,7 @@ final class ProposalAdminForm extends FormBase {
    */
   public function __construct(
     readonly private Helper $helper,
-    readonly private WebformHelper $webformHelper
+    readonly private WebformHelper $webformHelper,
   ) {
   }
 

@@ -33,7 +33,7 @@ abstract class ProposalFormBase extends FormBase {
     readonly protected Helper $helper,
     readonly protected WebformHelper $webformHelper,
     readonly private AuthenticationHelper $authenticationHelper,
-    readonly private ImmutableConfig $config
+    readonly private ImmutableConfig $config,
   ) {
   }
 

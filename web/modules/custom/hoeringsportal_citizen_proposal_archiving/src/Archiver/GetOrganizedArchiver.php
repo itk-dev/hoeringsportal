@@ -34,7 +34,7 @@ final class GetOrganizedArchiver extends AbstractArchiver {
   public function __construct(
     readonly private FileSystem $fileSystem,
     Connection $database,
-    LoggerInterface $logger
+    LoggerInterface $logger,
   ) {
     parent::__construct($database, $logger);
   }

@@ -23,7 +23,7 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
    */
   public function __construct(
     readonly private Connection $database,
-    LoggerInterface $logger
+    LoggerInterface $logger,
   ) {
     $this->setLogger($logger);
   }

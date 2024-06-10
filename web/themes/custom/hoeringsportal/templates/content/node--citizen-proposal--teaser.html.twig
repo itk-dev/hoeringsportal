@@ -82,11 +82,11 @@
       <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|date('d M. Y') }}</strong></div>
     </div>
     <div class="activity-supporters">
-      {% include 'citizen-proposal-support-counter.html.twig' with {data: {
+      {{ include('citizen-proposal-support-counter.html.twig', {data: {
         supportCount: proposal_support_count,
         supportRequired: proposal_support_required,
         supportPercentage: proposal_support_percentage,
-        }} %}
+        }}) }}
     </div>
     <div class="activity-teaser-info d-flex ps-0 border-0">
       <span class="activity-teaser-meta-wrapper text-primary">
