@@ -93,7 +93,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Added GIS map token
 
 ## [3.5.4] -2023-11-10
-  
+
 * [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
   Added and used Editor Advanced link
 
