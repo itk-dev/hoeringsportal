@@ -99,6 +99,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-376](https://github.com/itk-dev/hoeringsportal/pull/376)
   Added GIS map token
 
+## [3.5.4] -2023-11-10
+
+* [PR-367](https://github.com/itk-dev/hoeringsportal/pull/367)
+  Added and used Editor Advanced link
+
 ## [3.5.3] - 2023-11-08
 
 * [PR-370](https://github.com/itk-dev/hoeringsportal/pull/370)
