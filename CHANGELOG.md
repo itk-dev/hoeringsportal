@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-413](https://github.com/itk-dev/hoeringsportal/pull/413)
+  Removed `.placeholder` markup
+
 ## [4.4.0] - 2024-05-14
 
 * [PR-407](https://github.com/itk-dev/hoeringsportal/pull/407)
