@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-413](https://github.com/itk-dev/hoeringsportal/pull/413)
+  Removed `.placeholder` markup
 * [PR-411](https://github.com/itk-dev/hoeringsportal/pull/411)
   Fix paragraph spacing
 * [PR-409](https://github.com/itk-dev/hoeringsportal/pull/409)
