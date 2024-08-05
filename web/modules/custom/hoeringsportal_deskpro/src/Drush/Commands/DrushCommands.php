@@ -55,9 +55,13 @@ final class DrushCommands extends BaseDrushCommands {
   #[CLI\Argument(name: 'ticketIds', description: 'Comma-separated list of ticket ids.')]
   #[CLI\Option(name: 'enqueue', description: 'Enqueue the synchronization.')]
   #[CLI\Usage(name: 'hoeringsportal:deskpro:synchronize-hearing-ticket 123 456', description: 'Refreshes Deskpro data for ticket 456 on hearing 123.')]
-  public function synchronizeHearingTicket(int $hearingId, string $ticketIds, array $options = [
-    'enqueue' => FALSE,
-  ]) {
+  public function synchronizeHearingTicket(
+    int $hearingId,
+    string $ticketIds,
+    array $options = [
+      'enqueue' => FALSE,
+    ],
+  ) {
     // Get unique list of non-negative integers.
     $ticketIds = array_unique(
       array_filter(

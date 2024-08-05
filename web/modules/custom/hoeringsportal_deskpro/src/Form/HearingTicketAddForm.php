@@ -29,7 +29,7 @@ final class HearingTicketAddForm extends FormBase {
    */
   public function __construct(
     private readonly DeskproConfig $config,
-    private readonly HearingHelper $helper
+    private readonly HearingHelper $helper,
   ) {
   }
 

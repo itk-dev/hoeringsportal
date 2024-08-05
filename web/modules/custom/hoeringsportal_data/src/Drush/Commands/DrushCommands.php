@@ -16,7 +16,7 @@ final class DrushCommands extends BaseDrushCommands {
    * Constructor.
    */
   public function __construct(
-    private readonly HearingHelper $helper
+    private readonly HearingHelper $helper,
   ) {
     parent::__construct();
   }

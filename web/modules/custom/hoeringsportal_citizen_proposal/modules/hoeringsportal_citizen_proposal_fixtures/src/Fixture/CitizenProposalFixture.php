@@ -33,7 +33,7 @@ class CitizenProposalFixture extends AbstractFixture implements DependentFixture
     readonly private Helper $helper,
     EventDispatcherInterface $eventDispatcher,
     MailHelper $mailHelper,
-    ArchiveHelper $archivingHelper
+    ArchiveHelper $archivingHelper,
   ) {
     // Prevent sending notification emails.
     $eventDispatcher->removeSubscriber($mailHelper);

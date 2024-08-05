@@ -24,7 +24,7 @@
     {% set item = attribute(element, child) %}
     {% if isNested %}
       {% set new_nesting_level = attribute(depth, child) %}
-      {% include '@better_exposed_filters/bef-nested-elements.html.twig' %}
+      {{ include('@better_exposed_filters/bef-nested-elements.html.twig') }}
       {% set current_nesting_level = new_nesting_level %}
     {% else %}
       {{ item }}

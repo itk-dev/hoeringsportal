@@ -31,7 +31,7 @@ final class MailHelper implements EventSubscriberInterface, LoggerAwareInterface
   public function __construct(
     readonly private CitizenProposalHelper $citizenProposalHelper,
     readonly private EmailFactoryInterface $emailFactory,
-    LoggerInterface $logger
+    LoggerInterface $logger,
   ) {
     $this->setLogger($logger);
   }

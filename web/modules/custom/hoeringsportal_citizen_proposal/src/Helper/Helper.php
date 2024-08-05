@@ -54,7 +54,7 @@ class Helper implements LoggerAwareInterface {
     readonly private Connection $connection,
     readonly private EntityTypeManagerInterface $entityTypeManager,
     readonly private TimeInterface $time,
-    LoggerChannel $logger
+    LoggerChannel $logger,
   ) {
     $this->setLogger($logger);
   }

@@ -20,7 +20,7 @@ final class TestMailCommand extends BaseDrushCommands {
    */
   public function __construct(
     readonly private Helper $helper,
-    readonly private MailHelper $mailHelper
+    readonly private MailHelper $mailHelper,
   ) {
     parent::__construct();
   }

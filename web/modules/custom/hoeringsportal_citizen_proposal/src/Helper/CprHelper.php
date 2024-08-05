@@ -119,13 +119,13 @@ class CprHelper {
    * Get AzureKeyVaultCertificateLocator.
    */
   private function getAzureKeyVaultCertificateLocator(
-        string $tenantId,
-        string $applicationId,
-        string $clientSecret,
-        string $keyVaultName,
-        string $keyVaultSecret,
-        string $keyVaultSecretVersion
-    ): CertificateLocatorInterface {
+    string $tenantId,
+    string $applicationId,
+    string $clientSecret,
+    string $keyVaultName,
+    string $keyVaultSecret,
+    string $keyVaultSecretVersion,
+  ): CertificateLocatorInterface {
     $httpClient = new GuzzleAdapter(new Client());
     $requestFactory = new RequestFactory();
 
