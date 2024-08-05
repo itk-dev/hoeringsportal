@@ -6,14 +6,17 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-* [PR-413](https://github.com/itk-dev/hoeringsportal/pull/413)
-  Removed `.placeholder` markup
 * [PR-411](https://github.com/itk-dev/hoeringsportal/pull/411)
   Fix paragraph spacing
 * [PR-409](https://github.com/itk-dev/hoeringsportal/pull/409)
   Enabled and configured log_stdout
 * [PR-410](https://github.com/itk-dev/hoeringsportal/pull/410)
   Added ClamAv module and docker containers to run it
+
+## [4.4.1] - 2024-08-05
+
+* [PR-413](https://github.com/itk-dev/hoeringsportal/pull/413)
+  Removed `.placeholder` markup
 
 ## [4.4.0] - 2024-05-14
 
@@ -226,7 +229,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...HEAD
+[4.4.1]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...4.4.1
 [4.4.0]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...4.4.0
 [4.3.0]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...4.3.0
 [4.2.2]: https://github.com/itk-dev/hoeringsportal/compare/4.2.1...4.2.2
