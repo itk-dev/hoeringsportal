@@ -89,7 +89,7 @@ abstract class ProposalFormBase extends FormBase {
         '#attributes' => ['class' => ['authenticate-wrapper', 'py-3']],
 
         'message' => [
-          '#markup' => $this->t("You're currently authenticated as %name", ['%name' => $userData['name']]),
+          '#markup' => $this->t("You're currently authenticated as @name", ['@name' => $userData['name']]),
         ],
 
         'link' => Link::createFromRoute(
