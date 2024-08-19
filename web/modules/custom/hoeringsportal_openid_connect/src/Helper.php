@@ -14,7 +14,7 @@ class Helper {
    * Constructor.
    */
   public function __construct(
-    readonly private SessionInterface $session
+    readonly private SessionInterface $session,
   ) {
   }
 

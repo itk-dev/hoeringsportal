@@ -1,0 +1,20 @@
+_core:
+  default_config_hash: pfrv6lPS72f5WG1UB4wHkgQV2invlHwVpaCy_mY-ClQ
+langcode: da
+enabled: true
+outage_action: 0
+overridden_schemes:
+  - library-definitions
+  - asset
+  - php-file
+  - translations
+scan_mode: 0
+verbosity: 0
+mode_executable:
+  executable_path: /usr/bin/clamscan
+  executable_parameters: ''
+mode_daemon_tcpip:
+  hostname: clamav
+  port: 3310
+mode_daemon_unixsocket:
+  unixsocket: /var/clamav/clamd

@@ -70,7 +70,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
     readonly private LanguageManagerInterface $languageManager,
     readonly private RendererInterface $renderer,
     readonly private EventDispatcherInterface $eventDispatcher,
-    LoggerInterface $logger
+    LoggerInterface $logger,
   ) {
     $this->setLogger($logger);
   }

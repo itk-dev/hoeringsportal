@@ -21,7 +21,7 @@ final class DrushCommands extends BaseDrushCommands {
   public function __construct(
     private readonly PublicMeetingHelper $helper,
     private readonly TimeInterface $time,
-    private readonly StateInterface $state
+    private readonly StateInterface $state,
   ) {
     parent::__construct();
   }

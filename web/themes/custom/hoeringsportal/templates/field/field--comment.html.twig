@@ -58,7 +58,7 @@
             <h5 class="card-title">{{ 'Validate with NemID'|t }}</h5>
             <p class="card-text">{{ 'Before you can contribute you must validate your user account with NemID.'|t }}</p>
             <p class="card-text">{{ 'You only have to do it once, and you can do it now.'|t }}</p>
-            {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
+            {{ include('@hoeringsportal_user/nemid-disclosure-text-da.html.twig') }}
             <a href="{{ path('hoeringsportal_user_validate.saml.login', {ref: path('<current>')}) }}" class="btn btn-primary">{{ 'Validate'|t }}</a>
             <img class="image-fluid float-right" style="width:auto;" src="{{ base_path ~ directory }}/static/images/NEMID_RGB_BLACK.svg" alt="NemID logo">
           </div>

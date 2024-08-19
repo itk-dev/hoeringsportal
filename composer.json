@@ -113,6 +113,7 @@
         "drupal/better_social_sharing_buttons": "^4.0",
         "drupal/block_content_suggestions": "^1.0",
         "drupal/captcha": "^2.0",
+        "drupal/clamav": "^2.0",
         "drupal/color_field": "^3.0",
         "drupal/config_ignore": "^3.2",
         "drupal/config_import_locale": "^2.0",
@@ -137,6 +138,7 @@
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^3.0",
         "drupal/jquery_ui_accordion": "^2.0",
+        "drupal/log_stdout": "^1.5",
         "drupal/maxlength": "^2.1",
         "drupal/openid_connect": "^3.0@alpha",
         "drupal/paragraphs": "^1.3",
@@ -163,8 +165,7 @@
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
         "vlucas/phpdotenv": "^2.4",
-        "webflo/drupal-finder": "^1.0.0",
-        "webmozart/path-util": "^2.3"
+        "webflo/drupal-finder": "^1.0.0"
     },
     "require-dev": {
         "drupal/content_fixtures": "^3.1",
@@ -276,9 +277,6 @@
             },
             "drupal/core": {
                 "Text format wrapper does not take description_display into account (https://www.drupal.org/project/drupal/issues/2421445#comment-14328645)": "https://www.drupal.org/files/issues/2021-12-03/2421445-18_0.patch"
-            },
-            "drupal/publication_date": {
-                "https://www.drupal.org/project/publication_date/issues/3328575": "https://www.drupal.org/files/issues/2023-05-31/3328575-5-fix-bux-publicate-date.patch"
             }
         }
     }

@@ -20,7 +20,7 @@ final class Commands extends DrushCommands {
   public function __construct(
     readonly private Helper $helper,
     readonly private CitizenProposalHelper $citizenProposalHelper,
-    readonly private Renderer $renderer
+    readonly private Renderer $renderer,
   ) {
   }
 

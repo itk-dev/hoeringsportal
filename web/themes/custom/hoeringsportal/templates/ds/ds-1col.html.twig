@@ -14,12 +14,12 @@
 
 <div class="group-header">
   {% if image_exists %}
-    {% include directory ~ '/templates/components/hero.html.twig' with {'image': ds_content.field_media_image_single, 'title': node.title.value, 'teaser': header_text} %}
+    {{ include(directory ~ '/templates/components/hero.html.twig', {image: ds_content.field_media_image_single, title: node.title.value, teaser: header_text}) }}
   {% else %}
-    {% include directory ~ '/templates/components/header.html.twig' with {'header': node.title.value, 'teaser': header_text} %}
+    {{ include(directory ~ '/templates/components/header.html.twig', {header: node.title.value, teaser: header_text}) }}
   {% endif %}
 </div>
 
-<div {{ attributes.addClass('projects', 'container') }}>
+<div {{ attributes.addClass('projects') }}>
   {{ ds_content|without('field_teaser', 'field_media_image_single') }}
 </div>

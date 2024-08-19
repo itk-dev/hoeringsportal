@@ -12,6 +12,14 @@ services:
     volumes:
       - .:/app:delegated
 
+  clamav:
+    image: clamav/clamav:1.2
+    networks:
+      - app
+    ports:
+      - '3310'
+      - '7357'
+
   playwright:
     # https://playwright.dev/docs/docker
     # This Playwright version should match the one in `package.json`.

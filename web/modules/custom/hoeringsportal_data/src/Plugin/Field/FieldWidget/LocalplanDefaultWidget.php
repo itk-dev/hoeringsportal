@@ -27,7 +27,7 @@ class LocalplanDefaultWidget extends WidgetBase {
     $delta,
     array $element,
     array &$form,
-    FormStateInterface $form_state
+    FormStateInterface $form_state,
   ) {
     /** @var \Drupal\hoeringsportal_data\Plugin\Field\FieldType\MapItem $item */
     $item =& $items[$delta];

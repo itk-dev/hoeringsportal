@@ -16,7 +16,7 @@ final class DrushCommands extends BaseDrushCommands {
    * Constructor for the citizen proposal commands class.
    */
   public function __construct(
-    readonly private Helper $helper
+    readonly private Helper $helper,
   ) {
     parent::__construct();
   }

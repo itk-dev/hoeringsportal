@@ -28,7 +28,7 @@ class AccessCheckEvent extends Event {
    */
   public function __construct(
     readonly private array $token,
-    readonly private string $loginLocation
+    readonly private string $loginLocation,
   ) {}
 
   /**

@@ -40,7 +40,7 @@ final class ArchiveCitizenProposalJob extends JobTypeBase implements ContainerFa
     array $configuration,
     $plugin_id,
     $plugin_definition,
-  readonly private Helper $helper
+    readonly private Helper $helper,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
