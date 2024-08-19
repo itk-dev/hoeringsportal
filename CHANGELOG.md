@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.5.0] - 2024-08-19
+
 * [PR-412](https://github.com/itk-dev/hoeringsportal/pull/412)
   * Upgrade drupal core 10.2.7 and contrib modules
   * Disable migrate_subject_data module
@@ -233,7 +235,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...HEAD
+[4.5.0]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...4.5.0
 [4.4.1]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...4.4.1
 [4.4.0]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...4.4.0
 [4.3.0]: https://github.com/itk-dev/hoeringsportal/compare/4.2.2...4.3.0
