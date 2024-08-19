@@ -138,7 +138,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Alle\r\n- Enhver -|Alle\r\nAfsluttet|Afstemning afsluttet\r\nI gang|Afstemning aktiv\r\nKommende|"
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: true
       access:

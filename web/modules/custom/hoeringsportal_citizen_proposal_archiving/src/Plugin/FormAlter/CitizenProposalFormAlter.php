@@ -33,7 +33,7 @@ final class CitizenProposalFormAlter extends FormAlterBase {
     readonly private Renderer $renderer,
     array $configuration,
     $plugin_id,
-    $plugin_definition
+    $plugin_definition,
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
@@ -54,7 +54,7 @@ final class CitizenProposalFormAlter extends FormAlterBase {
   /**
    * {@inheritdoc}
    */
-  public function formAlter(array &$form, FormStateInterface &$form_state, $form_id) {
+  public function formAlter(array &$form, FormStateInterface $form_state, $form_id) {
     $formObject = $form_state->getFormObject();
     assert($formObject instanceof EntityFormInterface);
     $node = $formObject->getEntity();

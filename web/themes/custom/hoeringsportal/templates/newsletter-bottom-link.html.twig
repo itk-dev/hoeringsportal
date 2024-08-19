@@ -2,7 +2,7 @@
   <i class="fa-solid fa-envelope fa-2x text-primary"></i>
   <div>
     <h5 class="newsletter-signup--header p-0 m-0 h4">{{ 'Would you like a direct message when deltag.aarhus.dk has new content?'|t }}</h5>
-    {{ '<a href="@sign_up_url">Sign up to our message service</a> and be informed about your interests'|t({'@sign_up_url': path('entity.node.canonical', {'node': node_newsletter})}) }}
+    {{ '<a href="@sign_up_url">Sign up to our message service</a> and be informed about your interests'|t({'@sign_up_url': path('entity.node.canonical', {node: node_newsletter})}) }}
   </div>
   <img class="newsletter-signup--logo d-none d-md-block" src="{{ drupal_url(active_theme_path() ~ '/AAK_02_hoejrejusteret_dark.svg', {absolute: true}) }}" alt="{{ 'Aarhus Municipality'|t }}">
 </div>

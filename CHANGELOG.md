@@ -6,6 +6,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-412](https://github.com/itk-dev/hoeringsportal/pull/412)
+  * Upgrade drupal core 10.2.7 and contrib modules
+  * Disable migrate_subject_data module
+  * Remove deprecated webmozart/path-util package
 * [PR-411](https://github.com/itk-dev/hoeringsportal/pull/411)
   Fix paragraph spacing
 * [PR-409](https://github.com/itk-dev/hoeringsportal/pull/409)

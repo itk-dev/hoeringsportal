@@ -140,7 +140,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Område\r\n- Enhver -|Vis alle områder"
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: true
               field_content_state_value:
@@ -149,7 +151,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Enhver -|Alle\r\nAfsluttet|Afsluttede\r\nKommende|Aktive"
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: true
               field_type_target_id:
@@ -158,7 +162,9 @@ display:
                   sort_options: false
                   rewrite:
                     filter_rewrite_values: "- Any -|Alle typer\r\n- Enhver -|Vælg type"
+                    filter_rewrite_values_key: false
                   collapsible: false
+                  collapsible_disable_automatic_open: false
                   is_secondary: false
                   hide_label: true
       access:

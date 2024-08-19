@@ -17,7 +17,7 @@ class CitizenAccessChecker {
    * Constructor.
    */
   public function __construct(
-    LoggerChannel $logger
+    LoggerChannel $logger,
   ) {
     $this->setLogger($logger);
   }

@@ -19,7 +19,7 @@
 
       <h4>{{ 'Options'|t }}</h4>
       {% if (not form['#user_account'].field_valid['0'].value == 1) %}
-        {% include '@hoeringsportal_user/nemid-disclosure-text-da.html.twig' %}
+        {{ include('@hoeringsportal_user/nemid-disclosure-text-da.html.twig') }}
         <p><a href="{{ path('hoeringsportal_user_validate.saml.login', {ref: path('<current>')}) }}">{{ 'Validate account'|t }}</a></p>
       {% endif %}
       <p><a href="/user/{{ form['#user_account'].id }}">{{ 'Show profile'|t }}</a></p>
