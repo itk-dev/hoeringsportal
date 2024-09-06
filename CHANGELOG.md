@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.5.1] - 2024-09-06
+
 * [PR-416](https://github.com/itk-dev/hoeringsportal/pull/416)
   Increase nginx max body size
 
@@ -238,7 +240,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...HEAD
+[4.5.1]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...4.5.1
 [4.5.0]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...4.5.0
 [4.4.1]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...4.4.1
 [4.4.0]: https://github.com/itk-dev/hoeringsportal/compare/4.3.0...4.4.0
