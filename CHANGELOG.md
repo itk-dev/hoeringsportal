@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-416](https://github.com/itk-dev/hoeringsportal/pull/416)
+  Increase nginx max body size
+
 ## [4.5.0] - 2024-08-19
 
 * [PR-412](https://github.com/itk-dev/hoeringsportal/pull/412)
