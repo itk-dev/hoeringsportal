@@ -83,7 +83,7 @@
   {% endif %}
 
   {# Deleted tickets information #}
-  {% if node.field_delete_date.value > "now"|date('Y-m-d') %}
+  {% if node.field_delete_date.value < "now"|date('Y-m-d') %}
     <div class="col-md-12 q">
       <div class="alert alert-warning mb-3 d-flex gap-3" role="alert">
           <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
@@ -95,5 +95,5 @@
       <p>{{ 'You can <a href="/">read more about why and how we delete old tickets</a>'|trans }}</p>
     </div>
   {% endif %}
-  
+
 </div>
