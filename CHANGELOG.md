@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-418](https://github.com/itk-dev/hoeringsportal/pull/418)
+  Add message when hearing tickets is deleted.
 * [PR-417](https://github.com/itk-dev/hoeringsportal/pull/417)
   Added more test setup stuff
 
