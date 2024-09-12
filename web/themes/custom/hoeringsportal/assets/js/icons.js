@@ -25,7 +25,7 @@ import {
   faFileImage,
   faFileExcel,
   faTicketAlt,
-  faTriangleExclamation,
+  faTriangleExclamation
 } from '@fortawesome/free-solid-svg-icons'
 
 // Import icons from the free brands package
@@ -72,6 +72,6 @@ library.add(
   faTumblr,
   faWhatsapp,
   faXTwitter,
-  faTriangleExclamation,
+  faTriangleExclamation
 )
 dom.i2svg()
