@@ -35,6 +35,7 @@ class HearingTicketsBlock extends BlockBase {
       '#is_deadline_passed' => $this->helper->isDeadlinePassed($node),
       '#tickets' => $this->helper->getHearingTickets($node),
       '#is_hearing_started' => $is_hearing_started,
+      '#is_delete_replies_date_passed' => $this->helper->isDeleteRepliesDatePassed($node),
     ];
   }
 

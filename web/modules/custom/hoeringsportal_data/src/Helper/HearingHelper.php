@@ -4,30 +4,32 @@ namespace Drupal\hoeringsportal_data\Helper;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Logger\LoggerChannelInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 
 /**
  * Hearing helper.
  */
-class HearingHelper {
+class HearingHelper implements LoggerAwareInterface {
+  use LoggerAwareTrait;
+
   const NODE_TYPE_HEARING = 'hearing';
   const STATE_UPCOMING = 'upcoming';
   const STATE_ACTIVE = 'active';
   const STATE_FINISHED = 'finished';
 
   /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  private $entityTypeManager;
-
-  /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
-    $this->entityTypeManager = $entityTypeManager;
+  public function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+    LoggerChannelInterface $logger,
+  ) {
+    $this->setLogger($logger);
   }
 
   /**
@@ -91,6 +93,51 @@ class HearingHelper {
   }
 
   /**
+   * Check if hearing's delete replies date is passed.
+   */
+  public function isDeleteRepliesDatePassed(NodeInterface $node) {
+    if (!$this->isHearing($node)) {
+      return FALSE;
+    }
+
+    $deadline = $node->field_delete_date->date;
+
+    if (empty($deadline)) {
+      return FALSE;
+    }
+
+    return $this->getDateTime() > new DrupalDateTime($deadline);
+  }
+
+  /**
+   * Find hearings whose replies must be deleted.
+   *
+   * @return array
+   *   A list of hearing ids.
+   */
+  public function findHearingWhoseRepliesMustBeDeleted(DrupalDateTime $from, DrupalDateTime $to): array {
+    try {
+      return $this->entityTypeManager
+        ->getStorage('node')
+        ->getQuery()
+        ->condition('type', 'hearing')
+        ->condition('field_delete_date', [
+          $from->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+          $to->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
+        ], 'BETWEEN')
+        ->accessCheck(FALSE)
+        ->execute();
+    }
+    catch (\Exception $exception) {
+      $this->logger->error('Error finding hearing whose replies must be deleted: @message', [
+        '@message' => $exception->getMessage(),
+      ]);
+
+      return [];
+    }
+  }
+
+  /**
    * A list of conditions.
    *
    * @var array
@@ -125,7 +172,7 @@ class HearingHelper {
   /**
    * Get a date time object.
    */
-  private function getDateTime($time = 'now', $timezone = 'UTC') {
+  private function getDateTime($time = 'now', $timezone = 'UTC'): DrupalDateTime {
     return new DrupalDateTime($time, $timezone);
   }
 

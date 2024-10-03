@@ -40,6 +40,20 @@
 
   {% else %}
 
+    {% if is_delete_replies_date_passed %}
+      {# Deleted tickets information #}
+        <div class="col-md-12 q">
+          <div class="alert alert-warning mb-3 d-flex gap-3" role="alert">
+            <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
+            <div>
+              <h4 class="mt-0">{{ 'The hearing replies are deleted'|trans }}</h4>
+              <p class="mb-0">{{ 'The time limit for how long we are allowed to keep the replies has been reached so we where obligated to delete them.'|trans }}</p>
+            </div>
+          </div>
+          <p>{{ 'You can <a href="/">read more about why and how we delete old tickets</a>'|trans }}</p>
+        </div>
+
+    {% else %}
     <div class="row mb-3">
       <div class="col-md-6">
         {% if hearing_ticket_list_url %}
@@ -80,20 +94,7 @@
       {% endfor %}
     {% endif %}
 
-  {% endif %}
-
-  {# Deleted tickets information #}
-  {% if node.field_delete_date.value < "now"|date('Y-m-d') %}
-    <div class="col-md-12 q">
-      <div class="alert alert-warning mb-3 d-flex gap-3" role="alert">
-          <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
-          <div>
-            <h4 class="mt-0">{{ 'The hearing tickets is deleted'|trans }}</h4>
-            <p class="mb-0">{{ 'The time limit for how long we are allowed to kkep the tickets have been reached so we where obligated to delete them.'|trans }}</p>
-          </div>
-      </div>
-      <p>{{ 'You can <a href="/">read more about why and how we delete old tickets</a>'|trans }}</p>
-    </div>
+    {% endif %}
   {% endif %}
 
 </div>

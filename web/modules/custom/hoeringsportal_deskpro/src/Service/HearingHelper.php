@@ -81,6 +81,10 @@ class HearingHelper {
    * Check if hearing deadline is passed.
    */
   public function isDeadlinePassed(NodeInterface $node) {
+    if ($this->isDeleteRepliesDatePassed($node)) {
+      return TRUE;
+    }
+
     if (!$this->isHearing($node)) {
       return FALSE;
     }
@@ -93,6 +97,23 @@ class HearingHelper {
 
     // Allow users with edit access to do stuff after the deadline.
     if ($node->access('edit', \Drupal::currentUser())) {
+      return FALSE;
+    }
+
+    return new DrupalDateTime() > new DrupalDateTime($deadline);
+  }
+
+  /**
+   * Check if hearing's delete replies date is passed.
+   */
+  public function isDeleteRepliesDatePassed(NodeInterface $node): bool {
+    if (!$this->isHearing($node)) {
+      return FALSE;
+    }
+
+    $deadline = $node->field_delete_date->date;
+
+    if (empty($deadline)) {
       return FALSE;
     }
 
@@ -625,6 +646,21 @@ class HearingHelper {
     }
 
     return $info[$bundle][$entity_id][$ticketId] ?? NULL;
+  }
+
+  /**
+   * Delete hearing replies.
+   */
+  public function deleteHearingReplies(array $nodeIds): int {
+    if (empty($nodeIds)) {
+      return 0;
+    }
+
+    return $this->database->delete('hoeringsportal_deskpro_deskpro_tickets')
+      ->condition('entity_type', 'node', '=')
+      ->condition('bundle', 'hearing')
+      ->condition('entity_id', $nodeIds, 'IN')
+      ->execute();
   }
 
   /**
