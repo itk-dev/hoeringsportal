@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_data\Drush\Commands;
 
 use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\State\StateInterface;
 use Drupal\hoeringsportal_data\Helper\HearingHelper;
@@ -80,28 +81,47 @@ final class DrushCommands extends BaseDrushCommands {
    * A drush command for deleting replies from hearings.
    */
   #[CLI\Command(name: 'hoeringsportal:data:delete-replies')]
+  #[CLI\Option(name: 'ids', description: 'Comma separated list of ids')]
   public function processDeleteHearingReplies(
     array $options = [
+      'ids' => NULL,
       'last-run-at' => NULL,
     ],
   ): void {
-    $lastRunAt = $options['last-run-at'] ? new DrupalDateTime($options['last-run-at']) : $this->getLastRunAt(__METHOD__);
-    $requestTime = $this->getRequestTime();
+    if (!empty($options['ids'])) {
+      $hearingIds = preg_split('/\s*,\s*/', $options['ids'] ?? '', PREG_SPLIT_NO_EMPTY);
+    }
+    else {
+      $lastRunAt = $options['last-run-at'] ? new DrupalDateTime($options['last-run-at']) : $this->getLastRunAt(__METHOD__);
+      $requestTime = $this->getRequestTime();
 
-    $hearingIds = $this->helper->findHearingWhoseRepliesMustBeDeleted($lastRunAt,
-      $requestTime);
+      if ($this->io()->isVerbose()) {
+        $this->io()->info(sprintf('Finding hearings with delete replies date between %s and %s', $lastRunAt->format('Y-m-d'), $requestTime->format('Y-m-d')));
+      }
 
-    if ($this->io()->isVerbose()) {
-      $this->io()->info(sprintf('Deleting hearing replies between %s and %s: %s', $lastRunAt->format('Y-m-d'), $requestTime->format('Y-m-d'), implode(', ', $hearingIds)));
+      $hearingIds = $options['ids'] ?? $this->helper->findHearingWhoseRepliesMustBeDeleted($lastRunAt, $requestTime);
+    }
+
+    if (empty($hearingIds)) {
+      $this->io()->info('No hearings found');
+      return;
     }
 
     if ($options['yes'] || $this->confirm(sprintf('Delete replies on hearings %s', implode(', ', $hearingIds)))) {
-      $result = $this->deskproHelper->deleteHearingReplies($hearingIds);
+      $hearings = $this->helper->loadHearings([['nid', $hearingIds, 'IN']]);
+      foreach ($hearings as $hearing) {
+        $hearingRepliesDeletedOn = $this->deskproHelper->getHearingRepliesDeletedOn($hearing);
+        if (NULL !== $hearingRepliesDeletedOn) {
+          $this->deskproHelper->deleteHearingReplies([$hearing->id()]);
+          Cache::invalidateTags($hearing->getCacheTags());
 
-      $this->io()->success(1 === $result
-        ? sprintf('Replies deleted from 1 hearing: %s', implode(', ', $hearingIds))
-        : sprintf('Replies deleted from %d hearings: %s', $result, implode(', ', $hearingIds))
-      );
+          $this->io()->success(sprintf('Replies deleted from hearing %s',
+            $hearing->id()));
+        }
+        else {
+          $this->io()->warning(sprintf('Replies on hearing %s must not yet be deleted', $hearing->id()));
+        }
+      }
 
       $this->setLastRunAt(__METHOD__);
     }

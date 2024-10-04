@@ -81,7 +81,7 @@ class HearingHelper {
    * Check if hearing deadline is passed.
    */
   public function isDeadlinePassed(NodeInterface $node) {
-    if ($this->isDeleteRepliesDatePassed($node)) {
+    if (NULL !== $this->getHearingRepliesDeletedOn($node)) {
       return TRUE;
     }
 
@@ -104,20 +104,23 @@ class HearingHelper {
   }
 
   /**
-   * Check if hearing's delete replies date is passed.
+   * Get the date when a hearing's replies should be deleted.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   The delete date if it's set and not in the future.
    */
-  public function isDeleteRepliesDatePassed(NodeInterface $node): bool {
+  public function getHearingRepliesDeletedOn(NodeInterface $node): ?DrupalDateTime {
     if (!$this->isHearing($node)) {
-      return FALSE;
+      return NULL;
     }
 
-    $deadline = $node->field_delete_date->date;
+    $date = $node->field_delete_date->date;
 
-    if (empty($deadline)) {
-      return FALSE;
+    if (empty($date)) {
+      return NULL;
     }
 
-    return new DrupalDateTime() > new DrupalDateTime($deadline);
+    return new DrupalDateTime() > $date ? $date : NULL;
   }
 
   /**
@@ -651,15 +654,13 @@ class HearingHelper {
   /**
    * Delete hearing replies.
    */
-  public function deleteHearingReplies(array $nodeIds): int {
-    if (empty($nodeIds)) {
-      return 0;
-    }
+  public function deleteHearingReplies(int|array $nodeIds): int {
+    $nodeId = (array) $nodeIds;
 
     return $this->database->delete('hoeringsportal_deskpro_deskpro_tickets')
       ->condition('entity_type', 'node', '=')
       ->condition('bundle', 'hearing')
-      ->condition('entity_id', $nodeIds, 'IN')
+      ->condition('entity_id', $nodeIds ?: [0], 'IN')
       ->execute();
   }
 

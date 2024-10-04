@@ -40,18 +40,18 @@
 
   {% else %}
 
-    {% if is_delete_replies_date_passed %}
-      {# Deleted tickets information #}
-        <div class="col-md-12 q">
-          <div class="alert alert-warning mb-3 d-flex gap-3" role="alert">
-            <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
-            <div>
-              <h4 class="mt-0">{{ 'The hearing replies are deleted'|trans }}</h4>
-              <p class="mb-0">{{ 'The time limit for how long we are allowed to keep the replies has been reached so we where obligated to delete them.'|trans }}</p>
-            </div>
+    {% if hearing_replies_deleted_on %}
+      {%  set date = hearing_replies_deleted_on|date('U')|format_date('hoeringsportal_date') %}
+      <div class="col-md-12 q">
+        <div class="alert alert-warning mb-3 d-flex gap-3" role="alert">
+          <i class="fa-solid fa-triangle-exclamation fa-xl"></i>
+          <div>
+            <h4 class="mt-0">{{ 'The hearing replies were deleted on @date'|trans({'@date': date}) }}</h4>
+            <p class="mb-0">{{ 'The time limit for how long we are allowed to keep the replies has been reached so we where obligated to delete them.'|trans }}</p>
           </div>
-          <p>{{ 'You can <a href="/">read more about why and how we delete old tickets</a>'|trans }}</p>
         </div>
+        <p>{{ 'You can <a href="/">read more about why and how we delete old hearing replies</a>'|trans }}</p>
+      </div>
 
     {% else %}
     <div class="row mb-3">
