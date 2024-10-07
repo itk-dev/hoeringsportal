@@ -367,8 +367,31 @@ class HearingHelper {
       'tickets' => array_merge(...$tickets),
     ];
 
-    $this->setDeskproData($hearing, $data);
-    $hearing->save();
+    $keys = [
+      'entity_type' => 'node',
+      'bundle' => $hearing->bundle(),
+      'entity_id' => $hearing->id(),
+    ];
+    $fields = [
+      'updated_at' => (new DrupalDateTime())->format(DrupalDateTime::FORMAT),
+    ];
+
+    foreach ($data['tickets'] as $ticket) {
+      $keys['ticket_id'] = $ticket['id'];
+      $fields['email'] = $ticket['person_email'];
+      $fields['data'] = json_encode($ticket);
+
+      $result = $this->database->merge('hoeringsportal_deskpro_deskpro_tickets')
+        ->keys($keys)
+        ->updateFields($fields)
+        ->insertFields(
+          $keys + $fields + [
+            'created_at' => $fields['updated_at'],
+          ])
+        ->execute();
+    }
+
+    Cache::invalidateTags($hearing->getCacheTags());
 
     return ['hearing' => $hearing->id(), 'data' => $data];
   }
@@ -688,27 +711,6 @@ class HearingHelper {
         }
       }
     }
-  }
-
-  /**
-   * Set Deskpro data for a node.
-   *
-   * @param \Drupal\node\Entity\NodeInterface $node
-   *   The node.
-   * @param array $data
-   *   The data.
-   */
-  private function setDeskproData(NodeInterface $node, array $data) {
-    $this->database->merge('hoeringsportal_deskpro_deskpro_data')
-      ->keys([
-        'entity_type' => 'node',
-        'entity_id' => $node->id(),
-        'bundle' => $node->bundle(),
-      ])
-      ->fields([
-        'data' => json_encode($data),
-      ])
-      ->execute();
   }
 
   /**
