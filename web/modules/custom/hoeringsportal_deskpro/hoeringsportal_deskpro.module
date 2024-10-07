@@ -8,6 +8,7 @@
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_help().
@@ -111,4 +112,15 @@ function hoeringsportal_deskpro_entity_bundle_field_info_alter(&$fields, EntityT
   if ('hearing' === $bundle && isset($fields['field_deskpro_agent_email'])) {
     $fields['field_deskpro_agent_email']->addConstraint('AgentEmail');
   }
+}
+
+/**
+ * Implements hook_node_update().
+ *
+ * @see \Drupal\hoeringsportal_data\Helper\HearingHelper::nodeUpdate();
+ */
+function hoeringsportal_deskpro_node_update(NodeInterface $node) {
+  /** @var \Drupal\hoeringsportal_deskpro\Service\HearingHelper $helper */
+  $helper = \Drupal::service('hoeringsportal_deskpro.helper');
+  $helper->nodeUpdate($node);
 }

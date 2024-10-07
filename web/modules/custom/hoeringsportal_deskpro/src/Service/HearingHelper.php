@@ -665,6 +665,32 @@ class HearingHelper {
   }
 
   /**
+   * Implements hook_node_update().
+   */
+  public function nodeUpdate(NodeInterface $node) {
+    if ($this->isHearing($node)) {
+      $date = $this->getHearingRepliesDeletedOn($node);
+      if (NULL !== $date) {
+        try {
+          $result = $this->deleteHearingReplies([$node->id()]);
+          $this->logger->info('Deleted hearing replies from hearing @label (@id): @result', [
+            '@id' => $node->id(),
+            '@label' => $node->label(),
+            '@result' => $result,
+          ]);
+        }
+        catch (\Exception $e) {
+          $this->logger->error('Error deleting hearing replies on hearing @label (@id): @message', [
+            '@id' => $node->id(),
+            '@label' => $node->label(),
+            '@message' => $e->getMessage(),
+          ]);
+        }
+      }
+    }
+  }
+
+  /**
    * Set Deskpro data for a node.
    *
    * @param \Drupal\node\Entity\NodeInterface $node

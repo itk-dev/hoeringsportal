@@ -93,23 +93,6 @@ class HearingHelper implements LoggerAwareInterface {
   }
 
   /**
-   * Check if hearing's delete replies date is passed.
-   */
-  public function isDeleteRepliesDatePassed(NodeInterface $node) {
-    if (!$this->isHearing($node)) {
-      return FALSE;
-    }
-
-    $deadline = $node->field_delete_date->date;
-
-    if (empty($deadline)) {
-      return FALSE;
-    }
-
-    return $this->getDateTime() > new DrupalDateTime($deadline);
-  }
-
-  /**
    * Find hearings whose replies must be deleted.
    *
    * @return array
