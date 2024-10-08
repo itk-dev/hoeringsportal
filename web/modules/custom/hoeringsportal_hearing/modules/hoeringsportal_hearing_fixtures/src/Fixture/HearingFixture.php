@@ -6,6 +6,7 @@ use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
 use Drupal\node\Entity\Node;
@@ -102,6 +103,11 @@ Lorem ipsum 1234 Lorem ipsum',
 EOD,
       'format' => 'hearing_description',
     ]);
+    $entity->save();
+
+    $entity = $entity->createDuplicate();
+    $entity->setTitle('Høring med slettede høringssvar');
+    $entity->set('field_delete_date', (new DrupalDateTime('2001-01-01'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
     $entity->save();
   }
 

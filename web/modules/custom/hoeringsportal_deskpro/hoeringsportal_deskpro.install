@@ -13,44 +13,6 @@ use Drupal\node\Entity\Node;
  */
 function hoeringsportal_deskpro_schema() {
   return [
-    'hoeringsportal_deskpro_deskpro_data' => [
-      'description' => 'Table to hold information about Deskpro data for nodes.',
-      'fields' => [
-        'entity_type' => [
-          'description' => 'The entity type',
-          'type' => 'varchar',
-          'length' => 128,
-          'not null' => TRUE,
-          'default' => '',
-        ],
-        'entity_id' => [
-          'description' => 'The entity id',
-          'type' => 'int',
-          'unsigned' => TRUE,
-          'not null' => TRUE,
-        ],
-        'bundle' => [
-          'description' => 'The entity bundle',
-          'type' => 'varchar',
-          'length' => 128,
-          'not null' => TRUE,
-          'default' => '',
-        ],
-        'data' => [
-          'description' => 'Deskpro data (JSON)',
-          'type' => 'text',
-          'size' => 'big',
-          'not null' => TRUE,
-          'default' => '{}',
-        ],
-      ],
-      'primary key' => [
-        'entity_type',
-        'entity_id',
-        'bundle',
-      ],
-    ],
-
     'hoeringsportal_deskpro_deskpro_tickets' => [
       'description' => 'Table to hold information about Deskpro tickets for nodes.',
       'fields' => [
@@ -390,4 +352,14 @@ function hoeringsportal_deskpro_update_8004(&$sandbox) {
     // to the user.
     return t('Batch finished');
   }
+}
+
+/**
+ * Drop hoeringsportal_deskpro_deskpro_data table.
+ */
+function hoeringsportal_deskpro_update_8005(&$sandbox) {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal::service('database');
+  $schema = $connection->schema();
+  $schema->dropTable('hoeringsportal_deskpro_deskpro_data');
 }

@@ -6,6 +6,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
+    - field.field.node.hearing.field_delete_date
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -80,16 +81,6 @@ third_party_settings:
         - field_map
         - 'dynamic_block_field:node-nearest_hearings'
     fields:
-      'dynamic_token_field:node-header_information':
-        plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 10
-        label: hidden
-        formatter: default
-      'dynamic_token_field:node-node_id_hearing':
-        plugin_id: 'dynamic_token_field:node-node_id_hearing'
-        weight: 17
-        label: above
-        formatter: default
       'dynamic_block_field:node-hearing_tickets':
         plugin_id: 'dynamic_block_field:node-hearing_tickets'
         weight: 7
@@ -102,17 +93,27 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-nearest_hearings':
         plugin_id: 'dynamic_block_field:node-nearest_hearings'
-        weight: 22
+        weight: 20
         label: above
         formatter: default
       'dynamic_block_field:node-project_timeline':
         plugin_id: 'dynamic_block_field:node-project_timeline'
-        weight: 20
+        weight: 18
         label: hidden
         formatter: default
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
+        weight: 8
+        label: above
+        formatter: default
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
         weight: 9
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-node_id_hearing':
+        plugin_id: 'dynamic_token_field:node-node_id_hearing'
+        weight: 15
         label: above
         formatter: default
       node_title:
@@ -135,14 +136,14 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 16
+    weight: 14
     region: right
   field_contact:
     type: text_default
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 18
+    weight: 16
     region: right
   field_description:
     type: text_default
@@ -156,14 +157,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 14
+    weight: 13
     region: right
   field_map:
     type: hoeringsportal_data_map_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 21
+    weight: 19
     region: footer
   field_media_document:
     type: entity_reference_entity_view
@@ -192,7 +193,7 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
-    weight: 19
+    weight: 17
     region: right
   field_reply_deadline:
     type: datetime_default
@@ -201,7 +202,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_datetime
     third_party_settings: {  }
-    weight: 12
+    weight: 11
     region: right
   field_start_date:
     type: datetime_default
@@ -210,7 +211,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 11
+    weight: 10
     region: right
   field_teaser:
     type: basic_string
@@ -225,7 +226,7 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-    weight: 13
+    weight: 12
     region: right
   field_video_embed:
     type: basic_string
@@ -234,13 +235,9 @@ content:
     third_party_settings: {  }
     weight: 5
     region: left
-  sharing_buttons:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
   field_content_state: true
+  field_delete_date: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true
   field_edoc_casefile_id: true
@@ -253,3 +250,4 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  sharing_buttons: true

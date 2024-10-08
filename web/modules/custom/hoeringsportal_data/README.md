@@ -36,6 +36,19 @@ e.g. every minute
 */5 * * * * drush hoeringsportal:data:hearing-state-update
 ```
 
+Delete replies on hearings by running
+
+```sh
+drush hoeringsportal:data:delete-replies
+```
+
+This should be done regularly by `cron` or other similar means,
+e.g. daily at 03:00
+
+```sh
+0 3 * * * drush hoeringsportal:data:delete-replies
+```
+
 ## Building assets
 
 First, install tools and requirements:

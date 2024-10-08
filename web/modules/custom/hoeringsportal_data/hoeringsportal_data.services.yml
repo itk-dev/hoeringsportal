@@ -1,4 +1,8 @@
 services:
+  logger.channel.hoeringsportal_data:
+    parent: logger.channel_base
+    arguments: [ 'hoeringsportal_data' ]
+
   hoeringsportal_data.plandata:
     class: Drupal\hoeringsportal_data\Service\Plandata
     arguments: ['@settings']
@@ -8,7 +12,7 @@ services:
 
   hoeringsportal_data.hearing_helper:
     class: Drupal\hoeringsportal_data\Helper\HearingHelper
-    arguments: ['@entity_type.manager']
+    arguments: ['@entity_type.manager', '@logger.channel.hoeringsportal_data']
 
   hoeringsportal_data.map_item_helper:
     class: Drupal\hoeringsportal_data\Helper\MapItemHelper
