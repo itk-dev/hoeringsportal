@@ -11,8 +11,8 @@ id: node.hearing.field_delete_date
 field_name: field_delete_date
 entity_type: node
 bundle: hearing
-label: 'Slette dato'
-description: 'Bruges til at sætte dato for sletning af høringssvar.'
+label: 'Dato for sletning af høringssvar'
+description: 'Vælg hvornår høringssvar skal slettes fra høringen.'
 required: true
 translatable: false
 default_value: {  }

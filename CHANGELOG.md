@@ -6,8 +6,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-419](https://github.com/itk-dev/hoeringsportal/pull/419)
+  Added Drush command to delete hearing replies
 * [PR-418](https://github.com/itk-dev/hoeringsportal/pull/418)
-  Add message when hearing tickets is deleted.
+  Add message when hearing replies are deleted
 * [PR-417](https://github.com/itk-dev/hoeringsportal/pull/417)
   Added more test setup stuff
 
