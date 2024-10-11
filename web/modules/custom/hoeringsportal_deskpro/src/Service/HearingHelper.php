@@ -81,6 +81,10 @@ class HearingHelper {
    * Check if hearing deadline is passed.
    */
   public function isDeadlinePassed(NodeInterface $node) {
+    if (NULL !== $this->getHearingRepliesDeletedOn($node)) {
+      return TRUE;
+    }
+
     if (!$this->isHearing($node)) {
       return FALSE;
     }
@@ -97,6 +101,26 @@ class HearingHelper {
     }
 
     return new DrupalDateTime() > new DrupalDateTime($deadline);
+  }
+
+  /**
+   * Get the date when a hearing's replies should be deleted.
+   *
+   * @return \Drupal\Core\Datetime\DrupalDateTime|null
+   *   The delete date if it's set and not in the future.
+   */
+  public function getHearingRepliesDeletedOn(NodeInterface $node): ?DrupalDateTime {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    $date = $node->field_delete_date->date;
+
+    if (empty($date)) {
+      return NULL;
+    }
+
+    return new DrupalDateTime() > $date ? $date : NULL;
   }
 
   /**
@@ -343,8 +367,31 @@ class HearingHelper {
       'tickets' => array_merge(...$tickets),
     ];
 
-    $this->setDeskproData($hearing, $data);
-    $hearing->save();
+    $keys = [
+      'entity_type' => 'node',
+      'bundle' => $hearing->bundle(),
+      'entity_id' => $hearing->id(),
+    ];
+    $fields = [
+      'updated_at' => (new DrupalDateTime())->format(DrupalDateTime::FORMAT),
+    ];
+
+    foreach ($data['tickets'] as $ticket) {
+      $keys['ticket_id'] = $ticket['id'];
+      $fields['email'] = $ticket['person_email'];
+      $fields['data'] = json_encode($ticket);
+
+      $result = $this->database->merge('hoeringsportal_deskpro_deskpro_tickets')
+        ->keys($keys)
+        ->updateFields($fields)
+        ->insertFields(
+          $keys + $fields + [
+            'created_at' => $fields['updated_at'],
+          ])
+        ->execute();
+    }
+
+    Cache::invalidateTags($hearing->getCacheTags());
 
     return ['hearing' => $hearing->id(), 'data' => $data];
   }
@@ -628,24 +675,42 @@ class HearingHelper {
   }
 
   /**
-   * Set Deskpro data for a node.
-   *
-   * @param \Drupal\node\Entity\NodeInterface $node
-   *   The node.
-   * @param array $data
-   *   The data.
+   * Delete hearing replies.
    */
-  private function setDeskproData(NodeInterface $node, array $data) {
-    $this->database->merge('hoeringsportal_deskpro_deskpro_data')
-      ->keys([
-        'entity_type' => 'node',
-        'entity_id' => $node->id(),
-        'bundle' => $node->bundle(),
-      ])
-      ->fields([
-        'data' => json_encode($data),
-      ])
+  public function deleteHearingReplies(int|array $nodeIds): int {
+    $nodeId = (array) $nodeIds;
+
+    return $this->database->delete('hoeringsportal_deskpro_deskpro_tickets')
+      ->condition('entity_type', 'node', '=')
+      ->condition('bundle', 'hearing')
+      ->condition('entity_id', $nodeIds ?: [0], 'IN')
       ->execute();
+  }
+
+  /**
+   * Implements hook_node_update().
+   */
+  public function nodeUpdate(NodeInterface $node) {
+    if ($this->isHearing($node)) {
+      $date = $this->getHearingRepliesDeletedOn($node);
+      if (NULL !== $date) {
+        try {
+          $result = $this->deleteHearingReplies([$node->id()]);
+          $this->logger->info('Deleted hearing replies from hearing @label (@id): @result', [
+            '@id' => $node->id(),
+            '@label' => $node->label(),
+            '@result' => $result,
+          ]);
+        }
+        catch (\Exception $e) {
+          $this->logger->error('Error deleting hearing replies on hearing @label (@id): @message', [
+            '@id' => $node->id(),
+            '@label' => $node->label(),
+            '@message' => $e->getMessage(),
+          ]);
+        }
+      }
+    }
   }
 
   /**

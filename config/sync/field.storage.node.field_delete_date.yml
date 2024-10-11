@@ -1,0 +1,20 @@
+uuid: 55199c67-4189-4b36-957f-49ba0d8d0d39
+langcode: da
+status: true
+dependencies:
+  module:
+    - datetime
+    - node
+id: node.field_delete_date
+field_name: field_delete_date
+entity_type: node
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
