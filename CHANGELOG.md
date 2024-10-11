@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-420](https://github.com/itk-dev/hoeringsportal/pull/420)
+  1606: Made supporter name optional
 * [PR-419](https://github.com/itk-dev/hoeringsportal/pull/419)
   Added Drush command to delete hearing replies
 * [PR-418](https://github.com/itk-dev/hoeringsportal/pull/418)
