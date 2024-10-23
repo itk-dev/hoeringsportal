@@ -136,7 +136,7 @@ class Helper implements LoggerAwareInterface {
    * @return string|array|null
    *   The value if any. Otherwise the default value.
    */
-  public function getAdminValue(string|array $key = NULL, mixed $default = NULL) {
+  public function getAdminValue(string|array|null $key = NULL, mixed $default = NULL) {
     $values = $this->state->get(self::ADMIN_FORM_VALUES_STATE_KEY) ?: [];
     $value = empty($key)
       ? $values
@@ -167,7 +167,7 @@ class Helper implements LoggerAwareInterface {
    * @param mixed $value
    *   The value.
    */
-  public function setAdminValue(string|array $key = NULL, mixed $value): void {
+  public function setAdminValue(string|array|null $key = NULL, mixed $value): void {
     if (empty($key)) {
       if (!is_array($value)) {
         throw new \TypeError('Value must be an array');

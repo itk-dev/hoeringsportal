@@ -394,7 +394,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
    *
    * @phpstan-return array<string, mixed>
    */
-  private function displayError(Request $request, string $message, string $description = NULL): array {
+  private function displayError(Request $request, string $message, ?string $description = NULL): array {
     $this->error('Error', [
       'query' => $request->query->all(),
     ]);

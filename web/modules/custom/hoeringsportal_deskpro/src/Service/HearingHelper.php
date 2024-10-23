@@ -2,9 +2,6 @@
 
 namespace Drupal\hoeringsportal_deskpro\Service;
 
-use Drupal\advancedqueue\Entity\Queue;
-use Drupal\advancedqueue\Job;
-use Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\SupportsDeletingJobsInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Database\Query\Merge;
@@ -13,6 +10,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\Url;
+use Drupal\advancedqueue\Entity\Queue;
+use Drupal\advancedqueue\Job;
+use Drupal\advancedqueue\Plugin\AdvancedQueue\Backend\SupportsDeletingJobsInterface;
 use Drupal\file\Entity\File;
 use Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType\SynchronizeTicket;
 use Drupal\node\Entity\Node;
@@ -729,7 +729,7 @@ class HearingHelper {
    * @return array
    *   The jobs requested.
    */
-  private function getJobs(string $state = NULL): array {
+  private function getJobs(?string $state = NULL): array {
     $query = $this->database->select('advancedqueue', 'aq');
     $query->fields('aq');
     $query->condition('aq.queue_id', 'hoeringsportal_deskpro');
