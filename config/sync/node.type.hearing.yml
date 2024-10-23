@@ -11,7 +11,7 @@ third_party_settings:
 name: Høring
 type: hearing
 description: 'En høring knyttes til et eksisterende projekt. Alle høringer har en reference til Deskpro, så data kan hentes ind.'
-help: ''
+help: null
 new_revision: false
 preview_mode: 1
 display_submitted: true

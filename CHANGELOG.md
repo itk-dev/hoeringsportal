@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-421](https://github.com/itk-dev/hoeringsportal/pull/421)
+  Security updates
 * [PR-420](https://github.com/itk-dev/hoeringsportal/pull/420)
   1606: Made supporter name optional
 * [PR-419](https://github.com/itk-dev/hoeringsportal/pull/419)

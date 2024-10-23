@@ -8,3 +8,4 @@ name: 'Medie bibliotek'
 vid: media_library
 description: 'En taksonomi der kan bruges til at strukturere mediebiblioteket'
 weight: 0
+new_revision: false

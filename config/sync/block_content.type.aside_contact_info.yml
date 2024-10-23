@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 id: aside_contact_info
 label: 'Aside contact info'
-revision: 0
+revision: false
 description: 'Used to show contact info on a page'

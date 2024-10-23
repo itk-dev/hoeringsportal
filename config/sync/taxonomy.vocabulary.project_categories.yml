@@ -6,3 +6,4 @@ name: 'Project categories'
 vid: project_categories
 description: 'Used to categorize project pages'
 weight: 0
+new_revision: false

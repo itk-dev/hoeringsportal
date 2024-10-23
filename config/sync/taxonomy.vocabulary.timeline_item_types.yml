@@ -6,3 +6,4 @@ name: 'Tidslinje punkttyper'
 vid: timeline_item_types
 description: 'Typer af tidslinje punkter'
 weight: 0
+new_revision: false

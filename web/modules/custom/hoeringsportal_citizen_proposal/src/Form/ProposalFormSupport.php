@@ -33,7 +33,7 @@ final class ProposalFormSupport extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): RedirectResponse|array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?NodeInterface $node = NULL): RedirectResponse|array {
     // Pass the node to the submit handler.
     $form['#node'] = $node;
 

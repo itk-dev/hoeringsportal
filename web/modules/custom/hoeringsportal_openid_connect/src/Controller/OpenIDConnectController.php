@@ -315,7 +315,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
           '#query' => $request->query->all(),
         ];
 
-        return new Response($this->renderer->renderPlain($renderable));
+        return new Response($this->renderer->renderInIsolation($renderable));
       }
     }
     else {
@@ -394,7 +394,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
    *
    * @phpstan-return array<string, mixed>
    */
-  private function displayError(Request $request, string $message, string $description = NULL): array {
+  private function displayError(Request $request, string $message, ?string $description = NULL): array {
     $this->error('Error', [
       'query' => $request->query->all(),
     ]);

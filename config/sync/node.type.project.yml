@@ -11,7 +11,7 @@ third_party_settings:
 name: Projekttidslinje
 type: project
 description: 'En projekttidslinje der samler relaterede borgermøder og initiativer i en kronologi. Det er muligt at tilføje ekstra tidslinje punkter.'
-help: ''
+help: null
 new_revision: false
 preview_mode: 1
 display_submitted: true

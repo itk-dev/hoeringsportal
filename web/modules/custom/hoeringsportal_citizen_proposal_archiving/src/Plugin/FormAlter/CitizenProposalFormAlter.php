@@ -108,7 +108,7 @@ final class CitizenProposalFormAlter extends FormAlterBase {
         'child' => $children,
       ];
 
-      $form['field_getorganized_case_id']['#suffix'] = $this->renderer->renderPlain($build);
+      $form['field_getorganized_case_id']['#suffix'] = $this->renderer->renderInIsolation($build);
     }
   }
 

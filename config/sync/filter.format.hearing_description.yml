@@ -42,4 +42,4 @@ filters:
     status: true
     weight: 15
     settings:
-      replace_empty: '1'
+      replace_empty: true

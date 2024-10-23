@@ -152,14 +152,14 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * Get admin form value.
    */
-  protected function getAdminFormStateValue(string|array $key, string $default = NULL): mixed {
+  protected function getAdminFormStateValue(string|array $key, ?string $default = NULL): mixed {
     return $this->helper->getAdminValue($key, $default);
   }
 
   /**
    * Get admin form value as a URL.
    */
-  protected function getAdminFormStateValueUrl(string|array $key, string $default = NULL, Url $defaultUrl = NULL): Url {
+  protected function getAdminFormStateValueUrl(string|array $key, ?string $default = NULL, ?Url $defaultUrl = NULL): Url {
     try {
       return Url::fromUserInput($this->helper->getAdminValue($key, $default) ?? '');
     }
@@ -206,7 +206,7 @@ abstract class ProposalFormBase extends FormBase {
   /**
    * De-authenticate (is that a real word?) user.
    */
-  protected function deAuthenticateUser(Url $url = NULL): Url {
+  protected function deAuthenticateUser(?Url $url = NULL): Url {
     if (NULL === $url) {
       $url = Url::fromRoute('<current>');
     }

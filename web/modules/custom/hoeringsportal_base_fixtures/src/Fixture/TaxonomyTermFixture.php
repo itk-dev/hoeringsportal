@@ -66,7 +66,7 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  private function createTerms(array $items, Term $parent = NULL) {
+  private function createTerms(array $items, ?Term $parent = NULL) {
     $weight = 0;
     foreach ($items as $name => $value) {
       if (is_array($value)) {
@@ -95,7 +95,7 @@ abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGro
    *
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  protected function createTerm(string $name, int $weight, Term $parent = NULL) {
+  protected function createTerm(string $name, int $weight, ?Term $parent = NULL) {
     $term = Term::create([
       'vid' => static::$vocabularyId,
       'weight' => $weight,
