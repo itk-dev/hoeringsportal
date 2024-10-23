@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^8.1.0",
+        "php": "^8.3.0",
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/jqueryui-touch-punch": "dev-gh-pages",
         "bower-asset/spectrum": "^1.8",
