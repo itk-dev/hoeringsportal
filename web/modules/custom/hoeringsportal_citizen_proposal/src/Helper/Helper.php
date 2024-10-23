@@ -167,7 +167,7 @@ class Helper implements LoggerAwareInterface {
    * @param mixed $value
    *   The value.
    */
-  public function setAdminValue(string|array|null $key = NULL, mixed $value): void {
+  public function setAdminValue(string|array|null $key, mixed $value): void {
     if (empty($key)) {
       if (!is_array($value)) {
         throw new \TypeError('Value must be an array');

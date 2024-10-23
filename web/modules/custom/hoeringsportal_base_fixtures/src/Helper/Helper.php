@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_base_fixtures\Helper;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ExtensionPathResolver;
+use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
 use Drupal\file\FileRepository;
@@ -62,7 +63,7 @@ class Helper {
 
     // Loop over .jpg images to add them properly to the file system.
     foreach (glob($image_source_path . '/*.jpg') as $image) {
-      $destination = $this->fileSystem->copy($image, $image_target_path . '/' . basename($image), FileSystemInterface::EXISTS_REPLACE);
+      $destination = $this->fileSystem->copy($image, $image_target_path . '/' . basename($image), FileExists::Replace);
       $images[] = $destination;
     }
 
@@ -80,12 +81,12 @@ class Helper {
 
     // Loop over documents to add them properly to the file system.
     foreach (glob($document_source_path . '/*.pdf') as $document) {
-      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
+      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileExists::Replace);
       $documents[] = $destination;
     }
 
     foreach (glob($document_source_path . '/*.docx') as $document) {
-      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileSystemInterface::EXISTS_REPLACE);
+      $destination = $this->fileSystem->copy($document, $document_target_path . '/' . basename($document), FileExists::Replace);
       $documents[] = $destination;
     }
 

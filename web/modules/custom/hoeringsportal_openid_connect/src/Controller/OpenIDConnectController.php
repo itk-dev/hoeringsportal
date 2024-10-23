@@ -315,7 +315,7 @@ final class OpenIDConnectController implements ContainerInjectionInterface {
           '#query' => $request->query->all(),
         ];
 
-        return new Response($this->renderer->renderPlain($renderable));
+        return new Response($this->renderer->renderInIsolation($renderable));
       }
     }
     else {
