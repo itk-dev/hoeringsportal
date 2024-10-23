@@ -6,3 +6,4 @@ name: Område
 vid: area
 description: 'Området vises i teaservisningen og kan bruges som filter på oversigter'
 weight: 0
+new_revision: false

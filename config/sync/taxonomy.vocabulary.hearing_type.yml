@@ -6,3 +6,4 @@ name: Høringstype
 vid: hearing_type
 description: 'De forskellige høringstyper der kan vælges imellem når en høring oprettes'
 weight: 0
+new_revision: false

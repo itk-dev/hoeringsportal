@@ -11,7 +11,7 @@ third_party_settings:
 name: Begivenhed
 type: public_meeting
 description: 'En begivenhed'
-help: ''
+help: null
 new_revision: true
 preview_mode: 0
 display_submitted: false
