@@ -1,104 +1,13 @@
 {
-    "description": "Høringsportal",
-    "type": "project",
     "name": "itk-dev/hoeringsportal",
+    "description": "Høringsportal",
     "license": "GPL-2.0-or-later",
+    "type": "project",
     "authors": [
         {
             "name": "Mikkel Ricky <rimi@aarhus.dk>"
         }
     ],
-    "repositories": {
-        "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
-        },
-        "asset-packagist": {
-            "type": "composer",
-            "url": "https://asset-packagist.org/"
-        },
-        "drupal/hoeringsportal_data": {
-            "type": "path",
-            "url": "web/modules/custom/hoeringsportal_data",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "drupal/hoeringsportal_data": "1.0-dev"
-                }
-            }
-        },
-        "drupal/hoeringsportal_deskpro": {
-            "type": "path",
-            "url": "web/modules/custom/hoeringsportal_deskpro",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "drupal/hoeringsportal_deskpro": "1.0-dev"
-                }
-            }
-        },
-        "drupal/hoeringsportal_openid_connect": {
-            "type": "path",
-            "url": "web/modules/custom/hoeringsportal_openid_connect",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "drupal/hoeringsportal_openid_connect": "1.0-dev"
-                }
-            }
-        },
-        "drupal/hoeringsportal_citizen_proposal": {
-            "type": "path",
-            "url": "web/modules/custom/hoeringsportal_citizen_proposal",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "drupal/hoeringsportal_citizen_proposal": "1.0-dev"
-                }
-            }
-        },
-        "drupal/hoeringsportal_citizen_proposal_archiving": {
-            "type": "path",
-            "url": "web/modules/custom/hoeringsportal_citizen_proposal_archiving",
-            "options": {
-                "symlink": false,
-                "versions": {
-                    "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev"
-                }
-            }
-        },
-        "// @see web/modules/contrib/search_autocomplete/readme.md": {
-            "type": "package",
-            "package": {
-                "name": "cure53/dompurify",
-                "version": "3.0.3",
-                "type": "drupal-library",
-                "source": {
-                    "url": "https://github.com/cure53/DOMPurify.git",
-                    "type": "git",
-                    "reference": "3.0.3"
-                }
-            }
-        },
-        "deskpro/deskpro-api-client-php": {
-          "type": "package",
-          "package": {
-            "name": "deskpro/deskpro-api-client-php",
-            "version": "4.1.0",
-            "type": "library",
-            "source": {
-              "url": "https://github.com/itk-dev/deskpro-api-client-php.git",
-              "type": "git",
-              "reference": "hotfix/change-psr-log-dependency"
-            },
-            "autoload": {
-              "psr-0": {
-                "Deskpro\\": "src/"
-              }
-            }
-          }
-        }
-    },
     "require": {
         "php": "^8.1.0",
         "bower-asset/jquery-simple-color": "^1.2",
@@ -171,6 +80,7 @@
         "drupal/content_fixtures": "^3.1",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
+        "ergebnis/composer-normalize": "^2.44",
         "mglaman/phpstan-drupal": "^1.1",
         "phpstan/extension-installer": "^1.2",
         "phpstan/phpstan-deprecation-rules": "^1.1",
@@ -179,10 +89,100 @@
     "conflict": {
         "drupal/drupal": "*"
     },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "asset-packagist": {
+            "type": "composer",
+            "url": "https://asset-packagist.org/"
+        },
+        "drupal/hoeringsportal_data": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_data",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_data": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_deskpro": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_deskpro",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_deskpro": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_openid_connect": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_openid_connect",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_openid_connect": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_citizen_proposal": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_citizen_proposal",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_citizen_proposal": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_citizen_proposal_archiving": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_citizen_proposal_archiving",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_citizen_proposal_archiving": "1.0-dev"
+                }
+            }
+        },
+        "// @see web/modules/contrib/search_autocomplete/readme.md": {
+            "type": "package",
+            "package": {
+                "name": "cure53/dompurify",
+                "type": "drupal-library",
+                "version": "3.0.3",
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/cure53/DOMPurify.git",
+                    "reference": "3.0.3"
+                }
+            }
+        },
+        "deskpro/deskpro-api-client-php": {
+            "type": "package",
+            "package": {
+                "name": "deskpro/deskpro-api-client-php",
+                "type": "library",
+                "version": "4.1.0",
+                "autoload": {
+                    "psr-0": {
+                        "Deskpro\\": "src/"
+                    }
+                },
+                "source": {
+                    "type": "git",
+                    "url": "https://github.com/itk-dev/deskpro-api-client-php.git",
+                    "reference": "hotfix/change-psr-log-dependency"
+                }
+            }
+        }
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "sort-packages": true,
         "allow-plugins": {
             "chx/drupal-issue-fork": true,
             "composer/installers": true,
@@ -191,56 +191,22 @@
             "drupal/console-extend-plugin": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
+            "ergebnis/composer-normalize": true,
             "oomphinc/composer-installers-extender": true,
             "php-http/discovery": true,
             "phpstan/extension-installer": true,
             "tbachert/spi": true
-        }
-    },
-    "scripts": {
-        "code-analysis/phpstan": [
-            "phpstan analyse --configuration=phpstan.neon --memory-limit=256M"
-        ],
-        "code-analysis": [
-            "@code-analysis/phpstan"
-        ],
-        "coding-standards-apply": [
-            "@coding-standards-apply/phpcs",
-            "@coding-standards-apply/twig-cs-fixer"
-        ],
-        "coding-standards-apply/phpcs": [
-            "scripts/phpcbf --standard=phpcs.xml.dist"
-        ],
-        "coding-standards-apply/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates --fix"
-        ],
-        "coding-standards-check": [
-            "@coding-standards-check/phpcs",
-            "@coding-standards-check/twig-cs-fixer"
-        ],
-        "coding-standards-check/phpcs": [
-            "vendor/bin/phpcs --standard=phpcs.xml.dist"
-        ],
-        "coding-standards-check/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
-        ],
-        "post-install-cmd": [
-            "@install-codestandards"
-        ],
-        "install-codestandards": [
-            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
-        ]
+        },
+        "sort-packages": true
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
             }
         },
-        "installer-types": [
-            "npm-asset",
-            "bower-asset"
-        ],
+        "enable-patching": true,
         "installer-paths": {
             "web/core": [
                 "type:drupal-core"
@@ -269,8 +235,10 @@
                 "type:drupal-custom-theme"
             ]
         },
-        "composer-exit-on-patch-failure": true,
-        "enable-patching": true,
+        "installer-types": [
+            "npm-asset",
+            "bower-asset"
+        ],
         "patches": {
             "drupal/better_exposed_filters": {
                 "Add option to hide exposed filter field labels (https://www.drupal.org/project/better_exposed_filters/issues/3282228)": "https://www.drupal.org/files/issues/2022-09-08/bef-visually_hidden.3282228.8.patch",
@@ -280,5 +248,39 @@
                 "Text format wrapper does not take description_display into account (https://www.drupal.org/project/drupal/issues/2421445#comment-14328645)": "https://www.drupal.org/files/issues/2021-12-03/2421445-18_0.patch"
             }
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@install-codestandards"
+        ],
+        "code-analysis": [
+            "@code-analysis/phpstan"
+        ],
+        "code-analysis/phpstan": [
+            "phpstan analyse --configuration=phpstan.neon --memory-limit=256M"
+        ],
+        "coding-standards-apply": [
+            "@coding-standards-apply/phpcs",
+            "@coding-standards-apply/twig-cs-fixer"
+        ],
+        "coding-standards-apply/phpcs": [
+            "scripts/phpcbf --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-apply/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates --fix"
+        ],
+        "coding-standards-check": [
+            "@coding-standards-check/phpcs",
+            "@coding-standards-check/twig-cs-fixer"
+        ],
+        "coding-standards-check/phpcs": [
+            "vendor/bin/phpcs --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-check/twig-cs-fixer": [
+            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
+        ],
+        "install-codestandards": [
+            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+        ]
     }
 }

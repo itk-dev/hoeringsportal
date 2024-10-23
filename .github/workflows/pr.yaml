@@ -60,6 +60,10 @@ jobs:
       - name: Validate composer files
         run: |
           composer validate composer.json
+      - name: Check composer file is normalized
+        run: |
+          composer install --no-interaction --no-progress
+          composer normalize composer.json --dry-run
 
   coding-standards-phpcs:
     name: PHP - Check Coding Standards
