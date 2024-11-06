@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-422](https://github.com/itk-dev/hoeringsportal/pull/422)
+  Implement feedback on delete hearing tickets feature.
 * [PR-421](https://github.com/itk-dev/hoeringsportal/pull/421)
   Security updates
 * [PR-420](https://github.com/itk-dev/hoeringsportal/pull/420)
