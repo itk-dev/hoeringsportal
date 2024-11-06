@@ -2,10 +2,10 @@
 
 namespace Drupal\hoeringsportal_deskpro\Plugin\AdvancedQueue\JobType;
 
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\advancedqueue\Job;
 use Drupal\advancedqueue\JobResult;
 use Drupal\advancedqueue\Plugin\AdvancedQueue\JobType\JobTypeBase;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\hoeringsportal_deskpro\Service\HearingHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

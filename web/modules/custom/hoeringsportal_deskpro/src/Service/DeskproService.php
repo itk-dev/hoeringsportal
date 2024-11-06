@@ -470,7 +470,7 @@ class DeskproService {
   /**
    * Check that token is a valid data token.
    */
-  public function isValidToken(string $token = NULL) {
+  public function isValidToken(?string $token = NULL) {
     return $token === $this->getToken();
   }
 
@@ -626,7 +626,7 @@ class DeskproService {
   /**
    * Get info on what to expand.
    */
-  private function getExpand(array $query, string $field = NULL) {
+  private function getExpand(array $query, ?string $field = NULL) {
     if (!isset($query['expand'])) {
       return NULL;
     }

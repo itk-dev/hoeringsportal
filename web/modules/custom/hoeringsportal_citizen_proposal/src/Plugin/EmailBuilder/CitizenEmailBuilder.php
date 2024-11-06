@@ -56,7 +56,7 @@ final class CitizenEmailBuilder extends EmailBuilderBase implements ContainerFac
   /**
    * {@inheritdoc}
    */
-  public function createParams(EmailInterface $email, NodeInterface $node = NULL) {
+  public function createParams(EmailInterface $email, ?NodeInterface $node = NULL) {
     if (NULL === $node
       || !$this->citizenProposalHelper->isCitizenProposal($node)) {
       throw new \TypeError('Node must be a citizen proposal');

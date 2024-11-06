@@ -118,7 +118,7 @@ function hoeringsportal_data_views_pre_render(ViewExecutable $view) {
 /**
  * Translate a form element.
  */
-function _hoeringsportal_data_translate_element(&$element, FormStateInterface $form_state = NULL, $context = NULL) {
+function _hoeringsportal_data_translate_element(&$element, ?FormStateInterface $form_state = NULL, $context = NULL) {
   foreach (['#title', '#description'] as $key) {
     $field = &$element[$key] ?? NULL;
     if (!empty($field) && !$field instanceof TranslatableMarkup) {

@@ -4,5 +4,5 @@ status: true
 dependencies: {  }
 id: aside_link_box
 label: 'Aside link box'
-revision: 0
+revision: false
 description: 'Used to create a link box in the right column.'
