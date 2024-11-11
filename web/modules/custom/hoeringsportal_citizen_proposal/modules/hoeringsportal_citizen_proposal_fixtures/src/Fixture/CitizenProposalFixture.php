@@ -2,10 +2,10 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
 use Drupal\hoeringsportal_base_fixtures\Helper\Helper as BaseFixtureHelper;

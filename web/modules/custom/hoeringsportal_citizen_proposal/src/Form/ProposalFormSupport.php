@@ -33,7 +33,7 @@ final class ProposalFormSupport extends ProposalFormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, NodeInterface $node = NULL): RedirectResponse|array {
+  public function buildForm(array $form, FormStateInterface $form_state, ?NodeInterface $node = NULL): RedirectResponse|array {
     // Pass the node to the submit handler.
     $form['#node'] = $node;
 
@@ -83,17 +83,6 @@ final class ProposalFormSupport extends ProposalFormBase {
 
     ];
 
-    $form['name'] = [
-      '#type' => 'textfield',
-      '#required' => TRUE,
-      '#title' => $this
-        ->t('Name'),
-      '#default_value' => $defaltValues['name'],
-      '#attributes' => ['readonly' => !$this->isAuthenticatedAsEditor()],
-      '#description' => $this->getAdminFormStateValue('support_name_help'),
-      '#description_display' => 'before',
-    ];
-
     $form['email'] = [
       '#type' => 'email',
       '#title' => $this
@@ -115,6 +104,22 @@ final class ProposalFormSupport extends ProposalFormBase {
         ],
       ],
     ];
+
+    $form['name'] = [
+      '#type' => 'textfield',
+      '#title' => $this
+        ->t('Name'),
+      '#default_value' => $defaltValues['name'],
+      '#attributes' => ['readonly' => !$this->isAuthenticatedAsEditor()],
+      '#description' => $this->getAdminFormStateValue('support_name_help'),
+      '#description_display' => 'before',
+      '#states' => [
+        'required' => [
+          ':input[name="allow_email"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['name']['#states']['visible'] = $form['name']['#states']['required'];
 
     $this->buildSurveyForm($form);
 

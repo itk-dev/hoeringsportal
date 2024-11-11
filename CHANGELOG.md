@@ -6,6 +6,21 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.6.0] - 2024-11-11
+
+* [PR-422](https://github.com/itk-dev/hoeringsportal/pull/422)
+  Implement feedback on delete hearing tickets feature.
+* [PR-421](https://github.com/itk-dev/hoeringsportal/pull/421)
+  Security updates
+* [PR-420](https://github.com/itk-dev/hoeringsportal/pull/420)
+  1606: Made supporter name optional
+* [PR-419](https://github.com/itk-dev/hoeringsportal/pull/419)
+  Added Drush command to delete hearing replies
+* [PR-418](https://github.com/itk-dev/hoeringsportal/pull/418)
+  Add message when hearing replies are deleted
+* [PR-417](https://github.com/itk-dev/hoeringsportal/pull/417)
+  Added more test setup stuff
+
 ## [4.5.1] - 2024-09-06
 
 * [PR-416](https://github.com/itk-dev/hoeringsportal/pull/416)
@@ -240,7 +255,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.0...HEAD
+[4.6.0]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...4.6.0
 [4.5.1]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...4.5.1
 [4.5.0]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...4.5.0
 [4.4.1]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...4.4.1

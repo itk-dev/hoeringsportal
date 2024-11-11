@@ -68,7 +68,7 @@ final class Renderer implements LoggerAwareInterface, LoggerInterface {
       ],
     ];
 
-    return trim((string) $this->renderer->renderPlain($build));
+    return trim((string) $this->renderer->renderInIsolation($build));
   }
 
   /**

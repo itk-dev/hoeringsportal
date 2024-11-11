@@ -2,12 +2,12 @@
 
 namespace Drupal\hoeringsportal_citizen_proposal_archiving\Helper;
 
-use Drupal\advancedqueue\Entity\QueueInterface;
-use Drupal\advancedqueue\Job;
-use Drupal\advancedqueue\JobResult;
 use Drupal\Core\Config\Entity\ConfigEntityStorageInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\advancedqueue\Entity\QueueInterface;
+use Drupal\advancedqueue\Job;
+use Drupal\advancedqueue\JobResult;
 use Drupal\entity_events\EntityEventType;
 use Drupal\entity_events\Event\EntityEvent;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper as CitizenProposalHelper;

@@ -6,3 +6,4 @@ name: Emneord
 vid: tags
 description: 'En liste af emneord der kan bruges til at tagge indhold'
 weight: 0
+new_revision: false

@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
+    - field.field.node.hearing.field_delete_date
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -52,9 +53,11 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
+        label: ''
     regions:
       header:
         - 'dynamic_block_field:node-hearing_ticket_title'
+        - sharing_buttons
       left:
         - node_title
         - 'dynamic_block_field:node-hearing_ticket'
@@ -63,22 +66,23 @@ third_party_settings:
         - 'dynamic_token_field:node-header_information'
         - field_start_date
         - field_reply_deadline
-        - field_hearing_type
         - field_type
         - field_tags
         - field_area
         - 'dynamic_token_field:node-node_id_hearing'
         - field_contact
         - field_more_info
+      footer:
+        - field_delete_date
     fields:
       'dynamic_block_field:node-hearing_ticket':
         plugin_id: 'dynamic_block_field:node-hearing_ticket'
-        weight: 2
+        weight: 3
         label: hidden
         formatter: default
       'dynamic_block_field:node-hearing_ticket_author':
         plugin_id: 'dynamic_block_field:node-hearing_ticket_author'
-        weight: 3
+        weight: 4
         label: above
         formatter: default
       'dynamic_block_field:node-hearing_ticket_title':
@@ -88,7 +92,7 @@ third_party_settings:
         formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 4
+        weight: 5
         label: hidden
         formatter: default
       'dynamic_token_field:node-node_id_hearing':
@@ -98,7 +102,7 @@ third_party_settings:
         formatter: default
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 2
         label: hidden
         formatter: default
         settings:
@@ -125,6 +129,15 @@ content:
     third_party_settings: {  }
     weight: 12
     region: right
+  field_delete_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 14
+    region: footer
   field_more_info:
     type: text_default
     label: above
@@ -139,7 +152,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_datetime
     third_party_settings: {  }
-    weight: 6
+    weight: 7
     region: right
   field_start_date:
     type: datetime_default
@@ -148,7 +161,7 @@ content:
       timezone_override: ''
       format_type: hoeringsportal_date
     third_party_settings: {  }
-    weight: 5
+    weight: 6
     region: right
   field_tags:
     type: entity_reference_label
@@ -169,8 +182,8 @@ content:
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 100
-    region: content
+    weight: 1
+    region: header
 hidden:
   field_content_state: true
   field_description: true

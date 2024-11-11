@@ -5,7 +5,6 @@ namespace Drupal\hoeringsportal_deskpro\State;
 use Drupal\Component\Serialization\SerializationInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\KeyValueStore\DatabaseStorage;
-use Drupal\Core\Serialization\Yaml;
 
 /**
  * Formconfig for deskpro.
@@ -33,13 +32,6 @@ class DeskproConfig extends DatabaseStorage {
     return array_filter($representations, function ($representation) {
       return $representation['is_available'];
     });
-  }
-
-  /**
-   * Validate representations.
-   */
-  public function validateRepresentations($value) {
-    Yaml::decode($value);
   }
 
   /**

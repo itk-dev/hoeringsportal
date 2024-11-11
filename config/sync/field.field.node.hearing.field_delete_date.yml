@@ -1,0 +1,21 @@
+uuid: 1368ee79-00fb-48fd-b130-562dc0528233
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_delete_date
+    - node.type.hearing
+  module:
+    - datetime
+id: node.hearing.field_delete_date
+field_name: field_delete_date
+entity_type: node
+bundle: hearing
+label: 'Dato for sletning af høringssvar'
+description: 'Vælg hvornår høringssvar skal slettes fra deltag.aarhus.dk. Obs. Svar forsvinder kun fra deltag.aarhus.dk, men opbevares stadig i GO'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
