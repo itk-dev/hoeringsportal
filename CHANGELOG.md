@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.6.0] - 2024-11-11
+
 * [PR-422](https://github.com/itk-dev/hoeringsportal/pull/422)
   Implement feedback on delete hearing tickets feature.
 * [PR-421](https://github.com/itk-dev/hoeringsportal/pull/421)
@@ -253,7 +255,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.0...HEAD
+[4.6.0]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...4.6.0
 [4.5.1]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...4.5.1
 [4.5.0]: https://github.com/itk-dev/hoeringsportal/compare/4.4.1...4.5.0
 [4.4.1]: https://github.com/itk-dev/hoeringsportal/compare/4.4.0...4.4.1
