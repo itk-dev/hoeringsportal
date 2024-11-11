@@ -14,20 +14,19 @@ use Drupal\field\FieldStorageConfigInterface;
  *
  * Add a template suggestions for modifying the node form.
  */
-function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array $variables) {
+function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array $variables, string $hook) {
   if (isset($variables['form']) && $variables['theme_hook_original'] == 'node_edit_form') {
     if ($variables['form']['#form_id'] == 'node_project_form' || $variables['form']['#form_id'] == 'node_project_edit_form') {
-      $suggestions[] = 'hoeringsportal_project_node_form';
+      $suggestions[] = $hook . '__hoeringsportal_project';
     }
     if ($variables['form']['#form_id'] == 'node_hearing_form' || $variables['form']['#form_id'] == 'node_hearing_edit_form') {
-      $suggestions[] = 'hoeringsportal_hearing_node_form';
+      $suggestions[] = $hook . '__hoeringsportal_hearing';
     }
     if ($variables['form']['#form_id'] == 'node_static_page_form' || $variables['form']['#form_id'] == 'node_static_page_edit_form') {
-      $suggestions[] = 'hoeringsportal_static_page_node_form';
+      $suggestions[] = $hook . '__hoeringsportal_static_page';
     }
-
     if ($variables['form']['#form_id'] == 'node_public_meeting_form' || $variables['form']['#form_id'] == 'node_public_meeting_edit_form') {
-      $suggestions[] = 'hoeringsportal_public_meeting_node_form';
+      $suggestions[] = $hook . '__hoeringsportal_public_meeting';
     }
   }
 
@@ -41,21 +40,17 @@ function hoeringsportal_forms_theme_suggestions_alter(array &$suggestions, array
  */
 function hoeringsportal_forms_theme($existing, $type, $theme, $path) {
   return [
-    'hoeringsportal_project_node_form' => [
+    'node_edit_form__hoeringsportal_project' => [
       'render element' => 'form',
-      'template' => 'hoeringsportal-project-node-form',
     ],
-    'hoeringsportal_hearing_node_form' => [
+    'node_edit_form__hoeringsportal_hearing' => [
       'render element' => 'form',
-      'template' => 'hoeringsportal-hearing-node-form',
     ],
-    'hoeringsportal_static_page_node_form' => [
+    'node_edit_form__hoeringsportal_static_page' => [
       'render element' => 'form',
-      'template' => 'hoeringsportal-static-page-node-form',
     ],
-    'hoeringsportal_public_meeting_node_form' => [
+    'node_edit_form__hoeringsportal_public_meeting' => [
       'render element' => 'form',
-      'template' => 'hoeringsportal-public-meeting-node-form',
     ],
   ];
 }
