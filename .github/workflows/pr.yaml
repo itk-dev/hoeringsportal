@@ -25,7 +25,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -39,7 +39,7 @@ jobs:
     name: Validate composer
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -69,7 +69,7 @@ jobs:
     name: PHP - Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -100,7 +100,7 @@ jobs:
     name: Twig - Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -133,7 +133,7 @@ jobs:
       matrix:
         node: [ '16' ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -146,7 +146,7 @@ jobs:
     name: PHP - Code analysis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
@@ -176,7 +176,7 @@ jobs:
     name: Yarn - Check Coding Standards in custom themes
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Setup docker network
         run: docker network create frontend
 
@@ -190,7 +190,7 @@ jobs:
     name: Check custom theme assets are up to date
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Setup docker network
         run: docker network create frontend
@@ -208,7 +208,7 @@ jobs:
     name: Check that site can be installed
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -235,7 +235,7 @@ jobs:
     name: Check that config is up to date
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -261,7 +261,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -301,3 +301,64 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  update-site:
+    name: Check that site can be updated
+    runs-on: ubuntu-latest
+    steps:
+      # Install site from our base ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+      - name: Install site
+        run: |
+          # Add some local settings.
+          cat > web/sites/default/settings.local.php <<'EOF'
+          <?php
+
+          $settings['hash_salt'] = '${{ github.head_ref }}';
+          EOF
+
+          cat web/sites/default/settings.local.php
+
+          # Install the site from config
+          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Clean up root stuff
+        run: |
+          sudo chown -Rv $USER:$USER vendor/ web/ private-files/ || true
+          sudo chmod -Rv a+w web/sites/default || true
+
+      # Install site with our current ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          # Keep our local settings (cf.
+          # https://github.com/actions/checkout?tab=readme-ov-file#usage)
+          clean: false
+
+      # - run: |
+      #     sudo git fetch
+      #     sudo git checkout ${{ github.head_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec --user root phpfpm composer install --no-interaction
+
+      - name: Update site
+        run: |
+          docker compose exec --user root phpfpm vendor/bin/drush deploy --yes
