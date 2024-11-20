@@ -3,8 +3,11 @@ langcode: da
 status: true
 dependencies:
   config:
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - node.type.hearing
     - node.type.project
+    - node.type.public_meeting
     - node.type.static_page
   module:
     - entity_browser
@@ -12,6 +15,7 @@ dependencies:
     - locale
     - media
     - node
+    - publication_date
     - quick_node_clone
     - system
     - toolbar
@@ -42,6 +46,8 @@ permissions:
   - 'edit own hearing content'
   - 'edit own project content'
   - 'edit own static_page content'
+  - 'set hearing published on date'
+  - 'set public_meeting published on date'
   - 'translate interface'
   - 'update media'
   - 'view own unpublished content'
