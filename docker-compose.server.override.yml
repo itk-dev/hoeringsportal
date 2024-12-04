@@ -5,12 +5,17 @@ services:
       - PHP_POST_MAX_SIZE=90M
       - PHP_UPLOAD_MAX_FILESIZE=80M
       - PHP_OPCACHE_VALIDATE_TIMESTAMPS=0
-      - PHP_MEMORY_LIMIT=528M
+      - PHP_MEMORY_LIMIT=512M
+    volumes:
+      - ../../shared/settings.local.php:/app/web/sites/default/settings.local.php
+      - ../../shared/files:/app/web/sites/default/files
 
   nginx:
     environment:
       # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
       NGINX_MAX_BODY_SIZE: 90M
+    volumes:
+      - ../../shared/files:/app/web/sites/default/files
 
   node:
     image: node:18
@@ -21,6 +26,3 @@ services:
     image: clamav/clamav:1.2
     networks:
       - app
-    ports:
-      - '3310'
-      - '7357'

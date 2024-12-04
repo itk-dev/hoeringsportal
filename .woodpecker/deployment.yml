@@ -1,0 +1,32 @@
+when:
+  - event: release
+
+skip_clone: true
+
+steps:
+  - name: Ansible playbook
+    image: itkdev/ansible-plugin:1
+    pull: true
+    settings:
+      id:
+        from_secret: id
+      secret:
+        from_secret: secret
+      host:
+        from_secret: host
+      path:
+        from_secret: path
+      user:
+        from_secret: user
+      playbook: 'release'
+      pre_up:
+        - itkdev-docker-compose-server run --rm phpfpm vendor/bin/drush --yes cache:rebuild
+        - itkdev-docker-compose-server run --rm phpfpm vendor/bin/drush --yes deploy
+      cron:
+        cron:
+          minute: '0'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush core:cron'

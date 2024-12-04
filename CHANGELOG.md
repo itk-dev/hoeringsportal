@@ -6,6 +6,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.6.1] - 2024-12-04
+
+- Added automatic deployment
+
 ## [4.6.0] - 2024-11-11
 
 * [PR-422](https://github.com/itk-dev/hoeringsportal/pull/422)
