@@ -24,9 +24,51 @@ steps:
         - itkdev-docker-compose-server run --rm phpfpm vendor/bin/drush --yes deploy
       cron:
         cron:
+          minute: '*/5'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" core:cron'
+        hearing-state-update:
+          minute: '*/1'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal:data:hearing-state-update'
+        public_meeting:
+          minute: '*/1'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal:public_meeting:state-update'
+        deskpro:
+          minute: '*/5'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" advancedqueue:queue:process hoeringsportal_deskpro'
+        finish-overdue-proposals:
+          minute: '*/5'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal-citizen-proposal:finish-overdue-proposals'
+        archiving:
           minute: '0'
           hour: '*'
           day: '*'
           month: '*'
           weekday: '*'
-          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush core:cron'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" advancedqueue:queue:process hoeringsportal_citizen_proposal_archiving'
+        delete-replies:
+          minute: '3'
+          hour: '*'
+          day: '*'
+          month: '*'
+          weekday: '*'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal:data:delete-replies'
