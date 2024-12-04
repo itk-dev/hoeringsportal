@@ -22,6 +22,8 @@ steps:
       pre_up:
         - itkdev-docker-compose-server run --rm phpfpm vendor/bin/drush --yes cache:rebuild
         - itkdev-docker-compose-server run --rm phpfpm vendor/bin/drush --yes deploy
+        # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
+        - itkdev-docker-compose-server run --rm phpfpm composer dump-autoload
       cron:
         cron:
           minute: '*/5'
