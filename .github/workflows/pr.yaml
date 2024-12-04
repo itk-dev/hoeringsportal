@@ -1,11 +1,4 @@
-on:
-  pull_request:
-    types:
-      - opened
-      - labeled
-      - unlabeled
-      - synchronize
-      - reopened
+on: pull_request
 
 name: PR Review
 jobs:
