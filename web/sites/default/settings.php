@@ -50,6 +50,12 @@ $databases['default']['default'] = [
 
 $settings['config_sync_directory'] = '../config/sync';
 
+// Exclude development modules from configuration synchronization
+// https://www.drupal.org/node/3079028
+$settings['config_exclude_modules'] = [
+  'masquerade',
+];
+
 // Local settings. These come last so that they can override anything.
 if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';
