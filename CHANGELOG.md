@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-425](https://github.com/itk-dev/hoeringsportal/pull/425)
+  Publication dates
 * [PR-424](https://github.com/itk-dev/hoeringsportal/pull/424)
   2945: Cleaned up form templates. Applied security updates.
 
