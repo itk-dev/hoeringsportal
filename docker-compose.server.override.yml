@@ -9,7 +9,8 @@ services:
     volumes:
       - ../../shared/settings.local.php:/app/web/sites/default/settings.local.php
       - ../../shared/files:/app/web/sites/default/files
-
+      - ../../shared/private:/app/private-files
+      
   nginx:
     environment:
       # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
