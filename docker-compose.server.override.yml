@@ -25,5 +25,6 @@ services:
 
   clamav:
     image: clamav/clamav:1.2
+    restart: unless-stopped
     networks:
       - app
