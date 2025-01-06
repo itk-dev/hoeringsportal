@@ -109,7 +109,7 @@ final class Helper {
   /**
    * Implements hook_views_query_alter().
    *
-   * Alters query to onyl select nodes that the current user has edit access to.
+   * Alters query to only select nodes that the current user has edit access to.
    */
   public function viewsQueryAlter(ViewExecutable $view, QueryPluginBase $query) {
     if ($this->bypassDepartmentAccessCheck()) {
