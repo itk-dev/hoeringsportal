@@ -75,8 +75,10 @@ Input address here.',
             ->id(),
         ],
         'field_project_reference' => '',
-        // If we're lucky this Deskpro data makes sense.
-        'field_deskpro_department_id' => 12,
+        // If we're lucky (or follow the test mode instructions in
+        // ../../../../../hoeringsportal_deskpro/README.md) this Deskpro data
+        // makes sense.
+        'field_deskpro_department_id' => 1,
         'field_deskpro_agent_email' => 'deskpro@example.com',
         'field_teaser' => 'Lorem ipsum teaser',
         'field_hearing_ticket_add' => '',

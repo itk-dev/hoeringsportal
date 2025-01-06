@@ -1,4 +1,21 @@
 data:
+  - id: 001
+    primary_email: deskpro@example.com
+    first_name: Deskpro
+    last_name: Agent
+    title_prefix: ''
+    name: Deskpro Agent
+    display_name: Deskpro Agent
+    is_agent: true
+    avatar:
+      default_url_pattern: https://example.com/file.php/avatar/{{IMG_SIZE}}/default.jpg?size-fit=1
+      url_pattern: null
+      base_gravatar_url: null
+    online: false
+    online_for_chat: false
+    last_seen: null
+    agent_data: null
+
   - id: 007
     primary_email: 007@example.com
     first_name: James
