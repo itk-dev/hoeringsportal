@@ -263,7 +263,7 @@ final class Helper {
    * @param \Drupal\Core\Session\AccountInterface $account
    *   The account.
    */
-  private function getUserDepartments(AccountInterface $account = NULL): array {
+  private function getUserDepartments(?AccountInterface $account = NULL): array {
     $account ??= $this->currentUser;
     if (empty($this->userDepartments[$account->id()])) {
       $user = $this->userStorage->load($account->id());
@@ -276,7 +276,7 @@ final class Helper {
   /**
    * Get list of node IDs an account has edit access to.
    */
-  private function getUserDepartmentNodeIds(AccountInterface $account = NULL): array {
+  private function getUserDepartmentNodeIds(?AccountInterface $account = NULL): array {
     $account ??= $this->currentUser;
     $departments = $this->getUserDepartments($account);
     $query = $this->nodeStorage->getQuery();

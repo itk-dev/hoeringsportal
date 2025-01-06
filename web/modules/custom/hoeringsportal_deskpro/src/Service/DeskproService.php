@@ -196,7 +196,7 @@ class DeskproService {
 
       if (!$noFilter) {
         // Filter out unavailable departments.
-        $availableIds = $this->config->getAvailableDepartments();
+        $availableIds = $this->config->getAvailableDepartments() ?? [];
         $data = array_filter($data,
           function (array $department) use ($availableIds) {
             return in_array($department['id'], $availableIds);
