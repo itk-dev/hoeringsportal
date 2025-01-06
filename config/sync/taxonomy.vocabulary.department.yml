@@ -6,3 +6,4 @@ name: Afdeling
 vid: department
 description: 'Afdeling (Magistrat) for brugere og indhold'
 weight: 0
+new_revision: false
