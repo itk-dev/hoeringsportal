@@ -1,11 +1,11 @@
 diff --git a/web/modules/contrib/openid_connect/src/OpenIDConnect.php b/web/modules/contrib/openid_connect/src/OpenIDConnect.php
-index 7dc1d286..b4fecf37 100644
+index 8526e309..99cafbfe 100644
 --- a/web/modules/contrib/openid_connect/src/OpenIDConnect.php
 +++ b/web/modules/contrib/openid_connect/src/OpenIDConnect.php
-@@ -263,7 +263,9 @@ private function buildContext(OpenIDConnectClientEntityInterface $client, array
+@@ -262,7 +262,9 @@ private function buildContext(OpenIDConnectClientEntityInterface $client, array
+       'plugin_id' => $provider,
        'user_data' => $user_data,
      ];
- 
 +    \Drupal::logger('itkdev-debug')->debug('openid_connect_userinfo (before alter): %userinfo', ['%userinfo' => json_encode($userinfo, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE)]);
      $this->moduleHandler->alter('openid_connect_userinfo', $userinfo, $context);
 +    \Drupal::logger('itkdev-debug')->debug('openid_connect_userinfo (after alter): %userinfo', ['%userinfo' => json_encode($userinfo, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE)]);
