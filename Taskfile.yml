@@ -1,0 +1,122 @@
+version: '3'
+
+# https://taskfile.dev/usage/#env-files
+dotenv: ['.env.local', '.env']
+
+vars:
+  # https://taskfile.dev/reference/templating/
+  BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default "https://hoeringsportal.local.itkdev.dk"}}'
+  DOCKER_COMPOSE: '{{.TASK_DOCKER_COMPOSE | default "docker compose"}}'
+  COMPOSER_INSTALL_ARGUMENTS: '{{.TASK_COMPOSER_INSTALL_ARGUMENTS | default ""}}'
+
+  PRETIX_URL: '{{.TASK_PRETIX_URL | default "http://pretix.hoeringsportal.local.itkdev.dk"}}'
+  PRETIX_ORGANIZER: '{{.TASK_PRETIX_ORGANIZER | default "dpl-cms"}}'
+
+tasks:
+  default:
+    cmds:
+      - task --list-all
+    silent: true
+
+  site-install:
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task compose -- down
+      - task compose-up
+      - task composer-install
+      - task drush -- --yes site:install --existing-config
+      - task site-open
+      - task site-open-admin
+    silent: true
+
+  site-update:
+    cmds:
+      - task compose-up
+      - task composer-install
+      - task drush -- deploy
+    silent: true
+
+  site-url:
+    cmds:
+      - task drush -- browse --no-browser
+    silent: true
+
+  site-open:
+    cmds:
+      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)"; else echo "$(task site-url)"; fi
+    silent: true
+
+  site-open-admin:
+    cmds:
+      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}"; else echo "{{.URL}}"; fi
+    vars:
+      URL:
+        sh: task drush -- user:login --no-browser
+    silent: true
+
+  compose:
+    cmds:
+      - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
+
+  compose-up:
+    cmds:
+      - task compose -- up --detach --remove-orphans
+    silent: true
+
+  composer:
+    cmds:
+      - task compose -- exec phpfpm composer {{.CLI_ARGS}}
+
+  composer-install:
+    cmds:
+      - task composer -- install {{.COMPOSER_INSTALL_ARGUMENTS}} {{.CLI_ARGS}}
+    silent: true
+
+  drush:
+    cmds:
+      - task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}}
+    silent: true
+
+  database-dump:
+    cmds:
+      # Make sure that site is up to date
+      - task site-update
+      - task drush -- sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+
+  pretix:
+    cmds:
+      - task compose -- exec pretix pretix {{.CLI_ARGS}}
+    silent: true
+
+  pretix:database-dump:
+    cmds:
+      - task compose -- exec --env PGPASSWORD=pretix pretix_database pg_dump --user=pretix pretix > .docker/pretix/dumps/pretix.sql
+
+  pretix:database-cli:
+    cmds:
+      - task compose -- exec --env PGPASSWORD=pretix pretix_database psql --user=pretix pretix
+
+  pretix:database-reset:
+    prompt: "This will reset your pretix database. Continue?"
+    cmds:
+      # Remove the pretix database container
+      - task compose -- rm pretix_database --stop --force
+      # Starting the container will load dump from .docker/pretix/dumps (cf. docker-compose.pretix.yml).
+      - task compose -- up --detach
+      # https://docs.pretix.eu/en/latest/admin/installation/docker_smallscale.html#updates
+      - task compose -- exec pretix pretix upgrade
+
+  pretix:database-load:
+    prompt: "This will reset your pretix database. Continue?"
+    cmds:
+      - task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --quiet --user=pretix pretix <<< "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+      - task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --quiet --user=pretix pretix < .docker/pretix/dumps/pretix.sql
+      # https://docs.pretix.eu/en/latest/admin/installation/docker_smallscale.html#updates
+      - task pretix -- upgrade
+
+  pretix:api-ping:
+    vars:
+      API_TOKEN:
+        sh: task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --user=pretix pretix --tuples-only --csv <<< "SELECT token FROM pretixbase_teamapitoken WHERE name = 'hoeringsportal'"
+    cmds:
+      - "task compose -- exec phpfpm curl --header 'Authorization: Token {{.API_TOKEN}}' {{.PRETIX_URL}}/api/v1/organizers/"

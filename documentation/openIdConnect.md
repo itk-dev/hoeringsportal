@@ -25,8 +25,8 @@ Use `drush` to check your actual configuration (with `--include-overridden` to
 include your config from `settings.local.php`):
 
 ```sh
-docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
-docker-compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.settings
+docker compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
+docker compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.settings
 ```
 
 ## Citizen authentification
@@ -39,3 +39,45 @@ For local testing we use [OpenId Connect Server
 Mock](https://github.com/Soluto/oidc-server-mock) for (almost) real OpenID
 Connect. Users and their claims are defined in
 [`docker-compose.override.yml`](../../../../docker-compose.override.yml).
+
+## Employee authentification
+
+```php
+# settings.local.php
+$config['openid_connect.settings']['role_mappings']['administrator'][] = 'administrator';
+$config['openid_connect.settings']['role_mappings']['editor'][] = 'editor';
+```
+
+Create department taxonomy terms:
+
+```shell
+docker compose exec phpfpm vendor/bin/drush php:eval "\Drupal\taxonomy\Entity\Term::create(['name' => 'Department A', 'vid' => 'department', 'status' => 1])->save();"
+docker compose exec phpfpm vendor/bin/drush php:eval "\Drupal\taxonomy\Entity\Term::create(['name' => 'Department B', 'vid' => 'department', 'status' => 1])->save();"
+```
+
+## Debugging OpenID Connect authentification
+
+```sh
+docker compose --profile oidc up --detach
+```
+
+During development it can be useful to see the user info we actually get during
+OpenID Connect authentification, and to do this you can apply the patch
+[debug-userinfo.patch](../patches/drupal/openid_connect/debug-userinfo.patch):
+
+```sh
+docker compose exec phpfpm patch --strip=1 --input=patches/drupal/openid_connect/debug-userinfo.patch
+```
+
+After applying the patch and succesfully logging in, the actual userinfo
+received can be inspected with
+
+```sh
+docker compose exec phpfpm vendor/bin/drush watchdog:show --type=itkdev-debug --extended
+```
+
+Remove (reverse) the patch with
+
+```sh
+docker compose exec phpfpm patch --strip=1 --input=patches/drupal/openid_connect/debug-userinfo.patch --reverse
+```
