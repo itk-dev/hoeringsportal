@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-428](https://github.com/itk-dev/hoeringsportal/pull/428)
+  PHP 8.4
 * [PR-380](https://github.com/itk-dev/hoeringsportal/pull/380)
   Added department access check.
 * [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
