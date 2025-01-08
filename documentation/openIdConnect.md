@@ -63,10 +63,10 @@ docker compose --profile oidc up --detach
 
 During development it can be useful to see the user info we actually get during
 OpenID Connect authentification, and to do this you can apply the patch
-[debug-userinfo.patch](../patches/drupal/openid_connect/debug-userinfo.patch):
+[openid_connect-debug-userinfo.patch](../patches/openid_connect-debug-userinfo.patch):
 
 ```sh
-docker compose exec phpfpm patch --strip=1 --input=patches/drupal/openid_connect/debug-userinfo.patch
+docker compose exec phpfpm patch --strip=1 --input=patches/openid_connect-debug-userinfo.patch
 ```
 
 After applying the patch and succesfully logging in, the actual userinfo
@@ -79,5 +79,5 @@ docker compose exec phpfpm vendor/bin/drush watchdog:show --type=itkdev-debug --
 Remove (reverse) the patch with
 
 ```sh
-docker compose exec phpfpm patch --strip=1 --input=patches/drupal/openid_connect/debug-userinfo.patch --reverse
+docker compose exec phpfpm patch --strip=1 --input=patches/openid_connect-debug-userinfo.patch --reverse
 ```
