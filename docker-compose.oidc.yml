@@ -283,7 +283,7 @@ services:
             Value: 'Department 1'
             ValueType: string
           - Type: groups
-            Value: '["administrator"]'
+            Value: '["editor"]'
             ValueType: json
 
         - SubjectId: 2
