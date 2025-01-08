@@ -285,7 +285,7 @@
             "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
         ],
         "install-codestandards": [
-            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+            "PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
         ]
     }
 }
