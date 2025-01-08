@@ -285,7 +285,7 @@ final class Helper {
       ->accessCheck(TRUE)
       ->condition($query->orConditionGroup()
         ->condition('type', $this->departmentBundles, 'NOT IN')
-        ->condition(self::FIELD_DEPARTMENT, $departments, 'IN')
+        ->condition(self::FIELD_DEPARTMENT, $departments ?: [0], 'IN')
       )
       ->execute();
   }
