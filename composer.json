@@ -64,7 +64,7 @@
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
         "drupal/xls_serialization": "^1.2",
-        "drush/drush": "^12",
+        "drush/drush": "^13",
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^2.0",
         "itk-dev/itk_pretix": "^1.0",
@@ -77,7 +77,7 @@
         "webflo/drupal-finder": "^1.0.0"
     },
     "require-dev": {
-        "drupal/content_fixtures": "^3.1",
+        "drupal/content_fixtures": "dev-3498162-not-compatible-with",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
         "ergebnis/composer-normalize": "^2.44",
@@ -90,6 +90,11 @@
         "drupal/drupal": "*"
     },
     "repositories": {
+        "drupal/content_fixtures": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
+            "//": "Content fixtures: Not compatible with Drush 13+ (https://www.drupal.org/project/content_fixtures/issues/3498162)"
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"

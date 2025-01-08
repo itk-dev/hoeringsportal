@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "53ef5f913aab1840d495cba18dc1c178",
+    "content-hash": "264d56d2cf3045f7f2577eb3679f6e8b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3487,22 +3487,15 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_citizen_proposal",
-                "reference": "4aa8ab005f8f94015fd341e04057479f259886e8"
+                "reference": "63dc55b052c157a41c9458a22e9ccc723c7da9dd"
             },
             "require": {
                 "drupal/entity_events": "^2.0",
                 "drupal/symfony_mailer": "^1.3",
-                "drush/drush": "^12",
+                "drush/drush": "^13",
                 "itk-dev/serviceplatformen": "^1.5"
             },
             "type": "drupal-custom-module",
-            "extra": {
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^12"
-                    }
-                }
-            },
             "license": [
                 "GPL-2.0+"
             ],
@@ -3521,24 +3514,17 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_citizen_proposal_archiving",
-                "reference": "1d34114125c454d839270721f22de770364fcb72"
+                "reference": "24f6f65e2da93cb72f2bfb3aa70646f1176023dc"
             },
             "require": {
                 "dompdf/dompdf": "^2.0",
                 "drupal/entity_events": "^2.0",
                 "drupal/pluginformalter": "^1.5",
-                "drush/drush": "^12",
+                "drush/drush": "^13",
                 "itk-dev/getorganized-api-client-php": "^1.2",
                 "symfony/options-resolver": "^5.0"
             },
             "type": "drupal-custom-module",
-            "extra": {
-                "drush": {
-                    "services": {
-                        "drush.services.yml": "^12"
-                    }
-                }
-            },
             "license": [
                 "GPL-2.0+"
             ],
@@ -5474,58 +5460,62 @@
         },
         {
             "name": "drush/drush",
-            "version": "12.5.3",
+            "version": "13.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "7fe0a492d5126c457c5fb184c4668a132b0aaac6"
+                "reference": "d124723dacb4208ccb875b7114722e420fccf06d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/7fe0a492d5126c457c5fb184c4668a132b0aaac6",
-                "reference": "7fe0a492d5126c457c5fb184c4668a132b0aaac6",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/d124723dacb4208ccb875b7114722e420fccf06d",
+                "reference": "d124723dacb4208ccb875b7114722e420fccf06d",
                 "shasum": ""
             },
             "require": {
-                "chi-teck/drupal-code-generator": "^3.0",
+                "chi-teck/drupal-code-generator": "^3.6 || ^4@alpha",
                 "composer-runtime-api": "^2.2",
                 "composer/semver": "^1.4 || ^3",
                 "consolidation/annotated-command": "^4.9.2",
-                "consolidation/config": "^2.1.2",
+                "consolidation/config": "^2.1.2 || ^3",
                 "consolidation/filter-via-dot-access-data": "^2.0.2",
                 "consolidation/output-formatters": "^4.3.2",
-                "consolidation/robo": "^4.0.6",
+                "consolidation/robo": "^4.0.6 || ^5",
                 "consolidation/site-alias": "^4",
                 "consolidation/site-process": "^5.2.0",
+                "dflydev/dot-access-data": "^3.0.2",
                 "ext-dom": "*",
                 "grasmash/yaml-cli": "^3.1",
                 "guzzlehttp/guzzle": "^7.0",
-                "league/container": "^4",
-                "php": ">=8.1",
-                "psy/psysh": "~0.11",
-                "symfony/event-dispatcher": "^6",
-                "symfony/filesystem": "^6.1",
-                "symfony/finder": "^6",
-                "symfony/var-dumper": "^6.0",
-                "symfony/yaml": "^6.0",
-                "webflo/drupal-finder": "^1.2"
+                "laravel/prompts": "^0.1.21",
+                "league/container": "^4.2",
+                "php": ">=8.2",
+                "psy/psysh": "~0.12",
+                "symfony/event-dispatcher": "^6 || ^7",
+                "symfony/filesystem": "^6.1 || ^7",
+                "symfony/finder": "^6 || ^7",
+                "symfony/var-dumper": "^6.0 || ^7",
+                "symfony/yaml": "^6.0 || ^7"
             },
             "conflict": {
-                "drupal/core": "< 10.0",
+                "drupal/core": "< 10.2",
                 "drupal/migrate_run": "*",
                 "drupal/migrate_tools": "<= 5"
             },
             "require-dev": {
                 "composer/installers": "^2",
-                "cweagans/composer-patches": "~1.0",
-                "drupal/core-recommended": "^10",
+                "cweagans/composer-patches": "~1.7.3",
+                "drupal/core-recommended": "^10.2.5 || 11.0.x-dev",
                 "drupal/semver_example": "2.3.0",
-                "phpunit/phpunit": "^9",
-                "rector/rector": "^0.12",
+                "jetbrains/phpstorm-attributes": "^1.0",
+                "mglaman/phpstan-drupal": "^1.2",
+                "phpunit/phpunit": "^9 || ^10",
+                "rector/rector": "^1",
                 "squizlabs/php_codesniffer": "^3.7"
             },
             "bin": [
-                "drush"
+                "drush",
+                "drush.php"
             ],
             "type": "library",
             "extra": {
@@ -5606,7 +5596,7 @@
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "security": "https://github.com/drush-ops/drush/security/advisories",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/12.5.3"
+                "source": "https://github.com/drush-ops/drush/tree/13.3.3"
             },
             "funding": [
                 {
@@ -5614,7 +5604,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-02T11:57:29+00:00"
+            "time": "2024-11-10T20:02:03+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -6336,6 +6326,202 @@
             "time": "2021-07-21T13:50:14+00:00"
         },
         {
+            "name": "illuminate/collections",
+            "version": "v11.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/collections.git",
+                "reference": "9100b083eeb85d38d78fc1de28f7326596ab2eda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/9100b083eeb85d38d78fc1de28f7326596ab2eda",
+                "reference": "9100b083eeb85d38d78fc1de28f7326596ab2eda",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/conditionable": "^11.0",
+                "illuminate/contracts": "^11.0",
+                "illuminate/macroable": "^11.0",
+                "php": "^8.2"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Required to use the dump method (^7.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "functions.php",
+                    "helpers.php"
+                ],
+                "psr-4": {
+                    "Illuminate\\Support\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Collections package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2024-12-18T14:14:45+00:00"
+        },
+        {
+            "name": "illuminate/conditionable",
+            "version": "v11.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/conditionable.git",
+                "reference": "911df1bda950a3b799cf80671764e34eede131c6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/conditionable/zipball/911df1bda950a3b799cf80671764e34eede131c6",
+                "reference": "911df1bda950a3b799cf80671764e34eede131c6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Support\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Conditionable package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2024-11-21T16:28:56+00:00"
+        },
+        {
+            "name": "illuminate/contracts",
+            "version": "v11.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "184317f701ba20ca265e36808ed54b75b115972d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/184317f701ba20ca265e36808ed54b75b115972d",
+                "reference": "184317f701ba20ca265e36808ed54b75b115972d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2",
+                "psr/container": "^1.1.1|^2.0.1",
+                "psr/simple-cache": "^1.0|^2.0|^3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Contracts package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2024-11-25T15:33:38+00:00"
+        },
+        {
+            "name": "illuminate/macroable",
+            "version": "v11.37.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/macroable.git",
+                "reference": "e1cb9e51b9ed5d3c9bc1ab431d0a52fe42a990ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/macroable/zipball/e1cb9e51b9ed5d3c9bc1ab431d0a52fe42a990ed",
+                "reference": "e1cb9e51b9ed5d3c9bc1ab431d0a52fe42a990ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "11.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Support\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "The Illuminate Macroable package.",
+            "homepage": "https://laravel.com",
+            "support": {
+                "issues": "https://github.com/laravel/framework/issues",
+                "source": "https://github.com/laravel/framework"
+            },
+            "time": "2024-06-28T20:10:30+00:00"
+        },
+        {
             "name": "itk-dev/azure-key-vault-php",
             "version": "1.0.1",
             "source": {
@@ -7001,6 +7187,64 @@
                 }
             ],
             "time": "2024-12-03T22:30:06+00:00"
+        },
+        {
+            "name": "laravel/prompts",
+            "version": "v0.1.25",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/prompts.git",
+                "reference": "7b4029a84c37cb2725fc7f011586e2997040bc95"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/7b4029a84c37cb2725fc7f011586e2997040bc95",
+                "reference": "7b4029a84c37cb2725fc7f011586e2997040bc95",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "illuminate/collections": "^10.0|^11.0",
+                "php": "^8.1",
+                "symfony/console": "^6.2|^7.0"
+            },
+            "conflict": {
+                "illuminate/console": ">=10.17.0 <10.25.0",
+                "laravel/framework": ">=10.17.0 <10.25.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5",
+                "pestphp/pest": "^2.3",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-mockery": "^1.1"
+            },
+            "suggest": {
+                "ext-pcntl": "Required for the spinner to be animated."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Laravel\\Prompts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Add beautiful and user-friendly forms to your command-line applications.",
+            "support": {
+                "issues": "https://github.com/laravel/prompts/issues",
+                "source": "https://github.com/laravel/prompts/tree/v0.1.25"
+            },
+            "time": "2024-08-12T22:06:33+00:00"
         },
         {
             "name": "league/container",
@@ -14147,21 +14391,15 @@
         },
         {
             "name": "drupal/content_fixtures",
-            "version": "3.1.4",
+            "version": "dev-3498162-not-compatible-with",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/project/content_fixtures.git",
-                "reference": "3.1.4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/content_fixtures-3.1.4.zip",
-                "reference": "3.1.4",
-                "shasum": "9a20035c2d8e312e6138a7b0991bb7c86581c716"
+                "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
+                "reference": "6efd813a5f7d3d7a6a0e1b7f0785ed1095ffb219"
             },
             "require": {
                 "drupal/core": "^8.7.7 || ^9 || ^10",
-                "drush/drush": "^9 || ^10 || ^11 || ^12",
+                "drush/drush": "^9 || ^10 || ^11 || ^12 || ^13",
                 "php": ">=7.1.0"
             },
             "suggest": {
@@ -14170,36 +14408,23 @@
             },
             "type": "drupal-module",
             "extra": {
-                "drupal": {
-                    "version": "3.1.4",
-                    "datestamp": "1689798618",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                },
                 "drush": {
                     "services": {
                         "drush.services.yml": "^9 || ^10 || ^11 || ^12"
                     }
                 }
             },
-            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0+"
             ],
             "authors": [
                 {
                     "name": "Łukasz Zaroda",
-                    "homepage": "https://www.drupal.org/user/1890152",
                     "email": "luken@luken-tech.pl"
                 }
             ],
             "description": "Module privides an API for creating generators of dummy content in a way similar to the 'DoctrineFixturesBundle'.",
-            "homepage": "https://www.drupal.org/project/content_fixtures",
-            "support": {
-                "source": "https://git.drupalcode.org/project/content_fixtures"
-            }
+            "time": "2025-01-08T12:00:10+00:00"
         },
         {
             "name": "drupal/core-dev",
@@ -19066,6 +19291,7 @@
     "stability-flags": {
         "bower-asset/jqueryui-touch-punch": 20,
         "chx/drupal-issue-fork": 20,
+        "drupal/content_fixtures": 20,
         "drupal/email_registration": 5,
         "drupal/entityqueue": 15,
         "drupal/flag": 15,

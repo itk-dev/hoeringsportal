@@ -74,7 +74,14 @@ tasks:
 
   drush:
     cmds:
-      - task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}}
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - >-
+        if [[ ! -t 0 ]]; then
+          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+        else
+          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+        fi
     silent: true
 
   database-dump:
