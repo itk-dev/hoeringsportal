@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-428](https://github.com/itk-dev/hoeringsportal/pull/428)
+  Upgraded to PHP 8.4
 * [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
   * Add config for default teaser images
 * [PR-480](https://github.com/itk-dev/hoeringsportal/pull/480)

@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^8.3.0",
+        "php": "^8.4.0",
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/spectrum": "^1.8",
         "chx/drupal-issue-fork": "dev-main",
