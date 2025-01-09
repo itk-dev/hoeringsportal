@@ -134,8 +134,8 @@ tasks:
   coding-standards:apply:
     desc: "Apply coding standards"
     cmds:
-      - task: coding-standards:markdown:apply
       - task: coding-standards:assets:apply
+      - task: coding-standards:markdown:apply
       - task: coding-standards:php:apply
       - task: coding-standards:twig:apply
     silent: true
@@ -143,8 +143,8 @@ tasks:
   coding-standards:check:
     desc: "Apply coding standards"
     cmds:
-      - task: coding-standards:markdown:check
       - task: coding-standards:assets:check
+      - task: coding-standards:markdown:check
       - task: coding-standards:php:check
       - task: coding-standards:twig:check
     silent: true
@@ -156,43 +156,58 @@ tasks:
       # https://github.com/prettier/prettier/issues/15206) have an official
       # docker image.
       # https://hub.docker.com/r/jauderho/prettier is good candidate (cf. https://hub.docker.com/search?q=prettier&sort=updated_at&order=desc)
-      - docker pull jauderho/prettier
       - docker run --rm --volume "$PWD:/work" jauderho/prettier --write playwright
 
   coding-standards:assets:check:
     desc: "Apply and check coding standards for assets"
     cmds:
       - task: coding-standards:assets:apply
-      - docker pull jauderho/prettier
       - docker run --rm --volume "$PWD:/work" jauderho/prettier --check playwright
 
   coding-standards:markdown:apply:
     desc: "Apply coding standards for Markdown"
     cmds:
-      - docker pull peterdavehello/markdownlint
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md' --fix
-    silent: true
 
   coding-standards:markdown:check:
     desc: "Apply and check coding standards for Markdown"
     cmds:
       - task: coding-standards:markdown:apply
       - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md'
-    silent: true
 
   coding-standards:php:apply:
     desc: "Apply coding standards for PHP"
     cmds:
-      - task composer -- coding-standards-apply
+      - task composer -- coding-standards-apply/php
     silent: true
 
   coding-standards:php:check:
     desc: "Apply and check coding standards for PHP"
     cmds:
       - task: coding-standards:php:apply
-      - task composer -- coding-standards-check
+      - task composer -- coding-standards-check/php
+    silent: true
+
+  coding-standards:twig:apply:
+    desc: "Apply coding standards for Twig"
+    cmds:
+      - task composer -- coding-standards-apply/twig
+    silent: true
+
+  coding-standards:twig:check:
+    desc: "Apply and check coding standards for Twig"
+    cmds:
+      - task: coding-standards:twig:apply
+      - task composer -- coding-standards-check/twig
     silent: true
 
   code-analysis:
     cmds:
       - task composer -- code-analysis
+
+  docker-pull:
+    desc: "Pull all development docker images"
+    cmds:
+      - docker pull jauderho/prettier
+      - docker pull peterdavehello/markdownlint
+      - task compose -- pull
