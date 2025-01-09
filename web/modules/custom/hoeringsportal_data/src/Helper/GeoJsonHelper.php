@@ -256,32 +256,6 @@ class GeoJsonHelper {
   }
 
   /**
-   * Serialize Ticket as GeoJSON.
-   */
-  public function serializeGeoJsonTicket(object $ticket) {
-    $serialized = $this->serializeGeoJsonHearing($ticket->hearing);
-
-    $properties = &$serialized['properties'];
-
-    $data = $ticket->data;
-    $fields = $data->fields;
-    $properties = [
-      'ticket_id' => $data->id,
-      'ticket_hearing_id' => (int) $ticket->hearing->id(),
-      'ticket_message' => $fields->message ?? NULL,
-      'ticket_person_name' => $data->person->name ?? NULL,
-      'ticket_organization' => $fields->organization ?? NULL,
-      'ticket_pdf_download_url' => $fields->pdf_download_url ?? NULL,
-      'ticket_url' => $this->generateUrl('hoeringsportal_deskpro.hearing.ticket_view', [
-        'node' => $ticket->hearing->id(),
-        'ticket' => $data->id,
-      ]),
-    ];
-
-    return $serialized;
-  }
-
-  /**
    * Get hearing tickets count.
    *
    * @see DeskproHearingHelper::getHearingTicketsCount().
