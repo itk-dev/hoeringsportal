@@ -488,7 +488,7 @@ class GeoJsonHelper {
   /**
    * Get term name.
    */
-  private function getTermName(Term $term = NULL) {
+  private function getTermName(Term|bool|null $term = NULL) {
     return $term ? $term->get('name')->value : NULL;
   }
 
