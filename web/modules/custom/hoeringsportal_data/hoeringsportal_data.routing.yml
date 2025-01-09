@@ -30,14 +30,6 @@ hoeringsportal_data.api_controller_hearings_tickets:
   requirements:
     _permission: 'access content'
 
-hoeringsportal_data.api_controller_geojson_projects:
-  path: '/api/geojson/projects'
-  defaults:
-    _controller: '\Drupal\hoeringsportal_data\Controller\Api\GeoJSON\ProjectController::index'
-    _title: 'Projects'
-  requirements:
-    _permission: 'access content'
-
 hoeringsportal_data.api_controller_geojson_hearings:
   path: '/api/geojson/hearings'
   defaults:

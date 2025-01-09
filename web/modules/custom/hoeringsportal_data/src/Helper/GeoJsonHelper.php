@@ -92,7 +92,7 @@ class GeoJsonHelper {
   public function getProjects(array $properties = []) {
     $properties += [
       'status' => NodeInterface::PUBLISHED,
-      'type' => 'project',
+      'type' => 'project_main_page',
     ];
     $entities = $this->entityTypeManager
       ->getStorage('node')
@@ -138,57 +138,6 @@ class GeoJsonHelper {
         'self' => $this->generateUrl('hoeringsportal_data.api_controller_hearings_show', ['hearing' => $entity->id()]),
       ],
     ];
-  }
-
-  /**
-   * Serialize Project as GeoJSON.
-   */
-  public function serializeGeoJsonProject(NodeInterface $project) {
-    $areas = $project->get('field_area')->referencedEntities();
-    $tags = $project->get('field_tags')->referencedEntities();
-
-    $lokalplaner = [];
-    foreach ($project->get('field_lokalplaner') as $lokalplan) {
-      $lokalplaner[] = $lokalplan;
-    }
-
-    $geometryType = $this->getGeometryType($project);
-
-    $data = [
-      'properties' => [
-        'project_id' => (int) $project->id(),
-        'project_title' => $project->getTitle(),
-        'project_teaser' => $project->get('field_teaser')->value,
-        'project_description' => $project->get('field_description')->value,
-        'project_start' => $this->getDateTime($project->get('field_project_start')->value),
-        'project_finish' => $this->getDateTime($project->get('field_project_finish')->value),
-        'project_tags' => array_map([$this, 'getTermName'], $tags),
-        'project_contact' => $project->get('field_contact')->value,
-        'project_phone' => $project->get('field_phone')->value,
-        'project_geometry_type' => $geometryType,
-        'project_url' => $this->generateUrl('entity.node.canonical', ['node' => $project->id()]),
-        'project_area_list' => $this->listify(array_map(function (Term $term) {
-          return $term->get('field_area_id')->value;
-        }, $areas)),
-        'project_area_ids' => array_map(function (Term $term) {
-          return (int) $term->get('field_area_id')->value;
-        }, $areas),
-        'project_local_plan_list' => $this->listify(array_map(function ($lokalplan) {
-          return $lokalplan->id;
-        }, $lokalplaner)),
-        'project_local_plan_ids' => array_map(function ($lokalplan) {
-          return (int) $lokalplan->id;
-        }, $lokalplaner),
-      ],
-    ];
-
-    $geometry = $this->getGeometry($project);
-    if (NULL !== $geometry) {
-      $data['geometry'] = $geometry['geometry'];
-      $data['type'] = 'Feature';
-    }
-
-    return $data;
   }
 
   /**
