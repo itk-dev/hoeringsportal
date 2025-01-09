@@ -3,13 +3,11 @@
 We use [Webpack
 Encore](http://symfony.com/doc/current/frontend.html#webpack-encore)
 to handle frontend assets, see
-http://symfony.com/doc/current/frontend.html#webpack-encore for
+<http://symfony.com/doc/current/frontend.html#webpack-encore> for
 details.
-
 
 JavaScript and CSS (actually SCSS) assets are put in `assets/js/` and
 `assets/css/`, respectively, and built assets are put in `build/`.
-
 
 ## Building assets
 
@@ -78,7 +76,6 @@ yarn run apply-coding-standards-js
 ```
 
 to apply any possible automatic fixes.
-
 
 ### Twig
 
