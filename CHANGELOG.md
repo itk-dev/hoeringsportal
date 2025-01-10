@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-429](https://github.com/itk-dev/hoeringsportal/pull/429)
+  Removed outdated (and unused) API endpoints. Cleaned up.
 * [PR-427](https://github.com/itk-dev/hoeringsportal/pull/427)
   Updated docker compose setup. Updated composer packages.
 * [PR-425](https://github.com/itk-dev/hoeringsportal/pull/425)
@@ -161,6 +163,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Limited text formats on content
 * [PR-371](https://github.com/itk-dev/hoeringsportal/pull/371)
   Cleaned up archiving of citizen proposals
+
+## [3.5.1] - 2023-09-01
 
 ## [3.5.0] - 2023-08-30
 

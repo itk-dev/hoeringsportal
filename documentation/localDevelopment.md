@@ -90,36 +90,24 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 
 #### Coding standards
 
-```sh
-docker compose exec phpfpm composer coding-standards-check
-```
-
-Apply automatic coding standard fixes by running
+Apply and check coding standard  by running
 
 ```sh
-docker compose exec phpfpm composer coding-standards-apply
+task coding-standards:check
 ```
 
 #### Code analysis
 
 ```sh
-docker compose exec phpfpm composer code-analysis
+task code-analysis
 ```
 
 #### Markdown
 
-```sh
-docker compose run --rm node yarn install
-```
+Apply and check Markdown coding standards:
 
 ```sh
-docker compose run --rm node yarn coding-standards-check
-```
-
-Apply automatic coding standard fixes by running
-
-```sh
-docker compose run --rm node yarn coding-standards-apply
+task coding-standards:markdown:check
 ```
 
 ## About translations

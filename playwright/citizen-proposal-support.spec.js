@@ -20,13 +20,13 @@ test("Support proposal", async ({ page }) => {
   await page.getByRole("button", { name: "Login" }).click();
 
   await expect(
-    page.getByText("You're currently authenticated as Anders And")
+    page.getByText("You're currently authenticated as Anders And"),
   ).toBeVisible();
 
   await expect(page.getByRole("link", { name: "Sign out" })).toBeVisible();
 
   await expect(page.getByLabel("Name", { exact: true })).toHaveValue(
-    "Anders And"
+    "Anders And",
   );
 
   await page.getByRole("button", { name: "Support proposal" }).click();
@@ -48,7 +48,7 @@ test("Support proposal", async ({ page }) => {
 
   // Test that citizen cannot support proposal more than once
   await expect(
-    page.getByText("You already supported this proposal")
+    page.getByText("You already supported this proposal"),
   ).toBeVisible();
 
   // Test that citizen must re-authenticate to support another proposal

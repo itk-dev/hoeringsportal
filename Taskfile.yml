@@ -68,6 +68,7 @@ tasks:
   composer:
     cmds:
       - task compose -- exec phpfpm composer {{.CLI_ARGS}}
+    silent: true
 
   composer-install:
     cmds:
@@ -129,3 +130,84 @@ tasks:
         sh: task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --user=pretix pretix --tuples-only --csv <<< "SELECT token FROM pretixbase_teamapitoken WHERE name = 'hoeringsportal'"
     cmds:
       - "task compose -- exec phpfpm curl --header 'Authorization: Token {{.API_TOKEN}}' {{.PRETIX_URL}}/api/v1/organizers/"
+
+  coding-standards:apply:
+    desc: "Apply coding standards"
+    cmds:
+      - task: coding-standards:assets:apply
+      - task: coding-standards:markdown:apply
+      - task: coding-standards:php:apply
+      - task: coding-standards:twig:apply
+    silent: true
+
+  coding-standards:check:
+    desc: "Apply coding standards"
+    cmds:
+      - task: coding-standards:assets:check
+      - task: coding-standards:markdown:check
+      - task: coding-standards:php:check
+      - task: coding-standards:twig:check
+    silent: true
+
+  coding-standards:assets:apply:
+    desc: "Apply coding standards for assets"
+    cmds:
+      # Prettier does not (yet, fcf.
+      # https://github.com/prettier/prettier/issues/15206) have an official
+      # docker image.
+      # https://hub.docker.com/r/jauderho/prettier is good candidate (cf. https://hub.docker.com/search?q=prettier&sort=updated_at&order=desc)
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --write playwright
+
+  coding-standards:assets:check:
+    desc: "Apply and check coding standards for assets"
+    cmds:
+      - task: coding-standards:assets:apply
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --check playwright
+
+  coding-standards:markdown:apply:
+    desc: "Apply coding standards for Markdown"
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md' --fix
+
+  coding-standards:markdown:check:
+    desc: "Apply and check coding standards for Markdown"
+    cmds:
+      - task: coding-standards:markdown:apply
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md'
+
+  coding-standards:php:apply:
+    desc: "Apply coding standards for PHP"
+    cmds:
+      - task composer -- coding-standards-apply/php
+    silent: true
+
+  coding-standards:php:check:
+    desc: "Apply and check coding standards for PHP"
+    cmds:
+      - task: coding-standards:php:apply
+      - task composer -- coding-standards-check/php
+    silent: true
+
+  coding-standards:twig:apply:
+    desc: "Apply coding standards for Twig"
+    cmds:
+      - task composer -- coding-standards-apply/twig
+    silent: true
+
+  coding-standards:twig:check:
+    desc: "Apply and check coding standards for Twig"
+    cmds:
+      - task: coding-standards:twig:apply
+      - task composer -- coding-standards-check/twig
+    silent: true
+
+  code-analysis:
+    cmds:
+      - task composer -- code-analysis
+
+  docker-pull:
+    desc: "Pull all development docker images"
+    cmds:
+      - docker pull jauderho/prettier
+      - docker pull peterdavehello/markdownlint
+      - task compose -- pull
