@@ -27,7 +27,7 @@ jobs:
       - name: Building assets for the frontend
         run: |
           docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal 
-          docker compose run --rm node npm build --prefix  /app/web/themes/custom/hoeringsportal 
+          docker compose run --rm node npm run build --prefix  /app/web/themes/custom/hoeringsportal 
 
       - name: Clean up
         run: |

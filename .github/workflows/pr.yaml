@@ -149,7 +149,7 @@ jobs:
         run: docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Build theme assets
-        run: docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
+        run: docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Check for changes in built css
         run: git diff --diff-filter=ACMRT --exit-code web/themes/custom/hoeringsportal/build
@@ -174,7 +174,7 @@ jobs:
 
           # Build theme assets
           docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
-          docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Open site
         run: |
@@ -237,7 +237,7 @@ jobs:
 
           # Build theme assets
           docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
-          docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Run Playwright
         run: |
