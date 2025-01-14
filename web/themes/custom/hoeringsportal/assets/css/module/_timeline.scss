@@ -1,13 +1,13 @@
 .project-timeline-period {
   label {
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: bold;
   }
 }
 
 .project-timeline {
   div {
-    cursor: grab!important;
+    cursor: grab !important;
 
     &.vis-item.vis-box,
     &.vis-item.vis-range {
@@ -27,7 +27,7 @@
       .vis-item-content {
         color: $white;
         cursor: pointer !important;
-        font-size: .7rem;
+        font-size: 0.7rem;
         padding: 0;
         line-height: 1em;
 
@@ -43,7 +43,7 @@
     }
 
     &.vis-item.vis-range {
-      border-radius: .3rem;
+      border-radius: 0.3rem;
     }
 
     &.vis-item.vis-line,
@@ -119,4 +119,3 @@
     color: $petroleum-light;
   }
 }
-

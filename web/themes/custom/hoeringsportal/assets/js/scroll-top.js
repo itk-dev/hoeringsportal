@@ -8,9 +8,9 @@
 (function ($) {
   $(window).scroll(function () {
     if ($(this).scrollTop() >= 150) {
-      $('body').addClass('scrolled')
+      $("body").addClass("scrolled");
     } else {
-      $('body').removeClass('scrolled')
+      $("body").removeClass("scrolled");
     }
-  })
-})(jQuery)
+  });
+})(jQuery);

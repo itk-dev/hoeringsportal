@@ -1,6 +1,5 @@
 .page--project_main_page,
 .page--project_page {
-
   background-color: $color-white;
 
   h2 {
@@ -16,7 +15,9 @@
     display: inline-block;
   }
 
-  p, ul, ol {
+  p,
+  ul,
+  ol {
     font-size: 1.1rem;
     line-height: 1.65;
   }
