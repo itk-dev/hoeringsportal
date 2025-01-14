@@ -16,6 +16,16 @@ jobs:
           echo "This PR can't be merged, due to the 'not ready for merge' label."
           exit 1
 
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: npm audit
+        run: npm audit
+
   changelog:
     runs-on: ubuntu-latest
     name: Changelog should be updated
