@@ -6,7 +6,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-
 * [PR-432](https://github.com/itk-dev/hoeringsportal/pull/432)
   Replace `yarn` with `npm`
   Replace eslint with prettier
