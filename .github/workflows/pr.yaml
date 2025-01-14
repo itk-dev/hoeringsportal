@@ -22,7 +22,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Setup docker network
         run: docker network create frontend
 
@@ -146,7 +146,7 @@ jobs:
         run: docker network create frontend
 
       - name: Install build dependencies
-        run: docker compose run --rm node install --prefix /app/web/themes/custom/hoeringsportal
+        run: docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Build theme assets
         run: docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
@@ -173,7 +173,7 @@ jobs:
           docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
           docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Open site
@@ -236,7 +236,7 @@ jobs:
           docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
           docker compose run --rm node npm build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Run Playwright
