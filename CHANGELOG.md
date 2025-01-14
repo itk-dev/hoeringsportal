@@ -6,6 +6,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+
+* [PR-431](https://github.com/itk-dev/hoeringsportal/pull/431)
+  Replace `yarn` with `npm`
+  Replace eslint with prettier
+  Lint with prettier
+  Add audit to actions
 * [PR-430](https://github.com/itk-dev/hoeringsportal/pull/430)
   Add build assets to taskfile
 * [PR-429](https://github.com/itk-dev/hoeringsportal/pull/429)

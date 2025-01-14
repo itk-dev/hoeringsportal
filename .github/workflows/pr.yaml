@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: npm audit
-        run: npm audit
+        run: docker compose run --rm node npm audit --prefix /app/web/themes/custom/hoeringsportal
 
   changelog:
     runs-on: ubuntu-latest
