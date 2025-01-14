@@ -59,8 +59,8 @@ tasks:
 
   assets-build:
     cmds: 
-      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal install'
-      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal build'
+      - '{{.DOCKER_COMPOSE}} run --rm node npm --cwd web/themes/custom/hoeringsportal install'
+      - '{{.DOCKER_COMPOSE}} run --rm node npm --cwd web/themes/custom/hoeringsportal build'
   compose:
     cmds:
       - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'

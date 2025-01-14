@@ -24,7 +24,7 @@ docker compose exec phpfpm vendor/bin/drush cache:rebuild
 # Optional, but recommended for proper testing
 # docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
-docker compose run --rm node yarn install
+docker compose run --rm node npm install
 docker compose run --rm playwright npx playwright install
 docker compose run --rm playwright npx playwright test
 open playwright-report/index.html
