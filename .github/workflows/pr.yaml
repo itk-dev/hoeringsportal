@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Setup docker network
+        run: docker network create frontend
 
       - name: npm audit
         run: docker compose run --rm node npm audit --prefix /app/web/themes/custom/hoeringsportal
