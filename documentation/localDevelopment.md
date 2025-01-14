@@ -72,6 +72,10 @@ docker compose up --detach
 docker compose exec phpfpm composer install
 docker compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
 
+# Build theme assets
+docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal install
+docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal build
+
 # Get admin sign in url
 docker compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```

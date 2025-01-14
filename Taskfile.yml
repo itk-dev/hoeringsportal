@@ -26,6 +26,7 @@ tasks:
       - task compose-up
       - task composer-install
       - task drush -- --yes site:install --existing-config
+      - task assets-build
       - task site-open
       - task site-open-admin
     silent: true
@@ -56,6 +57,10 @@ tasks:
         sh: task drush -- user:login --no-browser
     silent: true
 
+  assets-build:
+    cmds: 
+      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal install'
+      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal build'
   compose:
     cmds:
       - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
