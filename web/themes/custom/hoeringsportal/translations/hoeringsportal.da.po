@@ -66,6 +66,9 @@ msgstr "Vis flere høringer"
 msgid "<strong>Note!</strong> Hearing deadline has passed."
 msgstr "<strong>Note!</strong> Hørings tidsfristen er forbi."
 
+msgid "Open search"
+msgstr "Åben søgning"
+
 msgid "<strong>Note!</strong> Hearing deadline approaching."
 msgstr "<strong>Note!</strong> Hørings tidsfristen nærmer sig."
 
