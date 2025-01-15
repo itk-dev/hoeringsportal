@@ -13,7 +13,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-434](https://github.com/itk-dev/hoeringsportal/pull/434)
   Accessibility stuff:
   Font sizes to rem instead of pixels
-  Add name to image for screen readers 
+  Add name to image for screen readers
   Change h5's to h4
   Add label to search icon
 * [PR-433](https://github.com/itk-dev/hoeringsportal/pull/433)
