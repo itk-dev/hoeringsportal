@@ -1,17 +1,17 @@
 .splash {
   background-color: $white;
-  padding: $spacer * .5 $spacer * .5 $spacer * .5 $spacer * .5;
+  padding: $spacer * 0.5 $spacer * 0.5 $spacer * 0.5 $spacer * 0.5;
   text-align: center;
 }
 
 .splash-label {
   color: $gray-800;
-  font-size: .75rem;
-  margin-bottom: .25rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
 }
 
 .splash-date {
-  padding: .75rem;
+  padding: 0.75rem;
 }
 
 .splash-date-day {
@@ -39,10 +39,10 @@
 }
 
 .splash-comments-count {
-  font-size: .8rem;
+  font-size: 0.8rem;
   line-height: 1;
 
   svg {
-    margin-right: $spacer * .25;
+    margin-right: $spacer * 0.25;
   }
 }

@@ -16,6 +16,19 @@ jobs:
           echo "This PR can't be merged, due to the 'not ready for merge' label."
           exit 1
 
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup docker network
+        run: docker network create frontend
+
+      - name: npm audit
+        run: docker compose run --rm node npm audit --prefix /app/web/themes/custom/hoeringsportal
+
   changelog:
     runs-on: ubuntu-latest
     name: Changelog should be updated
@@ -123,20 +136,6 @@ jobs:
           task composer -- install
           task code-analysis
 
-  coding-standards-custom-themes:
-    name: Yarn - Check Coding Standards in custom themes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup docker network
-        run: docker network create frontend
-
-      - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-
-      - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
-
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
     runs-on: ubuntu-latest
@@ -147,10 +146,10 @@ jobs:
         run: docker network create frontend
 
       - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+        run: docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Build theme assets
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+        run: docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Check for changes in built css
         run: git diff --diff-filter=ACMRT --exit-code web/themes/custom/hoeringsportal/build
@@ -174,8 +173,8 @@ jobs:
           docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Open site
         run: |
@@ -237,12 +236,12 @@ jobs:
           docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Run Playwright
         run: |
-          docker compose run --rm node yarn install
+          docker compose run --rm node npm install
           docker compose run --rm playwright npx playwright install
           docker compose run --rm playwright npx playwright test --retries 3
 

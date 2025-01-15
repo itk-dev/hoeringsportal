@@ -3,15 +3,15 @@
  * Hide password helper.
  */
 
-const $ = require('jquery')
+const $ = require("jquery");
 
 // Function for hiding password confirmation text.
 const passwordConfirm = () => {
-  if (!$('input.js-password-field').val()) {
-    $('div.js-password-confirm').css('visibility', 'hidden')
+  if (!$("input.js-password-field").val()) {
+    $("div.js-password-confirm").css("visibility", "hidden");
   }
-}
+};
 
 $(() => {
-  passwordConfirm()
-})
+  passwordConfirm();
+});

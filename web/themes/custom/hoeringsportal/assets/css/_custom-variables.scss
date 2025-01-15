@@ -4,7 +4,7 @@ $aspect-ratio-padding-1-1: 100%;
 $aspect-ratio-padding-4-3: 75%;
 $aspect-ratio-padding-3-2: 66.66%;
 $aspect-ratio-padding-16-9: 56.25%;
-$aspect-ratio-padding-8-3: 37.50%;
+$aspect-ratio-padding-8-3: 37.5%;
 $font-family-sans-serif: arial, sans-serif !default;
 $font-family-base: $font-family-sans-serif !default;
 $font-family-black: arial, sans-serif !default;
@@ -18,8 +18,8 @@ $font-size-large: 20px !default; //This can not be rem before we use Bootstrap 4
 $font-size-small: 15px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
 $font-size-xs: 12px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
 
-$font-size-title: 4.0rem !default;
+$font-size-title: 4rem !default;
 $font-size-teaser: 1.625rem !default; //26px
 $font-size-teaser-responsive: 1.25rem !default; //20px
 
-$shadow: 0 .25rem 1rem rgb(0 0 0 / 16%);
+$shadow: 0 0.25rem 1rem rgb(0 0 0 / 16%);

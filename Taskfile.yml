@@ -59,8 +59,8 @@ tasks:
 
   assets-build:
     cmds: 
-      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal install'
-      - '{{.DOCKER_COMPOSE}} run --rm node yarn --cwd web/themes/custom/hoeringsportal build'
+      - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal install'
+      - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal build'
   compose:
     cmds:
       - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
@@ -161,13 +161,13 @@ tasks:
       # https://github.com/prettier/prettier/issues/15206) have an official
       # docker image.
       # https://hub.docker.com/r/jauderho/prettier is good candidate (cf. https://hub.docker.com/search?q=prettier&sort=updated_at&order=desc)
-      - docker run --rm --volume "$PWD:/work" jauderho/prettier --write playwright
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --write playwright web/themes/custom/hoeringsportal/assets
 
   coding-standards:assets:check:
     desc: "Apply and check coding standards for assets"
     cmds:
       - task: coding-standards:assets:apply
-      - docker run --rm --volume "$PWD:/work" jauderho/prettier --check playwright
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --check playwright web/themes/custom/hoeringsportal/assets
 
   coding-standards:markdown:apply:
     desc: "Apply coding standards for Markdown"

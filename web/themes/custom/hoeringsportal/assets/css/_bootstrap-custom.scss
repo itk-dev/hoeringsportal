@@ -14,17 +14,20 @@ $gray-900: #333;
 $black: #000;
 $grays: ();
 
-$grays: map.merge((
-  "100": $gray-100,
-  "200": $gray-200,
-  "300": $gray-300,
-  "400": $gray-400,
-  "500": $gray-500,
-  "600": $gray-600,
-  "700": $gray-700,
-  "800": $gray-800,
-  "900": $gray-900
-), $grays);
+$grays: map.merge(
+  (
+    "100": $gray-100,
+    "200": $gray-200,
+    "300": $gray-300,
+    "400": $gray-400,
+    "500": $gray-500,
+    "600": $gray-600,
+    "700": $gray-700,
+    "800": $gray-800,
+    "900": $gray-900,
+  ),
+  $grays
+);
 
 // Set default colors
 $white: #fff;
@@ -63,8 +66,30 @@ $secondary: $black;
 /* stylelint-enable */
 
 // Set default font
-$font-family-sans-serif: arial, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
-$headings-font-family: arial, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" ;
+$font-family-sans-serif:
+  arial,
+  -apple-system,
+  blinkmacsystemfont,
+  "Segoe UI",
+  roboto,
+  "Helvetica Neue",
+  arial,
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol";
+$headings-font-family:
+  arial,
+  -apple-system,
+  blinkmacsystemfont,
+  "Segoe UI",
+  roboto,
+  "Helvetica Neue",
+  arial,
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol";
 $spacer: 1rem;
 $headings-margin-bottom: $spacer;
 $headings-margin-top: $spacer;
@@ -75,7 +100,7 @@ $h1-font-size: $font-size-base * 2.2;
 $h2-font-size: $font-size-base * 1.4;
 $h3-font-size: $font-size-base * 1.2;
 $h4-font-size: $font-size-base * 1.1;
-$h5-font-size: $font-size-base * 1.0;
+$h5-font-size: $font-size-base * 1;
 $h6-font-size: $font-size-base;
 
 // Disable rounded corners

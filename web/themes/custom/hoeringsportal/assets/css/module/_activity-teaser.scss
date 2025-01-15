@@ -2,7 +2,7 @@
 
 .activity-teaser-link {
   color: $primary;
-  font-size: .8rem;
+  font-size: 0.8rem;
   position: absolute;
   bottom: 1.1rem;
   right: $spacer * 1.5;
@@ -60,7 +60,7 @@
   font-family: $font-family-black;
   display: block;
   margin: 0;
-  padding: $spacer * 2 $spacer * 2 $spacer * .25 $spacer * 2;
+  padding: $spacer * 2 $spacer * 2 $spacer * 0.25 $spacer * 2;
   font-weight: 600;
   color: $gray-900;
   text-decoration: none;
@@ -68,14 +68,14 @@
 
   .media & {
     padding-left: 0;
-    padding-top: $spacer * .5;
+    padding-top: $spacer * 0.5;
   }
 }
 
 .activity-teaser-description {
   display: block;
   margin: 0;
-  padding: $spacer * .25 $spacer * 2 $spacer $spacer * 2;
+  padding: $spacer * 0.25 $spacer * 2 $spacer $spacer * 2;
   color: $gray-900;
 }
 
@@ -83,7 +83,7 @@
   position: relative;
   padding: $spacer $spacer * 3 $spacer $spacer * 2;
   background-color: $white;
-  font-size: .7rem;
+  font-size: 0.7rem;
   font-weight: 300;
   line-height: 1rem;
   vertical-align: middle;
@@ -107,7 +107,7 @@
 
 .activity-teaser-area {
   color: $gray-800;
-  padding-right: $spacer * .25;
+  padding-right: $spacer * 0.25;
 }
 
 .activity-teaser-overlay {

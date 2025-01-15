@@ -13,7 +13,7 @@
     border: 1px solid $gray-500;
     display: block;
     width: 100%;
-    padding: $spacer * .25 $spacer * .5;
+    padding: $spacer * 0.25 $spacer * 0.5;
     border-radius: $border-radius-sm;
 
     &:focus-visible {
@@ -24,7 +24,7 @@
 
 .search-collapse-wrapper {
   border-bottom: 1px solid $gray-400;
-  padding-bottom: $spacer * .5;
+  padding-bottom: $spacer * 0.5;
 
   button svg {
     color: $primary;
@@ -59,16 +59,16 @@
     .collapsing {
       display: none;
       position: absolute;
-      right: -$spacer * .75;
+      right: -$spacer * 0.75;
       top: 0;
     }
 
     .collapse.show {
       display: block;
       box-shadow: $box-shadow;
-      padding: $spacer * .75;
+      padding: $spacer * 0.75;
       border-radius: $border-radius;
-      animation: fade .2s ease-out forwards;
+      animation: fade 0.2s ease-out forwards;
 
       button {
         display: block;
@@ -82,9 +82,9 @@
 }
 
 .ui-autocomplete.ui-widget.ui-widget-content {
-  min-width: 0!important;
-  max-height: 100%!important;
-  position: relative!important;
+  min-width: 0 !important;
+  max-height: 100% !important;
+  position: relative !important;
   text-align: left;
   z-index: 1050;
   padding-top: 1em;
@@ -92,8 +92,8 @@
 
   li {
     border: 0;
-    padding-top: $spacer * .25;
-    padding-bottom: $spacer * .75;
+    padding-top: $spacer * 0.25;
+    padding-bottom: $spacer * 0.75;
 
     @include media-breakpoint-up(md) {
       padding: $spacer;
@@ -107,7 +107,7 @@
   .ui-menu-item-wrapper {
     display: block;
     position: relative;
-    padding: $spacer * .5 $spacer;
+    padding: $spacer * 0.5 $spacer;
     transition: none;
     text-decoration: none;
   }
@@ -118,8 +118,8 @@
 
     @include media-breakpoint-up(md) {
       border-left: 3px solid transparent;
-      padding: $spacer * .5;
-      margin: $spacer * .25 0;
+      padding: $spacer * 0.5;
+      margin: $spacer * 0.25 0;
     }
 
     &:hover,
@@ -161,7 +161,7 @@
     .ui-autocomplete-field-type {
       background-color: $primary;
       border-radius: $border-radius-sm;
-      padding: 0 $spacer * .25;
+      padding: 0 $spacer * 0.25;
       color: $white;
       width: fit-content;
       order: 3;
@@ -181,11 +181,12 @@
   .ui-autocomplete-container-no_results::before {
     content: "Ingen resultater";
   }
-
 }
 
 // Remove the clear x from search input
 input[type="search"]::-webkit-search-decoration,
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration { display: none; }
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}

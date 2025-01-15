@@ -37,7 +37,7 @@
   h3 {
     border-top: 1px solid $gray-300;
     padding-top: 1.5rem;
-    margin-top: .5rem;
+    margin-top: 0.5rem;
 
     &:first-child {
       border: 0;
@@ -46,8 +46,10 @@
     }
   }
 
-  h4, h5, h6 {
-    font-size: .8rem;
+  h4,
+  h5,
+  h6 {
+    font-size: 0.8rem;
     text-transform: none;
     margin-bottom: 0;
   }
@@ -68,8 +70,8 @@
   position: relative;
 
   > div {
-    padding: 0!important;
-    position: absolute!important;
+    padding: 0 !important;
+    position: absolute !important;
     top: 0;
     left: 0;
     width: 100%;
@@ -86,13 +88,13 @@
 }
 
 .content-hearign-ticket-title-label {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: bold;
 }
 
 .ticket-file {
   color: $gray-900;
-  text-decoration: none!important;
+  text-decoration: none !important;
   padding: 1em;
   box-sizing: border-box;
   background: $gray-200;
@@ -118,7 +120,6 @@
   max-width: 100%;
 }
 
-
 .is-comma-separated {
   span::after {
     content: ",";
@@ -135,7 +136,7 @@
   }
 
   .page--landing_page & {
-    padding-bottom: .25rem;
+    padding-bottom: 0.25rem;
   }
 
   .page--citizen_proposal & {
