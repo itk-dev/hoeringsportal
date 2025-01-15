@@ -19,7 +19,7 @@ services:
       - ../../shared/files:/app/web/sites/default/files
 
   node:
-    image: node:18
+    image: node:22
     volumes:
       - .:/app:delegated
 
