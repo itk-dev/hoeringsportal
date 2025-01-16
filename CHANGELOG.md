@@ -10,6 +10,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Add usable config values for oidc
   Update OIDC documentation
   Rename editor user in group "administrator" to admin user
+* [PR-434](https://github.com/itk-dev/hoeringsportal/pull/434)
+  Accessibility stuff:
+  Font sizes to rem instead of pixels
+  Add name to image for screen readers
+  Change h5's to h4
+  Add label to search icon
 * [PR-433](https://github.com/itk-dev/hoeringsportal/pull/433)
   Upgrade node from 18 to 22
 * [PR-432](https://github.com/itk-dev/hoeringsportal/pull/432)

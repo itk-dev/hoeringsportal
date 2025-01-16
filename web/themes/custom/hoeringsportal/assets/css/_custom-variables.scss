@@ -14,9 +14,9 @@ $font-weight-black: 900 !default;
 $line-height-base: 1.5 !default;
 $headings-line-height: 1.4 !default;
 $headings-font-weight: 700 !default;
-$font-size-large: 20px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
-$font-size-small: 15px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
-$font-size-xs: 12px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+$font-size-large: 1.25rem;
+$font-size-small: 0.9rem;
+$font-size-xs: 0.75rem;
 
 $font-size-title: 4rem !default;
 $font-size-teaser: 1.625rem !default; //26px
