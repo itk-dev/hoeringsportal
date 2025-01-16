@@ -7,7 +7,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 
 * [PR-435](https://github.com/itk-dev/hoeringsportal/pull/435)
-  add usable config values for oidc
+  Add usable config values for oidc
+  Update OIDC documentation
+  Rename editor user in group "administrator" to admin user
 * [PR-433](https://github.com/itk-dev/hoeringsportal/pull/433)
   Upgrade node from 18 to 22
 * [PR-432](https://github.com/itk-dev/hoeringsportal/pull/432)

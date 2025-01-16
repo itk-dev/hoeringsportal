@@ -269,15 +269,15 @@ services:
 
       USERS_CONFIGURATION_INLINE: |
         - SubjectId: 1
-          Username: department1-editor
-          Password: department1-editor
+          Username: department1-admin
+          Password: department1-admin
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: email
-            Value: 'department1-editor@example.com'
+            Value: 'department1-admin@example.com'
             ValueType: string
           - Type: name
-            Value: 'department1-editor'
+            Value: 'department1-admin'
             ValueType: string
           - Type: magistratsafdeling
             Value: 'Department 1'
