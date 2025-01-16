@@ -6,11 +6,12 @@ id: generic
 label: generic
 plugin: generic
 settings:
-  client_id: "file:///settings.local.php#$config['openid_connect.client.generic']['settings']['client_id']"
-  client_secret: "file:///settings.local.php#$config['openid_connect.client.generic']['settings']['client_secret']"
+  client_id: client-id
+  client_secret: client-secret
+  iss_allowed_domains: ''
   issuer_url: ''
-  authorization_endpoint: "file:///settings.local.php#$config['openid_connect.client.generic']['settings']['client_id']"
-  token_endpoint: "file:///settings.local.php#$config['openid_connect.client.generic']['settings']['token_endpoint']"
+  authorization_endpoint: 'http://idp-employee.hoeringsportal.local.itkdev.dk/connect/authorize'
+  token_endpoint: 'http://idp-employee.hoeringsportal.local.itkdev.dk/connect/token'
   userinfo_endpoint: ''
   end_session_endpoint: ''
   scopes:
