@@ -21,8 +21,8 @@ $settings['locale_custom_strings_da'][''] = [
 ];
 ```
 
-Use `drush` to check your actual configuration (with `--include-overridden` to
-include your config from `settings.local.php`):
+Use `drush` to check your actual configuration (with `--include-overridden` to include your config from
+`settings.local.php`):
 
 ```sh
 docker compose exec phpfpm vendor/bin/drush config:get --include-overridden openid_connect.client.generic
@@ -31,13 +31,11 @@ docker compose exec phpfpm vendor/bin/drush config:get --include-overridden open
 
 ## Citizen authentification
 
-See the [Høringsportalen OpenID Connect
-module](../web/modules/custom/hoeringsportal_openid_connect/README.md) for
+See the [Høringsportalen OpenID Connect module](../web/modules/custom/hoeringsportal_openid_connect/README.md) for
 details on configuring OpenID Connect authentification for citizens.
 
-For local testing we use [OpenId Connect Server
-Mock](https://github.com/Soluto/oidc-server-mock) for (almost) real OpenID
-Connect. Users and their claims are defined in
+For local testing we use [OpenId Connect Server Mock](https://github.com/Soluto/oidc-server-mock) for (almost) real
+OpenID Connect. Users and their claims are defined in
 [`docker-compose.override.yml`](../../../../docker-compose.override.yml).
 
 ## Employee authentification
@@ -61,16 +59,31 @@ docker compose exec phpfpm vendor/bin/drush php:eval "\Drupal\taxonomy\Entity\Te
 docker compose --profile oidc up --detach
 ```
 
-During development it can be useful to see the user info we actually get during
-OpenID Connect authentification, and to do this you can apply the patch
-[openid_connect-debug-userinfo.patch](../patches/openid_connect-debug-userinfo.patch):
+### Local OIDC test
+
+During (local) development we use [OpenId Connect Server Mock](https://github.com/Soluto/oidc-server-mock) (cf.
+[`docker-compose.oidc.yml`](docker-compose.oidc.yml) which is
+[included](https://docs.docker.com/compose/how-tos/multiple-compose-files/include/) in
+[`docker-compose.override.yml`](docker-compose.override.yml)).
+
+#### Employees
+
+| Username            | Password             | Groups        |
+|---------------------|----------------------|---------------|
+| department1-admin   | department1-admin    | administrator |
+| department2-editor  | department2-editor   | editor        |
+| department3-editor  | department3-editor   | editor        |
+
+## Debug OIDC
+
+During development it can be useful to see the user info we actually get during OpenID Connect authentification, and to
+do this you can apply the patch [openid_connect-debug-userinfo.patch](../patches/openid_connect-debug-userinfo.patch):
 
 ```sh
 docker compose exec phpfpm patch --strip=1 --input=patches/openid_connect-debug-userinfo.patch
 ```
 
-After applying the patch and succesfully logging in, the actual userinfo
-received can be inspected with
+After applying the patch and succesfully logging in, the actual userinfo received can be inspected with
 
 ```sh
 docker compose exec phpfpm vendor/bin/drush watchdog:show --type=itkdev-debug --extended
