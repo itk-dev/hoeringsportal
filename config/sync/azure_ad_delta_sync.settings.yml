@@ -1,0 +1,20 @@
+drupal:
+  user_cancel_method: user_cancel_reassign
+  user_id_field: name
+azure:
+  client_id: client_id
+  client_secret: client_secret
+  group_id: group_id
+  tenant_id: tenant_id
+  user_id_claim: userPrincipalName
+include:
+  modules:
+    openid_connect: 0
+exclude:
+  roles:
+    citizen_proposal_editor: 0
+    editor: 0
+    administrator: 0
+    project_editor: 0
+  users:
+    - '1'
