@@ -1,9 +1,9 @@
-uuid: 0147c0ab-7d85-4216-9602-8427648d1ac8
+uuid: b459dc48-d810-4ad3-911e-52b3ba32c48e
 langcode: da
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.citizen_proposal_approval
+    - core.entity_view_mode.node.search_result
     - field.field.node.citizen_proposal.field_author_allow_email
     - field.field.node.citizen_proposal.field_author_email
     - field.field.node.citizen_proposal.field_author_email_display
@@ -19,54 +19,57 @@ dependencies:
     - field.field.node.citizen_proposal.field_vote_start
     - node.type.citizen_proposal
   module:
-    - text
+    - ds
     - user
-id: node.citizen_proposal.citizen_proposal_approval
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - node_title
+        - search_api_excerpt
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          'link class': ''
+          wrapper: ''
+          class: ''
+id: node.citizen_proposal.search_result
 targetEntityType: node
 bundle: citizen_proposal
-mode: citizen_proposal_approval
+mode: search_result
 content:
-  field_author_email:
-    type: basic_string
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 3
-    region: content
-  field_author_name:
-    type: string
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
-  field_proposal:
-    type: text_default
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    weight: 0
-    region: content
-  field_remarks:
-    type: text_default
-    label: above
+  search_api_excerpt:
     settings: {  }
     third_party_settings: {  }
     weight: 1
     region: content
 hidden:
   field_author_allow_email: true
+  field_author_email: true
   field_author_email_display: true
+  field_author_name: true
   field_author_phone: true
   field_author_uuid: true
   field_content_state: true
   field_getorganized_case_id: true
   field_more_info: true
+  field_proposal: true
+  field_remarks: true
   field_vote_end: true
   field_vote_start: true
   langcode: true
   links: true
   published_at: true
-  search_api_excerpt: true
   sharing_buttons: true

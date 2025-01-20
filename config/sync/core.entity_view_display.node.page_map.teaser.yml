@@ -24,4 +24,5 @@ hidden:
   field_map_type: true
   langcode: true
   published_at: true
+  search_api_excerpt: true
   sharing_buttons: true

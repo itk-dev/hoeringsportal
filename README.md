@@ -28,3 +28,11 @@ A number of `cron` jobs must be set up to make things happen automagically; see
 
 * [Hoeringsportal data](web/modules/custom/hoeringsportal_data/README.md)
 * [Hoeringsportal public meeting](web/modules/custom/hoeringsportal_public_meeting/README.md)
+
+## Search
+
+``` sh name=search-reindex
+task drush -- search-api:reset-tracker
+task drush -- search-api:rebuild-tracker
+task drush -- search-api:index
+```
