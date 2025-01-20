@@ -4,7 +4,7 @@ drupal:
 azure:
   security_key: security_key
   client_secret: client_secret
-  uri: 'http://api.hoeringsportal.local.itkdev.dk/activeAzureUsers'
+  uri: 'http://mock.hoeringsportal.local.itkdev.dk/'
   user_id_claim: userprincipalname
 include:
   modules:
