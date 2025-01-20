@@ -55,6 +55,7 @@
         "drupal/publication_date": "^2.0",
         "drupal/quick_node_clone": "^1.12",
         "drupal/redirect": "^1.6",
+        "drupal/search_api": "^1.37",
         "drupal/search_autocomplete": "^3.0",
         "drupal/token_filter": "^2.1",
         "drupal/toolbar_visibility": "^2.1",

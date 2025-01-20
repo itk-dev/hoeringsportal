@@ -7,7 +7,6 @@ dependencies:
   module:
     - filter
     - media
-    - search
     - system
 _core:
   default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
@@ -17,6 +16,5 @@ weight: -10
 is_admin: false
 permissions:
   - 'access content'
-  - 'search content'
   - 'use text format citizen_proposal_content'
   - 'view media'

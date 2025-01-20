@@ -1,9 +1,9 @@
-uuid: 5da4173e-8796-4ff8-a95e-18d216c7c7f9
+uuid: f3a0fcb1-a319-4f38-8fdc-5c695c4927b3
 langcode: da
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.search_result
     - field.field.node.hearing.field_area
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
@@ -30,76 +30,45 @@ dependencies:
     - field.field.node.hearing.field_video_embed
     - node.type.hearing
   module:
-    - datetime
     - ds
-    - options
     - user
-id: node.hearing.teaser
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - search_api_excerpt
+        - node_title
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          wrapper: ''
+          class: ''
+id: node.hearing.search_result
 targetEntityType: node
 bundle: hearing
-mode: teaser
+mode: search_result
 content:
-  field_area:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 1
-    region: content
-  field_content_state:
-    type: list_key
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    weight: 7
-    region: content
-  field_media_image:
-    type: entity_reference_entity_view
-    label: hidden
-    settings:
-      view_mode: teaser_display
-      link: false
-    third_party_settings:
-      ds:
-        ds_limit: '0'
-    weight: 4
-    region: content
-  field_reply_deadline:
-    type: datetime_default
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 5
-    region: content
-  field_start_date:
-    type: datetime_default
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 6
-    region: content
-  field_teaser:
-    type: basic_string
-    label: hidden
+  search_api_excerpt:
     settings: {  }
     third_party_settings: {  }
     weight: 0
     region: content
-  field_type:
-    type: entity_reference_label
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
-    weight: 3
-    region: content
 hidden:
+  field_area: true
   field_contact: true
+  field_content_state: true
   field_delete_date: true
   field_description: true
   field_deskpro_agent_email: true
@@ -112,12 +81,16 @@ hidden:
   field_map: true
   field_map_display: true
   field_media_document: true
+  field_media_image: true
   field_more_info: true
   field_project_reference: true
+  field_reply_deadline: true
+  field_start_date: true
   field_tags: true
+  field_teaser: true
+  field_type: true
   field_video_embed: true
   langcode: true
   links: true
   published_at: true
-  search_api_excerpt: true
   sharing_buttons: true
