@@ -319,3 +319,21 @@ services:
           - Type: groups
             Value: '["editor"]'
             ValueType: json
+  
+  mock-server:
+    image: node:22
+    command: npm run server
+    working_dir: /app
+    networks:
+      - app
+      - frontend
+    ports:
+      - "3000"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app:delegated
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_api.rule=Host(`api.${COMPOSE_DOMAIN}`)"
