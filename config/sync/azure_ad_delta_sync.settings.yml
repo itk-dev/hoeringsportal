@@ -1,12 +1,11 @@
 drupal:
   user_cancel_method: user_cancel_reassign
-  user_id_field: name
+  user_id_field: mail
 azure:
-  client_id: client_id
+  security_key: security_key
   client_secret: client_secret
-  group_id: group_id
-  tenant_id: tenant_id
-  user_id_claim: userPrincipalName
+  uri: 'http://api.hoeringsportal.local.itkdev.dk/activeAzureUsers'
+  user_id_claim: userprincipalname
 include:
   modules:
     openid_connect: 0
