@@ -31,24 +31,19 @@ class HearingController extends ApiController {
     }
 
     // We get one more entity that actually needed to check if we have a "next" relation.
-    $entities = $this->helper()->getHearings($conditions, ['created' => 'DESC'], $pageSize+1, $pageSize *($page-1));
+    $entities = $this->helper()->getHearings($conditions, ['created' => 'DESC'], $pageSize + 1, $pageSize * ($page - 1));
     $hasNext = count($entities) > $pageSize;
     array_pop($entities);
     $entities = array_slice($entities, 0, $pageSize);
 
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
-    $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
+    $features = array_map($this->helper()->serializeGeoJsonHearing(...), $entities);
+    $response = $this->createGeoJsonResponse(
+      $features,
+      cacheContexts: ['url.query_args:geometry', 'url.query_args:page', 'url.query_args:page_size'],
+      cacheTags: ['node_list:hearing'],
+    );
 
-    // @see https://datatracker.ietf.org/doc/html/rfc8288
-    $rels['self'] = $this->generateUrl('hoeringsportal_data.api_geojson_v2_hearings', ['page' => $page]);
-    if ($page > 1) {
-      $rels['prev'] = $this->generateUrl('hoeringsportal_data.api_geojson_v2_hearings', ['page' => $page-1]);
-    }
-    if ($hasNext) {
-      $rels['next'] = $this->generateUrl('hoeringsportal_data.api_geojson_v2_hearings', ['page' => $page + 1]);
-    }
-    $links = array_map(function ($rel, $url) { return sprintf('<%s>; rel="%s"', $url, $rel); }, array_keys($rels), array_values($rels));
-    $response->headers->add(['link' => implode(', ', $links)]);
+    $this->addRels($response, $page, $hasNext);
 
     return $response;
   }

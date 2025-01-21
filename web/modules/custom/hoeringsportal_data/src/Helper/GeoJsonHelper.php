@@ -159,8 +159,7 @@ class GeoJsonHelper {
 
     $geometryType = $this->getGeometryType($hearing);
 
-    $data = [
-      'properties' => [
+    $properties = [
         'hearing_id' => (int) $hearing->id(),
         'hearing_title' => $hearing->getTitle(),
         'hearing_content_state' => $hearing->get('field_content_state')->value,
@@ -189,11 +188,18 @@ class GeoJsonHelper {
         'hearing_local_plan_ids' => array_map(function ($lokalplan) {
           return (int) $lokalplan->id;
         }, $lokalplaner),
-      ],
     ];
 
+    // Additional properties for Septima widget.
+    $properties['start_date'] = $properties['hearing_start_date'];
+    $properties['end_date'] = $properties['hearing_reply_deadline'];
+
+    $data = [
+      'properties' => $properties,
+      ];
+
     $geometry = $this->getGeometry($hearing);
-    if (NULL !== $geometry) {
+    if (isset($geometry['geometry'])) {
       $data['geometry'] = $geometry['geometry'];
       $data['type'] = 'Feature';
     }
@@ -243,6 +249,10 @@ class GeoJsonHelper {
       'date_time_to' => $this->getDrupalDateTime($data->time_to_value),
       'date_spots' => (int) $data->spots,
     ];
+
+    // Additional properties for Septima widget.
+    $properties['start_date'] = $properties['date_time_from'];
+    $properties['end_date'] = $properties['date_time_to'];
 
     if (isset($data->data->coordinates)) {
       $serialized['geometry'] = [

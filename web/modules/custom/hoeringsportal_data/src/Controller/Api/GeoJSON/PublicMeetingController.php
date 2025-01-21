@@ -14,9 +14,12 @@ class PublicMeetingController extends ApiController {
    */
   public function dates() {
     $entities = $this->getDates();
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonPublicMeetingDate'], $entities));
+    $features = array_map($this->helper()->serializeGeoJsonPublicMeetingDate(...), $entities);
 
-    return $this->createGeoJsonResponse($features);
+    return $this->createGeoJsonResponse(
+      $features,
+      cacheTags: ['node_list:public_meeting'],
+    );
   }
 
   /**
