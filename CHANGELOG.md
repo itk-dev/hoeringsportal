@@ -25,6 +25,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Add audit to actions
 * [PR-430](https://github.com/itk-dev/hoeringsportal/pull/430)
   Add build assets to taskfile
+* [PR-431](https://github.com/itk-dev/hoeringsportal/pull/431)
+  Avoid navbar jumping
 * [PR-429](https://github.com/itk-dev/hoeringsportal/pull/429)
   Removed outdated (and unused) API endpoints. Cleaned up.
 * [PR-427](https://github.com/itk-dev/hoeringsportal/pull/427)
