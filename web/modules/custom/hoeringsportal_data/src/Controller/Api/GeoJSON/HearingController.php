@@ -29,11 +29,12 @@ class HearingController extends ApiController {
     }
 
     $entities = $this->helper()->getHearings($conditions);
+    $features = array_map($this->helper()->serializeGeoJsonHearing(...), $entities);
 
-    $features = array_values(array_map([$this->helper(), 'serializeGeoJsonHearing'], $entities));
-    $response = $this->createGeoJsonResponse($features, 'FeatureCollection');
-
-    return $response;
+    return $this->createGeoJsonResponse(
+      $features,
+      cacheTags: ['node_list:hearing'],
+    );
   }
 
 }
