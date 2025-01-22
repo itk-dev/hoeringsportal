@@ -4,37 +4,34 @@
 {% set badge_class = 'badge-' ~ short_type %}
 {% set icon_source = directory ~ '/assets/svg/' ~ short_type ~ '.svg' %}
 
-<div class="search-result search-result--node search-result--node--{{ node.bundle|clean_class }} d-flex w-100">
-  {# icon #}
-  <div class="search-result-icon">
-    {{- source(icon_source, ignore_missing = true) -}}
+<div class="search-result search-result--node search-result--node--{{ node.bundle|clean_class }} d-flex flex-column gap-1">
+  <div class="d-flex gap-3 align-items-center">
+    {# Result title #}
+    <h2 class="search-result--title m-0 p-0">
+      <a class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ node.toUrl() }}">{{- node.label -}}</a>
+    </h2>
   </div>
-  <div class="container px-0 search-result-information">
-    <div class="row no-gutters">
-      <div class="col search-result-text mx-30">
-        {# text: header #}
-        <h2 class="search-result-header h5 mb-10">
-          <a class="link-unstyled" href="{{ node.toUrl() }}">{{- node.label -}}</a>
-        </h2>
-
-        {# text: body #}
-        {% if content['#search_api_excerpt'] %}
-        <div class="search-api-excerpt mb-0">
-          {{- content['#search_api_excerpt']|raw -}}
-        </div>
-        {% endif %}
-
-        {# badges #}
-        <div class="search-result-badges d-flex mt-10">
-          <span class="todo-badge todo-badge-primary {{ badge_class }}">{{ node.type.entity.label }}</span>
-        </div>
-      </div>
-      <div class="col-auto ml-auto">
-        {# date #}
-        <div class="search-result-date text-sm">
-          {{- (node.createdTime|date('d-m-Y')) -}}
-        </div>
-      </div>
+  {# Created date #}
+  <span class="search-result--create-date m-0 small muted">{{- (node.createdTime|date('d-m-Y')) -}}</span>
+  {# Result body #}
+  {% if content['#search_api_excerpt'] %}
+    <div class="search-result--body-wrapper mb-0 text-truncate">
+      {{- content['#search_api_excerpt']|raw -}}
     </div>
+  {% endif %}
+  <div class="d-flex gap-3 align-items-center">
+    {# Result badge #}
+    {% if node.type.entity.label is not empty %}
+      <div class="search-result--badges-wrapper d-flex">
+        <span class="search-result--badge badge bg-secondary-subtle text-dark {{ badge_class }}">{{ node.type.entity.label }}</span>
+      </div>
+    {% endif %}
+    {# Result icon #}
+    {% if icon_source is not empty %}
+      <div class="search-result--icon">
+        {{- source(icon_source, ignore_missing = true) -}}
+      </div>
+    {% endif %}
   </div>
 </div>
+
