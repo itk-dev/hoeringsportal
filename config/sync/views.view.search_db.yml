@@ -116,8 +116,8 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Apply
-          reset_button: false
+          submit_button: Search
+          reset_button: true
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
@@ -163,7 +163,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: display_link
-          label: 'No results match your search'
+          label: 'No results'
           empty: true
           display_id: page_1
       sorts:
@@ -236,7 +236,7 @@ display:
         type: default
         options:
           row_class: ''
-          default_row_class: true
+          default_row_class: false
           uses_fields: false
       row:
         type: search_api
