@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/users/second"
+  },
+  "response": {
+    "body": [
+      {
+        "userprincipalname": "todo"
+      }
+    ]
+  }
+}
