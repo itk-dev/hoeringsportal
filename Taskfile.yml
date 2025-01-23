@@ -36,6 +36,7 @@ tasks:
       - task compose -- pull
       - task compose-up
       - task composer-install
+      - task assets-build
       - task drush -- deploy
     silent: true
 
@@ -58,7 +59,7 @@ tasks:
     silent: true
 
   assets-build:
-    cmds: 
+    cmds:
       - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal'
       - '{{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal'
   compose:
@@ -67,7 +68,7 @@ tasks:
 
   compose-up:
     cmds:
-      - task compose -- up --detach --remove-orphans
+      - task compose -- up --detach --remove-orphans --wait
     silent: true
 
   composer:
@@ -216,3 +217,10 @@ tasks:
       - docker pull jauderho/prettier
       - docker pull peterdavehello/markdownlint
       - task compose -- pull
+
+  fixtures:load:
+    prompt: "This will reset your content. Continue?"
+    cmds:
+     - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+     - task drush -- --yes content-fixtures:load
+     - task drush -- --yes pm:uninstall content_fixtures

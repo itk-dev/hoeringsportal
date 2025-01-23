@@ -83,9 +83,7 @@ docker compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.l
 Add all fixtures
 
 ```sh name=load-fixtures
-docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
+task fixtures:load
 ```
 
 ### Coding standards and code analysis
