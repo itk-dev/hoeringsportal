@@ -6,7 +6,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-* [PR-437](https://github.com/itk-dev/hoeringsportal/pull/437)
+* [PR-438](https://github.com/itk-dev/hoeringsportal/pull/438)
   Improved search styling
 * [PR-436](https://github.com/itk-dev/hoeringsportal/pull/436)
   Improved search
