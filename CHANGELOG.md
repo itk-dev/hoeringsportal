@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-439](https://github.com/itk-dev/hoeringsportal/pull/439)
+  Updated tasks and map page fixture.
 * [PR-437](https://github.com/itk-dev/hoeringsportal/pull/437)
   Cleaned up API and added caching
 * [PR-435](https://github.com/itk-dev/hoeringsportal/pull/435)

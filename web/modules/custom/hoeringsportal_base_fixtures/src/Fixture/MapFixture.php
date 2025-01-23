@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 
+use Drupal\Component\Serialization\Yaml;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
@@ -9,11 +10,11 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
 /**
- * Page fixture.
+ * Map fixture.
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class MapFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
+final class MapFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
   /**
    * {@inheritdoc}
@@ -64,18 +65,20 @@ class MapFixture extends AbstractFixture implements DependentFixtureInterface, F
 
     $node = Node::create([
       'type' => 'page_map',
-      'title' => 'page_map - Heste Kortet',
+      'title' => 'Kortet',
       'status' => NodeInterface::PUBLISHED,
-      'field_pretix_event_settings' =>
-        [
-          'template_event' => 'testvej 2',
-          'synchronize_event' => FALSE,
-        ],
-      'field_map_type' => [],
-      'field_map_configuration' => json_encode($field_map_configuration_data),
+      'field_map_type' => 'septima_widget',
+      'field_map_configuration' => Yaml::encode(Yaml::decode(file_get_contents(__DIR__ . '/../../assets/page_map.yaml'))),
     ]);
     $this->addReference('page_map:fixture-1', $node);
     $node->save();
+
+    // Set map path in site settings (cf.
+    // ItkGeneralSettingsForm::getBaseConfig.).
+    /** @var \Drupal\itk_admin\State\BaseConfig $config */
+    $config = \Drupal::getContainer()->get('itk_admin.itk_config');
+    // Show all items up until now.
+    $config->set('full_map_url', '/node/' . $node->id() . '?' . http_build_query(['start_date' => '01/01/2021']));
   }
 
   /**
