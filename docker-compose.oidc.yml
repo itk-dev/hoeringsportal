@@ -320,20 +320,19 @@ services:
             Value: '["editor"]'
             ValueType: json
   
-  mock-server:
-    image: node:22
-    command: npm run server
-    working_dir: /app
+  idp_mock_api:
+    image: dotronglong/faker:stable
+    profiles:
+      - oidc
+      - test 
     networks:
       - app
       - frontend
-    ports:
-      - "3000"
-    environment:
-      - NODE_ENV=development
     volumes:
-      - .:/app:delegated
+      - ./mocks:/app/mocks
+    ports:
+      - "3030"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=frontend"
-      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_mock.rule=Host(`mock.${COMPOSE_DOMAIN}`)"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_idp_mock_api.rule=Host(`idp_mock_api.${COMPOSE_DOMAIN}`)"
