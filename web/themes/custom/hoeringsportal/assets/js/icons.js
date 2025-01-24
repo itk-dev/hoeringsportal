@@ -10,6 +10,7 @@ import { library, dom } from "@fortawesome/fontawesome-svg-core";
 // Import the icons from the free solid package.
 import {
   faArrowRight,
+  faArrowLeft,
   faCopy,
   faComment,
   faCircleCheck,
@@ -46,6 +47,7 @@ import {
 library.add(
   // Solid
   faArrowRight,
+  faArrowLeft,
   faCircle,
   faCircleCheck,
   faComment,
