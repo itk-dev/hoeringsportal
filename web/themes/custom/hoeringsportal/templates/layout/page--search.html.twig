@@ -64,9 +64,10 @@
 <script>
   document.addEventListener("DOMContentLoaded", (event) => {
     const searchInput = document.getElementById("edit-search-api-fulltext");
-    searchInput.focus();
-    var val = searchInput.value; //store the value of the element
-    searchInput.value = ''; //clear the value of the element
-    searchInput.value = val;
+    searchInput.focus(); // Set focus on to input field when page loads
+    // If we have a value in the input field, set the cursor after the last character
+    var val = searchInput.value; // store the value of the element
+    searchInput.value = ''; // clear the value of the element
+    searchInput.value = val; // insert the value
   });
 </script>
