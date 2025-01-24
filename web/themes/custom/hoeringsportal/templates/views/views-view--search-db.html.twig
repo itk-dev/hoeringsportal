@@ -37,26 +37,26 @@
 %}
 <div{{ attributes.addClass(classes) }}>
   {{ exposed }}
-  {% if rows is empty and exposed.search_api_fulltext['#value'] is empty %}
+  {% set search_terms = exposed.search_api_fulltext['#value']|default('')|trim %}
+  {% if rows is empty and search_terms is empty %}
     <div class="d-flex justify-content-center list--empty-text">
       <div>
         <div class="d-flex flex-column justify-content-center">
-          <h3>{{ 'Search - and results will show up here'|trans }}</h3>
+          <h3>{{ 'Search and results will show up here'|trans }}</h3>
         </div>
       </div>
     </div>
-  {% elseif rows is not empty and empty is empty %}
-    {{ rows }}
-  {% else %}
+  {% elseif rows is empty and search_terms is not empty %}
     <div class="d-flex justify-content-center list--empty-text">
       <div>
         <div class="d-flex flex-column gap-0 justify-content-center">
-          <p class="mx-0 h3"><i class="me-1">{{ exposed.search_api_fulltext['#value'] }}</i>{{ 'returned no results'|trans }}</p>
+          <p class="mx-0 h3">{{ 'Search for %search_terms returned no results'|trans({'%search_terms': search_terms}) }}</p>
           <p class="mx-0">{{ 'Try with less words or to phrase it differently'|trans }}</p>
         </div>
       </div>
     </div>
   {% endif %}
+  {{ rows }}
   {{ pager }}
   {{ more }}
 </div>
