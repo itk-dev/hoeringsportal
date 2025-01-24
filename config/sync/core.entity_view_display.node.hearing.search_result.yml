@@ -1,0 +1,96 @@
+uuid: f3a0fcb1-a319-4f38-8fdc-5c695c4927b3
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.hearing.field_area
+    - field.field.node.hearing.field_contact
+    - field.field.node.hearing.field_content_state
+    - field.field.node.hearing.field_delete_date
+    - field.field.node.hearing.field_description
+    - field.field.node.hearing.field_deskpro_agent_email
+    - field.field.node.hearing.field_deskpro_department_id
+    - field.field.node.hearing.field_edoc_casefile_id
+    - field.field.node.hearing.field_getorganized_case_id
+    - field.field.node.hearing.field_hearing_ticket_add
+    - field.field.node.hearing.field_hearing_ticket_list
+    - field.field.node.hearing.field_lokalplaner
+    - field.field.node.hearing.field_map
+    - field.field.node.hearing.field_map_display
+    - field.field.node.hearing.field_media_document
+    - field.field.node.hearing.field_media_image
+    - field.field.node.hearing.field_more_info
+    - field.field.node.hearing.field_project_reference
+    - field.field.node.hearing.field_reply_deadline
+    - field.field.node.hearing.field_start_date
+    - field.field.node.hearing.field_tags
+    - field.field.node.hearing.field_teaser
+    - field.field.node.hearing.field_type
+    - field.field.node.hearing.field_video_embed
+    - node.type.hearing
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - search_api_excerpt
+        - node_title
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          wrapper: ''
+          class: ''
+id: node.hearing.search_result
+targetEntityType: node
+bundle: hearing
+mode: search_result
+content:
+  search_api_excerpt:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_area: true
+  field_contact: true
+  field_content_state: true
+  field_delete_date: true
+  field_description: true
+  field_deskpro_agent_email: true
+  field_deskpro_department_id: true
+  field_edoc_casefile_id: true
+  field_getorganized_case_id: true
+  field_hearing_ticket_add: true
+  field_hearing_ticket_list: true
+  field_lokalplaner: true
+  field_map: true
+  field_map_display: true
+  field_media_document: true
+  field_media_image: true
+  field_more_info: true
+  field_project_reference: true
+  field_reply_deadline: true
+  field_start_date: true
+  field_tags: true
+  field_teaser: true
+  field_type: true
+  field_video_embed: true
+  langcode: true
+  links: true
+  published_at: true
+  sharing_buttons: true

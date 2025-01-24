@@ -1,0 +1,54 @@
+uuid: abaa6ad5-c333-4c99-b630-d6c2961e3f13
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.static_page.field_media_image_single
+    - field.field.node.static_page.field_section
+    - field.field.node.static_page.field_sidebar
+    - field.field.node.static_page.field_teaser
+    - field.field.node.static_page.field_teaser_color
+    - node.type.static_page
+  module:
+    - ds
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - node_title
+        - search_api_excerpt
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.static_page.search_result
+targetEntityType: node
+bundle: static_page
+mode: search_result
+content:
+  search_api_excerpt:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_media_image_single: true
+  field_section: true
+  field_sidebar: true
+  field_teaser: true
+  field_teaser_color: true
+  langcode: true
+  links: true
+  published_at: true
+  sharing_buttons: true

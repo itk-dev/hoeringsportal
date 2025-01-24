@@ -1,0 +1,123 @@
+uuid: fd1c3e61-23ce-4dc7-81d1-2abd57f5aa2f
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.search_result
+    - field.field.node.public_meeting.field_area
+    - field.field.node.public_meeting.field_cancelled_date
+    - field.field.node.public_meeting.field_cancelled_text
+    - field.field.node.public_meeting.field_contact
+    - field.field.node.public_meeting.field_content_state
+    - field.field.node.public_meeting.field_description
+    - field.field.node.public_meeting.field_email_address
+    - field.field.node.public_meeting.field_first_meeting_time
+    - field.field.node.public_meeting.field_hidden_signup
+    - field.field.node.public_meeting.field_last_meeting_time
+    - field.field.node.public_meeting.field_last_meeting_time_end
+    - field.field.node.public_meeting.field_map
+    - field.field.node.public_meeting.field_media_document
+    - field.field.node.public_meeting.field_media_image_single
+    - field.field.node.public_meeting.field_pretix_dates
+    - field.field.node.public_meeting.field_pretix_event_settings
+    - field.field.node.public_meeting.field_project_reference
+    - field.field.node.public_meeting.field_public_meeting_cancelled
+    - field.field.node.public_meeting.field_registration_deadline
+    - field.field.node.public_meeting.field_section
+    - field.field.node.public_meeting.field_signup_link
+    - field.field.node.public_meeting.field_signup_selection
+    - field.field.node.public_meeting.field_signup_text
+    - field.field.node.public_meeting.field_teaser
+    - field.field.node.public_meeting.field_type
+    - node.type.public_meeting
+  module:
+    - ds
+    - field_group
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: layout_onecol
+      library: layout_discovery/onecol
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        label: ''
+    regions:
+      content:
+        - node_title
+        - search_api_excerpt
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+        settings:
+          link: false
+          wrapper: ''
+          class: ''
+  field_group:
+    group_signup:
+      children:
+        - field_hidden_signup
+        - field_pretix_dates
+        - field_registration_deadline
+        - field_signup_link
+        - field_signup_selection
+        - field_signup_text
+      label: Tilmelding
+      parent_name: ''
+      region: hidden
+      weight: 41
+      format_type: html_element
+      format_settings:
+        classes: 'container pt-5 pb-3 position-relative'
+        id: ''
+        element: div
+        show_label: true
+        label_element: h2
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+id: node.public_meeting.search_result
+targetEntityType: node
+bundle: public_meeting
+mode: search_result
+content:
+  search_api_excerpt:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_area: true
+  field_cancelled_date: true
+  field_cancelled_text: true
+  field_contact: true
+  field_content_state: true
+  field_description: true
+  field_email_address: true
+  field_first_meeting_time: true
+  field_hidden_signup: true
+  field_last_meeting_time: true
+  field_last_meeting_time_end: true
+  field_map: true
+  field_media_document: true
+  field_media_image_single: true
+  field_pretix_dates: true
+  field_pretix_event_settings: true
+  field_project_reference: true
+  field_public_meeting_cancelled: true
+  field_registration_deadline: true
+  field_section: true
+  field_signup_link: true
+  field_signup_selection: true
+  field_signup_text: true
+  field_teaser: true
+  field_type: true
+  langcode: true
+  links: true
+  published_at: true
+  sharing_buttons: true

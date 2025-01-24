@@ -13,12 +13,10 @@ require("./hide_password_help.js");
 require("./responsive-image-as-background.js");
 require("./scroll-top.js");
 require("./hide_spinner.js");
-require("./show-search.js");
 require("slick-carousel");
 require("./slick-slider-config.js");
 require("./filter-collapse.js");
 require("./icons.js");
-require("./show-map.js");
 
 // Enable popovers.
 $(function () {

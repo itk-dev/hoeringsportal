@@ -86,6 +86,8 @@ Lorem ipsum 1234 Lorem ipsum',
     $this->addReference('node:hearing:Hearing1', $entity);
 
     $entity = $entity->createDuplicate();
+    $entity->setCreatedTime((new \DateTimeImmutable('-87 days'))->getTimestamp());
+    $entity->setChangedTime((new \DateTimeImmutable('-42 days'))->getTimestamp());
     $entity->setTitle('Høring med GIS-kort');
     $entity->set('field_description', [
       'value' => <<<'EOD'
@@ -106,6 +108,8 @@ EOD,
     $entity->save();
 
     $entity = $entity->createDuplicate();
+    $entity->setCreatedTime((new \DateTimeImmutable('-2 days'))->getTimestamp());
+    $entity->setChangedTime((new \DateTimeImmutable('-1 days'))->getTimestamp());
     $entity->setTitle('Høring med slettede høringssvar');
     $entity->set('field_delete_date', (new DrupalDateTime('2001-01-01'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
     $entity->save();

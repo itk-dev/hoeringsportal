@@ -56,6 +56,21 @@ $settings['config_exclude_modules'] = [
   'masquerade',
 ];
 
+// See https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigSandboxPolicy.php/11.x
+$settings['twig_sandbox_allowed_methods'] = [
+  // Defaults (cf. Drupal\Core\Template\TwigSandboxPolicy::__construct()).
+  'id',
+  'label',
+  'bundle',
+  'get',
+  'loadProjectTracks',
+  '__toString',
+  'toString',
+  // Additions
+  // Allow calling `entity.toUrl`
+  'toUrl',
+];
+
 // Local settings. These come last so that they can override anything.
 if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';

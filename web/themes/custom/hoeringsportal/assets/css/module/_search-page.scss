@@ -1,0 +1,20 @@
+.search-page {
+  .form-actions,
+  .form-submit,
+  .form-text {
+    margin: 0 !important;
+  }
+
+  .form-text {
+    height: 48px;
+  }
+
+  .form-submit[name="reset"] {
+    background-color: var(--bs-black);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 0.25rem;
+  }
+}
