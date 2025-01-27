@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "server": "node index.js"
-  },
-  "devDependencies": {
-    "express": "^4.21.2"
-  }
-}
