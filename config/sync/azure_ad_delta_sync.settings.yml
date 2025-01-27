@@ -7,8 +7,8 @@ azure:
   uri: ''
   user_id_claim: userprincipalname
 include:
-  modules:
-    openid_connect: 0
+  providers:
+    'openid_connect_generic': 'openid_connect.generic'
 exclude:
   roles:
     citizen_proposal_editor: 0
