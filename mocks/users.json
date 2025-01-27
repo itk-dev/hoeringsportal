@@ -1,7 +1,7 @@
 {
   "request": {
     "method": "POST",
-    "path": "/users/first"
+    "path": "/users"
   },
   "response": {
     "body": [
