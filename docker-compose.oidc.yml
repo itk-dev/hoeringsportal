@@ -324,7 +324,6 @@ services:
     image: dotronglong/faker:stable
     profiles:
       - oidc
-      - test 
     networks:
       - app
       - frontend
