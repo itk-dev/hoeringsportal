@@ -94,3 +94,86 @@ Remove (reverse) the patch with
 ```sh
 docker compose exec phpfpm patch --strip=1 --input=patches/openid_connect-debug-userinfo.patch --reverse
 ```
+
+## Mock idp api
+
+To mock the api we are using [dotronglong/faker](https://github.com/dotronglong/faker/)s [docker setup](https://github.com/dotronglong/faker/wiki/Getting-Started-%5BDocker%5D). ipd_mock_api in [`docker-compose.oidc.yml`](docker-compose.oidc.yml).
+
+The json files with mock returns are located in the `mocks` folder in the root of the project.
+
+To test if this works, patiently wait for:
+
+```sh
+docker compose --profile oidc up --detach
+```
+
+To test if it works, run (should return something starting with `HTTP/1.1 200 OK`)
+
+```sh
+curl -d '{}' "http://$(docker compose --profile oidc port idp_mock_api 3030)/users"
+```
+
+or 
+
+```sh
+docker compose exec phpfpm curl http://idp_mock_api:3030/users --include --request POST
+```
+
+Now delta sync can be tested. The config:
+
+```yaml
+drupal:
+  # Built in drupal user deletion procedures
+  # https://www.drush.org/12.x/commands/user_cancel/ 
+  user_cancel_method: user_cancel_reassign
+  # user_id_field is the field that determines which user to block/delete
+  # If mail is chosen, the deletion match is on the drupal user mail.
+  user_id_field: mail
+azure:
+  # Azure security key
+  security_key: security_key
+  # Azure Client secret
+  client_secret: client_secret
+  # Uri should be set to above mention mock uri (http://idp_mock_api:3030/users)
+  uri: ''
+  # This is the field that will be compared ot the above user_id_field
+  user_id_claim: userprincipalname
+include:
+  providers:
+    # Determines if the deletion of users is run on all users (0) or uses connected to a provider (openid_connect.generic)
+    'openid_connect_generic': 'openid_connect.generic'
+exclude:
+  roles:
+    citizen_proposal_editor: 0
+    editor: 0
+    administrator: 0
+    project_editor: 0
+  users:
+    - '1'
+```
+
+run to test:
+
+```sh
+task drush -- azure_ad_delta_sync:run --dry-run
+```
+
+### Mocks
+
+The mocks can be found in the directory `mocks`, the response should contain the field mentioned in `user_id_claim` in above config file (here, `userprincipalname`). 
+
+```json
+{
+  "request": {
+    "method": "POST",
+    "path": "/users"
+  },
+  "response": {
+    "body": [
+      {
+        "userprincipalname": "department3-editor@example.com"
+      },
+    ]
+  }
+}
+```
