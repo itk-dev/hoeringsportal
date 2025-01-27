@@ -1,0 +1,7 @@
+name: Hoeringsportal delta sync fixtures
+type: module
+description: 'Provides test fixtures for delta sync.'
+core_version_requirement: ^9 || ^10
+package: ITK
+dependencies:
+  - content_fixtures:content_fixtures
