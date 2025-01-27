@@ -26,7 +26,7 @@ class NodeFixture extends AbstractFixture implements DependentFixtureInterface, 
   public function getDependencies() {
     return [
       MediaFixture::class,
-      TaxonomyTermFixture::class,
+      AbstractTaxonomyTermFixture::class,
     ];
   }
 

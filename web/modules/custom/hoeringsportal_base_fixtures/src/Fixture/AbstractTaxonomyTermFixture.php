@@ -11,7 +11,7 @@ use Drupal\taxonomy\Entity\Term;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-abstract class TaxonomyTermFixture extends AbstractFixture implements FixtureGroupInterface {
+abstract class AbstractTaxonomyTermFixture extends AbstractFixture implements FixtureGroupInterface {
   /**
    * The vocabulary id.
    *

@@ -5,38 +5,49 @@ services:
       - '@file.repository'
       - '@file_system'
       - '@entity_type.manager'
+
   Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\UserFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermAreaFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermHearingTypeFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermMediaLibraryFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermTagFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermTimelineItemFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermTypeFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\FilesFixture:
     tags:
       - { name: content_fixture }
     arguments:
       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
   Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture:
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\MenuItemFixture:
     tags:
       - { name: content_fixture }
@@ -46,18 +57,27 @@ services:
        - { name: content_fixture }
      arguments:
        - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
   Drupal\hoeringsportal_base_fixtures\Fixture\MapFixture:
     tags:
       - { name: content_fixture }
     arguments:
       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
   Drupal\hoeringsportal_base_fixtures\Fixture\ProjectTimeLineFixture:
     tags:
       - { name: content_fixture }
     arguments:
       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
   Drupal\hoeringsportal_base_fixtures\Fixture\StaticPageFixture:
     tags:
       - { name: content_fixture }
     arguments:
       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
+
+  Drupal\hoeringsportal_base_fixtures\Fixture\PretixConfigFixture:
+    tags:
+      - { name: content_fixture }
+    arguments:
+      - '@config.factory'
