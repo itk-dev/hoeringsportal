@@ -26,6 +26,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
     foreach ([
       'node:landing_page:Hearings',
       'node:landing_page:Proposals',
+      'node:landing_page:Public meetings',
       'node:landing_page:Projects',
     ] as $weight => $name) {
       $page = $this->getReference($name);
@@ -47,6 +48,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
       HearingLandingPageFixture::class,
       CitizenProposalLandingPageFixture::class,
       ProjectLandingPageFixture::class,
+      PublicMeetingFixture::class,
     ];
   }
 

@@ -2381,6 +2381,7 @@ CREATE TABLE public.pretixbase_item (
     available_from_mode character varying(16) NOT NULL,
     available_until_mode character varying(16) NOT NULL,
     all_sales_channels boolean NOT NULL,
+    hidden_if_item_available_mode character varying(16) NOT NULL,
     CONSTRAINT pretixbase_item_validity_dynamic_duration_days_check CHECK ((validity_dynamic_duration_days >= 0)),
     CONSTRAINT pretixbase_item_validity_dynamic_duration_hours_check CHECK ((validity_dynamic_duration_hours >= 0)),
     CONSTRAINT pretixbase_item_validity_dynamic_duration_minutes_check CHECK ((validity_dynamic_duration_minutes >= 0)),
@@ -3300,8 +3301,8 @@ CREATE TABLE public.pretixbase_question (
     valid_date_min date,
     valid_datetime_max timestamp with time zone,
     valid_datetime_min timestamp with time zone,
-    valid_number_max numeric(16,6),
-    valid_number_min numeric(16,6),
+    valid_number_max numeric(30,6),
+    valid_number_min numeric(30,6),
     valid_file_portrait boolean NOT NULL,
     valid_string_length_max integer,
     show_during_checkin boolean NOT NULL,
@@ -5895,6 +5896,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 410	pretixbase	0076_orderfee_squashed_0082_invoiceaddress_internal_reference	2025-01-07 12:09:10.283742+00
 411	pretixbase	0105_auto_20190112_1512_squashed_0107_auto_20190129_1337	2025-01-07 12:09:10.286279+00
 412	pretixdroid	0003_appconfiguration_squashed_0005_auto_20180106_2122	2025-01-07 12:09:10.288802+00
+413	pretixbase	0275_alter_question_valid_number_max_and_more	2025-01-23 11:12:36.622905+00
+414	pretixbase	0276_item_hidden_if_item_available_mode	2025-01-27 09:53:06.837303+00
 \.
 
 
@@ -6276,6 +6279,11 @@ COPY public.pretixbase_event_settingsstore (id, key, value, object_id) FROM stdi
 24	timezone	Europe/Copenhagen	2
 25	locale	da	2
 26	locales	["en", "da"]	2
+27	payment_free__fee_reverse_calc	True	1
+28	payment_boxoffice__fee_reverse_calc	True	1
+29	payment_offsetting__fee_reverse_calc	True	1
+30	payment_manual__fee_reverse_calc	True	1
+31	payment_giftcard__fee_reverse_calc	True	1
 \.
 
 
@@ -6451,9 +6459,9 @@ COPY public.pretixbase_invoiceline (id, description, gross_value, tax_value, tax
 -- Data for Name: pretixbase_item; Type: TABLE DATA; Schema: public; Owner: pretix
 --
 
-COPY public.pretixbase_item (id, name, active, description, default_price, admission, "position", picture, available_from, available_until, category_id, event_id, free_price, hide_without_voucher, require_voucher, allow_cancel, max_per_order, min_per_order, tax_rule_id, checkin_attention, internal_name, original_price, require_approval, generate_tickets, require_bundling, show_quota_left, hidden_if_available_id, allow_waitinglist, issue_giftcard, grant_membership_duration_days, grant_membership_duration_like_event, grant_membership_duration_months, require_membership, grant_membership_type_id, require_membership_hidden, personalized, validity_dynamic_duration_days, validity_dynamic_duration_hours, validity_dynamic_duration_minutes, validity_dynamic_duration_months, validity_dynamic_start_choice, validity_dynamic_start_choice_day_limit, validity_fixed_from, validity_fixed_until, validity_mode, media_policy, media_type, free_price_suggestion, hidden_if_item_available_id, checkin_text, available_from_mode, available_until_mode, all_sales_channels) FROM stdin;
-1	{"da": "Billet", "en": "Ticket"}	t	\N	0.00	t	1		\N	\N	\N	1	f	f	f	t	\N	\N	\N	f	\N	\N	f	\N	f	\N	\N	t	f	0	t	0	f	\N	f	t	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	hide	hide	t
-2	{"da": "Billet", "en": "Ticket"}	t	{}	0.00	t	1		\N	\N	\N	2	f	f	f	t	\N	\N	\N	f	\N	\N	f	\N	f	\N	\N	t	f	0	t	0	f	\N	f	t	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N		hide	hide	t
+COPY public.pretixbase_item (id, name, active, description, default_price, admission, "position", picture, available_from, available_until, category_id, event_id, free_price, hide_without_voucher, require_voucher, allow_cancel, max_per_order, min_per_order, tax_rule_id, checkin_attention, internal_name, original_price, require_approval, generate_tickets, require_bundling, show_quota_left, hidden_if_available_id, allow_waitinglist, issue_giftcard, grant_membership_duration_days, grant_membership_duration_like_event, grant_membership_duration_months, require_membership, grant_membership_type_id, require_membership_hidden, personalized, validity_dynamic_duration_days, validity_dynamic_duration_hours, validity_dynamic_duration_minutes, validity_dynamic_duration_months, validity_dynamic_start_choice, validity_dynamic_start_choice_day_limit, validity_fixed_from, validity_fixed_until, validity_mode, media_policy, media_type, free_price_suggestion, hidden_if_item_available_id, checkin_text, available_from_mode, available_until_mode, all_sales_channels, hidden_if_item_available_mode) FROM stdin;
+1	{"da": "Billet", "en": "Ticket"}	t	\N	0.00	t	1		\N	\N	\N	1	f	f	f	t	\N	\N	\N	f	\N	\N	f	\N	f	\N	\N	t	f	0	t	0	f	\N	f	t	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	hide	hide	t	hide
+2	{"da": "Billet", "en": "Ticket"}	t	{}	0.00	t	1		\N	\N	\N	2	f	f	f	t	\N	\N	\N	f	\N	\N	f	\N	f	\N	\N	t	f	0	t	0	f	\N	f	t	\N	\N	\N	\N	f	\N	\N	\N	\N	\N	\N	\N	\N		hide	hide	t	hide
 \.
 
 
@@ -6571,6 +6579,10 @@ COPY public.pretixbase_logentry (id, object_id, datetime, action_type, data, con
 11	2	2025-01-07 12:26:01.696014+00	pretix.event.item.added	{"default_price": "0", "name": {"ar": "", "ca": "", "cs": "", "da": "Billet", "de": "", "de-informal": "", "el": "", "en": "Ticket", "es": "", "eu": "", "fr": "", "id": "", "it": "", "jp": "", "lv": "", "nb-no": "", "nl": "", "nl-informal": "", "pl": "", "pt-pt": "", "ro": "", "ru": "", "sk": "", "sv": "", "tr": "", "uk": "", "zh-hans": "", "zh-hant": ""}}	11	2	1	\N	t	f	\N	\N	1
 12	2	2025-01-07 12:26:24.288399+00	pretix.event.quota.added	{"close_when_sold_out": false, "ignore_for_event_availability": false, "itemvars": ["2"], "name": "Ticket", "release_after_exit": false, "size": null}	20	2	1	\N	t	f	\N	\N	1
 13	2	2025-01-07 12:27:08.282405+00	pretix.team.token.created	{"id": 1, "name": "hoeringsportal"}	34	\N	1	\N	t	f	\N	\N	1
+14	2	2025-01-27 13:19:03.740248+00	pretix.subevent.added	{"active": true, "comment": "", "date_admission": null, "date_from": "2001-01-01T00:00:00Z", "date_to": null, "frontpage_text": {"ar": "", "ca": "", "cs": "", "da": "", "de": "", "de-informal": "", "el": "", "en": "", "es": "", "eu": "", "fr": "", "id": "", "it": "", "ja": "", "lv": "", "nb-no": "", "nl": "", "nl-informal": "", "pl": "", "pt-pt": "", "ro": "", "ru": "", "sk": "", "sv": "", "tr": "", "uk": "", "zh-hans": "", "zh-hant": ""}, "geo_lat": null, "geo_lon": null, "is_public": true, "location": {"ar": "", "ca": "", "cs": "", "da": "", "de": "", "de-informal": "", "el": "", "en": "", "es": "", "eu": "", "fr": "", "id": "", "it": "", "ja": "", "lv": "", "nb-no": "", "nl": "", "nl-informal": "", "pl": "", "pt-pt": "", "ro": "", "ru": "", "sk": "", "sv": "", "tr": "", "uk": "", "zh-hans": "", "zh-hant": ""}, "name": {"ar": "", "ca": "", "cs": "", "da": "Skabelon (serie)", "de": "", "de-informal": "", "el": "", "en": "Template (series)", "es": "", "eu": "", "fr": "", "id": "", "it": "", "ja": "", "lv": "", "nb-no": "", "nl": "", "nl-informal": "", "pl": "", "pt-pt": "", "ro": "", "ru": "", "sk": "", "sv": "", "tr": "", "uk": "", "zh-hans": "", "zh-hant": ""}, "presale_end": null, "presale_start": null}	37	1	1	\N	t	f	\N	\N	1
+15	3	2025-01-27 13:19:03.759823+00	pretix.event.quota.added	{"id": 3, "itemvars": ["1"]}	20	1	1	\N	t	f	\N	\N	1
+16	2	2025-01-27 13:19:03.760772+00	pretix.subevent.quota.added	{"id": 3, "itemvars": ["1"]}	37	1	1	\N	t	f	\N	\N	1
+17	1	2025-01-27 13:19:35.293382+00	pretix.event.quota.deleted	{}	20	1	1	\N	t	f	\N	\N	1
 \.
 
 
@@ -6726,8 +6738,8 @@ COPY public.pretixbase_questionoption (id, answer, question_id, "position", iden
 --
 
 COPY public.pretixbase_quota (id, name, size, event_id, subevent_id, close_when_sold_out, closed, release_after_exit, ignore_for_event_availability) FROM stdin;
-1	Tickets	\N	1	1	f	f	f	f
 2	Ticket	\N	2	\N	f	f	f	f
+3	Tickets	\N	1	2	f	f	f	f
 \.
 
 
@@ -6736,8 +6748,8 @@ COPY public.pretixbase_quota (id, name, size, event_id, subevent_id, close_when_
 --
 
 COPY public.pretixbase_quota_items (id, quota_id, item_id) FROM stdin;
-1	1	1
 2	2	2
+3	3	1
 \.
 
 
@@ -6891,6 +6903,7 @@ COPY public.pretixbase_staffsessionauditlog (id, datetime, url, session_id, impe
 --
 
 COPY public.pretixbase_subevent (id, active, name, date_from, date_to, date_admission, presale_end, presale_start, location, event_id, frontpage_text, is_public, seating_plan_id, geo_lat, geo_lon, last_modified, comment) FROM stdin;
+2	t	{"da": "Skabelon (serie)", "en": "Template (series)"}	2001-01-01 00:00:00+00	\N	\N	\N	\N	{}	1	{}	t	\N	\N	\N	2025-01-27 13:19:03.71931+00	
 \.
 
 
@@ -6900,6 +6913,7 @@ COPY public.pretixbase_subevent (id, active, name, date_from, date_to, date_admi
 
 COPY public.pretixbase_subeventitem (id, price, item_id, subevent_id, disabled, available_from, available_until) FROM stdin;
 1	\N	1	1	f	\N	\N
+2	\N	1	2	f	\N	\N
 \.
 
 
@@ -6993,7 +7007,7 @@ COPY public.pretixbase_u2fdevice (id, name, confirmed, json_data, user_id) FROM 
 --
 
 COPY public.pretixbase_user (id, password, last_login, email, is_active, is_staff, date_joined, locale, timezone, require_2fa, fullname, notifications_send, notifications_token, auth_backend, session_token, needs_password_change, auth_backend_identifier) FROM stdin;
-1	argon2$argon2id$v=19$m=102400,t=2,p=8$UjNGZENuUVdRYXlOZVJQU1JKUHhIVg$YOfcOCDUQX3cpSwciFnvwTXsXC7wKOEmoZYqoxWAArg	2025-01-07 12:45:43.315284+00	admin@localhost	t	t	2025-01-07 12:08:12.81563+00	en	UTC	f	\N	t	YIOZt0RnEAXwqW9gM3iARkFy1iVTKMyC	native	G1OD56ZfheDth9nZnwoLkw6FqWqq8hoh	f	\N
+1	argon2$argon2id$v=19$m=102400,t=2,p=8$UjNGZENuUVdRYXlOZVJQU1JKUHhIVg$YOfcOCDUQX3cpSwciFnvwTXsXC7wKOEmoZYqoxWAArg	2025-01-27 13:15:32.98912+00	admin@localhost	t	t	2025-01-07 12:08:12.81563+00	en	UTC	f	\N	t	YIOZt0RnEAXwqW9gM3iARkFy1iVTKMyC	native	G1OD56ZfheDth9nZnwoLkw6FqWqq8hoh	f	\N
 \.
 
 
@@ -7018,7 +7032,7 @@ COPY public.pretixbase_user_user_permissions (id, user_id, permission_id) FROM s
 --
 
 COPY public.pretixbase_userknownloginsource (id, agent_type, device_type, os_type, country, last_seen, user_id) FROM stdin;
-1	Firefox	Mac	Mac OS X	\N	2025-01-07 12:45:43.309292+00	1
+1	Firefox	Mac	Mac OS X	\N	2025-01-27 13:15:32.97407+00	1
 \.
 
 
@@ -7221,7 +7235,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 116, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 412, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 414, true);
 
 
 --
@@ -7529,7 +7543,7 @@ SELECT pg_catalog.setval('public.pretixbase_eventmetavalue_id_seq', 1, false);
 -- Name: pretixbase_eventsetting_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_eventsetting_id_seq', 26, true);
+SELECT pg_catalog.setval('public.pretixbase_eventsetting_id_seq', 31, true);
 
 
 --
@@ -7697,7 +7711,7 @@ SELECT pg_catalog.setval('public.pretixbase_itemvariationmetavalue_id_seq', 1, f
 -- Name: pretixbase_logentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_logentry_id_seq', 13, true);
+SELECT pg_catalog.setval('public.pretixbase_logentry_id_seq', 17, true);
 
 
 --
@@ -7830,14 +7844,14 @@ SELECT pg_catalog.setval('public.pretixbase_questionoption_id_seq', 1, false);
 -- Name: pretixbase_quota_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_quota_id_seq', 2, true);
+SELECT pg_catalog.setval('public.pretixbase_quota_id_seq', 3, true);
 
 
 --
 -- Name: pretixbase_quota_items_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_quota_items_id_seq', 2, true);
+SELECT pg_catalog.setval('public.pretixbase_quota_items_id_seq', 3, true);
 
 
 --
@@ -7921,14 +7935,14 @@ SELECT pg_catalog.setval('public.pretixbase_staffsessionauditlog_id_seq', 55, tr
 -- Name: pretixbase_subevent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_subevent_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pretixbase_subevent_id_seq', 2, true);
 
 
 --
 -- Name: pretixbase_subeventitem_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_subeventitem_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pretixbase_subeventitem_id_seq', 2, true);
 
 
 --

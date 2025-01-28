@@ -2,14 +2,14 @@
 
 namespace Drupal\hoeringsportal_project_fixtures\Fixture;
 
-use Drupal\hoeringsportal_base_fixtures\Fixture\TaxonomyTermFixture;
+use Drupal\hoeringsportal_base_fixtures\Fixture\AbstractTaxonomyTermFixture;
 
 /**
  * Project category fixture.
  *
  * @package Drupal\hoeringsportal_project_fixtures\Fixture
  */
-class ProjectCategoryFixture extends TaxonomyTermFixture {
+class ProjectCategoryFixture extends AbstractTaxonomyTermFixture {
 
   /**
    * {@inheritdoc}
