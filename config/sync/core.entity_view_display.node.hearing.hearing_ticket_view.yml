@@ -57,7 +57,6 @@ third_party_settings:
     regions:
       header:
         - 'dynamic_block_field:node-hearing_ticket_title'
-        - sharing_buttons
       left:
         - node_title
         - 'dynamic_block_field:node-hearing_ticket'
@@ -72,9 +71,18 @@ third_party_settings:
         - 'dynamic_token_field:node-node_id_hearing'
         - field_contact
         - field_more_info
-      footer:
-        - field_delete_date
+        - sharing_buttons
     fields:
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 5
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-node_id_hearing':
+        plugin_id: 'dynamic_token_field:node-node_id_hearing'
+        weight: 11
+        label: above
+        formatter: default
       'dynamic_block_field:node-hearing_ticket':
         plugin_id: 'dynamic_block_field:node-hearing_ticket'
         weight: 3
@@ -89,16 +97,6 @@ third_party_settings:
         plugin_id: 'dynamic_block_field:node-hearing_ticket_title'
         weight: 0
         label: hidden
-        formatter: default
-      'dynamic_token_field:node-header_information':
-        plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 5
-        label: hidden
-        formatter: default
-      'dynamic_token_field:node-node_id_hearing':
-        plugin_id: 'dynamic_token_field:node-node_id_hearing'
-        weight: 11
-        label: above
         formatter: default
       node_title:
         plugin_id: node_title
@@ -129,15 +127,6 @@ content:
     third_party_settings: {  }
     weight: 12
     region: right
-  field_delete_date:
-    type: datetime_default
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
-    weight: 14
-    region: footer
   field_more_info:
     type: text_default
     label: above
@@ -182,10 +171,11 @@ content:
   sharing_buttons:
     settings: {  }
     third_party_settings: {  }
-    weight: 1
-    region: header
+    weight: 14
+    region: right
 hidden:
   field_content_state: true
+  field_delete_date: true
   field_description: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true

@@ -48,6 +48,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-424](https://github.com/itk-dev/hoeringsportal/pull/424)
   2945: Cleaned up form templates. Applied security updates.
 
+## [4.6.2] - 2025-01-30
+
+* [PR-443](https://github.com/itk-dev/hoeringsportal/pull/443)
+  Fixed hearing reply cleanup
+
 ## [4.6.1] - 2024-12-04
 
 * Added automatic deployment
@@ -303,7 +308,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.2...HEAD
+[4.6.2]: https://github.com/itk-dev/hoeringsportal/compare/4.6.1...4.6.2
 [4.6.1]: https://github.com/itk-dev/hoeringsportal/compare/4.6.0...4.6.1
 [4.6.0]: https://github.com/itk-dev/hoeringsportal/compare/4.5.1...4.6.0
 [4.5.1]: https://github.com/itk-dev/hoeringsportal/compare/4.5.0...4.5.1
