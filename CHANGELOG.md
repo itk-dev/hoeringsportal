@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-443](https://github.com/itk-dev/hoeringsportal/pull/443)
+  Fixed hearing reply cleanup
+
 ## [4.6.1] - 2024-12-04
 
 * Added automatic deployment
