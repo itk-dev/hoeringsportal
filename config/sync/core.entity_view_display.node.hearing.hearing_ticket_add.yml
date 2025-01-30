@@ -53,6 +53,7 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
+        label: ''
     regions:
       header:
         - 'dynamic_block_field:node-hearing_ticket_title'
@@ -63,7 +64,6 @@ third_party_settings:
         - 'dynamic_token_field:node-header_information'
         - field_start_date
         - field_reply_deadline
-        - field_hearing_type
         - field_type
         - field_tags
         - field_area
@@ -71,16 +71,6 @@ third_party_settings:
         - field_contact
         - field_more_info
     fields:
-      'dynamic_block_field:node-hearing_ticket_add':
-        plugin_id: 'dynamic_block_field:node-hearing_ticket_add'
-        weight: 2
-        label: hidden
-        formatter: default
-      'dynamic_block_field:node-hearing_ticket_title':
-        plugin_id: 'dynamic_block_field:node-hearing_ticket_title'
-        weight: 0
-        label: hidden
-        formatter: default
       'dynamic_token_field:node-header_information':
         plugin_id: 'dynamic_token_field:node-header_information'
         weight: 3
@@ -90,6 +80,16 @@ third_party_settings:
         plugin_id: 'dynamic_token_field:node-node_id_hearing'
         weight: 10
         label: above
+        formatter: default
+      'dynamic_block_field:node-hearing_ticket_add':
+        plugin_id: 'dynamic_block_field:node-hearing_ticket_add'
+        weight: 2
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-hearing_ticket_title':
+        plugin_id: 'dynamic_block_field:node-hearing_ticket_title'
+        weight: 0
+        label: hidden
         formatter: default
       node_title:
         plugin_id: node_title
@@ -161,11 +161,6 @@ content:
     third_party_settings: {  }
     weight: 7
     region: right
-  sharing_buttons:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
   field_content_state: true
   field_delete_date: true
@@ -188,3 +183,4 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  sharing_buttons: true
