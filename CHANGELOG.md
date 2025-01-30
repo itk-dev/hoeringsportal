@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
+  Corrected Danish pluralization
 * [PR-442](https://github.com/itk-dev/hoeringsportal/pull/442)
   Cleaned up fixtures
 * [PR-440](https://github.com/itk-dev/hoeringsportal/pull/440)
