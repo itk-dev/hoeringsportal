@@ -73,4 +73,4 @@ steps:
           day: '*'
           month: '*'
           weekday: '*'
-          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal:data:delete-replies'
+          job: 'itkdev-docker-compose-server exec phpfpm vendor/bin/drush --uri="https://deltag.aarhus.dk" hoeringsportal:data:delete-replies --yes'
