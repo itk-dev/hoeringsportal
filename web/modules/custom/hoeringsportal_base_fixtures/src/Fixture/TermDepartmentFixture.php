@@ -3,11 +3,11 @@
 namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 
 /**
- * Tag term fixture.
+ * Department term fixture.
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class TermDepartmentFixture extends TaxonomyTermFixture {
+class TermDepartmentFixture extends AbstractTaxonomyTermFixture {
   /**
    * {@inheritdoc}
    */

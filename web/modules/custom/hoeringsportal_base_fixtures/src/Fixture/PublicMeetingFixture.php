@@ -104,6 +104,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       MediaFixture::class,
       ParagraphFixture::class,
       TermAreaFixture::class,
+      TermDepartmentFixture::class,
       TermTypeFixture::class,
       PretixConfigFixture::class,
     ];
