@@ -7,12 +7,12 @@ user_exists_in_db () {
 }
 
 setup_config () {
-    first_call_azure_uri="http://idp_mock_api:3030/users"
+    mock_azure_uri="http://idp_mock_api:3030/users"
 
     # Set Azure uri to idp mock in config.
-    task drush -- config:set azure_ad_delta_sync.settings azure.uri "$first_call_azure_uri" --yes
+    task drush -- config:set azure_ad_delta_sync.settings azure.uri "$mock_azure_uri" --yes
 
-    # Set openid_connect to openid_connect which means we only manage Open Id Connect users. 
+    # If openid_connect__dot__generic  is set to openid_connect.generic, meaning we only manage Open Id Connect users. 
     task drush -- config:set azure_ad_delta_sync.settings include.providers.openid_connect__dot__generic "$1" --yes
 
     # Set user cancel method
@@ -49,11 +49,13 @@ check_users_are_not_deleted () {
             echo "${input_array[$i]} does not exists in the db and should"
             exit 1
         fi
-        echo "${input_array[$i]} still exist in db"
+        echo "${input_array[$i]} still exist in db, as she should"
     done
 }
 
 apply_fixtures() {
+    # Disabling https://www.shellcheck.net/wiki/SC2046
+    # Mostly because I don't understand how I fix it.
     # shellcheck disable=SC2046
     docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
     docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
@@ -61,108 +63,107 @@ apply_fixtures() {
 }
 
 # https://stackoverflow.com/a/1885534/6375775
-read -p "This action will clear the databse and input fixtures. Are you sure you want to continue? " -n 1 -r
+read -p "This action will clear the database and input fixtures. Are you sure you want to continue? " -n 1 -r
 echo  # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
-then
+    then
 
-task compose -- down
-task compose -- pull
-task compose-up
-task composer-install
-task drush -- --yes site:install --existing-config
+    # Setup brand-spanking-new site
+    task compose -- down
+    task compose -- pull
+    task compose-up
+    task composer-install
+    task drush -- --yes site:install --existing-config
 
-# User names
-oidc_user_admin="department1-admin"
-oidc_user_editor2="department2-editor"
-oidc_user_editor3="department3-editor"
-citizen_proposal_editor="citizen_proposal_editor"
-editor="editor"
-user="user"
-administrator="administrator"
+    # Names of users from fixtures
+    oidc_user_admin="department1-admin"
+    oidc_user_editor2="department2-editor"
+    oidc_user_editor3="department3-editor"
+    citizen_proposal_editor="citizen_proposal_editor"
+    editor="editor"
+    user="user"
+    administrator="administrator"
 
-#### Test 1: Delete department1-admin with delta-sync, keep "regular" users as delta sync only focuses on oidc users (openid_connect__dot__generic "openid_connect.generic")
+    #### Test 1: Delete department1-admin with delta-sync, keep "regular" users as delta sync only focuses on oidc users (openid_connect__dot__generic "openid_connect.generic")
 
-apply_fixtures
-setup_config "openid_connect.generic" "user_cancel_reassign"
+    apply_fixtures
+    setup_config "openid_connect.generic" "user_cancel_reassign"
 
-# User we have in the db before the call to delta sync
-users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
-# The users we expect to have in the db after the call to delta sync
-users_after=("$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
-# The users we expect to delete
-deleted_users_after=("$oidc_user_admin")
+    # User we have in the db before the call to delta sync
+    users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # The users we expect to have in the db after the call to delta sync
+    users_after=("$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # The users we expect to delete
+    deleted_users_after=("$oidc_user_admin")
 
-# Make sure starting point is correct
-# Run through array of users from fixtures and see that they all exists in db
-check_users_are_not_deleted "${users_before[@]}"
+    # Make sure starting point is correct
+    # Run through array of users from fixtures and see that they all exists in db
+    check_users_are_not_deleted "${users_before[@]}"
 
-# Run delta sync
-task drush -- azure_ad_delta_sync:run --force
+    # Run delta sync
+    task drush -- azure_ad_delta_sync:run --force
 
-# Run through array of users from fixtures and see that they all exists in db
-check_users_are_not_deleted "${users_after[@]}"
+    # Run through array of users from fixtures and see that they all exists in db
+    check_users_are_not_deleted "${users_after[@]}"
 
-# Make sure admin does not exist in the database
-check_users_are_deleted "${deleted_users_after[@]}"
+    # Make sure admin does not exist in the database
+    check_users_are_deleted "${deleted_users_after[@]}"
 
-# Reset azure uri
-task drush -- config:import --yes
+    # Reset azure uri
+    task drush -- config:import --yes
 
+    ##### Test 2: Delete department1-admin with delta-sync, delete "regular" users as delta sync cleans up all users not returned from the mock api (except id 0 and 1: https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/fbdbf7d25d8130c520f48e45c1849dbe64825480/src/UserManager.php#L126) (openid_connect__dot__generic 0)
 
-##### Test 2: Delete department1-admin with delta-sync, delete "regular" users as delta sync cleans up all users not returned from the mock api (except id 0 and 1: https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/fbdbf7d25d8130c520f48e45c1849dbe64825480/src/UserManager.php#L126) (openid_connect__dot__generic 0)
+    apply_fixtures
+    setup_config "0" "user_cancel_reassign"
 
-apply_fixtures
-setup_config "0" "user_cancel_reassign"
+    # User we have in the db before the call to delta sync
+    users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # The users we expect to have in the db after the call to delta sync
+    users_after=("$oidc_user_editor2" "$oidc_user_editor3")
+    # The users we expect to delete
+    deleted_users_after=("$oidc_user_admin" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
 
-# User we have in the db before the call to delta sync
-users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
-# The users we expect to have in the db after the call to delta sync
-users_after=("$oidc_user_editor2" "$oidc_user_editor3")
-# The users we expect to delete
-deleted_users_after=("$oidc_user_admin" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # Make sure starting point is correct
+    # Run through array of users and see that they all exists in db
+    check_users_are_not_deleted "${users_before[@]}"
 
-# Make sure starting point is correct
-# Run through array of users and see that they all exists in db
-check_users_are_not_deleted "${users_before[@]}"
+    # Run delta sync
+    task drush -- azure_ad_delta_sync:run --force
 
-# Run delta sync
-task drush -- azure_ad_delta_sync:run --force
+    # Run through array of users and see that they all exists in db
+    check_users_are_not_deleted "${users_after[@]}"
 
-# Run through array of users and see that they all exists in db
-check_users_are_not_deleted "${users_after[@]}"
+    # Make sure deleted users does not exist in the database
+    check_users_are_deleted "${deleted_users_after[@]}"
 
-# Make sure deleted users does not exist in the database
-check_users_are_deleted "${deleted_users_after[@]}"
+    # Reset azure uri
+    task drush -- config:import --yes
 
-# Reset azure uri
-task drush -- config:import --yes
+    ##### Test 3: Test that users are blocked and not deleted 
 
-##### Test 3: Test that users are blocked and not deleted 
+    apply_fixtures
+    setup_config "0" "user_cancel_block"
 
-apply_fixtures
-setup_config "0" "user_cancel_block"
+    # User we have in the db before the call to delta sync
+    users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # The users we expect to have in the db after the call to delta sync
+    users_after=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
 
-# User we have in the db before the call to delta sync
-users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
-# The users we expect to have in the db after the call to delta sync
-users_after=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
+    # Make sure starting point is correct
+    # Run through array of users and see that they all exists in db
+    check_users_are_not_deleted "${users_before[@]}"
 
-# Make sure starting point is correct
-# Run through array of users and see that they all exists in db
-check_users_are_not_deleted "${users_before[@]}"
+    # Run delta sync
+    task drush -- azure_ad_delta_sync:run --force
 
-# Run delta sync
-task drush -- azure_ad_delta_sync:run --force
+    # Run through array of users and see that they all exists in db
+    check_users_are_not_deleted "${users_after[@]}"
 
-# Run through array of users and see that they all exists in db
-check_users_are_not_deleted "${users_after[@]}"
+    # Reset azure uri
+    task drush -- config:import --yes
 
-# Reset azure uri
-task drush -- config:import --yes
-
-echo "Test done"
-
+    echo "Test done"
 else 
-echo Test cancelled
+    echo Test cancelled
 fi

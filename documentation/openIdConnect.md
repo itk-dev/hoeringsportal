@@ -181,6 +181,6 @@ The mocks can be found in the directory `mocks`, the response should contain the
 ### Test delta sync
 
 ```
-task drush -- azure_ad_delta_sync:run --dry-run
+docker compose --profile oidc up --detach
 ./test-delta-sync
 ```
