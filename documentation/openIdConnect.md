@@ -140,8 +140,8 @@ azure:
   user_id_claim: userprincipalname
 include:
   providers:
-    # Determines if the deletion of users is run on all users (0) or uses connected to a provider (openid_connect.generic)
-    'openid_connect_generic': 'openid_connect.generic'
+    # Determines if the deletion of users is run on all users (0) or uses connected to a provider (openid_connect__dot__generic)
+    'openid_connect__dot__generic': 'openid_connect.generic'
 exclude:
   roles:
     citizen_proposal_editor: 0
