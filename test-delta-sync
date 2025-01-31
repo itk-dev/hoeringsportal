@@ -3,7 +3,7 @@ set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
 
 user_exists_in_db () {
   exists=$(task drush -- user:information "$1")
-  echo $exists
+  echo "$exists"
 }
 
 setup_config () {
@@ -13,7 +13,7 @@ setup_config () {
     task drush -- config:set azure_ad_delta_sync.settings azure.uri "$first_call_azure_uri" --yes
 
     # Set openid_connect to openid_connect which means we only manage Open Id Connect users. 
-    task drush -- config:set azure_ad_delta_sync.settings include.providers.openid_connect_generic "$1" --yes
+    task drush -- config:set azure_ad_delta_sync.settings include.providers.openid_connect__dot__generic "$1" --yes
 
     # Set user cancel method
     task drush -- config:set azure_ad_delta_sync.settings drupal.user_cancel_method "$2" --yes
@@ -26,7 +26,6 @@ setup_config () {
 }
 
 check_users_are_deleted () {
-
     input_array=("$@")
     length_of_input_array=${#input_array[@]}
 
@@ -41,7 +40,6 @@ check_users_are_deleted () {
 }
 
 check_users_are_not_deleted () {
-
     input_array=("$@")
     length_of_input_array=${#input_array[@]}
 
@@ -55,11 +53,24 @@ check_users_are_not_deleted () {
     done
 }
 
-# task compose -- down
-# task compose -- pull
-# task compose-up
-# task composer-install
-# task drush -- --yes site:install --existing-config
+apply_fixtures() {
+    # shellcheck disable=SC2046
+    docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+    docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
+    docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
+}
+
+# https://stackoverflow.com/a/1885534/6375775
+read -p "This action will clear the databse and input fixtures. Are you sure you want to continue? " -n 1 -r
+echo  # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+
+task compose -- down
+task compose -- pull
+task compose-up
+task composer-install
+task drush -- --yes site:install --existing-config
 
 # User names
 oidc_user_admin="department1-admin"
@@ -70,12 +81,9 @@ editor="editor"
 user="user"
 administrator="administrator"
 
-#### Test 1: Delete department1-admin with delta-sync, keep "regular" users as delta sync only focuses on oidc users (openid_connect_generic "openid_connect.generic")
+#### Test 1: Delete department1-admin with delta-sync, keep "regular" users as delta sync only focuses on oidc users (openid_connect__dot__generic "openid_connect.generic")
 
-docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
-
+apply_fixtures
 setup_config "openid_connect.generic" "user_cancel_reassign"
 
 # User we have in the db before the call to delta sync
@@ -102,12 +110,9 @@ check_users_are_deleted "${deleted_users_after[@]}"
 task drush -- config:import --yes
 
 
-##### Test 2: Delete department1-admin with delta-sync, delete "regular" users as delta sync cleans up all users not returned from the mock api (except id 0 and 1: https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/fbdbf7d25d8130c520f48e45c1849dbe64825480/src/UserManager.php#L126) (openid_connect_generic 0)
+##### Test 2: Delete department1-admin with delta-sync, delete "regular" users as delta sync cleans up all users not returned from the mock api (except id 0 and 1: https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/fbdbf7d25d8130c520f48e45c1849dbe64825480/src/UserManager.php#L126) (openid_connect__dot__generic 0)
 
-docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
-
+apply_fixtures
 setup_config "0" "user_cancel_reassign"
 
 # User we have in the db before the call to delta sync
@@ -135,10 +140,7 @@ task drush -- config:import --yes
 
 ##### Test 3: Test that users are blocked and not deleted 
 
-docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
-
+apply_fixtures
 setup_config "0" "user_cancel_block"
 
 # User we have in the db before the call to delta sync
@@ -160,3 +162,7 @@ check_users_are_not_deleted "${users_after[@]}"
 task drush -- config:import --yes
 
 echo "Test done"
+
+else 
+echo Test cancelled
+fi
