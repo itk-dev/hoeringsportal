@@ -7,7 +7,7 @@ use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\user\Entity\User;
 
 /**
- * User fixture.
+ * OpenId Connect user fixtures.
  *
  * @package Drupal\hoeringsportal_test_delta_sync_fixtures\Fixture
  */
@@ -55,33 +55,29 @@ class OIDCUserFixture extends AbstractFixture implements FixtureGroupInterface {
     $user->save();
     $this->setReference('user:authenticated', $user);
 
-
-
     $connection = \Drupal::database();
-    $connection->insert('authmap')
-  ->fields([
-    'uid' => 200,
-    'provider' => 'openid_connect.generic',
-    'authname' => 200,
-  ])
-  ->execute();
-    $connection = \Drupal::database();
-    $connection->insert('authmap')
-  ->fields([
-    'uid' => 201,
-    'provider' => 'openid_connect.generic',
-    'authname' => 201,
-  ])
-  ->execute();
-    $connection = \Drupal::database();
-    $connection->insert('authmap')
-  ->fields([
-    'uid' => 202,
-    'provider' => 'openid_connect.generic',
-    'authname' => 202,
-  ])
-  ->execute();
-
+    $values = [
+      [
+        'uid' => 200,
+        'provider' => 'openid_connect.generic',
+        'authname' => 200,
+      ],
+      [
+        'uid' => 201,
+        'provider' => 'openid_connect.generic',
+        'authname' => 201,
+      ],
+      [
+        'uid' => 202,
+        'provider' => 'openid_connect.generic',
+        'authname' => 202,
+      ],
+    ];
+    $query = $connection->insert('authmap')->fields(['uid', 'provider', 'authname']);
+    foreach ($values as $record) {
+      $query->values($record);
+    }
+    $query->execute();
   }
 
   /**
