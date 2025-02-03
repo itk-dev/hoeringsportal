@@ -1,5 +1,5 @@
 drupal:
-  user_cancel_method: user_cancel_reassign
+  user_cancel_method: user_cancel_block
   user_id_field: mail
 azure:
   security_key: security_key
