@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
   Corrected Danish pluralization
+* [PR-441](https://github.com/itk-dev/hoeringsportal/pull/441)
+  feature/implement delta sync
 * [PR-442](https://github.com/itk-dev/hoeringsportal/pull/442)
   Cleaned up fixtures
 * [PR-440](https://github.com/itk-dev/hoeringsportal/pull/440)
