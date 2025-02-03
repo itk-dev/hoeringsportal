@@ -97,7 +97,9 @@ docker compose exec phpfpm patch --strip=1 --input=patches/openid_connect-debug-
 
 ## Mock idp api
 
-To mock the api we are using [dotronglong/faker](https://github.com/dotronglong/faker/)s [docker setup](https://github.com/dotronglong/faker/wiki/Getting-Started-%5BDocker%5D). ipd_mock_api in [`docker-compose.oidc.yml`](docker-compose.oidc.yml).
+To mock the api we are using [dotronglong/faker](https://github.com/dotronglong/faker/)s [docker
+setup](https://github.com/dotronglong/faker/wiki/Getting-Started-%5BDocker%5D). ipd_mock_api in
+[`docker-compose.oidc.yml`](docker-compose.oidc.yml).
 
 The json files with mock returns are located in the `mocks` folder in the root of the project.
 
@@ -113,7 +115,7 @@ To test if it works, run (should return something starting with `HTTP/1.1 200 OK
 curl -d '{}' "http://$(docker compose --profile oidc port idp_mock_api 3030)/users"
 ```
 
-or 
+or
 
 ```sh
 docker compose exec phpfpm curl http://idp_mock_api:3030/users --include --request POST
@@ -160,7 +162,8 @@ task drush -- azure_ad_delta_sync:run --dry-run
 
 ### Mocks
 
-The mocks can be found in the directory `mocks`, the response should contain the field mentioned in `user_id_claim` in above config file (here, `userprincipalname`). 
+The mocks can be found in the directory `mocks`, the response should contain the field mentioned in `user_id_claim` in
+above config file (here, `userprincipalname`).
 
 ```json
 {
@@ -180,7 +183,7 @@ The mocks can be found in the directory `mocks`, the response should contain the
 
 ### Test delta sync
 
-```
+```sh
 docker compose --profile oidc up --detach
 ./test-delta-sync
 ```
