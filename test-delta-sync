@@ -85,7 +85,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     #### Test 1: Delete department1-admin with delta-sync, keep "regular" users as delta sync only focuses on oidc users (openid_connect__dot__generic "openid_connect.generic")
 
     apply_fixtures
-    setup_config "openid_connect.generic" "user_cancel_reassign"
+    set_config "openid_connect.generic" "user_cancel_reassign"
 
     # User we have in the db before the call to delta sync
     users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
@@ -113,7 +113,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ##### Test 2: Delete department1-admin with delta-sync, delete "regular" users as delta sync cleans up all users not returned from the mock api (except id 0 and 1: https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/fbdbf7d25d8130c520f48e45c1849dbe64825480/src/UserManager.php#L126) (openid_connect__dot__generic 0)
 
     apply_fixtures
-    setup_config "0" "user_cancel_reassign"
+    set_config "0" "user_cancel_reassign"
 
     # User we have in the db before the call to delta sync
     users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
@@ -141,7 +141,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     ##### Test 3: Test that users are blocked and not deleted 
 
     apply_fixtures
-    setup_config "0" "user_cancel_block"
+    set_config "0" "user_cancel_block"
 
     # User we have in the db before the call to delta sync
     users_before=("$oidc_user_admin" "$oidc_user_editor2" "$oidc_user_editor3" "$citizen_proposal_editor" "$administrator" "$editor" "$user")
