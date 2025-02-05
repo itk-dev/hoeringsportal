@@ -143,6 +143,7 @@ azure:
 include:
   providers:
     # Determines if the deletion of users is run on all users (0) or users connected to a provider (openid_connect__dot__generic)
+    # https://github.com/itk-dev/azure-ad-delta-sync-drupal/blob/main/src/Helpers/ConfigHelper.php#L142
     'openid_connect__dot__generic': 'openid_connect.generic'
 exclude:
   roles:
