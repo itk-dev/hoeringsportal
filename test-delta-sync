@@ -48,7 +48,7 @@ check_users_are_not_deleted () {
             echo "${input_array[$i]} does not exist in the db and should"
             exit 1
         fi
-        echo "${input_array[$i]} still exist in db, as she should"
+        echo "${input_array[$i]} still exists in db, as she should"
     done
 }
 
