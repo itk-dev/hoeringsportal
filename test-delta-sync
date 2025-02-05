@@ -5,7 +5,7 @@ user_exists_in_db () {
   task drush -- user:information "$1"
 }
 
-setup_config () {
+set_config () {
     mock_azure_uri="http://idp_mock_api:3030/users"
 
     # Set Azure uri to idp mock in config.
