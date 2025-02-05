@@ -155,7 +155,7 @@ exclude:
     - '1'
 ```
 
-run to test:
+To test, run
 
 ```sh
 task drush -- azure_ad_delta_sync:run --dry-run
