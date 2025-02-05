@@ -45,7 +45,7 @@ check_users_are_not_deleted () {
     for ((i = 0 ; i < length_of_input_array ; i++)); do
         user_exist="$(user_exists_in_db "${input_array[$i]}")"
         if [[ $user_exist == FALSE ]]; then
-            echo "${input_array[$i]} does not exists in the db and should"
+            echo "${input_array[$i]} does not exist in the db and should"
             exit 1
         fi
         echo "${input_array[$i]} still exist in db, as she should"
