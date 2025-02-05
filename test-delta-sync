@@ -56,9 +56,9 @@ apply_fixtures() {
     # Disabling https://www.shellcheck.net/wiki/SC2046
     # Mostly because I don't understand how I fix it.
     # shellcheck disable=SC2046
-    docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-    docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-    docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
+    task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+    task drush -- --yes content-fixtures:load
+    task drush -- --yes pm:uninstall content_fixtures
 }
 
 # https://stackoverflow.com/a/1885534/6375775
