@@ -2,8 +2,7 @@
 set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
 
 user_exists_in_db () {
-  exists=$(task drush -- user:information "$1")
-  echo "$exists"
+  task drush -- user:information "$1"
 }
 
 setup_config () {
