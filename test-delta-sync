@@ -9,7 +9,7 @@ setup_config () {
     mock_azure_uri="http://idp_mock_api:3030/users"
 
     # Set Azure uri to idp mock in config.
-    task drush -- config:set azure_ad_delta_sync.settings azure.uri "$mock_azure_uri" --yes
+    task drush -- --yes config:set azure_ad_delta_sync.settings azure.uri "$mock_azure_uri"
 
     # If openid_connect__dot__generic  is set to openid_connect.generic, meaning we only manage Open Id Connect users. 
     task drush -- config:set azure_ad_delta_sync.settings include.providers.openid_connect__dot__generic "$1" --yes
