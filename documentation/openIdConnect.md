@@ -121,9 +121,18 @@ or
 docker compose exec phpfpm curl http://idp_mock_api:3030/users --include --request POST
 ```
 
-Now delta sync can be tested. The config:
+To test that delta sync works, run
+
+```sh
+task drush -- azure_ad_delta_sync:run --dry-run
+```
+
+### Delta sync configuration
+
+Explanation of the configuration:
 
 ```yaml
+# file name: azure_ad_delta_sync.settings.yml
 drupal:
   # Built in drupal user deletion procedures
   # https://www.drush.org/12.x/commands/user_cancel/ 
@@ -153,12 +162,6 @@ exclude:
     project_editor: 0
   users:
     - '1'
-```
-
-To test, run
-
-```sh
-task drush -- azure_ad_delta_sync:run --dry-run
 ```
 
 ### Mocks
