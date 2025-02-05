@@ -2,9 +2,12 @@
 set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
 
 user_exists_in_db () {
-  task drush -- user:information "$1"
+  exists=$(task drush -- user:information "$1")
+  echo "$exists"
 }
 
+# $1 is which users to be managed (0 for everyone or "openid_connect.generic" for only oidc)
+# $2 is the user cancel method
 set_config () {
     mock_azure_uri="http://idp_mock_api:3030/users"
 
