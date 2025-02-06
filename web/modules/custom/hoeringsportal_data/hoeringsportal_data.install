@@ -120,3 +120,18 @@ function hoeringsportal_data_update_8001() {
 
   _hoeringsportal_data_add_columns_to_schema($columns_to_add, $field_id);
 }
+
+/**
+ * Set correct formula for Danish pluralization.
+ */
+function hoeringsportal_data_update_10001() {
+  // @see https://blokspeed.net/2020/tale-mistranslated-plurals
+  $formulae = \Drupal::state()->get('locale.translation.formulae', []);
+  if (isset($formulae['da'])) {
+    $formulae['da'] = [
+      'plurals' => 2,
+      'formula' => '(n!=1)',
+    ];
+    \Drupal::state()->set('locale.translation.formulae', $formulae);
+  }
+}

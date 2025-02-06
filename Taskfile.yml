@@ -224,3 +224,21 @@ tasks:
      - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
      - task drush -- --yes content-fixtures:load
      - task drush -- --yes pm:uninstall content_fixtures
+    silent: true
+
+  translations:import:
+    cmds:
+      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)'
+      - task drush -- php:eval "var_export(\Drupal::state()->get('locale.translation.formulae', []))"
+      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''da'']))->render(), range(0, 5)));"'
+      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''en'']))->render(), range(0, 5)));"'
+    silent: true
+
+  translations:export:
+    cmds:
+      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)'
+      # Fix plurals spec in PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true
