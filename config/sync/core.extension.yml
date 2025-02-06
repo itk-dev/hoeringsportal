@@ -5,6 +5,7 @@ module:
   aarhus_hero: 0
   advancedqueue: 0
   allowed_formats: 0
+  azure_ad_delta_sync: 0
   better_exposed_filters: 0
   better_social_sharing_buttons: 0
   block: 0

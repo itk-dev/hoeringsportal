@@ -126,12 +126,12 @@ Export translations by running
 (cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)
 ```
 
-Open `translations/custom-translations.da.po` with the latest version of
-[Poedit](https://poedit.net/) to clean up and then save the file.
+Open `translations/custom-translations.da.po` with the latest version of [Poedit](https://poedit.net/) to clean up and
+then save the file.
 
-See
-[How to deploy drupal interface translations](https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6)
-for further details.
+See [How to deploy drupal interface
+translations](https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6) for further
+details.
 
 ### Further local setup
 

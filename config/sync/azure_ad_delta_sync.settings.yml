@@ -1,0 +1,19 @@
+drupal:
+  user_cancel_method: user_cancel_block
+  user_id_field: mail
+azure:
+  security_key: security_key
+  client_secret: client_secret
+  uri: ''
+  user_id_claim: userprincipalname
+include:
+  providers:
+    openid_connect__dot__generic: 0
+exclude:
+  roles:
+    citizen_proposal_editor: 0
+    editor: 0
+    administrator: 0
+    project_editor: 0
+  users:
+    - '1'

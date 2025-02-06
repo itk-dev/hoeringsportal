@@ -8,6 +8,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
   Corrected Danish pluralization
+* [PR-441](https://github.com/itk-dev/hoeringsportal/pull/441)
+  Add and enable [delta sync](https://github.com/itk-dev/azure-ad-delta-sync-drupal)
+  Add [mock idp api](https://github.com/dotronglong/faker) and documentation of said
+  Add bash script (test-delta-sync) to test delta sync
+  Add fixtures with oidc users
 * [PR-442](https://github.com/itk-dev/hoeringsportal/pull/442)
   Cleaned up fixtures
 * [PR-440](https://github.com/itk-dev/hoeringsportal/pull/440)
