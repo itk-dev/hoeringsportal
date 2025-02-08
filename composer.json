@@ -82,7 +82,6 @@
         "drupal/content_fixtures": "dev-3498162-not-compatible-with",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
-        "drupal/webprofiler": "^10.3",
         "ergebnis/composer-normalize": "^2.44",
         "mglaman/phpstan-drupal": "^1.1",
         "phpstan/extension-installer": "^1.2",

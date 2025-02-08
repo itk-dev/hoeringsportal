@@ -3,13 +3,14 @@
 namespace Drupal\hoeringsportal_citizen_proposal_archiving\Archiver;
 
 use Drupal\Core\Database\Connection;
-use Drupal\Core\File\FileSystem;
+use Drupal\Core\File\FileSystemInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\GetOrganizedException;
 use Drupal\node\NodeInterface;
 use ItkDev\GetOrganized\Client;
 use ItkDev\GetOrganized\Service\Documents;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -32,8 +33,9 @@ final class GetOrganizedArchiver extends AbstractArchiver {
    * Constructor.
    */
   public function __construct(
-    readonly private FileSystem $fileSystem,
+    readonly private FileSystemInterface $fileSystem,
     Connection $database,
+    #[Autowire(service: 'logger.channel.hoeringsportal_citizen_proposal_archiving')]
     LoggerInterface $logger,
   ) {
     parent::__construct($database, $logger);

@@ -150,3 +150,12 @@ composer install --no-dev --optimize-autoloader
 ## Deskpro
 
 See [hoeringsportal_deskpro/README.md](web/modules/custom/hoeringsportal_deskpro/README.md#test-mode).
+
+## Web profiler
+
+The [WebProfiler](https://www.drupal.org/project/webprofiler) can be installed to see useful information on what goes on
+behind the scenes:
+
+``` shell
+task drush -- pm:install webprofiler
+```

@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)
+  Cleaned up archiving code and added web profiler
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
   Corrected Danish pluralization
 * [PR-441](https://github.com/itk-dev/hoeringsportal/pull/441)

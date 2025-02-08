@@ -54,7 +54,7 @@ $settings['config_sync_directory'] = '../config/sync';
 // https://www.drupal.org/node/3079028
 $settings['config_exclude_modules'] = [
   'masquerade',
-  'webprofiler',
+  'devel', 'tracer', 'webprofiler',
 ];
 
 // See https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Template%21TwigSandboxPolicy.php/11.x

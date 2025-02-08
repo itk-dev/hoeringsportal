@@ -65,3 +65,10 @@ function hoeringsportal_citizen_proposal_archiving_schema(): array {
 
   return $schema;
 }
+
+/**
+ * Uninstall pluginformalter module.
+ */
+function hoeringsportal_citizen_proposal_archiving_update_10001(&$sandbox) {
+  \Drupal::service('module_installer')->uninstall(['pluginformalter']);
+}
