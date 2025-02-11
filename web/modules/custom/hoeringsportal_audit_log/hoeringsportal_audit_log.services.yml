@@ -1,0 +1,5 @@
+services:
+  Drupal\hoeringsportal_audit_log\Routing\RoutingListener:
+    autowire: true
+    tags:
+      - { name: event_subscriber }

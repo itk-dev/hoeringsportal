@@ -1,0 +1,17 @@
+{
+    "name": "drupal/hoeringsportal_audit_log",
+    "type": "drupal-custom-module",
+    "description": "Hoeringsportal audit log",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "repositories": {
+        "github": {
+            "type": "vcs",
+            "url": "https://github.com/itk-dev/os2web_audit"
+        }
+    },
+    "require": {
+        "os2web/os2web_audit": "dev-feature/update-drush"
+    }
+}
