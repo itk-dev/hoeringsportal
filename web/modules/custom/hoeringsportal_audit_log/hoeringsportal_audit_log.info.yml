@@ -1,0 +1,9 @@
+name: Hoeringsportal audit log
+type: module
+description: 'Stuff related to audit log'
+package: ITK
+core_version_requirement: ^10 || ^11
+# dependencies:
+#   - auditlog
+configure: hoeringsportal_audit_log.settings
+

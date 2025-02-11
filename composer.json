@@ -42,6 +42,7 @@
         "drupal/hoeringsportal_citizen_proposal_archiving": "^1.0",
         "drupal/hoeringsportal_data": "^1.0",
         "drupal/hoeringsportal_deskpro": "^1.0",
+        "drupal/hoeringsportal_audit_log": "^1.0",
         "drupal/hoeringsportal_openid_connect": "^1.0",
         "drupal/image_widget_crop": "^2.2",
         "drupal/inline_entity_form": "^3.0",
@@ -78,6 +79,7 @@
         "itk-dev/web_accessibility_statement": "^1.0",
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
+        "os2web/os2web_audit": "dev-feature/update-drush",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0"
     },
@@ -96,6 +98,10 @@
         "drupal/drupal": "*"
     },
     "repositories": {
+        "github": {
+            "type": "vcs",
+            "url": "https://github.com/itk-dev/os2web_audit"
+        },
         "drupal/content_fixtures": {
             "type": "git",
             "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
@@ -126,6 +132,16 @@
                 "symlink": false,
                 "versions": {
                     "drupal/hoeringsportal_deskpro": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_audit_log": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_audit_log",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_audit_log": "1.0-dev"
                 }
             }
         },
