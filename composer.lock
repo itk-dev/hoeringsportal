@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f72c73f702eb2b1f14c8fa694da2983",
+    "content-hash": "f437c1bba32db336622f46eb5b61308a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -64,16 +64,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "3.7.1",
+            "version": "3.6.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "git@github.com:jquery/jquery-dist.git",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/fde1f76e2799dd877c176abde0ec836553246991",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/91ef2d8836342875f2519b5815197ea0f23613cf",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "type": "bower-asset",
             "license": [
@@ -1617,26 +1617,29 @@
         },
         {
             "name": "drupal/advancedqueue",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/advancedqueue.git",
-                "reference": "8.x-1.2"
+                "reference": "8.x-1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/advancedqueue-8.x-1.2.zip",
-                "reference": "8.x-1.2",
-                "shasum": "373a6c823cbeb4483be2b7968f5dde9163b6e5e1"
+                "url": "https://ftp.drupal.org/files/projects/advancedqueue-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "c0848a9e236f9e28af7c11dac35030a3d3847e86"
             },
             "require": {
                 "drupal/core": "^9.1 || ^10 || ^11"
             },
+            "require-dev": {
+                "drupal/plugin": "^2"
+            },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.2",
-                    "datestamp": "1725364658",
+                    "version": "8.x-1.3",
+                    "datestamp": "1738670346",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2200,26 +2203,26 @@
         },
         {
             "name": "drupal/config_import_locale",
-            "version": "2.1.1",
+            "version": "2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/config_import_locale.git",
-                "reference": "2.1.1"
+                "reference": "2.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_import_locale-2.1.1.zip",
-                "reference": "2.1.1",
-                "shasum": "0963b260451abc67f39a021850085d2b4f54cfe9"
+                "url": "https://ftp.drupal.org/files/projects/config_import_locale-2.1.2.zip",
+                "reference": "2.1.2",
+                "shasum": "de9d81872555caec9e25f72f1724b5d310530ef7"
             },
             "require": {
-                "drupal/core": "^8.8 || ^9 || ^10"
+                "drupal/core": "^10.1 || ^11"
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "2.1.1",
-                    "datestamp": "1693314248",
+                    "version": "2.1.2",
+                    "datestamp": "1738823358",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2236,19 +2239,15 @@
                     "homepage": "https://www.drupal.org/user/2841369"
                 },
                 {
-                    "name": "brentg",
-                    "homepage": "https://www.drupal.org/user/3090845"
+                    "name": "daften",
+                    "homepage": "https://www.drupal.org/user/176274"
                 },
                 {
-                    "name": "falc0",
-                    "homepage": "https://www.drupal.org/user/356980"
-                },
-                {
-                    "name": "Grayle",
+                    "name": "grayle",
                     "homepage": "https://www.drupal.org/user/3145497"
                 },
                 {
-                    "name": "L_VanDamme",
+                    "name": "l_vandamme",
                     "homepage": "https://www.drupal.org/user/3162503"
                 },
                 {
@@ -2258,10 +2257,6 @@
                 {
                     "name": "nielsaers",
                     "homepage": "https://www.drupal.org/user/752444"
-                },
-                {
-                    "name": "vbelle.kevin@gmail.com",
-                    "homepage": "https://www.drupal.org/user/3087389"
                 }
             ],
             "description": "Locale: Config import",
@@ -2272,6 +2267,7 @@
         },
         {
             "name": "drupal/core",
+<<<<<<< HEAD
             "version": "10.4.3",
             "source": {
                 "type": "git",
@@ -2282,6 +2278,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/drupal/core/zipball/b9ecec3637e19050a3ab5fe14f6d84e9e00c9abd",
                 "reference": "b9ecec3637e19050a3ab5fe14f6d84e9e00c9abd",
+=======
+            "version": "10.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal/core.git",
+                "reference": "a895b261aec81a2f52ed1f9123118d08e4616805"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal/core/zipball/a895b261aec81a2f52ed1f9123118d08e4616805",
+                "reference": "a895b261aec81a2f52ed1f9123118d08e4616805",
+>>>>>>> 68450d98 (add module for audit)
                 "shasum": ""
             },
             "require": {
@@ -2430,6 +2438,7 @@
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/drupal/core/tree/10.4.3"
             },
             "time": "2025-02-18T22:41:05+00:00"
@@ -2437,6 +2446,15 @@
         {
             "name": "drupal/core-composer-scaffold",
             "version": "10.4.3",
+=======
+                "source": "https://github.com/drupal/core/tree/10.4.2"
+            },
+            "time": "2025-02-05T22:51:59+00:00"
+        },
+        {
+            "name": "drupal/core-composer-scaffold",
+            "version": "10.4.2",
+>>>>>>> 68450d98 (add module for audit)
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-composer-scaffold.git",
@@ -2480,13 +2498,21 @@
                 "drupal"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/drupal/core-composer-scaffold/tree/10.4.3"
+=======
+                "source": "https://github.com/drupal/core-composer-scaffold/tree/10.4.2"
+>>>>>>> 68450d98 (add module for audit)
             },
             "time": "2024-08-22T14:31:30+00:00"
         },
         {
             "name": "drupal/core-project-message",
+<<<<<<< HEAD
             "version": "10.4.3",
+=======
+            "version": "10.4.2",
+>>>>>>> 68450d98 (add module for audit)
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-project-message.git",
@@ -2521,12 +2547,17 @@
                 "drupal"
             ],
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/drupal/core-project-message/tree/11.1.3"
+=======
+                "source": "https://github.com/drupal/core-project-message/tree/11.1.2"
+>>>>>>> 68450d98 (add module for audit)
             },
             "time": "2023-07-24T07:55:25+00:00"
         },
         {
             "name": "drupal/core-recommended",
+<<<<<<< HEAD
             "version": "10.4.3",
             "source": {
                 "type": "git",
@@ -2537,6 +2568,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/drupal/core-recommended/zipball/0214d0d9e509985b9341f3a11ca7983e3900bc93",
                 "reference": "0214d0d9e509985b9341f3a11ca7983e3900bc93",
+=======
+            "version": "10.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal/core-recommended.git",
+                "reference": "e9d1eb6256fae0d51c0a735ed814315fa6f7d040"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal/core-recommended/zipball/e9d1eb6256fae0d51c0a735ed814315fa6f7d040",
+                "reference": "e9d1eb6256fae0d51c0a735ed814315fa6f7d040",
+>>>>>>> 68450d98 (add module for audit)
                 "shasum": ""
             },
             "require": {
@@ -2545,7 +2588,11 @@
                 "doctrine/annotations": "~1.14.4",
                 "doctrine/deprecations": "~1.1.3",
                 "doctrine/lexer": "~2.1.1",
+<<<<<<< HEAD
                 "drupal/core": "10.4.3",
+=======
+                "drupal/core": "10.4.2",
+>>>>>>> 68450d98 (add module for audit)
                 "egulias/email-validator": "~4.0.2",
                 "guzzlehttp/guzzle": "~7.9.2",
                 "guzzlehttp/promises": "~2.0.4",
@@ -2606,9 +2653,15 @@
             ],
             "description": "Core and its dependencies with known-compatible minor versions. Require this project INSTEAD OF drupal/core.",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/drupal/core-recommended/tree/10.4.3"
             },
             "time": "2025-02-18T22:41:05+00:00"
+=======
+                "source": "https://github.com/drupal/core-recommended/tree/10.4.2"
+            },
+            "time": "2025-02-05T22:51:59+00:00"
+>>>>>>> 68450d98 (add module for audit)
         },
         {
             "name": "drupal/crop",
@@ -3555,6 +3608,30 @@
             "homepage": "https://www.drupal.org/project/flag",
             "support": {
                 "source": "https://git.drupalcode.org/project/flag"
+            }
+        },
+        {
+            "name": "drupal/hoeringsportal_audit_log",
+            "version": "1.0-dev",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/hoeringsportal_audit_log",
+                "reference": "efa6e4a1167d065d350fb488c3f0f5341437b580"
+            },
+            "require": {
+                "os2web/os2web_audit": "dev-feature/update-drush"
+            },
+            "type": "drupal-custom-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Hoeringsportal audit log",
+            "keywords": [
+                "Drupal"
+            ],
+            "transport-options": {
+                "symlink": false,
+                "relative": true
             }
         },
         {
@@ -7250,16 +7327,16 @@
         },
         {
             "name": "itk-dev/web_accessibility_statement",
-            "version": "1.2.0",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/web_accessibility_statement.git",
-                "reference": "443bfc52b4ba6ffaf27317f7866ad67d097139b0"
+                "reference": "62ca46883384505cebb505fe24ae9a61038cd0bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/web_accessibility_statement/zipball/443bfc52b4ba6ffaf27317f7866ad67d097139b0",
-                "reference": "443bfc52b4ba6ffaf27317f7866ad67d097139b0",
+                "url": "https://api.github.com/repos/itk-dev/web_accessibility_statement/zipball/62ca46883384505cebb505fe24ae9a61038cd0bb",
+                "reference": "62ca46883384505cebb505fe24ae9a61038cd0bb",
                 "shasum": ""
             },
             "type": "drupal-module",
@@ -7267,9 +7344,9 @@
             "description": "Provides path for accessibility statement",
             "support": {
                 "issues": "https://github.com/itk-dev/web_accessibility_statement/issues",
-                "source": "https://github.com/itk-dev/web_accessibility_statement/tree/1.2.0"
+                "source": "https://github.com/itk-dev/web_accessibility_statement/tree/1.3.0"
             },
-            "time": "2023-06-30T10:13:03+00:00"
+            "time": "2024-11-05T09:53:37+00:00"
         },
         {
             "name": "jms/metadata",
@@ -8446,6 +8523,69 @@
             "time": "2021-12-15T12:32:42+00:00"
         },
         {
+            "name": "os2web/os2web_audit",
+            "version": "dev-feature/update-drush",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/itk-dev/os2web_audit.git",
+                "reference": "c47a858a3063693ca94d0fa48a0887d99c8e6563"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/itk-dev/os2web_audit/zipball/c47a858a3063693ca94d0fa48a0887d99c8e6563",
+                "reference": "c47a858a3063693ca94d0fa48a0887d99c8e6563",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/advancedqueue": "^1.2",
+                "drush/drush": "^11|^12|^13",
+                "ext-curl": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "drupal/coder": "^8.3",
+                "mglaman/phpstan-drupal": "^1.1",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "composer-exit-on-patch-failure": false,
+                "enable-patching": true,
+                "patches": []
+            },
+            "scripts": {
+                "code-analysis/phpstan": [
+                    "phpstan analyse"
+                ],
+                "code-analysis": [
+                    "@code-analysis/phpstan"
+                ],
+                "coding-standards-check/phpcs": [
+                    "phpcs --standard=phpcs.xml.dist"
+                ],
+                "coding-standards-check": [
+                    "@coding-standards-check/phpcs"
+                ],
+                "coding-standards-apply/phpcs": [
+                    "phpcbf --standard=phpcs.xml.dist"
+                ],
+                "coding-standards-apply": [
+                    "@coding-standards-apply/phpcs"
+                ]
+            },
+            "license": [
+                "EUPL-1.2"
+            ],
+            "description": "Drupal OS2 module that provides audit logging for Danish Municipalities",
+            "support": {
+                "source": "https://github.com/itk-dev/os2web_audit/tree/feature/update-drush"
+            },
+            "time": "2025-02-07T12:18:27+00:00"
+        },
+        {
             "name": "pear/archive_tar",
             "version": "1.5.0",
             "source": {
@@ -9038,20 +9178,20 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "2.3.7",
+            "version": "2.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "cf357183b1d17a3862e8e4b9b056a556654dcae6"
+                "reference": "7a700683743bf1c4a21837c84b266916f1aa7d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/cf357183b1d17a3862e8e4b9b056a556654dcae6",
-                "reference": "cf357183b1d17a3862e8e4b9b056a556654dcae6",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/7a700683743bf1c4a21837c84b266916f1aa7d25",
+                "reference": "7a700683743bf1c4a21837c84b266916f1aa7d25",
                 "shasum": ""
             },
             "require": {
-                "composer/pcre": "^3.2",
+                "composer/pcre": "^1 || ^2 || ^3",
                 "ext-ctype": "*",
                 "ext-dom": "*",
                 "ext-fileinfo": "*",
@@ -9137,9 +9277,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.3.7"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/2.3.8"
             },
-            "time": "2025-01-26T04:53:06+00:00"
+            "time": "2025-02-08T03:01:45+00:00"
         },
         {
             "name": "phpowermove/docblock",
@@ -9290,6 +9430,7 @@
         },
         {
             "name": "phpstan/phpstan",
+<<<<<<< HEAD
             "version": "1.12.19",
             "source": {
                 "type": "git",
@@ -9300,6 +9441,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c42ba9bab7a940ed00092ecb1c77bad98896d789",
                 "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789",
+=======
+            "version": "1.12.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "7027b3b0270bf392de0cfba12825979768d728bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7027b3b0270bf392de0cfba12825979768d728bf",
+                "reference": "7027b3b0270bf392de0cfba12825979768d728bf",
+>>>>>>> 68450d98 (add module for audit)
                 "shasum": ""
             },
             "require": {
@@ -9344,7 +9497,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2025-02-19T15:42:21+00:00"
+=======
+            "time": "2025-02-07T15:01:57+00:00"
+>>>>>>> 68450d98 (add module for audit)
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -14933,7 +15090,11 @@
         },
         {
             "name": "drupal/core-dev",
+<<<<<<< HEAD
             "version": "10.4.3",
+=======
+            "version": "10.4.2",
+>>>>>>> 68450d98 (add module for audit)
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core-dev.git",
@@ -14983,7 +15144,11 @@
             ],
             "description": "require-dev dependencies from drupal/drupal; use in addition to drupal/core-recommended to run tests from drupal/core.",
             "support": {
+<<<<<<< HEAD
                 "source": "https://github.com/drupal/core-dev/tree/10.4.3"
+=======
+                "source": "https://github.com/drupal/core-dev/tree/10.4.2"
+>>>>>>> 68450d98 (add module for audit)
             },
             "time": "2024-11-21T12:39:32+00:00"
         },
@@ -18781,12 +18946,21 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
+<<<<<<< HEAD
                 "reference": "2e4918f344d74951d49dff87fae88f605148dff6"
             },
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/2e4918f344d74951d49dff87fae88f605148dff6",
                 "reference": "2e4918f344d74951d49dff87fae88f605148dff6",
+=======
+                "reference": "42bdf662fdc46392db70abdb88ed7593ee75fb2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/42bdf662fdc46392db70abdb88ed7593ee75fb2f",
+                "reference": "42bdf662fdc46392db70abdb88ed7593ee75fb2f",
+>>>>>>> 68450d98 (add module for audit)
                 "shasum": ""
             },
             "require": {
@@ -18839,7 +19013,11 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
             "time": "2025-02-19T10:01:57+00:00"
+=======
+            "time": "2025-02-09T10:43:34+00:00"
+>>>>>>> 68450d98 (add module for audit)
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -19549,7 +19727,8 @@
         "drupal/flag": 15,
         "drupal/openid_connect": 15,
         "drupal/viewsreference": 10,
-        "drupal/webform": 10
+        "drupal/webform": 10,
+        "os2web/os2web_audit": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
