@@ -54,10 +54,9 @@ final class RoutingListener implements EventSubscriberInterface {
     $user = \Drupal::currentUser()->getEmail();
 
     if ($routeName === 'entity.node.canonical') {
-      $sdf = \Drupal::routeMatch()->getRawParameter("node");
-      $node_storage = \Drupal::entityTypeManager()->getStorage('node');
-      $node = $node_storage->load($sdf);
-      var_dump($node->getType());
+      $nodeId = \Drupal::routeMatch()->getRawParameter("node");
+      $nodeStorage = \Drupal::entityTypeManager()->getStorage('node');
+      $node = $nodeStorage->load($nodeId);
       $msg = sprintf("Potential fetch personal data from page: %s by %s", $route, $user);
       $this->auditLogger->info('Lookup', $msg);
     } else if ($routeName === "hoeringsportal_citizen_proposal.admin_supporter") {
