@@ -18,8 +18,7 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * SettingsForm constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
-   *   The config factory.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory The config factory.
    *
    * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
@@ -45,6 +44,20 @@ final class SettingsForm extends ConfigFormBase {
   }
 
   /**
+   * Makes the input comma-separated string into an array.
+   */
+  private function fromStringToArray(string $input): array {
+    return array_map('trim',explode(",",$input));
+  }
+
+  /**
+   * Makes the array into a comma-separated string.
+   */
+  private function fromArrayToString(array $input): string {
+    return implode(", ", $input);
+  }
+
+  /**
    * {@inheritdoc}
    *
    * @phpstan-param array<mixed, mixed> $form
@@ -65,8 +78,8 @@ final class SettingsForm extends ConfigFormBase {
     $form['logged_pages']['logged_route_names'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Route names'),
-      '#default_value' => $config->get('logged_pages') ?? NULL,
-      '#description' => $this->t("Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer."),
+      '#default_value' => $this->fromArrayToString($config->get('logged_route_names')) ?? NULL,
+      '#description' => $this->t("Comma seperated list. Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer."),
     ];
 
     $form['logged_content_types'] = [
@@ -75,6 +88,7 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
  
+    // Add config for all configured node types
     $nodeTypes = NodeType::loadMultiple();
 
     foreach ($nodeTypes as $nodeType) {
@@ -85,18 +99,23 @@ final class SettingsForm extends ConfigFormBase {
       ];
       $defaultValues = $config->get('logged_content_types');
 
+      // Make it possible to log when a user is on the view page of this content type
       $form['logged_content_types'][$nodeType->id()]['view'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log view'),
         '#description' => $this->t('Log when a user views this content page (<code>/node/{node_id}</code>'),
         '#default_value' => $defaultValues[$nodeType->id()]['view'] ?? NULL,
       ];
+
+      // Make it possible to log when a user is on the edit page of this content type
       $form['logged_content_types'][$nodeType->id()]['edit'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log edit'),
         '#description' => $this->t('Log when a user views the edit content page (<code>/node/{node_id}/edit</code>'),
         '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
       ];
+      
+      // Make it possible to log when a user is on the create page of this content type
       $form['logged_content_types'][$nodeType->id()]['create'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log create'),
@@ -115,7 +134,8 @@ final class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $config = $this->config(self::SETTINGS);
-    $config->set('logged_route_names', $formState->getValue('logged_pages')['logged_route_names']);
+    $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'] ? $this->fromStringToArray(($formState->getValue('logged_pages')['logged_route_names'])) : NULL;
+    $config->set('logged_route_names', $loggedRouteNames);
     $config->set('logged_content_types', $formState->getValue('logged_content_types'));
     $config->save();
     parent::submitForm($form, $formState);
