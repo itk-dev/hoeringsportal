@@ -63,7 +63,8 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     $contentTypes = $this->moduleConfig->get('logged_content_types');
     $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
 
-    // Initialize content type arrays for view, edit, and create audit log pages.
+    // Initialize content type arrays for view, edit,
+    // and create audit log pages.
     $view = [];
     $edit = [];
     $add = [];
@@ -72,10 +73,12 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     $addRoute = 'entity.node.add.';
     $viewRoute = 'entity.node.canonical';
 
-    // Loop through content types to categorize enabled audit log pages (view, edit, add).
+    // Loop through content types to categorize enabled audit log
+    // pages (view, edit, add).
     foreach ($contentTypes as $contentType => $pages) {
       foreach ($pages as $page => $enabled) {
-        // Categorize, only if the page is enabled (1 represents a checked checkbox in the form)
+        // Categorize, only if the page is enabled (1 represents a checked 
+        // checkbox in the form)
         if ($enabled === 1) {
           switch ($page) {
             case 'view':
@@ -99,7 +102,8 @@ final class RoutingChangeListener implements EventSubscriberInterface {
       return;
     }
 
-    // Check if the route name is in the array of hardcoded routes from the settings file.
+    // Check if the route name is in the array of hardcoded routes
+    // from the settings file.
     if (in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
