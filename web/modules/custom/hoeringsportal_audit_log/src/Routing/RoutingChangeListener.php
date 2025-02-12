@@ -15,7 +15,7 @@ use Drupal\node\Entity\Node;
 /**
  * 
  */
-final class RoutingListener implements EventSubscriberInterface {
+final class RoutingChangeListener implements EventSubscriberInterface {
 
     /**
    * The module config.
