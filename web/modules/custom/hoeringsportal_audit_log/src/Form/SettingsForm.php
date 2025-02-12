@@ -81,7 +81,8 @@ final class SettingsForm extends ConfigFormBase {
 
       $defaultValues = $config->get('logged_content_types');
 
-      // Make it possible to log when a user is on the view page of this content type.
+      // Make it possible to log when a user is on the view page of
+      // this content type.
       $form['logged_content_types'][$nodeType->id()]['view'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log view'),
@@ -89,7 +90,8 @@ final class SettingsForm extends ConfigFormBase {
         '#default_value' => $defaultValues[$nodeType->id()]['view'] ?? NULL,
       ];
 
-      // Make it possible to log when a user is on the edit page of this content type.
+      // Make it possible to log when a user is on the edit page of
+      // this content type.
       $form['logged_content_types'][$nodeType->id()]['edit'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log edit'),
@@ -97,7 +99,8 @@ final class SettingsForm extends ConfigFormBase {
         '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
       ];
 
-      // Make it possible to log when a user is on the create page of this content type.
+      // Make it possible to log when a user is on the create page of
+      // this content type.
       $form['logged_content_types'][$nodeType->id()]['create'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log create'),
