@@ -66,10 +66,10 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     // edit audit log pages.
     $view = [];
     $edit = [];
-    
+
     $editRoute = 'entity.node.edit_form';
     $viewRoute = 'entity.node.canonical';
-    
+
     if ($contentTypes) {
       // Loop through content types to categorize enabled audit log
       // pages (view, edit).
@@ -95,21 +95,21 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     if (empty($view) && empty($edit) && empty($loggedRouteNames)) {
       return;
     }
-    
+
     // Check if the route name is in the array of hardcoded routes
     // from the settings file.
     if ($loggedRouteNames && in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
-    
+
     // Get node to get content type of current page.
     $nodeId = $this->routeMatch->getRawParameter('node');
-    $node = null;
+    $node = NULL;
 
     if ($nodeId) {
       $node = Node::load($nodeId);
-    
+
       $routes = [
         [$edit, $editRoute],
         [$view, $viewRoute],
