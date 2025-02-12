@@ -109,7 +109,7 @@ final class RoutingChangeListener implements EventSubscriberInterface {
 
     if ($nodeId) {
       $node = Node::load($nodeId);
-    }
+    
       $routes = [
         [$edit, $editRoute],
         [$view, $viewRoute],
@@ -118,6 +118,7 @@ final class RoutingChangeListener implements EventSubscriberInterface {
         if ($this->auditOnNodePage($routeName, $page, $route, $node)) {
           // If the auditOnNodePage audits, then there is no need to do anymore.
           return;
+        }
       }
     }
   }
@@ -135,7 +136,6 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    *   For type and title.
    */
   private function auditOnNodePage(string $routeName, array $pageArray, string $key, ?Node $node): bool {
-
     // Check if the route corresponds to a node page for auditing.
     if (!empty($pageArray) && strpos($routeName, $key) === 0 && in_array($node->getType(), $pageArray)) {
       $this->logAuditMessage($node->getTitle());
