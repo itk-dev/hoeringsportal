@@ -3,6 +3,6 @@ type: module
 description: 'Stuff related to audit log'
 package: ITK
 core_version_requirement: ^10 || ^11
-# dependencies:
-#   - auditlog
+dependencies:
+  - os2web_audit:os2web_audit
 configure: hoeringsportal_audit_log.settings
