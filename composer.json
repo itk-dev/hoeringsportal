@@ -79,7 +79,6 @@
         "itk-dev/web_accessibility_statement": "^1.0",
         "onelogin/php-saml": "^4.0",
         "oomphinc/composer-installers-extender": "^2.0",
-        "os2web/os2web_audit": "dev-feature/update-drush",
         "vlucas/phpdotenv": "^2.4",
         "webflo/drupal-finder": "^1.0.0"
     },
