@@ -2,12 +2,10 @@
 
 namespace Drupal\hoeringsportal_audit_log\Form;
 
-use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\EntityTypeManager;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\node\Entity\NodeType;
+use Drupal\Core\Url;
 
 /**
  * Settings form.
@@ -16,34 +14,13 @@ final class SettingsForm extends ConfigFormBase {
   public const SETTINGS = 'hoeringsportal_audit_log.settings';
 
   /**
-   * SettingsForm constructor.
-   *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory The config factory.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
-   */
-  public function __construct(ConfigFactoryInterface $configFactory) {
-    parent::__construct($configFactory);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container): static {
-    return new static(
-      $container->get('config.factory')
-    );
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function getFormId() {
     return 'hoeringsportal_audit_log_config';
   }
 
-    /**
+  /**
    * {@inheritdoc}
    *
    * @phpstan-return array<mixed, mixed>
@@ -66,6 +43,13 @@ final class SettingsForm extends ConfigFormBase {
     // Default settings.
     $config = $this->config(self::SETTINGS);
 
+    $url = Url::fromRoute('os2web_audit.plugin_settings_local_tasks');
+    $form['info'] = [
+      '#markup' => '<p>These configurations handle <i>when</i> to create logs, <a href="' . $url->toString() . '">the <code>os2web_audit</code> configuration can be found here.</a></p>',
+      '#title' => $this->t('Logged pages'),
+      '#tree' => TRUE,
+    ];
+
     $form['logged_pages'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Logged pages'),
@@ -76,7 +60,7 @@ final class SettingsForm extends ConfigFormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Route names'),
       '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
-      '#description' => $this->t("Comma seperated list. Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer."),
+      '#description' => $this->t('Comma seperated list. Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
     $form['logged_content_types'] = [
@@ -84,8 +68,8 @@ final class SettingsForm extends ConfigFormBase {
       '#title' => $this->t('Logged content types'),
       '#tree' => TRUE,
     ];
- 
-    // Add config for all configured node types
+
+    // Add config for all configured node types.
     $nodeTypes = NodeType::loadMultiple();
 
     foreach ($nodeTypes as $nodeType) {
@@ -94,9 +78,10 @@ final class SettingsForm extends ConfigFormBase {
         '#title' => $nodeType->label(),
         '#tree' => TRUE,
       ];
+
       $defaultValues = $config->get('logged_content_types');
 
-      // Make it possible to log when a user is on the view page of this content type
+      // Make it possible to log when a user is on the view page of this content type.
       $form['logged_content_types'][$nodeType->id()]['view'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log view'),
@@ -104,7 +89,7 @@ final class SettingsForm extends ConfigFormBase {
         '#default_value' => $defaultValues[$nodeType->id()]['view'] ?? NULL,
       ];
 
-      // Make it possible to log when a user is on the edit page of this content type
+      // Make it possible to log when a user is on the edit page of this content type.
       $form['logged_content_types'][$nodeType->id()]['edit'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log edit'),
@@ -112,7 +97,7 @@ final class SettingsForm extends ConfigFormBase {
         '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
       ];
 
-      // Make it possible to log when a user is on the create page of this content type
+      // Make it possible to log when a user is on the create page of this content type.
       $form['logged_content_types'][$nodeType->id()]['create'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log create'),
@@ -132,7 +117,7 @@ final class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $config = $this->config(self::SETTINGS);
     $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
-    $config->set('logged_route_names', $loggedRouteNames ? $this->fromStringToArray($loggedRouteNames) : NULL );
+    $config->set('logged_route_names', $loggedRouteNames ? $this->fromStringToArray($loggedRouteNames) : NULL);
     $config->set('logged_content_types', $formState->getValue('logged_content_types'));
     $config->save();
     parent::submitForm($form, $formState);
@@ -142,13 +127,14 @@ final class SettingsForm extends ConfigFormBase {
    * Makes the input comma-separated string into an array.
    */
   private function fromStringToArray(string $input): array {
-    return array_map('trim',explode(",",$input));
+    return array_map('trim', explode(',', $input));
   }
 
   /**
    * Makes the array into a comma-separated string.
    */
   private function fromArrayToString(array $input): string {
-    return implode(", ", $input);
+    return implode(', ', $input);
   }
+
 }
