@@ -62,8 +62,8 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     $routeName = $event->getRequest()->attributes->get('_route');
     $contentTypes = $this->moduleConfig->get('logged_content_types');
     $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
-    // Initialize content type arrays for view, edit,
-    // audit log pages.
+    // Initialize content type arrays for view and
+    // edit audit log pages.
     $view = [];
     $edit = [];
     
