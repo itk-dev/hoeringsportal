@@ -77,7 +77,7 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     // pages (view, edit, add).
     foreach ($contentTypes as $contentType => $pages) {
       foreach ($pages as $page => $enabled) {
-        // Categorize, only if the page is enabled (1 represents a checked 
+        // Categorize, only if the page is enabled (1 represents a checked
         // checkbox in the form)
         if ($enabled === 1) {
           switch ($page) {
