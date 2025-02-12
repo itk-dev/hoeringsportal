@@ -43,18 +43,15 @@ final class SettingsForm extends ConfigFormBase {
     return 'hoeringsportal_audit_log_config';
   }
 
-  /**
-   * Makes the input comma-separated string into an array.
+    /**
+   * {@inheritdoc}
+   *
+   * @phpstan-return array<mixed, mixed>
    */
-  private function fromStringToArray(string $input): array {
-    return array_map('trim',explode(",",$input));
-  }
-
-  /**
-   * Makes the array into a comma-separated string.
-   */
-  private function fromArrayToString(array $input): string {
-    return implode(", ", $input);
+  protected function getEditableConfigNames(): array {
+    return [
+      self::SETTINGS,
+    ];
   }
 
   /**
@@ -78,7 +75,7 @@ final class SettingsForm extends ConfigFormBase {
     $form['logged_pages']['logged_route_names'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Route names'),
-      '#default_value' => $this->fromArrayToString($config->get('logged_route_names')) ?? NULL,
+      '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
       '#description' => $this->t("Comma seperated list. Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer."),
     ];
 
@@ -114,7 +111,7 @@ final class SettingsForm extends ConfigFormBase {
         '#description' => $this->t('Log when a user views the edit content page (<code>/node/{node_id}/edit</code>'),
         '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
       ];
-      
+
       // Make it possible to log when a user is on the create page of this content type
       $form['logged_content_types'][$nodeType->id()]['create'] = [
         '#type' => 'checkbox',
@@ -134,22 +131,24 @@ final class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $config = $this->config(self::SETTINGS);
-    $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'] ? $this->fromStringToArray(($formState->getValue('logged_pages')['logged_route_names'])) : NULL;
-    $config->set('logged_route_names', $loggedRouteNames);
+    $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
+    $config->set('logged_route_names', $loggedRouteNames ? $this->fromStringToArray($loggedRouteNames) : NULL );
     $config->set('logged_content_types', $formState->getValue('logged_content_types'));
     $config->save();
     parent::submitForm($form, $formState);
   }
 
   /**
-   * {@inheritdoc}
-   *
-   * @phpstan-return array<mixed, mixed>
+   * Makes the input comma-separated string into an array.
    */
-  protected function getEditableConfigNames(): array {
-    return [
-      self::SETTINGS,
-    ];
+  private function fromStringToArray(string $input): array {
+    return array_map('trim',explode(",",$input));
   }
 
+  /**
+   * Makes the array into a comma-separated string.
+   */
+  private function fromArrayToString(array $input): string {
+    return implode(", ", $input);
+  }
 }
