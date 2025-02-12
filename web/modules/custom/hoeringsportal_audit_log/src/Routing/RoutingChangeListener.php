@@ -118,7 +118,6 @@ final class RoutingChangeListener implements EventSubscriberInterface {
         if ($this->auditOnNodePage($routeName, $page, $route, $node)) {
           // If the auditOnNodePage audits, then there is no need to do anymore.
           return;
-        
       }
     }
   }
