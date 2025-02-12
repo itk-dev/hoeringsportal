@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-447](https://github.com/itk-dev/hoeringsportal/pull/447)
+  Feature/audit log
 * [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)
   Cleaned up archiving code and added web profiler
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
