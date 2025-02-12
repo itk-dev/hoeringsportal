@@ -98,15 +98,6 @@ final class SettingsForm extends ConfigFormBase {
         '#description' => $this->t('Log when a user views the edit content page (<code>/node/{node_id}/edit</code>'),
         '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
       ];
-
-      // Make it possible to log when a user is on the create page of
-      // this content type.
-      $form['logged_content_types'][$nodeType->id()]['create'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Log create'),
-        '#description' => $this->t('Log when a user views the create content page (<code>/node/add/{content_type}</code>'),
-        '#default_value' => $defaultValues[$nodeType->id()]['create'] ?? NULL,
-      ];
     }
 
     return $form;
