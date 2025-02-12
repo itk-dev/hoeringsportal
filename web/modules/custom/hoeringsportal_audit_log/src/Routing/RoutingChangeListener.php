@@ -96,10 +96,9 @@ final class RoutingChangeListener implements EventSubscriberInterface {
       return;
     }
     
-    
     // Check if the route name is in the array of hardcoded routes
     // from the settings file.
-    if (in_array($routeName, $loggedRouteNames)) {
+    if ($loggedRouteNames && in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
