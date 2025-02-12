@@ -70,21 +70,23 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     $editRoute = 'entity.node.edit_form';
     $viewRoute = 'entity.node.canonical';
     
-    // Loop through content types to categorize enabled audit log
-    // pages (view, edit).
-    foreach ($contentTypes as $contentType => $pages) {
-      foreach ($pages as $page => $enabled) {
-        // Categorize, only if the page is enabled (1 represents a checked
-        // checkbox in the form)
-        if ($enabled === 1) {
-          switch ($page) {
-            case 'view':
-              $view[] = $contentType;
-              break;
+    if ($contentTypes) {
+      // Loop through content types to categorize enabled audit log
+      // pages (view, edit).
+      foreach ($contentTypes as $contentType => $pages) {
+        foreach ($pages as $page => $enabled) {
+          // Categorize, only if the page is enabled (1 represents a checked
+          // checkbox in the form)
+          if ($enabled === 1) {
+            switch ($page) {
+              case 'view':
+                $view[] = $contentType;
+                break;
 
-            case 'edit':
-              $edit[] = $contentType;
-              break;
+              case 'edit':
+                $edit[] = $contentType;
+                break;
+            }
           }
         }
       }
