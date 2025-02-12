@@ -5,4 +5,3 @@ hoeringsportal_audit_log.settings:
     _title: 'Audit log'
   requirements:
     _permission: 'administer site configuration'
-
