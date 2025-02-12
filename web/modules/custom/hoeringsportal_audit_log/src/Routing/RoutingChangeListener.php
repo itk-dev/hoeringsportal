@@ -62,19 +62,16 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     $routeName = $event->getRequest()->attributes->get('_route');
     $contentTypes = $this->moduleConfig->get('logged_content_types');
     $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
-
     // Initialize content type arrays for view, edit,
-    // and create audit log pages.
+    // audit log pages.
     $view = [];
     $edit = [];
-    $add = [];
-
+    
     $editRoute = 'entity.node.edit_form';
-    $addRoute = 'entity.node.add.';
     $viewRoute = 'entity.node.canonical';
-
+    
     // Loop through content types to categorize enabled audit log
-    // pages (view, edit, add).
+    // pages (view, edit).
     foreach ($contentTypes as $contentType => $pages) {
       foreach ($pages as $page => $enabled) {
         // Categorize, only if the page is enabled (1 represents a checked
@@ -88,42 +85,39 @@ final class RoutingChangeListener implements EventSubscriberInterface {
             case 'edit':
               $edit[] = $contentType;
               break;
-
-            case 'create':
-              $add[] = $contentType;
-              break;
           }
         }
       }
     }
-
     // Early return if there is not assigned audit log to any pages.
-    if (empty($view) && empty($edit) && empty($add) && empty($loggedRouteNames)) {
+    if (empty($view) && empty($edit) && empty($loggedRouteNames)) {
       return;
     }
-
+    
+    
     // Check if the route name is in the array of hardcoded routes
     // from the settings file.
     if (in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
-
+    
     // Get node to get content type of current page.
     $nodeId = $this->routeMatch->getRawParameter('node');
+    $node = null;
 
     if ($nodeId) {
       $node = Node::load($nodeId);
+    }
       $routes = [
         [$edit, $editRoute],
-        [$add, $addRoute],
         [$view, $viewRoute],
       ];
       foreach ($routes as [$page, $route]) {
         if ($this->auditOnNodePage($routeName, $page, $route, $node)) {
           // If the auditOnNodePage audits, then there is no need to do anymore.
           return;
-        }
+        
       }
     }
   }
@@ -140,7 +134,8 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    * @param \Drupal\node\Entity\Node $node
    *   For type and title.
    */
-  private function auditOnNodePage(string $routeName, array $pageArray, string $key, Node $node): bool {
+  private function auditOnNodePage(string $routeName, array $pageArray, string $key, ?Node $node): bool {
+
     // Check if the route corresponds to a node page for auditing.
     if (!empty($pageArray) && strpos($routeName, $key) === 0 && in_array($node->getType(), $pageArray)) {
       $this->logAuditMessage($node->getTitle());
