@@ -160,8 +160,9 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
-    $events[KernelEvents::CONTROLLER][] = ['auditOnRouteChange', 1000];
-    return $events;
+    return [
+        KernelEvents::CONTROLLER => [['auditOnRouteChange', 1000]],
+    ];
   }
 
 }
