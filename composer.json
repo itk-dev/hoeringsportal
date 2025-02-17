@@ -96,10 +96,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "github": {
-            "type": "vcs",
-            "url": "https://github.com/itk-dev/os2web_audit"
-        },
         "drupal/content_fixtures": {
             "type": "git",
             "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
