@@ -82,6 +82,7 @@ final class SettingsForm extends ConfigFormBase {
     ];
 
     $form['logged_pages']['logged_route_names'] = [
+      // @todo get all routes (a lot), find a way to filter them and display them in a multiselect.
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
