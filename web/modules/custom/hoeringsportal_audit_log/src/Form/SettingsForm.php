@@ -19,7 +19,7 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Constructs a new form object.
    *
-   * @param \Drupal\Core\Routing\RouteProviderInterface; $routeProvider
+   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
    *   The route provider service.
    */
   public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider) {
@@ -36,7 +36,6 @@ final class SettingsForm extends ConfigFormBase {
       $container->get('router.route_provider')
     );
   }
-
 
   /**
    * {@inheritdoc}
@@ -71,7 +70,7 @@ final class SettingsForm extends ConfigFormBase {
     $url = Url::fromRoute('os2web_audit.plugin_settings_local_tasks');
     $form['info'] = [
       '#markup' => '<p>These configurations handle <i>when</i> to create logs, <a href="' . $url->toString() . '">the <code>os2web_audit</code> configuration can be found here.</a></p>',
-      '#title' => $this->t('Logged pages')
+      '#title' => $this->t('Logged pages'),
     ];
 
     $form['logged_pages'] = [
