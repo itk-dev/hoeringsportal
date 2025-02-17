@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\hoeringsportal_audit_log\Routing;
+namespace Drupal\hoeringsportal_audit_log\EventSubscriber;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\os2web_audit\Service\Logger;
@@ -15,9 +15,9 @@ use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 
 /**
- * Route change listener.
+ * Controller listener.
  */
-final class RoutingChangeListener implements EventSubscriberInterface {
+final class ControllerListener implements EventSubscriberInterface {
 
   /**
    * The module config.
@@ -57,7 +57,7 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
    *   The event to process.
    */
-  public function auditOnRouteChange(ControllerEvent $event) {
+  public function onController(ControllerEvent $event) {
     $pathInfo = $event->getRequest()->getPathInfo();
     $routeName = $event->getRequest()->attributes->get('_route');
     $contentTypes = $this->moduleConfig->get('logged_content_types');
@@ -104,12 +104,9 @@ final class RoutingChangeListener implements EventSubscriberInterface {
     }
 
     // Get node to get content type of current page.
-    $nodeId = $this->routeMatch->getRawParameter('node');
-    $node = NULL;
+    $node = $this->routeMatch->getParameter('node');
 
-    if ($nodeId) {
-      $node = Node::load($nodeId);
-
+    if ($node) {
       $routes = [
         [$edit, $editRoute],
         [$view, $viewRoute],
@@ -122,7 +119,6 @@ final class RoutingChangeListener implements EventSubscriberInterface {
       }
     }
   }
-
   /**
    * Log the path and user email.
    *
@@ -151,8 +147,8 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    *   The path info to include in the message.
    */
   private function logAuditMessage($info) {
-    $userEmail = $this->currentUser->getEmail();
-    $msg = sprintf('Potential fetch of personal data from page: %s by %s', $info, $userEmail);
+    $accountName = $this->currentUser->getAccountName();
+    $msg = sprintf('Potential fetch of personal data from page: %s by %s', $info, $accountName);
     $this->auditLogger->info('Lookup', $msg);
   }
 
@@ -161,7 +157,7 @@ final class RoutingChangeListener implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents(): array {
     return [
-        KernelEvents::CONTROLLER => [['auditOnRouteChange', 1000]],
+        KernelEvents::CONTROLLER => [['onController', 1000]],
     ];
   }
 
