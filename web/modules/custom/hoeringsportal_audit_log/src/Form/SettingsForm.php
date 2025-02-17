@@ -19,7 +19,7 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Constructs a new form object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   A config factory for retrieving required config objects.
    * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
    *   The route provider service.
