@@ -119,6 +119,7 @@ final class ControllerListener implements EventSubscriberInterface {
       }
     }
   }
+
   /**
    * Log the path and user email.
    *
@@ -157,7 +158,7 @@ final class ControllerListener implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents(): array {
     return [
-        KernelEvents::CONTROLLER => [['onController', 1000]],
+      KernelEvents::CONTROLLER => [['onController', 1000]],
     ];
   }
 
