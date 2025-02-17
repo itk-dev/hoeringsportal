@@ -5,13 +5,7 @@
     "keywords": ["Drupal"],
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
-    "repositories": {
-        "github": {
-            "type": "vcs",
-            "url": "https://github.com/itk-dev/os2web_audit"
-        }
-    },
     "require": {
-        "os2web/os2web_audit": "dev-feature/update-drush"
+        "os2web/os2web_audit": "^0.2.0"
     }
 }

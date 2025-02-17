@@ -1,5 +1,5 @@
 services:
-  Drupal\hoeringsportal_audit_log\Routing\RoutingChangeListener:
+  Drupal\hoeringsportal_audit_log\Routing\ControllerListener:
     autowire: true
     tags:
       - { name: event_subscriber }
