@@ -8,6 +8,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 /**
  * Abstract archiver for citizen proposal archiving.
@@ -23,6 +24,7 @@ abstract class AbstractArchiver implements LoggerAwareInterface, LoggerInterface
    */
   public function __construct(
     readonly private Connection $database,
+    #[Autowire(service: 'logger.channel.hoeringsportal_citizen_proposal_archiving')]
     LoggerInterface $logger,
   ) {
     $this->setLogger($logger);

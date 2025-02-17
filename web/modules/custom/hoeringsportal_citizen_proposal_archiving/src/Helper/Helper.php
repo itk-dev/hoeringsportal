@@ -12,6 +12,7 @@ use Drupal\entity_events\EntityEventType;
 use Drupal\entity_events\Event\EntityEvent;
 use Drupal\hoeringsportal_citizen_proposal\Helper\Helper as CitizenProposalHelper;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\AbstractArchiver;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\RuntimeException;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Plugin\AdvancedQueue\JobType\ArchiveCitizenProposalJob;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Renderer\Renderer;
@@ -20,6 +21,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -42,8 +44,10 @@ final class Helper implements EventSubscriberInterface, LoggerAwareInterface, Lo
   public function __construct(
     EntityTypeManagerInterface $entityTypeManager,
     readonly private CitizenProposalHelper $citizenProposalHelper,
+    #[Autowire(service: GetOrganizedArchiver::class)]
     readonly private AbstractArchiver $archiver,
     readonly private Renderer $renderer,
+    #[Autowire(service: 'logger.channel.hoeringsportal_citizen_proposal_archiving')]
     LoggerInterface $logger,
   ) {
     $this->queueStorage = $entityTypeManager->getStorage('advancedqueue_queue');

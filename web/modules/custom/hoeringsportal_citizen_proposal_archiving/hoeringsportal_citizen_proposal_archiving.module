@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * @file
+ * Module file for hoeringsportal_citizen_proposal_archiving.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\hoeringsportal_citizen_proposal_archiving\Helper\FormHelper;
+
+/**
+ * Implements hook_form_alter().
+ *
+ * @see FormHelper::alterForm()
+ */
+function hoeringsportal_citizen_proposal_archiving_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  _hoeringsportal_citizen_proposal_archiving_get_form_helper()->alterForm($form, $form_state, $form_id);
+}
+
+/**
+ * Get form helper.
+ */
+function _hoeringsportal_citizen_proposal_archiving_get_form_helper(): FormHelper {
+  return \Drupal::service(FormHelper::class);
+}

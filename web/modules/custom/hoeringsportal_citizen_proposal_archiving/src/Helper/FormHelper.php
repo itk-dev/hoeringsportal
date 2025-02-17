@@ -1,60 +1,39 @@
 <?php
 
-namespace Drupal\hoeringsportal_citizen_proposal_archiving\Plugin\FormAlter;
+namespace Drupal\hoeringsportal_citizen_proposal_archiving\Helper;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityFormInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Render\Renderer;
+use Drupal\Core\Render\RendererInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Archiver\GetOrganizedArchiver;
 use Drupal\node\NodeInterface;
-use Drupal\pluginformalter\Plugin\FormAlterBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Altering citizen proposal edit form.
- *
- * @FormAlter(
- *   id = "hoeringsportal_citizen_proposal_archiving",
- *   label = @Translation("Altering citizen proposal edit form."),
- *   form_id = {
- *    "node_citizen_proposal_edit_form",
- *   }
- * )
+ * Form helper.
  */
-final class CitizenProposalFormAlter extends FormAlterBase {
+final class FormHelper {
+  use StringTranslationTrait;
 
   /**
    * Constructor.
    */
   public function __construct(
     readonly private GetOrganizedArchiver $archiver,
-    readonly private Renderer $renderer,
-    array $configuration,
-    $plugin_id,
-    $plugin_definition,
+    readonly private RendererInterface $renderer,
   ) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
   }
 
   /**
-   * {@inheritdoc}
+   * Implements hook_form_alter().
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $container->get(GetOrganizedArchiver::class),
-      $container->get('renderer'),
-      $configuration,
-      $plugin_id,
-      $plugin_definition
-    );
-  }
+  public function alterForm(array &$form, FormStateInterface $form_state, string $form_id): void {
+    if ('node_citizen_proposal_edit_form' !== $form_id) {
+      return;
+    }
 
-  /**
-   * {@inheritdoc}
-   */
-  public function formAlter(array &$form, FormStateInterface $form_state, $form_id) {
     $formObject = $form_state->getFormObject();
     assert($formObject instanceof EntityFormInterface);
     $node = $formObject->getEntity();
