@@ -149,7 +149,14 @@ final class ControllerListener implements EventSubscriberInterface {
    */
   private function logAuditMessage($info) {
     $accountName = $this->currentUser->getAccountName();
-    $msg = sprintf('Potential fetch of personal data from page: %s by %s', $info, $accountName);
+    $request = $this->requestStack->getCurrentRequest();
+    $msg = sprintf(
+      '%s made a %s request to %s: %s', 
+      $accountName,
+      $request?->getMethod(),
+      $request?->getPathInfo(),
+      $info
+    );
     $this->auditLogger->info('Lookup', $msg);
   }
 
