@@ -132,7 +132,7 @@ final class ControllerListener implements EventSubscriberInterface {
    * @param \Drupal\node\Entity\Node $node
    *   For type and title.
    */
-  private function auditOnNodePage(string $routeName, array $pageArray, string $key, ?Node $node): bool {
+  private function auditOnNodePage(string $routeName, array $pageArray, string $key, NodeInterface $node): bool {
     // Check if the route corresponds to a node page for auditing.
     if (!empty($pageArray) && strpos($routeName, $key) === 0 && in_array($node->getType(), $pageArray)) {
       $this->logAuditMessage($node->getTitle());
