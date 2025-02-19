@@ -153,7 +153,7 @@ final class SettingsForm extends ConfigFormBase {
    * Makes the array into a newline separated string.
    */
   private function fromArrayToString(array $input): string {
-    return implode('\n', $input);
+    return implode(PHP_EOL, $input);
   }
 
 }
