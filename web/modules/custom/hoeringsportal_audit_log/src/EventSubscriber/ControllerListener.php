@@ -111,7 +111,7 @@ final class ControllerListener implements EventSubscriberInterface {
         [$edit, $editRoute],
         [$view, $viewRoute],
       ];
-      foreach ($routes as [$page, $route]) {
+      foreach ($routes as [$contentTypes, $route]) {
         if ($this->auditOnNodePage($routeName, $page, $route, $node)) {
           // If the auditOnNodePage audits, then there is no need to do anymore.
           return;
