@@ -143,7 +143,7 @@ final class SettingsForm extends ConfigFormBase {
   }
 
   /**
-   * Makes the input comma-separated string into an array.
+   * Split string by newline and trim each item.
    */
   private function fromStringToArray(string $input): array {
     return array_map('trim', explode('\n', $input));
