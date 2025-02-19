@@ -146,7 +146,7 @@ final class SettingsForm extends ConfigFormBase {
    * Split string by newline and trim each item.
    */
   private function fromStringToArray(string $input): array {
-    return array_map('trim', explode('\n', $input));
+    return array_map('trim', explode(PHP_EOL, $input));
   }
 
   /**
