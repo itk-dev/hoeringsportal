@@ -112,7 +112,7 @@ final class SettingsForm extends ConfigFormBase {
       $form['logged_content_types'][$nodeType->id()]['view'] = [
         '#type' => 'checkbox',
         '#title' => $this->t('Log view'),
-        '#description' => $this->t('Log when a user views this content page (<code>/node/{node_id}</code>'),
+        '#description' => $this->t('Log when a user views this content page (<code>/node/{node_id}</code>)'),
         '#default_value' => $defaultValues[$nodeType->id()]['view'] ?? NULL,
       ];
 
