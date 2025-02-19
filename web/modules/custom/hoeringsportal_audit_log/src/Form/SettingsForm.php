@@ -85,7 +85,7 @@ final class SettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
-      '#description' => $this->t('Comma seperated list. Route names to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer.'),
+      '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
     $form['logged_content_types'] = [
