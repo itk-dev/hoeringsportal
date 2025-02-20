@@ -5,7 +5,8 @@ namespace Drupal\hoeringsportal_data\Service;
 /**
  * Danmarks Adressers Web API (DAWA) service.
  */
-class DAWA { // phpcs:ignore
+// phpcs:ignore Drupal.NamingConventions.ValidClassName.NoUpperAcronyms
+class DAWA {
 
   /**
    * Get coordinates from an address.
