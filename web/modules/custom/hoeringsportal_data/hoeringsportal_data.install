@@ -135,3 +135,22 @@ function hoeringsportal_data_update_10001() {
     \Drupal::state()->set('locale.translation.formulae', $formulae);
   }
 }
+
+/**
+ * Set correct formula for Danish pluralization (the one set in
+ * hoeringsportal_data_update_10001 is NOT correct).
+ */
+function hoeringsportal_data_update_10002() {
+  $formulae = \Drupal::state()->get('locale.translation.formulae', []);
+  if (isset($formulae['da'])) {
+    // "Plural-Forms: nplurals=2; plural=(n != 1);"
+    $formulae['da'] = [
+      'plurals' => 2,
+      'formula' => [
+        1 => 0,
+        'default' => 1,
+      ],
+    ];
+    \Drupal::state()->set('locale.translation.formulae', $formulae);
+  }
+}
