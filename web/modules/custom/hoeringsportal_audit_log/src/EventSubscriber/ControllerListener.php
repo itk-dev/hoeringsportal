@@ -2,7 +2,6 @@
 
 namespace Drupal\hoeringsportal_audit_log\EventSubscriber;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\os2web_audit\Service\Logger;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -10,7 +9,6 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
-use Drupal\node\Entity\Node;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drush\Commands\AutowireTrait;
@@ -142,7 +140,7 @@ final class ControllerListener implements EventSubscriberInterface {
     $accountName = $this->currentUser->getAccountName();
     $request = $this->requestStack->getCurrentRequest();
     $msg = sprintf(
-      '%s made a %s request to %s: %s', 
+      '%s made a %s request to %s: %s',
       $accountName,
       $request?->getMethod(),
       $request?->getPathInfo(),
