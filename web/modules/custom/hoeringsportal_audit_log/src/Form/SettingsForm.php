@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 
 /**
@@ -62,9 +61,9 @@ final class SettingsForm extends ConfigFormBase {
     $config = $this->config(self::SETTINGS);
 
     $url = Url::fromRoute('os2web_audit.plugin_settings_local_tasks');
-    $form['info'] = [  
-      '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [  
-        ':os2web_audit_settings_url' => Url::fromRoute('os2web_audit.plugin_settings_local_tasks')->toString(TRUE)->getGeneratedUrl(),  
+    $form['info'] = [
+      '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [
+        ':os2web_audit_settings_url' => Url::fromRoute('os2web_audit.plugin_settings_local_tasks')->toString(TRUE)->getGeneratedUrl(),
       ]),
     ];
 
