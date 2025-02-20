@@ -137,10 +137,10 @@ function hoeringsportal_data_update_10001() {
 }
 
 /**
- * Set correct formula for Danish pluralization (the one set in
- * hoeringsportal_data_update_10001 is NOT correct).
+ * Set correct formula for Danish pluralization.
  */
 function hoeringsportal_data_update_10002() {
+  // The formula set in hoeringsportal_data_update_10001 is NOT correct!
   $formulae = \Drupal::state()->get('locale.translation.formulae', []);
   if (isset($formulae['da'])) {
     // "Plural-Forms: nplurals=2; plural=(n != 1);"
