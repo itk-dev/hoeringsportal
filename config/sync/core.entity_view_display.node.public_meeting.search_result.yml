@@ -97,6 +97,7 @@ hidden:
   field_cancelled_text: true
   field_contact: true
   field_content_state: true
+  field_department: true
   field_description: true
   field_email_address: true
   field_first_meeting_time: true
