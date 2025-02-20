@@ -9,11 +9,14 @@ use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\DependencyInjection\AutowireTrait;
 
 /**
  * Settings form.
  */
 final class SettingsForm extends ConfigFormBase {
+  use AutowireTrait;
+
   public const SETTINGS = 'hoeringsportal_audit_log.settings';
 
   /**
@@ -26,17 +29,6 @@ final class SettingsForm extends ConfigFormBase {
    */
   public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider) {
     parent::__construct($configFactory);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  #[\Override]
-  public static function create(ContainerInterface $container): static {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('router.route_provider')
-    );
   }
 
   /**
@@ -70,8 +62,10 @@ final class SettingsForm extends ConfigFormBase {
     $config = $this->config(self::SETTINGS);
 
     $url = Url::fromRoute('os2web_audit.plugin_settings_local_tasks');
-    $form['info'] = [
-      '#markup' => '<p>These configurations handle <i>when</i> to create logs, <a href="' . $url->toString() . '">the <code>os2web_audit</code> configuration can be found here.</a></p>',
+    $form['info'] = [  
+      '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [  
+        ':os2web_audit_settings_url' => Url::fromRoute('os2web_audit.plugin_settings_local_tasks')->toString(TRUE)->getGeneratedUrl(),  
+      ]),
     ];
 
     $form['logged_pages'] = [
@@ -146,14 +140,14 @@ final class SettingsForm extends ConfigFormBase {
    * Split string by newline and trim each item.
    */
   private function fromStringToArray(string $input): array {
-    return array_map('trim', explode(PHP_EOL, $input));
+    return array_filter(array_map('trim', explode(PHP_EOL, $input)));
   }
 
   /**
    * Makes the array into a newline separated string.
    */
   private function fromArrayToString(array $input): string {
-    return implode(PHP_EOL, $input);
+    return array_filter(array_map('trim', implode(PHP_EOL, $input)));
   }
 
 }
