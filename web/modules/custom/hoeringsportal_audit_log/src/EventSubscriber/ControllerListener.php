@@ -13,11 +13,14 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drush\Commands\AutowireTrait;
 
 /**
  * Controller listener.
  */
 final class ControllerListener implements EventSubscriberInterface {
+
+  use AutowireTrait;
 
   /**
    * The module config.
@@ -37,18 +40,6 @@ final class ControllerListener implements EventSubscriberInterface {
     protected Logger $auditLogger,
   ) {
     $this->moduleConfig = $configFactory->get(SettingsForm::SETTINGS);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container) {
-    return new static(
-      $container->get('config.factory'),
-      $container->get('current_route_match'),
-      $container->get('current_user'),
-      $container->get('os2web_audit.logger')
-    );
   }
 
   /**
