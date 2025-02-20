@@ -5,6 +5,7 @@ namespace Drupal\hoeringsportal_data\Service;
 /**
  * Danmarks Adressers Web API (DAWA) service.
  */
+// phpcs:ignore Drupal.NamingConventions.ValidClassName.NoUpperAcronyms
 class DAWA {
 
   /**
