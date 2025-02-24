@@ -37,3 +37,13 @@
   "module/animation",
   "module/header-v2",
   "../../node_modules/slick-carousel/slick/slick";
+
+// We have an issue similar to https://www.drupal.org/project/bootstrap_barrio/issues/3228330#comment-14770789
+em.placeholder {
+  background-color: initial;
+  cursor: initial;
+  display: initial;
+  min-height: initial;
+  opacity: initial;
+  vertical-align: initial;
+}
