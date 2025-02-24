@@ -169,6 +169,21 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
  *   The states.
  */
 function _hoeringsportal_public_meeting_set_states(array &$element, array $states) {
+  // Mark all but last (i.e. the “extra“; cf.
+  // https://www.drupal.org/project/drupal/issues/2980806) pretix date as
+  // required.
+  if ('field_pretix_dates' === ($element['#field_name'] ?? NULL)) {
+    $numericKeys = array_filter(array_keys($element), 'is_numeric');
+    // Throw away largest key.
+    sort($numericKeys);
+    array_pop($numericKeys);
+    foreach ($numericKeys as $key) {
+      _hoeringsportal_public_meeting_set_states($element[$key], $states);
+    }
+
+    return;
+  }
+
   if (isset($element['#type']) && 'hidden' !== $element['#type']) {
     $element['#states'] = $states;
   }
@@ -270,6 +285,22 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
     }
 
     foreach ($dates as $delta => $date) {
+      if (!is_array($date)) {
+        // Handle “Add another item“.
+        continue;
+      }
+
+      // We require at least one pretix date.
+      // We allow empty values on additional dates only if all values are empty.
+      if ($delta > 0
+        && empty($date['location'])
+        && empty($date['address'])
+        && empty($date['time_from_value'])
+        && empty($date['time_to_value'])
+        && empty($date['spots'])) {
+        continue;
+      }
+
       $namePrefix = 'field_pretix_dates][' . $delta . '][';
       if (empty($date['location'])) {
         $formState->setErrorByName($namePrefix . 'location', t('Please enter a location'));
