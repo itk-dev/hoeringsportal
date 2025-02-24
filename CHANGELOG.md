@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-451](https://github.com/itk-dev/hoeringsportal/pull/451)
+  3893: Enabled multiple pretix dates on public meetings
 * [PR-472](https://github.com/itk-dev/hoeringsportal/pull/472)
   * Translated search page to Danish
   * Updated custom Danish translations (exported from production site)
@@ -75,7 +77,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-425](https://github.com/itk-dev/hoeringsportal/pull/425)
   Publication dates
 * [PR-424](https://github.com/itk-dev/hoeringsportal/pull/424)
-  2945: Cleaned up form templates. Applied security updates.
+  2945: Cleaned up form templates. Applied security updates
+* [PR-458](https://github.com/itk-dev/hoeringsportal/pull/458)
+  Cleaned up actions
 
 ## [4.7.3] - 2025-03-14
 
