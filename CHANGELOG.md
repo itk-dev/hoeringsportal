@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.6.4] - 2025-02-24
+
+* [PR-450](https://github.com/itk-dev/hoeringsportal/pull/450)
+  Fixed styling of placeholders.
+
 ## [4.6.3] - 2025-02-20
 
 * [PR-448](https://github.com/itk-dev/hoeringsportal/pull/448)
@@ -269,7 +274,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.3...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.4...HEAD
+[4.6.4]: https://github.com/itk-dev/hoeringsportal/compare/4.6.3...4.6.4
 [4.6.3]: https://github.com/itk-dev/hoeringsportal/compare/4.6.2...4.6.3
 [4.6.2]: https://github.com/itk-dev/hoeringsportal/compare/4.6.1...4.6.2
 [4.6.1]: https://github.com/itk-dev/hoeringsportal/compare/4.6.0...4.6.1
