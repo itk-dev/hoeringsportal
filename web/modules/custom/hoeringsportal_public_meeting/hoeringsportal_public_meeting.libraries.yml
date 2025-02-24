@@ -2,3 +2,6 @@ public-meeting-form:
   version: VERSION
   js:
     assets/js/form.js: {}
+  css:
+    theme:
+      assets/css/form.css: {}
