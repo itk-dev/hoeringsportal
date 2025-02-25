@@ -7,7 +7,9 @@ namespace Drupal\hoeringsportal_base_fixtures\Fixture;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class TermDepartmentFixture extends AbstractTaxonomyTermFixture {
+final class TermDepartmentFixture extends AbstractTaxonomyTermFixture {
+  public const int NUMBER_OF_TERMS = 3;
+
   /**
    * {@inheritdoc}
    */
@@ -18,7 +20,7 @@ class TermDepartmentFixture extends AbstractTaxonomyTermFixture {
    */
   public function __construct() {
     if (empty(static::$terms)) {
-      static::$terms = array_map(static fn ($i) => 'Department ' . $i, range(1, 3));
+      static::$terms = array_map(static fn ($i) => sprintf('Department %d', $i), range(1, self::NUMBER_OF_TERMS));
     }
     parent::__construct();
   }

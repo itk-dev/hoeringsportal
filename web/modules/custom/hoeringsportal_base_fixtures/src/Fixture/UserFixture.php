@@ -54,7 +54,10 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
     $user->save();
     $this->setReference('user:editor', $user);
 
-    foreach (range(1, 3) as $i) {
+    // We use the range 100..103 to prevent usernames clashing with the ones
+    // used in OIDCUserFixture.
+    foreach (range(100, 103) as $i) {
+      $departmentNumber = ($i - 1) % TermDepartmentFixture::NUMBER_OF_TERMS + 1;
       $name = sprintf('department%d-editor', $i);
       $user = User::create([
         'name' => $name,
@@ -65,7 +68,7 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
           'editor',
         ],
         'field_department' => [
-          $this->getReference('department:Department ' . $i)->id(),
+          $this->getReference(sprintf('department:Department %d', $departmentNumber))->id(),
         ],
       ]);
       $user->save();
