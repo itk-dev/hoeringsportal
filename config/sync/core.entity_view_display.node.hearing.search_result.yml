@@ -70,6 +70,7 @@ hidden:
   field_contact: true
   field_content_state: true
   field_delete_date: true
+  field_department: true
   field_description: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true

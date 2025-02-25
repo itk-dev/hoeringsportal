@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-380](https://github.com/itk-dev/hoeringsportal/pull/380)
+  Added department access check.
 * [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
   Set correct Danish pluralization. Remove superfluous docker service.
 * [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)

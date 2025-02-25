@@ -18,6 +18,10 @@ services:
     tags:
       - { name: content_fixture }
 
+  Drupal\hoeringsportal_base_fixtures\Fixture\TermDepartmentFixture:
+    tags:
+      - { name: content_fixture }
+
   Drupal\hoeringsportal_base_fixtures\Fixture\TermHearingTypeFixture:
     tags:
       - { name: content_fixture }

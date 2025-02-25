@@ -1,0 +1,14 @@
+uuid: e392b95e-9fe0-4949-80f2-78d3cfbe6307
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.hearing_editor
+  module:
+    - user
+id: user_add_role_action.hearing_editor
+label: 'Add the hearing editor role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: hearing_editor
