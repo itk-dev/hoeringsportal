@@ -6,16 +6,11 @@ services:
       - PHP_UPLOAD_MAX_FILESIZE=80M
       - PHP_OPCACHE_VALIDATE_TIMESTAMPS=0
       - PHP_MEMORY_LIMIT=512M
-      
+
   nginx:
     environment:
       # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
       NGINX_MAX_BODY_SIZE: 90M
-
-  node:
-    image: node:22
-    volumes:
-      - .:/app:delegated
 
   clamav:
     image: clamav/clamav:1.2
