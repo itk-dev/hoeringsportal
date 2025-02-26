@@ -12,6 +12,10 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drush\Commands\AutowireTrait;
+use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Drupal\node\Entity\Node;
+use Drupal\user\Entity\User;
 
 /**
  * Controller listener.
@@ -36,6 +40,8 @@ final class ControllerListener implements EventSubscriberInterface {
     protected AccountInterface $currentUser,
     #[Autowire(service: 'os2web_audit.logger')]
     protected Logger $auditLogger,
+    protected readonly ConfigHelper $configHelper,
+    protected RequestStack $requestStack,
   ) {
     $this->moduleConfig = $configFactory->get(SettingsForm::SETTINGS);
   }
@@ -49,85 +55,35 @@ final class ControllerListener implements EventSubscriberInterface {
   public function onController(ControllerEvent $event) {
     $pathInfo = $event->getRequest()->getPathInfo();
     $routeName = $event->getRequest()->attributes->get('_route');
-    $contentTypes = $this->moduleConfig->get('logged_content_types');
     $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
-    // Initialize content type arrays for view and
-    // edit audit log pages.
-    $view = [];
-    $edit = [];
 
-    $editRoute = 'entity.node.edit_form';
-    $viewRoute = 'entity.node.canonical';
-
-    if ($contentTypes) {
-      // Loop through content types to categorize enabled audit log
-      // pages (view, edit).
-      foreach ($contentTypes as $contentType => $pages) {
-        foreach ($pages as $page => $enabled) {
-          // Categorize, only if the page is enabled (1 represents a checked
-          // checkbox in the form)
-          if ($enabled === 1) {
-            switch ($page) {
-              case 'view':
-                $view[] = $contentType;
-                break;
-
-              case 'edit':
-                $edit[] = $contentType;
-                break;
-            }
-          }
-        }
-      }
-    }
-    // Early return if there is not assigned audit log to any pages.
-    if (empty($view) && empty($edit) && empty($loggedRouteNames)) {
-      return;
-    }
-
-    // Check if the route name is in the array of hardcoded routes
-    // from the settings file.
+    $enabledAuditIds = $this->configHelper->getEnabledAuditIds();
     if ($loggedRouteNames && in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
+    
+    $routeParameters = $this->routeMatch->getParameters();
+    if ($routeParameters->count() > 0) {
+      $entityTypeId = array_key_first($routeParameters->all());
+      
+      /** @var \Drupal\Core\Entity\EntityTypeInterface $entity */
+      $entity = $this->routeMatch->getParameter($entityTypeId);
 
-    // Get node to get content type of current page.
-    $node = $this->routeMatch->getParameter('node');
+      if (in_array($entityTypeId, $enabledAuditIds)) {
+        $entityConfig = [];
+        if ($entity instanceof Node) {
+          $entityConfig = $this->configHelper->getEntityConfiguration($entityTypeId, $entity->getType());
+        }
+        elseif ($entity instanceof User) {
+          $entityConfig = $this->configHelper->getEntityConfiguration($entityTypeId, NULL);
+        }
 
-    if ($node) {
-      $routes = [
-        [$edit, $editRoute],
-        [$view, $viewRoute],
-      ];
-      foreach ($routes as [$contentTypes, $route]) {
-        if ($this->auditOnNodePage($routeName, $page, $route, $node)) {
-          // If the auditOnNodePage audits, then there is no need to do anymore.
-          return;
+        if (in_array($routeName, $entityConfig)) {
+          $this->logAuditMessage($pathInfo);
         }
       }
     }
-  }
-
-  /**
-   * Log the path and user email.
-   *
-   * @param string $routeName
-   *   The route name.
-   * @param array $pageArray
-   *   The array of pages where logging is enabled.
-   * @param string $key
-   *   The key to check if in above array.
-   * @param \Drupal\node\Entity\Node $node
-   *   For type and title.
-   */
-  private function auditOnNodePage(string $routeName, array $pageArray, string $key, NodeInterface $node): bool {
-    // Check if the route corresponds to a node page for auditing.
-    if (!empty($pageArray) && strpos($routeName, $key) === 0 && in_array($node->getType(), $pageArray)) {
-      $this->logAuditMessage($node->getTitle());
-      return TRUE;
-    }
-    return FALSE;
   }
 
   /**
