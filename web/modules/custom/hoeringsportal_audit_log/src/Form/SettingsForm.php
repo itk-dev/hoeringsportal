@@ -2,13 +2,15 @@
 
 namespace Drupal\hoeringsportal_audit_log\Form;
 
+use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\ConfigFormBase;
-use Drupal\node\Entity\NodeType;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Routing\RouteProviderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
 
 /**
  * Settings form.
@@ -25,8 +27,10 @@ final class SettingsForm extends ConfigFormBase {
    *   A config factory for retrieving required config objects.
    * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
    *   The route provider service.
+   * @param \Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper $configHelper
+   *   The configuration helper.
    */
-  public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider) {
+  public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider, protected EntityTypeManagerInterface $entityTypeManager, protected ConfigHelper $configHelper) {
     parent::__construct($configFactory);
   }
 
@@ -60,7 +64,8 @@ final class SettingsForm extends ConfigFormBase {
     // Default settings.
     $config = $this->config(self::SETTINGS);
 
-    $url = Url::fromRoute('os2web_audit.plugin_settings_local_tasks');
+    $enabledAuditIds = $this->configHelper->getEnabledAuditIds();
+
     $form['info'] = [
       '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [
         ':os2web_audit_settings_url' => Url::fromRoute('os2web_audit.plugin_settings_local_tasks')->toString(TRUE)->getGeneratedUrl(),
@@ -74,51 +79,86 @@ final class SettingsForm extends ConfigFormBase {
     ];
 
     $form['logged_pages']['logged_route_names'] = [
-      // @todo get all routes (a lot), find a way to filter them and display them in a multiselect.
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
-      '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>, if in doubt, ask your friendly neighborhood programmer.'),
+      '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
-    $form['logged_content_types'] = [
+    /** @var \Drupal\Core\Entity\EntityTypeInterface[] $definitions */
+    $definitions = $this->entityTypeManager->getDefinitions();
+
+    $form['types'] = [
       '#type' => 'fieldset',
-      '#title' => $this->t('Logged content types'),
+      '#title' => $this->t('Definition routes'),
       '#tree' => TRUE,
     ];
 
-    // Add config for all configured node types.
-    $nodeTypes = NodeType::loadMultiple();
+    foreach ($definitions as $definitionId => $definition) {
+      if (in_array($definitionId, $enabledAuditIds)) {
 
-    foreach ($nodeTypes as $nodeType) {
-      $form['logged_content_types'][$nodeType->id()] = [
-        '#type' => 'fieldset',
-        '#title' => $nodeType->label(),
-        '#tree' => TRUE,
-      ];
+        $bundleEntityType = $definition->getBundleEntityType();
 
-      $defaultValues = $config->get('logged_content_types');
+        if ($bundleEntityType) {
+          $storage = $this->entityTypeManager->getStorage($bundleEntityType);
+          $types = $storage->loadMultiple();
+        }
+        else {
+          $types = [$definition];
+        }
 
-      // Make it possible to log when a user is on the view page of
-      // this content type.
-      $form['logged_content_types'][$nodeType->id()]['view'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Log view'),
-        '#description' => $this->t('Log when a user views this content page (<code>/node/{node_id}</code>)'),
-        '#default_value' => $defaultValues[$nodeType->id()]['view'] ?? NULL,
-      ];
+        $linkTemplates = $definition->getLinkTemplates();
 
-      // Make it possible to log when a user is on the edit page of
-      // this content type.
-      $form['logged_content_types'][$nodeType->id()]['edit'] = [
-        '#type' => 'checkbox',
-        '#title' => $this->t('Log edit'),
-        '#description' => $this->t('Log when a user views the edit content page (<code>/node/{node_id}/edit</code>)'),
-        '#default_value' => $defaultValues[$nodeType->id()]['edit'] ?? NULL,
-      ];
+        if (count($types) > 0 && count($linkTemplates) > 0) {
+          $form['types'][$definitionId] = [
+            '#type' => 'fieldset',
+            '#title' => $definition->getLabel(),
+            '#tree' => TRUE,
+            '#collapsible' => TRUE,
+          ];
+
+          foreach ($types as $type) {
+            $typeId = $type->id();
+
+            $form['types'][$definitionId][$typeId] = [
+              '#type' => 'fieldset',
+              '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
+              '#tree' => TRUE,
+            ];
+
+            $options = [];
+            foreach ($linkTemplates as $path) {
+              $matches = $this->routeProvider->getRoutesByPattern($path)->all();
+              if (count($matches) > 0) {
+                $routeKey = array_key_first($matches);
+                $routeValue = reset($matches)->getPath();
+                $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
+              }
+            }
+
+            $form['types'][$definitionId][$typeId][] = [
+              '#type' => 'checkboxes',
+              '#options' => $options,
+              '#default_value' => $this->getDefaultValues($definitionId, $typeId),
+            ];
+
+          }
+        }
+      }
     }
-
     return $form;
+  }
+
+  /**
+   * Get default values for checkboxes.
+   */
+  private function getDefaultValues($definitionId, $typeId) : array {
+    $configTypes = $this->configHelper->getConfiguration('types');
+    $defaultValues = [];
+    if (count($configTypes) > 0) {
+      $defaultValues = reset($configTypes[$definitionId][$typeId]);
+    }
+    return $defaultValues;
   }
 
   /**
@@ -127,11 +167,16 @@ final class SettingsForm extends ConfigFormBase {
    * @phpstan-param array<mixed, mixed> $form
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
-    $config = $this->config(self::SETTINGS);
     $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
-    $config->set('logged_route_names', $loggedRouteNames ? $this->fromStringToArray($loggedRouteNames) : NULL);
-    $config->set('logged_content_types', $formState->getValue('logged_content_types'));
-    $config->save();
+    if ($loggedRouteNames) {
+      $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
+    }
+    $types = $formState->getValue('types');
+    if ($types) {
+      $this->configHelper->setConfiguration('types', $types);
+    }
+
+    $this->configHelper->saveConfig();
     parent::submitForm($form, $formState);
   }
 
@@ -146,7 +191,7 @@ final class SettingsForm extends ConfigFormBase {
    * Makes the array into a newline separated string.
    */
   private function fromArrayToString(array $input): string {
-    return array_filter(array_map('trim', implode(PHP_EOL, $input)));
+    return implode(PHP_EOL, $input);
   }
 
 }

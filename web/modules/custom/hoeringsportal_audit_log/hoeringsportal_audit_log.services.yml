@@ -3,3 +3,6 @@ services:
     autowire: true
     tags:
       - { name: event_subscriber }
+
+  Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper:
+    autowire: true
