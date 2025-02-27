@@ -85,7 +85,7 @@ final class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
-    /** @var \Drupal\Core\Entity\EntityTypeInterface[] $definitions */
+    /** @var \Drupal\Core\Entity\EntityInterface[] $definitions */
     $definitions = $this->entityTypeManager->getDefinitions();
 
     $form['types'] = [
@@ -168,9 +168,7 @@ final class SettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
-    if ($loggedRouteNames) {
-      $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
-    }
+    $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
     $types = $formState->getValue('types');
     if ($types) {
       $this->configHelper->setConfiguration('types', $types);
