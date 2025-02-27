@@ -9,8 +9,8 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
  * Config helper.
  */
 class ConfigHelper {
-    // Limit where audits can be made. If this is expanded, you probably need to write some code in both SettingsForm and ControllerListener.
-  const ENABLED_AUDIT_IDS = ['node', 'user'];
+  // Limit where audits can be made. If this is expanded, you probably need to write some code in both SettingsForm and ControllerListener.
+  private const ENABLED_AUDIT_IDS = ['node', 'user'];
 
   /**
    * The module config.
@@ -80,24 +80,23 @@ class ConfigHelper {
   /**
    * Get active (not 0) config for entity.
    */
-  public function getEntityConfiguration(string $key, ?string $type): array {
+  public function getEntityConfiguration(string $key, string $routeName, ?string $type): bool {
     $returnConfig = [];
-    // Retrieve the available types configuration
+    // Retrieve the available types configuration.
     $types = $this->getConfiguration('types');
-    
-    // If no types configuration exists, return an empty array immediately
+
+    // If no types configuration exists, return an empty array immediately.
     if (!$types) {
       return $returnConfig;
     }
-    
-    // Set the default configuration based on the provided type
-    $config = $type ? (reset($types[$key][$type]) ?? []) : (reset($types[$key][$key]) ?? []);
-    foreach ($config as $key => $c) {
-      if ($c !== 0) {
-        $returnConfig[] = $this->unescapeProviderId($c);
-      }
+
+    $typeId = $key;
+    if ($type) {
+      $typeId = $type;
     }
-    return $returnConfig;
+
+    $escapedRouteName = $this->escapeProviderId($routeName);
+    return reset($types[$key][$typeId])[$escapedRouteName] === $escapedRouteName;
   }
 
 }

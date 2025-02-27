@@ -11,18 +11,15 @@ use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
-use Drush\Commands\AutowireTrait;
 use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\node\Entity\Node;
-use Drupal\user\Entity\User;
+use Drupal\Core\Entity\EntityInterface;
 
 /**
  * Controller listener.
  */
 final class ControllerListener implements EventSubscriberInterface {
 
-  use AutowireTrait;
 
   /**
    * The module config.
@@ -57,31 +54,23 @@ final class ControllerListener implements EventSubscriberInterface {
     $routeName = $event->getRequest()->attributes->get('_route');
     $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
 
-    $enabledAuditIds = $this->configHelper->getEnabledAuditIds();
     if ($loggedRouteNames && in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
-    
+
     $routeParameters = $this->routeMatch->getParameters();
-    if ($routeParameters->count() > 0) {
-      $entityTypeId = array_key_first($routeParameters->all());
-      
-      /** @var \Drupal\Core\Entity\EntityTypeInterface $entity */
-      $entity = $this->routeMatch->getParameter($entityTypeId);
 
-      if (in_array($entityTypeId, $enabledAuditIds)) {
-        $entityConfig = [];
-        if ($entity instanceof Node) {
-          $entityConfig = $this->configHelper->getEntityConfiguration($entityTypeId, $entity->getType());
+    foreach ($routeParameters as $routeParamter) {
+      if ($routeParamter instanceof EntityInterface) {
+        $entityTypeId = $routeParamter->getEntityTypeId();
+        $type = NULL;
+        if (method_exists($routeParamter, 'getType')) {
+          $type = $routeParamter->getType();
         }
-        elseif ($entity instanceof User) {
-          $entityConfig = $this->configHelper->getEntityConfiguration($entityTypeId, NULL);
-        }
-
-        if (in_array($routeName, $entityConfig)) {
-          $this->logAuditMessage($pathInfo);
-        }
+      }
+      if ($this->configHelper->getEntityConfiguration($entityTypeId, $routeName, $type)) {
+        $this->logAuditMessage($pathInfo);
       }
     }
   }
@@ -93,6 +82,7 @@ final class ControllerListener implements EventSubscriberInterface {
    *   The path info to include in the message.
    */
   private function logAuditMessage($info) {
+    var_dump('LOG');
     $accountName = $this->currentUser->getAccountName();
     $request = $this->requestStack->getCurrentRequest();
     $msg = sprintf(
