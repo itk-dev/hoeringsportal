@@ -369,7 +369,8 @@ function hoeringsportal_public_meeting_itk_pretix_subevent_data_alter(&$data, No
  */
 function hoeringsportal_public_meeting_get_cancel_link(NodeInterface $node) {
   // Create cancel link.
-  $helper = \Drupal::service('itk_pretix.event_helper');
+  /** @var \Drupal\itk_pretix\Pretix\EventHelper $helper */
+  $helper = \Drupal::service(EventHelper::class);
   $info = $helper->loadPretixEventInfo($node);
   $pretix_event_url = $info['data']['pretix_event_url'] ?? '';
 
