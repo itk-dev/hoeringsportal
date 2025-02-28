@@ -52,6 +52,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
         'uri' => 'https://example.com/sign-up/',
         'title' => 'Sign up for public meeting',
       ],
+      'field_registration_deadline' => (new \DateTimeImmutable('2025-01-01T18:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'field_last_meeting_time' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'field_last_meeting_time_end' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
 
