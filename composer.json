@@ -69,7 +69,7 @@
         "itk-dev/azure-ad-delta-sync-drupal": "^2.0",
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^2.0",
-        "itk-dev/itk_pretix": "dev-feature/registration_deadline",
+        "itk-dev/itk_pretix": "^1.3",
         "itk-dev/itk_siteimprove": "^1.2",
         "itk-dev/serviceplatformen": "^1.5",
         "itk-dev/web_accessibility_statement": "^1.0",
@@ -94,10 +94,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "itk-dev/itk_pretix": {
-            "type": "vcs",
-            "url": "https://github.com/itk-dev/itk_pretix/"
-        },
         "drupal/content_fixtures": {
             "type": "git",
             "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
