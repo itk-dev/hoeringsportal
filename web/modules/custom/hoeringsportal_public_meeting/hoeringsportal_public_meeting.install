@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Install and update hooks for hoeringsportal_public_meeting.
+ */
+
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+
+/**
+ * Implements hook_update_dependencies().
+ */
+function hoeringsportal_public_meeting_update_dependencies() {
+  return [
+    // Make sure that we handle registration deadlines after the required field
+    // exists.
+    'hoeringsportal_public_meeting' => [
+      10002 => [
+        'itk_pretix' => 10101,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Install itk_pretix module (which actually is already installed).
+ */
+function hoeringsportal_public_meeting_update_10001() {
+  \Drupal::service('module_installer')->install(['itk_pretix']);
+}
+
+/**
+ * Move registration deadline into pretix date.
+ *
+ * Note: For performance reasons (mainly due to request to pretix), rather than
+ * saving nodes we update values directly in the database.
+ */
+function hoeringsportal_public_meeting_update_10002() {
+  /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
+  $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
+  $publicMeetings = $helper->loadPublicMeetings();
+
+  $values = [];
+  foreach ($publicMeetings as $publicMeeting) {
+    if ($helper->hasPretixSignUp($publicMeeting)) {
+      $deadline = $helper->getDeadline($publicMeeting);
+      /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $date */
+      foreach ($publicMeeting->field_pretix_dates as $delta => $date) {
+        $values[] = [
+          'conditions' => [
+            'bundle' => $publicMeeting->bundle(),
+            'entity_id' => $publicMeeting->id(),
+            'delta' => $delta,
+          ],
+          'fields' => [
+            'field_pretix_dates_registration_deadline_value' => $deadline->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          ],
+        ];
+      }
+    }
+  }
+
+  if (!empty($values)) {
+    $tableNames = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->getTableMapping()
+      ->getAllFieldTableNames('field_pretix_dates');
+    $database = \Drupal::database();
+
+    foreach ($tableNames as $tableName) {
+      foreach ($values as $value) {
+        $query = $database->update($tableName)
+          ->fields($value['fields']);
+        foreach ($value['conditions'] as $field => $val) {
+          $query->condition($field, $val);
+        }
+        $query->execute();
+      }
+    }
+  }
+}
