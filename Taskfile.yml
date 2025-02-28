@@ -91,10 +91,14 @@ tasks:
       # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
       - >-
         if [[ ! -t 0 ]]; then
-          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec --no-TTY phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         else
-          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         fi
+    vars:
+      # Notice: To make debugging (with Xdebug) work, we have to call
+      # vendor/bin/drush.php directly (and not vendor/bin/drush)
+      DRUSH: vendor/bin/drush.php
     silent: true
 
   database-dump:
