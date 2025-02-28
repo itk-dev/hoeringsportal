@@ -101,6 +101,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       [
         'location' => 'The location',
         'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2024-12-31T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_from_value' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_to_value' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'spots' => 87,
@@ -108,6 +109,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       [
         'location' => 'Another location',
         'address' => 'Rådhuspladsen 1, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_from_value' => (new \DateTimeImmutable('2025-12-01T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_to_value' => (new \DateTimeImmutable('2025-12-01T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'spots' => 42,
@@ -115,6 +117,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       [
         'location' => 'The location',
         'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_from_value' => (new \DateTimeImmutable('2025-12-02T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_to_value' => (new \DateTimeImmutable('2025-12-02T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'spots' => 87,

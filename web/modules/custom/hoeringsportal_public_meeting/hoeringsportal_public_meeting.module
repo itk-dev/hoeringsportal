@@ -112,6 +112,9 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
 
     $form['field_cancelled_date']['#disabled'] = TRUE;
 
+    $form['field_registration_deadline']['#states'] = [
+      'visible' => $signUpManual,
+    ];
     $form['field_last_meeting_time']['#states'] = [
       'visible' => $signUpManual,
     ];
@@ -343,18 +346,6 @@ function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, NodeIn
   // Set pretix event to not live if event is cancelled.
   if ($helper->isCancelled($node)) {
     $live = FALSE;
-  }
-}
-
-/**
- * Implements hook_itk_pretix_subevent_data_alter().
- */
-function hoeringsportal_public_meeting_itk_pretix_subevent_data_alter(&$data, NodeInterface $node, array $context) {
-  /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
-  $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
-  $deadline = $helper->getDeadline($node);
-  if ($deadline) {
-    $data['presale_end'] = $deadline->format(EventHelper::DATETIME_FORMAT);
   }
 }
 
