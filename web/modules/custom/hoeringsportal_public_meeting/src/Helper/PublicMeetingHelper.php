@@ -11,7 +11,7 @@ use Drupal\node\NodeInterface;
  * Public meeting helper.
  */
 class PublicMeetingHelper {
-  const NODE_TYPE_HEARING = 'public_meeting';
+  const NODE_TYPE_PUBLIC_MEETING = 'public_meeting';
   const STATE_UPCOMING = 'upcoming';
   const STATE_FINISHED = 'finished';
 
@@ -127,6 +127,17 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Check if a public meeting uses pretix signup.
+   */
+  public function hasPretixSignUp(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return 'pretix' === $node->field_signup_selection->value;
+  }
+
+  /**
    * Check if a public meeting has been held.
    */
   public function hasBeenHeld(NodeInterface $node) {
@@ -134,7 +145,7 @@ class PublicMeetingHelper {
       return FALSE;
     }
 
-    return 'pretix' === $node->field_signup_selection->value
+    return $this->hasPretixSignUp($node)
       ? $this->hasBeenHeldPretix($node)
       : $this->hasBeenHeldManual($node);
   }
@@ -214,7 +225,7 @@ class PublicMeetingHelper {
    */
   private $defaultConditions = [
     ['status', NodeInterface::PUBLISHED],
-    ['type', self::NODE_TYPE_HEARING],
+    ['type', self::NODE_TYPE_PUBLIC_MEETING],
   ];
 
   /**
@@ -236,7 +247,7 @@ class PublicMeetingHelper {
    * Check if node is a public_meeting.
    */
   public function isPublicMeeting($node) {
-    return !empty($node) && $node instanceof NodeInterface && self::NODE_TYPE_HEARING === $node->bundle();
+    return !empty($node) && $node instanceof NodeInterface && self::NODE_TYPE_PUBLIC_MEETING === $node->bundle();
   }
 
   /**
