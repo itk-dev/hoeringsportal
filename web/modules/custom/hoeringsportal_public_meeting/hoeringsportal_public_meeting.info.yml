@@ -3,3 +3,6 @@ type: module
 description: 'Stuff related to public meeting content type'
 package: Hoeringsportal
 core_version_requirement: ^8.8 || ^9 || ^10
+
+dependencies:
+  - itk_pretix:itk_pretix
