@@ -61,6 +61,13 @@
       {% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
       {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
 
+      {% set is_previous = variables.uuid == public_meeting_context.previous.uuid %}
+      {% set is_current = variables.uuid == public_meeting_context.current.uuid %}
+      {% set is_next = variables.uuid == public_meeting_context.next.uuid %}
+      {% set is_first_upcoming = variables.uuid == public_meeting_context.upcoming[0].uuid %}
+
+      {{ dump({is_previous, is_current, is_next, is_first_upcoming}) }}
+
       <div class="row row-gap-2 bg-white py-2 position-relative {% if item.active %}pt-3{% endif%}">
 
         {% if item.active %}
