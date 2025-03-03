@@ -29,6 +29,8 @@ final class SettingsForm extends ConfigFormBase {
    *   The route provider service.
    * @param \Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper $configHelper
    *   The configuration helper.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    */
   public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider, protected EntityTypeManagerInterface $entityTypeManager, protected ConfigHelper $configHelper) {
     parent::__construct($configFactory);
