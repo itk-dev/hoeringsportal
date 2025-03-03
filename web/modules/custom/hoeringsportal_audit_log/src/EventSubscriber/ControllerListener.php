@@ -82,7 +82,6 @@ final class ControllerListener implements EventSubscriberInterface {
    *   The path info to include in the message.
    */
   private function logAuditMessage($info) {
-    var_dump('LOG');
     $accountName = $this->currentUser->getAccountName();
     $request = $this->requestStack->getCurrentRequest();
     $msg = sprintf(
