@@ -404,3 +404,12 @@ function hoeringsportal_public_meeting_node_view(array &$build, EntityInterface 
     }
   }
 }
+
+/**
+ * Implements hook_preprocess().
+ *
+ * @see \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper::preprocess()
+ */
+function hoeringsportal_public_meeting_preprocess(&$variables, $hook): void {
+  \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper')->preprocess($variables, $hook);
+}
