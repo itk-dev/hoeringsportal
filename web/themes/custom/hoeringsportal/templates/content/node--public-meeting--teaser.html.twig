@@ -71,6 +71,8 @@
  */
 #}
 
+{{ dump(public_meeting_context) }}
+
 {# Set variables depending on node type. #}
 {% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}

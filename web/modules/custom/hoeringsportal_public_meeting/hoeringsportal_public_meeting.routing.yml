@@ -1,0 +1,15 @@
+hoeringsportal_public_meeting.public_meeting_date:
+  path: '/public_meeting/{node}/{dates_delta}'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_public_meeting\Controller\PublicMeetingController::showDate'
+    _title: 'Public meeting date'
+    dates_delta: -1
+  options:
+    parameters:
+      node:
+        type: entity:node
+        bundle:
+          - public_meeting
+  requirements:
+    _permission: 'access content'
+    dates_delta: '^\d+$'

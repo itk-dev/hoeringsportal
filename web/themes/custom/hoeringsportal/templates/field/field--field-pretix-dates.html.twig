@@ -36,6 +36,10 @@
  * @see template_preprocess_field()
  */
 #}
+
+{# sort items by time_from #}
+{% set items = items|sort((a, b) => a.content['#variables'].time_from <=> b.content['#variables'].time_from) %}
+
 <div class="row">
   <div class="col">
     {% for item in items %}
