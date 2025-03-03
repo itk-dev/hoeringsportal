@@ -265,6 +265,9 @@ class PublicMeetingHelper {
    */
   public function preprocess(array &$variables, string $hook): void {
     $node = $variables['node'] ?? NULL;
+    if (NULL === $node && 'field_pretix_dates' === ($variables['field_name'] ?? NULL)) {
+      $node = $this->routeMatch->getParameter('node');
+    }
 
     if ($this->isPublicMeeting($node) && $context = $this->getPublicMeetingContext($node)) {
       $variables['public_meeting_context'] = $context;
