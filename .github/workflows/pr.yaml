@@ -56,7 +56,6 @@ jobs:
           docker network create frontend
           task compose -- up --detach
           task composer -- install
-
       - name: Validate composer files
         run: |
           task composer -- validate
