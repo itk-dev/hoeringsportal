@@ -52,7 +52,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
         'uri' => 'https://example.com/sign-up/',
         'title' => 'Sign up for public meeting',
       ],
-      'field_registration_deadline' => (new \DateTimeImmutable('2025-01-01T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'field_registration_deadline' => (new \DateTimeImmutable('2025-01-01T18:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'field_last_meeting_time' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'field_last_meeting_time_end' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
 
@@ -77,6 +77,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       [
         'location' => 'The location',
         'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-01-01T18:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_from_value' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'time_to_value' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'spots' => 87,
@@ -93,6 +94,40 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       'synchronize_event' => TRUE,
     ]);
     $this->addReference('public_meeting:fixture-2', $node);
+    $node->save();
+
+    $node = $node->createDuplicate();
+    $node->setTitle('Public meeting with pretix signup and multiple dates');
+    $node->set('field_pretix_dates', [
+      [
+        'location' => 'The location',
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2024-12-31T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 87,
+      ],
+      [
+        'location' => 'Another location',
+        'address' => 'Rådhuspladsen 1, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-12-01T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-12-01T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 42,
+      ],
+      [
+        'location' => 'The location',
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-12-02T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-12-02T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 87,
+      ],
+    ]);
+    $node->set('field_department', [
+      $this->getReference('department:Department 1')->id(),
+    ]);
+    $this->addReference('public_meeting:fixture-3', $node);
     $node->save();
   }
 

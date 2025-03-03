@@ -4,6 +4,9 @@ namespace Drupal\hoeringsportal_public_meeting\Helper;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\hoeringsportal_public_meeting\Controller\PublicMeetingController;
+use Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
@@ -11,22 +14,20 @@ use Drupal\node\NodeInterface;
  * Public meeting helper.
  */
 class PublicMeetingHelper {
-  const NODE_TYPE_HEARING = 'public_meeting';
-  const STATE_UPCOMING = 'upcoming';
-  const STATE_FINISHED = 'finished';
 
-  /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  private $entityTypeManager;
+  const NODE_TYPE_PUBLIC_MEETING = 'public_meeting';
+
+  const STATE_UPCOMING = 'upcoming';
+
+  const STATE_FINISHED = 'finished';
 
   /**
    * Constructor.
    */
-  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
-    $this->entityTypeManager = $entityTypeManager;
+  public function __construct(
+    private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly RouteMatchInterface $routeMatch,
+  ) {
   }
 
   /**
@@ -127,6 +128,17 @@ class PublicMeetingHelper {
   }
 
   /**
+   * Check if a public meeting uses pretix signup.
+   */
+  public function hasPretixSignUp(NodeInterface $node) {
+    if (!$this->isPublicMeeting($node)) {
+      return FALSE;
+    }
+
+    return 'pretix' === $node->field_signup_selection->value;
+  }
+
+  /**
    * Check if a public meeting has been held.
    */
   public function hasBeenHeld(NodeInterface $node) {
@@ -134,7 +146,7 @@ class PublicMeetingHelper {
       return FALSE;
     }
 
-    return 'pretix' === $node->field_signup_selection->value
+    return $this->hasPretixSignUp($node)
       ? $this->hasBeenHeldPretix($node)
       : $this->hasBeenHeldManual($node);
   }
@@ -214,7 +226,7 @@ class PublicMeetingHelper {
    */
   private $defaultConditions = [
     ['status', NodeInterface::PUBLISHED],
-    ['type', self::NODE_TYPE_HEARING],
+    ['type', self::NODE_TYPE_PUBLIC_MEETING],
   ];
 
   /**
@@ -236,7 +248,7 @@ class PublicMeetingHelper {
    * Check if node is a public_meeting.
    */
   public function isPublicMeeting($node) {
-    return !empty($node) && $node instanceof NodeInterface && self::NODE_TYPE_HEARING === $node->bundle();
+    return !empty($node) && $node instanceof NodeInterface && self::NODE_TYPE_PUBLIC_MEETING === $node->bundle();
   }
 
   /**
@@ -244,6 +256,77 @@ class PublicMeetingHelper {
    */
   private function getDateTime($time = 'now', $timezone = 'UTC') {
     return new DrupalDateTime($time, $timezone);
+  }
+
+  /**
+   * Implements hook_preprocess_HOOK().
+   *
+   * Adds context on public meetings if any.
+   */
+  public function preprocess(array &$variables, string $hook): void {
+    $node = $variables['node'] ?? NULL;
+    if (NULL === $node && 'field_pretix_dates' === ($variables['field_name'] ?? NULL)) {
+      $node = $this->routeMatch->getParameter('node');
+    }
+
+    if ($this->isPublicMeeting($node) && $context = $this->getPublicMeetingContext($node)) {
+      $variables['public_meeting_context'] = $context;
+    }
+  }
+
+  /**
+   * Get public meeting context.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The public meeting.
+   *
+   * @return array
+   *   Info on the context
+   *     current: The current date if any
+   *     previous: The previous date (if current is set)
+   *     next: The next data (if current is set)
+   *     upcoming: Dates after now (sorted by start time)
+   */
+  public function getPublicMeetingContext(NodeInterface $node): ?array {
+    if (!$this->isPublicMeeting($node)) {
+      return NULL;
+    }
+
+    $datesDelta = -1;
+    $routeNode = $this->routeMatch->getParameter('node');
+    if ($this->isPublicMeeting($routeNode) || $node === $routeNode) {
+      $datesDelta = (int) ($this->routeMatch->getParameter(PublicMeetingController::DATES_DELTA) ?? -1);
+    }
+
+    /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate[] $dates */
+    $dates = iterator_to_array($node->get('field_pretix_dates')->getIterator());
+    // Sort dates by time_from.
+    usort($dates, static fn(PretixDate $a, PretixDate $b) => $a->get('time_from')->getValue() <=> $b->get('time_from')->getValue());
+
+    $previous = NULL;
+    $current = NULL;
+    $next = NULL;
+
+    if ($datesDelta > -1) {
+      foreach ($dates as $index => $date) {
+        if ($datesDelta === (int) $date->getName()) {
+          $current = $date;
+          $previous = $dates[$index - 1] ?? NULL;
+          $next = $dates[$index + 1] ?? NULL;
+          break;
+        }
+      }
+    }
+
+    $now = new DrupalDateTime();
+    $upcoming = array_values(array_filter($dates, static fn(PretixDate $date) => $date->get('time_from')->getValue() > $now));
+
+    return array_filter([
+      'previous' => $previous,
+      'current' => $current,
+      'next' => $next,
+      'upcoming' => $upcoming,
+    ]);
   }
 
 }

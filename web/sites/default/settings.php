@@ -64,7 +64,6 @@ $settings['twig_sandbox_allowed_methods'] = [
   'label',
   'bundle',
   'get',
-  'loadProjectTracks',
   '__toString',
   'toString',
   // Additions
