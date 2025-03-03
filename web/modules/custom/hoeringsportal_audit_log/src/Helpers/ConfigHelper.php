@@ -9,8 +9,8 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
  * Config helper.
  */
 class ConfigHelper {
-  // Limit where audits can be made. If this is expanded, you probably need to write some code in both SettingsForm and
-  // ControllerListener.
+  // Limit where audits can be made. If this is expanded, you probably need to
+  // write some code in both SettingsForm and ControllerListener.
   private const ENABLED_AUDIT_IDS = ['node', 'user'];
 
   /**
@@ -23,7 +23,8 @@ class ConfigHelper {
   /**
    * Confighelper constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory The config factory.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   *   The config factory.
    */
   public function __construct(ConfigFactoryInterface $configFactory) {
     $this->moduleConfig = $configFactory->getEditable(SettingsForm::SETTINGS);
@@ -63,7 +64,8 @@ class ConfigHelper {
    * Escape provider id.
    */
   public function escapeProviderId(string $input) {
-    // Drupal will not accept a . in configuration keys. https://www.drupal.org/node/2297311
+    // Drupal will not accept a . in configuration
+    // keys. https://www.drupal.org/node/2297311
     return str_replace('.', '__dot__', $input);
   }
 
@@ -71,7 +73,8 @@ class ConfigHelper {
    * Unescape provider id.
    */
   private function unescapeProviderId(string $input) {
-    // Drupal will not accept a . in configuration keys. https://www.drupal.org/node/2297311
+    // Drupal will not accept a . in configuration
+    // keys. https://www.drupal.org/node/2297311
     return str_replace('__dot__', '.', $input);
   }
 
