@@ -72,7 +72,7 @@ final class HearingTicketAddForm extends FormBase {
       '#value' => $this->config->get('intro'),
     ];
 
-    $form['name'] = [
+    $form['person_name'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Your full name'),
       '#required' => TRUE,
@@ -225,10 +225,10 @@ final class HearingTicketAddForm extends FormBase {
 
     parent::validateForm($form, $form_state);
 
-    if ($name = $form_state->getValue('name')) {
+    if ($name = $form_state->getValue('person_name')) {
       // @see https://www.php.net/manual/en/regexp.reference.unicode.php
       if (preg_match('/\p{N}/u', $name)) {
-        $form_state->setErrorByName('name', $this->t('Your name cannot contain numbers.'));
+        $form_state->setErrorByName('person_name', $this->t('Your name cannot contain numbers.'));
       }
     }
 
@@ -265,7 +265,7 @@ final class HearingTicketAddForm extends FormBase {
     $this->initialize();
 
     $names = [
-      'name',
+      'person_name',
       'email',
       'address_secret',
       'postal_code',
