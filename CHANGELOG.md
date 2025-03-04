@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-455](https://github.com/itk-dev/hoeringsportal/pull/455)
+  Fixed bug and added "on behalf of” on ticket list
 * [PR-454](https://github.com/itk-dev/hoeringsportal/pull/454)
   Update person name in Deskpro on email match
 
