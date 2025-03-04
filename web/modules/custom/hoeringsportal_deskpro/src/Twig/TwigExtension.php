@@ -79,7 +79,10 @@ class TwigExtension extends AbstractExtension {
 
     if ('representation' === $field) {
       $representations = $config->getRepresentations();
-      $index = $ticket['fields'][$field][0] ?? NULL;
+      // The 'representation' value (if set) is a array indexed by the
+      // representation type key.
+      $index = array_key_first((array) ($ticket['fields'][$field] ?? []));
+
       return $representations[$index]['title'] ?? NULL;
     }
 
