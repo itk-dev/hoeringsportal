@@ -176,6 +176,11 @@ class HearingHelper {
         return $this->fileSystem->realpath($file->getFileUri());
       }, File::loadMultiple($fileIds));
 
+      // The Deskpro service expects a person name under the 'name' key.
+      if (isset($data['person_name'])) {
+        $data['name'] = $data['person_name'];
+      }
+
       // Map data to custom fields.
       $customFields = $this->deskpro->getTicketCustomFields();
       foreach ($data as $key => $value) {
