@@ -82,7 +82,7 @@
             {{ message|length > 180 ? message|slice(0, 180)|raw ~ '…' : message|raw }}
           </div>
           <div class="card-footer">
-            {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.person.display_name}) }}
+            {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.fields.person_name|default(ticket.person.display_name)}) }}
             | <span class="ticket-date_created">{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</span>
             <i class="fa fa-arrow-right float-right"></i>
           </div>

@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-454](https://github.com/itk-dev/hoeringsportal/pull/454)
+  Update person name in Deskpro on email match
+
 ## [4.6.4] - 2025-02-24
 
 * [PR-450](https://github.com/itk-dev/hoeringsportal/pull/450)

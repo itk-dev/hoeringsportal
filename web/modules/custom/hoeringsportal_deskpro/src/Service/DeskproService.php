@@ -314,15 +314,26 @@ class DeskproService {
 
     // Check if person exists.
     $response = $this->client()->get($endpoint, ['primary_email' => $personData['primary_email']]);
-    $data = $response->getData();
-    if (!empty($data)) {
-      // Create new response with just a single person.
-      return new APIResponse(reset($data), [], []);
+    $people = $response->getData();
+    $person = reset($people);
+    if ($person) {
+      // Person (identified by email address by Deskpro) already exists.
+      // Update name on mismatch.
+      if ($person['name'] !== $data['name']) {
+        // https://www.deskpro.com/developers/api-docs/v2.html#put--api-v2-people-{id}
+        // Note: Sending 'name' is undocumented, but works like a charm.
+        // Note on the note: POST'ing to the API is also undocumented which hits
+        // that the API documentation is incomplete.
+        $this->client()->put($endpoint . '/' . $person['id'], ['name' => $personData['name']]);
+
+        return $this->getPerson($person['id'], ['no_cache' => TRUE]);
+      }
+
+      // Create new response with the person.
+      return new APIResponse($person, [], []);
     }
 
-    $response = $this->client()->post($endpoint, $personData);
-
-    return $response;
+    return $this->client()->post($endpoint, $personData);
   }
 
   /**
