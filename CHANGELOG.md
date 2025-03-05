@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-456](https://github.com/itk-dev/hoeringsportal/pull/456)
+  3949: Made Clamav restart automatically
+
 ## [4.6.4] - 2025-02-24
 
 * [PR-450](https://github.com/itk-dev/hoeringsportal/pull/450)
