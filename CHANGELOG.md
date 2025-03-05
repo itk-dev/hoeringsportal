@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-458](https://github.com/itk-dev/hoeringsportal/pull/458)
+  Cleaned up actions
 * [PR-380](https://github.com/itk-dev/hoeringsportal/pull/380)
   Added department access check.
 * [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
