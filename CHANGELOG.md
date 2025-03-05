@@ -61,6 +61,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-424](https://github.com/itk-dev/hoeringsportal/pull/424)
   2945: Cleaned up form templates. Applied security updates.
 
+## [4.6.5] - 2025-03-05
+
+* [PR-456](https://github.com/itk-dev/hoeringsportal/pull/456)
+  3949: Made Clamav restart automatically
+
 ## [4.6.4] - 2025-02-24
 
 * [PR-450](https://github.com/itk-dev/hoeringsportal/pull/450)
@@ -331,7 +336,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.4...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.5...HEAD
+[4.6.5]: https://github.com/itk-dev/hoeringsportal/compare/4.6.4...4.6.5
 [4.6.4]: https://github.com/itk-dev/hoeringsportal/compare/4.6.3...4.6.4
 [4.6.3]: https://github.com/itk-dev/hoeringsportal/compare/4.6.2...4.6.3
 [4.6.2]: https://github.com/itk-dev/hoeringsportal/compare/4.6.1...4.6.2
