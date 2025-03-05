@@ -6977,16 +6977,16 @@
         },
         {
             "name": "itk-dev/itk_pretix",
-            "version": "1.3.0-rc.3",
+            "version": "1.3.0-rc.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/itk-dev/itk_pretix.git",
-                "reference": "56dd80a55e065965367ab49a84efcf51151f1d4f"
+                "reference": "9edfc6188b81bf20b2894b8d1ea7682c99dfee9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/itk-dev/itk_pretix/zipball/56dd80a55e065965367ab49a84efcf51151f1d4f",
-                "reference": "56dd80a55e065965367ab49a84efcf51151f1d4f",
+                "url": "https://api.github.com/repos/itk-dev/itk_pretix/zipball/9edfc6188b81bf20b2894b8d1ea7682c99dfee9c",
+                "reference": "9edfc6188b81bf20b2894b8d1ea7682c99dfee9c",
                 "shasum": ""
             },
             "require": {
@@ -7015,9 +7015,9 @@
             ],
             "support": {
                 "issues": "https://github.com/itk-dev/itk_pretix/issues",
-                "source": "https://github.com/itk-dev/itk_pretix/tree/1.3.0-rc.3"
+                "source": "https://github.com/itk-dev/itk_pretix/tree/1.3.0-rc.4"
             },
-            "time": "2025-03-03T13:04:54+00:00"
+            "time": "2025-03-05T13:36:04+00:00"
         },
         {
             "name": "itk-dev/itk_siteimprove",
