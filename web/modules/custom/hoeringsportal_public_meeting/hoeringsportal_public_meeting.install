@@ -43,7 +43,7 @@ function hoeringsportal_public_meeting_update_10002() {
   $values = [];
   foreach ($publicMeetings as $publicMeeting) {
     if ($helper->hasPretixSignUp($publicMeeting)) {
-      $deadline = $helper->getDeadline($publicMeeting);
+      $deadline = $helper->getDeadline($publicMeeting, usePretixDates: FALSE);
       /** @var \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate $date */
       foreach ($publicMeeting->field_pretix_dates as $delta => $date) {
         $values[] = [
