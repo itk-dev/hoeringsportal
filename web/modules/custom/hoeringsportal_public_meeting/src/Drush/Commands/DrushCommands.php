@@ -57,6 +57,14 @@ final class DrushCommands extends BaseDrushCommands {
         $this->writeln(json_encode([$meeting->id(), $newState]));
       }
 
+      // Clear node cache if some pretix date has passed since last run. This is
+      // done to make sure that views depending on next upcoming date is
+      // displayed correctly.
+      if ($this->helper->hasDateEndingBetween($meeting, $lastRunAt, $requestTime)) {
+        $tags = $meeting->getCacheTags();
+        Cache::invalidateTags($tags);
+      }
+
       // Clear cache if deadline has passed since last run.
       $deadline = $this->helper->getDeadline($meeting);
       if ($deadline) {
