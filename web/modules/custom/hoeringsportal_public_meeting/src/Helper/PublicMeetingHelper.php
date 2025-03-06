@@ -84,12 +84,24 @@ class PublicMeetingHelper {
   /**
    * Get deadline for a public_meeting.
    */
-  public function getDeadline(NodeInterface $node) {
+  public function getDeadline(NodeInterface $node, bool $usePretixDates = TRUE): ?DrupalDateTime {
     if (!$this->isPublicMeeting($node)) {
-      return FALSE;
+      return NULL;
     }
 
-    return $node->field_registration_deadline->date;
+    if ($usePretixDates && $this->hasPretixSignUp($node)) {
+      $deadline = NULL;
+      foreach ($this->getPretixDates($node) ?? [] as $date) {
+        if (NULL === $deadline || $date->registration_deadline > $deadline) {
+          $deadline = $date->registration_deadline;
+        }
+      }
+
+      return $deadline;
+    }
+    else {
+      return $node->field_registration_deadline->date;
+    }
   }
 
   /**
@@ -327,6 +339,44 @@ class PublicMeetingHelper {
       'next' => $next,
       'upcoming' => $upcoming,
     ]);
+  }
+
+  /**
+   * Check if public meeting has pretix date ending between two times.
+   */
+  public function hasDateEndingBetween(NodeInterface $node, ?\DateTimeInterface $from, \DateTimeInterface $to): bool {
+    if (!$this->isPublicMeeting($node) || !$this->hasPretixSignUp($node)) {
+      return FALSE;
+    }
+
+    $from ??= new \DateTimeImmutable('@0');
+
+    if ($dates = $this->getPretixDates($node)) {
+      foreach ($dates as $date) {
+        if ($from <= $date->time_to && $date->time_to <= $to) {
+          return TRUE;
+        }
+      }
+    }
+
+    return FALSE;
+  }
+
+  /**
+   * Get pretix dates (if any) from a public meeting.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The public meeting.
+   *
+   * @return \Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate[]|iterable|null
+   *   The pretix dates if any.
+   */
+  private function getPretixDates(NodeInterface $node): ?iterable {
+    if (!$this->isPublicMeeting($node) || !$this->hasPretixSignUp($node)) {
+      return NULL;
+    }
+
+    return $node->get('field_pretix_dates');
   }
 
 }
