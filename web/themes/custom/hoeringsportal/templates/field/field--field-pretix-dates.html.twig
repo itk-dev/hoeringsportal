@@ -112,7 +112,7 @@
               <div class="">{{ 'Registration deadline passed'|t }}</div>
 
             {# TODO: It seems like the `availability.total_size` is always equal to `availability.available_number`. Even after changing the available number of seats from admin to a higher number. #}
-            {% elseif availability.available_number == availability.total_size %}
+            {% elseif availability.available_number != availability.total_size %}
               <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
             {% elseif sign_up_url %}
               <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3" target="_blank">
