@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.2 (Debian 17.2-1.pgdg120+1)
--- Dumped by pg_dump version 17.2 (Debian 17.2-1.pgdg120+1)
+-- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
+-- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1469,7 +1469,8 @@ CREATE TABLE public.pretixbase_customerssoclient (
     authorization_grant_type character varying(32) NOT NULL,
     redirect_uris text NOT NULL,
     allowed_scopes text NOT NULL,
-    organizer_id bigint NOT NULL
+    organizer_id bigint NOT NULL,
+    require_pkce boolean NOT NULL
 );
 
 
@@ -1502,7 +1503,9 @@ CREATE TABLE public.pretixbase_customerssogrant (
     redirect_uri text NOT NULL,
     scope text NOT NULL,
     client_id bigint NOT NULL,
-    customer_id bigint NOT NULL
+    customer_id bigint NOT NULL,
+    code_challenge text,
+    code_challenge_method character varying(255)
 );
 
 
@@ -5898,6 +5901,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 412	pretixdroid	0003_appconfiguration_squashed_0005_auto_20180106_2122	2025-01-07 12:09:10.288802+00
 413	pretixbase	0275_alter_question_valid_number_max_and_more	2025-01-23 11:12:36.622905+00
 414	pretixbase	0276_item_hidden_if_item_available_mode	2025-01-27 09:53:06.837303+00
+415	pretixbase	0277_customerssoclient_require_pkce_and_more	2025-03-06 12:43:48.743676+00
+416	ticketoutputpdf	0012_alter_ticketlayout_layout	2025-03-06 12:43:48.816086+00
 \.
 
 
@@ -6162,7 +6167,7 @@ COPY public.pretixbase_customerssoaccesstoken (id, from_code, token, expires, sc
 -- Data for Name: pretixbase_customerssoclient; Type: TABLE DATA; Schema: public; Owner: pretix
 --
 
-COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client_secret, client_type, authorization_grant_type, redirect_uris, allowed_scopes, organizer_id) FROM stdin;
+COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client_secret, client_type, authorization_grant_type, redirect_uris, allowed_scopes, organizer_id, require_pkce) FROM stdin;
 \.
 
 
@@ -6170,7 +6175,7 @@ COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client
 -- Data for Name: pretixbase_customerssogrant; Type: TABLE DATA; Schema: public; Owner: pretix
 --
 
-COPY public.pretixbase_customerssogrant (id, code, nonce, auth_time, expires, redirect_uri, scope, client_id, customer_id) FROM stdin;
+COPY public.pretixbase_customerssogrant (id, code, nonce, auth_time, expires, redirect_uri, scope, client_id, customer_id, code_challenge, code_challenge_method) FROM stdin;
 \.
 
 
@@ -7235,7 +7240,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 116, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 414, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 416, true);
 
 
 --
