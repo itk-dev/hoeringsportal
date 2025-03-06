@@ -44,12 +44,11 @@
 <div class="mb-5 mx-3 mx-lg-0">
   {# Headers for table like expirence on larger screens. #}
   <div class="row row-gap-2 py-2 d-none d-lg-flex">
-    <label class="col-lg-2 col-xl-1 fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
-    <label class="col-lg-2 fw-bold small text-body-secondary">{{ 'Date'|t }}</label>
-    <label class="col-lg-2 fw-bold small text-body-secondary">{{ 'Time'|t }}</label>
-    <label class="col-lg-3 fw-bold small text-body-secondary">{{ 'Address'|t }}</label>
-    <label class="col-lg-1 fw-bold small text-body-secondary">{{ 'Spots'|t }}</label>
-    <label class="col-lg-2 col-xl-3 fw-bold small text-body-secondary">{{ 'Registration'|t }}</label>
+    <label class="col-lg-3 col-xl-3 fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
+    <label class="col-lg-3 col-xl-3 fw-bold small text-body-secondary">{{ 'Date'|t }}</label>
+    <label class="col-lg-1 col-xl-2 fw-bold small text-body-secondary">{{ 'Time'|t }}</label>
+    <label class="col-lg-1 col-xl-1 fw-bold small text-body-secondary">{{ 'Spots'|t }}</label>
+    <label class="col-lg-4 col-xl-3 fw-bold small text-body-secondary">{{ 'Registration'|t }}</label>
   </div>
   <div class="d-flex flex-column gap-4">
     {% for item in items %}
@@ -57,7 +56,7 @@
       {% set node = variables['entity'] %}
       {% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
       {% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
-      {% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
+      {% set registration_deadline_passed = date(variables.registration_deadline) < date(now) %}
       {% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
       {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
 
@@ -66,35 +65,34 @@
       {% set is_next = variables.uuid == public_meeting_context.next.uuid %}
       {% set is_first_upcoming = variables.uuid == public_meeting_context.upcoming[0].uuid %}
 
-      {{ dump({is_previous, is_current, is_next, is_first_upcoming}) }}
+      <div class="row row-gap-2 py-2 py-lg-3 position-relative bg-white rounded {% if is_current %}pt-4 border border-primary {% elseif is_first_upcoming %}pt-4 border border-dark {% endif %}">
 
-      <div class="row row-gap-2 bg-white py-2 position-relative {% if item.active %}pt-3{% endif%}">
-
-        {% if item.active %}
-          <span class="position-absolute top-0 start-0 translate-middle-y ms-2 bg-primary text-white rounded w-auto">{{ 'Next event'|t }}</span>
+        {% if is_current %}
+          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-primary text-white rounded-pill small w-auto px-2">{{ 'Current occurance'|t }}</span>
+        {% elseif is_first_upcoming %}
+          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-dark text-white rounded-pill small w-auto px-2">{{ 'First upcomming'|t }}</span>
         {% endif %}
 
-        <div class="col-auto col-sm-5 col-lg-2 col-xl-1">
-          <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
-          {{ variables.location }}
+        <div class="col-auto col-sm-12 col-lg-3 col-xl-3 d-flex">
+          <i class="d-none fa-solid fa-ticket-alt text-primary opacity-50 me-3 mt-1 d-lg-block"></i>
+          <div>
+            <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
+            <p class="fw-semibold mb-1">{{ variables.location }}</p>
+            <p class="small mb-0">{{ variables.address }}</p>
+          </div>
         </div>
         
-        <div class="col-12 col-sm-6 col-lg-2">
+        <div class="col-12 col-sm-12 col-lg-3 col-xl-3">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Date'|t }}</label>
-          <span class="fw-bold">{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</small>
+          <span class="fw-semibold">{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</small>
         </div>
         
-        <div class="col-12 col-sm-5 col-lg-2">
+        <div class="col-12 col-sm-6 col-lg-1 col-xl-2">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Time'|t }}</label>
           {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
         </div>
         
-        <div class="col-12 col-sm-7 col-lg-3">
-          <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Address'|t }}</label>
-          {{ variables.address }}
-        </div>
-        
-        <div class="col-12 col-sm-5 col-lg-1">
+        <div class="col-12 col-sm-6 col-lg-1 col-xl-1">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Spots'|t }}</label>
           {% if availability.available_number|default(false) %}
             {{ availability.available_number }}/{{ availability.total_size }}
@@ -103,20 +101,26 @@
           {% endif %}
         </div>
         
-        <div class="col-auto col-sm-7 col-lg-2 col-xl-3">
+        <div class="col-auto col-sm-12 col-lg-3 col-xl-3">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Registration'|t }}</label>
           {% if meeting_cancelled %}
             <div class="meeting-has-been-cancelled text-danger">{{ 'Meeting has been cancelled'|t }}</div>
           {% elseif meeting_has_been_held %}
             <div class="meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
+          
           {% else %}
             {% if registration_deadline_passed %}
               <div class="">{{ 'Registration deadline passed'|t }}</div>
+            
+            {# TODO: It seems like the `availability.total_size` is always equal to `availability.available_number`. Even after changing the available number of seats from admin to a higher number. #}
+            {% elseif availability.available_number == availability.total_size %}
+              <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
             {% elseif sign_up_url %}
-              <a href="{{ sign_up_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
-                {{ 'Sign up'|t }}
+              <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3" target="_blank">
+                <i class="fa-solid fa-ticket-alt fa-xs me-2"></i>{{ 'Sign up'|t }}
                 <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
               </a>
+              <span class="small d-block">{{ 'Deadline:'|t }} {{ variables.registration_deadline|date('U')|format_date('hoeringsportal_date_long') }}</span>
             {% endif %}
           {% endif %}
         </div>
