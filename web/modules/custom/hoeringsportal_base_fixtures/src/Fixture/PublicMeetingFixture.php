@@ -141,7 +141,22 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
     ]);
     $this->addReference('public_meeting:fixture-3', $node);
     $node->save();
-  }
+
+    $node = $node->createDuplicate();
+    $node->setTitle('Public meeting with pretix signup and monthly occurrences');
+    $node->set('field_pretix_dates', array_map(
+      static fn (int $offset) => [
+        'location' => sprintf('Location %d', $offset+ 1),
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable(sprintf('10:00 first day of %d month', $offset-1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable(sprintf('12:00 first day of %d month', $offset-1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable(sprintf('13:00 first day of %d month', $offset-1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 10 * $offset + 7,
+      ],
+      range(0, 12)
+    ));
+    $node->save();
+}
 
   /**
    * {@inheritdoc}
