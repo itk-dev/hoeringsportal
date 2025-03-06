@@ -1,10 +1,8 @@
 services:
+  _defaults:
+    autowire: true
+
   Drupal\hoeringsportal_base_fixtures\Helper\Helper:
-    arguments:
-      - '@extension.path.resolver'
-      - '@file.repository'
-      - '@file_system'
-      - '@entity_type.manager'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture:
     tags:
@@ -45,8 +43,6 @@ services:
   Drupal\hoeringsportal_base_fixtures\Fixture\FilesFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture:
     tags:
@@ -59,29 +55,19 @@ services:
   Drupal\hoeringsportal_base_fixtures\Fixture\PublicMeetingFixture:
      tags:
        - { name: content_fixture }
-     arguments:
-       - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\MapFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\ProjectTimeLineFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\StaticPageFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@Drupal\hoeringsportal_base_fixtures\Helper\Helper'
 
   Drupal\hoeringsportal_base_fixtures\Fixture\PretixConfigFixture:
     tags:
       - { name: content_fixture }
-    arguments:
-      - '@config.factory'
