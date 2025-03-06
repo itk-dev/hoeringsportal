@@ -5,6 +5,8 @@ namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Session\AccountSwitcherInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
@@ -16,10 +18,20 @@ use Drupal\node\NodeInterface;
  */
 final class PublicMeetingFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
+  public function __construct(
+    private readonly AccountSwitcherInterface $accountSwitcher,
+  ) {
+  }
+
   /**
    * {@inheritdoc}
    */
   public function load() {
+    // Authenticate to make sure that hoeringsportal_public_meeting_node_presave
+    // does it's job.
+    $user = $this->getReference('user:public_meeting_editor');
+    assert($user instanceof AccountInterface);
+    $this->accountSwitcher->switchTo($user);
 
     $node = Node::create([
       'type' => 'public_meeting',
@@ -142,6 +154,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       TermDepartmentFixture::class,
       TermTypeFixture::class,
       PretixConfigFixture::class,
+      UserFixture::class,
     ];
   }
 
