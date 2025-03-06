@@ -40,7 +40,6 @@
 {# sort items by time_from #}
 {% set items = items|sort((a, b) => a.content['#variables'].time_from <=> b.content['#variables'].time_from) %}
 
-
 <div class="mb-5 mx-3 mx-lg-0">
   {# Headers for table like expirence on larger screens. #}
   <div class="row row-gap-2 py-2 d-none d-lg-flex">
@@ -81,17 +80,17 @@
             <p class="small mb-0">{{ variables.address }}</p>
           </div>
         </div>
-        
+
         <div class="col-12 col-sm-12 col-lg-3 col-xl-3">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Date'|t }}</label>
           <span class="fw-semibold">{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</small>
         </div>
-        
+
         <div class="col-12 col-sm-6 col-lg-1 col-xl-2">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Time'|t }}</label>
           {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
         </div>
-        
+
         <div class="col-12 col-sm-6 col-lg-1 col-xl-1">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Spots'|t }}</label>
           {% if availability.available_number|default(false) %}
@@ -100,18 +99,18 @@
             {{ variables.spots }}/{{ variables.spots }}
           {% endif %}
         </div>
-        
+
         <div class="col-auto col-sm-12 col-lg-3 col-xl-3">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Registration'|t }}</label>
           {% if meeting_cancelled %}
             <div class="meeting-has-been-cancelled text-danger">{{ 'Meeting has been cancelled'|t }}</div>
           {% elseif meeting_has_been_held %}
             <div class="meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
-          
+
           {% else %}
             {% if registration_deadline_passed %}
               <div class="">{{ 'Registration deadline passed'|t }}</div>
-            
+
             {# TODO: It seems like the `availability.total_size` is always equal to `availability.available_number`. Even after changing the available number of seats from admin to a higher number. #}
             {% elseif availability.available_number == availability.total_size %}
               <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
