@@ -10,7 +10,7 @@
  */
 #}
 
-{{ dump(public_meeting_context) }}
+{% set registration_deadline_passed = date(variables.registration_deadline) < date(now) %}
 
 {% if pretix_signup is defined %}
   <h5 class="mt-3">{{ 'Date'|t }}</h5>
@@ -40,4 +40,27 @@
   {{ signup_deadline.value|date('U')|format_date('hoeringsportal_date_long') }}
 {% endif %}
 
-<a class="sign-up-shortcut" class="btn btn-primary btn-sm mt-3 mb-3" style="display: none">{{ 'Sign up for public meeting'|t }}</a>
+<h5 class="mt-3">{{ 'Registration'|t }}</h5>
+{% if meeting_cancelled %}
+  <div class="meeting-has-been-cancelled text-danger">{{ 'Meeting has been cancelled'|t }}</div>
+{% elseif meeting_has_been_held %}
+  <div class="meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
+
+{% else %}
+  {% if registration_deadline_passed %}
+    <div class="">{{ 'Registration deadline passed'|t }}</div>
+  
+  {# TODO: It seems like the `availability.total_size` is always equal to `availability.available_number`. Even after changing the available number of seats from admin to a higher number. #}
+  {% elseif availability.available_number == availability.total_size %}
+    <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
+  {% elseif sign_up_url %}
+    <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3" target="_blank">
+      <i class="fa-solid fa-ticket-alt fa-xs me-2"></i>{{ 'Sign up'|t }}
+      <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+    </a>
+    <span class="small d-block">{{ 'Deadline:'|t }} {{ variables.registration_deadline|date('U')|format_date('hoeringsportal_date_long') }}</span>
+  {% endif %}
+{% endif %}
+
+<h3 class="mt-3">{{ 'This event has multiple dates'|t }}</h3>
+<a href="#pretix_signup_list" class="btn btn-sm bg-primary text-white rounded py-1 px-3">{{ 'View the list'|t }}</a>
