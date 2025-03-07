@@ -75,15 +75,27 @@ class TwigExtension extends AbstractExtension {
    * Get ticket custom field value.
    */
   public function getTicketCustomField(array $ticket, string $field) {
-    $config = $this->helper->getDeskproConfig();
+    // Get actual representation used on a ticket.
+    $getRepresentation = function () use ($ticket): ?array {
+      $config = $this->helper->getDeskproConfig();
+      $representations = $config->getRepresentations();
+
+      $index = array_key_first((array) ($ticket['fields']['representation'] ?? []));
+
+      return $representations[$index] ?? NULL;
+    };
 
     if ('representation' === $field) {
-      $representations = $config->getRepresentations();
-      // The 'representation' value (if set) is a array indexed by the
-      // representation type key.
-      $index = array_key_first((array) ($ticket['fields'][$field] ?? []));
+      return $getRepresentation()['title'] ?? NULL;
+    }
 
-      return $representations[$index]['title'] ?? NULL;
+    if ('organization' === $field) {
+      $representation = $getRepresentation();
+
+      return ($representation['require_organization'] ?? FALSE)
+        // Organization may not actually be set on ticket (!)
+        ? ($ticket['fields'][$field] ?? NULL)
+        : NULL;
     }
 
     return $ticket['fields'][$field] ?? NULL;

@@ -86,7 +86,7 @@
             {% set organization_type = deskpro_ticket_custom_field(ticket, 'representation') %}
             {% set organization = deskpro_ticket_custom_field(ticket, 'organization') %}
 
-            {% if organization_type and organization_type != 'Privatperson' and organization %}
+            {% if organization_type and organization %}
               {{ '@ticket_ref by @person_name on behalf of @organization (@organization_type)'|trans({
                 '@ticket_ref': ticket.ref,
                 '@person_name': person_name,
