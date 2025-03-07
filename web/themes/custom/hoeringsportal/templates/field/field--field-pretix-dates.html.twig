@@ -65,8 +65,11 @@
       {% set is_current = variables.uuid == public_meeting_context.current.uuid %}
       {% set is_next = variables.uuid == public_meeting_context.next.uuid %}
       {% set is_first_upcoming = variables.uuid == public_meeting_context.upcoming[0].uuid %}
+      {% set dates_delta = variables.name %}
 
-      <div class="row row-gap-2 py-2 py-lg-3 position-relative {% if meeting_has_been_held %}bg-body-tertiary text-muted {% else %}bg-white {% endif %} rounded {% if is_current %}pt-4 border border-primary {% elseif is_first_upcoming %}pt-4 border border-dark {% endif %}">
+      {% set url = path('hoeringsportal_public_meeting.public_meeting_date', {node:node.id, dates_delta})%}
+
+      <div class="signup-multiple-dates row row-gap-2 py-2 py-lg-3 position-relative {% if meeting_has_been_held %}bg-body-tertiary text-muted {% else %}bg-white {% endif %} rounded {% if is_current %}pt-4 border border-primary {% elseif is_first_upcoming %}pt-4 border border-dark {% endif %}">
 
         {% if is_current %}
           <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-primary text-white rounded-pill small w-auto px-2">{{ 'Current occurance'|t }}</span>
@@ -75,17 +78,20 @@
         {% endif %}
 
         <div class="col-auto col-sm-12 col-lg-3 col-xl-3 d-flex">
-          <i class="d-none fa-solid fa-ticket-alt text-primary opacity-50 me-3 mt-1 d-lg-block"></i>
+
+          <a href="{{ url }}">
+            <i class="d-none fa-solid fa-ticket-alt text-primary opacity-50 me-3 mt-1 d-lg-block"></i>
+          </a>
           <div>
             <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
-            <p class="fw-semibold mb-1">{{ variables.location }}</p>
-            <p class="small mb-0">{{ variables.address }}</p>
+            <p class="fw-semibold mb-1"><a href="{{ url }}">{{ variables.location }}</a></p>
+            <p class="small mb-0"><a href="{{ url }}">{{ variables.address }}</a></p>
           </div>
         </div>
 
         <div class="col-12 col-sm-12 col-lg-3 col-xl-3">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Date'|t }}</label>
-          <span class="fw-semibold">{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</small>
+          <a href="{{ url }}"><span class="fw-semibold">{{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}</small></a>
         </div>
 
         <div class="col-12 col-sm-6 col-lg-1 col-xl-2">
