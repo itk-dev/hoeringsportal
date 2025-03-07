@@ -41,7 +41,7 @@
 {% set items = items|sort((a, b) => a.content['#variables'].time_from <=> b.content['#variables'].time_from) %}
 
 <div class="mb-5 mx-3 mx-lg-0">
-  
+
   {# Headers for table like expirence on larger screens. #}
   <div class="row row-gap-2 py-2 d-none d-lg-flex">
     <label class="col-lg-3 col-xl-3 fw-bold small text-body-secondary">{{ 'Location'|t }}</label>
