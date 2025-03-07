@@ -9,6 +9,7 @@ use Drupal\hoeringsportal_public_meeting\Controller\PublicMeetingController;
 use Drupal\itk_pretix\Plugin\Field\FieldType\PretixDate;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\itk_pretix\Pretix\EventHelper as PretixEventHelper;
 
 /**
  * Public meeting helper.
@@ -27,6 +28,7 @@ class PublicMeetingHelper {
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
     private readonly RouteMatchInterface $routeMatch,
+    private readonly PretixEventHelper $pretixEventHelper,
   ) {
   }
 
@@ -314,6 +316,14 @@ class PublicMeetingHelper {
     $dates = iterator_to_array($node->get('field_pretix_dates')->getIterator());
     // Sort dates by time_from.
     usort($dates, static fn(PretixDate $a, PretixDate $b) => $a->get('time_from')->getValue() <=> $b->get('time_from')->getValue());
+
+    // Add sub-event info to each date
+    // (cf. \Drupal\itk_pretix\Plugin\Field\FieldFormatter\PretixDateFormatter:;viewElements()).
+    foreach ($dates as $date) {
+      $date->addData(
+        $this->pretixEventHelper->loadPretixSubEventInfo($date) ?? []
+      );
+    }
 
     $previous = NULL;
     $current = NULL;
