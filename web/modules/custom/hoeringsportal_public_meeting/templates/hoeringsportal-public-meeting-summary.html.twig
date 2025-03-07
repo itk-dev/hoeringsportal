@@ -62,6 +62,7 @@
     <h5 class="mt-3">{{ 'Place'|t }}</h5>
     {{ variables.location }}
   {% endif %}
+
   {% if variables.address is defined %}
     <h5 class="mt-3">{{ 'Address'|t }}</h5>
     {{ variables.address }}
@@ -71,6 +72,15 @@
     <h5 class="mt-3">{{ 'Last signup date'|t }}</h5>
     {{ signup_deadline.value|date('U')|format_date('hoeringsportal_date_long') }}
   {% endif %}
+
+  {% if availability.available_number|default(false) %}
+    <h5 class="mt-3">{{ 'Spots'|t }}</h5>
+    <p><span class="fw-semibold">{{ availability.available_number }}</span> / {{ availability.total_size }}</p>
+  {% else %}
+    <h5 class="mt-3">{{ 'Spots'|t }}</h5>
+    <p><span class="fw-semibold">{{ variables.spots }}</span> / {{ variables.spots }}</p>
+  {% endif %}
+  
 
   <h5 class="mt-3">{{ 'Registration'|t }}</h5>
   {% if meeting_cancelled %}
