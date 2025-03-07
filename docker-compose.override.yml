@@ -4,6 +4,10 @@ include:
   - docker-compose.pretix.yml
 
 services:
+  nginx:
+    # Let the container be accessible both internally and externally on the same domain.
+    container_name: ${COMPOSE_DOMAIN}
+
   node:
     image: node:22
     profiles:

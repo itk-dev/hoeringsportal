@@ -43,6 +43,18 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
     $this->setReference('user:citizen_proposal_editor', $user);
 
     $user = User::create([
+      'name' => 'public_meeting_editor',
+      'mail' => 'public_meeting_editor@example.com',
+      'pass' => 'public_meeting_editor-password',
+      'status' => 1,
+      'roles' => [
+        'public_meeting_editor',
+      ],
+    ]);
+    $user->save();
+    $this->setReference('user:public_meeting_editor', $user);
+
+    $user = User::create([
       'name' => 'editor',
       'mail' => 'editor@example.com',
       'pass' => 'editor-password',
