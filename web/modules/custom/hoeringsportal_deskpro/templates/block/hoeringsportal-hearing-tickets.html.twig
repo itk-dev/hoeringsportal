@@ -82,7 +82,20 @@
             {{ message|length > 180 ? message|slice(0, 180)|raw ~ '…' : message|raw }}
           </div>
           <div class="card-footer">
-            {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': ticket.fields.person_name|default(ticket.person.display_name)}) }}
+            {% set person_name = ticket.fields.person_name|default(ticket.person.display_name) %}
+            {% set organization_type = deskpro_ticket_custom_field(ticket, 'representation') %}
+            {% set organization = deskpro_ticket_custom_field(ticket, 'organization') %}
+
+            {% if organization_type and organization %}
+              {{ '@ticket_ref by @person_name on behalf of @organization (@organization_type)'|trans({
+                '@ticket_ref': ticket.ref,
+                '@person_name': person_name,
+                '@organization': organization,
+                '@organization_type': organization_type,
+                }) }}
+            {% else %}
+              {{ '@ticket_ref by @person_name'|trans({'@ticket_ref': ticket.ref, '@person_name': person_name}) }}
+            {% endif %}
             | <span class="ticket-date_created">{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</span>
             <i class="fa fa-arrow-right float-right"></i>
           </div>
