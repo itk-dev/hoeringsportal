@@ -71,12 +71,13 @@
  */
 #}
 
-{{ dump(public_meeting_context) }}
-
 {# Set variables depending on node type. #}
 {% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
+{% set dates_delta = public_meeting_context.upcoming|first.name %}
+{% set url = path('hoeringsportal_public_meeting.public_meeting_date', {node:node.id, dates_delta})%}
+
 <a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
 
   {# When deadline field exists add splash. #}
