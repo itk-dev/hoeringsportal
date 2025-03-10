@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.7.0] - 2025-03-10
+
 * [PR-455](https://github.com/itk-dev/hoeringsportal/pull/455)
   * Fixed bug in display of "on behalf of” on hearing reply details
   * Added "on behalf of” on hearing reply list
@@ -286,7 +288,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.6.5...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.7.0...HEAD
+[4.7.0]: https://github.com/itk-dev/hoeringsportal/compare/4.6.5...4.7.0
 [4.6.5]: https://github.com/itk-dev/hoeringsportal/compare/4.6.4...4.6.5
 [4.6.4]: https://github.com/itk-dev/hoeringsportal/compare/4.6.3...4.6.4
 [4.6.3]: https://github.com/itk-dev/hoeringsportal/compare/4.6.2...4.6.3
