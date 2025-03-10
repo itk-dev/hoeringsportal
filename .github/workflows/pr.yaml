@@ -177,7 +177,7 @@ jobs:
         run: |
           docker network create frontend
           docker compose pull
-          docker compose up --detach
+          docker compose --profile pretix up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
           docker compose exec phpfpm composer install --no-interaction
@@ -275,7 +275,7 @@ jobs:
         run: |
           docker network create frontend
           docker compose pull
-          docker compose up --detach
+          docker compose --profile pretix up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
           docker compose exec phpfpm composer install --no-interaction

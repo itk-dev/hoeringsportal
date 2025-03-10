@@ -233,6 +233,7 @@ tasks:
      - task drush -- --yes pm:uninstall content_fixtures
      # Update states on public meetings.
      - task drush -- --yes hoeringsportal:public_meeting:state-update
+     - task drush -- --yes cache:rebuild
     silent: true
 
   translations:import:

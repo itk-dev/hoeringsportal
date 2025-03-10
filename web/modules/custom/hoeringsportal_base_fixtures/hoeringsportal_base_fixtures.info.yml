@@ -5,3 +5,4 @@ core_version_requirement: ^9 || ^10
 package: ITK
 dependencies:
   - content_fixtures:content_fixtures
+  - itk_pretix:itk_pretix
