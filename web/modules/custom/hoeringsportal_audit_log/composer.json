@@ -1,0 +1,11 @@
+{
+    "name": "drupal/hoeringsportal_audit_log",
+    "type": "drupal-custom-module",
+    "description": "Hoeringsportal audit log",
+    "keywords": ["Drupal"],
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "os2web/os2web_audit": "^0.2.0"
+    }
+}
