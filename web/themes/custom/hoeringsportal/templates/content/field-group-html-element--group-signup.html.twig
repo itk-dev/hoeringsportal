@@ -18,24 +18,28 @@
 
 {% if element.field_hidden_signup[0]['#markup'] != 1 %}
   <div class="signup">
-    <{{ wrapper_element }} {{ attributes }}>
-      {% if title %}
-      <{{ title_element }}{{ title_attributes }}>{{ title }}</{{ title_element }}>
-      {% endif %}
-      {% if collapsible %}
-      <div class="field-group-wrapper">
-      {% endif %}
-        {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
-          {{ element.field_registration_deadline }}
-          {{ element.field_pretix_dates }}
-        {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
-          {{ element.field_registration_deadline }}
-          {{ element.field_signup_link }}
-          {{ element.field_signup_text }}
-        {% endif %}
-      {% if collapsible %}
+    <div class="container">
+      <div class="row py-3 py-lg-5">
+        <{{ wrapper_element }} {{ attributes }}>
+          {% if title %}
+          <{{ title_element }}{{ title_attributes }} id="pretix_signup_list"><i class="d-inline d-lg-none fa-solid fa-ticket-alt text-primary opacity-50 me-3"></i>{{ title }}</{{ title_element }}>
+          {% endif %}
+          {% if collapsible %}
+          <div class="field-group-wrapper">
+          {% endif %}
+            {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
+              {# {{ element.field_registration_deadline }} #}
+              {{ element.field_pretix_dates }}
+            {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
+              {# {{ element.field_registration_deadline }} #}
+              {{ element.field_signup_link }}
+              {{ element.field_signup_text }}
+            {% endif %}
+          {% if collapsible %}
+          </div>
+          {% endif %}
+        </{{ wrapper_element }}>
       </div>
-      {% endif %}
-    </{{ wrapper_element }}>
+    </div>
   </div>
 {% endif %}
