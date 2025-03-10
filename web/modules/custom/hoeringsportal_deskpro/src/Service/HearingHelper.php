@@ -176,6 +176,11 @@ class HearingHelper {
         return $this->fileSystem->realpath($file->getFileUri());
       }, File::loadMultiple($fileIds));
 
+      // The Deskpro service expects a person name under the 'name' key.
+      if (isset($data['person_name'])) {
+        $data['name'] = $data['person_name'];
+      }
+
       // Map data to custom fields.
       $customFields = $this->deskpro->getTicketCustomFields();
       foreach ($data as $key => $value) {
@@ -380,14 +385,14 @@ class HearingHelper {
       $keys['ticket_id'] = $ticket['id'];
       $fields['email'] = $ticket['person_email'];
       $fields['data'] = json_encode($ticket);
+      $fields['created_at'] = (new DrupalDateTime($ticket['date_created']))->format(DrupalDateTime::FORMAT);
 
       $result = $this->database->merge('hoeringsportal_deskpro_deskpro_tickets')
         ->keys($keys)
         ->updateFields($fields)
         ->insertFields(
-          $keys + $fields + [
-            'created_at' => $fields['updated_at'],
-          ])
+          $keys + $fields
+        )
         ->execute();
     }
 
@@ -491,6 +496,7 @@ class HearingHelper {
         else {
           $fields = [
             'updated_at' => (new DrupalDateTime())->format(DrupalDateTime::FORMAT),
+            'created_at' => (new DrupalDateTime($ticket['date_created']))->format(DrupalDateTime::FORMAT),
             'email' => $ticket['person_email'],
             'data' => json_encode($ticket),
           ];
@@ -499,9 +505,7 @@ class HearingHelper {
             ->keys($keys)
             ->updateFields($fields)
             ->insertFields(
-              $keys + $fields + [
-                'created_at' => $fields['updated_at'],
-              ])
+              $keys + $fields)
             ->execute();
 
           $this->logger->debug(
