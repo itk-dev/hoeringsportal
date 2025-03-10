@@ -67,7 +67,7 @@
       {% set is_first_upcoming = variables.uuid == public_meeting_context.upcoming[0].uuid %}
       {% set dates_delta = variables.name %}
 
-      {% set url = path('hoeringsportal_public_meeting.public_meeting_date', {node:node.id, dates_delta})%}
+      {% set url = path('hoeringsportal_public_meeting.public_meeting_date', {node: node.id, dates_delta}) %}
 
       <div class="signup-multiple-dates row row-gap-2 py-2 py-lg-3 position-relative {% if meeting_has_been_held %}bg-body-tertiary text-muted {% else %}bg-white {% endif %} rounded {% if is_current %}pt-4 border border-primary {% elseif is_first_upcoming %}pt-4 border border-dark {% endif %}">
 
