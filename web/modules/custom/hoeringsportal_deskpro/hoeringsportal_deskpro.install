@@ -363,3 +363,29 @@ function hoeringsportal_deskpro_update_8005(&$sandbox) {
   $schema = $connection->schema();
   $schema->dropTable('hoeringsportal_deskpro_deskpro_data');
 }
+
+/**
+ * Update created_at on Deskpro tickets based on ticket data.
+ */
+function hoeringsportal_deskpro_update_10001(&$sandbox) {
+  /** @var \Drupal\Core\Database\Connection $connection */
+  $connection = \Drupal::service('database');
+  $connection
+    ->query(<<<'SQL'
+UPDATE
+  hoeringsportal_deskpro_deskpro_tickets
+SET
+  created_at = STR_TO_DATE(
+    -- Remove timezone from datetime string
+    REPLACE(
+      -- Extract date_created from ticket as a string
+      CAST(JSON_VALUE(data, '$.date_created') AS VARCHAR(255)),
+      '+0000',
+      ''
+    ),
+    '%Y-%m-%dT%H:%i:%s'
+  )
+SQL
+  )
+    ->execute();
+}
