@@ -72,9 +72,9 @@
       <div class="signup-multiple-dates row row-gap-2 py-2 py-lg-3 position-relative {% if meeting_has_been_held %}bg-body-tertiary text-muted {% else %}bg-white {% endif %} rounded {% if is_current %}pt-4 border border-primary {% elseif is_first_upcoming %}pt-4 border border-dark {% endif %}">
 
         {% if is_current %}
-          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-primary text-white rounded-pill small w-auto px-2">{{ 'Current occurance'|t }}</span>
+          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-primary text-white rounded-pill small w-auto px-2">{{ 'Current occurrence'|t }}</span>
         {% elseif is_first_upcoming %}
-          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-dark text-white rounded-pill small w-auto px-2">{{ 'First upcomming'|t }}</span>
+          <span class="position-absolute top-0 start-0 ms-3 translate-middle-y bg-dark text-white rounded-pill small w-auto px-2">{{ 'First upcoming'|t }}</span>
         {% endif %}
 
         <div class="col-auto col-sm-12 col-lg-3 col-xl-3 d-flex">
