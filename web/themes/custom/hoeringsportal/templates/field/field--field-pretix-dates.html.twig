@@ -101,7 +101,7 @@
 
         <div class="col-12 col-sm-6 col-lg-1 col-xl-1">
           <label class="d-block d-lg-none fw-bold small text-body-secondary">{{ 'Spots'|t }}</label>
-          {% if availability.available_number|default(false) %}
+          {% if availability.total_size|default(false) %}
             <span class="fw-semibold">{{ availability.available_number }}</span> / {{ availability.total_size }}
           {% else %}
             <span class="fw-semibold">{{ variables.spots }}</span> / {{ variables.spots }}
@@ -121,7 +121,7 @@
             {% if registration_deadline_passed %}
               <div>{{ 'Registration deadline passed'|t }}</div>
 
-            {% elseif availability.available_number != availability.total_size %}
+            {% elseif 0 == availability.available_number %}
               <div>{{ 'No available spots left'|t }}</div>
             {% elseif sign_up_url %}
               <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3" target="_blank">
