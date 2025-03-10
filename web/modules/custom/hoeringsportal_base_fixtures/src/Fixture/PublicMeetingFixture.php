@@ -7,7 +7,10 @@ use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Session\AccountSwitcherInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\itk_pretix\Pretix\EventHelper as PretixEventHelper;
+use Drupal\itk_pretix\Pretix\OrderHelper as PretixOrderHelper;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 
@@ -20,7 +23,28 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
 
   public function __construct(
     private readonly AccountSwitcherInterface $accountSwitcher,
+    private readonly PretixEventHelper $pretixEventHelper,
+    private readonly PretixOrderHelper $pretixOrderHelper,
   ) {
+    $drupalBaseUrl = Settings::get('itk_pretix')['drupal_base_url'] ?? NULL;
+    if (!$drupalBaseUrl) {
+      throw new \RuntimeException(<<<'EOF'
+Please define `$settings['itk_pretix']['drupal_base_url']` in `web/sites/default/settings.local.php`, e.g.
+
+// Update the URL to match your actual setup.
+$settings['itk_pretix']['drupal_base_url'] = 'http://hoeringsportal.local.itkdev.dk:8080';
+
+to set up webhooks in pretix (cf. https://docs.pretix.eu/dev/api/webhooks.html).
+
+Run
+
+task compose -- exec pretix curl $(task drush -- php:eval 'echo \Drupal\Core\Site\Settings::get("itk_pretix")["drupal_base_url"];')
+
+to check that pretix can connect to Drupal.
+
+EOF
+      );
+    }
   }
 
   /**
@@ -49,9 +73,9 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       'field_content_state' => 'active',
       'field_email_address' => 'a@a.dk',
       'field_first_meeting_time' => date('Y-m-d', 1283166912),
-      'field_media_document'  => [[$this->getReference('media_library:Fil:MTM')]],
+      'field_media_document' => [[$this->getReference('media_library:Fil:MTM')]],
       'field_media_image_single' => [
-          ['target_id' => $this->getReference('media:Large1')->id()],
+        ['target_id' => $this->getReference('media:Large1')->id()],
       ],
       'field_pretix_event_settings' => [
         'template_event' => 'template-series',
@@ -145,17 +169,174 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
     $node = $node->createDuplicate();
     $node->setTitle('Public meeting with pretix signup and monthly occurrences');
     $node->set('field_pretix_dates', array_map(
-      static fn (int $offset) => [
+      static fn(int $offset) => [
         'location' => sprintf('Location %d', $offset + 1),
         'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
-        'registration_deadline_value' => (new \DateTimeImmutable(sprintf('10:00 first day of %d month', $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-        'time_from_value' => (new \DateTimeImmutable(sprintf('12:00 first day of %d month', $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-        'time_to_value' => (new \DateTimeImmutable(sprintf('13:00 first day of %d month', $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'registration_deadline_value' => (new \DateTimeImmutable(sprintf('10:00 first day of %d month',
+          $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable(sprintf('12:00 first day of %d month',
+          $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable(sprintf('13:00 first day of %d month',
+          $offset - 1)))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'spots' => 10 * $offset + 7,
       ],
       range(0, 12)
     ));
     $node->save();
+
+    $node = $node->createDuplicate();
+    $node->setTitle('Public meeting with pretix signup and daily occurrences');
+    $node->set('field_pretix_dates', array_map(
+      static fn(int $offset) => [
+        'location' => sprintf('Location %d', $offset),
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('10:00 first day of this month'))->modify(sprintf('+%d day',
+          $offset - 1))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('12:00 first day of this month'))->modify(sprintf('+%d day',
+          $offset - 1))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('13:00 first day of this month'))->modify(sprintf('+%d day',
+          $offset - 1))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 87,
+      ],
+      range(1, (int) (new \DateTimeImmutable('this month'))->format('t')),
+    ));
+    $node->save();
+
+    $node = $node->createDuplicate();
+    $node->setTitle('Public meeting with orders');
+    $node->set('field_pretix_dates', [
+      [
+        'location' => 'The location',
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2024-12-31T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 10,
+      ],
+      [
+        'location' => 'Another location',
+        'address' => 'Rådhuspladsen 1, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-12-01T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-12-01T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 10,
+      ],
+      [
+        'location' => 'The location',
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'registration_deadline_value' => (new \DateTimeImmutable('2025-11-30T00:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_from_value' => (new \DateTimeImmutable('2025-12-02T15:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-12-02T16:30:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 10,
+      ],
+    ]);
+    $node->save();
+
+    $this->createOrders($node,
+      [
+        'lines' => [
+          [
+            'dates_delta' => 0,
+          ],
+        ],
+      ],
+      [
+        'email' => 'test-customer@example.com',
+        'lines' => [
+          [
+            'dates_delta' => 1,
+            'quantity' => 9,
+          ],
+        ],
+      ],
+
+      // Sell out.
+      [
+        'lines' => [
+          [
+            'dates_delta' => 2,
+            'quantity' => 10,
+          ],
+        ],
+      ],
+    );
+  }
+
+  /**
+   * Create orders in pretix.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The public meeting node.
+   *
+   * @param array ...$specs
+   *   Order specs, e.g.
+   *
+   *   <code>
+   *   [
+   *   'lines' => [
+   *   [
+   *   'dates_delta' => 0,
+   *   ],
+   *   ],
+   *   ],
+   *   [
+   *   'email' => 'test-customer@example.com',
+   *   'lines' => [
+   *   [
+   *   'dates_delta' => 0,
+   *   'quantity' => 2,
+   *   ],
+   *   [
+   *   'dates_delta' => 1,
+   *   'quantity' => 3,
+   *   ],
+   *   ],
+   *   ]
+   *   </code>.
+   */
+  public function createOrders(NodeInterface $node, array ...$specs): void {
+    if (empty($specs)) {
+      throw new \InvalidArgumentException('Missing specs');
+    }
+
+    $client = $this->pretixEventHelper->getPretixClient($node);
+    $request = new \ReflectionMethod($client, 'request');
+    $this->pretixOrderHelper->ensureWebhook($client);
+
+    $eventInfo = $this->pretixEventHelper->loadPretixEventInfo($node);
+    /** @var \Drupal\Core\Field\FieldItemListInterface $dates */
+    $dates = $node->get('field_pretix_dates');
+    foreach ($specs as $spec) {
+      $lines = $spec['lines'] ?? NULL;
+      if (!is_array($lines)) {
+        continue;
+      }
+      foreach ($spec['lines'] as $line) {
+        $date = $dates[$line['dates_delta']] ?? NULL;
+        $subEventInfo = $this->pretixEventHelper->loadPretixSubEventInfo($date);
+        // https://docs.pretix.eu/dev/api/resources/orders.html#creating-orders
+        $request->invoke($client, 'POST',
+          sprintf(
+            'organizers/%s/events/%s/orders/',
+            $eventInfo['pretix_organizer_slug'],
+            $eventInfo['pretix_event_slug'],
+          ),
+          [
+            'json' => [
+              'email' => $spec['email'] ?? 'test@example.com',
+              'positions' => array_map(static fn(int $index) => [
+                'subevent' => $subEventInfo['pretix_subevent_id'],
+                'attendee_name' => sprintf('Attendee %d', $index),
+                'attendee_email' => sprintf('test%03d@example.com', $index),
+                'item' => reset($subEventInfo['data']['subevent']['item_price_overrides'])['item'],
+              ],
+                range(1, $line['quantity'] ?? 1),
+              ),
+            ],
+          ]
+        );
+      }
+    }
   }
 
   /**
