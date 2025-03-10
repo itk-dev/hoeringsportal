@@ -75,18 +75,20 @@ function hoeringsportal_public_meeting_node_presave(NodeInterface $node) {
       }
     }
 
-    // If cancelled value changed.
-    if ((int) $node->field_public_meeting_cancelled->value !== (int) $node->original->field_public_meeting_cancelled->value) {
-      if ($node->field_public_meeting_cancelled->value > 0) {
-        $now = new DateTime('now', new DateTimeZone('UTC'));
-        $node->set('field_cancelled_date', $now->format($format));
-      }
-      else {
-        if (!$node->get('field_cancelled_date')->isEmpty()) {
-          $node->get('field_cancelled_date')->removeItem(0);
+    if (isset($node->original)) {
+      // If cancelled value changed.
+      if ((int) $node->field_public_meeting_cancelled->value !== (int) $node->original->field_public_meeting_cancelled->value) {
+        if ($node->field_public_meeting_cancelled->value > 0) {
+          $now = new DateTime('now', new DateTimeZone('UTC'));
+          $node->set('field_cancelled_date', $now->format($format));
         }
-        if (!$node->get('field_cancelled_text')->isEmpty()) {
-          $node->get('field_cancelled_text')->removeItem(0);
+        else {
+          if (!$node->get('field_cancelled_date')->isEmpty()) {
+            $node->get('field_cancelled_date')->removeItem(0);
+          }
+          if (!$node->get('field_cancelled_text')->isEmpty()) {
+            $node->get('field_cancelled_text')->removeItem(0);
+          }
         }
       }
     }
@@ -112,6 +114,9 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
 
     $form['field_cancelled_date']['#disabled'] = TRUE;
 
+    $form['field_registration_deadline']['#states'] = [
+      'visible' => $signUpManual,
+    ];
     $form['field_last_meeting_time']['#states'] = [
       'visible' => $signUpManual,
     ];
@@ -169,6 +174,21 @@ function hoeringsportal_public_meeting_form_node_form_alter(&$form, FormStateInt
  *   The states.
  */
 function _hoeringsportal_public_meeting_set_states(array &$element, array $states) {
+  // Mark all but last (i.e. the “extra“; cf.
+  // https://www.drupal.org/project/drupal/issues/2980806) pretix date as
+  // required.
+  if ('field_pretix_dates' === ($element['#field_name'] ?? NULL)) {
+    $numericKeys = array_filter(array_keys($element), 'is_numeric');
+    // Throw away largest key.
+    sort($numericKeys);
+    array_pop($numericKeys);
+    foreach ($numericKeys as $key) {
+      _hoeringsportal_public_meeting_set_states($element[$key], $states);
+    }
+
+    return;
+  }
+
   if (isset($element['#type']) && 'hidden' !== $element['#type']) {
     $element['#states'] = $states;
   }
@@ -244,16 +264,8 @@ function hoeringsportal_public_meeting_last_meeting_end_validate(array $element,
 function hoeringsportal_public_meeting_form_validate(array $element, FormStateInterface $formState) {
   /** @var \Drupal\Core\Entity\EntityInterface $entity */
   $entity = $formState->getFormObject()->getEntity();
-
-  /** @var \Drupal\Core\Datetime\DrupalDateTime $registration_deadline */
-  $registration_deadline = $formState->getValue('field_registration_deadline')[0]['value'];
-
-  // Validate some dates on new meetings.
   $isNew = NULL === $entity->id();
   $now = new DrupalDateTime();
-  if ($isNew && $registration_deadline < $now) {
-    $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be in the past.'));
-  }
 
   $signUpType = $formState->getValue('field_signup_selection')[0]['value'];
   if ('pretix' === $signUpType) {
@@ -264,12 +276,25 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
       if ($isNew && $meeting_start_time < $now) {
         $formState->setErrorByName('field_pretix_dates', t('The meeting time must not be in the past.'));
       }
-      if ($meeting_start_time < $registration_deadline) {
-        $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be after the meeting starts.'));
-      }
     }
 
     foreach ($dates as $delta => $date) {
+      if (!is_array($date)) {
+        // Handle “Add another item“.
+        continue;
+      }
+
+      // We require at least one pretix date.
+      // We allow empty values on additional dates only if all values are empty.
+      if ($delta > 0
+        && empty($date['location'])
+        && empty($date['address'])
+        && empty($date['time_from_value'])
+        && empty($date['time_to_value'])
+        && empty($date['spots'])) {
+        continue;
+      }
+
       $namePrefix = 'field_pretix_dates][' . $delta . '][';
       if (empty($date['location'])) {
         $formState->setErrorByName($namePrefix . 'location', t('Please enter a location'));
@@ -289,6 +314,18 @@ function hoeringsportal_public_meeting_form_validate(array $element, FormStateIn
     }
   }
   elseif ('manual' === $signUpType) {
+    /** @var \Drupal\Core\Datetime\DrupalDateTime $registration_deadline */
+    $registration_deadline = $formState->getValue('field_registration_deadline')[0]['value'];
+
+    if (empty($registration_deadline)) {
+      $formState->setErrorByName('field_registration_deadline', t('The registration deadline is required.'));
+    }
+
+    // Validate some dates on new meetings.
+    if ($isNew && $registration_deadline < $now) {
+      $formState->setErrorByName('field_registration_deadline', t('The registration deadline must not be in the past.'));
+    }
+
     $meeting_start_time = $formState->getValue('field_last_meeting_time')[0]['value'];
     if ($isNew && $meeting_start_time < $now) {
       $formState->setErrorByName('field_last_meeting_time', t('The meeting time must not be in the past.'));
@@ -316,18 +353,6 @@ function hoeringsportal_public_meeting_itk_pretix_shop_live_alter(&$live, NodeIn
 }
 
 /**
- * Implements hook_itk_pretix_subevent_data_alter().
- */
-function hoeringsportal_public_meeting_itk_pretix_subevent_data_alter(&$data, NodeInterface $node, array $context) {
-  /** @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper */
-  $helper = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
-  $deadline = $helper->getDeadline($node);
-  if ($deadline) {
-    $data['presale_end'] = $deadline->format(EventHelper::DATETIME_FORMAT);
-  }
-}
-
-/**
  * Create a cancel link for use in warning message.
  *
  * @param \Drupal\node\NodeInterface $node
@@ -338,7 +363,8 @@ function hoeringsportal_public_meeting_itk_pretix_subevent_data_alter(&$data, No
  */
 function hoeringsportal_public_meeting_get_cancel_link(NodeInterface $node) {
   // Create cancel link.
-  $helper = \Drupal::service('itk_pretix.event_helper');
+  /** @var \Drupal\itk_pretix\Pretix\EventHelper $helper */
+  $helper = \Drupal::service(EventHelper::class);
   $info = $helper->loadPretixEventInfo($node);
   $pretix_event_url = $info['data']['pretix_event_url'] ?? '';
 
@@ -379,4 +405,13 @@ function hoeringsportal_public_meeting_node_view(array &$build, EntityInterface 
       $build['title'][0]['#context']['value'] = $new_title;
     }
   }
+}
+
+/**
+ * Implements hook_preprocess().
+ *
+ * @see \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper::preprocess()
+ */
+function hoeringsportal_public_meeting_preprocess(&$variables, $hook): void {
+  \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper')->preprocess($variables, $hook);
 }

@@ -1,0 +1,4 @@
+/* Hide the "Remove" button from first pretix date */
+[data-drupal-selector="edit-field-pretix-dates-0-actions-delete"] {
+  display: none !important;
+}

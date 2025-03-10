@@ -62,6 +62,9 @@ tasks:
     cmds:
       - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal'
       - '{{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal'
+  assets-watch:
+    cmds:
+      - '{{.DOCKER_COMPOSE}} run --rm node npm run watch --prefix web/themes/custom/hoeringsportal'
   compose:
     cmds:
       - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
@@ -87,10 +90,14 @@ tasks:
       # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
       - >-
         if [[ ! -t 0 ]]; then
-          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec --no-TTY phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         else
-          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         fi
+    vars:
+      # Notice: To make debugging (with Xdebug) work, we have to call
+      # vendor/bin/drush.php directly (and not vendor/bin/drush)
+      DRUSH: vendor/bin/drush.php
     silent: true
 
   database-dump:
@@ -224,6 +231,8 @@ tasks:
      - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
      - task drush -- --yes content-fixtures:load
      - task drush -- --yes pm:uninstall content_fixtures
+     # Update states on public meetings.
+     - task drush -- --yes hoeringsportal:public_meeting:state-update
     silent: true
 
   translations:import:
