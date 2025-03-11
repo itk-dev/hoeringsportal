@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-465](https://github.com/itk-dev/hoeringsportal/pull/465)
+  * Disabled cache on citizen proposal support form
+
 ## [4.7.1] - 2025-03-12
 
 * [PR-464](https://github.com/itk-dev/hoeringsportal/pull/464)
