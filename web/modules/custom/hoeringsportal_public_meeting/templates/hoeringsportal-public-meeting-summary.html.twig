@@ -93,7 +93,7 @@
     {% elseif availability.available_number != availability.total_size %}
       <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
     {% elseif sign_up_url %}
-      <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3" target="_blank">
+      <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3 mt-2 mb-1" target="_blank">
         <i class="fa-solid fa-ticket-alt fa-xs me-2"></i>{{ 'Sign up'|t }}
         <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
       </a>
