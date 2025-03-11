@@ -228,9 +228,9 @@ tasks:
   fixtures:load:
     prompt: "This will reset your content. Continue?"
     cmds:
-     - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+     # - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
      - task drush -- --yes content-fixtures:load
-     - task drush -- --yes pm:uninstall content_fixtures
+     # - task drush -- --yes pm:uninstall content_fixtures
      # Update states on public meetings.
      - task drush -- --yes hoeringsportal:public_meeting:state-update
      - task drush -- --yes cache:rebuild
@@ -251,4 +251,47 @@ tasks:
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true
+
+
+  # Development settings tasks (`/admin/config/development/settings`) (cf. https://www.drupal.org/docs/develop/development-tools/disabling-and-debugging-caching).
+
+  development-settings:do-not-cache-markup-enable:
+    desc: Disable markup cache (check ‘Do not cache markup“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => TRUE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:do-not-cache-markup-disable:
+    desc: Enable markup cache (for production) (uncheck ‘Do not cache markup“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => FALSE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:twig-develoment-mode-enable:
+    desc: Enable Twig development mode (check ‘Twig development mode“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => TRUE, 'twig_cache_disable' => TRUE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:twig-develoment-mode-disable:
+    desc: Disable Twig development mode (for production) (uncheck ‘Twig development mode“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => FALSE, 'twig_cache_disable' => FALSE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:development:
+    desc: Set cache settings for development
+    cmds:
+      - task development-settings:do-not-cache-markup-enable
+      - task development-settings:twig-develoment-mode-enable
+      - task drush -- cache:rebuild
+    silent: true
+
+  development-settings:production:
+    desc: Set cache settings for production
+    cmds:
+      - task development-settings:do-not-cache-markup-disable
+      - task development-settings:twig-develoment-mode-disable
+      - task drush -- cache:rebuild
     silent: true
