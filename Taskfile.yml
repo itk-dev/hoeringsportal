@@ -228,9 +228,9 @@ tasks:
   fixtures:load:
     prompt: "This will reset your content. Continue?"
     cmds:
-     # - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+     - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
      - task drush -- --yes content-fixtures:load
-     # - task drush -- --yes pm:uninstall content_fixtures
+     - task drush -- --yes pm:uninstall content_fixtures
      # Update states on public meetings.
      - task drush -- --yes hoeringsportal:public_meeting:state-update
      - task drush -- --yes cache:rebuild
