@@ -282,7 +282,7 @@
             "@coding-standards-apply/twig-cs-fixer"
         ],
         "coding-standards-apply/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates --fix"
+            "twig-cs-fixer lint web/*/custom/*/templates --fix"
         ],
         "coding-standards-check": [
             "@coding-standards-check/phpcs",
@@ -298,7 +298,7 @@
             "@coding-standards-check/twig-cs-fixer"
         ],
         "coding-standards-check/twig-cs-fixer": [
-            "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
+            "twig-cs-fixer lint web/*/custom/*/templates"
         ],
         "install-codestandards": [
             "PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
