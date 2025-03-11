@@ -24,6 +24,8 @@
 <{{ outer_wrapper }}{{ attributes.addClass('ds-2col-stacked', 'clearfix') }}>
 {% set image_exists = field_media_image_single['#items'][0].value is not null %}
 {% set header_text = field_teaser['#items'][0].value|striptags %}
+{% set is_active = citizen_proposal_helper.isActive(node) %}
+
   {{ title_suffix.contextual_links }}
   <{{ header_wrapper }}{{ header_attributes.addClass('group-header bg-primary text-white') }}>
     {% if image_exists %}
@@ -52,16 +54,20 @@
           <div class="border-bottom pb-3">
             {{ left|without('field_author_name', 'field_author_email', 'dynamic_block_field:node-citizen_proposal_support_counter') }}
           </div>
+          {% if is_active %}
           <div class="mt-3">
             <a class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {node: content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
           </div>
+          {% endif %}
         </div>
       </{{ left_wrapper }}>
 
       <{{ right_wrapper }}{{ right_attributes.addClass('group-right col-md-4 py-3') }}>
+        {% if is_active %}
         <div class="d-none d-md-block">
           <a aria-hidden="true" class="btn btn-secondary btn-sm" href="{{ path('hoeringsportal_citizen_proposal.support', {node: content['#node'].id}) }}">{{ 'Support the proposal'|t }}</a>
         </div>
+        {% endif %}
         {{ right }}
       </{{ right_wrapper }}>
     </div>

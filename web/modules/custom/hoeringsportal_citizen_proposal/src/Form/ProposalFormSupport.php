@@ -37,6 +37,11 @@ final class ProposalFormSupport extends ProposalFormBase {
     // Pass the node to the submit handler.
     $form['#node'] = $node;
 
+    if (!$this->helper->isActive($node)) {
+      // Redirect to citizen proposal details if no longer active.
+      return $this->redirect('entity.node.canonical', ['node' => $node->id()]);
+    }
+
     return parent::buildForm($form, $form_state);
   }
 
