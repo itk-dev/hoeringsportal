@@ -92,6 +92,10 @@ msgstr ""
 msgid "Citizen access denied"
 msgstr ""
 
+#: modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php:54
+msgid "Cannot get CPR (@cprClaim) from user claims"
+msgstr ""
+
 #: modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php:65
 msgid "Citizen access check exception: @message"
 msgstr ""

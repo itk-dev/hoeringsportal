@@ -81,12 +81,12 @@ tasks:
 
   site-open:
     cmds:
-      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)"; else echo "$(task site-url)"; fi
+      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)" || true; else echo "$(task site-url)"; fi
     silent: true
 
   site-open-admin:
     cmds:
-      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}"; else echo "{{.URL}}"; fi
+      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}" || true; else echo "{{.URL}}"; fi
     vars:
       URL:
         sh: task drush -- user:login --no-browser
@@ -354,14 +354,26 @@ tasks:
               ref: .CUSTOM_THEMES
             LANGUAGE:
               - da
+        # `drush potx` always writes to web/general.pot, so we move this file
+        # into the desired destination in the `translations` folder inside the
+        # module folder.
         cmd: |
           task drush -- potx single --folder=themes/custom/{{.ITEM.THEME}}/ --language {{.ITEM.LANGUAGE}} --translations && \
           mkdir -p web/themes/custom/{{.ITEM.THEME}}/translations && \
           mv web/general.pot web/themes/custom/{{.ITEM.THEME}}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
     internal: true
 
+  translations:diff:
+    cmds:
+      # Ignore some PO metadata when git diff'ing, e.g.
+      #
+      # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
+      # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations
+
   translations:extract:
     cmds:
+      - task drush -- --yes pm:install potx
       - task: translations:extract:modules
       - task: translations:extract:themes
     silent: true

@@ -5,7 +5,6 @@
 # Generated from files:
 #  modules/custom/hoeringsportal_citizen_proposal_archiving/hoeringsportal_citizen_proposal_archiving.info.yml: n/a
 #  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php: n/a
-#  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Drush/Commands/TestCommand.php: n/a
 #  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/FormHelper.php: n/a
 #  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php: n/a
 #  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Plugin/AdvancedQueue/JobType/ArchiveCitizenProposalJob.php: n/a
@@ -48,12 +47,6 @@ msgstr ""
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php:108
 msgid "@message"
 msgstr ""
-
-#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Drush/Commands/TestCommand.php:35
-msgid "1 item"
-msgid_plural "@count items"
-msgstr[0] ""
-msgstr[1] ""
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/FormHelper.php:51
 msgid "Archived at"
