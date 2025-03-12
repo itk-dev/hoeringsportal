@@ -10,9 +10,6 @@ labels:
 steps:
   - name: Run stg site update
     image: itkdev/ansible-plugin:1
-    when:
-      branch: release/*
-      event: push
     pull: true
     settings:
       id:
