@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-467](https://github.com/itk-dev/hoeringsportal/pull/467)
+  Added date validation on new hearings
 * [PR-458](https://github.com/itk-dev/hoeringsportal/pull/458)
   Cleaned up actions
 * [PR-380](https://github.com/itk-dev/hoeringsportal/pull/380)
