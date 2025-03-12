@@ -3,6 +3,9 @@ when:
 
 skip_clone: true
 
+labels:
+  zone: CLOUD
+
 steps:
   - name: Ansible playbook
     image: itkdev/ansible-plugin:1
@@ -13,9 +16,9 @@ steps:
       secret:
         from_secret: secret
       host:
-        from_secret: host
+        from_secret: prod_host
       path:
-        from_secret: path
+        from_secret: prod_path
       user:
         from_secret: user
       playbook: 'release'

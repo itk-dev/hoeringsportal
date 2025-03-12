@@ -503,4 +503,12 @@ class Helper implements LoggerAwareInterface {
     $this->logger->log($level, $message, $context);
   }
 
+  /**
+   * Decide if a citizen proposal is active, i.e. can be supported.
+   */
+  public function isActive(NodeInterface $node): bool {
+    return $this->isCitizenProposal($node)
+      && 'active' === $node->get('field_content_state')->getString();
+  }
+
 }
