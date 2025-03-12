@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 17.2 (Debian 17.2-1.pgdg120+1)
--- Dumped by pg_dump version 17.2 (Debian 17.2-1.pgdg120+1)
+-- Dumped from database version 17.4 (Debian 17.4-1.pgdg120+2)
+-- Dumped by pg_dump version 17.4 (Debian 17.4-1.pgdg120+2)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1469,7 +1469,8 @@ CREATE TABLE public.pretixbase_customerssoclient (
     authorization_grant_type character varying(32) NOT NULL,
     redirect_uris text NOT NULL,
     allowed_scopes text NOT NULL,
-    organizer_id bigint NOT NULL
+    organizer_id bigint NOT NULL,
+    require_pkce boolean NOT NULL
 );
 
 
@@ -1502,7 +1503,9 @@ CREATE TABLE public.pretixbase_customerssogrant (
     redirect_uri text NOT NULL,
     scope text NOT NULL,
     client_id bigint NOT NULL,
-    customer_id bigint NOT NULL
+    customer_id bigint NOT NULL,
+    code_challenge text,
+    code_challenge_method character varying(255)
 );
 
 
@@ -5898,6 +5901,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 412	pretixdroid	0003_appconfiguration_squashed_0005_auto_20180106_2122	2025-01-07 12:09:10.288802+00
 413	pretixbase	0275_alter_question_valid_number_max_and_more	2025-01-23 11:12:36.622905+00
 414	pretixbase	0276_item_hidden_if_item_available_mode	2025-01-27 09:53:06.837303+00
+415	pretixbase	0277_customerssoclient_require_pkce_and_more	2025-03-06 12:43:48.743676+00
+416	ticketoutputpdf	0012_alter_ticketlayout_layout	2025-03-06 12:43:48.816086+00
 \.
 
 
@@ -6162,7 +6167,7 @@ COPY public.pretixbase_customerssoaccesstoken (id, from_code, token, expires, sc
 -- Data for Name: pretixbase_customerssoclient; Type: TABLE DATA; Schema: public; Owner: pretix
 --
 
-COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client_secret, client_type, authorization_grant_type, redirect_uris, allowed_scopes, organizer_id) FROM stdin;
+COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client_secret, client_type, authorization_grant_type, redirect_uris, allowed_scopes, organizer_id, require_pkce) FROM stdin;
 \.
 
 
@@ -6170,7 +6175,7 @@ COPY public.pretixbase_customerssoclient (id, name, is_active, client_id, client
 -- Data for Name: pretixbase_customerssogrant; Type: TABLE DATA; Schema: public; Owner: pretix
 --
 
-COPY public.pretixbase_customerssogrant (id, code, nonce, auth_time, expires, redirect_uri, scope, client_id, customer_id) FROM stdin;
+COPY public.pretixbase_customerssogrant (id, code, nonce, auth_time, expires, redirect_uri, scope, client_id, customer_id, code_challenge, code_challenge_method) FROM stdin;
 \.
 
 
@@ -6364,62 +6369,68 @@ COPY public.pretixbase_giftcardtransaction (id, datetime, value, card_id, order_
 --
 
 COPY public.pretixbase_globalsettingsobject_settingsstore (id, key, value) FROM stdin;
-1	widget_file_en	file://pub/widget/widget.en.cbfc2e8a98c986570eaf64436a9d743556fea37f.js
-2	widget_checksum_en	cbfc2e8a98c986570eaf64436a9d743556fea37f
-3	widget_file_de	file://pub/widget/widget.de.db5a839c3ac8a4f7051c9961da1112357af62d01.js
-4	widget_checksum_de	db5a839c3ac8a4f7051c9961da1112357af62d01
-5	widget_file_de-informal	file://pub/widget/widget.de-informal.bf6ff466f0ace0d2dac29ca017d037943d6b88ba.js
-6	widget_checksum_de-informal	bf6ff466f0ace0d2dac29ca017d037943d6b88ba
-7	widget_file_ar	file://pub/widget/widget.ar.8e9e2588ab1a111d4eb2ea81e938d20f037aff5c.js
-8	widget_checksum_ar	8e9e2588ab1a111d4eb2ea81e938d20f037aff5c
-9	widget_file_eu	file://pub/widget/widget.eu.11c0604c7d157eda067bb93cc4e18ce0fa41d72f.js
-10	widget_checksum_eu	11c0604c7d157eda067bb93cc4e18ce0fa41d72f
-11	widget_file_ca	file://pub/widget/widget.ca.80bb7e17e8d61bcbbeb62e8d614744ba51561f8f.js
-12	widget_checksum_ca	80bb7e17e8d61bcbbeb62e8d614744ba51561f8f
-13	widget_file_zh-hans	file://pub/widget/widget.zh-hans.a65febab79a4494bee07dcc5741d7c10d6fd0a9b.js
-14	widget_checksum_zh-hans	a65febab79a4494bee07dcc5741d7c10d6fd0a9b
-15	widget_file_zh-hant	file://pub/widget/widget.zh-hant.fbe2bea8f3dbc2bf3c03fbcf6dc56acdbb5cbb38.js
-16	widget_checksum_zh-hant	fbe2bea8f3dbc2bf3c03fbcf6dc56acdbb5cbb38
-17	widget_file_cs	file://pub/widget/widget.cs.f8cbf71358b622acae4dd512d74301f00259b1f2.js
-18	widget_checksum_cs	f8cbf71358b622acae4dd512d74301f00259b1f2
-19	widget_file_da	file://pub/widget/widget.da.e19eb64c99e235e48d0b9a36da5bbbddfaf969c2.js
-20	widget_checksum_da	e19eb64c99e235e48d0b9a36da5bbbddfaf969c2
-21	widget_file_nl	file://pub/widget/widget.nl.577ba4b068db14c84eab86147f849a624d056f90.js
-22	widget_checksum_nl	577ba4b068db14c84eab86147f849a624d056f90
-23	widget_file_nl-informal	file://pub/widget/widget.nl-informal.1dd084855d9f083b58643a4b8bcb67bed9e3db4f.js
-24	widget_checksum_nl-informal	1dd084855d9f083b58643a4b8bcb67bed9e3db4f
-25	widget_file_fr	file://pub/widget/widget.fr.03edb485d92504c2b8b81fcbd20352e4b2a060ab.js
-26	widget_checksum_fr	03edb485d92504c2b8b81fcbd20352e4b2a060ab
-27	widget_file_el	file://pub/widget/widget.el.237c2131d2f52390b3cafbfbaf2d9af621c5dd92.js
-28	widget_checksum_el	237c2131d2f52390b3cafbfbaf2d9af621c5dd92
-29	widget_file_id	file://pub/widget/widget.id.c37f417f55a6d350dbb1eeec4729637f1e919437.js
-30	widget_checksum_id	c37f417f55a6d350dbb1eeec4729637f1e919437
-31	widget_file_it	file://pub/widget/widget.it.fb9d551bf7370f384b26bf4e7aba50b783d0c073.js
-32	widget_checksum_it	fb9d551bf7370f384b26bf4e7aba50b783d0c073
 33	widget_file_jp	file://pub/widget/widget.jp.b4aff726d4b4244a8e760cbf013576429501166e.js
 34	widget_checksum_jp	b4aff726d4b4244a8e760cbf013576429501166e
-35	widget_file_lv	file://pub/widget/widget.lv.633bb2b4d93b45bd7aca0f6a26df7d73f84505e9.js
-36	widget_checksum_lv	633bb2b4d93b45bd7aca0f6a26df7d73f84505e9
-37	widget_file_nb-no	file://pub/widget/widget.nb-no.1003232ec90fad2bc3d9fdf67c1fdda917d648a6.js
-38	widget_checksum_nb-no	1003232ec90fad2bc3d9fdf67c1fdda917d648a6
-39	widget_file_pl	file://pub/widget/widget.pl.b43b004f67201e347bf6fdd4cc0dc548ebcf9a24.js
-40	widget_checksum_pl	b43b004f67201e347bf6fdd4cc0dc548ebcf9a24
-41	widget_file_pt-pt	file://pub/widget/widget.pt-pt.3efc08702a8276d684eb20a80cd333ed6baa3fe9.js
-42	widget_checksum_pt-pt	3efc08702a8276d684eb20a80cd333ed6baa3fe9
-43	widget_file_ro	file://pub/widget/widget.ro.7c56a47958e4fc0a4eca90bc9bb16355d3ff2634.js
-44	widget_checksum_ro	7c56a47958e4fc0a4eca90bc9bb16355d3ff2634
-45	widget_file_ru	file://pub/widget/widget.ru.2bcde60d9b54eb2d74d69f539bfaa4364fb8223f.js
-46	widget_checksum_ru	2bcde60d9b54eb2d74d69f539bfaa4364fb8223f
-47	widget_file_sk	file://pub/widget/widget.sk.886a73f230b873f669ffdbfc2dca040d500d613c.js
-48	widget_checksum_sk	886a73f230b873f669ffdbfc2dca040d500d613c
-49	widget_file_sv	file://pub/widget/widget.sv.fa398a8c9a87c6756532cf438b63644c17da61b1.js
-50	widget_checksum_sv	fa398a8c9a87c6756532cf438b63644c17da61b1
-51	widget_file_es	file://pub/widget/widget.es.1bdc5e2aa29a434dd83e2dc98029012636cdb48c.js
-52	widget_checksum_es	1bdc5e2aa29a434dd83e2dc98029012636cdb48c
-53	widget_file_tr	file://pub/widget/widget.tr.d1097f6d75f16e659d39b2463d61967a49a785b5.js
-54	widget_checksum_tr	d1097f6d75f16e659d39b2463d61967a49a785b5
-55	widget_file_uk	file://pub/widget/widget.uk.a5d67a151dc7b29f19a79d4c4042a86fecb7bf8e.js
-56	widget_checksum_uk	a5d67a151dc7b29f19a79d4c4042a86fecb7bf8e
+1	widget_file_en	file://pub/widget/widget.en.71bac40f93d1cb1f70de6d4e48466080744ca58f.js
+2	widget_checksum_en	71bac40f93d1cb1f70de6d4e48466080744ca58f
+3	widget_file_de	file://pub/widget/widget.de.339f4401b1c065ca6ade20d438dc71d3a773f219.js
+4	widget_checksum_de	339f4401b1c065ca6ade20d438dc71d3a773f219
+5	widget_file_de-informal	file://pub/widget/widget.de-informal.6b101fc4e2258b82d54641f03d337982802f7a63.js
+6	widget_checksum_de-informal	6b101fc4e2258b82d54641f03d337982802f7a63
+7	widget_file_ar	file://pub/widget/widget.ar.be6e6b5d9b60bd9198d250849e52c238d7f9603b.js
+8	widget_checksum_ar	be6e6b5d9b60bd9198d250849e52c238d7f9603b
+9	widget_file_eu	file://pub/widget/widget.eu.b87f84de8fe9d7a4ce2a39fb34e23d72d5131f29.js
+10	widget_checksum_eu	b87f84de8fe9d7a4ce2a39fb34e23d72d5131f29
+11	widget_file_ca	file://pub/widget/widget.ca.6a2b9c43346ceb898aaf44aabc6a6c43ab3d4cd0.js
+12	widget_checksum_ca	6a2b9c43346ceb898aaf44aabc6a6c43ab3d4cd0
+13	widget_file_zh-hans	file://pub/widget/widget.zh-hans.8a055ae508c6395d2e3348db353ca8353db0f8c6.js
+14	widget_checksum_zh-hans	8a055ae508c6395d2e3348db353ca8353db0f8c6
+15	widget_file_zh-hant	file://pub/widget/widget.zh-hant.c59ab86aca911dd06dbd19eea3cd42fb3ff3c217.js
+16	widget_checksum_zh-hant	c59ab86aca911dd06dbd19eea3cd42fb3ff3c217
+17	widget_file_cs	file://pub/widget/widget.cs.5317380244984ebb5625fcf0d65f979805940803.js
+18	widget_checksum_cs	5317380244984ebb5625fcf0d65f979805940803
+57	widget_file_hr	file://pub/widget/widget.hr.51bc96dacd7abf5e859748e93d2d7be9f65dcc96.js
+58	widget_checksum_hr	51bc96dacd7abf5e859748e93d2d7be9f65dcc96
+19	widget_file_da	file://pub/widget/widget.da.8b3079ddb1f46f8282892ed28ab61255bccef778.js
+20	widget_checksum_da	8b3079ddb1f46f8282892ed28ab61255bccef778
+21	widget_file_nl	file://pub/widget/widget.nl.8c4e41145e4bf2df49baf09e4683796c97c7eb28.js
+22	widget_checksum_nl	8c4e41145e4bf2df49baf09e4683796c97c7eb28
+23	widget_file_nl-informal	file://pub/widget/widget.nl-informal.86781d0f9dc38f405b1e5d0f5e2b969266edb0de.js
+24	widget_checksum_nl-informal	86781d0f9dc38f405b1e5d0f5e2b969266edb0de
+25	widget_file_fr	file://pub/widget/widget.fr.d75dfe6f53be50aa58dc0ec6f218bcf8fcd4d2b6.js
+26	widget_checksum_fr	d75dfe6f53be50aa58dc0ec6f218bcf8fcd4d2b6
+59	widget_file_fi	file://pub/widget/widget.fi.7e89e562370143280e0fb0b17f6c3a79400bfde5.js
+60	widget_checksum_fi	7e89e562370143280e0fb0b17f6c3a79400bfde5
+27	widget_file_el	file://pub/widget/widget.el.6402fdf4e46d096b649d34785dd9c820fd3d0892.js
+28	widget_checksum_el	6402fdf4e46d096b649d34785dd9c820fd3d0892
+29	widget_file_id	file://pub/widget/widget.id.dfece29a74ce3bd0b40ac8ff73708cc560bf344d.js
+30	widget_checksum_id	dfece29a74ce3bd0b40ac8ff73708cc560bf344d
+31	widget_file_it	file://pub/widget/widget.it.07b397fa438528682d077ffc0d7ae0fb7b8a12f4.js
+32	widget_checksum_it	07b397fa438528682d077ffc0d7ae0fb7b8a12f4
+61	widget_file_ja	file://pub/widget/widget.ja.b9a9b80fbdc4518cbba71dcbadeba981c4ac34bd.js
+62	widget_checksum_ja	b9a9b80fbdc4518cbba71dcbadeba981c4ac34bd
+35	widget_file_lv	file://pub/widget/widget.lv.643d9a33fe622797964e7075b3cce80c8234365b.js
+36	widget_checksum_lv	643d9a33fe622797964e7075b3cce80c8234365b
+37	widget_file_nb-no	file://pub/widget/widget.nb-no.ea5b3a0988d2d1fdc7c73cf134854ba9b6c2d4b1.js
+38	widget_checksum_nb-no	ea5b3a0988d2d1fdc7c73cf134854ba9b6c2d4b1
+39	widget_file_pl	file://pub/widget/widget.pl.c1824cf8adb4d43aae25cd7faf3a3f18a314c279.js
+40	widget_checksum_pl	c1824cf8adb4d43aae25cd7faf3a3f18a314c279
+41	widget_file_pt-pt	file://pub/widget/widget.pt-pt.73a59abfa9698d7bd20457c5ddd506d9a509f334.js
+42	widget_checksum_pt-pt	73a59abfa9698d7bd20457c5ddd506d9a509f334
+43	widget_file_ro	file://pub/widget/widget.ro.50e10175385011dd1e32ae4aa09171f3874f5357.js
+44	widget_checksum_ro	50e10175385011dd1e32ae4aa09171f3874f5357
+45	widget_file_ru	file://pub/widget/widget.ru.153f651adf8808d31a8795ae009e5c29f2332bfc.js
+46	widget_checksum_ru	153f651adf8808d31a8795ae009e5c29f2332bfc
+47	widget_file_sk	file://pub/widget/widget.sk.65cdc86aa2673743c65e1c085a52738aa6e40520.js
+48	widget_checksum_sk	65cdc86aa2673743c65e1c085a52738aa6e40520
+49	widget_file_sv	file://pub/widget/widget.sv.054ab170ba3abd17f94778904ff13b332d163ada.js
+50	widget_checksum_sv	054ab170ba3abd17f94778904ff13b332d163ada
+51	widget_file_es	file://pub/widget/widget.es.6a96f338ed41b72cbafb1783475fb138ac0dfab2.js
+52	widget_checksum_es	6a96f338ed41b72cbafb1783475fb138ac0dfab2
+53	widget_file_tr	file://pub/widget/widget.tr.e37ab7e4f533832f4868ff37755dead4444a37dd.js
+54	widget_checksum_tr	e37ab7e4f533832f4868ff37755dead4444a37dd
+55	widget_file_uk	file://pub/widget/widget.uk.15a070ebbf786653e6c2ef386fe50590183653cc.js
+56	widget_checksum_uk	15a070ebbf786653e6c2ef386fe50590183653cc
 \.
 
 
@@ -6583,6 +6594,9 @@ COPY public.pretixbase_logentry (id, object_id, datetime, action_type, data, con
 15	3	2025-01-27 13:19:03.759823+00	pretix.event.quota.added	{"id": 3, "itemvars": ["1"]}	20	1	1	\N	t	f	\N	\N	1
 16	2	2025-01-27 13:19:03.760772+00	pretix.subevent.quota.added	{"id": 3, "itemvars": ["1"]}	37	1	1	\N	t	f	\N	\N	1
 17	1	2025-01-27 13:19:35.293382+00	pretix.event.quota.deleted	{}	20	1	1	\N	t	f	\N	\N	1
+18	2	2025-03-06 12:46:05.161934+00	pretix.team.changed	{"can_change_organizer_settings": true}	34	\N	1	\N	t	f	\N	\N	1
+19	2	2025-03-06 13:24:28.017345+00	pretix.team.changed	{"can_view_orders": true}	34	\N	1	\N	t	f	\N	\N	1
+20	2	2025-03-10 14:43:10.061449+00	pretix.team.changed	{"can_change_orders": true}	34	\N	1	\N	t	f	\N	\N	1
 \.
 
 
@@ -6832,6 +6846,7 @@ COPY public.pretixbase_seatingplan (id, name, layout, organizer_id) FROM stdin;
 
 COPY public.pretixbase_staffsession (id, date_start, date_end, session_key, comment, user_id) FROM stdin;
 1	2025-01-07 12:12:58.395153+00	\N	i9x3y4134xc11tbcg2is1ruclq9xteik		1
+2	2025-03-10 14:42:58.746025+00	\N	ntz3y2yq3ouftw78gmz6nd52llw6uyxn		1
 \.
 
 
@@ -6895,6 +6910,13 @@ COPY public.pretixbase_staffsessionauditlog (id, datetime, url, session_id, impe
 53	2025-01-07 12:26:41.591864+00	/control/organizer/hoeringsportal/team/2/	1	\N	GET
 54	2025-01-07 12:27:08.275839+00	/control/organizer/hoeringsportal/team/2/	1	\N	POST
 55	2025-01-07 12:27:08.310316+00	/control/organizer/hoeringsportal/team/2/	1	\N	GET
+56	2025-03-10 14:42:58.758858+00	/control/organizers/	2	\N	GET
+57	2025-03-10 14:42:59.909108+00	/control/organizer/hoeringsportal/	2	\N	GET
+58	2025-03-10 14:43:03.098229+00	/control/organizer/hoeringsportal/teams	2	\N	GET
+59	2025-03-10 14:43:04.458582+00	/control/organizer/hoeringsportal/team/2/	2	\N	GET
+60	2025-03-10 14:43:05.792218+00	/control/organizer/hoeringsportal/team/2/edit	2	\N	GET
+61	2025-03-10 14:43:10.046883+00	/control/organizer/hoeringsportal/team/2/edit	2	\N	POST
+62	2025-03-10 14:43:10.15408+00	/control/organizer/hoeringsportal/team/2/	2	\N	GET
 \.
 
 
@@ -6947,7 +6969,7 @@ COPY public.pretixbase_taxrule (id, name, rate, price_includes_tax, eu_reverse_c
 
 COPY public.pretixbase_team (id, name, all_events, can_create_events, can_change_teams, can_change_organizer_settings, can_change_event_settings, can_change_items, can_view_orders, can_change_orders, can_view_vouchers, can_change_vouchers, organizer_id, can_manage_gift_cards, can_checkin_orders, can_manage_customers, can_manage_reusable_media, require_2fa) FROM stdin;
 1	Administrators	t	t	t	t	t	t	t	t	t	t	1	t	f	t	t	f
-2	hoeringsportal	t	t	f	f	t	t	f	f	f	f	1	f	f	f	f	f
+2	hoeringsportal	t	t	f	t	t	t	t	t	f	f	1	f	f	f	f	f
 \.
 
 
@@ -7007,7 +7029,7 @@ COPY public.pretixbase_u2fdevice (id, name, confirmed, json_data, user_id) FROM 
 --
 
 COPY public.pretixbase_user (id, password, last_login, email, is_active, is_staff, date_joined, locale, timezone, require_2fa, fullname, notifications_send, notifications_token, auth_backend, session_token, needs_password_change, auth_backend_identifier) FROM stdin;
-1	argon2$argon2id$v=19$m=102400,t=2,p=8$UjNGZENuUVdRYXlOZVJQU1JKUHhIVg$YOfcOCDUQX3cpSwciFnvwTXsXC7wKOEmoZYqoxWAArg	2025-01-27 13:15:32.98912+00	admin@localhost	t	t	2025-01-07 12:08:12.81563+00	en	UTC	f	\N	t	YIOZt0RnEAXwqW9gM3iARkFy1iVTKMyC	native	G1OD56ZfheDth9nZnwoLkw6FqWqq8hoh	f	\N
+1	argon2$argon2id$v=19$m=102400,t=2,p=8$UjNGZENuUVdRYXlOZVJQU1JKUHhIVg$YOfcOCDUQX3cpSwciFnvwTXsXC7wKOEmoZYqoxWAArg	2025-03-10 14:42:43.328409+00	admin@localhost	t	t	2025-01-07 12:08:12.81563+00	en	UTC	f	\N	t	YIOZt0RnEAXwqW9gM3iARkFy1iVTKMyC	native	G1OD56ZfheDth9nZnwoLkw6FqWqq8hoh	f	\N
 \.
 
 
@@ -7032,7 +7054,7 @@ COPY public.pretixbase_user_user_permissions (id, user_id, permission_id) FROM s
 --
 
 COPY public.pretixbase_userknownloginsource (id, agent_type, device_type, os_type, country, last_seen, user_id) FROM stdin;
-1	Firefox	Mac	Mac OS X	\N	2025-01-27 13:15:32.97407+00	1
+1	Firefox	Mac	Mac OS X	\N	2025-03-10 14:42:43.322191+00	1
 \.
 
 
@@ -7235,7 +7257,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 116, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 414, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 416, true);
 
 
 --
@@ -7585,7 +7607,7 @@ SELECT pg_catalog.setval('public.pretixbase_giftcardtransaction_id_seq', 1, fals
 -- Name: pretixbase_globalsettingsobject_settingsstore_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_globalsettingsobject_settingsstore_id_seq', 56, true);
+SELECT pg_catalog.setval('public.pretixbase_globalsettingsobject_settingsstore_id_seq', 62, true);
 
 
 --
@@ -7711,7 +7733,7 @@ SELECT pg_catalog.setval('public.pretixbase_itemvariationmetavalue_id_seq', 1, f
 -- Name: pretixbase_logentry_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_logentry_id_seq', 17, true);
+SELECT pg_catalog.setval('public.pretixbase_logentry_id_seq', 20, true);
 
 
 --
@@ -7921,14 +7943,14 @@ SELECT pg_catalog.setval('public.pretixbase_seatingplan_id_seq', 1, false);
 -- Name: pretixbase_staffsession_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_staffsession_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pretixbase_staffsession_id_seq', 2, true);
 
 
 --
 -- Name: pretixbase_staffsessionauditlog_id_seq; Type: SEQUENCE SET; Schema: public; Owner: pretix
 --
 
-SELECT pg_catalog.setval('public.pretixbase_staffsessionauditlog_id_seq', 55, true);
+SELECT pg_catalog.setval('public.pretixbase_staffsessionauditlog_id_seq', 62, true);
 
 
 --

@@ -10,32 +10,96 @@
  */
 #}
 
-{% if node.field_pretix_dates[0] is defined %}
-  <h5 class="mt-3">{{ 'Date'|t }}</h5>
-  {{ node.field_pretix_dates[0].time_from|date('U')|format_date('hoeringsportal_date_long') }}
+{# Define `variables` to match the one used in field--field-pretix-dates.html.twig #}
+{# Use current date if set. Otherwise the first upcoming date. #}
+{% set variables = public_meeting_context.current|default(public_meeting_context.upcoming|first) %}
 
-  <h5 class="mt-3">{{ 'Time'|t }}</h5>
-  {{ node.field_pretix_dates[0].time_from|date('U')|format_date('hoeringsportal_time') }} - {{ node.field_pretix_dates[0].time_to|date('U')|format_date('hoeringsportal_time') }}
-{% elseif node.field_last_meeting_time[0] is defined %}
-  <h5 class="mt-3">{{ 'Date'|t }}</h5>
-  {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_date_long') }}
+{% if variables %}
 
-  <h5 class="mt-3">{{ 'Time'|t }}</h5>
-  {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_time') }}{% if node.field_last_meeting_time_end[0].date is defined %} - {{ node.field_last_meeting_time_end[0].date|date('U')|format_date('hoeringsportal_time') }}{% endif %}
+{% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
+{% set meeting_has_been_held = date(variables.time_to) < date(now) %}
+{% set registration_deadline_passed = date(variables.registration_deadline) < date(now) %}
+{% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
+{% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
+
+{% set is_previous = variables.uuid == public_meeting_context.previous.uuid %}
+{% set is_current = variables.uuid == public_meeting_context.current.uuid %}
+{% set is_next = variables.uuid == public_meeting_context.next.uuid %}
+{% set is_first_upcoming = variables.uuid == public_meeting_context.upcoming[0].uuid %}
+
+{# {{ dump({
+  meeting_cancelled,
+  meeting_has_been_held,
+  registration_deadline_passed,
+  sign_up_url,
+  availability,
+  is_previous,
+  is_current,
+  is_next,
+  is_first_upcoming,
+
+  variables,
+  }) }} #}
 {% endif %}
 
-{% if pretix_signup.location is defined %}
-  <h5 class="mt-3">{{ 'Place'|t }}</h5>
-  {{ pretix_signup.location }}
-{% endif %}
-{% if pretix_signup.address is defined %}
-  <h5 class="mt-3">{{ 'Address'|t }}</h5>
-  {{ pretix_signup.address }}
+{% if public_meeting_context.current %}
+
+  {% if variables is defined %}
+    <h5 class="mt-3">{{ 'Date'|t }}</h5>
+    {{ variables.time_from_value|date('U')|format_date('hoeringsportal_date_long') }}
+
+    <h5 class="mt-3">{{ 'Time'|t }}</h5>
+    {{ variables.time_from_value|date('U')|format_date('hoeringsportal_time') }} - {{ variables.time_to_value|date('U')|format_date('hoeringsportal_time') }}
+  {% elseif node.field_last_meeting_time[0] is defined %}
+    <h5 class="mt-3">{{ 'Date'|t }}</h5>
+    {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_date_long') }}
+
+    <h5 class="mt-3">{{ 'Time'|t }}</h5>
+    {{ node.field_last_meeting_time[0].date|date('U')|format_date('hoeringsportal_time') }}{% if node.field_last_meeting_time_end[0].date is defined %} - {{ node.field_last_meeting_time_end[0].date|date('U')|format_date('hoeringsportal_time') }}{% endif %}
+  {% endif %}
+
+  {% if variables.location is defined %}
+    <h5 class="mt-3">{{ 'Place'|t }}</h5>
+    {{ variables.location }}
+  {% endif %}
+
+  {% if variables.address is defined %}
+    <h5 class="mt-3">{{ 'Address'|t }}</h5>
+    {{ variables.address }}
+  {% endif %}
+
+  {% if signup_deadline.value|default(false) %}
+    <h5 class="mt-3">{{ 'Last signup date'|t }}</h5>
+    {{ signup_deadline.value|date('U')|format_date('hoeringsportal_date_long') }}
+  {% endif %}
+
+  {% if availability.total_size|default(false) %}
+    <h5 class="mt-3">{{ 'Spots'|t }}</h5>
+    <p><span class="fw-semibold">{{ availability.available_number }}</span> / {{ availability.total_size }}</p>
+  {% else %}
+    <h5 class="mt-3">{{ 'Spots'|t }}</h5>
+    <p><span class="fw-semibold">{{ variables.spots }}</span> / {{ variables.spots }}</p>
+  {% endif %}
+
+  <h5 class="mt-3">{{ 'Registration'|t }}</h5>
+  {% if meeting_cancelled %}
+    <div class="text-danger">{{ 'Meeting has been cancelled'|t }}</div>
+  {% elseif meeting_has_been_held %}
+    <div>{{ 'Meeting has already been held'|t }}</div>
+  {% else %}
+    {% if registration_deadline_passed %}
+      <div class="">{{ 'Registration deadline passed'|t }}</div>
+    {% elseif 0 == availability.available_number %}
+      <div class="no-spots-left">{{ 'No available spots left'|t }}</div>
+    {% elseif sign_up_url %}
+      <a href="{{ sign_up_url }}" class="btn btn-sm bg-primary text-white rounded py-1 px-3 mt-2 mb-1" target="_blank">
+        <i class="fa-solid fa-ticket-alt fa-xs me-2"></i>{{ 'Sign up'|t }}
+        <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+      </a>
+      <span class="small d-block">{{ 'Deadline:'|t }} {{ variables.registration_deadline|date('U')|format_date('hoeringsportal_date_long') }}</span>
+    {% endif %}
+  {% endif %}
 {% endif %}
 
-{% if signup_deadline.value|default(false) %}
-  <h5 class="mt-3">{{ 'Last signup date'|t }}</h5>
-  {{ signup_deadline.value|date('U')|format_date('hoeringsportal_date_long') }}
-{% endif %}
-
-<a class="sign-up-shortcut" class="btn btn-primary btn-sm mt-3 mb-3" style="display: none">{{ 'Sign up for public meeting'|t }}</a>
+<h3 class="mt-3">{{ 'This event has multiple dates'|t }}</h3>
+<a href="#pretix_signup_list" class="btn btn-sm bg-primary text-white rounded py-1 px-3 mb-3">{{ 'View the list'|t }}</a>

@@ -1,4 +1,7 @@
 services:
+  _defaults:
+    autowire: true
+
   hoeringsportal_public_meeting.event_subscriber:
     class: Drupal\hoeringsportal_public_meeting\EventSubscriber\EventSubscriber
     tags:
@@ -6,4 +9,3 @@ services:
 
   hoeringsportal_public_meeting.public_meeting_helper:
     class: Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper
-    arguments: ['@entity_type.manager']
