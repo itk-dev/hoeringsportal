@@ -5,3 +5,7 @@ core_version_requirement: ^8.8 || ^9 || ^10
 package: Hoeringsportal
 dependencies:
   - drupal:itk_admin
+
+# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
+'interface translation project': hoeringsportal_config_settings
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

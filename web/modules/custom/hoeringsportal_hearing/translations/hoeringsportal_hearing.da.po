@@ -1,0 +1,82 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module: n/a
+#  modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml: n/a
+#  modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml: n/a
+#  modules/custom/hoeringsportal_hearing/src/TokenHelper.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-12 15:18+0100\n"
+"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:25
+msgid "About"
+msgstr "Om"
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:26
+msgid "Hearings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:41
+msgid "Add hearing reply"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:79
+msgid "Hearing deadline: @deadline"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:83
+msgid "Hearing deadline has passed"
+msgstr "Høringsfristen er overskredet"
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
+msgid "Hoeringsportal hearing"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
+msgid "Stuff related to hearing content type"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
+msgid "Hoeringsportal hearing fixtures"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
+msgid "Provides hearing fixtures for the site."
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
+msgid "ITK"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:26
+msgid "GIS data"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:32
+msgid "Insert GIS minimap by UUID"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:33
+msgid "Example: <code>[gis:minimap:409c1dc9-b604-4f1e-9df9-2768d050acb4]</code>"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:82
+msgid "Invalid GIS map UUID: @map_uuid"
+msgstr "Ugyldigt GIS-kort-uuid: @map_uuid"

@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-468](https://github.com/itk-dev/hoeringsportal/pull/468)
+  Added module and theme translations
 * [PR-463](https://github.com/itk-dev/hoeringsportal/pull/463)
   3893: Avoid `<strong>` in translation
 * [PR-451](https://github.com/itk-dev/hoeringsportal/pull/451)

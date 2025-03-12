@@ -51,7 +51,7 @@ class CitizenAccessCheckEventSubscriber implements EventSubscriberInterface {
     $cpr = $token[$cprClaim] ?? NULL;
 
     if (empty($cpr)) {
-      $this->logger->error(sprintf('Cannot get CPR (%s) from user claims', $cprClaim));
+      $this->logger->error('Cannot get CPR (@cprClaim) from user claims', ['@cprClaim' => $cprClaim]);
       return;
     }
 

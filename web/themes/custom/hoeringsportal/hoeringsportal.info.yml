@@ -20,5 +20,8 @@ stylesheets-remove:
 # dependencies:
 #   - module:hoeringsportal_public_meeting
 
+# https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6
+# https://julian.pustkuchen.com/en/translate-custom-modules-drupal-8-using-.po-files
+# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
 'interface translation project': hoeringsportal
 'interface translation server pattern': themes/custom/%project/translations/%project.%language.po
