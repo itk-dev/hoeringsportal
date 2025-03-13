@@ -4,6 +4,11 @@ include:
   - docker-compose.pretix.yml
 
 services:
+  nginx:
+    labels:
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=redirect-to-https"
+      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+
   node:
     image: node:22
     profiles:
