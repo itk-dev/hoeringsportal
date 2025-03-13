@@ -27,6 +27,8 @@ steps:
         - git fetch origin ${CI_COMMIT_BRANCH}
         - git checkout ${CI_COMMIT_BRANCH}
         - git pull
+        # Apply patch needed for testing MitID sign-in (see patch for details).
+        - git apply patches/development/mitid-test-cpr-hack.patch
         - itkdev-docker-compose-server up -d --force-recreate --remove-orphans
         - itkdev-docker-compose-server exec phpfpm composer install --no-dev -o --classmap-authoritative
         - itkdev-docker-compose-server exec phpfpm composer clear-cache
