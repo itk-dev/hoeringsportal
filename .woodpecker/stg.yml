@@ -33,7 +33,8 @@ steps:
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes deploy
         # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
-        - itkdev-docker-compose-server exec phpfpm composer2 dump-autoload
+        - itkdev-docker-compose-server exec phpfpm composer dump-autoload
         - docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
         - docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
-        - rm -rf web/themes/custom/hoeringsportal/node_modules
+        - docker compose run --rm node rm -rf /app/web/themes/custom/hoeringsportal/node_modules
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild
