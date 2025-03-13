@@ -5,3 +5,5 @@ services:
       - {name: event_subscriber}
 
   Drupal\hoeringsportal_hearing\TokenHelper:
+
+  Drupal\hoeringsportal_hearing\Helper\FormHelper:
