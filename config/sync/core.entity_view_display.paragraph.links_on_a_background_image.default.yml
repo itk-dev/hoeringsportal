@@ -1,0 +1,35 @@
+uuid: e4a41100-e808-4611-b9fe-c82e6127300e
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.links_on_a_background_image.field_links_list
+    - field.field.paragraph.links_on_a_background_image.field_paragraph_image
+    - paragraphs.paragraphs_type.links_on_a_background_image
+  module:
+    - entity_reference_revisions
+id: paragraph.links_on_a_background_image.default
+targetEntityType: paragraph
+bundle: links_on_a_background_image
+mode: default
+content:
+  field_links_list:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_paragraph_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  search_api_excerpt: true

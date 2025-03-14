@@ -1,0 +1,21 @@
+uuid: a848c8e9-fd82-4814-b4d1-3607c738ffa0
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_decorative_arrow
+    - paragraphs.paragraphs_type.link
+id: paragraph.link.field_decorative_arrow
+field_name: field_decorative_arrow
+entity_type: paragraph
+bundle: link
+label: 'Decorative arrow'
+description: 'Whether to show a decorative arrow or not.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean
