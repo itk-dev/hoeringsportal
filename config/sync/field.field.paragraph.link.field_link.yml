@@ -1,0 +1,45 @@
+uuid: 1031b9f7-55ea-4649-adef-73f493aaec10
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_link
+    - node.type.citizen_proposal
+    - node.type.hearing
+    - node.type.landing_page
+    - node.type.page_map
+    - node.type.project
+    - node.type.project_main_page
+    - node.type.project_page
+    - node.type.public_meeting
+    - node.type.static_page
+    - paragraphs.paragraphs_type.link
+id: paragraph.link.field_link
+field_name: field_link
+entity_type: paragraph
+bundle: link
+label: Link
+description: 'Select the content to link to'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      public_meeting: public_meeting
+      citizen_proposal: citizen_proposal
+      hearing: hearing
+      page_map: page_map
+      landing_page: landing_page
+      project_main_page: project_main_page
+      project_page: project_page
+      project: project
+      static_page: static_page
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: public_meeting
+field_type: entity_reference

@@ -1,0 +1,29 @@
+uuid: 9e01adc8-cdfc-4859-8c4e-48c94efd878d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_image
+    - media.type.image
+    - paragraphs.paragraphs_type.links_on_a_background_image
+id: paragraph.links_on_a_background_image.field_paragraph_image
+field_name: field_paragraph_image
+entity_type: paragraph
+bundle: links_on_a_background_image
+label: 'Background image'
+description: 'Choose the image to display in the background'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
