@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.7.3] - 2025-03-14
+
+* [PR-470](https://github.com/itk-dev/hoeringsportal/pull/470)
+  Fixed citizen proposal form caching issue
+
 ## [4.7.2] - 2025-03-12
 
 * [PR-465](https://github.com/itk-dev/hoeringsportal/pull/465)
@@ -299,7 +304,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.7.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...HEAD
+[4.7.3]: https://github.com/itk-dev/hoeringsportal/compare/4.7.2...4.7.3
 [4.7.2]: https://github.com/itk-dev/hoeringsportal/compare/4.7.1...4.7.2
 [4.7.1]: https://github.com/itk-dev/hoeringsportal/compare/4.7.0...4.7.1
 [4.7.0]: https://github.com/itk-dev/hoeringsportal/compare/4.6.5...4.7.0
