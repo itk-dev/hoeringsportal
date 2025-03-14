@@ -1,0 +1,21 @@
+diff --git a/web/modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php b/web/modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php
+index 21a8f200..5fe12782 100644
+--- a/web/modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php
++++ b/web/modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php
+@@ -57,6 +57,16 @@ public function accessCheck(AccessCheckEvent $event) {
+ 
+     $accessGranted = FALSE;
+ 
++    // Map test CPR numbers (23… and 11…) used during test MitID sign-in to CPR
++    // numbers known by lookup service used in CprHelper::lookUpCpr().
++    $cpr = match ($cpr) {
++      // https://mitidsimulator.test-nemlog-in.dk/Home/Details?uuid=e728970b-c0aa-4cb3-a205-c0bee3a9ae33
++      '2305750000' => '2611740000',
++      // https://mitidsimulator.test-nemlog-in.dk/Home/Details?uuid=67cfe9d8-6284-4a65-93c9-69d9e82445c7
++      '1111111142' => '1705880000',
++      default => $cpr
++    };
++
+     try {
+       $result = $this->cprHelper->lookUpCpr($cpr);
+       $accessGranted = $this->accessChecker->checkAccess($result);

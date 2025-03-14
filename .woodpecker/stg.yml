@@ -23,17 +23,20 @@ steps:
       user:
         from_secret: user
       actions:
-        - git reset --hard
         - git fetch origin ${CI_COMMIT_BRANCH}
-        - git checkout ${CI_COMMIT_BRANCH}
-        - git pull
-        - itkdev-docker-compose-server up -d --force-recreate --remove-orphans
+        - git checkout --force ${CI_COMMIT_BRANCH}
+        - git reset --hard origin/${CI_COMMIT_BRANCH}
+        # Apply patch needed for testing MitID sign-in (see patch for details).
+        - git apply patches/development/mitid-test-cpr-hack.patch
+        - itkdev-docker-compose-server pull
+        - itkdev-docker-compose-server up --detach --force-recreate --remove-orphans
         - itkdev-docker-compose-server exec phpfpm composer install --no-dev -o --classmap-authoritative
         - itkdev-docker-compose-server exec phpfpm composer clear-cache
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild
         - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes deploy
         # Fixes issue with 'Drupal\mysql\Driver\Database\mysql\Connection' not found
-        - itkdev-docker-compose-server exec phpfpm composer2 dump-autoload
-        - docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-        - docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
-        - rm -rf web/themes/custom/hoeringsportal/node_modules
+        - itkdev-docker-compose-server exec phpfpm composer dump-autoload
+        - docker compose run --rm node npm --prefix web/themes/custom/hoeringsportal install
+        - docker compose run --rm node npm --prefix web/themes/custom/hoeringsportal run build
+        - docker compose run --rm node rm -rf web/themes/custom/hoeringsportal/node_modules
+        - itkdev-docker-compose-server exec phpfpm vendor/bin/drush --yes cache:rebuild

@@ -11,8 +11,6 @@ services:
     environment:
       # Match PHP_UPLOAD_MAX_FILESIZE (plus a little more)
       NGINX_MAX_BODY_SIZE: 90M
-    volumes:
-      - ../../shared/files:/app/web/sites/default/files
 
   clamav:
     image: clamav/clamav:1.2
