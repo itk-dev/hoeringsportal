@@ -7,6 +7,11 @@ hoeringsportal_citizen_proposal.citizen_proposal.proposal_add:
     _title: 'Create new proposal'
   requirements:
     _access: 'TRUE'
+  options:
+    # Setting 'max-age' in the form doesn't work (anymore), cf.
+    # https://www.drupal.org/docs/drupal-apis/cache-api/cache-max-age#s-limitations-of-max-age,
+    # so we disable caching here (https://www.drupal.org/docs/drupal-apis/routing-system/structure-of-routes).
+    no_cache: TRUE
 
 hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
   path: '/citizen_proposal/approve'
@@ -15,6 +20,11 @@ hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
     _title: 'Create new proposal'
   requirements:
     _access: 'TRUE'
+  options:
+    # Setting 'max-age' in the form doesn't work (anymore), cf.
+    # https://www.drupal.org/docs/drupal-apis/cache-api/cache-max-age#s-limitations-of-max-age,
+    # so we disable caching here (https://www.drupal.org/docs/drupal-apis/routing-system/structure-of-routes).
+    no_cache: TRUE
 
 hoeringsportal_citizen_proposal.proposal_admin:
   path: '/admin/citizen_proposal'
