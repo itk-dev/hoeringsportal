@@ -131,8 +131,10 @@ third_party_settings:
       weight: 9
       format_type: html_element
       format_settings:
-        classes: 'container pt-5 pb-3 position-relative'
+        classes: ''
+        show_empty_fields: false
         id: ''
+        label_as_html: false
         element: div
         show_label: true
         label_element: h2

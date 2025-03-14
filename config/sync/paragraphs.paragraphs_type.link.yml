@@ -1,0 +1,10 @@
+uuid: 6f937814-e772-4d7f-b23e-741c15602735
+langcode: da
+status: true
+dependencies: {  }
+id: link
+label: Link
+icon_uuid: null
+icon_default: null
+description: 'Link with possibility of showing an icon and/or a decorative arrow.'
+behavior_plugins: {  }
