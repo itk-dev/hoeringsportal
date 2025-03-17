@@ -118,7 +118,7 @@ display:
         options:
           submit_button: Søg
           reset_button: true
-          reset_button_label: Nustil
+          reset_button_label: Nulstil
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
