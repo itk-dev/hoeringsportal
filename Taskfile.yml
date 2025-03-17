@@ -26,6 +26,8 @@ tasks:
       - task compose-up
       - task composer-install
       - task drush -- --yes site:install --existing-config
+      - task: translations:import
+      - task drush -- --yes cache:rebuild
       - task assets-build
       - task site-open
       - task site-open-admin
@@ -38,6 +40,8 @@ tasks:
       - task composer-install
       - task assets-build
       - task drush -- deploy
+      - task: translations:import
+      - task drush -- --yes cache:rebuild
     silent: true
 
   site-url:

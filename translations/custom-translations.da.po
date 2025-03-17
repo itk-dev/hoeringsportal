@@ -1,16 +1,16 @@
-# Danish translation of stg.hoeringsportal.srvitkphp72stg.itkdev.dk
+# Danish translation of Deltag Aarhus – Aarhus kommune
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2020-12-18 14:59+0100\n"
-"PO-Revision-Date: 2020-12-18 14:59+0100\n"
+"POT-Creation-Date: 2025-03-17 10:48+0100\n"
+"PO-Revision-Date: 2025-03-17 10:48+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Primary admin actions"
 msgstr "Primary admin actions"
@@ -495,7 +495,7 @@ msgid "Apply"
 msgstr "Apply"
 
 msgid "Reset"
-msgstr "Reset"
+msgstr "Nulstil"
 
 msgid "Sort by"
 msgstr "Sort by"
@@ -558,7 +558,7 @@ msgid "Last »"
 msgstr "Last »"
 
 msgid "Title"
-msgstr "Overskrift"
+msgstr "Titel"
 
 msgid "Content type"
 msgstr "Content type"
@@ -801,6 +801,11 @@ msgstr ""
 msgid "Confirm removal"
 msgstr "Bekræft sletning"
 
+msgid "Allowed types: @extensions."
+msgstr ""
+"Tilladte typer: @extensions. Hold gerne filernes navne korte, gerne "
+"under 20 bogstaver og uden symboler som +/- og lignende."
+
 msgid "Remove selected"
 msgstr "Fjern det valgte"
 
@@ -854,6 +859,9 @@ msgstr "Media name"
 
 msgid "Initiative"
 msgstr "Initiativ"
+
+msgid "Find and manage media."
+msgstr ""
 
 msgid "Project info"
 msgstr "Initiativ info"
@@ -926,9 +934,7 @@ msgid "Email addresses to notify when updates are available"
 msgstr "E-mailadresser, der underrettes, når opdateringer er tilgængelige"
 
 msgid "This must be an external URL such as %url."
-msgstr ""
-"Skal være en ekstern URL som f.eks. %url. Denne benyttes hvis du ikke "
-"bruger tilmeldingssystemet, men har dit eget system."
+msgstr "Skal være en ekstern URL som fx %url."
 
 msgid "Add hearing ticket"
 msgstr "Tilføj høringssvar"
@@ -937,7 +943,10 @@ msgid "Hearing tickets (@count)"
 msgstr "Høringssvar (@count)"
 
 msgid "Reply date"
-msgstr "Svar frist"
+msgstr "Svarfrist"
+
+msgid "Show on map"
+msgstr "Vis på kort"
 
 msgid "Your search yielded no result"
 msgstr "Din søgning gav ingen resultater."
@@ -1033,6 +1042,35 @@ msgstr "Jeg har adressebeskyttelse"
 msgid "Select entities"
 msgstr "Vælg fil"
 
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. "
+"Your application for an account is currently pending approval. Once it "
+"has been approved, you will receive another email containing "
+"information about how to log in, set your password, and other "
+"details.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Thank you for registering at "
+"[site:name]. Your application for an account is currently pending "
+"approval. Once it has been approved, you will receive another email "
+"containing information about how to log in, set your password, and "
+"other details.\r\n"
+"\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid ""
+"Your hearing ticket has being submitted and will appear here in a few "
+"minutes."
+msgstr ""
+"Dit høringssvar er indsendt og bliver vist her på siden inden for "
+"kort tid."
+
 msgid "Upcoming"
 msgstr "På vej"
 
@@ -1050,7 +1088,9 @@ msgstr ""
 msgid "Vælg dokumenter der beskriver høringen."
 msgstr ""
 "Vælg dokumenter der skal tilføjes. Vær opmærksom på at dine "
-"dokumenter skal være webtilgængelige."
+"dokumenter skal være webtilgængelige. Hvis du er i tvivl om hvad "
+"dette omhandler kan du læse mere her: "
+"https://digst.dk/digital-service/webtilgaengelighed/"
 
 msgid "Video embed"
 msgstr "Video"
@@ -1068,6 +1108,11 @@ msgstr ""
 "derfor sende linket til den video du vil bruge på support@itkdev.dk "
 "for at få hjælp. Vær desuden opmærksom på om videoen er "
 "webtilgængelig."
+
+msgid "Vælg kortvisning for høringen."
+msgstr ""
+"Vælg kortvisning for høringen. Hvis dette giver dig problemer skal "
+"du sørge for at benytte browseren: Chrome eller Microsoft edge"
 
 msgid "https://visplaner.plandata.dk/visplaner/lokalplaner.html"
 msgstr ""
@@ -1088,7 +1133,7 @@ msgid ""
 msgstr ""
 "<strong>Start og slut dato og alle høringer for forløbet plottes "
 "automatisk ind på tidslinjen. Du kan bruge nedenstående felt til at "
-"plotte flere relevante punkter ind."
+"plotte flere relevante punkter ind.</strong>"
 
 msgid "Indtast eDoc-sagsnr. for høringen."
 msgstr ""
@@ -1109,13 +1154,28 @@ msgstr "Projektgalleri"
 msgid "Point"
 msgstr "Vælg punkt på kort"
 
+msgid "Available date"
+msgstr ""
+
+msgid "You can select up to @maximum @entity_type (@remaining left)."
+msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
+
+msgid "Advanced Queue jobs"
+msgstr "Advanced queue jobs"
+
+msgid "<pre>{{ payload }}</pre>"
+msgstr ""
+
+msgid "Available from"
+msgstr "Available date"
+
 msgid "Spots"
 msgstr "Pladser"
 
 msgid "Beskrivelse af borgemødet."
 msgstr ""
 "Kort beskrivelse af begivenheden. Udvidet beskrivelse indsættes under "
-"'indhold' længere nede på siden.  "
+"'indhold' længere nede på siden."
 
 msgid "Vælg billeder der skal vises i teaservisningen."
 msgstr "Vælg billede der skal vises i oversigten"
@@ -1141,7 +1201,10 @@ msgid "Select template event"
 msgstr "Vælg skabelon til dit møde"
 
 msgid "Select the template event to clone when creating the pretix event"
-msgstr "Vælg det event der passer til dit møde / arrangement. "
+msgstr ""
+"Vælg det event der passer til dit møde / arrangement. Har du behov "
+"for specielle tilpasninger til dit arrangement, kontakt: "
+"support@itkdev.dk"
 
 msgid "Synchronize event in pretix"
 msgstr "Synkroniser event i Pretix (Skal altid være slået til) "
@@ -1169,24 +1232,18 @@ msgid ""
 "Du kan bruge dette felt "
 "til at plotte flere relevante punkter ind."
 msgstr ""
-"<strong>Start- og slutdato og alle høringer og begivenheder fra "
+"<strong>Start og slut dato og alle høringer og begivenheder fra "
 "systemet plottes automatisk ind på tidslinjen.&#13; Du kan bruge "
-"nedenstående felt til at plotte flere relevante punkter ind."
+"nedenstående felt til at plotte flere relevante punkter ind.</strong>"
 
 msgid "Public meeting"
 msgstr "Begivenhed"
 
-msgid "You can select up to @maximum @entity_type (@remaining left)."
-msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
-
 msgid "You can select one @entity_type."
 msgstr "Du kan kun vælge ét @entity_type."
 
-msgid "Beskrivelse af borgermøde"
-msgstr "Beskrivelse af begivenhed"
-
 msgid "Meeting has already been held"
-msgstr "<strong>Mødet er afholdt"
+msgstr "<strong>Mødet er afholdt</strong>"
 
 msgid "Sign up for public meeting"
 msgstr "Tilmeld dig her"
@@ -1199,12 +1256,6 @@ msgstr ""
 "Vælg denne hvis mødet er til en lukket gruppe af inviterede, og "
 "tilmelding ikke skal være muligt via hjemmesiden. Når mødet er "
 "oprettet vil du her finde et link du kan sende til de inviterede."
-
-msgid "Advanced Queue jobs"
-msgstr "Advanced queue jobs"
-
-msgid "Available from"
-msgstr "Available date"
 
 msgid ""
 "Start typing the title of a piece of content to select it. You can "
@@ -1219,14 +1270,6 @@ msgstr ""
 
 msgid "<strong>Note!</strong> This public meeting has been held."
 msgstr "Denne begivenhed er afholdt"
-
-msgid "The pretix sub-event url"
-msgstr "Link til redigering af begivenheden i Pretix (NB. kræver adgang)"
-
-msgid "The pretix sub-event shop url"
-msgstr ""
-"Direkte link til booking - kan fx sendes ud til udvalgte borgere i "
-"situationer, hvor man ønsker begrænset adgang til begivenheden"
 
 msgid "Show pretix orders"
 msgstr "Se deltagerliste"
@@ -1254,12 +1297,6 @@ msgstr ""
 
 msgid "Opens in a new tab"
 msgstr "Åbner i en ny fane"
-
-msgid "Show filters"
-msgstr "Vis filtre"
-
-msgid "Borgermødet"
-msgstr "Begivenheden"
 
 msgid "Place"
 msgstr "Lokation"
@@ -1333,6 +1370,12 @@ msgstr ""
 msgid "Select none"
 msgstr "Vælg ingen"
 
+msgid "Add hearing reply"
+msgstr "Tilføj høringssvar"
+
+msgid "Dagtilbud og skole"
+msgstr "Dagtilbud, skole og fritids- og ungdomsskoleområdet."
+
 msgid ""
 "Vælg områder som borgermødet dækker. Markér alle hvis "
 "borgermødet dækker hele kommunen."
@@ -1340,25 +1383,307 @@ msgstr ""
 "Vælg områder som begivenheden dækker. Markér alle hvis "
 "begivenheden dækker hele kommunen."
 
-msgid "Your full name"
-msgstr "For- og efternavn"
+msgid "Borgermødet"
+msgstr "Begivenheden"
 
-msgid "The meeting end time must be after the start time."
-msgstr "Sluttidspunktet skal være efter starttidspunktet."
+msgid "No media available."
+msgstr "No content available."
 
-msgid "pretix exporters"
-msgstr "Eksportmuligheder "
+msgid ""
+"[user:display-name]\n"
+"\n"
+"A request to cancel your account has been "
+"made at [site:name].\n"
+"\n"
+"You may now cancel your account on "
+"[site:url-brief] by clicking this link or copying and pasting it into "
+"your browser:\n"
+"\n"
+"[user:cancel-url]\n"
+"\n"
+"NOTE: The cancellation of "
+"your account is not reversible.\n"
+"\n"
+"This link expires in one day and "
+"nothing will happen if it is not used.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"A request to cancel your account has "
+"been made at [site:name].\r\n"
+"\r\n"
+"You may now cancel your account on "
+"[site:url-brief] by clicking this link or copying and pasting it into "
+"your browser:\r\n"
+"\r\n"
+"[user:cancel-url]\r\n"
+"\r\n"
+"NOTE: The "
+"cancellation of your account is not reversible.\r\n"
+"\r\n"
+"This link "
+"expires in one day and nothing will happen if it is not "
+"used.\r\n"
+"\r\n"
+"--  [site:name] team"
 
-msgid "Exports"
-msgstr "Eksportér deltageroplysninger og kommentarer"
+msgid "Would you like a direct message when deltag.aarhus.dk has new content?"
+msgstr "Vil du modtage en mail når der er nyt fra deltag.aarhus.dk?"
 
-msgid "Check-in list"
-msgstr "Deltageroplysninger og kommentarer"
+msgid ""
+"<a href=\"@sign_up_url\">Sign up to our message service</a> and be "
+"informed about your interests"
+msgstr ""
+"<a href=\"@sign_up_url\">Tilmeld dig vores nye service</a> og bliv "
+"informeret når der er nyt der interesserer dig"
 
-msgid "Run exporter @exporter"
-msgstr "Hent"
+msgid "Show hearing tickets"
+msgstr "Vis indkomne svar"
 
-msgid "Check-in list (PDF)"
-msgstr "Deltageroplysninger og kommentarer (PDF)"
+msgid "l, F j, Y - H:i"
+msgstr "l, j. F Y - H:i"
+
+msgid "D, m/d/Y - H:i"
+msgstr "D, d/m/Y - H:i"
+
+msgid "m/d/Y - H:i"
+msgstr "d/m/Y - H:i"
+
+msgid "Phone"
+msgstr "Telefonnummer"
+
+msgid "Display email"
+msgstr "Ja, vis min e-mail på mit borgerforslag"
+
+msgid "@remaining characters left."
+msgstr "@remaining tegn tilbage"
+
+msgid "Proposal"
+msgstr "Forslag"
+
+msgid "Remarks"
+msgstr "Begrundelse"
+
+msgid "Create proposal"
+msgstr "Opret borgerforslag"
+
+msgid "Create new proposal"
+msgstr "Opret borgerforslag"
+
+msgid "Share the proposal"
+msgstr "Del forslaget"
+
+msgid "Create your proposal"
+msgstr "Opret borgerforslag"
+
+msgid "Sign out"
+msgstr "Log ud"
+
+msgid "You're currently authenticated as %name"
+msgstr "Du er logget ind som %name"
+
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgid "Approve proposal"
+msgstr "Godkend borgerforslag"
+
+msgid "Edit proposal"
+msgstr "Ret borgerforslag"
+
+msgid "Cancel proposal"
+msgstr "Fortryd borgerforslag"
+
+msgid "Your submission has been cancelled."
+msgstr "Dit borgerforslag er blevet slettet"
+
+msgid "Number of supporters"
+msgstr "Antal støtter"
+
+msgid "Support the proposal"
+msgstr "Støt borgerforslaget"
+
+msgid "You're supporting @label on behalf of a citizen"
+msgstr "Du støtter nu <strong>@label</strong> på vegne af en borger "
+
+msgid "Support proposal"
+msgstr "Støt forslaget"
+
+msgid "Thank you for your support."
+msgstr "Tak for din støtte"
+
+msgid "Could not find a proposal to approve."
+msgstr "Ikke muligt at finde et forslag at godkende"
+
+msgid "Update proposal"
+msgstr "Opdater borgerforslag"
+
+msgid "Something went wrong. Your support was not registered."
+msgstr "Noget gik galt, din støtte er ikke gået igennem. Prøv igen senere"
+
+msgid ""
+"You already supported this proposal on @support_date. You can only "
+"support a proposal once."
+msgstr ""
+"Du har allerede støttet dette borgerforslag d. @support_date. Du kan "
+"kun støtte et forslag en gang. "
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Preview"
+msgstr "Gennemse"
+
+msgid "Reset"
+msgstr "Nulstil"
+
+msgid "Created"
+msgstr "Oprettet"
+
+msgid "Action"
+msgstr "Handling"
+
+msgid "Allow email"
+msgstr " Ja, I må gerne kontakte mig."
+
+msgid "Personal data storage consent"
+msgstr ""
+"Jeg har læst betingelserne og giver mit samtykke <a "
+"href=\"/hvorfor-og-hvordan-behandler-vi-dine-persondata-0\">Læs mere "
+"her</a>"
+
+msgid ""
+"Number of supporters: @number_of_supporters of "
+"@required_number_of_supporters"
+msgstr ""
+"Antal støtter: @number_of_supporters af "
+"@required_number_of_supporters"
+
+msgid "The proposal list is empty"
+msgstr "Der er i øjeblikket ingen borgerforslag i denne kategori"
+
+msgid "(Not shown on proposal)"
+msgstr "Ikke synligt for andre"
+
+msgid "Content blocks"
+msgstr "Custom block library"
+
+msgid "Find and manage content blocks."
+msgstr "Find and manage custom blocks."
+
+msgid "There are no content blocks available."
+msgstr "There are no custom blocks available."
+
+msgid "Blocks"
+msgstr "Custom block library"
+
+msgid "Create and edit content blocks."
+msgstr "Create and edit block content."
+
+msgid "The hearing list is empty"
+msgstr "Ingen høringer fundet"
+
+msgid "Show all hearings"
+msgstr "Vis alle høringer"
+
+msgid "The meeting list is empty"
+msgstr "Ingen begivenheder fundet"
+
+msgid "Show all meetings"
+msgstr "Vis alle begivenheder"
+
+msgid "Your name cannot contain numbers."
+msgstr "Dit navn må ikke indeholde tal."
+
+msgid "You're currently authenticated as @name"
+msgstr "Du er logget ind som @name"
+
+msgid "The hearing replies were deleted on @date"
+msgstr "Høringssvarene er blevet fjernet d. @date"
+
+msgid ""
+"The time limit for how long we are allowed to keep the replies has "
+"been reached so we where obligated to delete them.The hearing replies "
+"were deleted on @"
+msgstr ""
+"<b>Høringssvarene er ikke længere synlige på "
+"høringsportalen</b>\r\n"
+"<p>Høringssvar bliver løbende slettet på "
+"deltag.aarhus.dk i takt med at høringer afsluttes. Det gør vi for at "
+"leve op til reglerne for GDPR og for at sikre persondata ikke ligger "
+"tilgængelig på høringsportalen i længere tid end, hvad der er "
+"nødvendigt.</p>\r\n"
+"<b>Du kan stadig få adgang til høringssvar, der "
+"ikke længere er synlige på høringsportalen.</b>\r\n"
+"<p>Hvis "
+"høringen handler om en sag, der er behandlet af Aarhus Byråd, kan du "
+"finde alle høringssvar, som bilag til den konkrete byrådssag. Du kan "
+"finde alle sager i byrådet med tilhørende bilag på Aarhus Kommunes "
+"hjemmeside – klik her:  <a "
+"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
+"- dagsordener og referater</a></p>\r\n"
+"<p>Hvis sagen ikke ligger som "
+"en byrådssag og du har behov for at få indblik i gamle høringssvar, "
+"kan det ske gennem en aktindsigtsanmodning. Læs om dine muligheder "
+"for at søge aktindsigt: <a "
+"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
+
+msgid ""
+"The time limit for how long we are allowed to keep the replies has "
+"been reached so we where obligated to delete them."
+msgstr ""
+"<b>Høringssvarene er ikke længere synlige på "
+"høringsportalen</b>\r\n"
+"<p>Høringssvar bliver løbende slettet på "
+"deltag.aarhus.dk i takt med at høringer afsluttes. Det gør vi for at "
+"leve op til reglerne for GDPR og for at sikre persondata ikke ligger "
+"tilgængelig på høringsportalen i længere tid end, hvad der er "
+"nødvendigt.</p>\r\n"
+"<b>Du kan stadig få adgang til høringssvar, der "
+"ikke længere er synlige på høringsportalen.</b>\r\n"
+"<p>Hvis "
+"høringen handler om en sag, der er behandlet af Aarhus Byråd, kan du "
+"finde alle høringssvar, som bilag til den konkrete byrådssag. Du kan "
+"finde alle sager i byrådet med tilhørende bilag på Aarhus Kommunes "
+"hjemmeside – klik her:  <a "
+"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
+"- dagsordener og referater</a></p>\r\n"
+"<p>Hvis sagen ikke ligger som "
+"en byrådssag og du har behov for at få indblik i gamle høringssvar, "
+"kan det ske gennem en aktindsigtsanmodning. Læs om dine muligheder "
+"for at søge aktindsigt: <a "
+"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
+
+msgid ""
+"@ticket_ref by @person_name on behalf of @organization "
+"(@organization_type)"
+msgstr ""
+"@ticket_ref af @person_name på vegne af @organization "
+"(@organization_type)"
+
+msgid "Please log in to access this form."
+msgstr "Please login to access this form."
+
+msgid "Please log in to access this submission."
+msgstr "Please login to access this submission."
+
+msgid "Please log in to access the uploaded file."
+msgstr "Please login to access the uploaded file."
+
+msgid "@count place"
+msgid_plural "@count places"
+msgstr[0] "1 place"
+msgstr[1] "@count places"
+
+msgid "Search and results will show up here"
+msgstr "Søg og resultaterne vil blive vist her"
+
+msgid "Search for %search_terms returned no results"
+msgstr "Søgning på %search_terms gav ingen resultater"
+
+msgid "Try with less words or to phrase it differently"
+msgstr "Prøv med færre eller andre søgeord "
 
 

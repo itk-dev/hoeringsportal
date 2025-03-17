@@ -6,6 +6,10 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-472](https://github.com/itk-dev/hoeringsportal/pull/472)
+  * Translated search page to Danish
+  * Updated custom Danish translations (exported from production site)
+
 ## [4.8.1] - 2025-03-17
 
 * [PR-471](https://github.com/itk-dev/hoeringsportal/pull/471)
