@@ -1,0 +1,14 @@
+uuid: 18d22959-e6df-4b61-858a-cf3dade03560
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.hearing_editor
+  module:
+    - user
+id: user_remove_role_action.hearing_editor
+label: 'Remove the hearing editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: hearing_editor

@@ -92,7 +92,7 @@ class GeoJsonHelper {
   public function getProjects(array $properties = []) {
     $properties += [
       'status' => NodeInterface::PUBLISHED,
-      'type' => 'project',
+      'type' => 'project_main_page',
     ];
     $entities = $this->entityTypeManager
       ->getStorage('node')
@@ -141,57 +141,6 @@ class GeoJsonHelper {
   }
 
   /**
-   * Serialize Project as GeoJSON.
-   */
-  public function serializeGeoJsonProject(NodeInterface $project) {
-    $areas = $project->get('field_area')->referencedEntities();
-    $tags = $project->get('field_tags')->referencedEntities();
-
-    $lokalplaner = [];
-    foreach ($project->get('field_lokalplaner') as $lokalplan) {
-      $lokalplaner[] = $lokalplan;
-    }
-
-    $geometryType = $this->getGeometryType($project);
-
-    $data = [
-      'properties' => [
-        'project_id' => (int) $project->id(),
-        'project_title' => $project->getTitle(),
-        'project_teaser' => $project->get('field_teaser')->value,
-        'project_description' => $project->get('field_description')->value,
-        'project_start' => $this->getDateTime($project->get('field_project_start')->value),
-        'project_finish' => $this->getDateTime($project->get('field_project_finish')->value),
-        'project_tags' => array_map([$this, 'getTermName'], $tags),
-        'project_contact' => $project->get('field_contact')->value,
-        'project_phone' => $project->get('field_phone')->value,
-        'project_geometry_type' => $geometryType,
-        'project_url' => $this->generateUrl('entity.node.canonical', ['node' => $project->id()]),
-        'project_area_list' => $this->listify(array_map(function (Term $term) {
-          return $term->get('field_area_id')->value;
-        }, $areas)),
-        'project_area_ids' => array_map(function (Term $term) {
-          return (int) $term->get('field_area_id')->value;
-        }, $areas),
-        'project_local_plan_list' => $this->listify(array_map(function ($lokalplan) {
-          return $lokalplan->id;
-        }, $lokalplaner)),
-        'project_local_plan_ids' => array_map(function ($lokalplan) {
-          return (int) $lokalplan->id;
-        }, $lokalplaner),
-      ],
-    ];
-
-    $geometry = $this->getGeometry($project);
-    if (NULL !== $geometry) {
-      $data['geometry'] = $geometry['geometry'];
-      $data['type'] = 'Feature';
-    }
-
-    return $data;
-  }
-
-  /**
    * Serialize Hearing as GeoJSON.
    */
   public function serializeGeoJsonHearing(NodeInterface $hearing) {
@@ -210,8 +159,7 @@ class GeoJsonHelper {
 
     $geometryType = $this->getGeometryType($hearing);
 
-    $data = [
-      'properties' => [
+    $properties = [
         'hearing_id' => (int) $hearing->id(),
         'hearing_title' => $hearing->getTitle(),
         'hearing_content_state' => $hearing->get('field_content_state')->value,
@@ -240,11 +188,18 @@ class GeoJsonHelper {
         'hearing_local_plan_ids' => array_map(function ($lokalplan) {
           return (int) $lokalplan->id;
         }, $lokalplaner),
-      ],
     ];
 
+    // Additional properties for Septima widget.
+    $properties['start_date'] = $properties['hearing_start_date'];
+    $properties['end_date'] = $properties['hearing_reply_deadline'];
+
+    $data = [
+      'properties' => $properties,
+      ];
+
     $geometry = $this->getGeometry($hearing);
-    if (NULL !== $geometry) {
+    if (isset($geometry['geometry'])) {
       $data['geometry'] = $geometry['geometry'];
       $data['type'] = 'Feature';
     }
@@ -295,6 +250,10 @@ class GeoJsonHelper {
       'date_spots' => (int) $data->spots,
     ];
 
+    // Additional properties for Septima widget.
+    $properties['start_date'] = $properties['date_time_from'];
+    $properties['end_date'] = $properties['date_time_to'];
+
     if (isset($data->data->coordinates)) {
       $serialized['geometry'] = [
         'type' => 'Point',
@@ -302,32 +261,6 @@ class GeoJsonHelper {
       ];
       $serialized['type'] = 'Feature';
     }
-
-    return $serialized;
-  }
-
-  /**
-   * Serialize Ticket as GeoJSON.
-   */
-  public function serializeGeoJsonTicket(object $ticket) {
-    $serialized = $this->serializeGeoJsonHearing($ticket->hearing);
-
-    $properties = &$serialized['properties'];
-
-    $data = $ticket->data;
-    $fields = $data->fields;
-    $properties = [
-      'ticket_id' => $data->id,
-      'ticket_hearing_id' => (int) $ticket->hearing->id(),
-      'ticket_message' => $fields->message ?? NULL,
-      'ticket_person_name' => $data->person->name ?? NULL,
-      'ticket_organization' => $fields->organization ?? NULL,
-      'ticket_pdf_download_url' => $fields->pdf_download_url ?? NULL,
-      'ticket_url' => $this->generateUrl('hoeringsportal_deskpro.hearing.ticket_view', [
-        'node' => $ticket->hearing->id(),
-        'ticket' => $data->id,
-      ]),
-    ];
 
     return $serialized;
   }
@@ -488,7 +421,7 @@ class GeoJsonHelper {
   /**
    * Get term name.
    */
-  private function getTermName(Term $term = NULL) {
+  private function getTermName(Term|bool|null $term = NULL) {
     return $term ? $term->get('name')->value : NULL;
   }
 

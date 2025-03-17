@@ -1,0 +1,15 @@
+{% extends '@claro/node-edit-form.html.twig' %}
+
+{% block main %}
+  {{ form|without('advanced', 'group_sidebar', 'group_system_settings', 'actions') }}
+{% endblock %}
+
+{% block secondary %}
+  {{ form.advanced }}
+  {{ form.group_sidebar }}
+  {{ form.group_system_settings }}
+{% endblock %}
+
+{% block footer %}
+  {{ form.actions }}
+{% endblock %}

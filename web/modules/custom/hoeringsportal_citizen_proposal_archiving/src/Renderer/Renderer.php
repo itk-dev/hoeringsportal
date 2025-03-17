@@ -4,7 +4,7 @@ namespace Drupal\hoeringsportal_citizen_proposal_archiving\Renderer;
 
 use Dompdf\Dompdf;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Render\Renderer as DrupalRenderer;
+use Drupal\Core\Render\RendererInterface as DrupalRendererInterface;
 use Drupal\hoeringsportal_citizen_proposal_archiving\Exception\RuntimeException;
 use Drupal\node\NodeInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -23,7 +23,7 @@ final class Renderer implements LoggerAwareInterface, LoggerInterface {
    * Constructor.
    */
   public function __construct(
-    readonly private DrupalRenderer $renderer,
+    readonly private DrupalRendererInterface $renderer,
     readonly private ModuleHandlerInterface $moduleHandler,
   ) {
   }

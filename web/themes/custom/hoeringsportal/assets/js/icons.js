@@ -3,13 +3,14 @@
 */
 
 // Import the svg core
-import { library, dom } from '@fortawesome/fontawesome-svg-core'
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
 
 // To keep the package size as small as possible we only import icons we use
 
 // Import the icons from the free solid package.
 import {
   faArrowRight,
+  faArrowLeft,
   faCopy,
   faComment,
   faCircleCheck,
@@ -25,8 +26,8 @@ import {
   faFileImage,
   faFileExcel,
   faTicketAlt,
-  faTriangleExclamation
-} from '@fortawesome/free-solid-svg-icons'
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 
 // Import icons from the free brands package
 import {
@@ -39,13 +40,14 @@ import {
   faReddit,
   faTumblr,
   faWhatsapp,
-  faXTwitter
-} from '@fortawesome/free-brands-svg-icons'
+  faXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 // Add the icons to the library for replacing <i class="fa-solid fa-sort"></i> with the intended svg.
 library.add(
   // Solid
   faArrowRight,
+  faArrowLeft,
   faCircle,
   faCircleCheck,
   faComment,
@@ -72,6 +74,6 @@ library.add(
   faTumblr,
   faWhatsapp,
   faXTwitter,
-  faTriangleExclamation
-)
-dom.i2svg()
+  faTriangleExclamation,
+);
+dom.i2svg();

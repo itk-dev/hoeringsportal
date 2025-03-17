@@ -15,7 +15,7 @@ test("Can authenticate", async ({ page }) => {
   await page.getByRole("link", { name: "Sign out" }).click();
 
   await expect(
-    page.getByRole("link", { name: "Authenticate with MitID" })
+    page.getByRole("link", { name: "Authenticate with MitID" }),
   ).toBeVisible();
 });
 
@@ -31,7 +31,7 @@ test("Create proposal", async ({ page }) => {
   await page.getByRole("button", { name: "Login" }).click();
 
   await expect(
-    page.getByText("You're currently authenticated as Anders And")
+    page.getByText("You're currently authenticated as Anders And"),
   ).toBeVisible();
 
   await expect(page.getByRole("link", { name: "Sign out" })).toBeVisible();
@@ -61,13 +61,13 @@ test("Create proposal", async ({ page }) => {
   expect(page).toHaveURL("/citizen_proposal/approve");
 
   await expect(
-    page.getByRole("button", { name: "Approve proposal" })
+    page.getByRole("button", { name: "Approve proposal" }),
   ).toBeVisible();
 
   await expect(page.getByRole("link", { name: "Edit proposal" })).toBeVisible();
 
   await expect(
-    page.getByRole("button", { name: "Cancel proposal" })
+    page.getByRole("button", { name: "Cancel proposal" }),
   ).toBeVisible();
 
   await expect(page.getByText("borger87@eksemple.dk")).toBeVisible();
@@ -75,7 +75,7 @@ test("Create proposal", async ({ page }) => {
   await page.getByRole("link", { name: "Edit proposal" }).click();
 
   await expect(page.getByLabel("Email", { exact: true })).toHaveValue(
-    "borger87@eksemple.dk"
+    "borger87@eksemple.dk",
   );
 
   await page.getByLabel("Email", { exact: true }).fill("borger87@eksempel.dk");
@@ -128,6 +128,6 @@ test("Cancel proposal", async ({ page }) => {
   await page.getByRole("button", { name: "Cancel proposal" }).click();
 
   await expect(
-    page.getByText("Your submission has been cancelled.")
+    page.getByText("Your submission has been cancelled."),
   ).toBeVisible();
 });

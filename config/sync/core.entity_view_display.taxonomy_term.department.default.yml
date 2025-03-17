@@ -1,0 +1,32 @@
+uuid: 4d4a3f5e-d674-4ed0-888b-74eedec63e52
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.department.field_claim_value
+    - taxonomy.vocabulary.department
+  module:
+    - text
+id: taxonomy_term.department.default
+targetEntityType: taxonomy_term
+bundle: department
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_claim_value:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

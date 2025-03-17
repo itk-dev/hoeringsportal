@@ -3,10 +3,16 @@
 body {
   background: $gray-100;
   word-wrap: break-word;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
+  padding-top: 96px;
 }
 
-h1, h2, h3, h4, h5, legend {
+h1,
+h2,
+h3,
+h4,
+h5,
+legend {
   font-family: $headings-font-family;
   margin-bottom: $headings-margin-bottom;
   margin-top: $headings-margin-top;
@@ -17,11 +23,15 @@ p {
 }
 
 a {
-  transition: color .2s ease-in, border-bottom .2s ease-in;
+  transition:
+    color 0.2s ease-in,
+    border-bottom 0.2s ease-in;
 
   &:hover {
     color: color.adjust($petroleum, $lightness: -10%);
-    transition: color .4s ease-out, border-bottom .3s ease-out;
+    transition:
+      color 0.4s ease-out,
+      border-bottom 0.3s ease-out;
   }
 }
 

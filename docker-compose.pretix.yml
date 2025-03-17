@@ -1,0 +1,53 @@
+networks:
+  pretix:
+    driver: bridge
+    internal: false
+
+services:
+  pretix:
+    image: pretix/standalone:latest
+    profiles:
+      - pretix
+    networks:
+      - app
+      - pretix
+      - frontend
+    depends_on:
+      - pretix_database
+      - pretix_redis
+    ports:
+      - '80'
+    volumes:
+      - ${PWD}/.docker/pretix/etc/pretix.cfg:/etc/pretix/pretix.cfg
+
+    # Let the pretix container be accessible both internally and externally on the same domain.
+    container_name: pretix.${COMPOSE_DOMAIN}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=frontend"
+      - "traefik.http.routers.${COMPOSE_PROJECT_NAME}_pretix.rule=Host(`pretix.${COMPOSE_DOMAIN}`)"
+
+  pretix_database:
+    # https://hub.docker.com/_/postgres
+    image: postgres
+    profiles:
+      - pretix
+    networks:
+      - pretix
+    ports:
+      - '3306'
+    volumes:
+      - .docker/pretix/dumps:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=pretix
+      - POSTGRES_PASSWORD=pretix
+      - POSTGRES_DATABASE=pretix
+
+  pretix_redis:
+    image: redis:latest
+    profiles:
+      - pretix
+    networks:
+      - pretix
+    ports:
+      - "6379"

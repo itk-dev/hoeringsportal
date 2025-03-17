@@ -7,7 +7,7 @@ namespace Drupal\hoeringsportal_base_fixtures\Fixture;
  *
  * @package Drupal\hoeringsportal_base_fixtures\Fixture
  */
-class TermTypeFixture extends TaxonomyTermFixture {
+class TermTypeFixture extends AbstractTaxonomyTermFixture {
   /**
    * {@inheritdoc}
    */

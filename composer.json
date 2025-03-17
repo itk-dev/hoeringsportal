@@ -55,6 +55,7 @@
         "drupal/publication_date": "^2.0",
         "drupal/quick_node_clone": "^1.12",
         "drupal/redirect": "^1.6",
+        "drupal/search_api": "^1.37",
         "drupal/search_autocomplete": "^3.0",
         "drupal/token_filter": "^2.1",
         "drupal/toolbar_visibility": "^2.1",
@@ -64,7 +65,8 @@
         "drupal/viewsreference": "^2.0@beta",
         "drupal/webform": "^6.2@beta",
         "drupal/xls_serialization": "^1.2",
-        "drush/drush": "^12",
+        "drush/drush": "^13",
+        "itk-dev/azure-ad-delta-sync-drupal": "^2.0",
         "itk-dev/composer-virtualenv": "^1.0",
         "itk-dev/itk_azure_video": "^2.0",
         "itk-dev/itk_pretix": "^1.0",
@@ -77,9 +79,10 @@
         "webflo/drupal-finder": "^1.0.0"
     },
     "require-dev": {
-        "drupal/content_fixtures": "^3.1",
+        "drupal/content_fixtures": "dev-3498162-not-compatible-with",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
+        "drupal/webprofiler": "^10.3",
         "ergebnis/composer-normalize": "^2.44",
         "mglaman/phpstan-drupal": "^1.1",
         "phpstan/extension-installer": "^1.2",
@@ -90,6 +93,11 @@
         "drupal/drupal": "*"
     },
     "repositories": {
+        "drupal/content_fixtures": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
+            "//": "Content fixtures: Not compatible with Drush 13+ (https://www.drupal.org/project/content_fixtures/issues/3498162)"
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -263,8 +271,14 @@
             "@coding-standards-apply/phpcs",
             "@coding-standards-apply/twig-cs-fixer"
         ],
+        "coding-standards-apply/php": [
+            "@coding-standards-apply/phpcs"
+        ],
         "coding-standards-apply/phpcs": [
-            "scripts/phpcbf --standard=phpcs.xml.dist"
+            "phpcbf --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-apply/twig": [
+            "@coding-standards-apply/twig-cs-fixer"
         ],
         "coding-standards-apply/twig-cs-fixer": [
             "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates --fix"
@@ -273,14 +287,20 @@
             "@coding-standards-check/phpcs",
             "@coding-standards-check/twig-cs-fixer"
         ],
+        "coding-standards-check/php": [
+            "@coding-standards-check/phpcs"
+        ],
         "coding-standards-check/phpcs": [
-            "vendor/bin/phpcs --standard=phpcs.xml.dist"
+            "phpcs --standard=phpcs.xml.dist"
+        ],
+        "coding-standards-check/twig": [
+            "@coding-standards-check/twig-cs-fixer"
         ],
         "coding-standards-check/twig-cs-fixer": [
             "twig-cs-fixer lint web/themes/custom/hoeringsportal/templates"
         ],
         "install-codestandards": [
-            "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
+            "PHPCSStandards\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
         ]
     }
 }

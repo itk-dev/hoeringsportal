@@ -340,7 +340,7 @@ function hoeringsportal_public_meeting_get_cancel_link(NodeInterface $node) {
   // Create cancel link.
   $helper = \Drupal::service('itk_pretix.event_helper');
   $info = $helper->loadPretixEventInfo($node);
-  $pretix_event_url = $info['data']['pretix_event_url'];
+  $pretix_event_url = $info['data']['pretix_event_url'] ?? '';
 
   // If no event slug is set in config we must assume default.
   $cancelUrl = $pretix_event_url . 'cancel';

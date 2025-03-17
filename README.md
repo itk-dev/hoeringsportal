@@ -21,12 +21,12 @@
 ## Database dumps
 
 The `docker compose` setup contains a couple of database dumps, one for Drupal
-and one for pretix, to make it easy to get started. When adding new
-functionality to Drupal, you may need to upgrade the database dump.
+and one for pretix (see [Pretix setup](documentation/pretix.md) for details), to
+make it easy to get started. When upgrading or adding new functionality to
+Drupal, you may need to upgrade the database dump:
 
 ```sh
-# Dump the database
-docker compose exec phpfpm vendor/bin/drush sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+task database-dump
 ```
 
 ## Setting up cron
@@ -35,3 +35,11 @@ A number of `cron` jobs must be set up to make things happen automagically; see
 
 * [Hoeringsportal data](web/modules/custom/hoeringsportal_data/README.md)
 * [Hoeringsportal public meeting](web/modules/custom/hoeringsportal_public_meeting/README.md)
+
+## Search
+
+``` sh name=search-reindex
+task drush -- search-api:reset-tracker
+task drush -- search-api:rebuild-tracker
+task drush -- search-api:index
+```

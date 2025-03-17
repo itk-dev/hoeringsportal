@@ -1,0 +1,4 @@
+services:
+  Drupal\hoeringsportal_test_delta_sync_fixtures\Fixture\OIDCUserFixture:
+    tags:
+      - { name: content_fixture }

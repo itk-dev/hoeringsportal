@@ -21,14 +21,10 @@ docker compose exec phpfpm vendor/bin/drush sql:query "DELETE FROM locales_targe
 docker compose exec phpfpm vendor/bin/drush state:delete citizen_proposal_admin_form_values --yes
 docker compose exec phpfpm vendor/bin/drush cache:rebuild
 
-# Build theme assets
-docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal install
-docker compose run --rm node yarn --cwd web/themes/custom/hoeringsportal build
-
 # Optional, but recommended for proper testing
 # docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
-docker compose run --rm node yarn install
+docker compose run --rm node npm install
 docker compose run --rm playwright npx playwright install
 docker compose run --rm playwright npx playwright test
 open playwright-report/index.html

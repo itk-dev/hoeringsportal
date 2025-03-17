@@ -1,0 +1,244 @@
+version: '3'
+
+# https://taskfile.dev/usage/#env-files
+dotenv: ['.env.local', '.env']
+
+vars:
+  # https://taskfile.dev/reference/templating/
+  BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default "https://hoeringsportal.local.itkdev.dk"}}'
+  DOCKER_COMPOSE: '{{.TASK_DOCKER_COMPOSE | default "docker compose"}}'
+  COMPOSER_INSTALL_ARGUMENTS: '{{.TASK_COMPOSER_INSTALL_ARGUMENTS | default ""}}'
+
+  PRETIX_URL: '{{.TASK_PRETIX_URL | default "http://pretix.hoeringsportal.local.itkdev.dk"}}'
+  PRETIX_ORGANIZER: '{{.TASK_PRETIX_ORGANIZER | default "dpl-cms"}}'
+
+tasks:
+  default:
+    cmds:
+      - task --list-all
+    silent: true
+
+  site-install:
+    prompt: "This will reset your setup. Continue?"
+    cmds:
+      - task compose -- down
+      - task compose -- pull
+      - task compose-up
+      - task composer-install
+      - task drush -- --yes site:install --existing-config
+      - task assets-build
+      - task site-open
+      - task site-open-admin
+    silent: true
+
+  site-update:
+    cmds:
+      - task compose -- pull
+      - task compose-up
+      - task composer-install
+      - task assets-build
+      - task drush -- deploy
+    silent: true
+
+  site-url:
+    cmds:
+      - task drush -- browse --no-browser
+    silent: true
+
+  site-open:
+    cmds:
+      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)"; else echo "$(task site-url)"; fi
+    silent: true
+
+  site-open-admin:
+    cmds:
+      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}"; else echo "{{.URL}}"; fi
+    vars:
+      URL:
+        sh: task drush -- user:login --no-browser
+    silent: true
+
+  assets-build:
+    cmds:
+      - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal'
+      - '{{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal'
+  compose:
+    cmds:
+      - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
+
+  compose-up:
+    cmds:
+      - task compose -- up --detach --remove-orphans --wait
+    silent: true
+
+  composer:
+    cmds:
+      - task compose -- exec phpfpm composer {{.CLI_ARGS}}
+    silent: true
+
+  composer-install:
+    cmds:
+      - task composer -- install {{.COMPOSER_INSTALL_ARGUMENTS}} {{.CLI_ARGS}}
+    silent: true
+
+  drush:
+    cmds:
+      # Check if we have content on stdin (cf.
+      # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
+      - >-
+        if [[ ! -t 0 ]]; then
+          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+        else
+          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+        fi
+    silent: true
+
+  database-dump:
+    cmds:
+      # Make sure that site is up to date
+      - task site-update
+      - task drush -- sql:dump --extra-dump='--skip-column-statistics' --structure-tables-list="cache,cache_*,advancedqueue,history,search_*,sessions,watchdog" --gzip --result-file=/app/.docker/drupal/dumps/drupal.sql
+
+  pretix:
+    cmds:
+      - task compose -- exec pretix pretix {{.CLI_ARGS}}
+    silent: true
+
+  pretix:database-dump:
+    cmds:
+      - task compose -- exec --env PGPASSWORD=pretix pretix_database pg_dump --user=pretix pretix > .docker/pretix/dumps/pretix.sql
+
+  pretix:database-cli:
+    cmds:
+      - task compose -- exec --env PGPASSWORD=pretix pretix_database psql --user=pretix pretix
+
+  pretix:database-reset:
+    prompt: "This will reset your pretix database. Continue?"
+    cmds:
+      # Remove the pretix database container
+      - task compose -- rm pretix_database --stop --force
+      # Starting the container will load dump from .docker/pretix/dumps (cf. docker-compose.pretix.yml).
+      - task compose -- up --detach
+      # https://docs.pretix.eu/en/latest/admin/installation/docker_smallscale.html#updates
+      - task compose -- exec pretix pretix upgrade
+
+  pretix:database-load:
+    prompt: "This will reset your pretix database. Continue?"
+    cmds:
+      - task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --quiet --user=pretix pretix <<< "DROP SCHEMA public CASCADE; CREATE SCHEMA public;"
+      - task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --quiet --user=pretix pretix < .docker/pretix/dumps/pretix.sql
+      # https://docs.pretix.eu/en/latest/admin/installation/docker_smallscale.html#updates
+      - task pretix -- upgrade
+
+  pretix:api-ping:
+    vars:
+      API_TOKEN:
+        sh: task compose -- exec --no-TTY --env PGPASSWORD=pretix pretix_database psql --user=pretix pretix --tuples-only --csv <<< "SELECT token FROM pretixbase_teamapitoken WHERE name = 'hoeringsportal'"
+    cmds:
+      - "task compose -- exec phpfpm curl --header 'Authorization: Token {{.API_TOKEN}}' {{.PRETIX_URL}}/api/v1/organizers/"
+
+  coding-standards:apply:
+    desc: "Apply coding standards"
+    cmds:
+      - task: coding-standards:assets:apply
+      - task: coding-standards:markdown:apply
+      - task: coding-standards:php:apply
+      - task: coding-standards:twig:apply
+    silent: true
+
+  coding-standards:check:
+    desc: "Apply coding standards"
+    cmds:
+      - task: coding-standards:assets:check
+      - task: coding-standards:markdown:check
+      - task: coding-standards:php:check
+      - task: coding-standards:twig:check
+    silent: true
+
+  coding-standards:assets:apply:
+    desc: "Apply coding standards for assets"
+    cmds:
+      # Prettier does not (yet, fcf.
+      # https://github.com/prettier/prettier/issues/15206) have an official
+      # docker image.
+      # https://hub.docker.com/r/jauderho/prettier is good candidate (cf. https://hub.docker.com/search?q=prettier&sort=updated_at&order=desc)
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --write playwright web/themes/custom/hoeringsportal/assets
+
+  coding-standards:assets:check:
+    desc: "Apply and check coding standards for assets"
+    cmds:
+      - task: coding-standards:assets:apply
+      - docker run --rm --volume "$PWD:/work" jauderho/prettier --check playwright web/themes/custom/hoeringsportal/assets
+
+  coding-standards:markdown:apply:
+    desc: "Apply coding standards for Markdown"
+    cmds:
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md' --fix
+
+  coding-standards:markdown:check:
+    desc: "Apply and check coding standards for Markdown"
+    cmds:
+      - task: coding-standards:markdown:apply
+      - docker run --rm --volume "$PWD:/md" peterdavehello/markdownlint markdownlint  --ignore '**/node_modules/**' --ignore '**/vendor/**' '*.md' 'web/*/custom/**/*.md' 'documentation/*.md'
+
+  coding-standards:php:apply:
+    desc: "Apply coding standards for PHP"
+    cmds:
+      - task composer -- coding-standards-apply/php
+    silent: true
+
+  coding-standards:php:check:
+    desc: "Apply and check coding standards for PHP"
+    cmds:
+      - task: coding-standards:php:apply
+      - task composer -- coding-standards-check/php
+    silent: true
+
+  coding-standards:twig:apply:
+    desc: "Apply coding standards for Twig"
+    cmds:
+      - task composer -- coding-standards-apply/twig
+    silent: true
+
+  coding-standards:twig:check:
+    desc: "Apply and check coding standards for Twig"
+    cmds:
+      - task: coding-standards:twig:apply
+      - task composer -- coding-standards-check/twig
+    silent: true
+
+  code-analysis:
+    cmds:
+      - task composer -- code-analysis
+
+  docker-pull:
+    desc: "Pull all development docker images"
+    cmds:
+      - docker pull jauderho/prettier
+      - docker pull peterdavehello/markdownlint
+      - task compose -- pull
+
+  fixtures:load:
+    prompt: "This will reset your content. Continue?"
+    cmds:
+     - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+     - task drush -- --yes content-fixtures:load
+     - task drush -- --yes pm:uninstall content_fixtures
+    silent: true
+
+  translations:import:
+    cmds:
+      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)'
+      - task drush -- php:eval "var_export(\Drupal::state()->get('locale.translation.formulae', []))"
+      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''da'']))->render(), range(0, 5)));"'
+      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''en'']))->render(), range(0, 5)));"'
+    silent: true
+
+  translations:export:
+    cmds:
+      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)'
+      # Fix plurals spec in PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true

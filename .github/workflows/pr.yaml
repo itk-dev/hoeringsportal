@@ -1,5 +1,10 @@
 on: pull_request
 
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#defining-environment-variables-for-a-single-workflow
+# (cf. services.phpfpm.user in ../../docker-compose.yml)
+env:
+  COMPOSE_USER: root
+
 name: PR Review
 jobs:
   fail-for-do-not-merge:
@@ -11,6 +16,19 @@ jobs:
           echo "This PR can't be merged, due to the 'not ready for merge' label."
           exit 1
 
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup docker network
+        run: docker network create frontend
+
+      - name: npm audit
+        run: docker compose run --rm node npm audit --prefix /app/web/themes/custom/hoeringsportal
+
   changelog:
     runs-on: ubuntu-latest
     name: Changelog should be updated
@@ -18,7 +36,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
@@ -32,167 +50,94 @@ jobs:
     name: Validate composer
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: ctype, dom, iconv, json, zip, gd, soap
-          coverage: none
-          tools: composer:v2
-      # https://github.com/shivammathur/setup-php#cache-composer-dependencies
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - run: |
+          docker network create frontend
+          task compose -- up --detach
+          task composer -- install
+
       - name: Validate composer files
         run: |
-          composer validate composer.json
+          task composer -- validate
       - name: Check composer file is normalized
         run: |
-          composer install --no-interaction --no-progress
-          composer normalize composer.json --dry-run
+          task composer -- normalize --dry-run
 
-  coding-standards-phpcs:
+  coding-standards-assets:
+    name: Assets - Check Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - run: task coding-standards:assets:check
+      # Check for any changes (task …:check runs task …:apply)
+      - run: git diff --exit-code
+
+  coding-standards-markdown:
+    name: Markdown - Check Coding Standards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - run: task coding-standards:markdown:check
+      # Check for any changes (task …:check runs task …:apply)
+      - run: git diff --exit-code
+
+  coding-standards-php:
     name: PHP - Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: ctype, dom, iconv, json, zip, gd, soap
-          coverage: none
-          tools: composer:v2
-      # https://github.com/shivammathur/setup-php#cache-composer-dependencies
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Dependencies
-        run: |
-          composer install --no-interaction --no-progress --no-scripts
-          # @see https://github.com/Dealerdirect/phpcodesniffer-composer-installer#calling-the-plugin-directly
-          composer run-script install-codestandards
-      - name: PHPCS
-        run: |
-          composer coding-standards-check/phpcs
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - run: |
+          docker network create frontend
+          task compose -- up --detach
+          task composer -- install
+          task coding-standards:php:check
+      # Check for any changes (task …:check runs task …:apply)
+      - run: git diff --exit-code
 
-  coding-standards-twig-cs-fixer:
+  coding-standards-twig:
     name: Twig - Check Coding Standards
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: ctype, dom, iconv, json, zip, gd, soap
-          coverage: none
-          tools: composer:v2
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Dependencies
-        run: |
-          composer install --no-interaction --no-progress --no-scripts
-          # @see https://github.com/Dealerdirect/phpcodesniffer-composer-installer#calling-the-plugin-directly
-          composer run-script install-codestandards
-      - name: TwigCS
-        run: |
-          composer coding-standards-check/twig-cs-fixer
-
-  coding-standards-markdown:
-    name: Yarn - Check Coding Standards (Node ${{ matrix.node }})
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ '16' ]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
       - run: |
-          yarn install
-          yarn coding-standards-check
+          docker network create frontend
+          task compose -- up --detach
+          task composer -- install
+          task coding-standards:twig:check
+      # Check for any changes (task …:check runs task …:apply)
+      - run: git diff --exit-code
 
   code-analysis:
     name: PHP - Code analysis
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: ctype, dom, iconv, json, zip, gd, soap
-          coverage: none
-          tools: composer:v2
-      # https://github.com/shivammathur/setup-php#cache-composer-dependencies
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install Dependencies
-        run: |
-          # Using `--no-scripts` breaks something with mglaman/drupal-check.
-          composer install --no-interaction --no-progress --no-scripts
-      - name: code-analysis
-        run: |
-          composer code-analysis
-
-  coding-standards-custom-themes:
-    name: Yarn - Check Coding Standards in custom themes
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: Setup docker network
-        run: docker network create frontend
-
-      - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-
-      - name: Check coding standards
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal check-coding-standards
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+      - run: |
+          docker network create frontend
+          task compose -- up --detach
+          task composer -- install
+          task code-analysis
 
   check-custom-theme-assets:
     name: Check custom theme assets are up to date
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Setup docker network
         run: docker network create frontend
 
       - name: Install build dependencies
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
+        run: docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Build theme assets
-        run: docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+        run: docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Check for changes in built css
         run: git diff --diff-filter=ACMRT --exit-code web/themes/custom/hoeringsportal/build
@@ -201,7 +146,7 @@ jobs:
     name: Check that site can be installed
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -210,25 +155,48 @@ jobs:
           docker compose up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
+          docker compose exec phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+          docker compose exec phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
-      - name: Open site
+      - name: Show site URL
         run: |
-          # Open the site
           echo $(docker compose exec phpfpm vendor/bin/drush --uri=http://$(docker compose port nginx 8080) user:login)
+
+  load-fixtures:
+    name: Load fixtures
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+          # Install the site
+          docker compose exec phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+
+      - name: Load fixtures
+        run: |
+          docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+          docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
+          docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
 
   config-check:
     name: Check that config is up to date
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -237,13 +205,13 @@ jobs:
           docker compose up --detach
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
+          docker compose exec phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install --existing-config --yes
+          docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
 
       - name: Export config
-        run: docker compose exec --user root phpfpm vendor/bin/drush config:export --yes
+        run: docker compose exec phpfpm vendor/bin/drush config:export --yes
       - name: Check for changes in config
         run: git diff --diff-filter=ACMRT --exit-code config/
 
@@ -254,7 +222,7 @@ jobs:
       fail-fast: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Install site
         run: |
@@ -273,18 +241,18 @@ jobs:
           EOL
 
           # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
-          docker compose exec --user root phpfpm composer install --no-interaction
+          docker compose exec phpfpm composer install --no-interaction
 
           # Install the site
-          docker compose exec --user root phpfpm vendor/bin/drush site:install minimal --existing-config --yes
+          docker compose exec phpfpm vendor/bin/drush site:install minimal --existing-config --yes
 
           # Build theme assets
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal install
-          docker compose run --rm node yarn --cwd /app/web/themes/custom/hoeringsportal build
+          docker compose run --rm node npm install --prefix /app/web/themes/custom/hoeringsportal
+          docker compose run --rm node npm run build --prefix /app/web/themes/custom/hoeringsportal
 
       - name: Run Playwright
         run: |
-          docker compose run --rm node yarn install
+          docker compose run --rm node npm install
           docker compose run --rm playwright npx playwright install
           docker compose run --rm playwright npx playwright test --retries 3
 
@@ -294,3 +262,94 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+  update-site:
+    name: Check that site can be updated
+    runs-on: ubuntu-latest
+    steps:
+      # Install site from our base ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Install site
+        run: |
+          # Add some local settings.
+          cat > web/sites/default/settings.local.php <<'EOF'
+          <?php
+
+          $settings['hash_salt'] = '${{ github.head_ref }}';
+          EOF
+
+          cat web/sites/default/settings.local.php
+
+          # Install the site from config
+          docker compose exec phpfpm vendor/bin/drush site:install --existing-config --yes
+
+      - name: Clean up root stuff
+        run: |
+          sudo chown -Rv $USER:$USER vendor/ web/ private-files/ || true
+          sudo chmod -Rv a+w web/sites/default || true
+
+      # Install site with our current ref
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          # Keep our local settings (cf.
+          # https://github.com/actions/checkout?tab=readme-ov-file#usage)
+          clean: false
+
+      # - run: |
+      #     sudo git fetch
+      #     sudo git checkout ${{ github.head_ref }}
+
+      - name: setup-docker-and-composer
+        run: |
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Update site
+        run: |
+          docker compose exec phpfpm vendor/bin/drush deploy --yes
+
+  check-debug-patches:
+    name: Check that debug patches can be applied and reversed.
+    runs-on: ubuntu-latest
+    # https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
+    strategy:
+      matrix:
+        patch:
+          # Cf. documentation/openIdConnect.md
+          - patches/openid_connect-debug-userinfo.patch
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start docker compose setup and install composer packages
+        run: |
+          docker network create frontend
+          docker compose pull
+          docker compose up --detach
+
+          # Important: Use --no-interaction to make https://getcomposer.org/doc/06-config.md#discard-changes have effect.
+          docker compose exec phpfpm composer install --no-interaction
+
+      - name: Apply patch
+        run: |
+          docker compose exec phpfpm patch --strip=1 --verbose --input=${{ matrix.patch }}
+
+      - name: Reverse patch
+        run: |
+          docker compose exec phpfpm patch --strip=1 --verbose --input=${{ matrix.patch }} --reverse

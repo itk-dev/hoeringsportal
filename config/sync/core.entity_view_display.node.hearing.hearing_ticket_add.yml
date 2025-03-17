@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_delete_date
+    - field.field.node.hearing.field_department
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -42,6 +43,7 @@ third_party_settings:
       disable_css: false
       entity_classes: all_classes
       settings:
+        label: ''
         classes:
           layout_class: {  }
         wrappers:
@@ -53,7 +55,6 @@ third_party_settings:
         attributes: ''
         link_attribute: ''
         link_custom: ''
-        label: ''
     regions:
       header:
         - 'dynamic_block_field:node-hearing_ticket_title'
@@ -164,6 +165,7 @@ content:
 hidden:
   field_content_state: true
   field_delete_date: true
+  field_department: true
   field_description: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true
@@ -183,4 +185,5 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  search_api_excerpt: true
   sharing_buttons: true

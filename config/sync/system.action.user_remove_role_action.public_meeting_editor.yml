@@ -1,0 +1,14 @@
+uuid: 1aa142db-a279-462b-b516-860fc3dcfeff
+langcode: da
+status: true
+dependencies:
+  config:
+    - user.role.public_meeting_editor
+  module:
+    - user
+id: user_remove_role_action.public_meeting_editor
+label: 'Remove the public meeting editor role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: public_meeting_editor

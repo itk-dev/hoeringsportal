@@ -1,0 +1,184 @@
+map:
+  height: 100%
+  srs: EPSG:25832
+  maxZoomLevel: 0
+  minZoomLevel: 11
+  view:
+    zoomLevel: 6
+    x: 575159
+    y: 6223373
+  layer:
+    -
+      name: Kort
+      namedlayer: "#osm"
+
+    -
+      # Hearings
+      id: hearing
+      srs: EPSG:4326
+      disable: false
+      features: true
+
+      # https://widget.cdn.septima.dk/latest/components/helpers/layer.html#features-host
+      features_host: /api/geojson/hearings
+      # https://widget.cdn.septima.dk/latest/components/helpers/layer.html#features-datatype
+      features_dataType: json
+
+      features_style:
+        namedstyle: "#007"
+        strokecolor_selected: "#77D"
+        strokewidth_selected: 7
+
+        icon: /themes/custom/hoeringsportal/assets/images/maps/hearing-icon.svg
+        scale: 1
+
+        #icon_selected: /themes/custom/hoeringsportal/assets/images/maps/hearing-icon-selected.svg
+        #scale_selected: 1.5
+
+      template_info: >
+
+        <div class="widget-hoverbox-title">Høring: {{hearing_title}}</div>
+        <div class="widget-hoverbox-sub">
+         <% if (hearing_project_title) { %>
+         <div>Projekt: <a href="{{hearing_project_url}}">{{hearing_project_title}}</a></div>
+         <% } %>
+         <div>{{hearing_teaser}} <a href="{{hearing_url}}">Læs mere …</a></div>
+         <% if (0 < hearing_replies_count) { %>
+         <div>Høringssvar: <a href="{{hearing_replies_url}}">{{hearing_replies_count}} (se høringssvar)</a></div>
+         <% } %>
+         <div>Høringsstart: <% print(moment(start_date).format("DD/MM/YYYY"))%></div>
+         <div>Høringsfrist: <% print(moment(end_date).format("DD/MM/YYYY"))%></div>
+         <div>Status: {{hearing_content_state}}</div>
+        </div>
+
+      template_search_title: "{{hearing_title}}"
+      template_search_description: "{{hearing_description}}"
+      layername: hearing
+      name: Høringer
+      legendConfig:
+        icon: 'https://via.placeholder.com/8x8.png/008486?text=+'
+
+      cluster:
+        #distance: 80
+        features_style:
+          fillcolor: "#008486"
+
+      type: geojson
+      userfilter: &userfilter
+        start_date:
+          type: daterange
+          label: Vælg periode (vælg fra og til)
+          #min: today-1M
+          #max: today+1M
+          min: today
+          max: today
+          maxDateColumn: end_date
+          format: DD/MM/YYYY
+          urlParamNames:
+            min: start_date
+            max: end_date
+          showShortcuts: true
+          shortcuts:
+            next:
+              - week
+              - month
+              - year
+
+    -
+      # Public meeting
+      id: public_meeting
+      srs: EPSG:4326
+      disable: false
+      features: true
+
+      features_host: /api/geojson/public_meetings/dates
+      features_dataType: json
+
+      features_style:
+        namedstyle: "#007"
+        strokecolor_selected: "#77D"
+        strokewidth_selected: 7
+
+        icon: /themes/custom/hoeringsportal/assets/images/maps/public-meeting-icon.svg
+        scale: 1
+
+        #icon_selected: /themes/custom/hoeringsportal/assets/images/maps/public-meeting-icon-selected.svg
+        #scale_selected: 1.5
+
+      template_info: >
+
+        <div class="widget-hoverbox-title">Begivenhed {{meeting_title}}</div>
+        <div class="widget-hoverbox-sub">
+         <div>{{meeting_teaser}} <a href="{{meeting_url}}">Læs mere …</a></div>
+         <div>Mødetidspunkt: <% print(moment(start_date).format("DD/MM/YYYY"))%></div>
+        </div>
+
+      template_search_title: "{{meeting_title}}"
+      template_search_description: "{{meeting_description}}"
+      layername: public_meeting
+      name: Begivenheder
+      legendConfig:
+        icon: 'https://via.placeholder.com/8x8.png/000000?text=+'
+
+      cluster:
+        #distance: 80
+        features_style:
+          fillcolor: "#000000"
+
+      type: geojson
+      userfilter: *userfilter
+
+  controls:
+    -
+      fullscreen:
+        disable: false
+
+    -
+      fullextent:
+        disable: false
+
+    -
+      info:
+        disable: false
+        eventtype: click
+        #type: popup
+        #multifeature: 10
+        _zoomOptions:
+          zoomStyle: fast
+          minResolution: 0.8
+
+    -
+      filter:
+        disable: false
+        detach: filter
+        combine: true
+
+    -
+      search:
+        displaytext: Søg
+        minResolution: 1
+        features_style:
+          namedstyle: "#011"
+        driver:
+          -
+            type: dawa
+            options:
+              kommunekode: 751 # Aarhus
+          -
+            type: local
+            options:
+              singular: Arrangement
+              plural: Arrangementer
+
+    -
+      layerswitch:
+        disable: false
+        layers: [hearing, public_meeting]
+        selectAll: false
+        showbuttons: true
+        showlegend: true
+
+    -
+      loadinglayers:
+        disable: false
+        label: Henter data …

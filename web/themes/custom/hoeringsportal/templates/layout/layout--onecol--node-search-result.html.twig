@@ -1,0 +1,36 @@
+{% set node = content['#node'] %}
+{% set short_type = node.bundle|split('_')|last %}
+
+{% set badge_class = 'badge-' ~ short_type %}
+{% set icon_source = directory ~ '/assets/svg/' ~ short_type ~ '.svg' %}
+
+<div class="search-result search-result--node search-result--node--{{ node.bundle|clean_class }} d-flex flex-column gap-1">
+  <div class="d-flex gap-3 align-items-center">
+    {# Result title #}
+    <h2 class="search-result--title m-0 p-0">
+      <a class="link-offset-2 link-underline link-underline-opacity-0 link-underline-opacity-100-hover" href="{{ node.toUrl() }}">{{- node.label -}}</a>
+    </h2>
+  </div>
+  {# Created date #}
+  <span class="search-result--create-date m-0 small muted">{{- (node.createdTime|date('d-m-Y')) -}}</span>
+  {# Result body #}
+  {% if content['#search_api_excerpt'] %}
+    <div class="search-result--body-wrapper mb-0 text-truncate">
+      {{- content['#search_api_excerpt']|raw -}}
+    </div>
+  {% endif %}
+  <div class="d-flex gap-3 align-items-center">
+    {# Result badge #}
+    {% if node.type.entity.label is not empty %}
+      <div class="search-result--badges-wrapper d-flex">
+        <span class="search-result--badge badge bg-secondary-subtle text-dark {{ badge_class }}">{{ node.type.entity.label }}</span>
+      </div>
+    {% endif %}
+    {# Result icon #}
+    {% if icon_source is not empty %}
+      <div class="search-result--icon">
+        {{- source(icon_source, ignore_missing = true) -}}
+      </div>
+    {% endif %}
+  </div>
+</div>

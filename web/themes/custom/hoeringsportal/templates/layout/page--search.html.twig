@@ -46,23 +46,13 @@
 
 {{ page.header }}
 
-{% if (not is_front) %}
-  <div class="group-header hero-container mb-4">
-    <div class="hero hero--image-right">
-      <div class="container">
-        <div class="hero__content">
-          <h1 class="title underlined hero__title pt-4 pb-4">
-            {% if page['#title'] %}
-              {{ page['#title'] }}
-            {% endif %}
-          </h1>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endif %}
 <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
-<div class="container">
+<div class="bg-primary">
+  <div class="container">
+    <h1 class="text-white my-0 py-3">{{ 'Search'|t }}</h1>
+  </div>
+</div>
+<div class="container search-page">
   {{ page.content }}
 </div>
 {% if page.sidebar %}
@@ -70,3 +60,14 @@
 {% endif %}
 
 {{ page.footer }}
+
+<script>
+  document.addEventListener("DOMContentLoaded", (event) => {
+    // Set focus on to search input field and place cursor at end when page loads.
+    const searchInput = document.getElementById("edit-search-api-fulltext");
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.selectionStart = searchInput.selectionEnd = searchInput.value.length;
+    }
+  });
+</script>

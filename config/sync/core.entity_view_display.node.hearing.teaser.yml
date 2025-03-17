@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.hearing.field_contact
     - field.field.node.hearing.field_content_state
     - field.field.node.hearing.field_delete_date
+    - field.field.node.hearing.field_department
     - field.field.node.hearing.field_description
     - field.field.node.hearing.field_deskpro_agent_email
     - field.field.node.hearing.field_deskpro_department_id
@@ -101,6 +102,7 @@ content:
 hidden:
   field_contact: true
   field_delete_date: true
+  field_department: true
   field_description: true
   field_deskpro_agent_email: true
   field_deskpro_department_id: true
@@ -119,4 +121,5 @@ hidden:
   langcode: true
   links: true
   published_at: true
+  search_api_excerpt: true
   sharing_buttons: true

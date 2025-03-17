@@ -6,6 +6,67 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.8.0] - 2025-03-13
+
+* [PR-467](https://github.com/itk-dev/hoeringsportal/pull/467)
+  Added date validation on new hearings
+* [PR-458](https://github.com/itk-dev/hoeringsportal/pull/458)
+  Cleaned up actions
+* [PR-380](https://github.com/itk-dev/hoeringsportal/pull/380)
+  Added department access check.
+* [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
+  Set correct Danish pluralization. Remove superfluous docker service.
+* [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)
+  Cleaned up archiving code and added web profiler
+* [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
+  Corrected Danish pluralization
+* [PR-441](https://github.com/itk-dev/hoeringsportal/pull/441)
+  Add and enable [delta sync](https://github.com/itk-dev/azure-ad-delta-sync-drupal)
+  Add [mock idp api](https://github.com/dotronglong/faker) and documentation of said
+  Add bash script (test-delta-sync) to test delta sync
+  Add fixtures with oidc users
+* [PR-442](https://github.com/itk-dev/hoeringsportal/pull/442)
+  Cleaned up fixtures
+* [PR-440](https://github.com/itk-dev/hoeringsportal/pull/440)
+  Add missing icon
+* [PR-438](https://github.com/itk-dev/hoeringsportal/pull/438)
+  Improved search styling
+* [PR-436](https://github.com/itk-dev/hoeringsportal/pull/436)
+  Improved search
+* [PR-439](https://github.com/itk-dev/hoeringsportal/pull/439)
+  Updated tasks and map page fixture.
+* [PR-437](https://github.com/itk-dev/hoeringsportal/pull/437)
+  Cleaned up API and added caching
+* [PR-435](https://github.com/itk-dev/hoeringsportal/pull/435)
+  Add usable config values for oidc
+  Update OIDC documentation
+  Rename editor user in group "administrator" to admin user
+* [PR-434](https://github.com/itk-dev/hoeringsportal/pull/434)
+  Accessibility stuff:
+  Font sizes to rem instead of pixels
+  Add name to image for screen readers
+  Change h5's to h4
+  Add label to search icon
+* [PR-433](https://github.com/itk-dev/hoeringsportal/pull/433)
+  Upgrade node from 18 to 22
+* [PR-432](https://github.com/itk-dev/hoeringsportal/pull/432)
+  Replace `yarn` with `npm`
+  Replace eslint with prettier
+  Lint with prettier
+  Add audit to actions
+* [PR-430](https://github.com/itk-dev/hoeringsportal/pull/430)
+  Add build assets to taskfile
+* [PR-431](https://github.com/itk-dev/hoeringsportal/pull/431)
+  Avoid navbar jumping
+* [PR-429](https://github.com/itk-dev/hoeringsportal/pull/429)
+  Removed outdated (and unused) API endpoints. Cleaned up.
+* [PR-427](https://github.com/itk-dev/hoeringsportal/pull/427)
+  Updated docker compose setup. Updated composer packages.
+* [PR-425](https://github.com/itk-dev/hoeringsportal/pull/425)
+  Publication dates
+* [PR-424](https://github.com/itk-dev/hoeringsportal/pull/424)
+  2945: Cleaned up form templates. Applied security updates.
+
 ## [4.7.3] - 2025-03-14
 
 * [PR-470](https://github.com/itk-dev/hoeringsportal/pull/470)
@@ -200,6 +261,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 * [PR-371](https://github.com/itk-dev/hoeringsportal/pull/371)
   Cleaned up archiving of citizen proposals
 
+## [3.5.1] - 2023-09-01
+
 ## [3.5.0] - 2023-08-30
 
 * [PR-363](https://github.com/itk-dev/hoeringsportal/pull/363)
@@ -304,7 +367,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...HEAD
+[4.8.0]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...4.8.0
 [4.7.3]: https://github.com/itk-dev/hoeringsportal/compare/4.7.2...4.7.3
 [4.7.2]: https://github.com/itk-dev/hoeringsportal/compare/4.7.1...4.7.2
 [4.7.1]: https://github.com/itk-dev/hoeringsportal/compare/4.7.0...4.7.1

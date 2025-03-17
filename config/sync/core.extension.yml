@@ -5,6 +5,7 @@ module:
   aarhus_hero: 0
   advancedqueue: 0
   allowed_formats: 0
+  azure_ad_delta_sync: 0
   better_exposed_filters: 0
   better_social_sharing_buttons: 0
   block: 0
@@ -85,12 +86,12 @@ module:
   path: 0
   path_alias: 0
   phpass: 0
-  pluginformalter: 0
   quick_node_clone: 0
   redirect: 0
   responsive_image: 0
   rest: 0
-  search: 0
+  search_api: 0
+  search_api_db: 0
   search_autocomplete: 0
   serialization: 0
   symfony_mailer: 0

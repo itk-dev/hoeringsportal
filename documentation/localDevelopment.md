@@ -72,6 +72,10 @@ docker compose up --detach
 docker compose exec phpfpm composer install
 docker compose exec phpfpm vendor/bin/drush --yes site:install --existing-config
 
+# Build theme assets
+docker compose run --rm node npm install --prefix web/themes/custom/hoeringsportal
+docker compose run --rm node npm run build --prefix web/themes/custom/hoeringsportal
+
 # Get admin sign in url
 docker compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.local.itkdev.dk" user:login
 ```
@@ -79,9 +83,7 @@ docker compose exec phpfpm vendor/bin/drush --yes --uri="http://hoeringsportal.l
 Add all fixtures
 
 ```sh name=load-fixtures
-docker compose exec phpfpm vendor/bin/drush --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-docker compose exec phpfpm vendor/bin/drush --yes content-fixtures:load
-docker compose exec phpfpm vendor/bin/drush --yes pm:uninstall content_fixtures
+task fixtures:load
 ```
 
 ### Coding standards and code analysis
@@ -90,36 +92,24 @@ All code must follow the [Drupal coding standards](https://www.drupal.org/docs/d
 
 #### Coding standards
 
-```sh
-docker compose exec phpfpm composer coding-standards-check
-```
-
-Apply automatic coding standard fixes by running
+Apply and check coding standard  by running
 
 ```sh
-docker compose exec phpfpm composer coding-standards-apply
+task coding-standards:check
 ```
 
 #### Code analysis
 
 ```sh
-docker compose exec phpfpm composer code-analysis
+task code-analysis
 ```
 
 #### Markdown
 
-```sh
-docker compose run --rm node yarn install
-```
+Apply and check Markdown coding standards:
 
 ```sh
-docker compose run --rm node yarn coding-standards-check
-```
-
-Apply automatic coding standard fixes by running
-
-```sh
-docker compose run --rm node yarn coding-standards-apply
+task coding-standards:markdown:check
 ```
 
 ## About translations
@@ -136,12 +126,12 @@ Export translations by running
 (cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)
 ```
 
-Open `translations/custom-translations.da.po` with the latest version of
-[Poedit](https://poedit.net/) to clean up and then save the file.
+Open `translations/custom-translations.da.po` with the latest version of [Poedit](https://poedit.net/) to clean up and
+then save the file.
 
-See
-[How to deploy drupal interface translations](https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6)
-for further details.
+See [How to deploy drupal interface
+translations](https://medium.com/limoengroen/how-to-deploy-drupal-interface-translations-5653294c4af6) for further
+details.
 
 ### Further local setup
 
@@ -160,3 +150,12 @@ composer install --no-dev --optimize-autoloader
 ## Deskpro
 
 See [hoeringsportal_deskpro/README.md](web/modules/custom/hoeringsportal_deskpro/README.md#test-mode).
+
+## Web profiler
+
+The [WebProfiler](https://www.drupal.org/project/webprofiler) can be installed to see useful information on what goes on
+behind the scenes:
+
+``` shell
+task drush -- pm:install webprofiler
+```
