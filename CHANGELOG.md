@@ -9,7 +9,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ## [4.8.1] - 2025-03-17
 
 * [PR-471](https://github.com/itk-dev/hoeringsportal/pull/471)
-  Fixed placement of “Social buttons”
+  * Fixed placement of “Social buttons”
+  * Updates site name
 
 ## [4.8.0] - 2025-03-13
 
