@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.field.media.icon.field_itk_media_image_upload
-    - image.style.thumbnail
     - media.type.icon
   module:
     - svg_image
@@ -15,16 +14,16 @@ mode: default
 content:
   field_itk_media_image_upload:
     type: image
-    label: visually_hidden
+    label: hidden
     settings:
       image_link: ''
-      image_style: thumbnail
+      image_style: ''
       image_loading:
         attribute: lazy
       svg_attributes:
         width: null
         height: null
-      svg_render_as_image: true
+      svg_render_as_image: false
     third_party_settings: {  }
     weight: 0
     region: content
