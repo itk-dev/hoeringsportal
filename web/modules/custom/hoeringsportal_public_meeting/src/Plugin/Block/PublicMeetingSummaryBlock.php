@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_public_meeting\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -19,13 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 final class PublicMeetingSummaryBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Helper class for public meetings.
-   *
-   * @var \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper
-   */
-  protected $helper;
-
-  /**
    * Block constructor.
    *
    * @param array $configuration
@@ -35,11 +29,18 @@ final class PublicMeetingSummaryBlock extends BlockBase implements ContainerFact
    * @param mixed $plugin_definition
    *   Definition of plugin.
    * @param \Drupal\hoeringsportal_public_meeting\Helper\PublicMeetingHelper $helper
-   *   Helper class.
+   *   The public meeting helper.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $routeMatch
+   *   The route match.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, PublicMeetingHelper $helper) {
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    private readonly PublicMeetingHelper $helper,
+    private readonly RouteMatchInterface $routeMatch,
+  ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->helper = $helper;
   }
 
   /**
@@ -61,7 +62,8 @@ final class PublicMeetingSummaryBlock extends BlockBase implements ContainerFact
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('hoeringsportal_public_meeting.public_meeting_helper')
+      $container->get('hoeringsportal_public_meeting.public_meeting_helper'),
+      $container->get('current_route_match')
     );
   }
 
@@ -69,23 +71,27 @@ final class PublicMeetingSummaryBlock extends BlockBase implements ContainerFact
    * {@inheritdoc}
    */
   public function build() {
-    $node = \Drupal::routeMatch()->getParameter('node');
-
+    $node = $this->routeMatch->getParameter('node');
     if (!$this->helper->isPublicMeeting($node)) {
       return [];
     }
-    $showRegistrationDeadline = $this->helper->showRegistrationDeadline($node);
 
+    $signupDeadline = NULL;
+    if ($this->helper->showRegistrationDeadline($node) && !$this->helper->hasPretixSignUp($node)) {
+      $signupDeadline = $node->field_registration_deadline[0]?->getValue();
+    }
     $cacheTags = $node->getCacheTags();
 
     $cacheContexts = $node->getCacheContexts();
     $cacheContexts[] = 'url';
     $cacheContexts = array_unique($cacheContexts);
 
+    $context = $this->helper->getPublicMeetingContext($node);
+
     return [
       '#theme' => 'hoeringsportal_public_meeting_summary',
-      '#pretix_signup' => isset($node->field_pretix_dates[0]) ? $node->field_pretix_dates[0]->getValue() : NULL,
-      '#signup_deadline' => ($showRegistrationDeadline && isset($node->field_registration_deadline[0])) ? $node->field_registration_deadline[0]->getValue() : NULL,
+      '#pretix_signup' => $context['upcoming'][0] ?? NULL,
+      '#signup_deadline' => $signupDeadline,
       '#node' => $node,
       '#cache' => [
         'contexts' => $cacheContexts,

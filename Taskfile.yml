@@ -66,6 +66,9 @@ tasks:
     cmds:
       - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal'
       - '{{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal'
+  assets-watch:
+    cmds:
+      - '{{.DOCKER_COMPOSE}} run --rm node npm run watch --prefix web/themes/custom/hoeringsportal'
   compose:
     cmds:
       - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
@@ -91,10 +94,14 @@ tasks:
       # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
       - >-
         if [[ ! -t 0 ]]; then
-          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec --no-TTY phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         else
-          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec phpfpm {{.DRUSH}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         fi
+    vars:
+      # Notice: To make debugging (with Xdebug) work, we have to call
+      # vendor/bin/drush.php directly (and not vendor/bin/drush)
+      DRUSH: vendor/bin/drush.php
     silent: true
 
   database-dump:
@@ -228,6 +235,9 @@ tasks:
      - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
      - task drush -- --yes content-fixtures:load
      - task drush -- --yes pm:uninstall content_fixtures
+     # Update states on public meetings.
+     - task drush -- --yes hoeringsportal:public_meeting:state-update
+     - task drush -- --yes cache:rebuild
     silent: true
 
   translations:import:
@@ -245,4 +255,47 @@ tasks:
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true
+
+
+  # Development settings tasks (`/admin/config/development/settings`) (cf. https://www.drupal.org/docs/develop/development-tools/disabling-and-debugging-caching).
+
+  development-settings:do-not-cache-markup-enable:
+    desc: Disable markup cache (check ‘Do not cache markup“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => TRUE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:do-not-cache-markup-disable:
+    desc: Enable markup cache (for production) (uncheck ‘Do not cache markup“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['disable_rendered_output_cache_bins' => FALSE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:twig-develoment-mode-enable:
+    desc: Enable Twig development mode (check ‘Twig development mode“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => TRUE, 'twig_cache_disable' => TRUE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:twig-develoment-mode-disable:
+    desc: Disable Twig development mode (for production) (uncheck ‘Twig development mode“ on `/admin/config/development/settings`)
+    cmds:
+      - task drush -- php:eval "Drupal::keyValue('development_settings')->setMultiple(['twig_debug' => FALSE, 'twig_cache_disable' => FALSE]);"
+      - task drush -- cache:rebuild
+
+  development-settings:development:
+    desc: Set cache settings for development
+    cmds:
+      - task development-settings:do-not-cache-markup-enable
+      - task development-settings:twig-develoment-mode-enable
+      - task drush -- cache:rebuild
+    silent: true
+
+  development-settings:production:
+    desc: Set cache settings for production
+    cmds:
+      - task development-settings:do-not-cache-markup-disable
+      - task development-settings:twig-develoment-mode-disable
+      - task drush -- cache:rebuild
     silent: true

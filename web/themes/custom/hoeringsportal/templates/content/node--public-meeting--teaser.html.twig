@@ -75,40 +75,52 @@
 {% set content_state = content.field_content_state['#items'].value %}
 {% set type = content.field_type[0]['#plain_text'] %}
 {% set project = content.field_project_reference[0]['#plain_text'] %}
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
+{% set dates_delta = public_meeting_context.upcoming|first.name %}
+{% set url = path('hoeringsportal_public_meeting.public_meeting_date', {node: node.id, dates_delta}) %}
 
-  {# When deadline field exists add splash. #}
-  {% if (content.field_first_meeting_time) %}
-    {% set enddate = content.field_last_meeting_time['#items'].value %}
-    {% set finishdate = enddate %}
+<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none">
+  {% set overlay_text = null %}
+
+  {# Get meeting time.
+
+    If we have upcoming (pretix) events, we use the first one. Otherwise we use
+    field_last_meeting_time which will match the last pretix event and will also
+    be set on public meetings not using pretix. #}
+
+  {% set meeting_time = null %}
+  {% if public_meeting_context.upcoming is not empty %}
+    {% set meeting_time = public_meeting_context.upcoming|first.time_from %}
+  {% else %}
+    {% set meeting_time = content.field_last_meeting_time['#items'].value %}
+  {% endif %}
+
+  {% if meeting_time %}
     <div class="activity-teaser-splash">
       <div class="splash splash-date">
-        {# @todo Add determine content state. #}
         {# Alter splash display depending on content state in relation with deadline. #}
         {% if (content_state == 'upcoming') %}
           <div class="splash-label">{{ 'Public meeting'|t }}</div>
-          <div class="splash-date-day p-1">{{ enddate|date('d') }}</div>
-          <div class="splash-date-month">{{ enddate|date('M')|t }}</div>
+          <div class="splash-date-day p-1">{{ meeting_time|date('d') }}</div>
+          <div class="splash-date-month">{{ meeting_time|date('M')|t }}</div>
         {% elseif (content_state == 'finished') %}
           <div class="splash-label">{{ 'Finished'|t }}</div>
           <div class="splash-date-day"><i class="fa-solid fa-check-circle"></i></div>
           <div class="splash-date-month"></div>
-          {% set overlay = 'TRUE' %}
           {% set overlay_text = 'Finished'|t %}
-          {% set overlay_sub_text = finishdate|date('U')|format_date('hoeringsportal_date') %}
+          {% set overlay_sub_text = meeting_time|date('U')|format_date('hoeringsportal_date') %}
         {% endif %}
       </div>
     </div>
   {% endif %}
+
   {% if (content.field_public_meeting_cancelled['#items'].value == 1) %}
-    {% set overlay = 'TRUE' %}
     {% set overlay_text = 'Cancelled'|t %}
   {% endif %}
 
   <div class="activity-teaser-image">
     {{ content.field_media_image_single }}
-    {# Add overlay when passed or upcomming #}
-    {% if (overlay) %}
+    {# Add overlay when passed or upcoming #}
+    {% if overlay_text %}
       <span class="activity-teaser-overlay">
         <span class="activity-teaser-overlay--text {{ overlay_text_color }}">
           {{ overlay_text }}
@@ -119,12 +131,14 @@
       </span>
     {% endif %}
   </div>
+
   <div{{ attributes.addClass('activity-teaser-content') }}>
     <p class="activity-teaser-title">{{ label[0]['#context'].value|length > 40 ? label[0]['#context'].value|slice(0, 40) ~ '...' : label }}</p>
     <div class="activity-teaser-description">
       {{ content.field_teaser[0]['#context'].value|length > 95 ? content.field_teaser[0]['#context'].value|slice(0, 95) ~ '...' : content.field_teaser }}
     </div>
   </div>
+
   <div class="activity-teaser-info">
     <span class="activity-teaser-meta-wrapper">
       {% if type is not empty %}

@@ -10,22 +10,14 @@
     position: relative;
   }
 
-  .signup-responsive {
-    margin-left: -1em;
-    margin-right: -1em;
-  }
+  .signup-multiple-dates {
+    a {
+      text-decoration: none;
+      color: inherit;
 
-  .h5-responsive {
-    font-size: 0.8rem;
-    text-transform: none;
-    margin-bottom: 0.5em;
-  }
-
-  table th {
-    border-top: 0;
-  }
-
-  table .btn {
-    padding: 0.25rem 0.5rem;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }

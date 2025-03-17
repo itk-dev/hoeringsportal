@@ -5,9 +5,8 @@ namespace Drupal\hoeringsportal_base_fixtures\Helper;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Extension\ExtensionPathResolver;
 use Drupal\Core\File\FileExists;
-use Drupal\Core\File\FileSystem;
 use Drupal\Core\File\FileSystemInterface;
-use Drupal\file\FileRepository;
+use Drupal\file\FileRepositoryInterface;
 
 /**
  * A helper class for the module.
@@ -15,41 +14,14 @@ use Drupal\file\FileRepository;
 class Helper {
 
   /**
-   * The ExtensionPathResolver service.
-   *
-   * @var \Drupal\Core\Extension\ExtensionPathResolver
-   */
-  protected ExtensionPathResolver $pathResolver;
-
-  /**
-   * The FileRepository service.
-   *
-   * @var \Drupal\file\FileRepository
-   */
-  protected FileRepository $fileRepo;
-
-  /**
-   * The FileSystem service.
-   *
-   * @var \Drupal\Core\File\FileSystem
-   */
-  protected FileSystem $fileSystem;
-
-  /**
-   * The fixtures helper service.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected EntityTypeManagerInterface $entityTypeManager;
-
-  /**
    * Constructor.
    */
-  public function __construct(ExtensionPathResolver $pathResolver, FileRepository $fileRepo, FileSystem $fileSystem, EntityTypeManagerInterface $entityTypeManager) {
-    $this->pathResolver = $pathResolver;
-    $this->fileRepo = $fileRepo;
-    $this->fileSystem = $fileSystem;
-    $this->entityTypeManager = $entityTypeManager;
+  public function __construct(
+    protected readonly ExtensionPathResolver $pathResolver,
+    protected readonly FileRepositoryInterface $fileRepo,
+    protected readonly FileSystemInterface $fileSystem,
+    protected readonly EntityTypeManagerInterface $entityTypeManager,
+  ) {
   }
 
   /**

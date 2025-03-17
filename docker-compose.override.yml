@@ -8,6 +8,8 @@ services:
     labels:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.middlewares=redirect-to-https"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+    # Let the container be accessible both internally and externally on the same domain.
+    container_name: ${COMPOSE_DOMAIN}
 
   node:
     image: node:22

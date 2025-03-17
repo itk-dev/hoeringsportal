@@ -2,10 +2,10 @@
   <div class="itk-admin-links--overlay js-admin-overlay"></div>
   <icon class="itk-admin-links--icon js-admin-toggle"></icon>
   <ul class="itk-admin-links--items js-admin-menu">
-    <li class="itk-admin-links--item"><a href="/admin">{% trans %}Go to administration{% endtrans %}</a></li>
+    <li class="itk-admin-links--item"><a href="/admin">{{ 'Go to administration'|t }}</a></li>
     {% if (nid) %}
-      <li class="itk-admin-links--item"><a href="/node/{{ nid }}/edit">{% trans %}Edit this page{% endtrans %}</a></li>
+      <li class="itk-admin-links--item"><a href="/node/{{ nid }}/edit">{{ 'Edit this page'|t }}</a></li>
     {% endif %}
-    <li class="itk-admin-links--item"><a href="/user/logout">{% trans %}Log off{% endtrans %}</a></li>
+    <li class="itk-admin-links--item"><a href="/user/logout">{{ 'Log off'|t }}</a></li>
   </ul>
 </div>

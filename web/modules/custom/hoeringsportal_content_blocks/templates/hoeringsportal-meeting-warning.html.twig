@@ -11,10 +11,10 @@
   <div class="bg-danger p-3">
     <div class="container">
       {% if config.content_state is same as('finished') %}
-        <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been held.'|t }}</span>
+        <span class="text-light"><strong>{{ 'Note!'|t }}</strong>{{ 'This public meeting has been held.'|t }}</span>
       {% endif %}
       {% if config.content_state is same as('cancelled') %}
-        <span class="text-light">{{ '<strong>Note!</strong> This public meeting has been cancelled.'|t }}</span>
+        <span class="text-light"><strong>{{ 'Note!'|t }}</strong>{{ 'This public meeting has been cancelled.'|t }}</span>
       {% endif %}
     </div>
   </div>
