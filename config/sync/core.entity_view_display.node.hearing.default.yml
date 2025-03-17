@@ -59,7 +59,6 @@ third_party_settings:
       header:
         - 'dynamic_block_field:node-hearing_warning'
         - node_title
-        - sharing_buttons
       left:
         - field_teaser
         - field_description
@@ -78,11 +77,22 @@ third_party_settings:
         - 'dynamic_token_field:node-node_id_hearing'
         - field_contact
         - field_more_info
+        - sharing_buttons
       footer:
         - 'dynamic_block_field:node-project_timeline'
         - field_map
         - 'dynamic_block_field:node-nearest_hearings'
     fields:
+      'dynamic_token_field:node-header_information':
+        plugin_id: 'dynamic_token_field:node-header_information'
+        weight: 9
+        label: hidden
+        formatter: default
+      'dynamic_token_field:node-node_id_hearing':
+        plugin_id: 'dynamic_token_field:node-node_id_hearing'
+        weight: 15
+        label: above
+        formatter: default
       'dynamic_block_field:node-hearing_tickets':
         plugin_id: 'dynamic_block_field:node-hearing_tickets'
         weight: 7
@@ -106,16 +116,6 @@ third_party_settings:
       'dynamic_block_field:node-quicklinks':
         plugin_id: 'dynamic_block_field:node-quicklinks'
         weight: 8
-        label: above
-        formatter: default
-      'dynamic_token_field:node-header_information':
-        plugin_id: 'dynamic_token_field:node-header_information'
-        weight: 9
-        label: hidden
-        formatter: default
-      'dynamic_token_field:node-node_id_hearing':
-        plugin_id: 'dynamic_token_field:node-node_id_hearing'
-        weight: 15
         label: above
         formatter: default
       node_title:
@@ -241,7 +241,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 100
-    region: header
+    region: right
 hidden:
   field_content_state: true
   field_delete_date: true
@@ -259,4 +259,3 @@ hidden:
   links: true
   published_at: true
   search_api_excerpt: true
-  sharing_buttons: true
