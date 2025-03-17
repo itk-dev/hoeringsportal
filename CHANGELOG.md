@@ -6,6 +6,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.8.1] - 2025-03-17
+
+* [PR-471](https://github.com/itk-dev/hoeringsportal/pull/471)
+  * Fixed placement of “Social buttons”
+  * Updates site name
+
 ## [4.8.0] - 2025-03-13
 
 * [PR-467](https://github.com/itk-dev/hoeringsportal/pull/467)
@@ -367,7 +373,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.1...HEAD
+[4.8.1]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...4.8.0
 [4.7.3]: https://github.com/itk-dev/hoeringsportal/compare/4.7.2...4.7.3
 [4.7.2]: https://github.com/itk-dev/hoeringsportal/compare/4.7.1...4.7.2
