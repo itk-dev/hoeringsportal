@@ -1,11 +1,20 @@
 <div class="itk-admin-links">
   <div class="itk-admin-links--overlay js-admin-overlay"></div>
   <icon class="itk-admin-links--icon js-admin-toggle"></icon>
+
+  {# Admin link to /admin or /admin/content depending on actual permissions #}
+  {% set admin_link = drupal_link('Go to administration'|t, path('system.admin'), check_access=true)|default(drupal_link('Go to administration'|t, path('system.admin_content'), check_access=true)) %}
+  {% set edit_link = nid ? drupal_link('Edit this page'|t, path('entity.node.edit_form', {node: nid}), check_access=true) %}
+
   <ul class="itk-admin-links--items js-admin-menu">
-    <li class="itk-admin-links--item"><a href="/admin">{% trans %}Go to administration{% endtrans %}</a></li>
-    {% if (nid) %}
-      <li class="itk-admin-links--item"><a href="/node/{{ nid }}/edit">{% trans %}Edit this page{% endtrans %}</a></li>
+    {% if admin_link %}
+      <li class="itk-admin-links--item">{{ admin_link }}</li>
     {% endif %}
-    <li class="itk-admin-links--item"><a href="/user/logout">{% trans %}Log off{% endtrans %}</a></li>
+    {% if edit_link %}
+      <li class="itk-admin-links--item">{{ edit_link }}</li>
+    {% endif %}
+    <li class="itk-admin-links--item">
+      {{ drupal_link('Log off'|t, 'user.logout') }}
+    </li>
   </ul>
 </div>
