@@ -18,6 +18,7 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access webform overview'
+  - 'create hearing content'
   - 'delete own files'
   - 'edit any hearing content'
   - 'use text format email_html'

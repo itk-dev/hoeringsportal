@@ -6,6 +6,12 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.8.2] - 2025-03-19
+
+* [PR-474](https://github.com/itk-dev/hoeringsportal/pull/474)
+  * Patched role permissions
+  * Cleaned up frontend admin menu
+
 ## [4.8.1] - 2025-03-17
 
 * [PR-471](https://github.com/itk-dev/hoeringsportal/pull/471)
@@ -373,7 +379,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.2...HEAD
+[4.8.2]: https://github.com/itk-dev/hoeringsportal/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...4.8.0
 [4.7.3]: https://github.com/itk-dev/hoeringsportal/compare/4.7.2...4.7.3
