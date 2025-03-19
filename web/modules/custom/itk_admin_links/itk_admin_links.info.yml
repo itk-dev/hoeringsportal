@@ -5,3 +5,6 @@ interface translation server pattern: modules/custom/itk_admin_links/translation
 package: ITK
 type: module
 core_version_requirement: ^8.8 || ^9 || ^10
+
+dependencies:
+  - twig_tweak:twig_tweak
