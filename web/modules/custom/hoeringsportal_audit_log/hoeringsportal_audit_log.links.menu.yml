@@ -1,0 +1,5 @@
+hoeringsportal_audit_log.ettings:
+  title: 'Audit log settings'
+  parent: system.admin_config_system
+  description: 'Settings for the audit log of hoeringsportalen'
+  route_name: hoeringsportal_audit_log.settings
