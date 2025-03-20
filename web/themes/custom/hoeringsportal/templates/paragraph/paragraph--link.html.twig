@@ -1,0 +1,13 @@
+{# Paragraph for link with icon and arrow #}
+
+{% set show_decorative_arrow = content.field_decorative_arrow[0]['#markup']|striptags %}
+{% set link_title = content.field_link[0]['#title'] %}
+{% set link_url = content.field_link[0]['#url'] %}
+
+<a href="{{ link_url }}" class="paragraph-link d-flex gap-2 align-items-center text-decoration-none flex-grow-1 p-3 rounded-1">
+  <span class="paragraph-link-icon">{{ content.field_icon }}</span>
+  <span class="text-black fw-semibold">{{ link_title }}</span>
+  {% if show_decorative_arrow == 1 %}
+    <i class="fas fa-arrow-right ms-auto"></i>
+  {% endif %}
+</a>
