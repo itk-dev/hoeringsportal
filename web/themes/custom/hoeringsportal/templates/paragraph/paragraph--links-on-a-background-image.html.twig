@@ -1,0 +1,17 @@
+{# Paragraph for hero/header on landing page #}
+
+<div class="paragraph-background-image position-relative overflow-hidden">
+  {% if paragraph.field_paragraph_image.entity %}
+    {% set media = paragraph.field_paragraph_image.entity %}
+    {% if media.field_itk_media_image_upload.entity %}
+      {% set image_url = file_url(media.field_itk_media_image_upload.entity.uri.value) %}
+      <img class="position-absolute z-0 top-0 start-0 object-fit-cover" src="{{ image_url }}" alt="{{ media.field_itk_media_image_upload.entity.alt }}">
+    {% endif %}
+  {% endif %}
+</div>
+<div class="mx-3 mx-md-0">
+  <div class="paragraph-links-list container z-1 position-relative bg-body-secondary shadow-lg rounded-1 p-3 mx-md-auto p-md-5 w-100 w-md-auto">
+    {{ content.field_links_list }}
+  </div>
+</div>
+{{ content|without('field_paragraph_image', 'field_links_list') }}
