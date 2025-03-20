@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
+  * New landingpage hero
+
 ## [4.8.4] - 2025-03-27
 
 * [PR-485](https://github.com/itk-dev/hoeringsportal/pull/485)
