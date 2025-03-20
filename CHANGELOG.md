@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
+  * New landingpage hero
+
 * [PR-472](https://github.com/itk-dev/hoeringsportal/pull/472)
   * Translated search page to Danish
   * Updated custom Danish translations (exported from production site)
