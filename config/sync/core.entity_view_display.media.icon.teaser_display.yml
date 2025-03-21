@@ -1,0 +1,38 @@
+uuid: 8625955e-46be-454b-9837-fd7520229847
+langcode: da
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.teaser_display
+    - field.field.media.icon.field_itk_media_image_upload
+    - image.style.thumbnail
+    - media.type.icon
+  module:
+    - svg_image
+id: media.icon.teaser_display
+targetEntityType: media
+bundle: icon
+mode: teaser_display
+content:
+  field_itk_media_image_upload:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true
