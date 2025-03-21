@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-473](https://github.com/itk-dev/hoeringsportal/pull/473)
+  Allowed citizen proposal editors to view unpublished citizen proposals.
+
 ## [4.8.2] - 2025-03-19
 
 * [PR-474](https://github.com/itk-dev/hoeringsportal/pull/474)
