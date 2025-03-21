@@ -29,9 +29,9 @@ settings:
     all_hearings: all_hearings
     all_meetings: all_meetings
     all_projects: all_projects
-    duplicate_of_alle_projekter: duplicate_of_alle_projekter
     seneste_begivenheder: seneste_begivenheder
     seneste_borgerforslag: seneste_borgerforslag
     seneste_hoeringer: seneste_hoeringer
+    seneste_projekter: seneste_projekter
   enabled_settings: {  }
 field_type: viewsreference
