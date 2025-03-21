@@ -85,7 +85,9 @@ services:
       - { name: content_fixture }
     arguments:
       - '@config.factory'
-  
+
   Drupal\hoeringsportal_base_fixtures\Fixture\LandingPageFixture:
     tags:
       - { name: content_fixture }
+    arguments:
+      - '@itk_admin.itk_config'
