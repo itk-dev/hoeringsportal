@@ -170,6 +170,38 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:Medium3', $entity);
+    
+    $entity = Media::create([
+      'name' => 'building-user-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:building-user-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:building-user-solid', $entity);
+    
+    $entity = Media::create([
+      'name' => 'calendar-days-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:calendar-days-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:calendar-days-solid', $entity);
+    
+    $entity = Media::create([
+      'name' => 'comments-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:comments-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:comments-solid', $entity);
+    
+    $entity = Media::create([
+      'name' => 'folder-open-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:folder-open-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:folder-open-solid', $entity);
   }
 
   /**
