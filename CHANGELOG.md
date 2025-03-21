@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-476](https://github.com/itk-dev/hoeringsportal/pull/476)
+  Added fixture helper command
 * [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
   * New landingpage hero
 
