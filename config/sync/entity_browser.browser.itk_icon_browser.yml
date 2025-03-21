@@ -15,14 +15,8 @@ display_configuration:
   height: ''
   link_text: 'Vælg ikon'
   auto_open: false
-selection_display: multi_step_display
-selection_display_configuration:
-  entity_type: media
-  display: rendered_entity
-  display_settings:
-    view_mode: default
-  select_text: 'Use selected'
-  selection_hidden: false
+selection_display: no_display
+selection_display_configuration: {  }
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
