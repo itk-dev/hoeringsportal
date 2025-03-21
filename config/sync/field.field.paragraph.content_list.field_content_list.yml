@@ -29,9 +29,9 @@ settings:
     all_hearings: all_hearings
     all_meetings: all_meetings
     all_projects: all_projects
-    seneste_begivenheder: seneste_begivenheder
-    seneste_borgerforslag: seneste_borgerforslag
-    seneste_hoeringer: seneste_hoeringer
-    seneste_projekter: seneste_projekter
+    latest_public_meetings: latest_public_meetings
+    latest_citizen_proposals: latest_citizen_proposals
+    latest_hearings: latest_hearings
+    latest_projects: latest_projects
   enabled_settings: {  }
 field_type: viewsreference

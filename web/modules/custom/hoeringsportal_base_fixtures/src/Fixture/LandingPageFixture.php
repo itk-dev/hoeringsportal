@@ -83,7 +83,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'type' => 'content_list',
       'field_list_title' => 'Igangværende høringer',
       'field_content_list' => [
-        'target_id' => 'seneste_hoeringer',
+        'target_id' => 'latest_hearings',
         'display_id' => 'default',
       ],
     ]);
@@ -94,7 +94,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'type' => 'content_list',
       'field_list_title' => 'Nyeste borgerforslag',
       'field_content_list' => [
-        'target_id' => 'seneste_borgerforslag',
+        'target_id' => 'latest_citizen_proposals',
         'display_id' => 'default',
       ],
     ]);
@@ -105,7 +105,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'type' => 'content_list',
       'field_list_title' => 'Kommende begivenheder',
       'field_content_list' => [
-        'target_id' => 'seneste_begivenheder',
+        'target_id' => 'latest_public_meetings',
         'display_id' => 'default',
       ],
     ]);
@@ -116,7 +116,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'type' => 'content_list',
       'field_list_title' => 'Seneste projekter',
       'field_content_list' => [
-        'target_id' => 'seneste_projekter',
+        'target_id' => 'latest_projects',
         'display_id' => 'default',
       ],
     ]);

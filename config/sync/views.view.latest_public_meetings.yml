@@ -10,7 +10,7 @@ dependencies:
     - datetime
     - node
     - user
-id: seneste_begivenheder
+id: latest_public_meetings
 label: 'Seneste begivenheder'
 module: views
 description: 'En liste af alle begivenheder'
