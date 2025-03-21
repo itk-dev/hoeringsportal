@@ -22,7 +22,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
   public function load() {
     $page = Node::create([
       'type' => 'landing_page',
-      'title' => 'Forside-ny',
+      'title' => 'Forside',
       'field_show_page_title' => FALSE,
     ]);
 
