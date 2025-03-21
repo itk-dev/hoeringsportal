@@ -9,7 +9,7 @@ dependencies:
     - better_exposed_filters
     - node
     - user
-id: seneste_projekter
+id: latest_projects
 label: 'Seneste projekter'
 module: views
 description: 'En liste af alle projekter'
