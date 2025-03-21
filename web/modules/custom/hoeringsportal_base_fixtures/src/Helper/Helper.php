@@ -69,7 +69,7 @@ class Helper {
 
     return $images;
   }
-  
+
   /**
    * Add icons to filesystem.
    */
