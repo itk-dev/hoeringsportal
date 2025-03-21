@@ -170,7 +170,7 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:Medium3', $entity);
-    
+
     $entity = Media::create([
       'name' => 'building-user-solid',
       'bundle' => 'icon',
@@ -178,7 +178,7 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:building-user-solid', $entity);
-    
+
     $entity = Media::create([
       'name' => 'calendar-days-solid',
       'bundle' => 'icon',
@@ -186,7 +186,7 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:calendar-days-solid', $entity);
-    
+
     $entity = Media::create([
       'name' => 'comments-solid',
       'bundle' => 'icon',
@@ -194,7 +194,7 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:comments-solid', $entity);
-    
+
     $entity = Media::create([
       'name' => 'folder-open-solid',
       'bundle' => 'icon',
