@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.list_display
     - field.field.node.landing_page.field_media_image_single
     - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_show_page_title
     - field.field.node.landing_page.field_teaser
     - node.type.landing_page
   module:
@@ -35,6 +36,7 @@ content:
     region: content
 hidden:
   field_media_image_single: true
+  field_show_page_title: true
   field_teaser: true
   langcode: true
   links: true

@@ -1,0 +1,24 @@
+.paragraph-background-image {
+  height: 25%;
+  min-height: 150px;
+
+  @include media-breakpoint-up(md) {
+    height: 25%;
+    min-height: 400px;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.paragraph-links-list {
+  margin-top: -50px;
+
+  @include media-breakpoint-up(md) {
+    margin-top: -100px;
+  }
+}
