@@ -6,6 +6,7 @@ use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\hoeringsportal_citizen_proposal_fixtures\Fixture\CitizenProposalLandingPageFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
+use Drupal\itk_admin\State\BaseConfig;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
 
@@ -15,6 +16,13 @@ use Drupal\paragraphs\Entity\Paragraph;
  * @package Drupal\hoeringsportal_hearing_fixtures\Fixture
  */
 final class LandingPageFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
+
+  /**
+   * Constructor.
+   */
+  public function __construct(
+    private readonly BaseConfig $baseConfig,
+  ) {}
 
   /**
    * {@inheritdoc}
@@ -132,6 +140,11 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     ));
 
     $page->save();
+
+    // Set our page as site front page
+    // (cf. /admin/site-setup/general > “Pages” > “Front page”)
+    // See \Drupal\hoeringsportal_config_settings\Form\ItkGeneralSettingsForm.
+    $this->baseConfig->set('frontpage_id', $page->id());
   }
 
   /**
