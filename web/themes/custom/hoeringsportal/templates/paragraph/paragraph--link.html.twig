@@ -3,11 +3,19 @@
 {% set show_decorative_arrow = content.field_decorative_arrow[0]['#markup']|striptags %}
 {% set link_title = content.field_link[0]['#title'] %}
 {% set link_url = content.field_link[0]['#url'] %}
+{% set link_variant = content.field_button_variant[0]['#markup']|striptags %}
+{% set link_variant_classes = "" %}
 
-<a href="{{ link_url }}" class="paragraph-link d-flex gap-2 align-items-center text-decoration-none flex-grow-1 p-3 rounded-1">
+{% if link_variant == "white" %}
+  {% set link_variant_classes = "btn-light flex-grow-1" %}
+{% elseif link_variant == "petroleum"%}
+  {% set link_variant_classes = "btn-primary" %}
+{% endif %}
+
+<a href="{{ link_url }}" class="paragraph-link btn d-flex gap-2 align-items-center p-3 rounded-1 {{ link_variant_classes }}">
   <span class="paragraph-link-icon">{{ content.field_icon }}</span>
-  <span class="text-black fw-semibold">{{ link_title }}</span>
+  <span class="paragraph-link-title fw-semibold">{{ link_title }}</span>
   {% if show_decorative_arrow == 1 %}
-    <i class="fas fa-arrow-right ms-auto"></i>
+    <i class="paragraph-link-arrow fas fa-arrow-right ms-auto"></i>
   {% endif %}
 </a>

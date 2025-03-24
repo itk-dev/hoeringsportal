@@ -1,17 +1,20 @@
 .paragraph-link {
-  background-color: white;
-  transition: border-color 0.1s ease;
-  border: 1px solid white;
-  &:hover {
-    border: 1px solid $petroleum-light;
-    transition: border-color 0.3s ease;
-  }
-
+  
   .paragraph-link-icon {
     svg {
       text-align: center;
       width: 1.25em;
       fill: currentColor;
     }
+  }
+  
+  &.btn-light {
+    .paragraph-link-icon {
+      color: $petroleum;
+    }
+  }
+
+  &::after {
+    display: none;
   }
 }
