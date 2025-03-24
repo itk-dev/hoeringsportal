@@ -20,6 +20,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-486](https://github.com/itk-dev/hoeringsportal/pull/486)
   Added media permissions to public meeting editor role
+* [PR-480](https://github.com/itk-dev/hoeringsportal/pull/480)
+  * New paragraph section for content promotion
+
 * [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
   * New landingpage hero
 
