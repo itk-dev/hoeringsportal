@@ -7,6 +7,7 @@ dependencies:
     - node.type.landing_page
     - paragraphs.paragraphs_type.content_block
     - paragraphs.paragraphs_type.content_list
+    - paragraphs.paragraphs_type.content_promotion
     - paragraphs.paragraphs_type.introduction
     - paragraphs.paragraphs_type.links_on_a_background_image
     - paragraphs.paragraphs_type.teaser_row
@@ -30,6 +31,7 @@ settings:
       content_block: content_block
       content_list: content_list
       teaser_row: teaser_row
+      content_promotion: content_promotion
       links_on_a_background_image: links_on_a_background_image
     negate: 0
     target_bundles_drag_drop:
@@ -38,6 +40,9 @@ settings:
         enabled: true
       content_list:
         weight: 5
+        enabled: true
+      content_promotion:
+        weight: 16
         enabled: true
       files:
         weight: 16
@@ -51,6 +56,9 @@ settings:
       introduction:
         weight: 4
         enabled: true
+      link:
+        weight: 23
+        enabled: false
       links_on_a_background_image:
         weight: 20
         enabled: true
