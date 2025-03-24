@@ -42,33 +42,37 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'field_decorative_arrow' => TRUE,
       'field_icon' => [$this->getReference('media:building-user-solid')],
       'field_link' => [$this->getReference('node:landing_page:Proposals')],
+      'field_button_variant' => 'white',
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-
+    
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
       'field_icon' => [$this->getReference('media:comments-solid')],
       'field_link' => [$this->getReference('node:landing_page:Hearings')],
+      'field_button_variant' => 'white',
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-
+    
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
       'field_icon' => [$this->getReference('media:calendar-days-solid')],
       'field_link' => [$this->getReference('node:landing_page:Public meetings')],
+      'field_button_variant' => 'white',
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-
+    
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
       'field_icon' => [$this->getReference('media:folder-open-solid')],
       'field_link' => [$this->getReference('node:landing_page:Projects')],
+      'field_button_variant' => 'white',
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
@@ -127,6 +131,33 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
         'target_id' => 'latest_projects',
         'display_id' => 'default',
       ],
+    ]);
+    $paragraph->save();
+    $pageParagraphs[] = $paragraph;
+
+    $paragraphButtonLinks = [];
+    $paragraphButtonLink = Paragraph::create([
+      'type' => 'link',
+      'field_decorative_arrow' => FALSE,
+      'field_link' => [$this->getReference('node:static_page:About')],
+      'field_button_variant' => 'petroleum',
+    ]);
+    $paragraphButtonLink->save();
+    $paragraphButtonLinks[] = $paragraphButtonLink;
+
+    $paragraph = Paragraph::create([
+      'type' => 'content_promotion',
+      'field_paragraph_image' => [$this->getReference('media:Large3')],
+      'field_lead' => 'Om Deltag Aarhus',
+      'field_title' => 'Hvad ved du om deltag.aarhus.dk',
+      'field_abstract' => 'Se her hvad du kan bruge deltag.aarhus.dk til som borger i Aarhus Kommune',
+      'field_button'  => array_map(
+        static fn(Paragraph $paragraphButtonLink)=>[
+          'target_id' => $paragraphButtonLink->id(),
+          'target_revision_id' => $paragraphButtonLink->getRevisionId(),
+        ],
+        $paragraphButtonLinks
+      ),
     ]);
     $paragraph->save();
     $pageParagraphs[] = $paragraph;
