@@ -132,7 +132,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     $pageParagraphs[] = $paragraph;
 
     $page->set('field_section', array_map(
-      static fn(Paragraph $paragraph)=>[
+      static fn(Paragraph $paragraph) => [
         'target_id' => $paragraph->id(),
         'target_revision_id' => $paragraph->getRevisionId(),
       ],
