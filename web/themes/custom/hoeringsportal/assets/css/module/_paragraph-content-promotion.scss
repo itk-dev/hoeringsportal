@@ -13,7 +13,7 @@
   .promotion-box {
     margin-top: var(--margin);
     margin-bottom: var(--margin);
-    
+
     @include media-breakpoint-up(md) {
       margin-top: var(--margin-md);
       margin-bottom: var(--margin-md);

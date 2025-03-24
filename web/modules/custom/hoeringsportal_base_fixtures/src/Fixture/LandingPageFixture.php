@@ -46,7 +46,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-    
+
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
@@ -56,7 +56,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-    
+
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
@@ -66,7 +66,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     ]);
     $paragraphLink->save();
     $pageParagraphLinks[] = $paragraphLink;
-    
+
     $paragraphLink = Paragraph::create([
       'type' => 'link',
       'field_decorative_arrow' => TRUE,
