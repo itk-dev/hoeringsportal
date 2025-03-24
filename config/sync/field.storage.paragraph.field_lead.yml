@@ -1,0 +1,19 @@
+uuid: 69b7a682-892c-47e9-8a58-7a17a9703906
+langcode: da
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_lead
+field_name: field_lead
+entity_type: paragraph
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

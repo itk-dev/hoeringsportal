@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - entity_browser.browser.itk_icon_browser
+    - field.field.paragraph.link.field_button_variant
     - field.field.paragraph.link.field_decorative_arrow
     - field.field.paragraph.link.field_icon
     - field.field.paragraph.link.field_link
@@ -15,6 +16,12 @@ targetEntityType: paragraph
 bundle: link
 mode: default
 content:
+  field_button_variant:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   field_decorative_arrow:
     type: boolean_checkbox
     weight: 2

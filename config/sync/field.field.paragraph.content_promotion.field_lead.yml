@@ -1,0 +1,19 @@
+uuid: a4f971e5-0538-420f-81f0-49ee41a6728d
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_lead
+    - paragraphs.paragraphs_type.content_promotion
+id: paragraph.content_promotion.field_lead
+field_name: field_lead
+entity_type: paragraph
+bundle: content_promotion
+label: Lead
+description: 'Short text to lead a Title'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,29 @@
+uuid: 07ec85c2-d5c7-434c-ab0f-5bd430c5c4b4
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_paragraph_image
+    - media.type.image
+    - paragraphs.paragraphs_type.content_promotion
+id: paragraph.content_promotion.field_paragraph_image
+field_name: field_paragraph_image
+entity_type: paragraph
+bundle: content_promotion
+label: 'Background image'
+description: 'Used for the background image on the section'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
