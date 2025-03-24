@@ -10,6 +10,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   * Translated search page to Danish
   * Updated custom Danish translations (exported from production site)
 
+## [4.8.3] - 2025-03-24
+
+* [PR-473](https://github.com/itk-dev/hoeringsportal/pull/473)
+  Allowed citizen proposal editors to view unpublished citizen proposals.
+
 ## [4.8.2] - 2025-03-19
 
 * [PR-474](https://github.com/itk-dev/hoeringsportal/pull/474)
@@ -383,7 +388,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.2...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.3...HEAD
+[4.8.3]: https://github.com/itk-dev/hoeringsportal/compare/4.8.2...4.8.3
 [4.8.2]: https://github.com/itk-dev/hoeringsportal/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...4.8.1
 [4.8.0]: https://github.com/itk-dev/hoeringsportal/compare/4.7.3...4.8.0

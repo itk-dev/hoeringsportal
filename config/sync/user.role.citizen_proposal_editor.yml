@@ -11,6 +11,7 @@ dependencies:
     - hoeringsportal_citizen_proposal
     - node
     - system
+    - view_unpublished
     - webform
 id: citizen_proposal_editor
 label: 'Citizen proposal editor'
@@ -27,5 +28,6 @@ permissions:
   - 'edit any webform'
   - 'support citizen proposal on behalf of citizen'
   - 'use text format email_html'
+  - 'view any unpublished citizen_proposal content'
   - 'view any webform submission'
   - 'view the administration theme'
