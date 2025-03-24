@@ -20,7 +20,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
    * {@inheritdoc}
    */
   public function load() {
-
+    return;
     $node = Node::create([
       'type' => 'public_meeting',
       'title' => 'Public meeting with manual signup',
