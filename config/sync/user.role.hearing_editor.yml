@@ -17,6 +17,7 @@ dependencies:
     - node
     - quick_node_clone
     - system
+    - toolbar
     - view_unpublished
 id: hearing_editor
 label: 'Hearing editor'
@@ -27,6 +28,7 @@ permissions:
   - 'access itk_document_browser entity browser pages'
   - 'access itk_image_browser entity browser pages'
   - 'access media overview'
+  - 'access toolbar'
   - 'clone hearing content'
   - 'create document media'
   - 'create hearing content'
