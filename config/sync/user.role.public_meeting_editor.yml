@@ -3,11 +3,17 @@ langcode: da
 status: true
 dependencies:
   config:
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - filter.format.email_html
+    - media.type.document
+    - media.type.image
     - node.type.public_meeting
   module:
+    - entity_browser
     - file
     - filter
+    - media
     - node
     - quick_node_clone
     - system
@@ -19,17 +25,27 @@ weight: -4
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access itk_document_browser entity browser pages'
+  - 'access itk_image_browser entity browser pages'
+  - 'access media overview'
   - 'access webform overview'
   - 'clone public_meeting content'
+  - 'create document media'
+  - 'create image media'
   - 'create public_meeting content'
   - 'delete any public_meeting content'
+  - 'delete own document media'
   - 'delete own files'
+  - 'delete own image media'
   - 'delete own public_meeting content'
   - 'delete public_meeting revisions'
   - 'edit any public_meeting content'
+  - 'edit own document media'
+  - 'edit own image media'
   - 'edit own public_meeting content'
   - 'revert public_meeting revisions'
   - 'use text format email_html'
   - 'view any unpublished public_meeting content'
+  - 'view own unpublished media'
   - 'view public_meeting revisions'
   - 'view the administration theme'
