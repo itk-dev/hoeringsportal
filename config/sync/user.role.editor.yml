@@ -3,19 +3,15 @@ langcode: da
 status: true
 dependencies:
   config:
-    - entity_browser.browser.itk_document_browser
-    - entity_browser.browser.itk_image_browser
     - filter.format.email_html
     - node.type.hearing
     - node.type.project
     - node.type.public_meeting
     - node.type.static_page
   module:
-    - entity_browser
     - file
     - filter
     - locale
-    - media
     - node
     - publication_date
     - system
@@ -26,12 +22,7 @@ weight: -7
 is_admin: null
 permissions:
   - 'access content overview'
-  - 'access itk_document_browser entity browser pages'
-  - 'access itk_image_browser entity browser pages'
-  - 'access media overview'
-  - 'access toolbar'
   - 'administer nodes'
-  - 'create media'
   - 'create project content'
   - 'create static_page content'
   - 'delete own files'
@@ -44,7 +35,6 @@ permissions:
   - 'set hearing published on date'
   - 'set public_meeting published on date'
   - 'translate interface'
-  - 'update media'
   - 'use text format email_html'
   - 'view own unpublished content'
   - 'view the administration theme'

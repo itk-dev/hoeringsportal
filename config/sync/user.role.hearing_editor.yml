@@ -3,11 +3,17 @@ langcode: da
 status: true
 dependencies:
   config:
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - filter.format.email_html
+    - media.type.document
+    - media.type.image
     - node.type.hearing
   module:
+    - entity_browser
     - file
     - filter
+    - media
     - node
     - quick_node_clone
     - system
@@ -18,16 +24,26 @@ weight: -5
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access itk_document_browser entity browser pages'
+  - 'access itk_image_browser entity browser pages'
+  - 'access media overview'
   - 'clone hearing content'
+  - 'create document media'
   - 'create hearing content'
+  - 'create image media'
   - 'delete any hearing content'
   - 'delete hearing revisions'
+  - 'delete own document media'
   - 'delete own files'
   - 'delete own hearing content'
+  - 'delete own image media'
   - 'edit any hearing content'
+  - 'edit own document media'
   - 'edit own hearing content'
+  - 'edit own image media'
   - 'revert hearing revisions'
   - 'use text format email_html'
   - 'view any unpublished hearing content'
   - 'view hearing revisions'
+  - 'view own unpublished media'
   - 'view the administration theme'
