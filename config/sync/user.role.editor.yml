@@ -15,7 +15,6 @@ dependencies:
     - node
     - publication_date
     - system
-    - toolbar
 id: editor
 label: Redaktør
 weight: -7
