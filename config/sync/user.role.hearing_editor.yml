@@ -12,14 +12,12 @@ dependencies:
     - quick_node_clone
     - system
     - view_unpublished
-    - webform
 id: hearing_editor
 label: 'Hearing editor'
 weight: -5
 is_admin: null
 permissions:
   - 'access content overview'
-  - 'access webform overview'
   - 'clone hearing content'
   - 'create hearing content'
   - 'delete any hearing content'
