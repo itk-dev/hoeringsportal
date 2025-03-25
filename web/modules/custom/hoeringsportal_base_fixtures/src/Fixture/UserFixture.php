@@ -37,16 +37,17 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
 
     // We use the range 100..103 to prevent usernames clashing with the ones
     // used in OIDCUserFixture.
+    $role = 'hearing_editor';
     foreach (range(100, 103) as $i) {
       $departmentNumber = ($i - 1) % TermDepartmentFixture::NUMBER_OF_TERMS + 1;
-      $name = sprintf('department%d-editor', $i);
+      $name = sprintf('department%d-%s', $i, $role);
       $user = User::create([
         'name' => $name,
         'mail' => $name . '@example.com',
         'pass' => $name . '-password',
         'status' => 1,
         'roles' => [
-          'editor',
+          $role,
         ],
         'field_department' => [
           $this->getReference(sprintf('department:Department %d', $departmentNumber))->id(),
@@ -55,18 +56,6 @@ class UserFixture extends AbstractFixture implements FixtureGroupInterface, Depe
       $user->save();
       $this->setReference('user:' . $name, $user);
     }
-
-    $user = User::create([
-      'name' => 'user',
-      'mail' => 'user@example.com',
-      'pass' => 'user-password',
-      'status' => 1,
-      'roles' => [
-        'authenticated',
-      ],
-    ]);
-    $user->save();
-    $this->setReference('user:user', $user);
   }
 
   /**
