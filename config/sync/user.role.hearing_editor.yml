@@ -9,7 +9,9 @@ dependencies:
     - file
     - filter
     - node
+    - quick_node_clone
     - system
+    - view_unpublished
     - webform
 id: hearing_editor
 label: 'Hearing editor'
@@ -18,8 +20,16 @@ is_admin: null
 permissions:
   - 'access content overview'
   - 'access webform overview'
+  - 'clone hearing content'
   - 'create hearing content'
+  - 'delete any hearing content'
+  - 'delete hearing revisions'
   - 'delete own files'
+  - 'delete own hearing content'
   - 'edit any hearing content'
+  - 'edit own hearing content'
+  - 'revert hearing revisions'
   - 'use text format email_html'
+  - 'view any unpublished hearing content'
+  - 'view hearing revisions'
   - 'view the administration theme'

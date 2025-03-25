@@ -5,7 +5,6 @@ dependencies:
   config:
     - entity_browser.browser.itk_document_browser
     - entity_browser.browser.itk_image_browser
-    - node.type.hearing
     - node.type.landing_page
     - node.type.project
     - node.type.static_page
@@ -47,7 +46,6 @@ permissions:
   - 'administer url aliases'
   - 'administer users'
   - 'bypass node access'
-  - 'create hearing content'
   - 'create landing_page content'
   - 'create media'
   - 'create project content'
@@ -56,23 +54,19 @@ permissions:
   - 'create terms in hearing_type'
   - 'create terms in media_library'
   - 'create url aliases'
-  - 'delete any hearing content'
   - 'delete any landing_page content'
   - 'delete any project content'
   - 'delete any static_page content'
   - 'delete own files'
-  - 'delete own hearing content'
   - 'delete own landing_page content'
   - 'delete own project content'
   - 'delete own static_page content'
   - 'delete terms in area'
   - 'delete terms in hearing_type'
   - 'delete terms in media_library'
-  - 'edit any hearing content'
   - 'edit any landing_page content'
   - 'edit any project content'
   - 'edit any static_page content'
-  - 'edit own hearing content'
   - 'edit own landing_page content'
   - 'edit own project content'
   - 'edit own static_page content'
