@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.9.0] - 2025-03-25
+
 * [PR-472](https://github.com/itk-dev/hoeringsportal/pull/472)
   * Translated search page to Danish
   * Updated custom Danish translations (exported from production site)
@@ -388,7 +390,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.8.3...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.9.0...HEAD
+[4.9.0]: https://github.com/itk-dev/hoeringsportal/compare/4.8.3...4.9.0
 [4.8.3]: https://github.com/itk-dev/hoeringsportal/compare/4.8.2...4.8.3
 [4.8.2]: https://github.com/itk-dev/hoeringsportal/compare/4.8.1...4.8.2
 [4.8.1]: https://github.com/itk-dev/hoeringsportal/compare/4.8.0...4.8.1
