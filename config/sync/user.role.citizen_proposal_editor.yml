@@ -12,6 +12,7 @@ dependencies:
     - node
     - publication_date
     - system
+    - toolbar
     - view_unpublished
     - webform
 id: citizen_proposal_editor
@@ -20,6 +21,7 @@ weight: -8
 is_admin: null
 permissions:
   - 'access content overview'
+  - 'access toolbar'
   - 'access webform overview'
   - 'access webform submission user'
   - 'administer citizen proposal'
