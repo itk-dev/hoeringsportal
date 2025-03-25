@@ -10,6 +10,7 @@ dependencies:
     - filter
     - hoeringsportal_citizen_proposal
     - node
+    - publication_date
     - system
     - view_unpublished
     - webform
@@ -23,11 +24,18 @@ permissions:
   - 'access webform submission user'
   - 'administer citizen proposal'
   - 'create webform'
+  - 'delete any citizen_proposal content'
+  - 'delete citizen_proposal revisions'
+  - 'delete own citizen_proposal content'
   - 'delete own files'
   - 'edit any citizen_proposal content'
   - 'edit any webform'
+  - 'edit own citizen_proposal content'
+  - 'revert citizen_proposal revisions'
+  - 'set citizen_proposal published on date'
   - 'support citizen proposal on behalf of citizen'
   - 'use text format email_html'
   - 'view any unpublished citizen_proposal content'
   - 'view any webform submission'
+  - 'view citizen_proposal revisions'
   - 'view the administration theme'
