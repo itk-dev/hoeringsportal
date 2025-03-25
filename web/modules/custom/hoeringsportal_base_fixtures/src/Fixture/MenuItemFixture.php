@@ -23,7 +23,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load() {
-    // Main menu
+    // Main menu.
     foreach ([
       'node:landing_page:Hearings',
       'node:landing_page:Proposals',
@@ -39,7 +39,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
         'weight' => $weight,
       ])->save();
     }
-    // Secondary navigation
+    // Secondary navigation.
     foreach ([
       'node:static_page:About',
     ] as $weight => $name) {
