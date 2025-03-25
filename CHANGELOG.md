@@ -9,7 +9,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 ## [4.9.0] - 2025-03-25
 
 * [PR-482](https://github.com/itk-dev/hoeringsportal/pull/482)
-  Updated role permissions
+  * Updated role permissions
+  * Updated user fixtures to create a user for each role
 
 ## [4.8.7] - 2025-04-04
 
