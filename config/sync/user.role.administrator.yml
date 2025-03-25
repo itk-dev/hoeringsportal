@@ -3,6 +3,8 @@ langcode: da
 status: true
 dependencies:
   config:
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - node.type.hearing
     - node.type.landing_page
     - node.type.project

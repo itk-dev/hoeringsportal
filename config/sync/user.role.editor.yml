@@ -5,6 +5,7 @@ dependencies:
   config:
     - entity_browser.browser.itk_document_browser
     - entity_browser.browser.itk_image_browser
+    - filter.format.email_html
     - node.type.hearing
     - node.type.project
     - node.type.public_meeting
@@ -12,6 +13,7 @@ dependencies:
   module:
     - entity_browser
     - file
+    - filter
     - locale
     - media
     - node
@@ -19,6 +21,7 @@ dependencies:
     - quick_node_clone
     - system
     - toolbar
+    - webform
 id: editor
 label: Redaktør
 weight: -7
