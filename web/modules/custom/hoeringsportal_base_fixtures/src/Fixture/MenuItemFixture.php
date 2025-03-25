@@ -23,6 +23,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
   public function load() {
+    // Main menu
     foreach ([
       'node:landing_page:Hearings',
       'node:landing_page:Proposals',
@@ -34,6 +35,19 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
         'title' => $page->title->value,
         'link' => ['uri' => 'entity:node/' . $page->id()],
         'menu_name' => 'main',
+        'expanded' => FALSE,
+        'weight' => $weight,
+      ])->save();
+    }
+    // Secondary navigation
+    foreach ([
+      'node:static_page:About',
+    ] as $weight => $name) {
+      $page = $this->getReference($name);
+      MenuLinkContent::create([
+        'title' => $page->title->value,
+        'link' => ['uri' => 'entity:node/' . $page->id()],
+        'menu_name' => 'secondary-navigation',
         'expanded' => FALSE,
         'weight' => $weight,
       ])->save();
