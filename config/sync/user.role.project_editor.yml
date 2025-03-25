@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - block_content.type.aside_contact_info
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - media.type.document
     - media.type.image
     - node.type.project
