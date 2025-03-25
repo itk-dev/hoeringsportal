@@ -274,52 +274,52 @@ services:
           Claims:
             # Claims added here must be defined above in IDENTITY_RESOURCES_INLINE
           - Type: email
-            Value: 'department1-admin@example.com'
+            Value: 'department1-administrator@example.com'
             ValueType: string
           - Type: name
-            Value: 'department1-admin'
+            Value: 'department1-administrator'
             ValueType: string
           - Type: magistratsafdeling
             Value: 'Department 1'
             ValueType: string
           - Type: groups
-            Value: '["editor"]'
+            Value: '["administrator"]'
             ValueType: json
 
         - SubjectId: 2
-          Username: department2-editor
-          Password: department2-editor
+          Username: department2-hearing_editor
+          Password: department2-hearing_editor
           Claims:
           - Type: email
-            Value: 'department2-editor@example.com'
+            Value: 'department2-hearing_editor@example.com'
             ValueType: string
           - Type: name
-            Value: 'department2-editor'
+            Value: 'department2-hearing_editor'
             ValueType: string
           - Type: magistratsafdeling
             Value: 'Department 2'
             ValueType: string
           - Type: groups
-            Value: '["editor"]'
+            Value: '["hearing_editor"]'
             ValueType: json
 
         - SubjectId: 3
-          Username: department3-editor
-          Password: department3-editor
+          Username: department3-hearing_editor
+          Password: department3-hearing_editor
           Claims:
           - Type: email
-            Value: 'department3-editor@example.com'
+            Value: 'department3-hearing_editor@example.com'
             ValueType: string
           - Type: name
-            Value: 'department3-editor'
+            Value: 'department3-hearing_editor'
             ValueType: string
           - Type: magistratsafdeling
             Value: 'Department 3'
             ValueType: string
           - Type: groups
-            Value: '["editor"]'
+            Value: '["hearing_editor"]'
             ValueType: json
-  
+
   idp_mock_api:
     image: dotronglong/faker:stable
     profiles:
