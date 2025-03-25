@@ -4,12 +4,12 @@
 {% set link_title = content.field_link[0]['#title'] %}
 {% set link_url = content.field_link[0]['#url'] %}
 {% set link_variant = content.field_button_variant[0]['#markup']|striptags %}
-{% set link_variant_classes = "" %}
+{% set link_variant_classes = '' %}
 
-{% if link_variant == "white" %}
-  {% set link_variant_classes = "btn-light flex-grow-1" %}
-{% elseif link_variant == "petroleum"%}
-  {% set link_variant_classes = "btn-primary" %}
+{% if link_variant == 'white' %}
+  {% set link_variant_classes = 'btn-light flex-grow-1' %}
+{% elseif link_variant == 'petroleum' %}
+  {% set link_variant_classes = 'btn-primary' %}
 {% endif %}
 
 <a href="{{ link_url }}" class="paragraph-link btn d-flex gap-2 align-items-center p-3 rounded-1 {{ link_variant_classes }}">
