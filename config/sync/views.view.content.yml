@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - field.storage.node.field_department
-    - user.role.administrator
   module:
     - csv_serialization
     - node
@@ -933,10 +932,9 @@ display:
           hide_alter_empty: true
           destination: true
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
+          perm: 'access content overview'
       style:
         type: data_export
         options:
@@ -975,7 +973,7 @@ display:
         - url
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_2:
     id: data_export_2
@@ -1245,10 +1243,9 @@ display:
           hide_alter_empty: true
           destination: true
       access:
-        type: role
+        type: perm
         options:
-          role:
-            administrator: administrator
+          perm: 'access content overview'
       style:
         type: excel_export
         options:
@@ -1292,7 +1289,7 @@ display:
         - url
         - user
         - 'user.node_grants:view'
-        - user.roles
+        - user.permissions
       tags: {  }
   page_1:
     id: page_1

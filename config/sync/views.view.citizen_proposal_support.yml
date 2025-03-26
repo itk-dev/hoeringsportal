@@ -2,8 +2,6 @@ uuid: fbd4d6c3-386f-42f3-bdbe-992f6c3e8f09
 langcode: da
 status: true
 dependencies:
-  config:
-    - user.role.citizen_proposal_editor
   module:
     - csv_serialization
     - node
@@ -271,10 +269,9 @@ display:
           sort_asc_label: Stigende
           sort_desc_label: Faldende
       access:
-        type: role
+        type: perm
         options:
-          role:
-            citizen_proposal_editor: citizen_proposal_editor
+          perm: 'edit any citizen_proposal content'
       cache:
         type: tag
         options: {  }
@@ -407,7 +404,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_1:
     id: data_export_1
@@ -605,7 +602,7 @@ display:
         - 'languages:language_interface'
         - request_format
         - url
-        - user.roles
+        - user.permissions
       tags: {  }
   data_export_2:
     id: data_export_2
@@ -803,7 +800,7 @@ display:
         - 'languages:language_interface'
         - request_format
         - url
-        - user.roles
+        - user.permissions
       tags: {  }
   page_1:
     id: page_1
@@ -833,5 +830,5 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user.roles
+        - user.permissions
       tags: {  }
