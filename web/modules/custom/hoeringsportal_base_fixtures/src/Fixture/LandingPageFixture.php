@@ -152,7 +152,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'field_title' => 'Hvad ved du om deltag.aarhus.dk',
       'field_abstract' => 'Se her hvad du kan bruge deltag.aarhus.dk til som borger i Aarhus Kommune',
       'field_button'  => array_map(
-        static fn(Paragraph $paragraphButtonLink)=>[
+        static fn(Paragraph $paragraphButtonLink) => [
           'target_id' => $paragraphButtonLink->id(),
           'target_revision_id' => $paragraphButtonLink->getRevisionId(),
         ],

@@ -3,7 +3,6 @@
 namespace Drupal\hoeringsportal_base_fixtures\Fixture;
 
 use Drupal\content_fixtures\Fixture\AbstractFixture;
-use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
 use Drupal\node\Entity\Node;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -13,7 +12,7 @@ use Drupal\paragraphs\Entity\Paragraph;
  *
  * @package Drupal\hoeringsportal_hearing_fixtures\Fixture
  */
-final class AboutPageFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
+final class AboutPageFixture extends AbstractFixture implements FixtureGroupInterface {
 
   /**
    * {@inheritdoc}
@@ -50,15 +49,6 @@ BODY,
 
     $page->save();
     $this->addReference('node:static_page:About', $page);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getDependencies() {
-    return [
-      MediaFixture::class,
-    ];
   }
 
   /**
