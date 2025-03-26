@@ -3,6 +3,7 @@ langcode: da
 status: true
 dependencies:
   config:
+    - node.type.hearing
     - node.type.landing_page
     - node.type.project
     - node.type.static_page
@@ -11,10 +12,12 @@ dependencies:
     - taxonomy.vocabulary.media_library
   module:
     - aarhus_hero
+    - entity_browser
     - file
     - hoeringsportal_deskpro
     - itk_admin
     - locale
+    - media
     - node
     - path
     - system
@@ -30,6 +33,9 @@ permissions:
   - 'access deskpro settings'
   - 'access hero configuration'
   - 'access itk admin settings'
+  - 'access itk_document_browser entity browser pages'
+  - 'access itk_image_browser entity browser pages'
+  - 'access media overview'
   - 'access site reports'
   - 'access taxonomy overview'
   - 'access toolbar'
@@ -39,26 +45,32 @@ permissions:
   - 'administer url aliases'
   - 'administer users'
   - 'bypass node access'
+  - 'create hearing content'
   - 'create landing_page content'
+  - 'create media'
   - 'create project content'
   - 'create static_page content'
   - 'create terms in area'
   - 'create terms in hearing_type'
   - 'create terms in media_library'
   - 'create url aliases'
+  - 'delete any hearing content'
   - 'delete any landing_page content'
   - 'delete any project content'
   - 'delete any static_page content'
   - 'delete own files'
+  - 'delete own hearing content'
   - 'delete own landing_page content'
   - 'delete own project content'
   - 'delete own static_page content'
   - 'delete terms in area'
   - 'delete terms in hearing_type'
   - 'delete terms in media_library'
+  - 'edit any hearing content'
   - 'edit any landing_page content'
   - 'edit any project content'
   - 'edit any static_page content'
+  - 'edit own hearing content'
   - 'edit own landing_page content'
   - 'edit own project content'
   - 'edit own static_page content'
@@ -66,5 +78,6 @@ permissions:
   - 'edit terms in hearing_type'
   - 'edit terms in media_library'
   - 'translate interface'
+  - 'update media'
   - 'view own unpublished content'
   - 'view the administration theme'
