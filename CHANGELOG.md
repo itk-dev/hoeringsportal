@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [4.9.0] - 2025-03-25
 
+* [PR-484](https://github.com/itk-dev/hoeringsportal/pull/484)
+  Added token to `arduino/setup-task`
 * [PR-483](https://github.com/itk-dev/hoeringsportal/pull/483)
   Made exports consistent
 * [PR-482](https://github.com/itk-dev/hoeringsportal/pull/482)
