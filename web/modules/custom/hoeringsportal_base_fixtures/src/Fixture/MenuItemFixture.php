@@ -59,6 +59,7 @@ class MenuItemFixture extends AbstractFixture implements DependentFixtureInterfa
    */
   public function getDependencies() {
     return [
+      AboutPageFixture::class,
       HearingLandingPageFixture::class,
       CitizenProposalLandingPageFixture::class,
       ProjectLandingPageFixture::class,
