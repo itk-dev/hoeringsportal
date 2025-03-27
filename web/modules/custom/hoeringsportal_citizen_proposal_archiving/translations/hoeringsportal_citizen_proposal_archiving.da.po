@@ -1,0 +1,134 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/hoeringsportal_citizen_proposal_archiving.info.yml: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/FormHelper.php: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/src/Plugin/AdvancedQueue/JobType/ArchiveCitizenProposalJob.php: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig: n/a
+#  modules/custom/hoeringsportal_citizen_proposal_archiving/config/install/advancedqueue.advancedqueue_queue.hoeringsportal_citizen_proposal_archiving.yml: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-12 15:17+0100\n"
+"PO-Revision-Date: 2025-03-12 15:17+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/hoeringsportal_citizen_proposal_archiving.info.yml:0
+msgid "Hoeringsportal citizen proposal archiving"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/hoeringsportal_citizen_proposal_archiving.info.yml:0
+msgid "Archives citizen proposals in GetOrganized."
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/hoeringsportal_citizen_proposal_archiving.info.yml:0
+msgid "ITK"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php:48
+msgid "Archiving node @label"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php:54
+msgid "Done archiving node @label"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Archiver/GetOrganizedArchiver.php:108
+msgid "@message"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/FormHelper.php:51
+msgid "Archived at"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/FormHelper.php:68
+msgid "Archive URL"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php:139
+msgid "Node @label changed after requested archival time (@some_time > @another_time). Skipping."
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php:107
+msgid "Job for archiving citizen proposal @label added to the queue @queue."
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php:151
+msgid "Citizen proposal @label archived"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php:115
+msgid "Error adding job for archiving citizen proposal @label: @message."
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Helper/Helper.php:159
+msgid "Error processing job: @message"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/src/Plugin/AdvancedQueue/JobType/ArchiveCitizenProposalJob.php:12
+msgid "Archive citizen proposal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:13
+msgid "Citizen proposal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:16
+msgid "Proposal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:19
+msgid "Remarks"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:23
+msgid "Author"
+msgstr "Author"
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:26
+msgid "Name"
+msgstr "Navn"
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:30
+msgid "Email"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:33
+msgid "Phone"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:37
+msgid "Details"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:46
+msgid "Vote start"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:49
+msgid "Vote end"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:53
+msgid "Url"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:56
+msgid "Printed at"
+msgstr ""
+
+#: modules/custom/hoeringsportal_citizen_proposal_archiving/config/install/advancedqueue.advancedqueue_queue.hoeringsportal_citizen_proposal_archiving.yml:0
+msgid "Citizen proposal archiving"
+msgstr ""
+
