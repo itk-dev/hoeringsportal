@@ -1,0 +1,78 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/hoeringsportal_content_blocks/hoeringsportal_content_blocks.info.yml: n/a
+#  modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingTypeAddress.php: n/a
+#  modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingTypeMoreInfo.php: n/a
+#  modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingWarning.php: n/a
+#  modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/MeetingWarning.php: n/a
+#  modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig: n/a
+#  modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-12 15:18+0100\n"
+"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/hoeringsportal_content_blocks/hoeringsportal_content_blocks.info.yml:0
+msgid "Hoeringsportal content blocks"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/hoeringsportal_content_blocks.info.yml:0
+msgid "Blocks used for displaying content on nodes"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/hoeringsportal_content_blocks.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingTypeAddress.php:8
+msgid "Node address"
+msgstr "Adresse"
+
+#: modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingTypeMoreInfo.php:8
+msgid "Node more info"
+msgstr "Mere information"
+
+#: modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/HearingWarning.php:8
+msgid "Node hearing warning"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/src/Plugin/Block/MeetingWarning.php:10
+msgid "Node public meeting warning"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:14;20;26 modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:14;17
+msgid "Note!"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:14
+msgid "Hearing deadline has passed."
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:20
+msgid "This hearing has not started yet"
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:26
+msgid "Hearing deadline approaching."
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:14
+msgid "This public meeting has been held."
+msgstr ""
+
+#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:17
+msgid "This public meeting has been cancelled."
+msgstr ""
+

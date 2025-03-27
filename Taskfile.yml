@@ -13,6 +13,12 @@ vars:
   PRETIX_URL: '{{.TASK_PRETIX_URL | default "http://pretix.hoeringsportal.local.itkdev.dk"}}'
   PRETIX_ORGANIZER: '{{.TASK_PRETIX_ORGANIZER | default "dpl-cms"}}'
 
+  CUSTOM_MODULES:
+    sh: ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'
+
+  CUSTOM_THEMES:
+    sh: ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'
+
 tasks:
   default:
     cmds:
@@ -52,12 +58,13 @@ tasks:
 
   site-open:
     cmds:
-      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)"; else echo "$(task site-url)"; fi
+      # `open` is defined in GitHub Actions (ubuntu-latest), but cannot actually be run without error. Therefore we add `|| true` to prevent errors.
+      - if command -v open 2>&1 >/dev/null; then open "$(task site-url)" || true; else echo "$(task site-url)"; fi
     silent: true
 
   site-open-admin:
     cmds:
-      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}"; else echo "{{.URL}}"; fi
+      - if command -v open 2>&1 >/dev/null; then open "{{.URL}}" || true; else echo "{{.URL}}"; fi
     vars:
       URL:
         sh: task drush -- user:login --no-browser
@@ -257,4 +264,80 @@ tasks:
       # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
       # https://www.drupal.org/project/drupal/issues/3496223
       - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
+    silent: true
+
+  translations:extract:modules:
+    cmds:
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            MODULE:
+              ref: .CUSTOM_MODULES
+            LANGUAGE:
+              - da
+        cmd: |
+          task drush -- potx single --folder=modules/custom/{{.ITEM.MODULE}}/ --language {{.ITEM.LANGUAGE}} --translations && \
+          mkdir -p web/modules/custom/{{.ITEM.MODULE}}/translations && \
+          mv web/general.pot web/modules/custom/{{.ITEM.MODULE}}/translations/{{.ITEM.MODULE}}.{{.ITEM.LANGUAGE}}.po
+    internal: true
+
+  translations:extract:themes:
+    cmds:
+      # https://github.com/go-task/task/discussions/1543
+      - for:
+          matrix:
+            THEME:
+              ref: .CUSTOM_THEMES
+            LANGUAGE:
+              - da
+        # `drush potx` always writes to web/general.pot, so we move this file
+        # into the desired destination in the `translations` folder inside the
+        # module folder.
+        cmd: |
+          task drush -- potx single --folder=themes/custom/{{.ITEM.THEME}}/ --language {{.ITEM.LANGUAGE}} --translations && \
+          mkdir -p web/themes/custom/{{.ITEM.THEME}}/translations && \
+          mv web/general.pot web/themes/custom/{{.ITEM.THEME}}/translations/{{.ITEM.THEME}}.{{.ITEM.LANGUAGE}}.po
+    internal: true
+
+  translations:diff:
+    cmds:
+      # Ignore some PO metadata when git diff'ing, e.g.
+      #
+      # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
+      # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations
+
+  translations:extract:
+    cmds:
+      - task drush -- --yes pm:install potx
+      - task: translations:extract:modules
+      - task: translations:extract:themes
+      - task drush -- --yes pm:uninstall potx
+    silent: true
+
+  # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
+  # module translations without overriding existing translations?
+  # @todo Do we want to override (existing) translations?
+  translations:import:modules:
+    cmds:
+      - for:
+          matrix:
+            MODULE:
+              ref: .CUSTOM_MODULES
+        cmd: task drush -- locale:import-all --override=none modules/custom/{{.ITEM.MODULE}}/translations/
+    silent: true
+
+  translations:import:themes:
+    cmds:
+      - for:
+          matrix:
+            THEME:
+              ref: .CUSTOM_THEMES
+        cmd: task drush -- locale:import-all --override=none themes/custom/{{.ITEM.THEME}}/translations/
+    silent: true
+
+  translations:import:all:
+    cmds:
+      - task: translations:import:modules
+      - task: translations:import:themes
     silent: true

@@ -1,161 +1,523 @@
-# Danish translation of Høringsportalen - Aarhus kommune
+# $Id$
 #
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml: n/a
+#  themes/custom/hoeringsportal/hoeringsportal.info.yml: n/a
+#  themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/block/block-content--aside-contact-info.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/newsletter-bottom-link.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/block/block--system-branding-block.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/block/block--system-menu-block--secondary-navigation.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/components/citizen-proposal-support-counter.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--citizen-proposal--teaser.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--list-display.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--teaser.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/dataset/item-list--search-results.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-citizen-proposal.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-project.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--comment.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/navigation/menu-local-tasks.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--default--node-title.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-nearest-hearings.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-project-timeline.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-public-meeting-summary.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--node--field-signup-link--public-meeting.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-quicklinks.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--node--dynamic-block-field--node-quicklinks--public-meeting.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--field-media-document.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--field-registration-deadline.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/field/field--paragraph--field-external-link--projekt-billede-galleri.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/form/form--search-block-form.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/layout/html.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/layout/page--search.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/navigation/pager.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/paragraph/paragraph--content-list.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/views/views-view--all-citizen-proposals.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/views/views-view--all-hearings.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/views/views-view--all-meetings.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/views/views-view--search-db.html.twig: n/a
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: hoeringsportal\n"
-"POT-Creation-Date: 2018-10-22 16:25+0200\n"
-"PO-Revision-Date: 2018-10-22 16:31+0200\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-03-12 15:19+0100\n"
+"PO-Revision-Date: 2025-03-12 15:19+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "SAML login"
-msgstr "ADFS-login"
+#: themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml:0
+msgid "xs"
+msgstr ""
 
-msgid "Hearing tickets"
-msgstr "Høringssvar"
+#: themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml:0
+msgid "sm"
+msgstr ""
 
-msgid "Attachments"
-msgstr "Vedhæftninger"
+#: themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml:0
+msgid "md"
+msgstr ""
 
-msgid "Replies"
-msgstr "Bidrag"
+#: themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml:0
+msgid "lg"
+msgstr ""
 
-msgid "Start date"
-msgstr "Start dato"
+#: themes/custom/hoeringsportal/hoeringsportal.breakpoints.yml:0
+msgid "xl"
+msgstr ""
 
-msgid "Reply"
-msgstr "Bidrag"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Høringsportal"
+msgstr ""
 
-msgid "Project not secure"
-msgstr "Initiativ ikke sikkert"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "A theme for Høringsportal"
+msgstr ""
 
-msgid "Project revoked"
-msgstr "Initiativ tilbagekaldt"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
 
-msgid "Project not supported"
-msgstr "Initiativ ikke understøttet"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Header"
+msgstr ""
 
-msgid "Add hearing ticket"
-msgstr "Tilføj høringssvar"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Hero"
+msgstr ""
 
-msgid "Hearing tickets (@count)"
-msgstr "Høringssvar (@count)"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Content"
+msgstr "Content"
 
-msgid "Reply date"
-msgstr "Bidrag dato"
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Sidebar"
+msgstr ""
 
-msgid "Your search yielded no result"
-msgstr "Din søgning gav ingen resultater."
+#: themes/custom/hoeringsportal/hoeringsportal.info.yml:0
+msgid "Footer"
+msgstr "Footer"
 
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:4
+msgid "Share the proposal"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:8;8;16;16;24;24;32;32;40;40;48;48;56;56;64;64;72;72;80;80;88;88
+msgid "Share to"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:10
+msgid "Facebook"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:18
+msgid "X (Twitter)"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:26
+msgid "Whatsapp"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:34
+msgid "Facebook messenger"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:42
+msgid "Pinterest"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:50
+msgid "Linkedin"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:58
+msgid "Digg"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:66
+msgid "Tumblr"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:74
+msgid "Reddit"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:82
+msgid "Evernote"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:90 themes/custom/hoeringsportal/templates/block/block-content--aside-contact-info.html.twig:59
+msgid "Email"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:99
+msgid "Copy to clipboard"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:100
+msgid "Copied to clipboard"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/better-social-sharing-buttons.html.twig:115
+msgid "Print"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/newsletter-bottom-link.html.twig:4
+msgid "Would you like a direct message when deltag.aarhus.dk has new content?"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/newsletter-bottom-link.html.twig:5
+msgid "<a href=\"@sign_up_url\">Sign up to our message service</a> and be informed about your interests"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/newsletter-bottom-link.html.twig:7
+msgid "Aarhus Municipality"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/block/block--system-branding-block.html.twig:18;19;20;24
+msgid "Home"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/block/block--system-menu-block--secondary-navigation.html.twig:49
+msgid "Log out"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/block/block-content--aside-contact-info.html.twig:54
+msgid "Phone"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/components/citizen-proposal-support-counter.html.twig:32
+msgid "Progress"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--citizen-proposal--teaser.html.twig:82
+msgid "End date"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--list-display.html.twig:72
+msgid "Initiative"
+msgstr "Initiativ"
+
+#: themes/custom/hoeringsportal/templates/content/node--list-display.html.twig:80
 msgid "Information page"
 msgstr "Information"
 
-msgid "Answer @number by @name"
-msgstr "Bidrag @number af @name"
+#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:102
+msgid "Public meeting"
+msgstr "Begivenhed"
 
-msgid "Note! Hearing deadline has passed."
-msgstr "Note! Hørings tidsfristen er forbi."
-
-msgid "Show more hearings"
-msgstr "Vis flere høringer"
-
-msgid "<strong>Note!</strong> Hearing deadline has passed."
-msgstr "<strong>Note!</strong> Hørings tidsfristen er forbi."
-
-msgid "Open search"
-msgstr "Åben søgning"
-
-msgid "<strong>Note!</strong> Hearing deadline approaching."
-msgstr "<strong>Note!</strong> Hørings tidsfristen nærmer sig."
-
-msgid "Content on this page"
-msgstr "Indhold på denne side"
-
-msgid "Open project gallery"
-msgstr "Åbn projekt galleri"
-
+#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:106;109 themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:104;108
 msgid "Finished"
-msgstr "Slut"
+msgstr "Afsluttet"
 
-msgid "Hearing"
-msgstr "Høring"
+#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:117
+msgid "Cancelled"
+msgstr "Aflyst"
 
+#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:73
+msgid "Project"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:97
+msgid "Start date"
+msgstr "Start dato"
+
+#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:101
+msgid "Upcoming"
+msgstr "På vej"
+
+#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:112
+msgid "Reply date"
+msgstr "Svar frist"
+
+#: themes/custom/hoeringsportal/templates/dataset/item-list--search-results.html.twig:38
+msgid "Your search yielded no result"
+msgstr "Din søgning gav ingen resultater."
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-citizen-proposal.html.twig:59;68
+msgid "Support the proposal"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-project.html.twig:40
+msgid "Project info"
+msgstr "Initiativ info"
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:37
+msgid "User validated"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:41 themes/custom/hoeringsportal/templates/field/field--comment.html.twig:58
+msgid "Validate with NemID"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:42 themes/custom/hoeringsportal/templates/field/field--comment.html.twig:59
+msgid "Before you can contribute you must validate your user account with NemID."
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:43 themes/custom/hoeringsportal/templates/field/field--comment.html.twig:60
+msgid "You only have to do it once, and you can do it now."
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:45 themes/custom/hoeringsportal/templates/field/field--comment.html.twig:62
+msgid "Validate"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:51;66
+msgid "Change user information"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:56
+msgid "Your information"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:59
+msgid "User validation"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:61 themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig:15
+msgid "Validated with NemID"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:63
+msgid "Not yet validated"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--user.html.twig:65 themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig:20 themes/custom/hoeringsportal/templates/navigation/menu-local-tasks.html.twig:17
+msgid "Options"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--comment.html.twig:34
+msgid "Contribute"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--comment.html.twig:43
+msgid "Add contribution"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--comment.html.twig:52
+msgid "If you wan't to participate in the discussion you must create a user"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--comment.html.twig:52
+msgid "Create user"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--default--node-title.html.twig:42
 msgid "Hearing reply for"
 msgstr "Høringssvar for"
 
-msgid "Hearing reply by @name"
-msgstr "Høringssvar fra @name"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-nearest-hearings.html.twig:62
+msgid "Show more hearings"
+msgstr "Vis flere høringer"
 
-msgid "Answer #@number by @name"
-msgstr "Bidrag #@number af @name"
-
-msgid "Create hearing reply"
-msgstr "Skriv høringssvar"
-
-msgid "<strong>Note!</strong> This hearing has not started yet"
-msgstr "<strong>Note!</strong> Denne høring er ikke startet endnu."
-
-msgid "Project start"
-msgstr "Initiativ start"
-
-msgid "Project end"
-msgstr "Initiativ slut"
-
-msgid "Project finish"
-msgstr "Initiativ afslutning"
-
-msgid "Download ticket as pdf"
-msgstr "Download høringssvar som pdf"
-
-msgid "Meeting"
-msgstr "Møde"
-
-msgid "Debate"
-msgstr "Debat"
-
-msgid "Expected end date"
-msgstr "Forventet slutdato"
-
-msgid ""
-"This question is for testing whether or not you are a human visitor "
-"and to prevent automated spam submissions."
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-project-timeline.html.twig:59
+msgid "Start"
 msgstr ""
-"Please type the text you see in the captcha image to prove you are "
-"human"
 
-msgid "Name"
-msgstr "Navn"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-project-timeline.html.twig:65
+msgid "Expected finish"
+msgstr "Forventet afsluttet"
 
-msgid "Email address"
-msgstr "E-mailadresse"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-public-meeting-summary.html.twig:72 themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:114
+msgid "Meeting has been cancelled"
+msgstr ""
 
-msgid "Confirm email address"
-msgstr "Bekræft e-mailadresse"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-public-meeting-summary.html.twig:74 themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:117
+msgid "Meeting has already been held"
+msgstr "<strong>Mødet er afholdt"
 
-msgid "Address"
-msgstr "Adresse"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-public-meeting-summary.html.twig:78 themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:122 themes/custom/hoeringsportal/templates/field/field--node--field-signup-link--public-meeting.html.twig:45
+msgid "Registration deadline passed"
+msgstr "Deadline for tilmelding er overskredet"
 
-msgid "My address is secret"
-msgstr "Min adresse er hemmelig"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-public-meeting-summary.html.twig:80
+msgid "Sign up for public meeting"
+msgstr "Tilmeld dig her"
 
-msgid "I represent"
-msgstr "Jeg udtaler mig som"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-quicklinks.html.twig:40 themes/custom/hoeringsportal/templates/field/field--node--dynamic-block-field--node-quicklinks--public-meeting.html.twig:40
+msgid "Content on this page"
+msgstr "Indhold på denne side"
 
-msgid "Organization"
-msgstr "Organisation"
+#: themes/custom/hoeringsportal/templates/field/field--dynamic-block-field--node-quicklinks.html.twig:46
+msgid "Add hearing ticket"
+msgstr "Tilføj høringssvar"
 
-msgid "Subject"
-msgstr "Emne"
+#: themes/custom/hoeringsportal/templates/field/field--field-media-document.html.twig:42
+msgid "Materials"
+msgstr "Materialer"
 
-msgid "Message"
-msgstr "Besked"
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:47;86
+msgid "Location"
+msgstr ""
 
-msgid "Select a file"
-msgstr "Vælg en fil"
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:48;93
+msgid "Date"
+msgstr "Dato"
 
-msgid "I have red the terms and give my consent"
-msgstr "Jeg har læst betingelserne og giver mit samtykke"
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:49;98
+msgid "Time"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:50;103
+msgid "Spots"
+msgstr "Pladser"
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:51;112
+msgid "Registration"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:75
+msgid "Current occurrence"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:77
+msgid "First upcoming"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:125
+msgid "No available spots left"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:128
+msgid "Sign up"
+msgstr "Tilmeld dig her"
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:129 themes/custom/hoeringsportal/templates/field/field--node--field-signup-link--public-meeting.html.twig:50
+msgid "Opens in a new tab"
+msgstr "Åbner i en ny fane"
+
+#: themes/custom/hoeringsportal/templates/field/field--field-pretix-dates.html.twig:131
+msgid "Deadline:"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/field/field--field-registration-deadline.html.twig:44;51
+msgid "Last date for signup"
+msgstr "Tilmeldingsfrist"
+
+#: themes/custom/hoeringsportal/templates/field/field--paragraph--field-external-link--projekt-billede-galleri.html.twig:51
+msgid "Open project gallery"
+msgstr "Åbn projektgalleri"
+
+#: themes/custom/hoeringsportal/templates/form/form--search-block-form.html.twig:23
+msgid "Open search"
+msgstr "Åben søgning"
+
+#: themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig:13
+msgid "Account activities"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig:23
+msgid "Validate account"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/form/hoeringsportal-user-form.html.twig:25
+msgid "Show profile"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/layout/html.html.twig:41
+msgid "Skip to main content"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/layout/page--search.html.twig:52
+msgid "Search"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/navigation/menu-local-tasks.html.twig:16
+msgid "Primary tabs"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/navigation/menu-local-tasks.html.twig:21
+msgid "Secondary tabs"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/navigation/pager.html.twig:37;38;43
+msgid "Previous"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/navigation/pager.html.twig:46 themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:26
+msgid "Page"
+msgstr "Side"
+
+#: themes/custom/hoeringsportal/templates/navigation/pager.html.twig:49;50;55
+msgid "Next"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/paragraph/paragraph--content-list.html.twig:48 themes/custom/hoeringsportal/templates/views/views-view--all-citizen-proposals.html.twig:57
+msgid "Create your proposal"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/paragraph/paragraph--content-list.html.twig:54;58
+msgid "Show on map"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:14
+msgid "Pagination"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:18
+msgid "Go to previous page"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:19
+msgid "Previous page"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:20
+msgid "‹‹"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:31
+msgid "Go to next page"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:32
+msgid "Next page"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-mini-pager.html.twig:33
+msgid "››"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--all-citizen-proposals.html.twig:55
+msgid "The proposal list is empty"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--all-hearings.html.twig:55
+msgid "The hearing list is empty"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--all-hearings.html.twig:57
+msgid "Show all hearings"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--all-meetings.html.twig:55
+msgid "The meeting list is empty"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--all-meetings.html.twig:57
+msgid "Show all meetings"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--search-db.html.twig:45
+msgid "Search and results will show up here"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--search-db.html.twig:53
+msgid "Search for %search_terms returned no results"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/views/views-view--search-db.html.twig:54
+msgid "Try with less words or to phrase it differently"
+msgstr ""
+

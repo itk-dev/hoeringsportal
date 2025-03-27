@@ -7,3 +7,7 @@ dependencies:
   - advancedqueue:advancedqueue
   - entity_events:entity_events
   - hoeringsportal_citizen_proposal:hoeringsportal_citizen_proposal
+
+# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
+'interface translation project': hoeringsportal_citizen_proposal_archiving
+'interface translation server pattern': modules/custom/%project/translations/%project.%language.po
