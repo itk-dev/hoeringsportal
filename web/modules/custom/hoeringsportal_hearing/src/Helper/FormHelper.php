@@ -3,6 +3,7 @@
 namespace Drupal\hoeringsportal_hearing\Helper;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\DependencyInjection\DependencySerializationTrait;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -13,6 +14,7 @@ use Drupal\Core\Url;
  */
 class FormHelper {
   use StringTranslationTrait;
+  use DependencySerializationTrait;
 
   /**
    * Implements hook_form_alter().
@@ -55,18 +57,18 @@ class FormHelper {
     $node = $form_state->getFormObject()->getEntity();
 
     // Validate dates on new hearings.
-    if ($node->isNew() &&            'hearing' === $node->getType()) {
+    if ($node->isNew() && 'hearing' === $node->getType()) {
       $getDateTime = static function (string $field, bool $dateOnly = FALSE) use ($form_state): ?DrupalDateTime {
         /** @var ?DrupalDateTime $value */
         $value = $form_state->getValue($field)[0]['value'] ?? NULL;
 
-        if ($value && $dateOnly) {
+        if ($value instanceof DrupalDateTime && $dateOnly) {
           // Create copy before removing time.
           $value = DrupalDateTime::createFromTimestamp($value->getTimestamp());
           $value->setTime(0, 0);
         }
 
-        return $value;
+        return $value instanceof DrupalDateTime ? $value : NULL;
       };
 
       $now = new DrupalDateTime();
