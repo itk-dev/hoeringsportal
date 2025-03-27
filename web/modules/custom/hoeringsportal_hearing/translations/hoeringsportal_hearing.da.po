@@ -7,13 +7,14 @@
 #  modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml: n/a
 #  modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml: n/a
 #  modules/custom/hoeringsportal_hearing/src/TokenHelper.php: n/a
+#  modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php: n/a
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:18+0100\n"
-"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"POT-Creation-Date: 2025-03-28 11:01+0100\n"
+"PO-Revision-Date: 2025-03-28 11:01+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -21,23 +22,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:25
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:24
 msgid "About"
 msgstr "Om"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:26
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:25
 msgid "Hearings"
-msgstr ""
+msgstr "Hearings"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:41
-msgid "Add hearing reply"
-msgstr ""
-
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:79
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:55
 msgid "Hearing deadline: @deadline"
 msgstr ""
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:83
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:59
 msgid "Hearing deadline has passed"
 msgstr "Høringsfristen er overskredet"
 
@@ -80,3 +77,28 @@ msgstr ""
 #: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:82
 msgid "Invalid GIS map UUID: @map_uuid"
 msgstr "Ugyldigt GIS-kort-uuid: @map_uuid"
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:27
+msgid "Add hearing reply"
+msgstr "Tilføj høringssvar"
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:80
+msgid "The start date must not be in the past"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:84
+msgid "The reply deadline must not be in the past"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:87
+msgid "The reply deadline must not be before the start date"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:91
+msgid "The delete date must not be in the past"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:94
+msgid "The delete date must not be before the reply deadline"
+msgstr ""
+

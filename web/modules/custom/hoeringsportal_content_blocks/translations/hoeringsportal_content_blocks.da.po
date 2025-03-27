@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:18+0100\n"
-"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"POT-Creation-Date: 2025-03-28 11:00+0100\n"
+"PO-Revision-Date: 2025-03-28 11:00+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -52,27 +52,23 @@ msgstr ""
 msgid "Node public meeting warning"
 msgstr ""
 
-#: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:14;20;26 modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:14;17
-msgid "Note!"
-msgstr ""
-
 #: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:14
-msgid "Hearing deadline has passed."
-msgstr ""
+msgid "<strong>Note!</strong> Hearing deadline has passed."
+msgstr "<strong>Note!</strong> Hørings tidsfristen er forbi."
 
 #: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:20
-msgid "This hearing has not started yet"
-msgstr ""
+msgid "<strong>Note!</strong> This hearing has not started yet"
+msgstr "<strong>Note!</strong> Denne høring er ikke startet endnu."
 
 #: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-hearing-warning.html.twig:26
-msgid "Hearing deadline approaching."
-msgstr ""
+msgid "<strong>Note!</strong> Hearing deadline approaching."
+msgstr "<strong>Note!</strong> Hørings tidsfristen nærmer sig."
 
 #: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:14
-msgid "This public meeting has been held."
-msgstr ""
+msgid "<strong>Note!</strong> This public meeting has been held."
+msgstr "Denne begivenhed er afholdt"
 
 #: modules/custom/hoeringsportal_content_blocks/templates/hoeringsportal-meeting-warning.html.twig:17
-msgid "This public meeting has been cancelled."
-msgstr ""
+msgid "<strong>Note!</strong> This public meeting has been cancelled."
+msgstr "<strong>Note!</strong> Denne begivenhed er aflyst"
 

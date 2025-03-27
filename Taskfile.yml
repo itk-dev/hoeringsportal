@@ -17,7 +17,9 @@ vars:
     # Run `ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this list
     - aarhus_hero
 
-    - hoeringsportal_base_fixtures
+    # Only used for development.
+    # - hoeringsportal_base_fixtures
+
     - hoeringsportal_citizen_proposal
     - hoeringsportal_citizen_proposal_archiving
     - hoeringsportal_config_settings
@@ -35,13 +37,15 @@ vars:
 
     - itk_admin
     - itk_admin_links
-    - itk_media_entity
-    - migrate_subject_data
+
+    # - itk_media_entity
+    # - migrate_subject_data
 
   CUSTOM_THEMES:
     # Run `ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this []
     - hoeringsportal
-    - hoeringsportal_admin
+
+    # - hoeringsportal_admin
 
   # During testing and development, you can override CUSTOM_MODULES and CUSTOM_THEMES to not process all modules and themes, e.g.
   #
@@ -337,7 +341,7 @@ tasks:
       #
       # "POT-Creation-Date: 2025-03-12 18:18+0100\n"
       # "PO-Revision-Date: 2025-03-12 18:18+0100\n"
-      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations
+      - git diff --exit-code --ignore-blank-lines --ignore-matching-lines='^"PO.*-Date' web/*/custom/*/translations translations
 
   translations:extract:
     cmds:

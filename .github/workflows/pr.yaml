@@ -392,3 +392,23 @@ jobs:
 
       - run: |
           task translations:diff
+
+  check-config-translations:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install site
+        run: |
+          docker network create frontend
+          task site-install --yes
+
+      - name: Export config translations
+        run: |
+          task config-translations:export
+
+      - run: |
+          task translations:diff

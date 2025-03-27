@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:17+0100\n"
-"PO-Revision-Date: 2025-03-12 15:17+0100\n"
+"POT-Creation-Date: 2025-03-28 11:00+0100\n"
+"PO-Revision-Date: 2025-03-28 11:00+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -86,11 +86,11 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:16
 msgid "Proposal"
-msgstr ""
+msgstr "Forslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:19
 msgid "Remarks"
-msgstr ""
+msgstr "Begrundelse"
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:23
 msgid "Author"
@@ -102,11 +102,11 @@ msgstr "Navn"
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:30
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:33
 msgid "Phone"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/templates/citizen_proposal.html.twig:37
 msgid "Details"
@@ -130,5 +130,5 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal_archiving/config/install/advancedqueue.advancedqueue_queue.hoeringsportal_citizen_proposal_archiving.yml:0
 msgid "Citizen proposal archiving"
-msgstr ""
+msgstr "Citizen proposal archiving"
 

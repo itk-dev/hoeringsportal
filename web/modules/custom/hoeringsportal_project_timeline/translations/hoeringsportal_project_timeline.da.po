@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:18+0100\n"
-"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"POT-Creation-Date: 2025-03-28 11:01+0100\n"
+"PO-Revision-Date: 2025-03-28 11:01+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_project_timeline/src/Plugin/Block/ProjectTimeline.php:54
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: modules/custom/hoeringsportal_project_timeline/src/Plugin/Block/ProjectTimeline.php:63
 msgid "Project start"

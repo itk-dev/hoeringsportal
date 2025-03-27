@@ -27,8 +27,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:17+0100\n"
-"PO-Revision-Date: 2025-03-12 15:17+0100\n"
+"POT-Creation-Date: 2025-03-28 11:00+0100\n"
+"PO-Revision-Date: 2025-03-28 11:00+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/hoeringsportal_citizen_proposal.routing.yml:0;0 modules/custom/hoeringsportal_citizen_proposal/templates/form--proposal-approve-form.html.twig:18
 msgid "Create new proposal"
-msgstr ""
+msgstr "Opret borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/hoeringsportal_citizen_proposal.routing.yml:0
 msgid "Administer citizen proposal"
@@ -90,10 +90,6 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php:72
 msgid "Citizen access denied"
-msgstr ""
-
-#: modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php:54
-msgid "Cannot get CPR (@cprClaim) from user claims"
 msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/EventSubscriber/CitizenAccessCheckEventSubscriber.php:65
@@ -234,7 +230,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalAdminForm.php:267
 msgid "Sidebar"
-msgstr ""
+msgstr "Sidebar"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalAdminForm.php:272
 msgid "Sidebar text"
@@ -318,47 +314,50 @@ msgstr "Navn"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:72
 msgid "Phone"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:83 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:94
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:92
 msgid "Display email"
-msgstr ""
+msgstr "Ja, vis min e-mail på mit borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:100 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:129 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:103
 msgid "Allow email"
-msgstr ""
+msgstr " Ja, I må gerne kontakte mig."
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:120 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:95
 msgid "Title"
-msgstr "Overskrift"
+msgstr "Titel"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:127;145;163
 msgid "@remaining characters left."
-msgstr ""
+msgstr "@remaining tegn tilbage"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:138 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:102
 msgid "Proposal"
-msgstr ""
+msgstr "Forslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:156 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:109
 msgid "Remarks"
-msgstr ""
+msgstr "Begrundelse"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:172 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:118 modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:134
 msgid "Personal data storage consent"
 msgstr ""
+"Jeg har læst betingelserne og giver mit samtykke <a "
+"href=\"/hvorfor-og-hvordan-behandler-vi-dine-persondata-0\">Læs mere "
+"her</a>"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:182
 msgid "Update proposal"
-msgstr ""
+msgstr "Opdater borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:183 modules/custom/hoeringsportal_citizen_proposal/templates/form--proposal-add-form.html.twig:18
 msgid "Create proposal"
-msgstr ""
+msgstr "Opret borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormAdd.php:223;236;240
 msgid "Too many characters used."
@@ -366,27 +365,27 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:73
 msgid "(Not shown on proposal)"
-msgstr ""
+msgstr "Ikke synligt for andre"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:75
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:87
 msgid "Phone number"
-msgstr ""
+msgstr "Telefonnummer"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:140
 msgid "Approve proposal"
-msgstr ""
+msgstr "Godkend borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:145
 msgid "Edit proposal"
-msgstr ""
+msgstr "Ret borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:153
 msgid "Cancel proposal"
-msgstr ""
+msgstr "Fortryd borgerforslag"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:170
 msgid "Thank you for your submission."
@@ -394,11 +393,11 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:188
 msgid "Your submission has been cancelled."
-msgstr ""
+msgstr "Dit borgerforslag er blevet slettet"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormApprove.php:200
 msgid "Could not find a proposal to approve."
-msgstr ""
+msgstr "Ikke muligt at finde et forslag at godkende"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormBase.php:70
 msgid "Authenticate with MitID"
@@ -406,11 +405,11 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormBase.php:89
 msgid "You're currently authenticated as @name"
-msgstr ""
+msgstr "Du er logget ind som @name"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormBase.php:93
 msgid "Sign out"
-msgstr ""
+msgstr "Log ud"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:29
 msgid "You have to authenticate to support a proposal"
@@ -419,22 +418,24 @@ msgstr ""
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:59
 msgid "You already supported this proposal on @support_date. You can only support a proposal once."
 msgstr ""
+"Du har allerede støttet dette borgerforslag d. @support_date. Du kan "
+"kun støtte et forslag en gang. "
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:71
 msgid "You're supporting @label on behalf of a citizen"
-msgstr ""
+msgstr "Du støtter nu <strong>@label</strong> på vegne af en borger "
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:143 modules/custom/hoeringsportal_citizen_proposal/templates/form--proposal-support-form.html.twig:18
 msgid "Support proposal"
-msgstr ""
+msgstr "Støt forslaget"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:185
 msgid "Thank you for your support."
-msgstr ""
+msgstr "Tak for din støtte"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Form/ProposalFormSupport.php:191
 msgid "Something went wrong. Your support was not registered."
-msgstr ""
+msgstr "Noget gik galt, din støtte er ikke gået igennem. Prøv igen senere"
 
 #: modules/custom/hoeringsportal_citizen_proposal/src/Helper/CitizenAccessChecker.php:59
 msgid "Citizen access @granted: @values"
@@ -462,9 +463,9 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_citizen_proposal/templates/citizen-proposal-support-counter.html.twig:13
 msgid "Number of supporters"
-msgstr ""
+msgstr "Antal støtter"
 
 #: modules/custom/hoeringsportal_citizen_proposal/templates/form--proposal-support-form.html.twig:19
 msgid "Support the proposal"
-msgstr ""
+msgstr "Støt borgerforslaget"
 
