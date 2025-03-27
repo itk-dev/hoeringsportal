@@ -28,8 +28,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:18+0100\n"
-"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"POT-Creation-Date: 2025-03-28 11:01+0100\n"
+"PO-Revision-Date: 2025-03-28 11:01+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
 msgid "Hearings"
-msgstr ""
+msgstr "Hearings"
 
 #: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketsBlock.php:7
 msgid "Hearing tickets"
@@ -187,7 +187,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:231
 msgid "Languages"
-msgstr ""
+msgstr "Languages"
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:232
 msgid "Map Drupal node language to Deskpro ticket language"
@@ -305,7 +305,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:231
 msgid "Your name cannot contain numbers."
-msgstr ""
+msgstr "Dit navn må ikke indeholde tal."
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:236
 msgid "Confirmation email does not match email."
@@ -322,6 +322,8 @@ msgstr ""
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:325
 msgid "Your hearing ticket has being submitted and will appear here in a few minutes."
 msgstr ""
+"Dit høringssvar er indsendt og bliver vist her på siden inden for "
+"kort tid."
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:337
 msgid "Error submitting hearing ticket"
@@ -337,7 +339,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAddBlock.php:7
 msgid "Hearing ticket add"
-msgstr ""
+msgstr "Hearing ticket add"
 
 #: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAuthorBlock.php:7
 msgid "Hearing ticket author"
@@ -402,19 +404,40 @@ msgstr "Tilføj høringssvar"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:18
 msgid "Show hearing tickets"
-msgstr ""
+msgstr "Vis indkomne svar"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:47
 msgid "The hearing replies were deleted on @date"
-msgstr ""
+msgstr "Høringssvarene er blevet fjernet d. @date"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:48
 msgid "The time limit for how long we are allowed to keep the replies has been reached so we where obligated to delete them."
 msgstr ""
+"<b>Høringssvarene er ikke længere synlige på "
+"høringsportalen</b>\r\n"
+"<p>Høringssvar bliver løbende slettet på deltag.aarhus.dk i takt "
+"med at høringer afsluttes. Det gør vi for at leve op til reglerne "
+"for GDPR og for at sikre persondata ikke ligger tilgængelig på "
+"høringsportalen i længere tid end, hvad der er nødvendigt.</p>\r\n"
+"<b>Du kan stadig få adgang til høringssvar, der ikke længere er "
+"synlige på høringsportalen.</b>\r\n"
+"<p>Hvis høringen handler om en sag, der er behandlet af Aarhus "
+"Byråd, kan du finde alle høringssvar, som bilag til den konkrete "
+"byrådssag. Du kan finde alle sager i byrådet med tilhørende bilag "
+"på Aarhus Kommunes hjemmeside – klik her:  <a "
+"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
+"- dagsordener og referater</a></p>\r\n"
+"<p>Hvis sagen ikke ligger som en byrådssag og du har behov for at få "
+"indblik i gamle høringssvar, kan det ske gennem en "
+"aktindsigtsanmodning. Læs om dine muligheder for at søge aktindsigt: "
+"<a "
+"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:90
 msgid "@ticket_ref by @person_name on behalf of @organization (@organization_type)"
 msgstr ""
+"@ticket_ref af @person_name på vegne af @organization "
+"(@organization_type)"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:97
 msgid "@ticket_ref by @person_name"

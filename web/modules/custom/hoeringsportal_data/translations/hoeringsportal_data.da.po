@@ -21,8 +21,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-12 15:18+0100\n"
-"PO-Revision-Date: 2025-03-12 15:18+0100\n"
+"POT-Creation-Date: 2025-03-28 11:01+0100\n"
+"PO-Revision-Date: 2025-03-28 11:01+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0;0;0
 msgid "Hearings"
-msgstr ""
+msgstr "Hearings"
 
 #: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
 msgid "Hearing tickets"
@@ -92,7 +92,7 @@ msgstr ""
 
 #: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:48 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:63 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:55
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:52 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:67
 msgid "Data"
@@ -153,5 +153,5 @@ msgstr ""
 #: modules/custom/hoeringsportal_data/src/Plugin/Validation/Constraint/MapConfiguration.php:7
 msgctxt "Validation"
 msgid "Map configuration"
-msgstr ""
+msgstr "Map configuration"
 
