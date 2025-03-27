@@ -116,9 +116,9 @@ display:
       exposed_form:
         type: bef
         options:
-          submit_button: Search
+          submit_button: Søg
           reset_button: true
-          reset_button_label: Reset
+          reset_button_label: Nulstil
           exposed_sorts_label: 'Sort by'
           expose_sort_order: true
           sort_asc_label: Asc
@@ -196,7 +196,7 @@ display:
           exposed: true
           expose:
             operator_id: search_api_fulltext_op
-            label: Search
+            label: Søg
             description: ''
             use_operator: false
             operator: search_api_fulltext_op
@@ -212,9 +212,11 @@ display:
               citizen_proposal_editor: '0'
               editor: '0'
               administrator: '0'
+              hearing_editor: '0'
               project_editor: '0'
+              public_meeting_editor: '0'
             expose_fields: false
-            placeholder: 'Search …'
+            placeholder: 'Søg …'
             searched_fields_id: search_api_fulltext_searched_fields
             value_maxlength: 128
           is_grouped: false
