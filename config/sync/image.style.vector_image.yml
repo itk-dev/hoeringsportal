@@ -1,0 +1,7 @@
+uuid: 47ce1871-88c6-4eb5-a706-630f44c275fb
+langcode: da
+status: true
+dependencies: {  }
+name: vector_image
+label: 'Vector image'
+effects: {  }

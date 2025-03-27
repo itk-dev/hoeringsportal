@@ -1,0 +1,10 @@
+uuid: fac25dca-d944-4147-baf2-5d9c11d0ec58
+langcode: da
+status: true
+dependencies: {  }
+id: links_on_a_background_image
+label: 'Links on a background image'
+icon_uuid: null
+icon_default: null
+description: 'Commonly used in the top of a page, to show a collection of links.'
+behavior_plugins: {  }

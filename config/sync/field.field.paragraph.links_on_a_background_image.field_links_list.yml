@@ -1,0 +1,70 @@
+uuid: 085d9852-81f2-4f4f-8d35-e261cfd10aef
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_links_list
+    - paragraphs.paragraphs_type.link
+    - paragraphs.paragraphs_type.links_on_a_background_image
+  module:
+    - entity_reference_revisions
+id: paragraph.links_on_a_background_image.field_links_list
+field_name: field_links_list
+entity_type: paragraph
+bundle: links_on_a_background_image
+label: 'Links list'
+description: 'A list of links. Possibility of showing an icon and/or a decorative arrow.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      link: link
+    negate: 0
+    target_bundles_drag_drop:
+      content_block:
+        weight: 14
+        enabled: false
+      content_list:
+        weight: 15
+        enabled: false
+      files:
+        weight: 16
+        enabled: false
+      image:
+        weight: 17
+        enabled: false
+      info_box:
+        weight: 18
+        enabled: false
+      introduction:
+        weight: 19
+        enabled: false
+      link:
+        weight: 15
+        enabled: true
+      links_on_a_background_image:
+        weight: 20
+        enabled: false
+      projekt_billede_galleri:
+        weight: 21
+        enabled: false
+      teaser_row:
+        weight: 22
+        enabled: false
+      text:
+        weight: 23
+        enabled: false
+      text_aside_blocks_2_column:
+        weight: 24
+        enabled: false
+      timeline_items:
+        weight: 25
+        enabled: false
+      timeline_period:
+        weight: 26
+        enabled: false
+field_type: entity_reference_revisions

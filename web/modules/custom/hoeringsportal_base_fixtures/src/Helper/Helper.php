@@ -71,6 +71,24 @@ class Helper {
   }
 
   /**
+   * Add icons to filesystem.
+   */
+  public function createIconsFromAssets(): array {
+    $icon = [];
+    $source_path = $this->pathResolver->getPath('module', 'hoeringsportal_base_fixtures') . '/assets/icons';
+    $target_path = 'public://fixtures/assets/icons';
+    $this->fileSystem->prepareDirectory($target_path, FileSystemInterface:: CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
+
+    // Loop over .svg icon to add them properly to the file system.
+    foreach (glob($source_path . '/*.svg') as $image) {
+      $destination = $this->fileSystem->copy($image, $target_path . '/' . basename($image), FileExists::Replace);
+      $icon[] = $destination;
+    }
+
+    return $icon;
+  }
+
+  /**
    * Add documents to filesystem.
    */
   public function createDocumentsFromAssets(): array {

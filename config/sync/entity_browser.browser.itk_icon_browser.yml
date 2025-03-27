@@ -1,0 +1,42 @@
+uuid: fcbd3c6d-87ee-4c16-8c8f-e1ac0552e64a
+langcode: da
+status: true
+dependencies:
+  config:
+    - views.view.itk_media_browser
+  module:
+    - entity_browser_entity_form
+    - views
+name: itk_icon_browser
+label: 'ITK icon browser'
+display: modal
+display_configuration:
+  width: ''
+  height: ''
+  link_text: 'Vælg ikon'
+  auto_open: false
+selection_display: no_display
+selection_display_configuration: {  }
+widget_selector: tabs
+widget_selector_configuration: {  }
+widgets:
+  a9859c97-cfd7-44ef-9da9-fabc75436b4e:
+    id: view
+    uuid: a9859c97-cfd7-44ef-9da9-fabc75436b4e
+    label: Overblik
+    weight: 1
+    settings:
+      submit_text: 'Vælg ikon'
+      auto_select: false
+      view: itk_media_browser
+      view_display: entity_browser_3
+  81d6533a-5ddc-40e9-b2ef-6ed8dfb46b89:
+    id: entity_form
+    uuid: 81d6533a-5ddc-40e9-b2ef-6ed8dfb46b89
+    label: 'Upload new icon'
+    weight: 3
+    settings:
+      submit_text: 'Upload new icon to media library'
+      entity_type: media
+      bundle: icon
+      form_mode: default

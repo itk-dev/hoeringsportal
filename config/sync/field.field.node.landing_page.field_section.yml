@@ -7,7 +7,9 @@ dependencies:
     - node.type.landing_page
     - paragraphs.paragraphs_type.content_block
     - paragraphs.paragraphs_type.content_list
+    - paragraphs.paragraphs_type.content_promotion
     - paragraphs.paragraphs_type.introduction
+    - paragraphs.paragraphs_type.links_on_a_background_image
     - paragraphs.paragraphs_type.teaser_row
   module:
     - entity_reference_revisions
@@ -29,6 +31,8 @@ settings:
       content_block: content_block
       content_list: content_list
       teaser_row: teaser_row
+      content_promotion: content_promotion
+      links_on_a_background_image: links_on_a_background_image
     negate: 0
     target_bundles_drag_drop:
       content_block:
@@ -37,10 +41,43 @@ settings:
       content_list:
         weight: 5
         enabled: true
+      content_promotion:
+        weight: 16
+        enabled: true
+      files:
+        weight: 16
+        enabled: false
+      image:
+        weight: 17
+        enabled: false
+      info_box:
+        weight: 18
+        enabled: false
       introduction:
         weight: 4
         enabled: true
+      link:
+        weight: 23
+        enabled: false
+      links_on_a_background_image:
+        weight: 20
+        enabled: true
+      projekt_billede_galleri:
+        weight: 21
+        enabled: false
       teaser_row:
         weight: 6
         enabled: true
+      text:
+        weight: 23
+        enabled: false
+      text_aside_blocks_2_column:
+        weight: 24
+        enabled: false
+      timeline_items:
+        weight: 25
+        enabled: false
+      timeline_period:
+        weight: 26
+        enabled: false
 field_type: entity_reference_revisions

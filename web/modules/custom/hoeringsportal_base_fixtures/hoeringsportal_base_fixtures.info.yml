@@ -5,3 +5,4 @@ core_version_requirement: ^9 || ^10
 package: ITK
 dependencies:
   - content_fixtures:content_fixtures
+  - itk_admin:itk_admin

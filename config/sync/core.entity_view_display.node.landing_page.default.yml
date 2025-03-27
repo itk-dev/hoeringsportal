@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.landing_page.field_media_image_single
     - field.field.node.landing_page.field_section
+    - field.field.node.landing_page.field_show_page_title
     - field.field.node.landing_page.field_teaser
     - node.type.landing_page
   module:
@@ -33,6 +34,7 @@ third_party_settings:
         - field_section
         - field_teaser
         - field_media_image_single
+        - field_show_page_title
 id: node.landing_page.default
 targetEntityType: node
 bundle: landing_page
@@ -57,6 +59,16 @@ content:
       ds:
         ds_limit: ''
     weight: 0
+    region: ds_content
+  field_show_page_title:
+    type: boolean
+    label: hidden
+    settings:
+      format: boolean
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
     region: ds_content
   field_teaser:
     type: basic_string
