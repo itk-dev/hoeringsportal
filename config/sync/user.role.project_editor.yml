@@ -4,20 +4,25 @@ status: true
 dependencies:
   config:
     - block_content.type.aside_contact_info
+    - entity_browser.browser.itk_document_browser
+    - entity_browser.browser.itk_image_browser
     - media.type.document
     - media.type.image
     - node.type.project
     - node.type.project_main_page
+    - node.type.project_page
     - taxonomy.vocabulary.timeline_item_types
   module:
     - block_content
     - entity_browser
     - media
     - node
+    - publication_date
     - quick_node_clone
     - system
     - taxonomy
     - toolbar
+    - view_unpublished
 id: project_editor
 label: 'Project editor'
 weight: -5
@@ -32,36 +37,50 @@ permissions:
   - 'access toolbar'
   - 'clone project content'
   - 'clone project_main_page content'
+  - 'clone project_page content'
   - 'create aside_contact_info block content'
   - 'create document media'
   - 'create image media'
   - 'create project content'
   - 'create project_main_page content'
+  - 'create project_page content'
   - 'create terms in timeline_item_types'
   - 'delete any aside_contact_info block content'
   - 'delete any aside_contact_info block content revisions'
   - 'delete any project content'
   - 'delete any project_main_page content'
+  - 'delete any project_page content'
   - 'delete own document media'
   - 'delete own image media'
   - 'delete own project content'
   - 'delete own project_main_page content'
+  - 'delete own project_page content'
   - 'delete project revisions'
   - 'delete project_main_page revisions'
+  - 'delete project_page revisions'
   - 'delete terms in timeline_item_types'
   - 'edit any aside_contact_info block content'
   - 'edit any project content'
   - 'edit any project_main_page content'
+  - 'edit any project_page content'
   - 'edit own document media'
   - 'edit own image media'
+  - 'edit own project_main_page content'
+  - 'edit own project_page content'
   - 'edit terms in timeline_item_types'
   - 'revert any aside_contact_info block content revisions'
   - 'revert project revisions'
   - 'revert project_main_page revisions'
+  - 'revert project_page revisions'
+  - 'set project_main_page published on date'
+  - 'set project_page published on date'
   - 'view any aside_contact_info block content history'
+  - 'view any unpublished project_main_page content'
+  - 'view any unpublished project_page content'
   - 'view media'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view project revisions'
   - 'view project_main_page revisions'
+  - 'view project_page revisions'
   - 'view the administration theme'

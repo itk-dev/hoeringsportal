@@ -52,6 +52,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        # https://github.com/arduino/setup-task/tree/56d0cc033e3cecc5f07a291fdd39f29388d21800?tab=readme-ov-file#repo-token
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: |
           docker network create frontend
           task compose -- up --detach
@@ -70,6 +74,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: task coding-standards:assets:check
       # Check for any changes (task …:check runs task …:apply)
       - run: git diff --exit-code
@@ -80,6 +87,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: task coding-standards:markdown:check
       # Check for any changes (task …:check runs task …:apply)
       - run: git diff --exit-code
@@ -90,6 +100,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: |
           docker network create frontend
           task compose -- up --detach
@@ -104,6 +117,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: |
           docker network create frontend
           task compose -- up --detach
@@ -118,6 +134,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: |
           docker network create frontend
           task compose -- up --detach
