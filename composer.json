@@ -25,6 +25,7 @@
         "drupal/color_field": "^3.0",
         "drupal/config_ignore": "^3.2",
         "drupal/config_import_locale": "^2.0",
+        "drupal/config_translation_po": "^1.0",
         "drupal/core": "^10.0",
         "drupal/core-composer-scaffold": "^10.0",
         "drupal/core-project-message": "^10.0",

@@ -14,10 +14,41 @@ vars:
   PRETIX_ORGANIZER: '{{.TASK_PRETIX_ORGANIZER | default "dpl-cms"}}'
 
   CUSTOM_MODULES:
-    sh: ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'
+    # Run `ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this list
+    - aarhus_hero
+
+    - hoeringsportal_base_fixtures
+    - hoeringsportal_citizen_proposal
+    - hoeringsportal_citizen_proposal_archiving
+    - hoeringsportal_config_settings
+    - hoeringsportal_content_access
+    - hoeringsportal_content_blocks
+    - hoeringsportal_data
+    - hoeringsportal_deskpro
+    - hoeringsportal_forms
+    - hoeringsportal_hearing
+    - hoeringsportal_openid_connect
+    - hoeringsportal_project_timeline
+    - hoeringsportal_public_meeting
+    - hoeringsportal_quicklinks
+    - hoeringsportal_test_delta_sync_fixtures
+
+    - itk_admin
+    - itk_admin_links
+    - itk_media_entity
+    - migrate_subject_data
 
   CUSTOM_THEMES:
-    sh: ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'
+    # Run `ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this []
+    - hoeringsportal
+    - hoeringsportal_admin
+
+  # During testing and development, you can override CUSTOM_MODULES and CUSTOM_THEMES to not process all modules and themes, e.g.
+  #
+  # CUSTOM_MODULES:
+  #   - hoeringsportal_citizen_proposal
+  #
+  # CUSTOM_THEMES: []
 
 tasks:
   default:
