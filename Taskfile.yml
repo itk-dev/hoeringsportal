@@ -346,6 +346,21 @@ tasks:
       - task drush -- --yes pm:uninstall potx
     silent: true
 
+  config-translations:export:
+    cmds:
+      - task drush -- config_translation_po:export da > translations/config-translations.da.po
+      # Fix plurals spec in PO file
+      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
+      # https://www.drupal.org/project/drupal/issues/3496223
+      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/config-translations.da.po'
+    silent: true
+
+  config-translations:import:
+    cmds:
+      # Note: We use an empty type to import as not-customized.
+      - task drush -- config_translation_po:import --type='' --override=not-customized da ../translations/config-translations.da.po
+    silent: true
+
   # @todo Can we use `drush locale:check` and/or `drush locale:update` to update
   # module translations without overriding existing translations?
   # @todo Do we want to override (existing) translations?
