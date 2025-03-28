@@ -19,6 +19,8 @@ module:
   config: 0
   config_ignore: 0
   config_import_locale: 0
+  config_translation: 0
+  config_translation_po: 0
   crop: 0
   csv_serialization: 0
   ctools: 0

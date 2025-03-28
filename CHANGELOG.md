@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-468](https://github.com/itk-dev/hoeringsportal/pull/468)
+  Added module and theme translations
+
 ## [4.8.4] - 2025-03-27
 
 * [PR-485](https://github.com/itk-dev/hoeringsportal/pull/485)
