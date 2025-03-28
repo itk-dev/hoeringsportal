@@ -70,10 +70,10 @@ tasks:
       - task compose -- pull
       - task compose-up
       - task composer-install
+      - task assets-build
       - task drush -- --yes site:install --existing-config
       - task: translations:import
       - task drush -- --yes cache:rebuild
-      - task assets-build
       - task site-open
       - task site-open-admin
     silent: true
