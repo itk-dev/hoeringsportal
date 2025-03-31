@@ -16,7 +16,7 @@ dependencies:
     - view_unpublished
     - webform
 id: citizen_proposal_editor
-label: 'Citizen proposal editor'
+label: Borgerforslagsredaktør
 weight: -8
 is_admin: null
 permissions:

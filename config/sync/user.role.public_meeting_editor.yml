@@ -20,7 +20,7 @@ dependencies:
     - toolbar
     - view_unpublished
 id: public_meeting_editor
-label: 'Public meeting editor'
+label: Begivenhedsredaktør
 weight: -4
 is_admin: null
 permissions:

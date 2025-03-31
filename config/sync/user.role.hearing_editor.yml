@@ -20,7 +20,7 @@ dependencies:
     - toolbar
     - view_unpublished
 id: hearing_editor
-label: 'Hearing editor'
+label: Høringsredaktør
 weight: -5
 is_admin: null
 permissions:

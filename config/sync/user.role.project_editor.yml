@@ -24,7 +24,7 @@ dependencies:
     - toolbar
     - view_unpublished
 id: project_editor
-label: 'Project editor'
+label: Projektredaktør
 weight: -5
 is_admin: null
 permissions:
