@@ -25,6 +25,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 * [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
   * New landingpage hero
+  
+## [4.8.5] - 2025-03-31
+
+* [PR-486](https://github.com/itk-dev/hoeringsportal/pull/486)
+  Added media permissions to public meeting editor role
 
 ## [4.8.4] - 2025-03-27
 
