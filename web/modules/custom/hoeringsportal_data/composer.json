@@ -5,7 +5,15 @@
     "keywords": ["Drupal"],
     "license": "GPL-2.0+",
     "minimum-stability": "dev",
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
     "require": {
-        "guzzlehttp/guzzle": "^7.4"
+        "guzzlehttp/guzzle": "^7.4",
+        "drupal/csv_serialization": "^4.0",
+        "drupal/xls_serialization": "^1.2"
     }
 }
