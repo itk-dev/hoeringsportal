@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.8.6] - 2025-04-02
+
+* [PR-479](https://github.com/itk-dev/hoeringsportal/pull/479)
+  Security updated Drupal core and contrib modules
+
 ## [4.8.5] - 2025-03-31
 
 * [PR-486](https://github.com/itk-dev/hoeringsportal/pull/486)
