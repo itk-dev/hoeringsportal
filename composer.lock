@@ -3597,9 +3597,11 @@
             "dist": {
                 "type": "path",
                 "url": "web/modules/custom/hoeringsportal_data",
-                "reference": "7a394197a60a0f2ace96afbef5506d9d875305ff"
+                "reference": "ae463fa9b97d53dee0cca1e1c143e0f9bc6d1081"
             },
             "require": {
+                "drupal/csv_serialization": "^4.0",
+                "drupal/xls_serialization": "^1.2",
                 "guzzlehttp/guzzle": "^7.4"
             },
             "type": "drupal-custom-module",
