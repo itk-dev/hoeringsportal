@@ -1,3 +1,13 @@
+hoeringsportal_data.statistics_controller_index:
+  path: '/admin/hoeringsportal_data/statistics'
+  defaults:
+    _controller: '\Drupal\hoeringsportal_data\Controller\StatisticsController::index'
+    _title: 'Statistics'
+  requirements:
+    _permission: 'access hoeringsportal_data statistics'
+  options:
+    no_cache: TRUE
+
 hoeringsportal_data.api_controller_index:
   path: '/api'
   defaults:
