@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8add90aa3463d62cd8e322eca20875b",
+    "content-hash": "7449b8f8a5bf3fefc806edef320efeb7",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -97,21 +97,6 @@
             "license": [
                 "MIT"
             ]
-        },
-        {
-            "name": "bower-asset/jqueryui-touch-punch",
-            "version": "dev-gh-pages",
-            "source": {
-                "type": "git",
-                "url": "git@github.com:furf/jquery-ui-touch-punch.git",
-                "reference": "10f258841c2cb219bead8e12d7d55cea29a47ef7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/furf/jquery-ui-touch-punch/zipball/10f258841c2cb219bead8e12d7d55cea29a47ef7",
-                "reference": "10f258841c2cb219bead8e12d7d55cea29a47ef7"
-            },
-            "type": "bower-asset"
         },
         {
             "name": "bower-asset/spectrum",
@@ -20532,7 +20517,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "bower-asset/jqueryui-touch-punch": 20,
         "chx/drupal-issue-fork": 20,
         "drupal/content_fixtures": 20,
         "drupal/email_registration": 5,
