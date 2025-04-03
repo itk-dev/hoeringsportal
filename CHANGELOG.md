@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-487](https://github.com/itk-dev/hoeringsportal/pull/487)
+  Added statistics
+
 ## [4.8.6] - 2025-04-02
 
 * [PR-479](https://github.com/itk-dev/hoeringsportal/pull/479)
