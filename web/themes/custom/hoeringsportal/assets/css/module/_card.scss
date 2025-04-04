@@ -1,61 +1,71 @@
 .card {
-  background: $gray-100;
-  color: $gray-900;
+  --transition-duration-in: 200ms;
+  --transition-duration-out: 400ms;
+  --transition-easing-in: ease-in;
+  --transition-easing-out: ease-out;
+
+  .text-hearing {
+    color: $primary;
+  }
+
+  .text-project {
+    color: $blue;
+  }
+
+  .text-public-meeting {
+    color: $pink;
+  }
+
+  .text-static-page {
+    color: $blue;
+  }
+
+  .text-citizen-proposal {
+    color: $primary;
+  }
+
   text-decoration: none;
   height: 100%;
+  transition: box-shadow var(--transition-duration-in)
+    var(--transition-easing-in);
 
-  .fa-arrow-right {
-    color: $primary;
-    font-size: 1rem;
-    transition: transform 200ms ease-in;
-  }
-
-  &:hover {
-    .fa-arrow-right {
-      transition: transform 400ms ease-out;
-      transform: translateX(10px);
-    }
-
-    text-decoration: none;
-  }
-
-  &-header {
-    background: $gray-100;
-    font-size: 1.3rem;
-  }
-
-  .card-img-top {
-    height: 10rem;
+  .card-header img {
+    height: 240px;
+    width: 100%;
     background-size: cover;
     background-position: center center;
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform var(--transition-duration-in)
+      var(--transition-easing-in);
   }
 
   .card-body {
-    padding-top: 0;
-    padding-bottom: 0;
     text-decoration: none;
-    min-height: 5rem;
   }
 
-  .card-footer {
-    background: $gray-100;
-    color: $gray-800;
-    font-size: 0.7rem;
+  .fa-arrow-right {
+    font-size: 1rem;
+    transition: transform var(--transition-duration-in)
+      var(--transition-easing-in);
   }
 
-  img {
-    width: 100%;
-  }
-
-  &.hearing-ticket {
-    margin-bottom: $spacer;
-
-    .card-header {
-      padding-top: 0;
+  &:hover {
+    color: initial;
+    .fa-arrow-right {
+      transition: transform var(--transition-duration-out)
+        var(--transition-easing-out);
+      transform: translateX(10px);
     }
+    @extend .shadow;
+    transition: box-shadow var(--transition-duration-out)
+      var(--transition-easing-out);
+    text-decoration: none;
 
-    .card-body {
-      min-height: auto;
+    .card-header img {
+      transform: scale(1.07);
+      transition: transform var(--transition-duration-out)
+        var(--transition-easing-out);
     }
   }
 }

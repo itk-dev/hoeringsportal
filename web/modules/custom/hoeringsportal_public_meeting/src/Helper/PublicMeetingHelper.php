@@ -245,5 +245,41 @@ class PublicMeetingHelper {
   private function getDateTime($time = 'now', $timezone = 'UTC') {
     return new DrupalDateTime($time, $timezone);
   }
+  
+  /**
+   * Get next meeting start time object.
+   */
+  public function getNextMeetingStartTime(NodeInterface $node): ?int {
+    if (!$this->isPublicMeeting($node)) {
+      return NULL;
+    }
+
+    if (isset($node->field_pretix_dates[0]->date)) {
+      return $node->field_pretix_dates[0]->time_from->date->getTimestamp();
+    } 
+    elseif (isset($node->field_last_meeting_time->date)) {
+      return $node->field_last_meeting_time->date->getTimestamp();
+    }
+
+    return null;
+  }
+  
+  /**
+   * Get next meeting end time object.
+   */
+  public function getNextMeetingEndTime(NodeInterface $node): ?int {
+    if (!$this->isPublicMeeting($node)) {
+      return NULL;
+    }
+
+    if (isset($node->field_pretix_dates[0]->date)) {
+      return $node->field_pretix_dates[0]->time_to->date->getTimestamp();
+    } 
+    elseif (isset($node->field_last_meeting_time_end->date)) {
+      return $node->field_last_meeting_time_end->date->getTimestamp();
+    }
+    
+    return null;
+  }
 
 }

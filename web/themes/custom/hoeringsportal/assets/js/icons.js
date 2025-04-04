@@ -27,6 +27,10 @@ import {
   faFileExcel,
   faTicketAlt,
   faTriangleExclamation,
+  faCalendarDay,
+  faClock,
+  faLocationDot,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Import icons from the free brands package
@@ -51,6 +55,7 @@ library.add(
   faCircle,
   faCircleCheck,
   faComment,
+  faComments,
   faCopy,
   faEnvelope,
   faFilePdf,
@@ -63,6 +68,9 @@ library.add(
   faSort,
   faTimes,
   faTicketAlt,
+  faCalendarDay,
+  faClock,
+  faLocationDot,
   // Brand
   faDigg,
   faEvernote,
