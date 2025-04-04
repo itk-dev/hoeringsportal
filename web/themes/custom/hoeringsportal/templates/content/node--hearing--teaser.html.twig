@@ -5,6 +5,9 @@
 {# Set the content state #}
 {% set content_state = content.field_content_state['#items'].value %}
 
+{# Set how many replies there is to this hearing #}
+{% set repliesCount = hearing_helper.getNumberOfReplies(node) %}
+
 {# Set date for next meeting #}
 {% set startdate = content.field_start_date['0']['#attributes'].datetime %}
 
@@ -28,13 +31,14 @@
 {% set items =
   [
     {icon: "fa-calendar-day", value: startdate|date('l j. F Y')|t },
-    {icon: "fa-comments", value: "2 svar" },
+    {icon: "fa-comments", value: repliesCount ~ " " ~ "svar"|t },
     {icon: "fa-location-dot", value: content.field_area }
   ]
 %}
 
 {# Show card information #}
 {% block card_type_information %}
+
   {# Show details for next meeting #}
   {% if (content_state == 'upcoming' or content_state == 'active') %}
   {% for item in items %}
