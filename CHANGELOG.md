@@ -6,6 +6,11 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.8.7] - 2025-04-04
+
+* [PR-488](https://github.com/itk-dev/hoeringsportal/pull/488)
+  Fixed “Log off” URL
+
 ## [4.8.6] - 2025-04-02
 
 * [PR-479](https://github.com/itk-dev/hoeringsportal/pull/479)
