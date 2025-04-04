@@ -5,11 +5,9 @@
 {# Set the content state #}
 {% set content_state = content.field_content_state['#items'].value %}
 
-{# Set date, start and end time for next meeting #}
-{% if (content.field_first_meeting_time) %}
-  {% set meetingDate = content.field_last_meeting_time['#items'].value %}
-  {% set meetingEndTime = node.fields.field_last_meeting_time_end.value %}
-{% endif %}
+{# Set start and end time for next meeting #}
+{% set meetingDateStartTime = public_meeting_helper.getNextMeetingStartTime(node) %}
+{% set meetingDateEndTime = public_meeting_helper.getNextMeetingEndTime(node) %}
 
 {# Show a date splash on the card #}
 {% block card_date %}
@@ -26,11 +24,14 @@
 {% endblock %}
 
 {# Collect data for information lines on card #}
+
+
+
 {# TODO: The time does not account for timezone and daylight savings time #}
 {% set items =
   [
-    {icon: "fa-calendar-day", value: meetingDate|date('l j. F Y')|t },
-    {icon: "fa-clock", value: meetingDate|date('H:i')|t ~ ' - ' ~ meetingEndTime|date('H:i')|t },
+    {icon: "fa-calendar-day", value: meetingDateStartTime|format_date('hoeringsportal_date_long')|t },
+    {icon: "fa-clock", value: meetingDateStartTime|format_date('hoeringsportal_time') ~ ' - ' ~ meetingDateEndTime|format_date('hoeringsportal_time') },
     {icon: "fa-location-dot", value: content.field_area }
   ]
 %}
