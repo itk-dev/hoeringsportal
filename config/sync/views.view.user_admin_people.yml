@@ -1403,7 +1403,7 @@ display:
       displays:
         page_1: page_1
         default: '0'
-      filename: 'hoeringsportal-users-[date:raw].csv'
+      filename: 'deltag-users-[date:raw].csv'
       automatic_download: true
       export_method: batch
       export_batch_size: 1000
@@ -1860,7 +1860,7 @@ display:
       displays:
         page_1: page_1
         default: '0'
-      filename: 'hoeringsportal-users-[date:raw].xlsx'
+      filename: 'deltag-users-[date:raw].xlsx'
       automatic_download: true
       export_method: batch
       export_batch_size: 1000
