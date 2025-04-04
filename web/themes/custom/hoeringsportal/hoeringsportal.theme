@@ -14,6 +14,7 @@ use Drupal\hoeringsportal_citizen_proposal\Helper\Helper as CitizenProposalHelpe
  * Implements hook_preprocess().
  */
 function hoeringsportal_preprocess(&$vars) {
+  $vars['hearing_helper'] = \Drupal::service('hoeringsportal_data.hearing_helper');
   $vars['public_meeting_helper'] = \Drupal::service('hoeringsportal_public_meeting.public_meeting_helper');
   $vars['citizen_proposal_helper'] = \Drupal::service(CitizenProposalHelper::class);
 }
