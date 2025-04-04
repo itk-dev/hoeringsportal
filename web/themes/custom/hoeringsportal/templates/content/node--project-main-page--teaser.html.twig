@@ -1,19 +1,13 @@
+{# Template for Project teaser extending base-card #}
 
-<a href="{{ url }}" class="activity-teaser-inner activity-teaser-link-wrap text-decoration-none shadow-sm">
-  <div class="activity-teaser-image">
-    {{ content.field_project_image }}
+{% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
+
+{% block card_content %}
+  <div class="py-0 line-clamp-3">
+    {{ node.field_short_description.value }}
   </div>
-  <div{{ attributes.addClass('activity-teaser-content') }}>
-    <h3 class="activity-teaser-title pt-3 mb-3 line-clamp-2">{{ label }}</h3>
-    <div class="activity-teaser-description py-0 line-clamp-3">
-      {{ node.field_short_description.value }}
-    </div>
-  </div>
-  <div class="activity-teaser-info">
-    <span class="activity-teaser-meta-wrapper">
-      <span class="activity-teaser-type">{{ content.field_project_category }}</span>
-      <span class="activity-teaser-area is-comma-separated">{{ content.field_area }}</span>
-    </span>
-    <span class="activity-teaser-link "><i class="fa-solid fa-arrow-right float-right"></i></span>
-  </div>
-</a>
+{% endblock %}
+{% block card_footer %}
+  <span>{{ content.field_project_category }}</span>
+  <span class="is-comma-separated">{{ content.field_area }}</span>
+{% endblock %}
