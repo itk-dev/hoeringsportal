@@ -26,6 +26,7 @@
 {% endblock %}
 
 {# Collect data for information lines on card #}
+{# TODO: The time does not account for timezone and daylight savings time #}
 {% set items =
   [
     {icon: "fa-calendar-day", value: meetingDate|date('l j. F Y')|t },
