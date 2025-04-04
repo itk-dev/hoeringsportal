@@ -1,35 +1,33 @@
-{# Template for Public meeting extending base-card #}
+{# Template for Hearing teaser extending base-card #}
 
 {% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
 
 {# Set the content state #}
 {% set content_state = content.field_content_state['#items'].value %}
 
-{# Set date, start and end time for next meeting #}
-{% if (content.field_first_meeting_time) %}
-  {% set meetingDate = content.field_last_meeting_time['#items'].value %}
-  {% set meetingEndTime = node.fields.field_last_meeting_time_end.value %}
-{% endif %}
+{# Set date for next meeting #}
+{% set startdate = content.field_start_date['0']['#attributes'].datetime %}
 
 {# Show a date splash on the card #}
 {% block card_date %}
-  {# When deadline field exists show date. #}
-  {% if meetingDate != "" %}
-    <div class="fw-semibold">{{ meetingDate|date('d')|t }}</div>
-    <div class="small">{{ meetingDate|date('M')|t }}</div>
+  {# If we have a date then show a date splash on the card #}
+  {% if (content.field_start_date) %}
+    {# Show the date #}
+      <div class="fw-semibold">{{ startdate|date('d')|t }}</div>
+      <div class="small">{{ startdate|date('M')|t }}</div>
   {% endif %}
 {% endblock %}
 
 {# Show teaser description #}
 {% block card_content %}
-  {{ content.field_teaser[0]['#context'].value|length > 95 ? content.field_teaser[0]['#context'].value|slice(0, 95) ~ '...' : content.field_teaser }}
+  {{ content.field_teaser }}
 {% endblock %}
 
 {# Collect data for information lines on card #}
 {% set items =
   [
-    {icon: "fa-calendar-day", value: meetingDate|date('l j. F Y')|t },
-    {icon: "fa-clock", value: meetingDate|date('H:i')|t ~ ' - ' ~ meetingEndTime|date('H:i')|t },
+    {icon: "fa-calendar-day", value: startdate|date('l j. F Y')|t },
+    {icon: "fa-comments", value: "2 svar" },
     {icon: "fa-location-dot", value: content.field_area }
   ]
 %}
@@ -40,7 +38,7 @@
   {% if (content_state == 'upcoming' or content_state == 'active') %}
   {% for item in items %}
     <div class="d-flex gap-3 justify-items-center {% if not loop.last %} border-bottom {% endif %}">
-      <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-public-meeting"></i>
+      <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-hearing"></i>
       <p class="small">{{ item.value }}</p>
     </div>
   {% endfor %}
@@ -48,5 +46,12 @@
   {# Show text for finished meeting #}
   {% elseif (content_state == 'finished') %}
     <p>{{ "Meeting has been held"|t }}</p>
+
+  {# Show text for canceled meeting #}
+  {% elseif (content_state == 'canceled') %}
+    <p>{{ "Meeting has been canceled"|t }}</p>
   {% endif %}
+  <div>
+    {{ dump(node.fields.field_hearing_ticket_list) }}
+  </div>
 {% endblock %}
