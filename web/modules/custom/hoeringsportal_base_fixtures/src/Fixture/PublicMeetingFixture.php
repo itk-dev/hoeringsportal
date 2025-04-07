@@ -69,6 +69,7 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
     $this->addReference('public_meeting:fixture-1', $node);
     $node->save();
 
+    // A public meeting that has signup with Pretix.
     $node = $node->createDuplicate();
     $node->setTitle('Public meeting with pretix signup');
     $node->set('field_signup_selection', 'pretix');
@@ -92,6 +93,34 @@ final class PublicMeetingFixture extends AbstractFixture implements DependentFix
       'synchronize_event' => TRUE,
     ]);
     $this->addReference('public_meeting:fixture-2', $node);
+    $node->save();
+
+    // A public meeting that is canceled.
+    $node = $node->createDuplicate();
+    $node->setTitle('Public meeting that has been canceled');
+    $node->set('field_public_meeting_cancelled', TRUE);
+    $node->set('field_cancelled_text', 'This was canceled for a good reason.');
+    $node->set('field_signup_selection', 'pretix');
+    $node->set('field_pretix_dates', [
+      [
+        'location' => 'The location',
+        'address' => 'Hack Kampmanns Plads 2, 8000 Aarhus C',
+        'time_from_value' => (new \DateTimeImmutable('2025-01-01T19:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'time_to_value' => (new \DateTimeImmutable('2025-01-01T21:00:00+0100'))->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'spots' => 87,
+      ],
+    ]);
+    $node->set('field_map', [
+      'type' => 'point',
+      'data' => '{"type":"Feature","properties":[],"geometry":{"type":"Point","coordinates":[11.704067337123801,56.19625173058858]}}',
+      'point' => '{"type":"FeatureCollection","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:EPSG::4326"}},"features":[{"type":"Feature","properties":{},"geometry":{"type":"Point","coordinates":[11.704067337123801,56.19625173058858]}}]}',
+    ]);
+    $node->set('field_pretix_event_settings', [
+      // Cf. PretixConfigFixture.
+      'template_event' => 'template-series',
+      'synchronize_event' => TRUE,
+    ]);
+    $this->addReference('public_meeting:fixture-3', $node);
     $node->save();
   }
 
