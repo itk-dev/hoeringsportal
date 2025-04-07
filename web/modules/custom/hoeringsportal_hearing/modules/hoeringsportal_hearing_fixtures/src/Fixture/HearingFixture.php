@@ -2,14 +2,17 @@
 
 namespace Drupal\hoeringsportal_hearing_fixtures\Fixture;
 
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\content_fixtures\Fixture\AbstractFixture;
 use Drupal\content_fixtures\Fixture\DependentFixtureInterface;
 use Drupal\content_fixtures\Fixture\FixtureGroupInterface;
+use Drupal\Core\Database\Connection;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\hoeringsportal_base_fixtures\Fixture\MediaFixture;
 use Drupal\hoeringsportal_base_fixtures\Fixture\ParagraphFixture;
+use Drupal\hoeringsportal_deskpro\State\DeskproConfig;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 
 /**
  * Page fixture.
@@ -18,10 +21,18 @@ use Drupal\node\Entity\Node;
  */
 class HearingFixture extends AbstractFixture implements DependentFixtureInterface, FixtureGroupInterface {
 
+  public function __construct(
+    private readonly Connection $database,
+    private readonly DeskproConfig $deskproConfig,
+  ) {
+  }
+
   /**
    * {@inheritdoc}
    */
   public function load() {
+    $this->deleteAllHearingReplies();
+
     foreach (range(1, 3) as $i) {
       // Hearing node.
       $entity = Node::create([
@@ -101,6 +112,12 @@ Lorem ipsum 1234 Lorem ipsum',
       ]);
       $entity->save();
       $this->addReference('node:hearing:Hearing' . $i, $entity);
+
+      $this->createHearingReplies($entity, match ($i) {
+        1 => 1,
+        2 => 87,
+        default => 0,
+      });
     }
 
     $entity = $entity->createDuplicate();
@@ -131,6 +148,134 @@ EOD,
     $entity->setTitle('Høring med slettede høringssvar');
     $entity->set('field_delete_date', (new DrupalDateTime('2001-01-01'))->format(DateTimeItemInterface::DATE_STORAGE_FORMAT));
     $entity->save();
+  }
+
+  /**
+   * Delete all hearing replies.
+   */
+  private function deleteAllHearingReplies(): void {
+    $this->database
+      ->truncate('hoeringsportal_deskpro_deskpro_tickets')
+      ->execute();
+  }
+
+  /**
+   * Create replies for a hearing.
+   */
+  private function createHearingReplies(NodeInterface $node, int $numberOfReplies): void {
+    // Set Deskpro config to match our mock data (cf. /admin/site-setup/deskpro)
+    $this->deskproConfig->setMultiple([
+      // "Deskpro integration"
+      'deskpro_url' => 'http://test-mode/deskpro',
+      'deskpro_api_code_key' => '1:test-mode',
+      'deskpro_ticket_custom_fields' => [
+        'hearing_id' => 28,
+        'hearing_name' => 30,
+        'edoc_id' => 15,
+        'getorganized_case_id' => 38,
+        'pdf_download_url' => 22,
+        'person_name' => 61,
+        'representation' => 2,
+        'organization' => 7,
+        'address_secret' => 32,
+        'address' => 1,
+        'postal_code' => 37,
+        'geolocation' => 31,
+        'message' => 35,
+        'files' => 36,
+        'accept_terms' => 11,
+        'unpublish_reply' => 18,
+      ],
+      'deskpro_available_department_ids' => [1],
+      'deskpro_languages' => [
+        'ticket_languages' => [
+          'da' => 2,
+        ],
+        'default_ticket_language' => 2,
+      ],
+      'deskpro_data_token' => 'deskpro_data_token',
+      'deskpro_cache_ttl' => 60,
+      'deskpro_synchronization_delay' => 60,
+
+      // "Add hearing ticket form"
+      'consent' => '<p>consent</p>',
+      'intro' => '',
+      'ticket_created_confirmation' => '',
+      'representations' => [
+        5 => [
+          'title' => 'Privatperson',
+          'is_available' => 1,
+          'require_organization' => 0,
+        ],
+        3 => [
+          'title' => 'Virksomhed',
+          'is_available' => 1,
+          'require_organization' => 1,
+        ],
+        4 => [
+          'title' => 'Forening, organisation eller bestyrelse',
+          'is_available' => 1,
+          'require_organization' => 1,
+        ],
+        20 => [
+          'title' => 'Ru00e5d og nu00e6vn',
+          'is_available' => 1,
+          'require_organization' => 1,
+        ],
+        21 => [
+          'title' => 'Myndighed',
+          'is_available' => 1,
+          'require_organization' => 1,
+        ],
+        42 => [
+          'title' => 'MED-udvalg',
+          'is_available' => 1,
+          'require_organization' => 1,
+        ],
+      ],
+    ]);
+
+    for ($i = 0; $i < $numberOfReplies; $i++) {
+      $data = [
+        'id' => 1000 * (int) $node->id() + $i,
+        'date_created' => (new \DateTimeImmutable('2001-01-01'))->modify(sprintf('+%d days', $i))->format(\DateTimeImmutable::ATOM),
+        'subject' => sprintf('Reply %d', $i + 1),
+        'fields' => [
+          'person_name' => sprintf('Citizen %d', $i + 1),
+          'representation' => [
+            5 => [
+              'id' => 5,
+              'title' => 'Privatperson',
+            ],
+          ],
+          'message' => 'This is the message',
+        ],
+      ];
+
+      if (1 === $i % 2) {
+        $data['fields']['representation'] = [
+          4 => [
+            'id' => 4,
+            'title' => 'Forening, organisation eller bestyrelse',
+          ],
+        ];
+        $data['fields']['organization'] = 'Foreningen';
+      }
+
+      $this->database->insert(
+        'hoeringsportal_deskpro_deskpro_tickets',
+      )
+        ->fields([
+          'bundle' => $node->bundle(),
+          'entity_type' => $node->getEntityTypeId(),
+          'entity_id' => $node->id(),
+          'created_at' => (new DrupalDateTime($data['date_created']))->format(DrupalDateTime::FORMAT),
+          'updated_at' => (new DrupalDateTime($data['date_created']))->format(DrupalDateTime::FORMAT),
+          'ticket_id' => $data['id'],
+          'data' => json_encode($data),
+        ])
+        ->execute();
+    }
   }
 
   /**

@@ -149,7 +149,7 @@ composer install --no-dev --optimize-autoloader
 
 ## Deskpro
 
-See [hoeringsportal_deskpro/README.md](web/modules/custom/hoeringsportal_deskpro/README.md#test-mode).
+See [hoeringsportal_deskpro/README.md](../web/modules/custom/hoeringsportal_deskpro/README.md#test-mode).
 
 ## Web profiler
 
