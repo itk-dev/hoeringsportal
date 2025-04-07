@@ -12,7 +12,7 @@
 {# Show a date splash on the card #}
 {% block card_date %}
   {# When deadline field exists show date. #}
-  {% if meetingDate != "" %}
+  {% if meetingDateStartTime != "" %}
     <div class="fw-semibold">{{ meetingDate|date('d')|t }}</div>
     <div class="small">{{ meetingDate|date('M')|t }}</div>
   {% endif %}
