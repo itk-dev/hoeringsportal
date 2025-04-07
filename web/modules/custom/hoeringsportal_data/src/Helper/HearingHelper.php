@@ -160,9 +160,9 @@ class HearingHelper implements LoggerAwareInterface {
   private function getDateTime($time = 'now', $timezone = 'UTC'): DrupalDateTime {
     return new DrupalDateTime($time, $timezone);
   }
-  
+
   /**
-   * Get number of replies
+   * Get number of replies.
    */
   public function getNumberOfReplies(NodeInterface $node): ?int {
     if (!$this->isHearing($node)) {

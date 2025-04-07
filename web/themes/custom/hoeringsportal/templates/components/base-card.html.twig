@@ -4,19 +4,19 @@
 
 {# Determine a node type #}
 {% set node_type = node.type.entity.originalId %}
-{% if node_type == "hearing" %}
+{% if node_type == 'hearing' %}
   {% set node_type_class = 'text-hearing' %}
   {% set node_type_text = 'Hearing'|t %}
-{% elseif node_type == "project_main_page" %}
+{% elseif node_type == 'project_main_page' %}
   {% set node_type_class = 'text-project' %}
   {% set node_type_text = 'Project'|t %}
-{% elseif node_type == "public_meeting" %}
+{% elseif node_type == 'public_meeting' %}
   {% set node_type_class = 'text-public-meeting' %}
   {% set node_type_text = 'Public meeting'|t %}
-{% elseif node_type == "static_page" %}
+{% elseif node_type == 'static_page' %}
   {% set node_type_class = 'text-static-page' %}
   {% set node_type_text = 'Article'|t %}
-{% elseif node_type == "citizen_proposal" %}
+{% elseif node_type == 'citizen_proposal' %}
   {% set node_type_class = 'text-citizen-proposal' %}
   {% set node_type_text = 'Citizen proposal'|t %}
 {% endif %}
@@ -54,7 +54,7 @@
       <img class="object-fit-cover" src="{{ image_url }}" alt="{{ image_alt|default('') }}">
 
       {# If we have a node of type hearing or public meeting we show a deate splash on the card #}
-      {% if node_type == "hearing" or node_type == "public_meeting" %}
+      {% if node_type == 'hearing' or node_type == 'public_meeting' %}
         <div class="position-absolute bottom-0 start-0 py-2 px-4 bg-white flex-column d-flex align-items-center">
           {% block card_date %}
           {% endblock %}
