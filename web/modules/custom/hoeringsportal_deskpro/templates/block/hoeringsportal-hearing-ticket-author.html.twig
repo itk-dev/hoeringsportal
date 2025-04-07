@@ -12,7 +12,7 @@
 #}
 
 <h5 class="mt-3">{{ 'Name'|t }}</h5>
-<p>{{ ticket.person.name }}</p>
+<p>{{ ticket.fields.person_name|default(ticket.person.display_name) }}</p>
 <h5 class="mt-3">{{ 'Sent d.'|t }}</h5>
 <p>{{ ticket.date_created|date('U')|format_date('hoeringsportal_datetime') }}</p>
 
