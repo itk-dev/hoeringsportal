@@ -39,9 +39,6 @@
 
 {# Show card information #}
 {% block card_type_information %}
-<pre>
-  {{ dump(meetingIsCanceled) }}
-</pre>
   {# Show text if meeting is canceled #}
   {% if (meetingIsCanceled == true) %}
     <div class="alert alert-warning"><p class="my-0">{{ content.field_cancelled_text|default('Meeting has been canceled'|t) }}</p></div>
