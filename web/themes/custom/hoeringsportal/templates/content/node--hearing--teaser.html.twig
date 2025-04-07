@@ -30,9 +30,9 @@
 {# TODO: Replace "2 svar" with real data #}
 {% set items =
   [
-    {icon: "fa-calendar-day", value: startdate|date('l j. F Y')|t },
-    {icon: "fa-comments", value: repliesCount ~ " " ~ "svar"|t },
-    {icon: "fa-location-dot", value: content.field_area }
+    {icon: 'fa-calendar-day', value: startdate|date('l j. F Y')|t},
+    {icon: 'fa-comments', value: repliesCount ~ ' ' ~ 'svar'|t},
+    {icon: 'fa-location-dot', value: content.field_area}
   ]
 %}
 
@@ -50,10 +50,10 @@
 
   {# Show text for finished meeting #}
   {% elseif (content_state == 'finished') %}
-    <p>{{ "Meeting has been held"|t }}</p>
+    <p>{{ 'Meeting has been held'|t }}</p>
 
   {# Show text for canceled meeting #}
   {% elseif (content_state == 'canceled') %}
-    <p>{{ "Meeting has been canceled"|t }}</p>
+    <p>{{ 'Meeting has been canceled'|t }}</p>
   {% endif %}
 {% endblock %}

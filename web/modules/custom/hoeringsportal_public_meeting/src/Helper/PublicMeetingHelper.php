@@ -245,7 +245,7 @@ class PublicMeetingHelper {
   private function getDateTime($time = 'now', $timezone = 'UTC') {
     return new DrupalDateTime($time, $timezone);
   }
-  
+
   /**
    * Get next meeting start time object.
    */
@@ -256,14 +256,14 @@ class PublicMeetingHelper {
 
     if (isset($node->field_pretix_dates[0]->date)) {
       return $node->field_pretix_dates[0]->time_from->date->getTimestamp();
-    } 
+    }
     elseif (isset($node->field_last_meeting_time->date)) {
       return $node->field_last_meeting_time->date->getTimestamp();
     }
 
-    return null;
+    return NULL;
   }
-  
+
   /**
    * Get next meeting end time object.
    */
@@ -274,12 +274,12 @@ class PublicMeetingHelper {
 
     if (isset($node->field_pretix_dates[0]->date)) {
       return $node->field_pretix_dates[0]->time_to->date->getTimestamp();
-    } 
+    }
     elseif (isset($node->field_last_meeting_time_end->date)) {
       return $node->field_last_meeting_time_end->date->getTimestamp();
     }
-    
-    return null;
+
+    return NULL;
   }
 
 }

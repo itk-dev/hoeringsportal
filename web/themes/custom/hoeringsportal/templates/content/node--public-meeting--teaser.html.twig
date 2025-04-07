@@ -5,6 +5,9 @@
 {# Set the content state #}
 {% set content_state = content.field_content_state['#items'].value %}
 
+{# Set the content state #}
+{% set meetingIsCanceled = content.field_public_meeting_cancelled[0]['#markup'] %}
+
 {# Set start and end time for next meeting #}
 {% set meetingDateStartTime = public_meeting_helper.getNextMeetingStartTime(node) %}
 {% set meetingDateEndTime = public_meeting_helper.getNextMeetingEndTime(node) %}
@@ -12,7 +15,7 @@
 {# Show a date splash on the card #}
 {% block card_date %}
   {# When deadline field exists show date. #}
-  {% if meetingDateStartTime != "" %}
+  {% if meetingDateStartTime != '' %}
     <div class="fw-semibold">{{ meetingDate|date('d')|t }}</div>
     <div class="small">{{ meetingDate|date('M')|t }}</div>
   {% endif %}
@@ -25,30 +28,38 @@
 
 {# Collect data for information lines on card #}
 
-
-
 {# TODO: The time does not account for timezone and daylight savings time #}
 {% set items =
   [
-    {icon: "fa-calendar-day", value: meetingDateStartTime|format_date('hoeringsportal_date_long')|t },
-    {icon: "fa-clock", value: meetingDateStartTime|format_date('hoeringsportal_time') ~ ' - ' ~ meetingDateEndTime|format_date('hoeringsportal_time') },
-    {icon: "fa-location-dot", value: content.field_area }
+    {icon: 'fa-calendar-day', value: meetingDateStartTime|format_date('hoeringsportal_date_long')|t},
+    {icon: 'fa-clock', value: meetingDateStartTime|format_date('hoeringsportal_time') ~ ' - ' ~ meetingDateEndTime|format_date('hoeringsportal_time')},
+    {icon: 'fa-location-dot', value: content.field_area}
   ]
 %}
 
 {# Show card information #}
 {% block card_type_information %}
-  {# Show details for next meeting #}
-  {% if (content_state == 'upcoming' or content_state == 'active') %}
-  {% for item in items %}
-    <div class="d-flex gap-3 justify-items-center {% if not loop.last %} border-bottom {% endif %}">
-      <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-public-meeting"></i>
-      <p class="small">{{ item.value }}</p>
-    </div>
-  {% endfor %}
+<pre>
+  {{ dump(meetingIsCanceled) }}
+</pre>
+  {# Show text if meeting is canceled #}
+  {% if (meetingIsCanceled == true) %}
+    <div class="alert alert-warning"><p class="my-0">{{ content.field_cancelled_text|default('Meeting has been canceled'|t) }}</p></div>
+  {% else %}
 
-  {# Show text for finished meeting #}
-  {% elseif (content_state == 'finished') %}
-    <p>{{ "Meeting has been held"|t }}</p>
+    {# Show details for next meeting #}
+    {% if (content_state == 'upcoming' or content_state == 'active') %}
+    {% for item in items %}
+      <div class="d-flex gap-3 justify-items-center {% if not loop.last %} border-bottom {% endif %}">
+        <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-public-meeting"></i>
+        <p class="small">{{ item.value }}</p>
+      </div>
+    {% endfor %}
+
+    {# Show text for finished meeting #}
+    {% elseif (content_state == 'finished') %}
+      <p>{{ 'Meeting has been held'|t }}</p>
+    {% endif %}
+
   {% endif %}
 {% endblock %}
