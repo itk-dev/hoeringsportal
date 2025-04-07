@@ -6,6 +6,7 @@ use Deskpro\API\APIResponse;
 use Deskpro\API\APIResponseInterface;
 use Deskpro\API\DeskproClient;
 use Deskpro\API\Exception\APIException;
+use Deskpro\API\URLInterpolator;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Site\Settings;
 use Drupal\hoeringsportal_deskpro\Exception\DeskproException;
@@ -741,7 +742,7 @@ class DeskproService {
    */
   public function getLanguages(array $query = []) {
     $endpoint = '/languages';
-    $response = $this->client()->get($endpoint, $query);
+    $response = $this->get($endpoint, $query);
 
     return $response;
   }
@@ -757,20 +758,22 @@ class DeskproService {
    * Create mock response.
    */
   private function createMockResponse(string $endpoint, array $query): APIResponseInterface {
-    $data = [];
-    $meta = [];
-    $linked = [];
+    unset($query['no_cache']);
+    $endpoint = (new URLInterpolator())->interpolate($endpoint, $query);
 
     $filename = __DIR__ . '/mock/' . $endpoint . '.yaml';
-    if (file_exists($filename)) {
-      try {
-        $stuff = Yaml::parseFile($filename);
-        $data = $stuff['data'] ?? [];
-        $meta = $stuff['meta'] ?? [];
-        $linked = $stuff['linked'] ?? [];
-      }
-      catch (\Exception) {
-      }
+    if (!is_readable($filename)) {
+      throw new \RuntimeException(sprintf('Cannot read file %s', $filename));
+    }
+
+    try {
+      $stuff = Yaml::parseFile($filename);
+      $data = $stuff['data'] ?? [];
+      $meta = $stuff['meta'] ?? [];
+      $linked = $stuff['linked'] ?? [];
+    }
+    catch (\Exception $exception) {
+      throw $exception;
     }
 
     return new APIResponse($data, $meta, $linked);

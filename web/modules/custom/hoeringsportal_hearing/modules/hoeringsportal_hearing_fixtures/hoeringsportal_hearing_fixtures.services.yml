@@ -1,7 +1,11 @@
 services:
   Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingFixture:
+    arguments:
+      - '@database'
+      - '@hoeringsportal_deskpro.config'
     tags:
       - { name: content_fixture }
+
   Drupal\hoeringsportal_hearing_fixtures\Fixture\HearingLandingPageFixture:
     tags:
       - { name: content_fixture }

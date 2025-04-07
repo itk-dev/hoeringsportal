@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-490](https://github.com/itk-dev/hoeringsportal/pull/490)
+  * Added hearing reply fixtures
 * [PR-489](https://github.com/itk-dev/hoeringsportal/pull/489)
   Feat: Redesigned teaser cards that makes the cards easier to distinguish from each other when listet on the same page.
 
