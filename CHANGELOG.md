@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-491](https://github.com/itk-dev/hoeringsportal/pull/491)
+  Optimized development setup
+
 ## [4.8.7] - 2025-04-04
 
 * [PR-488](https://github.com/itk-dev/hoeringsportal/pull/488)
