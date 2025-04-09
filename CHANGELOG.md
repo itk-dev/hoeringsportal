@@ -6,30 +6,16 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-## [4.8.7] - 2025-04-04
-
-* [PR-488](https://github.com/itk-dev/hoeringsportal/pull/488)
-  Fixed “Log off” URL
-
-## [4.8.6] - 2025-04-02
-
-* [PR-479](https://github.com/itk-dev/hoeringsportal/pull/479)
-  Security updated Drupal core and contrib modules
-
-## [4.8.5] - 2025-03-31
-
-* [PR-486](https://github.com/itk-dev/hoeringsportal/pull/486)
-  Added media permissions to public meeting editor role
 * [PR-480](https://github.com/itk-dev/hoeringsportal/pull/480)
   * New paragraph section for content promotion
 
 * [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
   * New landingpage hero
-  
+
 * [PR-490](https://github.com/itk-dev/hoeringsportal/pull/490)
   * Added hearing reply fixtures
-  
   * Fixed ticket author template
+
 * [PR-489](https://github.com/itk-dev/hoeringsportal/pull/489)
   Feat: Redesigned teaser cards that makes the cards easier to distinguish from each other when listet on the same page.
 
