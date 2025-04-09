@@ -170,7 +170,6 @@ class HearingHelper implements LoggerAwareInterface {
     }
 
     return $this->deskproHearingHelper->getHearingTicketsCount($node);
-
   }
 
 }

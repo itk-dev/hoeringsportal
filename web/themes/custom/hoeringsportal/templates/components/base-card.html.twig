@@ -21,40 +21,25 @@
   {% set node_type_text = 'Citizen proposal'|t %}
 {% endif %}
 
-{# Set a teaser image for the card #}
+{# Set image for Hearing, Project, Public meeting or Static page #}
+{% set image = content.field_media_image[0]['#media']
+  | default(content.field_project_image[0]['#media'])
+  | default(content.field_media_image_single[0]['#media'])
+  | default(false) %}
 {# TODO: Find a good way to handle fallback images. Prefferable a way that a admin editor can use. #}
-{% set media = false %}
-
-{# Hearing image #}
-{% if content.field_media_image %}
-  {% set media = content.field_media_image[0]['#media'] %}
-
-{# Project image #}
-{% elseif content.field_project_image %}
-  {% set media = content.field_project_image[0]['#media'] %}
-
-{# Public meeting image #}
-{% elseif content.field_media_image_single %}
-  {% set media = content.field_media_image_single[0]['#media'] %}
-
-{# Static page image #}
-{% elseif content.field_media_image_single %}
-  {% set media = content.field_media_image_single[0]['#media'] %}
-{% endif %}
-
-{# Get the url and alt text for the image #}
-{% set image_url = file_url(media.field_itk_media_image_upload.entity.uri.value) %}
-{% set image_alt = file_url(media.field_itk_media_image_upload.entity.entity.alt) %}
 
 {# Create the basic markup for the card #}
 <a href="{{ url }}" class="teaser card bg-white shadow-sm border-bottom">
   {# Show a header with image if there is a image present for the node/teaser #}
-  {% if media != false %}
+  {% if image != false %}
+    {# Get the url and alt text for the image #}
+    {% set image_url = file_url(image.field_itk_media_image_upload.entity.uri.value) %}
+    {% set image_alt = file_url(image.field_itk_media_image_upload.entity.entity.alt) %}
     <div class="card-header position-relative p-0 w-100 activity-teaser-image overflow-hidden">
       <img class="object-fit-cover" src="{{ image_url }}" alt="{{ image_alt|default('') }}">
 
-      {# If we have a node of type hearing or public meeting we show a deate splash on the card #}
-      {% if node_type == 'hearing' or node_type == 'public_meeting' %}
+      {# If we have a node of type hearing or public meeting we show a date splash on the card #}
+      {% if node_type in ['hearing', 'public_meeting'] %}
         <div class="position-absolute bottom-0 start-0 py-2 px-4 bg-white flex-column d-flex align-items-center">
           {% block card_date %}
           {% endblock %}

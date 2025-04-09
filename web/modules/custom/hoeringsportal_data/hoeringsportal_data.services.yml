@@ -9,7 +9,7 @@ services:
 
   hoeringsportal_data.dawa:
     class: Drupal\hoeringsportal_data\Service\DAWA
-  
+
   hoeringsportal_data.hearing_helper:
     class: Drupal\hoeringsportal_data\Helper\HearingHelper
     arguments: ['@entity_type.manager', '@hoeringsportal_deskpro.helper', '@logger.channel.hoeringsportal_data']

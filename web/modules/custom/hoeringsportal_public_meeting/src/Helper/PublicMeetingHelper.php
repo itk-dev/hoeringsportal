@@ -272,7 +272,7 @@ class PublicMeetingHelper {
       return NULL;
     }
 
-    if (isset($node->field_pretix_dates[0]->date)) {
+    if (isset($node->field_pretix_dates[0]->time_to->date)) {
       return $node->field_pretix_dates[0]->time_to->date->getTimestamp();
     }
     elseif (isset($node->field_last_meeting_time_end->date)) {

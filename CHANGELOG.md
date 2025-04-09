@@ -17,7 +17,7 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   * Fixed ticket author template
 
 * [PR-489](https://github.com/itk-dev/hoeringsportal/pull/489)
-  Feat: Redesigned teaser cards that makes the cards easier to distinguish from each other when listet on the same page.
+  Feat: Redesigned teaser cards that makes the cards easier to distinguish from each other when listed on the same page.
 
 ## [4.8.7] - 2025-04-04
 

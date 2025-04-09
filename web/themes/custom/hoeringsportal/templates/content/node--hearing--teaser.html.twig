@@ -3,7 +3,7 @@
 {% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
 
 {# Set the content state #}
-{% set content_state = content.field_content_state['#items'].value %}
+{% set content_state = hearing_helper.getState(node) %}
 
 {# Set how many replies there is to this hearing #}
 {% set repliesCount = hearing_helper.getNumberOfReplies(node) %}
@@ -14,7 +14,7 @@
 {# Show a date splash on the card #}
 {% block card_date %}
   {# If we have a date then show a date splash on the card #}
-  {% if (content.field_start_date) %}
+  {% if (startdate) %}
     {# Show the date #}
       <div class="fw-semibold">{{ startdate|date('d')|t }}</div>
       <div class="small">{{ startdate|date('M')|t }}</div>
