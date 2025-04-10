@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-17 10:48+0100\n"
-"PO-Revision-Date: 2025-03-17 10:48+0100\n"
+"POT-Creation-Date: 2025-04-10 10:25+0200\n"
+"PO-Revision-Date: 2025-04-10 10:25+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -869,6 +869,27 @@ msgstr "Initiativ info"
 msgid "Add another item"
 msgstr "Tilføj endnu et element"
 
+msgid "Sunday"
+msgstr "søndag"
+
+msgid "Monday"
+msgstr "mandag"
+
+msgid "Tuesday"
+msgstr "tirsdag"
+
+msgid "Wednesday"
+msgstr "onsdag"
+
+msgid "Thursday"
+msgstr "torsdag"
+
+msgid "Friday"
+msgstr "fredag"
+
+msgid "Saturday"
+msgstr "lørdag"
+
 msgid "Materials"
 msgstr "Materialer"
 
@@ -1441,6 +1462,9 @@ msgstr ""
 
 msgid "Show hearing tickets"
 msgstr "Vis indkomne svar"
+
+msgid "Published on"
+msgstr "Publiceret"
 
 msgid "l, F j, Y - H:i"
 msgstr "l, j. F Y - H:i"
