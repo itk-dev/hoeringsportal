@@ -171,10 +171,8 @@ final class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
     $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
-    $types = $formState->getValue('types');
-    if ($types) {
-      $this->configHelper->setConfiguration('types', $types);
-    }
+   $types = $formState->getValue('types');
+   $this->configHelper->setConfiguration('types', $types);
 
     $this->configHelper->saveConfig();
     parent::submitForm($form, $formState);
