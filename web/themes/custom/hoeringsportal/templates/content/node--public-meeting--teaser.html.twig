@@ -16,8 +16,8 @@
 {% block card_date %}
   {# When deadline field exists show date. #}
   {% if meetingDateStartTime != '' %}
-    <div class="fw-semibold">{{ meetingDate|date('d')|t }}</div>
-    <div class="small">{{ meetingDate|date('M')|t }}</div>
+    <div class="fw-semibold">{{ meetingDateStartTime|format_date('hoeringsportal_today_date') }}</div>
+    <div class="small">{{ meetingDateStartTime|format_date('hoeringsportal_month_short') }}</div>
   {% endif %}
 {% endblock %}
 
@@ -31,7 +31,7 @@
 {# TODO: The time does not account for timezone and daylight savings time #}
 {% set items =
   [
-    {icon: 'fa-calendar-day', value: meetingDateStartTime|format_date('hoeringsportal_date_long')|t},
+    {icon: 'fa-calendar-day', value: meetingDateStartTime|format_date('hoeringsportal_date_long')},
     {icon: 'fa-clock', value: meetingDateStartTime|format_date('hoeringsportal_time') ~ ' - ' ~ meetingDateEndTime|format_date('hoeringsportal_time')},
     {icon: 'fa-location-dot', value: content.field_area}
   ]

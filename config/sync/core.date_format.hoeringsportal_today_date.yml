@@ -1,0 +1,8 @@
+uuid: e711cfb3-e492-4b08-ac79-2d529218db63
+langcode: da
+status: true
+dependencies: {  }
+id: hoeringsportal_today_date
+label: 'Høringsportalen – dags dato'
+locked: false
+pattern: d

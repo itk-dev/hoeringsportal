@@ -161,6 +161,7 @@ class HearingHelper implements LoggerAwareInterface {
     return new DrupalDateTime($time, $timezone);
   }
 
+
   /**
    * Get number of replies.
    */
@@ -170,6 +171,17 @@ class HearingHelper implements LoggerAwareInterface {
     }
 
     return $this->deskproHearingHelper->getHearingTicketsCount($node);
+  }
+
+  /**
+   * Get start date
+   */
+  public function getStartDate(NodeInterface $node): ?int {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    return $node->field_start_date->date->getTimestamp();
   }
 
 }
