@@ -31,7 +31,7 @@
 {# TODO: The time does not account for timezone and daylight savings time #}
 {% set items =
   [
-    {icon: 'fa-calendar-day', value: meetingDateStartTime|format_date('hoeringsportal_date_long')},
+    {icon: 'fa-calendar-day', value: meetingDateStartTime|format_date('hoeringsportal_date_long')|capitalize},
     {icon: 'fa-clock', value: meetingDateStartTime|format_date('hoeringsportal_time') ~ ' - ' ~ meetingDateEndTime|format_date('hoeringsportal_time')},
     {icon: 'fa-location-dot', value: content.field_area}
   ]
