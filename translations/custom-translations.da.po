@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-10 10:25+0200\n"
-"PO-Revision-Date: 2025-04-10 10:25+0200\n"
+"POT-Creation-Date: 2025-04-10 11:08+0200\n"
+"PO-Revision-Date: 2025-04-10 11:08+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -809,6 +809,10 @@ msgstr ""
 msgid "Remove selected"
 msgstr "Fjern det valgte"
 
+msgctxt "Long month name"
+msgid "July"
+msgstr "juli"
+
 msgid "Nodes"
 msgstr "Indhold"
 
@@ -868,6 +872,53 @@ msgstr "Initiativ info"
 
 msgid "Add another item"
 msgstr "Tilføj endnu et element"
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "januar"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "februar"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "marts"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "april"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "maj"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "juni"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "august"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "september"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "oktober"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "november"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "december"
+
+msgid "May"
+msgstr "maj"
 
 msgid "Sunday"
 msgstr "søndag"
@@ -950,6 +1001,10 @@ msgstr ""
 msgctxt "Entity type group"
 msgid "Content"
 msgstr "Indhold"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "maj"
 
 msgid "Email addresses to notify when updates are available"
 msgstr "E-mailadresser, der underrettes, når opdateringer er tilgængelige"
