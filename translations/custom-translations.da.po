@@ -3,14 +3,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-10 11:08+0200\n"
-"PO-Revision-Date: 2025-04-10 11:08+0200\n"
+"POT-Creation-Date: 2025-04-10 11:32+0200\n"
+"PO-Revision-Date: 2025-04-10 11:32+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 msgid "Primary admin actions"
 msgstr "Primary admin actions"
@@ -816,6 +816,9 @@ msgstr "juli"
 msgid "Nodes"
 msgstr "Indhold"
 
+msgid "Jul"
+msgstr "jul"
+
 msgid "Document"
 msgstr "Document"
 
@@ -917,8 +920,35 @@ msgctxt "Long month name"
 msgid "December"
 msgstr "december"
 
+msgid "Jan"
+msgstr "jan"
+
+msgid "Feb"
+msgstr "feb"
+
+msgid "Mar"
+msgstr "mar"
+
 msgid "May"
 msgstr "maj"
+
+msgid "Jun"
+msgstr "jun"
+
+msgid "Aug"
+msgstr "aug"
+
+msgid "Sep"
+msgstr "sep"
+
+msgid "Oct"
+msgstr "okt"
+
+msgid "Nov"
+msgstr "nov"
+
+msgid "Dec"
+msgstr "dec"
 
 msgid "Sunday"
 msgstr "søndag"
@@ -1003,8 +1033,44 @@ msgid "Content"
 msgstr "Indhold"
 
 msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "jan"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "feb"
+
+msgctxt "Abbreviated month name"
 msgid "May"
 msgstr "maj"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "jun"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "jul"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sep"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "okt"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dec"
 
 msgid "Email addresses to notify when updates are available"
 msgstr "E-mailadresser, der underrettes, når opdateringer er tilgængelige"
