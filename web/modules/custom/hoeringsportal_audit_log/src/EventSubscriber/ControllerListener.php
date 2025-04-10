@@ -52,9 +52,8 @@ final class ControllerListener implements EventSubscriberInterface {
   public function onController(ControllerEvent $event) {
     $pathInfo = $event->getRequest()->getPathInfo();
     $routeName = $event->getRequest()->attributes->get('_route');
-    $loggedRouteNames = $this->moduleConfig->get('logged_route_names');
-
-    if ($loggedRouteNames && in_array($routeName, $loggedRouteNames)) {
+    $loggedRouteNames = $this->configHelper->getRouteNames();
+    if (in_array($routeName, $loggedRouteNames)) {
       $this->logAuditMessage($pathInfo);
       return;
     }
