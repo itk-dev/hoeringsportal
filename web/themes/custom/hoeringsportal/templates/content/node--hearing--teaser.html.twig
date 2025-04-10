@@ -29,7 +29,7 @@
 {# Collect data for information lines on card #}
 {% set items =
   [
-    {icon: 'fa-calendar-day', value: startdate|format_date('hoeringsportal_date_long') },
+    {icon: 'fa-calendar-day', value: startdate|format_date('hoeringsportal_date_long')},
     {icon: 'fa-comments', value: repliesCount ~ ' ' ~ 'answers'|t},
     {icon: 'fa-location-dot', value: content.field_area}
   ]
