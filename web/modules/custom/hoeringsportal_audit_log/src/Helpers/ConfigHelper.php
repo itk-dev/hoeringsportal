@@ -91,13 +91,11 @@ class ConfigHelper {
       return $returnConfig;
     }
 
-    $typeId = $key;
-    if ($type) {
-      $typeId = $type;
-    }
+    // Use key as type if no type is specified (cf. «missing comment on how config is build in SettingsForm.php»)
+    $type ??= $key;
 
     $escapedRouteName = $this->escapeProviderId($routeName);
-    return reset($types[$key][$typeId])[$escapedRouteName] === $escapedRouteName;
+    return reset($types[$key][$type])[$escapedRouteName] === $escapedRouteName;
   }
 
 }
