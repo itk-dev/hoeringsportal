@@ -155,9 +155,12 @@ final class SettingsForm extends ConfigFormBase {
    * Get default values for checkboxes.
    *
    * @param string $definitionId
+   *   definitionId.
    * @param string $typeId
+   *   typeId.
    *
    * @return array<string, string>
+   *   Default values from config.
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array {
     $configTypes = $this->configHelper->getConfiguration('types');
@@ -187,8 +190,10 @@ final class SettingsForm extends ConfigFormBase {
    * Split string by newline and trim each item.
    *
    * @param string $input
+   *   Input.
    *
    * @return array<int, string>
+   *   Array from string, entries separated by end of line.
    */
   private function fromStringToArray(string $input): array {
     return array_filter(array_map('trim', explode(PHP_EOL, $input)));
@@ -198,8 +203,10 @@ final class SettingsForm extends ConfigFormBase {
    * Makes the array into a newline separated string.
    *
    * @param array<string, string> $input
+   *   Input.
    *
    * @return string
+   *   String from array.
    */
   private function fromArrayToString(array $input): string {
     return implode(PHP_EOL, $input);
