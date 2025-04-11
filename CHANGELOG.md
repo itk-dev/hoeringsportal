@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
+  * Add config for default teaser images
+
 * [PR-480](https://github.com/itk-dev/hoeringsportal/pull/480)
   * New paragraph section for content promotion
 
