@@ -3,10 +3,10 @@
 {% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
 
 {# Set the content state #}
-{% set content_state = content.field_content_state['#items'].value %}
+{% set content_state = public_meeting_helper.getState(node) %}
 
 {# Set the content state #}
-{% set meetingIsCanceled = content.field_public_meeting_cancelled[0]['#markup'] %}
+{% set meetingIsCanceled = public_meeting_helper.isCancelled(node) %}
 
 {# Set start and end time for next meeting #}
 {% set meetingDateStartTime = public_meeting_helper.getNextMeetingStartTime(node) %}
@@ -40,7 +40,7 @@
 {# Show card information #}
 {% block card_type_information %}
   {# Show text if meeting is canceled #}
-  {% if (meetingIsCanceled == true) %}
+  {% if (meetingIsCanceled) %}
     <div class="alert alert-warning"><p class="my-0">{{ content.field_cancelled_text|default('Meeting has been canceled'|t) }}</p></div>
   {% else %}
 

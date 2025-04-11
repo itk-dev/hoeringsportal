@@ -39,7 +39,7 @@
 {% block card_type_information %}
 
   {# Show details for next meeting #}
-  {% if (content_state == 'upcoming' or content_state == 'active') %}
+  {% if (content_state in ['upcoming', 'active']) %}
   {% for item in items %}
     <div class="d-flex gap-3 justify-items-center {% if not loop.last %} border-bottom {% endif %}">
       <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-hearing"></i>
