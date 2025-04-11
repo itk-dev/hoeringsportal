@@ -29,7 +29,7 @@
 
 {# Use default image if no image found. #}
 {% if not image %}
-  {% set image = hoeringsportal_config_media(node_type~'_teaser_default_image') %}
+  {% set image = hoeringsportal_config_media(node_type ~ '_teaser_default_image') %}
 {% endif %}
 
 {# Create the basic markup for the card #}

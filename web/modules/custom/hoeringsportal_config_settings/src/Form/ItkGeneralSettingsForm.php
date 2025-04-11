@@ -59,8 +59,7 @@ class ItkGeneralSettingsForm extends FormBase {
     ];
 
     $form['footer']['footer_menu_link']['link'] = [
-      '#title' => $this
-        ->t('Footer bottom links'),
+      '#title' => $this->t('Footer bottom links'),
       '#type' => 'link',
       '#url' => Url::fromRoute('entity.menu.edit_form', ['menu' => 'footer']),
     ];
@@ -102,7 +101,9 @@ class ItkGeneralSettingsForm extends FormBase {
       '#type' => 'details',
       '#open' => TRUE,
       '#weight' => '2',
-      '#description' => $this->t('These references are used by the system when creating links automatically. Only change these if you create a new overview page.'),
+      '#description' => $this->t(
+        'These references are used by the system when creating links automatically. Only change these if you create a new overview page.'
+      ),
       '#group' => 'general_settings',
     ];
 
@@ -124,16 +125,6 @@ class ItkGeneralSettingsForm extends FormBase {
       '#default_value' => $node_reference,
       '#description' => $this->t('The page used for an overview of hearings'),
       '#weight' => '2',
-    ];
-
-    $media_reference = Media::load($config->get('hearing_teaser_default_image') ?? -1);
-    $form['overview_pages']['hearing_teaser_default_image'] = [
-      '#title' => $this->t('Hearing teaser default image'),
-      '#type' => 'entity_autocomplete',
-      '#target_type' => 'media',
-      '#default_value' => $media_reference,
-      '#description' => $this->t('Image used on hearing teaser if hearing does not have an image attached'),
-      '#weight' => '3',
     ];
 
     $form['remote_paths'] = [
@@ -167,6 +158,82 @@ class ItkGeneralSettingsForm extends FormBase {
       '#size' => 30,
       '#default_value' => $config->get('full_map_hearing_url'),
       '#description' => $this->t('Used when linking to a map of all hearings.'),
+    ];
+
+    $form['default_images'] = [
+      '#title' => $this->t('Default images'),
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#weight' => '2',
+      '#description' => $this->t(
+        'Set default images to use where editors have not provided or have the posibility to add an image.'
+      ),
+      '#group' => 'general_settings',
+    ];
+
+    $media_reference = Media::load($config->get('hearing_teaser_default_image') ?? -1);
+    $form['default_images']['hearing_teaser_default_image'] = [
+      '#title' => $this->t('Hearing teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on hearing teaser if hearing does not have an image attached'),
+      '#weight' => '3',
+    ];
+
+    $media_reference = Media::load($config->get('public_meeting_teaser_default_image') ?? -1);
+    $form['default_images']['public_meeting_teaser_default_image'] = [
+      '#title' => $this->t('Public meeting teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on public meeting teaser if hearing does not have an image attached'),
+      '#weight' => '3',
+    ];
+
+    $media_reference = Media::load($config->get('citizen_proposal_teaser_default_image') ?? -1);
+    $form['default_images']['citizen_proposal_teaser_default_image'] = [
+      '#title' => $this->t('Citizen proposal teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on citizen proposal teaser if hearing does not have an image attached'),
+      '#weight' => '3',
+    ];
+
+    $media_reference = Media::load($config->get('project_teaser_default_image') ?? -1);
+    $form['default_images']['project_teaser_default_image'] = [
+      '#title' => $this->t('Project teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on project teaser if hearing does not have an image attached'),
+      '#weight' => '3',
+    ];
+
+    $media_reference = Media::load($config->get('static_page_teaser_default_image') ?? -1);
+    $form['default_images']['static_page_teaser_default_image'] = [
+      '#title' => $this->t('Static page teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#selection_settings' => [
+        'target_bundles' => ['image'],
+      ],
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on static page teaser if hearing does not have an image attached'),
+      '#weight' => '3',
     ];
 
     $form['misc'] = [
@@ -251,6 +318,10 @@ class ItkGeneralSettingsForm extends FormBase {
       'footer_text_4th' => $form_state->getValue('footer_text_4th')['value'],
       'hearings_overview' => $form_state->getValue('hearings_overview'),
       'hearing_teaser_default_image' => $form_state->getValue('hearing_teaser_default_image'),
+      'public_meeting_teaser_default_image' => $form_state->getValue('public_meeting_teaser_default_image'),
+      'citizen_proposal_teaser_default_image' => $form_state->getValue('citizen_proposal_teaser_default_image'),
+      'project_teaser_default_image' => $form_state->getValue('project_teaser_default_image'),
+      'static_page_teaser_default_image' => $form_state->getValue('static_page_teaser_default_image'),
       'initiative_overview' => $form_state->getValue('initiative_overview'),
       'full_map_url' => $form_state->getValue('full_map_url'),
       'full_map_project_url' => $form_state->getValue('full_map_project_url'),
