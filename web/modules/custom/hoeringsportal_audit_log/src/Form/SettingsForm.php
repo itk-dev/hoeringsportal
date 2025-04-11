@@ -153,9 +153,10 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Get default values for checkboxes.
-   * 
+   *
    * @param string $definitionId
    * @param string $typeId
+   *
    * @return array<string, string>
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array {
@@ -175,8 +176,8 @@ final class SettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $formState): void {
     $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
     $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
-   $types = $formState->getValue('types');
-   $this->configHelper->setConfiguration('types', $types);
+    $types = $formState->getValue('types');
+    $this->configHelper->setConfiguration('types', $types);
 
     $this->configHelper->saveConfig();
     parent::submitForm($form, $formState);
@@ -184,8 +185,9 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Split string by newline and trim each item.
-   * 
+   *
    * @param string $input
+   *
    * @return array<int, string>
    */
   private function fromStringToArray(string $input): array {
@@ -194,8 +196,9 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Makes the array into a newline separated string.
-   * 
+   *
    * @param array<string, string> $input
+   *
    * @return string
    */
   private function fromArrayToString(array $input): string {
