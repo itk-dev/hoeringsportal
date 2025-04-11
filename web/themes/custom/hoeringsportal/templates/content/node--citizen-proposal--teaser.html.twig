@@ -1,14 +1,14 @@
 {# Template for Citizen proposal teaser extending base-card #}
 
 {% if (content.field_vote_end) %}
-  {% set voteEnd = content.field_vote_end['0']['#attributes'].datetime %}
+  {% set voteEnd = citizen_proposal_helper.getVoteEndDate(node) %}
 {% endif %}
 
 {% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
 
 {% block card_content %}
   <div class="d-flex my-3 justify-content-between">
-    <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|date('d M. Y') }}</strong></div>
+    <div><span>{{ 'End date'|t }}:</span><strong class="ms-1">{{ voteEnd|format_date('hoeringsportal_date_long')|capitalize }}</strong></div>
   </div>
   <div class="activity-supporters">
     {{ include('citizen-proposal-support-counter.html.twig', {data: {

@@ -511,4 +511,15 @@ class Helper implements LoggerAwareInterface {
       && 'active' === $node->get('field_content_state')->getString();
   }
 
+  /**
+   * Get vote end date.
+   */
+  public function getVoteEndDate(NodeInterface $node): int {
+    if (!$this->isCitizenProposal($node)) {
+      return NULL;
+    }
+
+    return $node->field_vote_end->date->getTimestamp();
+  }
+
 }
