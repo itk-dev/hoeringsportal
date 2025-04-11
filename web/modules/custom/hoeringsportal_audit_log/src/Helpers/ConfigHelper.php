@@ -32,6 +32,7 @@ class ConfigHelper {
 
   /**
    * Returns enabled audits.
+   *
    * @return array<int, string>
    */
   public static function getEnabledAuditIds(): array {
@@ -48,7 +49,7 @@ class ConfigHelper {
 
   /**
    * Set configuration.
-   * 
+   *
    * @param string $configName
    * @param array<int, string> $config
    */
@@ -58,15 +59,16 @@ class ConfigHelper {
 
   /**
    * Get configuration.
+   *
    * @return array<string, array<string, array<int, array<string, string>>>>
    */
   public function getConfiguration(string $configName): array|string|null {
-    return $this->moduleConfig->get($configName) ?? null;
+    return $this->moduleConfig->get($configName) ?? NULL;
   }
 
   /**
    * Escape provider id.
-   * 
+   *
    * @return string
    */
   public function escapeProviderId(string $input) {
@@ -77,7 +79,7 @@ class ConfigHelper {
 
   /**
    * Get route names.
-   * 
+   *
    * @return array<string, string>
    */
   public function getRouteNames() {
@@ -93,7 +95,7 @@ class ConfigHelper {
 
     // If no types configuration exists, return an empty array immediately.
     if (!$types) {
-      return false;
+      return FALSE;
     }
 
     $typeId = $key;
