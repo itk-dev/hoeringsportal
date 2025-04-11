@@ -6,4 +6,5 @@ package: ITK
 dependencies:
   - content_fixtures:content_fixtures
   - hoeringsportal_base_fixtures:hoeringsportal_base_fixtures
+  - hoeringsportal_deskpro:hoeringsportal_deskpro
   - hoeringsportal_hearing:hoeringsportal_hearing

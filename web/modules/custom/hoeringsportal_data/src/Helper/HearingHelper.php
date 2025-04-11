@@ -4,6 +4,7 @@ namespace Drupal\hoeringsportal_data\Helper;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\hoeringsportal_deskpro\Service\HearingHelper as DeskproHearingHelper;
 use Drupal\Core\Logger\LoggerChannelInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
@@ -27,6 +28,7 @@ class HearingHelper implements LoggerAwareInterface {
    */
   public function __construct(
     private readonly EntityTypeManagerInterface $entityTypeManager,
+    private readonly DeskproHearingHelper $deskproHearingHelper,
     LoggerChannelInterface $logger,
   ) {
     $this->setLogger($logger);
@@ -157,6 +159,28 @@ class HearingHelper implements LoggerAwareInterface {
    */
   private function getDateTime($time = 'now', $timezone = 'UTC'): DrupalDateTime {
     return new DrupalDateTime($time, $timezone);
+  }
+
+  /**
+   * Get number of replies.
+   */
+  public function getNumberOfReplies(NodeInterface $node): ?int {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    return $this->deskproHearingHelper->getHearingTicketsCount($node);
+  }
+
+  /**
+   * Get start date.
+   */
+  public function getStartDate(NodeInterface $node): ?int {
+    if (!$this->isHearing($node)) {
+      return NULL;
+    }
+
+    return $node->field_start_date->date->getTimestamp();
   }
 
 }
