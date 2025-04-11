@@ -221,8 +221,15 @@ tasks:
     silent: true
 
   code-analysis:
-    cmds:
-      - task composer -- code-analysis
+     cmds:
+       - task composer -- code-analysis
+       # Check some modules with a higher level.
+       #
+       # Note: The second `--` is needed to pass command line arguments (starting with `--`) to the composer script
+       # `code-analysis`
+       #
+       # @todo Update all our custom modules to resolve ‘level 6 (or 5) errors“
+       - task composer -- code-analysis -- --level=6 web/modules/custom/hoeringsportal_audit_log/
 
   docker-pull:
     desc: "Pull all development docker images"

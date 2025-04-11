@@ -5,10 +5,8 @@ namespace Drupal\hoeringsportal_audit_log\EventSubscriber;
 use Drupal\os2web_audit\Service\Logger;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
@@ -20,19 +18,10 @@ use Drupal\Core\Entity\EntityInterface;
  */
 final class ControllerListener implements EventSubscriberInterface {
 
-
-  /**
-   * The module config.
-   *
-   * @var \Drupal\Core\Config\ImmutableConfig
-   */
-  private $moduleConfig;
-
   /**
    * Constructor.
    */
   public function __construct(
-    ConfigFactoryInterface $configFactory,
     protected RouteMatchInterface $routeMatch,
     protected AccountInterface $currentUser,
     #[Autowire(service: 'os2web_audit.logger')]
@@ -40,7 +29,6 @@ final class ControllerListener implements EventSubscriberInterface {
     protected readonly ConfigHelper $configHelper,
     protected RequestStack $requestStack,
   ) {
-    $this->moduleConfig = $configFactory->get(SettingsForm::SETTINGS);
   }
 
   /**
@@ -49,7 +37,7 @@ final class ControllerListener implements EventSubscriberInterface {
    * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
    *   The event to process.
    */
-  public function onController(ControllerEvent $event) {
+  public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
     $routeName = $event->getRequest()->attributes->get('_route');
     $loggedRouteNames = $this->configHelper->getRouteNames();
@@ -81,7 +69,7 @@ final class ControllerListener implements EventSubscriberInterface {
    * @param string $info
    *   The path info to include in the message.
    */
-  private function logAuditMessage($info) {
+  private function logAuditMessage($info): void {
     $request = $this->requestStack->getCurrentRequest();
     $msg = sprintf(
       '%s request to %s: %s',

@@ -87,7 +87,7 @@ final class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
-    /** @var \Drupal\Core\Entity\EntityInterface[] $definitions */
+    /** @var \Drupal\Core\Entity\EntityTypeInterface[] $definitions */
     $definitions = $this->entityTypeManager->getDefinitions();
 
     $form['types'] = [
@@ -153,8 +153,12 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Get default values for checkboxes.
+   * 
+   * @param string $definitionId
+   * @param string $typeId
+   * @return array<string, string>
    */
-  private function getDefaultValues($definitionId, $typeId) : array {
+  private function getDefaultValues(string $definitionId, string $typeId) : array {
     $configTypes = $this->configHelper->getConfiguration('types');
     $defaultValues = [];
     if (count($configTypes) > 0) {
@@ -180,6 +184,9 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Split string by newline and trim each item.
+   * 
+   * @param string $input
+   * @return array<int, string>
    */
   private function fromStringToArray(string $input): array {
     return array_filter(array_map('trim', explode(PHP_EOL, $input)));
@@ -187,6 +194,9 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * Makes the array into a newline separated string.
+   * 
+   * @param array<string, string> $input
+   * @return string
    */
   private function fromArrayToString(array $input): string {
     return implode(PHP_EOL, $input);
