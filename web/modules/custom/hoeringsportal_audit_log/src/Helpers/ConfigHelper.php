@@ -16,7 +16,7 @@ class ConfigHelper {
   /**
    * The module config.
    *
-   * @var \Drupal\Core\Config\ImmutableConfig
+   * @var \Drupal\Core\Config\Config
    */
   private $moduleConfig;
 
@@ -32,9 +32,9 @@ class ConfigHelper {
 
   /**
    * Returns enabled audits.
+   * @return array<int, string>
    */
-  public static function getEnabledAuditIds() {
-
+  public static function getEnabledAuditIds(): array {
     return self::ENABLED_AUDIT_IDS;
 
   }
@@ -42,12 +42,15 @@ class ConfigHelper {
   /**
    * Save.
    */
-  public function saveConfig() {
+  public function saveConfig(): void {
     $this->moduleConfig->save();
   }
 
   /**
    * Set configuration.
+   * 
+   * @param string $configName
+   * @param array<int, string> $config
    */
   public function setConfiguration(string $configName, array $config): void {
     $this->moduleConfig->set($configName, $config);
@@ -55,13 +58,16 @@ class ConfigHelper {
 
   /**
    * Get configuration.
+   * @return array<string, array<string, array<int, array<string, string>>>>
    */
-  public function getConfiguration(string $configName): array|string {
-    return $this->moduleConfig->get($configName) ?? [];
+  public function getConfiguration(string $configName): array|string|null {
+    return $this->moduleConfig->get($configName) ?? null;
   }
 
   /**
    * Escape provider id.
+   * 
+   * @return string
    */
   public function escapeProviderId(string $input) {
     // Drupal will not accept a . in configuration
@@ -70,32 +76,34 @@ class ConfigHelper {
   }
 
   /**
-   * Unescape provider id.
+   * Get route names.
+   * 
+   * @return array<string, string>
    */
-  private function unescapeProviderId(string $input) {
-    // Drupal will not accept a . in configuration
-    // keys. https://www.drupal.org/node/2297311
-    return str_replace('__dot__', '.', $input);
+  public function getRouteNames() {
+    return $this->moduleConfig->get('logged_route_names');
   }
 
   /**
    * Get active (not 0) config for entity.
    */
   public function getEntityConfiguration(string $key, string $routeName, ?string $type): bool {
-    $returnConfig = [];
     // Retrieve the available types configuration.
     $types = $this->getConfiguration('types');
 
     // If no types configuration exists, return an empty array immediately.
     if (!$types) {
-      return $returnConfig;
+      return false;
+    }
+
+    $typeId = $key;
+    if ($type) {
+      $typeId = $type;
     }
 
     // Use key as type if no type is specified (cf. «missing comment on how config is build in SettingsForm.php»)
-    $type ??= $key;
-
     $escapedRouteName = $this->escapeProviderId($routeName);
-    return reset($types[$key][$type])[$escapedRouteName] === $escapedRouteName;
+    return reset($types[$key][$typeId])[$escapedRouteName] == $escapedRouteName;
   }
 
 }
