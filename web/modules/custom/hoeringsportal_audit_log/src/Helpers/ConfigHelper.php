@@ -9,8 +9,8 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
  * Config helper.
  */
 class ConfigHelper {
-  // Limit where audits can be made. If this is expanded, you probably need to write some code
-  // in both SettingsForm and ControllerListener.
+  // Limit where audits can be made. If this is expanded, you probably
+  // need to write some code in both SettingsForm and ControllerListener.
   private const ENABLED_AUDIT_IDS = ['node', 'user'];
 
   /**
@@ -33,7 +33,8 @@ class ConfigHelper {
   /**
    * Returns enabled audits.
    *
-   * @return array<int, string> Array of enabled audits, defined above.
+   * @return array<int, string>
+   *   Array of enabled audits, defined above.
    */
   public static function getEnabledAuditIds(): array {
     return self::ENABLED_AUDIT_IDS;
@@ -62,7 +63,8 @@ class ConfigHelper {
   /**
    * Get configuration.
    *
-   * @return array<string, array<string, array<int, array<string, string>>>> Configuration or null.
+   * @return array<string, array<string, array<int, array<string, string>>>>
+   *   Configuration or null.
    */
   public function getConfiguration(string $configName): array|string|null {
     return $this->moduleConfig->get($configName) ?? NULL;
@@ -71,17 +73,20 @@ class ConfigHelper {
   /**
    * Escape provider id.
    *
-   * @return string String with __dot__ instead of .
+   * @return string
+   *   String with __dot__ instead of .
    */
   public function escapeProviderId(string $input) {
-    // Drupal will not accept a . in configuration keys. https://www.drupal.org/node/2297311
+    // Drupal will not accept a . in configuration keys.
+    // https://www.drupal.org/node/2297311
     return str_replace('.', '__dot__', $input);
   }
 
   /**
    * Get route names.
    *
-   * @return array<string, string> Array of route names.
+   * @return array<string, string>
+   *   Array of route names.
    */
   public function getRouteNames() {
     return $this->moduleConfig->get('logged_route_names');
