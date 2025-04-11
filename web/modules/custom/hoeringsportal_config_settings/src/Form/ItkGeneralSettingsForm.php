@@ -6,6 +6,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
+use Drupal\media\Entity\Media;
 
 /**
  * Itk general settings form.
@@ -125,6 +126,16 @@ class ItkGeneralSettingsForm extends FormBase {
       '#weight' => '2',
     ];
 
+    $media_reference = Media::load($config->get('hearing_teaser_default_image') ?? -1);
+    $form['overview_pages']['hearing_teaser_default_image'] = [
+      '#title' => $this->t('Hearing teaser default image'),
+      '#type' => 'entity_autocomplete',
+      '#target_type' => 'media',
+      '#default_value' => $media_reference,
+      '#description' => $this->t('Image used on hearing teaser if hearing does not have an image attached'),
+      '#weight' => '3',
+    ];
+
     $form['remote_paths'] = [
       '#title' => $this->t('External references'),
       '#type' => 'details',
@@ -239,6 +250,7 @@ class ItkGeneralSettingsForm extends FormBase {
       'footer_text_3rd' => $form_state->getValue('footer_text_3rd')['value'],
       'footer_text_4th' => $form_state->getValue('footer_text_4th')['value'],
       'hearings_overview' => $form_state->getValue('hearings_overview'),
+      'hearing_teaser_default_image' => $form_state->getValue('hearing_teaser_default_image'),
       'initiative_overview' => $form_state->getValue('initiative_overview'),
       'full_map_url' => $form_state->getValue('full_map_url'),
       'full_map_project_url' => $form_state->getValue('full_map_project_url'),
