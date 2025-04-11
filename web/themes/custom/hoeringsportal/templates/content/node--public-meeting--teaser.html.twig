@@ -16,7 +16,7 @@
 {% block card_date %}
   {# When deadline field exists show date. #}
   {% if meetingDateStartTime != '' %}
-    <div class="fw-semibold">{{ meetingDateStartTime|format_date('hoeringsportal_today_date') }}</div>
+    <div class="fw-semibold">{{ meetingDateStartTime|format_date('hoeringsportal_day_only') }}</div>
     <div class="small">{{ meetingDateStartTime|format_date('hoeringsportal_month_short') }}</div>
   {% endif %}
 {% endblock %}

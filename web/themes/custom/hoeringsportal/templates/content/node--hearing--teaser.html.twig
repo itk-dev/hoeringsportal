@@ -16,7 +16,7 @@
   {# If we have a date then show a date splash on the card #}
   {% if (startdate) %}
     {# Show the date #}
-      <div class="fw-semibold">{{ startdate|format_date('hoeringsportal_today_date') }}</div>
+      <div class="fw-semibold">{{ startdate|format_date('hoeringsportal_day_only') }}</div>
       <div class="small">{{ startdate|format_date('hoeringsportal_month_short') }}</div>
   {% endif %}
 {% endblock %}
