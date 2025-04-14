@@ -48,12 +48,12 @@ final class ControllerListener implements EventSubscriberInterface {
 
     $routeParameters = $this->routeMatch->getParameters();
 
-    foreach ($routeParameters as $routeParamter) {
-      if ($routeParamter instanceof EntityInterface) {
-        $entityTypeId = $routeParamter->getEntityTypeId();
+    foreach ($routeParameters as $routeParameter) {
+      if ($routeParameter instanceof EntityInterface) {
+        $entityTypeId = $routeParameter->getEntityTypeId();
         $type = NULL;
-        if (method_exists($routeParamter, 'getType')) {
-          $type = $routeParamter->getType();
+        if (method_exists($routeParameter, 'getType')) {
+          $type = $routeParameter->getType();
         }
         if ($this->configHelper->getEntityConfiguration($entityTypeId, $routeName, $type)) {
           $this->logAuditMessage($pathInfo);
