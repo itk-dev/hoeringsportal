@@ -50,6 +50,7 @@ jobs:
     name: Validate composer
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - uses: arduino/setup-task@v2
         # https://github.com/arduino/setup-task/tree/56d0cc033e3cecc5f07a291fdd39f29388d21800?tab=readme-ov-file#repo-token
         with:
