@@ -104,10 +104,7 @@ class ConfigHelper {
       return FALSE;
     }
 
-    $typeId = $key;
-    if ($type) {
-      $typeId = $type;
-    }
+    $typeId = $type ?: $key;
 
     $escapedRouteName = $this->escapeProviderId($routeName);
     return reset($types[$key][$typeId])[$escapedRouteName] == $escapedRouteName;
