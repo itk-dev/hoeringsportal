@@ -19,6 +19,8 @@ services:
 
   clamav:
     image: clamav/clamav:1.2
+    profiles:
+      - clamav
     networks:
       - app
     ports:
