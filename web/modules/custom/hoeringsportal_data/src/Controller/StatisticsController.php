@@ -154,7 +154,10 @@ final class StatisticsController extends ControllerBase {
   private function getHearings(array $parameters) {
     $startDate = $parameters['start_date'];
     $endDate = $parameters['end_date'];
-    // Make end date inclusive.
+    // Make end date inclusive, i.e. when the user specifies 23/05/1975, say,
+    // which means "midnight on 23/05/1975" (for programmers) we use "midnight
+    // on 24/05/1975" because users expect all data from 23/05/1975 to be
+    // included.
     if ($endDate instanceof \DateTimeImmutable) {
       $endDate = $endDate->modify('+1 day');
     }
