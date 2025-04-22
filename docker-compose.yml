@@ -30,7 +30,7 @@ services:
       com.symfony.server.service-prefix: 'DATABASE'
 
   phpfpm:
-    image: itkdev/php8.3-fpm:latest
+    image: itkdev/php8.4-fpm:latest
     user: ${COMPOSE_USER:-deploy}
     networks:
       - app
