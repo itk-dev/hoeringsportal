@@ -20,9 +20,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
   /**
    * Constructor.
    */
-  public function __construct(
-    private readonly BaseConfig $baseConfig,
-  ) {}
+  public function __construct(private readonly BaseConfig $baseConfig) {}
 
   /**
    * {@inheritdoc}
@@ -81,7 +79,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'type' => 'links_on_a_background_image',
       'field_paragraph_image' => [$this->getReference('media:Large3')],
       'field_links_list' => array_map(
-        static fn(Paragraph $paragraphLink)=>[
+        static fn(Paragraph $paragraphLink) => [
           'target_id' => $paragraphLink->id(),
           'target_revision_id' => $paragraphLink->getRevisionId(),
         ],
@@ -151,7 +149,7 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
       'field_lead' => 'Om Deltag Aarhus',
       'field_title' => 'Hvad ved du om deltag.aarhus.dk',
       'field_abstract' => 'Se her hvad du kan bruge deltag.aarhus.dk til som borger i Aarhus Kommune',
-      'field_button'  => array_map(
+      'field_button' => array_map(
         static fn(Paragraph $paragraphButtonLink) => [
           'target_id' => $paragraphButtonLink->id(),
           'target_revision_id' => $paragraphButtonLink->getRevisionId(),
@@ -162,13 +160,25 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     $paragraph->save();
     $pageParagraphs[] = $paragraph;
 
-    $page->set('field_section', array_map(
-      static fn(Paragraph $paragraph) => [
-        'target_id' => $paragraph->id(),
-        'target_revision_id' => $paragraph->getRevisionId(),
-      ],
-      $pageParagraphs
-    ));
+    // Add list with static pages.
+    $paragraph = Paragraph::create([
+      'type' => 'teaser_row',
+      'field_paragraph_title' => 'Statiske sider',
+      'field_content' => [$this->getReference('node:static_page:About')],
+    ]);
+    $paragraph->save();
+    $pageParagraphs[] = $paragraph;
+
+    $page->set(
+      'field_section',
+      array_map(
+        static fn(Paragraph $paragraph) => [
+          'target_id' => $paragraph->id(),
+          'target_revision_id' => $paragraph->getRevisionId(),
+        ],
+        $pageParagraphs
+      )
+    );
 
     $page->save();
 
@@ -176,16 +186,22 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     // (cf. /admin/site-setup/general > “Pages” > “Front page”)
     // See \Drupal\hoeringsportal_config_settings\Form\ItkGeneralSettingsForm.
     $this->baseConfig->set('frontpage_id', $page->id());
+
+    // Set default image for citizen proposal teaser
+    // (cf. /admin/site-setup/general
+    // > “Default images” > “Citizen proposal default teaser image”)
+    // See \Drupal\hoeringsportal_config_settings\Form\ItkGeneralSettingsForm.
+    $this->baseConfig->set(
+      'citizen_proposal_teaser_default_image',
+      $this->getReference('media:citizen_proposal_default_image')->id()
+    );
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDependencies() {
-    return [
-      MediaFixture::class,
-      CitizenProposalLandingPageFixture::class,
-    ];
+    return [MediaFixture::class, CitizenProposalLandingPageFixture::class];
   }
 
   /**
