@@ -6,6 +6,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.10.0] - 2025-04-22
+
 * [PR-428](https://github.com/itk-dev/hoeringsportal/pull/428)
   Upgraded to PHP 8.4
 * [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
@@ -433,7 +435,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.9.0...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.10.0...HEAD
+[4.10.0]: https://github.com/itk-dev/hoeringsportal/compare/4.9.0...4.10.0
 [4.9.0]: https://github.com/itk-dev/hoeringsportal/compare/4.8.5...4.9.0
 [4.8.5]: https://github.com/itk-dev/hoeringsportal/compare/4.8.4...4.8.5
 [4.8.4]: https://github.com/itk-dev/hoeringsportal/compare/4.8.3...4.8.4
