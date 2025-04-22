@@ -1,0 +1,1005 @@
+data:
+  - id: 1
+    parent: null
+    title: Din adresse
+    description: ''
+    options:
+      custom_css_classname: ''
+      validation_type: required
+      clickable_links: ''
+      required: true
+      min_length: '1'
+      max_length: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 0
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Din adresse
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Din adresse
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 2
+    parent: null
+    title: Jeg udtaler mig som
+    description: ''
+    options:
+      custom_css_classname: ''
+      multiple: false
+      expanded: false
+      validation_type: required
+      required: true
+      min_length: '1'
+      max_length: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 10
+    is_agent_field: false
+    choices:
+      - id: 5
+        title: Privatperson
+        is_selectable: true
+      - id: 3
+        title: Virksomhed
+        is_selectable: true
+      - id: 4
+        title: Forening / organisation
+        is_selectable: true
+      - id: 20
+        title: Råd og nævn
+        is_selectable: true
+      - id: 21
+        title: Myndighed
+        is_selectable: true
+      - id: 42
+        title: MED-udvalg
+        is_selectable: true
+    default_value: 5
+    widget_type: choice
+    type_name: choice
+    translations:
+      '1':
+        language: 1
+        title: Jeg udtaler mig som
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Jeg udtaler mig som
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 7
+    parent: null
+    title: Navn på organisation
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 20
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Navn på organisation
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Navn på organisation
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 10
+    parent: null
+    title: Vejledning og samtykke
+    description: ''
+    options:
+      custom_css_classname: ''
+      html: "<b>Vejledning og samtykke</b><br>\nDit høringssvar kan ses på hjemmesiden,\
+        \ kort tid efter du trykker på [Send]. Du modtager en e-mail med kvittering\
+        \ for, at vi har modtaget dit høringssvar. \nPå hjemmesiden vil navn, postnummer,\
+        \ by, dit høringssvar og eventuelle bilag blive offentliggjort. Når høringer\
+        \ skal behandles politisk vil dit navn, adresse, mailadresse, postnummer,\
+        \ by, høringssvar og eventuelle bilag blive offentliggjort.<br><br>\n\nDu\
+        \ afgiver automatisk dit samtykke, når du afgiver dit svar. \n\nSamtykkeerklæring:\
+        \ \n\nJeg giver samtykke til, at Aarhus Kommune må publicere mit høringssvar.\
+        \ Jeg er indforstået med min ret til at tilbagekalde mit samtykke. Læs mere\
+        \ under punktet \"Oplysninger om anvendelse af persondata\" her på siden.\
+        \ (link til informationen nedenfor- (på side for sig))*"
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 30
+    is_agent_field: false
+    choices: []
+    default_value: null
+    widget_type: display
+    type_name: display
+    translations:
+      '1':
+        language: 1
+        title: Vejledning og samtykke
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Vejledning og samtykke
+        user_title: ''
+        description: ''
+    aliases:
+      - infoboks
+  - id: 11
+    parent: null
+    title: Accept af vejledning og samtykke
+    description: ''
+    options:
+      custom_css_classname: ''
+      validation_type: required
+      label_text: Jeg har læst vejledning og samtykke og er indforstået med vikårene
+      unchecked_text: Jeg har ikke læst vejledningen og derfor ikke forholdt mig til
+        vilkårene
+      required: true
+      max_length: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 40
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: toggle
+    type_name: toggle
+    translations:
+      '1':
+        language: 1
+        title: Accept af vejledning og samtykke
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Accept af vejledning og samtykke
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 12
+    parent: null
+    title: Indsend høringssvar
+    description: ''
+    options:
+      custom_css_classname: ''
+      html: Indsend dit høringssvar
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 50
+    is_agent_field: false
+    choices: []
+    default_value: null
+    widget_type: display
+    type_name: display
+    translations:
+      '1':
+        language: 1
+        title: Indsend høringssvar
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Indsend høringssvar
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 15
+    parent: null
+    title: EdocID
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 60
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: EdocID
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: EdocID
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 16
+    parent: null
+    title: Åben download PDF URL (publiceres)
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      allow_file: true
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 70
+    is_agent_field: true
+    choices: []
+    default_value: null
+    widget_type: url
+    type_name: url
+    translations:
+      '1':
+        language: 1
+        title: Åben download PDF URL (publiceres)
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Åben download PDF URL (publiceres)
+        user_title: ''
+        description: ''
+    aliases:
+      - FileURLpub
+  - id: 17
+    parent: null
+    title: Beskyttet fil URL (journaliseres)
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      allow_file: true
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 80
+    is_agent_field: true
+    choices: []
+    default_value: null
+    widget_type: url
+    type_name: url
+    translations:
+      '1':
+        language: 1
+        title: Beskyttet fil URL (journaliseres)
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Beskyttet fil URL (journaliseres)
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 18
+    parent: null
+    title: Fjern bidrag fra publicering
+    description: Bidraget overholder ikke retningslinjerne.
+    options:
+      custom_css_classname: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 90
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: toggle
+    type_name: toggle
+    translations:
+      '1':
+        language: 1
+        title: Fjern bidrag fra publicering
+        user_title: ''
+        description: Bidraget overholder ikke retningslinjerne.
+      '2':
+        language: 2
+        title: Fjern bidrag fra publicering
+        user_title: ''
+        description: Bidraget overholder ikke retningslinjerne.
+    aliases: []
+  - id: 22
+    parent: null
+    title: Åben PDF preview URL
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      allow_file: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 100
+    is_agent_field: false
+    choices: []
+    default_value: null
+    widget_type: url
+    type_name: url
+    translations:
+      '1':
+        language: 1
+        title: Åben PDF preview URL
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Åben PDF preview URL
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 23
+    parent: null
+    title: Sharefile ItemID
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 110
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Sharefile ItemID
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Sharefile ItemID
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 24
+    parent: null
+    title: Sharefile ShareID
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 120
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Sharefile ShareID
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Sharefile ShareID
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 25
+    parent: null
+    title: Opdater høringssvar på portal
+    description: ''
+    options:
+      custom_css_classname: ''
+      multiple: false
+      expanded: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 130
+    is_agent_field: true
+    choices:
+      - id: 26
+        title: Ja
+        is_selectable: true
+      - id: 27
+        title: Nej
+        is_selectable: true
+    default_value: null
+    widget_type: choice
+    type_name: choice
+    translations:
+      '1':
+        language: 1
+        title: Opdater høringssvar på portal
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Opdater høringssvar på portal
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 28
+    parent: null
+    title: Hørings-id
+    description: ''
+    options:
+      custom_css_classname: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 140
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: hidden
+    type_name: hidden
+    translations:
+      '1':
+        language: 1
+        title: Hørings-id
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Hørings-id
+        user_title: ''
+        description: ''
+    aliases:
+      - hearing_id
+  - id: 29
+    parent: null
+    title: drupal_synchronize_at
+    description: ''
+    options:
+      custom_css_classname: ''
+      default_mode: '0'
+      required: false
+      agent_required: false
+      date_valid_timezone: Europe/Copenhagen
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 150
+    is_agent_field: false
+    choices: []
+    default_value: null
+    widget_type: datetime
+    type_name: datetime
+    translations:
+      '1':
+        language: 1
+        title: drupal_synchronize_at
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: drupal_synchronize_at
+        user_title: ''
+        description: ''
+    aliases:
+      - drupal_synchronize_at
+  - id: 30
+    parent: null
+    title: Høringsnavn
+    description: ''
+    options:
+      custom_css_classname: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 160
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: hidden
+    type_name: hidden
+    translations:
+      '1':
+        language: 1
+        title: Høringsnavn
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Høringsnavn
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 31
+    parent: null
+    title: Geolokation
+    description: ''
+    options:
+      custom_css_classname: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 170
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: hidden
+    type_name: hidden
+    translations:
+      '1':
+        language: 1
+        title: Geolokation
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Geolokation
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 32
+    parent: null
+    title: Adressebeskyttelse
+    description: ''
+    options:
+      custom_css_classname: ''
+      label_text: Min adresse er hemmelig
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 180
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: toggle
+    type_name: toggle
+    translations:
+      '1':
+        language: 1
+        title: Adressebeskyttelse
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Adressebeskyttelse
+        user_title: ''
+        description: ''
+    aliases:
+      - adressebeskyttelse
+  - id: 33
+    parent: null
+    title: Sammendrag af høringssvar (ChatGPT test)
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: '1'
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 190
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: textarea
+    type_name: textarea
+    translations:
+      '1':
+        language: 1
+        title: Sammendrag af høringssvar (ChatGPT test)
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Sammendrag af høringssvar (ChatGPT test)
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 34
+    parent: null
+    title: Vurdering af kategorier (ChatGPT test)
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: '1'
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 200
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: textarea
+    type_name: textarea
+    translations:
+      '1':
+        language: 1
+        title: Vurdering af kategorier (ChatGPT test)
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Vurdering af kategorier (ChatGPT test)
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 35
+    parent: null
+    title: Høringssvar
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: '1'
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 210
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: textarea
+    type_name: textarea
+    translations:
+      '1':
+        language: 1
+        title: Høringssvar
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Høringssvar
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 36
+    parent: null
+    title: Vedhæft høringssvar
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      multiple: true
+      user_extensions_limit_mode: any
+      user_must_extensions: []
+      user_not_extensions: []
+      user_max_file_size: 0
+      agent_extensions_limit_mode: any
+      agent_must_extensions: []
+      agent_not_extensions: []
+      agent_max_file_size: 0
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 220
+    is_agent_field: false
+    choices: []
+    default_value: []
+    widget_type: file
+    type_name: file
+    translations:
+      '1':
+        language: 1
+        title: Vedhæft høringssvar
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Vedhæft høringssvar
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 37
+    parent: null
+    title: Postnummer
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 230
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Postnummer
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Postnummer
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 38
+    parent: null
+    title: GetOrganized-sags-ID
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 240
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: GetOrganized-sags-ID
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: GetOrganized-sags-ID
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 39
+    parent: null
+    title: Link til høringssvar på portalen
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      allow_file: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 250
+    is_agent_field: true
+    choices: []
+    default_value: null
+    widget_type: url
+    type_name: url
+    translations:
+      '1':
+        language: 1
+        title: Link til høringssvar på portalen
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Link til høringssvar på portalen
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 41
+    parent: null
+    title: Link til sagen i GO
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      allow_file: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 260
+    is_agent_field: false
+    choices: []
+    default_value: null
+    widget_type: url
+    type_name: url
+    translations:
+      '1':
+        language: 1
+        title: Link til sagen i GO
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Link til sagen i GO
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 45
+    parent: null
+    title: Workflow
+    description: ''
+    options:
+      multiple: false
+      expanded: false
+      custom_css_classname: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 410
+    is_agent_field: false
+    choices:
+      - id: 46
+        title: Sag indsendt
+        is_selectable: true
+      - id: 47
+        title: Sag under behandling
+        is_selectable: true
+      - id: 48
+        title: Sag annulleret
+        is_selectable: true
+      - id: 49
+        title: Sag afsluttet
+        is_selectable: true
+    default_value: null
+    widget_type: choice
+    type_name: choice
+    translations:
+      '1':
+        language: 1
+        title: Workflow
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Workflow
+        user_title: ''
+        description: ''
+    aliases:
+      - ticket_workflow
+  - id: 52
+    parent: null
+    title: Send til vurdering ChatGPT - kategorier og sammendrag
+    description: ''
+    options:
+      custom_css_classname: ''
+      multiple: false
+      expanded: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 430
+    is_agent_field: false
+    choices:
+      - id: 53
+        title: Ja
+        is_selectable: true
+      - id: 54
+        title: Nej
+        is_selectable: true
+    default_value: 54
+    widget_type: choice
+    type_name: choice
+    translations:
+      '1':
+        language: 1
+        title: Send til vurdering ChatGPT - kategorier og sammendrag
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Send til vurdering ChatGPT - kategorier og sammendrag
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 55
+    parent: null
+    title: Høringssvar - automatisk tekstudtræk fra vedhæftede filer
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 440
+    is_agent_field: true
+    choices: []
+    default_value: ''
+    widget_type: textarea
+    type_name: textarea
+    translations:
+      '1':
+        language: 1
+        title: Høringssvar - automatisk tekstudtræk fra vedhæftede filer
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Høringssvar - automatisk tekstudtræk fra vedhæftede filer
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 57
+    parent: null
+    title: Lav et udtræk af de vedhæftede filer som tekst
+    description: ''
+    options:
+      custom_css_classname: ''
+      multiple: false
+      expanded: false
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 450
+    is_agent_field: true
+    choices:
+      - id: 58
+        title: Ja
+        is_selectable: true
+      - id: 59
+        title: Nej
+        is_selectable: true
+    default_value: null
+    widget_type: choice
+    type_name: choice
+    translations:
+      '1':
+        language: 1
+        title: Lav et udtræk af de vedhæftede filer som tekst
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Lav et udtræk af de vedhæftede filer som tekst
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 60
+    parent: null
+    title: Fuldt høringssvar som ren tekst fil (uden forklæde) (txt-fil)
+    description: ''
+    options:
+      custom_css_classname: ''
+      required: false
+      agent_required: false
+      multiple: false
+      user_extensions_limit_mode: allow
+      user_must_extensions:
+        - txt
+      user_not_extensions: []
+      user_max_file_size: 1099511627776
+      agent_extensions_limit_mode: allow
+      agent_must_extensions:
+        - txt
+      agent_not_extensions: []
+      agent_max_file_size: 10485760
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 460
+    is_agent_field: true
+    choices: []
+    default_value: []
+    widget_type: file
+    type_name: file
+    translations:
+      '1':
+        language: 1
+        title: Fuldt høringssvar som ren tekst fil (uden forklæde) (txt-fil)
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Fuldt høringssvar som ren tekst fil (uden forklæde) (txt-fil)
+        user_title: ''
+        description: ''
+    aliases: []
+  - id: 61
+    parent: null
+    title: Indsenders navn
+    description: ''
+    options:
+      custom_css_classname: ''
+      clickable_links: ''
+    is_user_enabled: true
+    is_enabled: true
+    display_order: 470
+    is_agent_field: false
+    choices: []
+    default_value: ''
+    widget_type: text
+    type_name: text
+    translations:
+      '1':
+        language: 1
+        title: Indsenders navn
+        user_title: ''
+        description: ''
+      '2':
+        language: 2
+        title: Indsenders navn
+        user_title: ''
+        description: ''
+    aliases: []

@@ -1,0 +1,8 @@
+uuid: dddd5a48-11df-4f25-b7d8-cec60f31c07e
+langcode: da
+status: true
+dependencies: {  }
+id: hoeringsportal_month_short
+label: 'Høringsportalen – måned kort'
+locked: false
+pattern: M

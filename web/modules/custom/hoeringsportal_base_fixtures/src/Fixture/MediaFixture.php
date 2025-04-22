@@ -170,16 +170,58 @@ class MediaFixture extends AbstractFixture implements DependentFixtureInterface,
     ]);
     $entity->save();
     $this->addReference('media:Medium3', $entity);
+
+    $entity = Media::create([
+      'name' => 'citizen_proposal_default_image',
+      'bundle' => 'image',
+      'field_itk_media_mime_type' => 'image/jpeg',
+      'field_itk_media_image_upload' => [
+        'target_id' => $this->getReference('file:citizen_proposal_default_image.jpg')->id(),
+      ],
+      'field_itk_media_height' => '960',
+      'field_itk_media_width' => '1720',
+    ]);
+    $entity->save();
+    $this->addReference('media:citizen_proposal_default_image', $entity);
+
+    $entity = Media::create([
+      'name' => 'building-user-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:building-user-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:building-user-solid', $entity);
+
+    $entity = Media::create([
+      'name' => 'calendar-days-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:calendar-days-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:calendar-days-solid', $entity);
+
+    $entity = Media::create([
+      'name' => 'comments-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:comments-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:comments-solid', $entity);
+
+    $entity = Media::create([
+      'name' => 'folder-open-solid',
+      'bundle' => 'icon',
+      'field_itk_media_image_upload' => ['target_id' => $this->getReference('file:folder-open-solid.svg')->id()],
+    ]);
+    $entity->save();
+    $this->addReference('media:folder-open-solid', $entity);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getDependencies() {
-    return [
-      FilesFixture::class,
-      TermMediaLibraryFixture::class,
-    ];
+    return [FilesFixture::class, TermMediaLibraryFixture::class];
   }
 
   /**

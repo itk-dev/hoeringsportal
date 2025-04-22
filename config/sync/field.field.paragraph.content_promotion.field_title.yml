@@ -1,0 +1,19 @@
+uuid: 41611888-caa5-499d-a0af-0816728eb6d7
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_title
+    - paragraphs.paragraphs_type.content_promotion
+id: paragraph.content_promotion.field_title
+field_name: field_title
+entity_type: paragraph
+bundle: content_promotion
+label: Title
+description: 'Used for the title'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

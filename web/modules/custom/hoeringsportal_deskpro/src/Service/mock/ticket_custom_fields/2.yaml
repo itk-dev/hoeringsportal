@@ -1,0 +1,51 @@
+data:
+  id: 2
+  parent: null
+  title: Jeg udtaler mig som
+  description: ''
+  options:
+    custom_css_classname: ''
+    multiple: false
+    expanded: false
+    validation_type: required
+    required: true
+    min_length: '1'
+    max_length: ''
+  is_user_enabled: true
+  is_enabled: true
+  display_order: 10
+  is_agent_field: false
+  choices:
+    - id: 5
+      title: Privatperson
+      is_selectable: true
+    - id: 3
+      title: Virksomhed
+      is_selectable: true
+    - id: 4
+      title: Forening / organisation
+      is_selectable: true
+    - id: 20
+      title: Råd og nævn
+      is_selectable: true
+    - id: 21
+      title: Myndighed
+      is_selectable: true
+    - id: 42
+      title: MED-udvalg
+      is_selectable: true
+  default_value: 5
+  widget_type: choice
+  type_name: choice
+  translations:
+    '1':
+      language: 1
+      title: Jeg udtaler mig som
+      user_title: ''
+      description: ''
+    '2':
+      language: 2
+      title: Jeg udtaler mig som
+      user_title: ''
+      description: ''
+  aliases: []

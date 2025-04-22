@@ -1,0 +1,90 @@
+{# Base card for teasers
+## Used for displaying teasers in lists on landing pages and at the bottom of pages.
+#}
+
+{# Determine a node type #}
+{% set node_type = node.type.entity.originalId %}
+{% if node_type == 'hearing' %}
+  {% set node_type_class = 'text-hearing' %}
+  {% set node_type_text = 'Hearing'|t %}
+{% elseif node_type == 'project_main_page' %}
+  {% set node_type_class = 'text-project' %}
+  {% set node_type_text = 'Project'|t %}
+{% elseif node_type == 'public_meeting' %}
+  {% set node_type_class = 'text-public-meeting' %}
+  {% set node_type_text = 'Public meeting'|t %}
+{% elseif node_type == 'static_page' %}
+  {% set node_type_class = 'text-static-page' %}
+  {% set node_type_text = 'Article'|t %}
+{% elseif node_type == 'citizen_proposal' %}
+  {% set node_type_class = 'text-citizen-proposal' %}
+  {% set node_type_text = 'Citizen proposal'|t %}
+{% endif %}
+
+{# Set image for Hearing, Project, Public meeting or Static page #}
+{% set image = content.field_media_image[0]['#media']
+  |default(content.field_project_image[0]['#media'])
+  |default(content.field_media_image_single[0]['#media'])
+  |default(false) %}
+
+{# Use default image if no image found. #}
+{% if not image %}
+  {% set image = hoeringsportal_config_media(node_type ~ '_teaser_default_image') %}
+{% endif %}
+
+{# Create the basic markup for the card #}
+<a href="{{ url }}" class="teaser card bg-white shadow-sm border-bottom">
+  {# Show a header with image if there is a image present for the node/teaser #}
+  {% if image %}
+    {# Get the url and alt text for the image #}
+    {% set image_url = file_url(image.field_itk_media_image_upload.entity.uri.value) %}
+    {% set image_alt = file_url(image.field_itk_media_image_upload.entity.entity.alt) %}
+    <div class="card-header position-relative p-0 w-100 activity-teaser-image overflow-hidden">
+      <img class="object-fit-cover" src="{{ image_url }}" alt="{{ image_alt|default('') }}">
+
+      {# If we have a node of type hearing or public meeting we show a date splash on the card #}
+      {% if node_type in ['hearing', 'public_meeting'] %}
+        <div class="position-absolute bottom-0 start-0 py-2 px-4 bg-white flex-column d-flex align-items-center">
+          {% block card_date %}
+          {% endblock %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {# Card body #}
+  <div class="card-body px-4 pt-3 pb-2">
+    {# Show the type of content the card teases #}
+    <span class="small fw-semibold {{ node_type_class }}">{{ node_type_text }}</span>
+    {# Show the title of the node #}
+    <h3 class="card-title">{{ node.fields.title.value }}</h3>
+
+    {# Card content block for showing a short description #}
+    {% block card_content %}
+      {# Show content without the fields we already uses. Only showed if the block is not replaced in another template. #}
+      {{ content|without('title', 'field_media_image', 'field_project_image', 'field_media_image_single') }}
+    {% endblock %}
+
+    {# Card information block for showing relevant lines of information eg. meeting date, place ect. #}
+    <div class="d-flex flex-column w-100 gap-3 mt-4">
+      {% block card_type_information %}
+      {% endblock %}
+    </div>
+  </div>
+
+  {# Card footer #}
+  <div class="card-footer bg-white container px-4 pt-1 pb-3">
+    <div class="row">
+      <div class="col">
+        {# Card footer block for small but relevant information, eg. a tag og similar. #}
+        {% block card_footer %}
+        {% endblock %}
+      </div>
+
+      {# Animated arrow for decorative purpose #}
+      <div class="col-auto ms-auto">
+        <i class="fa-solid fa-arrow-right {{ node_type_class }}"></i>
+      </div>
+    </div>
+  </div>
+</a>

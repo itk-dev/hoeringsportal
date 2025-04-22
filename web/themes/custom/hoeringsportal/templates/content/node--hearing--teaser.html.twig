@@ -1,0 +1,58 @@
+{# Template for Hearing teaser extending base-card #}
+
+{% extends 'themes/custom/hoeringsportal/templates/components/base-card.html.twig' %}
+
+{# Set the content state #}
+{% set content_state = hearing_helper.getState(node) %}
+
+{# Set how many replies there is to this hearing #}
+{% set repliesCount = hearing_helper.getNumberOfReplies(node) %}
+
+{# Set date for next meeting #}
+{% set startdate = hearing_helper.getStartDate(node) %}
+
+{# Show a date splash on the card #}
+{% block card_date %}
+  {# If we have a date then show a date splash on the card #}
+  {% if (startdate) %}
+    {# Show the date #}
+      <div class="fw-semibold">{{ startdate|format_date('hoeringsportal_day_only') }}</div>
+      <div class="small">{{ startdate|format_date('hoeringsportal_month_short') }}</div>
+  {% endif %}
+{% endblock %}
+
+{# Show teaser description #}
+{% block card_content %}
+  {{ content.field_teaser }}
+{% endblock %}
+
+{# Collect data for information lines on card #}
+{% set items =
+  [
+    {icon: 'fa-calendar-day', value: startdate|format_date('hoeringsportal_date_long')|capitalize},
+    {icon: 'fa-comments', value: repliesCount ~ ' ' ~ 'replies'|t},
+    {icon: 'fa-location-dot', value: content.field_area}
+  ]
+%}
+
+{# Show card information #}
+{% block card_type_information %}
+
+  {# Show details for next meeting #}
+  {% if (content_state in ['upcoming', 'active']) %}
+  {% for item in items %}
+    <div class="d-flex gap-3 justify-items-center {% if not loop.last %} border-bottom {% endif %}">
+      <i class="fa-solid fa-fw fa-lg {{ item.icon }} text-hearing"></i>
+      <p class="small">{{ item.value }}</p>
+    </div>
+  {% endfor %}
+
+  {# Show text for finished meeting #}
+  {% elseif (content_state == 'finished') %}
+    <p>{{ 'Meeting has been held'|t }}</p>
+
+  {# Show text for canceled meeting #}
+  {% elseif (content_state == 'canceled') %}
+    <p>{{ 'Meeting has been canceled'|t }}</p>
+  {% endif %}
+{% endblock %}

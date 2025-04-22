@@ -56,6 +56,8 @@
         "drupal/redirect": "^1.6",
         "drupal/search_api": "^1.37",
         "drupal/search_autocomplete": "^3.0",
+        "drupal/svg_image": "^3.2",
+        "drupal/svg_sanitizer": "^2.0",
         "drupal/token_filter": "^2.1",
         "drupal/toolbar_visibility": "^2.1",
         "drupal/twig_tweak": "^3.2",

@@ -6,6 +6,17 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
+  * Add config for default teaser images
+* [PR-480](https://github.com/itk-dev/hoeringsportal/pull/480)
+  * New paragraph section for content promotion
+* [PR-475](https://github.com/itk-dev/hoeringsportal/pull/475)
+  * New landingpage hero
+* [PR-490](https://github.com/itk-dev/hoeringsportal/pull/490)
+  * Added hearing reply fixtures
+  * Fixed ticket author template
+* [PR-489](https://github.com/itk-dev/hoeringsportal/pull/489)
+  Feat: Redesigned teaser cards that makes the cards easier to distinguish from each other when listed on the same page.
 * [PR-491](https://github.com/itk-dev/hoeringsportal/pull/491)
   Optimized development setup
 

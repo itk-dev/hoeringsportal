@@ -35,8 +35,9 @@ class FilesFixture extends AbstractFixture implements FixtureGroupInterface {
    */
   public function load() {
     $imageFiles = $this->helper->createImagesFromAssets();
+    $iconFiles = $this->helper->createIconsFromAssets();
     $documentFiles = $this->helper->createDocumentsFromAssets();
-    foreach (array_merge($imageFiles, $documentFiles) as $publicFilePath) {
+    foreach (array_merge($imageFiles, $iconFiles, $documentFiles) as $publicFilePath) {
       $file = File::create([
         'filename' => basename($publicFilePath),
         'uri' => $publicFilePath,

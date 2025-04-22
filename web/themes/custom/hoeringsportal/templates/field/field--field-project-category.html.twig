@@ -41,7 +41,7 @@
   <div class="d-flex gap-3">
 {% endif %}
 {% for item in items %}
-  <span class="text-primary">{{ item.content['#title'] }}</span>
+  {{ item.content['#title'] }}
 {% endfor %}
 {% if multiple %}
   </div>

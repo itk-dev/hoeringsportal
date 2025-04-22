@@ -1,0 +1,21 @@
+{# Paragraph for content promotion #}
+
+<section class="paragraph-content-promotion position-relative overflow-hidden">
+  {% if paragraph.field_paragraph_image.entity %}
+    {% set media = paragraph.field_paragraph_image.entity %}
+    {% if media.field_itk_media_image_upload.entity %}
+      {% set image_url = file_url(media.field_itk_media_image_upload.entity.uri.value) %}
+      <img class="position-absolute z-0 top-0 start-0 object-fit-cover" src="{{ image_url }}" alt="{{ media.field_itk_media_image_upload.entity.alt }}">
+    {% endif %}
+  {% endif %}
+  <div class="promotion-box container p-5 p-md-auto">
+    <div class="row">
+      <div class="z-1 position-relative bg-white shadow-lg rounded-1 p-5 ms-md-auto me-md-5 col-md-7 col-lg-5">
+        <p class="fw-semibold">{{ content.field_lead }}</p>
+        <h1>{{ content.field_title }}</h1>
+        <p>{{ content.field_abstract }}</p>
+        {{ content|without('field_paragraph_image', 'field_lead', 'field_title', 'field_abstract') }}
+      </div>
+    </div>
+  </div>
+</section>

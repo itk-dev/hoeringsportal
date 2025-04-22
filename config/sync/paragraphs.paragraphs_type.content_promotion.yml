@@ -1,0 +1,10 @@
+uuid: c9795df6-8926-4d02-ba3c-c313bc2587f3
+langcode: da
+status: true
+dependencies: {  }
+id: content_promotion
+label: 'Content promotion'
+icon_uuid: null
+icon_default: null
+description: 'Used to create a full width page section with a background image, and a boxed overlay with title, description and button.'
+behavior_plugins: {  }

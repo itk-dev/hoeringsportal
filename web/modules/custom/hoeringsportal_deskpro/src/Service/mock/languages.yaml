@@ -1,0 +1,21 @@
+data:
+  - id: 1
+    sys_name: default
+    lang_code: en-US
+    title: English
+    locale: en-US
+    is_rtl: false
+    has_user: true
+    has_agent: true
+    has_admin: true
+    flag_image: https://assets-eu1-cloud.deskpro.com/build-13370472689/assets/web/images/flags/locale_en-US.png
+  - id: 2
+    sys_name: danish
+    lang_code: da
+    title: Dansk
+    locale: da
+    is_rtl: false
+    has_user: true
+    has_agent: true
+    has_admin: true
+    flag_image: https://assets-eu1-cloud.deskpro.com/build-13370472689/assets/web/images/flags/locale_da.png

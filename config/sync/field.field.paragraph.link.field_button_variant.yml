@@ -1,0 +1,23 @@
+uuid: 4e7b27f3-fa02-416f-b9ab-54d1b80304eb
+langcode: da
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_button_variant
+    - paragraphs.paragraphs_type.link
+  module:
+    - options
+id: paragraph.link.field_button_variant
+field_name: field_button_variant
+entity_type: paragraph
+bundle: link
+label: 'Button variant'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: petroleum
+default_value_callback: ''
+settings: {  }
+field_type: list_string
