@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "011c619e270a8c6ec460201a588ce374",
+    "content-hash": "275064c0997a452c178c0b619e0080b4",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3536,6 +3536,30 @@
             }
         },
         {
+            "name": "drupal/hoeringsportal_audit_log",
+            "version": "1.0-dev",
+            "dist": {
+                "type": "path",
+                "url": "web/modules/custom/hoeringsportal_audit_log",
+                "reference": "53d2f6561efd629dc7d99eeb3650e2511cd94881"
+            },
+            "require": {
+                "os2web/os2web_audit": "^0.2.0"
+            },
+            "type": "drupal-custom-module",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Hoeringsportal audit log",
+            "keywords": [
+                "Drupal"
+            ],
+            "transport-options": {
+                "symlink": false,
+                "relative": true
+            }
+        },
+        {
             "name": "drupal/hoeringsportal_citizen_proposal",
             "version": "1.0-dev",
             "dist": {
@@ -5758,16 +5782,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "13.5.1",
+            "version": "13.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "16076b24532eb27aaf9e2b8bca1e05a74871c713"
+                "reference": "570a05dce7aea9770f17306808804290764127ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/16076b24532eb27aaf9e2b8bca1e05a74871c713",
-                "reference": "16076b24532eb27aaf9e2b8bca1e05a74871c713",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/570a05dce7aea9770f17306808804290764127ad",
+                "reference": "570a05dce7aea9770f17306808804290764127ad",
                 "shasum": ""
             },
             "require": {
@@ -5894,7 +5918,7 @@
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "security": "https://github.com/drush-ops/drush/security/advisories",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/13.5.1"
+                "source": "https://github.com/drush-ops/drush/tree/13.6.0"
             },
             "funding": [
                 {
@@ -5902,7 +5926,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-04T11:38:40+00:00"
+            "time": "2025-04-22T12:14:13+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -8355,6 +8379,51 @@
                 "source": "https://github.com/oomphinc/composer-installers-extender/tree/2.0.1"
             },
             "time": "2021-12-15T12:32:42+00:00"
+        },
+        {
+            "name": "os2web/os2web_audit",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OS2web/os2web_audit.git",
+                "reference": "4a7328e54dd8fbb1fc9372f65f6d1fb92c948851"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OS2web/os2web_audit/zipball/4a7328e54dd8fbb1fc9372f65f6d1fb92c948851",
+                "reference": "4a7328e54dd8fbb1fc9372f65f6d1fb92c948851",
+                "shasum": ""
+            },
+            "require": {
+                "drupal/advancedqueue": "^1.2",
+                "drush/drush": "^11|^12|^13",
+                "ext-curl": "*",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+                "drupal/coder": "^8.3",
+                "mglaman/phpstan-drupal": "^1.1",
+                "phpstan/extension-installer": "^1.3",
+                "phpstan/phpstan-deprecation-rules": "^1.1",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "patches": [],
+                "enable-patching": true,
+                "composer-exit-on-patch-failure": false
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "EUPL-1.2"
+            ],
+            "description": "Drupal OS2 module that provides audit logging for Danish Municipalities",
+            "support": {
+                "issues": "https://github.com/OS2web/os2web_audit/issues",
+                "source": "https://github.com/OS2web/os2web_audit/tree/0.2.2"
+            },
+            "time": "2025-02-28T08:03:04+00:00"
         },
         {
             "name": "pear/archive_tar",
