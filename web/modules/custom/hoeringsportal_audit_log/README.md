@@ -18,8 +18,14 @@ The config is structured in two parts.
 
 First part is `logged_route_names`. These are the routes of pages that should be audit logged.
 
-The second part is `types`, which goes through the defined types in the Drupal installation (with
-a hardcoded limitation in the [ConfigHelper](https://github.com/itk-dev/hoeringsportal/blob/f454ccf38a6e0b8e2d2eb85b0982ab0d2be43623/web/modules/custom/hoeringsportal_audit_log/src/Helpers/ConfigHelper.php#L14)). Some types have bundles, e.g. [`Node`](https://api.drupal.org/api/drupal/core%21modules%21node%21src%21Entity%21Node.php/class/Node/8.9.x), the bundles are then the sub types that can be logged. Some types does not have bundles, e.g. [`User`](https://api.drupal.org/api/drupal/core%21modules%21user%21src%21Entity%21User.php/class/User/9), these are then themselves the subtypes that can be logged.
+The second part is `types`, which goes through the defined types in the Drupal installation (with a hardcoded limitation
+in the
+[ConfigHelper](https://github.com/itk-dev/hoeringsportal/blob/f454ccf38a6e0b8e2d2eb85b0982ab0d2be43623/web/modules/custom/hoeringsportal_audit_log/src/Helpers/ConfigHelper.php#L14)).
+Some types have bundles, e.g.
+[`Node`](https://api.drupal.org/api/drupal/core%21modules%21node%21src%21Entity%21Node.php/class/Node/8.9.x), the
+bundles are then the sub types that can be logged. Some types does not have bundles, e.g.
+[`User`](https://api.drupal.org/api/drupal/core%21modules%21user%21src%21Entity%21User.php/class/User/9), these are then
+themselves the subtypes that can be logged.
 
 ```yml
 logged_route_names:

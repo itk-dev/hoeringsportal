@@ -94,8 +94,14 @@ class ConfigHelper {
 
   /**
    * Get active (not 0) config for entity.
+   *
+   * @param string $currentRouteName
+   * @param string $entityTypeId
+   * @param string $bundleType|null
+   *
+   * @return bool
    */
-  public function getEntityConfiguration(string $key, string $routeName, ?string $type): bool {
+  public function isConfigActive(string $currentRouteName, string $entityTypeId, ?string $bundleType): bool {
     // Retrieve the available types configuration.
     $types = $this->getConfiguration('types');
 
@@ -104,10 +110,14 @@ class ConfigHelper {
       return FALSE;
     }
 
-    $typeId = $type ?: $key;
+    // Only some entity types has a bundletype, if they do, we need that to find it in config
+    // if we dont, the configuration just has the entity type twice. (e.g. user -> user)
+    $typeId = $bundleType ?: $entityTypeId;
 
-    $escapedRouteName = $this->escapeProviderId($routeName);
-    return reset($types[$key][$typeId])[$escapedRouteName] == $escapedRouteName;
+    $escapedRouteName = $this->escapeProviderId($currentRouteName);
+
+    // See if, in the config, the route name has the route name as value, instead of 0.
+    return reset($types[$entityTypeId][$typeId])[$escapedRouteName] === $escapedRouteName;
   }
 
 }
