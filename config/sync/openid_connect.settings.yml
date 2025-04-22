@@ -11,5 +11,13 @@ redirect_logout: ''
 userinfo_mappings:
   timezone: zoneinfo
 role_mappings:
-  editor: {  }
-  administrator: {  }
+  citizen_proposal_editor:
+    - citizen_proposal_editor
+  administrator:
+    - administrator
+  hearing_editor:
+    - hearing_editor
+  project_editor:
+    - project_editor
+  public_meeting_editor:
+    - public_meeting_editor
