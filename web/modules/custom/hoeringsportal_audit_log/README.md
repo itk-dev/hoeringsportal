@@ -118,4 +118,4 @@ types:
         entity__dot__user__dot__display: 0
 ```
 
-The weird `__dot__` are because [Drupal will not accept a real dots in configuration keys](https://www.drupal.org/node/2297311).
+The weird `__dot__` are because [Drupal will not accept dots in configuration keys](https://www.drupal.org/node/2297311).
