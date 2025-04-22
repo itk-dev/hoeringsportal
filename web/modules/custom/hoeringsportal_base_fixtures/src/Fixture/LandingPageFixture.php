@@ -188,7 +188,8 @@ final class LandingPageFixture extends AbstractFixture implements DependentFixtu
     $this->baseConfig->set('frontpage_id', $page->id());
 
     // Set default image for citizen proposal teaser
-    // (cf. /admin/site-setup/general > “Default images” > “Citizen proposal default teaser image”)
+    // (cf. /admin/site-setup/general
+    // > “Default images” > “Citizen proposal default teaser image”)
     // See \Drupal\hoeringsportal_config_settings\Form\ItkGeneralSettingsForm.
     $this->baseConfig->set(
       'citizen_proposal_teaser_default_image',
