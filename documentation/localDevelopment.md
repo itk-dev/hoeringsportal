@@ -1,6 +1,46 @@
 # Hoeringsportal local development
 
+We use [Task](https://taskfile.dev/) in this project. Run
+
+``` shell
+task site-update
+```
+
+to update the site (previously installed by running `task site-install`).
+
+For performance reasons, we start only the basic docker services by default, but you can set
+`TASK_DOCKER_COMPOSE_PROFILES` in `.env.local` to start more docker services based on
+[profiles](https://docs.docker.com/compose/how-tos/profiles/), e.g.
+
+``` shell
+# .env.local
+
+# Always start pretix and friends.
+TASK_DOCKER_COMPOSE_PROFILES=pretix
+```
+
+You can also set 'PROFILES` when running the `compose` task, e.g.
+
+``` shell
+PROFILES=pretix task compose -- up --detach
+```
+
+> [!TIP]
+> Run `git grep -A2 'profiles:' '*.y*ml'` to get a crude list of all profiles in the project.
+
+When running `task site-update`, theme assets are built and this may take quite some time. To skip building assets, you
+can run `ASSETS_SKIP_BUILD=1 task site-update` or set `TASK_ASSETS_SKIP_BUILD` in `.env.local`, e.g.
+
+``` shell
+# .env.local
+
+TASK_ASSETS_SKIP_BUILD=1
+```
+
 ## Local setup
+
+> [!CAUTION]
+> The following should be updated and rewritten to reflect the actual development workflow.
 
 Create the file `web/sites/default/settings.local.php` and add:
 

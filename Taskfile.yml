@@ -7,6 +7,7 @@ vars:
   # https://taskfile.dev/reference/templating/
   BASE_URL: '{{.TASK_BASE_URL | default .COMPOSE_SERVER_DOMAIN | default .COMPOSE_DOMAIN | default "https://hoeringsportal.local.itkdev.dk"}}'
   DOCKER_COMPOSE: '{{.TASK_DOCKER_COMPOSE | default "docker compose"}}'
+  DOCKER_COMPOSE_PROFILES: '{{.TASK_DOCKER_COMPOSE_PROFILES | default ""}}'
   COMPOSER_INSTALL_ARGUMENTS: '{{.TASK_COMPOSER_INSTALL_ARGUMENTS | default ""}}'
 
   PRETIX_URL: '{{.TASK_PRETIX_URL | default "http://pretix.hoeringsportal.local.itkdev.dk"}}'
@@ -64,15 +65,23 @@ tasks:
 
   assets-build:
     cmds:
-      - '{{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal'
-      - '{{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal'
+      - |
+        if [[ -z "{{.SKIP_BUILD}}" ]]; then
+          echo {{.DOCKER_COMPOSE}} run --rm node npm install --prefix web/themes/custom/hoeringsportal
+          echo {{.DOCKER_COMPOSE}} run --rm node npm run build --prefix web/themes/custom/hoeringsportal
+        fi
+    vars:
+      SKIP_BUILD: '{{.ASSETS_SKIP_BUILD | default .TASK_ASSETS_SKIP_BUILD}}'
+
   compose:
     cmds:
-      - '{{.DOCKER_COMPOSE}} --profile pretix {{.CLI_ARGS}}'
+      - '{{.DOCKER_COMPOSE}} {{if .DOCKER_COMPOSE_PROFILES}}--profile {{.DOCKER_COMPOSE_PROFILES | splitList "," |join " --profile " }}{{end}} {{.CLI_ARGS}}'
+    vars:
+      DOCKER_COMPOSE_PROFILES: '{{.PROFILES | default .DOCKER_COMPOSE_PROFILES}}'
 
   compose-up:
     cmds:
-      - task compose -- up --detach --remove-orphans --wait
+      - task compose -- up --detach --remove-orphans {{if .COMPOSE_UP_WAIT}}--wait{{end}}
     silent: true
 
   composer:
@@ -225,9 +234,12 @@ tasks:
   fixtures:load:
     prompt: "This will reset your content. Continue?"
     cmds:
-     - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
-     - task drush -- --yes content-fixtures:load
-     - task drush -- --yes pm:uninstall content_fixtures
+      # We need the pretix service to load public meeting fixtures.
+      - PROFILES=pretix COMPOSE_UP_WAIT=true task compose-up
+      - task drush -- --yes pm:enable hoeringsportal_base_fixtures $(find web/modules/custom -type f -name 'hoeringsportal_*_fixtures.info.yml' -exec basename -s .info.yml {} \;)
+      - task drush -- --yes content-fixtures:load
+      - task drush -- --yes pm:uninstall content_fixtures
+      - task compose-up
     silent: true
 
   translations:import:
