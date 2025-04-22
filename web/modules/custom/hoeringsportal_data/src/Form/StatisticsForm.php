@@ -24,7 +24,7 @@ class StatisticsForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $values = $this->getRequest()->query->all();
-    $startDate = new \DateTimeImmutable('first day of january');
+    $startDate = new \DateTimeImmutable('first day of January');
     if (isset($values['start_date'])) {
       try {
         $startDate = new \DateTimeImmutable($values['start_date']);
@@ -32,7 +32,7 @@ class StatisticsForm extends FormBase {
       catch (\Exception $exception) {
       }
     }
-    $endDate = $startDate->modify('last day of december');
+    $endDate = $startDate->modify('last day of December');
     if (isset($values['end_date'])) {
       try {
         $endDate = new \DateTimeImmutable($values['end_date']);
