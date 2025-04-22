@@ -124,13 +124,13 @@ final class StatisticsController extends ControllerBase {
     }
     $run = isset($values['show']) || isset($values['export']);
     if ($run) {
-      $startDate = new \DateTimeImmutable('first day of january');
+      $startDate = new \DateTimeImmutable('first day of January');
       try {
         $startDate = new \DateTimeImmutable($values['start_date']);
       }
       catch (\Exception $exception) {
       }
-      $endDate = $startDate->modify('midnight last day of december');
+      $endDate = $startDate->modify('midnight last day of December');
       try {
         $endDate = new \DateTimeImmutable($values['end_date']);
       }
