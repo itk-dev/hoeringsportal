@@ -39,23 +39,26 @@ final class ControllerListener implements EventSubscriberInterface {
    */
   public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
-    $routeName = $event->getRequest()->attributes->get('_route');
-    $loggedRouteNames = $this->configHelper->getRouteNames();
-    if (in_array($routeName, $loggedRouteNames)) {
+    $currentRouteName = $event->getRequest()->attributes->get('_route');
+    $routesThatShouldBeLogged = $this->configHelper->getRouteNames();
+
+    if (in_array($currentRouteName, $routesThatShouldBeLogged)) {
+      // Early return, if the route is in config no need to do anything besides auditlog.
       $this->logAuditMessage($pathInfo);
       return;
     }
 
-    $routeParameters = $this->routeMatch->getParameters();
-
-    foreach ($routeParameters as $routeParameter) {
+    $parameterBag = $this->routeMatch->getParameters();
+    foreach ($parameterBag as $routeParameter) {
       if ($routeParameter instanceof EntityInterface) {
         $entityTypeId = $routeParameter->getEntityTypeId();
-        $type = NULL;
-        if (method_exists($routeParameter, 'getType')) {
-          $type = $routeParameter->getType();
+        $nodeType = NULL;
+        // If it is a node, it has the getType, and we need the nodetype for the config.
+        if ($entityTypeId === 'node') {
+          /** @var \Drupal\Core\Entity\Node $routeParameter */
+          $nodeType = $routeParameter->getType();
         }
-        if ($this->configHelper->getEntityConfiguration($entityTypeId, $routeName, $type)) {
+        if ($this->configHelper->isConfigActive($currentRouteName, $entityTypeId, $nodeType)) {
           $this->logAuditMessage($pathInfo);
           return;
         }
