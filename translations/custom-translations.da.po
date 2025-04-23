@@ -1790,7 +1790,7 @@ msgid "l, F j, Y - H:i"
 msgstr "\\d. j. F Y"
 
 msgid "Default medium date"
-msgstr "Standard mellem dato"
+msgstr "Standard mellemlængde dato"
 
 msgid "D, m/d/Y - H:i"
 msgstr "D, d/m/Y - H:i"
