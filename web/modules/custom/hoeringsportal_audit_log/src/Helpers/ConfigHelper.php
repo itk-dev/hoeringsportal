@@ -9,8 +9,8 @@ use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
  * Config helper.
  */
 class ConfigHelper {
-  // Limit where audits can be made. If this is expanded, you probably
-  // need to write some code in both SettingsForm and ControllerListener.
+  // Limit where audits can be made. If this is expanded, you probably need to write some code in both SettingsForm and
+  // ControllerListener.
   private const ENABLED_AUDIT_IDS = ['node', 'user'];
 
   /**
@@ -23,8 +23,7 @@ class ConfigHelper {
   /**
    * Confighelper constructor.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
-   *   The config factory.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory The config factory.
    */
   public function __construct(ConfigFactoryInterface $configFactory) {
     $this->moduleConfig = $configFactory->getEditable(SettingsForm::SETTINGS);
@@ -33,8 +32,7 @@ class ConfigHelper {
   /**
    * Returns enabled audits.
    *
-   * @return array<int, string>
-   *   Array of enabled audits, defined above.
+   * @return array<int, string> Array of enabled audits, defined above.
    */
   public static function getEnabledAuditIds(): array {
     return self::ENABLED_AUDIT_IDS;
@@ -51,10 +49,8 @@ class ConfigHelper {
   /**
    * Set configuration.
    *
-   * @param string $configName
-   *   Config name.
-   * @param array<int, string> $config
-   *   Config to set.
+   * @param string $configName Config name.
+   * @param array<int, string> $config Config to set.
    */
   public function setConfiguration(string $configName, array $config): void {
     $this->moduleConfig->set($configName, $config);
@@ -63,8 +59,7 @@ class ConfigHelper {
   /**
    * Get configuration.
    *
-   * @return array<string, array<string, array<int, array<string, string>>>>
-   *   Configuration or null.
+   * @return array<string, array<string, array<int, array<string, string>>>> Configuration or null.
    */
   public function getConfiguration(string $configName): array|string|null {
     return $this->moduleConfig->get($configName) ?? NULL;
@@ -73,20 +68,17 @@ class ConfigHelper {
   /**
    * Escape provider id.
    *
-   * @return string
-   *   String with __dot__ instead of .
+   * @return string String with __dot__ instead of .
    */
   public function escapeProviderId(string $input) {
-    // Drupal will not accept a . in configuration keys.
-    // https://www.drupal.org/node/2297311
+    // Drupal will not accept a . in configuration keys. https://www.drupal.org/node/2297311
     return str_replace('.', '__dot__', $input);
   }
 
   /**
    * Get route names.
    *
-   * @return array<string, string>
-   *   Array of route names.
+   * @return array<string, string> Array of route names.
    */
   public function getRouteNames() {
     return $this->moduleConfig->get('logged_route_names');
@@ -97,7 +89,7 @@ class ConfigHelper {
    *
    * @param string $currentRouteName
    * @param string $entityTypeId
-   * @param string $bundleType|null
+   * @param string $bundleType|mixed|null
    *
    * @return bool
    */
@@ -110,8 +102,8 @@ class ConfigHelper {
       return FALSE;
     }
 
-    // Only some entity types has a bundletype, if they do, we need that to find it in config
-    // if we dont, the configuration just has the entity type twice. (e.g. user -> user)
+    // Only some entity types has a bundletype, if they do, we need that to find it in config if we dont, the
+    // configuration just has the entity type twice. (e.g. user -> user)
     $typeId = $bundleType ?: $entityTypeId;
 
     $escapedRouteName = $this->escapeProviderId($currentRouteName);

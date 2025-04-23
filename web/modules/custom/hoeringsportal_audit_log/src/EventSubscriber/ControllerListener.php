@@ -34,8 +34,7 @@ final class ControllerListener implements EventSubscriberInterface {
   /**
    * Audit on route change, by configured routes.
    *
-   * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
-   *   The event to process.
+   * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event The event to process.
    */
   public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
@@ -69,8 +68,7 @@ final class ControllerListener implements EventSubscriberInterface {
   /**
    * Log the path and user email.
    *
-   * @param string $info
-   *   The path info to include in the message.
+   * @param string $info The path info to include in the message.
    */
   private function logAuditMessage($info): void {
     $request = $this->requestStack->getCurrentRequest();
