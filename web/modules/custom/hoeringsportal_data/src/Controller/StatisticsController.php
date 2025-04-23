@@ -154,7 +154,7 @@ final class StatisticsController extends ControllerBase {
   private function getHearings(array $parameters) {
     $startDate = $parameters['start_date'];
     $endDate = $parameters['end_date'];
-    // Make end date inclusive, i.e. when the user specifies 23/05/1975, say,
+    // Make end day inclusive, i.e. when the user specifies 23/05/1975, say,
     // which means "midnight on 23/05/1975" (for programmers) we use "midnight
     // on 24/05/1975" because users expect all data from 23/05/1975 to be
     // included.
@@ -171,10 +171,9 @@ final class StatisticsController extends ControllerBase {
       ->accessCheck(FALSE)
       ->condition('type', 'hearing')
       ->condition('status', NodeInterface::PUBLISHED)
-      ->condition('field_start_date', [
-        $startDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
-        $endDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
-      ], 'BETWEEN')
+      ->condition('field_start_date', $startDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '>=')
+      // Use strict less than for end date (cf. comment on and data above).
+      ->condition('field_start_date', $endDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
       ->sort('field_start_date', 'ASC')
       ->sort('nid', 'ASC')
       ->execute();
@@ -220,10 +219,8 @@ final class StatisticsController extends ControllerBase {
       ->accessCheck(FALSE)
       ->condition('type', 'public_meeting')
       ->condition('status', NodeInterface::PUBLISHED)
-      ->condition('field_first_meeting_time', [
-        $startDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
-        $endDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
-      ], 'BETWEEN')
+      ->condition('field_first_meeting_time', $startDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '>=')
+      ->condition('field_first_meeting_time', $endDate->format(DateTimeItemInterface::DATE_STORAGE_FORMAT), '<')
       ->sort('field_first_meeting_time', 'ASC')
       ->sort('nid', 'ASC')
       ->execute();
