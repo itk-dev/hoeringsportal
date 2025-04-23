@@ -12,6 +12,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\Entity\Node;
 
 /**
  * Controller listener.
@@ -55,7 +56,7 @@ final class ControllerListener implements EventSubscriberInterface {
         $nodeType = NULL;
         // If it is a node, it has the getType, and we need the nodetype for the config.
         if ($entityTypeId === 'node') {
-          /** @var \Drupal\Core\Entity\Node $routeParameter */
+          /** @var Node $routeParameter */
           $nodeType = $routeParameter->getType();
         }
         if ($this->configHelper->isConfigActive($currentRouteName, $entityTypeId, $nodeType)) {
