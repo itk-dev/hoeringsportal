@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-23 14:48+0200\n"
-"PO-Revision-Date: 2025-04-23 14:48+0200\n"
+"POT-Creation-Date: 2025-04-23 15:09+0200\n"
+"PO-Revision-Date: 2025-04-23 15:09+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -12,430 +12,29 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Block type"
-msgstr "Block type"
-
-msgid "Content type"
-msgstr "Content type"
-
-msgid "Description"
-msgstr "Beskrivelse"
-
-msgid "Content"
-msgstr "Content"
-
-msgid "Footer"
-msgstr "Footer"
-
-msgid "Share the proposal"
-msgstr "Del forslaget"
-
-msgid "Would you like a direct message when deltag.aarhus.dk has new content?"
-msgstr "Vil du modtage en mail når der er nyt fra deltag.aarhus.dk?"
-
-msgid ""
-"<a href=\"@sign_up_url\">Sign up to our message service</a> and be "
-"informed about your interests"
-msgstr ""
-"<a href=\"@sign_up_url\">Tilmeld dig vores nye service</a> og bliv "
-"informeret når der er nyt der interesserer dig"
-
-msgid "Phone"
-msgstr "Telefonnummer"
-
-msgid "Initiative"
-msgstr "Initiativ"
-
-msgid "Information page"
-msgstr "Information"
-
-msgid "Public meeting"
-msgstr "Begivenhed"
-
-msgid "Finished"
-msgstr "Afsluttet"
-
-msgid "Cancelled"
-msgstr "Aflyst"
-
-msgid "Start date"
-msgstr "Start dato"
-
-msgid "Upcoming"
-msgstr "På vej"
-
-msgid "Reply date"
-msgstr "Svarfrist"
-
-msgid "Your search yielded no result"
-msgstr "Din søgning gav ingen resultater."
-
-msgid "Support the proposal"
-msgstr "Støt borgerforslaget"
-
-msgid "Project info"
-msgstr "Initiativ info"
-
-msgid "Hearing reply for"
-msgstr "Høringssvar for"
-
-msgid "Show more hearings"
-msgstr "Vis flere høringer"
-
-msgid "Expected finish"
-msgstr "Forventet afsluttet"
-
-msgid "Meeting has already been held"
-msgstr "<strong>Mødet er afholdt</strong>"
-
-msgid "Registration deadline passed"
-msgstr "Deadline for tilmelding er overskredet"
-
-msgid "Sign up for public meeting"
-msgstr "Tilmeld dig her"
-
-msgid "Content on this page"
-msgstr "Indhold på denne side"
-
-msgid "Add hearing ticket"
-msgstr "Tilføj høringssvar"
-
-msgid "Materials"
-msgstr "Materialer"
-
-msgid "Date"
-msgstr "Dato"
-
-msgid "Spots"
-msgstr "Pladser"
-
-msgid "Sign up"
-msgstr "Tilmeld dig her"
-
-msgid "Opens in a new tab"
-msgstr "Åbner i en ny fane"
-
-msgid "Last date for signup"
-msgstr "Tilmeldingsfrist"
-
-msgid "Open project gallery"
-msgstr "Åbn projektgalleri"
-
-msgid "Page"
-msgstr "Side"
-
-msgid "Create your proposal"
-msgstr "Opret borgerforslag"
-
-msgid "Show on map"
-msgstr "Vis på kort"
-
-msgid "The proposal list is empty"
-msgstr "Der er i øjeblikket ingen borgerforslag i denne kategori"
-
-msgid "The hearing list is empty"
-msgstr "Ingen høringer fundet"
-
-msgid "Show all hearings"
-msgstr "Vis alle høringer"
-
-msgid "The meeting list is empty"
-msgstr "Ingen begivenheder fundet"
-
-msgid "Show all meetings"
-msgstr "Vis alle begivenheder"
-
-msgid "Search and results will show up here"
-msgstr "Søg og resultaterne vil blive vist her"
-
-msgid "Search for %search_terms returned no results"
-msgstr "Søgning på %search_terms gav ingen resultater"
-
-msgid "Try with less words or to phrase it differently"
-msgstr "Prøv med færre eller andre søgeord "
-
-msgid "Create new proposal"
-msgstr "Opret borgerforslag"
-
-msgid "Name"
-msgstr "Navn"
-
-msgid "Display email"
-msgstr "Ja, vis min e-mail på mit borgerforslag"
-
-msgid "Allow email"
-msgstr " Ja, I må gerne kontakte mig."
-
-msgid "Title"
-msgstr "Titel"
-
-msgid "@remaining characters left."
-msgstr "@remaining tegn tilbage"
-
-msgid "Proposal"
-msgstr "Forslag"
-
-msgid "Remarks"
-msgstr "Begrundelse"
-
-msgid "Personal data storage consent"
-msgstr ""
-"Jeg har læst betingelserne og giver mit samtykke <a "
-"href=\"/hvorfor-og-hvordan-behandler-vi-dine-persondata-0\">Læs mere "
-"her</a>"
-
-msgid "Update proposal"
-msgstr "Opdater borgerforslag"
-
-msgid "Create proposal"
-msgstr "Opret borgerforslag"
-
-msgid "(Not shown on proposal)"
-msgstr "Ikke synligt for andre"
-
-msgid "Phone number"
-msgstr "Telefonnummer"
-
-msgid "Approve proposal"
-msgstr "Godkend borgerforslag"
-
-msgid "Edit proposal"
-msgstr "Ret borgerforslag"
-
-msgid "Cancel proposal"
-msgstr "Fortryd borgerforslag"
-
-msgid "Your submission has been cancelled."
-msgstr "Dit borgerforslag er blevet slettet"
-
-msgid "Could not find a proposal to approve."
-msgstr "Ikke muligt at finde et forslag at godkende"
-
-msgid "You're currently authenticated as @name"
-msgstr "Du er logget ind som @name"
-
-msgid "Sign out"
-msgstr "Log ud"
-
-msgid ""
-"You already supported this proposal on @support_date. You can only "
-"support a proposal once."
-msgstr ""
-"Du har allerede støttet dette borgerforslag d. @support_date. Du kan "
-"kun støtte et forslag en gang. "
-
-msgid "You're supporting @label on behalf of a citizen"
-msgstr "Du støtter nu <strong>@label</strong> på vegne af en borger "
-
-msgid "Support proposal"
-msgstr "Støt forslaget"
-
-msgid "Thank you for your support."
-msgstr "Tak for din støtte"
-
-msgid "Something went wrong. Your support was not registered."
-msgstr "Noget gik galt, din støtte er ikke gået igennem. Prøv igen senere"
-
-msgid "Number of supporters"
-msgstr "Antal støtter"
-
-msgid "Author"
-msgstr "Author"
-
-msgid "Hearing"
-msgstr "Høring"
-
-msgid "Frontpage"
-msgstr "Frontpage"
-
-msgid "Node address"
-msgstr "Adresse"
-
-msgid "Node more info"
-msgstr "Mere information"
-
-msgid "<strong>Note!</strong> Hearing deadline has passed."
-msgstr "<strong>Note!</strong> Hørings tidsfristen er forbi."
-
-msgid "<strong>Note!</strong> This hearing has not started yet"
-msgstr "<strong>Note!</strong> Denne høring er ikke startet endnu."
-
-msgid "<strong>Note!</strong> Hearing deadline approaching."
-msgstr "<strong>Note!</strong> Hørings tidsfristen nærmer sig."
-
-msgid "<strong>Note!</strong> This public meeting has been held."
-msgstr "Denne begivenhed er afholdt"
-
-msgid "<strong>Note!</strong> This public meeting has been cancelled."
-msgstr "<strong>Note!</strong> Denne begivenhed er aflyst"
-
-msgid "Hearing tickets"
-msgstr "Høringssvar"
-
-msgid "Point"
-msgstr "Vælg punkt på kort"
-
-msgid "Deskpro"
-msgstr "Sagsbehandlersystem"
-
-msgid "Email address"
-msgstr "E-mailadresse"
-
-msgid "Your address will not be shown on the website."
-msgstr ""
-"Din adresse vil ikke blive vist på hjemmesiden - se evt. betingelser "
-"nederst på siden"
-
-msgid "Postal code and city"
-msgstr "Postnummer og by"
-
-msgid "Street and number"
-msgstr "Vejnavn og nummer"
-
-msgid "My address is secret"
-msgstr "Jeg har adressebeskyttelse"
-
-msgid "Message"
-msgstr "Høringssvar"
-
-msgid "Your name cannot contain numbers."
-msgstr "Dit navn må ikke indeholde tal."
-
-msgid ""
-"Your hearing ticket has being submitted and will appear here in a few "
-"minutes."
-msgstr ""
-"Dit høringssvar er indsendt og bliver vist her på siden inden for "
-"kort tid."
-
-msgid "Sent d."
-msgstr "Indsendt"
-
-msgid "Represents"
-msgstr "Udtaler sig som"
-
-msgid "Ticket reference"
-msgstr "Sagsnummer"
-
-msgid "Hearing reply"
-msgstr "Høringssvar"
-
-msgid "Create hearing reply"
-msgstr "Skriv høringssvar"
-
-msgid "Download ticket as pdf"
-msgstr "Download høringssvar som pdf"
-
-msgid "Show hearing tickets"
-msgstr "Vis indkomne svar"
-
-msgid "The hearing replies were deleted on @date"
-msgstr "Høringssvarene er blevet fjernet d. @date"
-
-msgid ""
-"The time limit for how long we are allowed to keep the replies has "
-"been reached so we where obligated to delete them."
-msgstr ""
-"<b>Høringssvarene er ikke længere synlige på "
-"høringsportalen</b>\r\n"
-"<p>Høringssvar bliver løbende slettet på "
-"deltag.aarhus.dk i takt med at høringer afsluttes. Det gør vi for at "
-"leve op til reglerne for GDPR og for at sikre persondata ikke ligger "
-"tilgængelig på høringsportalen i længere tid end, hvad der er "
-"nødvendigt.</p>\r\n"
-"<b>Du kan stadig få adgang til høringssvar, der "
-"ikke længere er synlige på høringsportalen.</b>\r\n"
-"<p>Hvis "
-"høringen handler om en sag, der er behandlet af Aarhus Byråd, kan du "
-"finde alle høringssvar, som bilag til den konkrete byrådssag. Du kan "
-"finde alle sager i byrådet med tilhørende bilag på Aarhus Kommunes "
-"hjemmeside – klik her:  <a "
-"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
-"- dagsordener og referater</a></p>\r\n"
-"<p>Hvis sagen ikke ligger som "
-"en byrådssag og du har behov for at få indblik i gamle høringssvar, "
-"kan det ske gennem en aktindsigtsanmodning. Læs om dine muligheder "
-"for at søge aktindsigt: <a "
-"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
-
-msgid ""
-"@ticket_ref by @person_name on behalf of @organization "
-"(@organization_type)"
-msgstr ""
-"@ticket_ref af @person_name på vegne af @organization "
-"(@organization_type)"
-
-msgid "@ticket_ref by @person_name"
-msgstr "@ticket_ref af @person_name"
-
-msgid "Add hearing reply"
-msgstr "Tilføj høringssvar"
-
-msgid "Project start"
-msgstr "Initiativ start"
-
-msgid "Expected end date"
-msgstr "Forventet slutdato"
-
-msgid "Place"
-msgstr "Lokation"
-
-msgid "Last signup date"
-msgstr "Tilmeldingsfrist"
-
 msgid "Primary admin actions"
-msgstr "Primary admin actions"
+msgstr "Primære adminsitratorhandlinger"
 
 msgid "Tabs"
-msgstr "Tabs"
+msgstr "Faner"
 
 msgid "Status messages"
-msgstr "Status messages"
+msgstr "Statusmeddelelser"
 
 msgid "Page title"
-msgstr "Page title"
+msgstr "Sidetitel"
 
 msgid "Tools"
-msgstr "Tools"
+msgstr "Værktøjer"
 
 msgid "Anonymous"
-msgstr "Anonymous"
+msgstr "Anonym"
 
 msgid "Hero (1440×360)"
 msgstr "Hero (1440w) - Crop"
 
-msgid "Default"
-msgstr "Default"
-
 msgid "Advanced Queue jobs"
 msgstr "Advanced queue jobs"
-
-msgid "Apply"
-msgstr "Apply"
-
-msgid "Reset"
-msgstr "Nulstil"
-
-msgid "Sort by"
-msgstr "Sort by"
-
-msgid "Asc"
-msgstr "Asc"
-
-msgid "Desc"
-msgstr "Desc"
-
-msgid "Items per page"
-msgstr "Items per page"
-
-msgid "- All -"
-msgstr "- All -"
-
-msgid "Offset"
-msgstr "Offset"
-
-msgid "State"
-msgstr "State"
 
 msgid "<pre>{{ payload }}</pre>"
 msgstr ""
@@ -446,20 +45,14 @@ msgstr ""
 msgid "Message"
 msgstr "Høringssvar"
 
-msgid "Operations"
-msgstr "Operations"
-
 msgid "Available from"
 msgstr "Available date"
-
-msgid "All"
-msgstr "All"
 
 msgid "Page"
 msgstr "Side"
 
 msgid "Full"
-msgstr "Full"
+msgstr "Fuld"
 
 msgid ""
 "This question is for testing whether or not you are a human visitor "
@@ -469,46 +62,43 @@ msgstr ""
 "human"
 
 msgid "Plain text"
-msgstr "Plain text"
+msgstr "Ren tekst"
 
 msgid "Medium (220×220)"
-msgstr "Medium (330×330)"
+msgstr "Mellem (220×220)"
 
 msgid "Not specified"
-msgstr "Not specified"
+msgstr "Ikke angivet"
 
 msgid "Not applicable"
-msgstr "Not applicable"
-
-msgid "Full content"
-msgstr "Full content"
+msgstr "ikke relevant"
 
 msgid "Full content"
 msgstr "Fuldt indhold"
 
 msgid "Teaser"
-msgstr "Teaser"
+msgstr "Smagsprøve"
 
 msgid "Make content sticky"
-msgstr "Make content sticky"
+msgstr "Gør indhold klæbrigt"
 
 msgid "Make content unsticky"
-msgstr "Make content unsticky"
+msgstr "Fjern klæbrighed"
 
 msgid "Promote content to front page"
-msgstr "Promote content to front page"
+msgstr "Vis indhold på forsiden"
 
 msgid "Publish content"
-msgstr "Publish content"
+msgstr "Udgiv indhold"
 
 msgid "Save content"
-msgstr "Save content"
+msgstr "Gem indhold"
 
 msgid "Remove content from front page"
-msgstr "Remove content from front page"
+msgstr "Fjern indhold fra forsiden"
 
 msgid "Unpublish content"
-msgstr "Unpublish content"
+msgstr "Afpubliceer indhold"
 
 msgid "‹ previous"
 msgstr "‹ forrige"
@@ -538,22 +128,22 @@ msgid "Page"
 msgstr "Side"
 
 msgid "Fallback date format"
-msgstr "Fallback date format"
+msgstr "Reservedatoformat"
 
 msgid "Default long date"
-msgstr "Default long date"
+msgstr "Standard lang dato"
 
 msgid "l, F j, Y - H:i"
-msgstr "l, j. F Y - H:i"
+msgstr "\\d. j. F Y"
 
 msgid "Default medium date"
-msgstr "Default medium date"
+msgstr "Standard mellem dato"
 
 msgid "D, m/d/Y - H:i"
 msgstr "D, d/m/Y - H:i"
 
 msgid "Default short date"
-msgstr "Default short date"
+msgstr "Standard kort dato"
 
 msgid "m/d/Y - H:i"
 msgstr "d/m/Y - H:i"
@@ -562,59 +152,61 @@ msgid ""
 "@site is currently under maintenance. We should be back shortly. Thank "
 "you for your patience."
 msgstr ""
-"@site is currently under maintenance. We should be back shortly. Thank "
-"you for your patience."
+"Vi er ved at opdatere @site. Vi er snart tilbage. Tak for din "
+"tålmodighed."
 
 msgid "User account menu"
-msgstr "User account menu"
+msgstr "Brugerkontomenu"
 
 msgid "Links related to the active user account"
-msgstr "Links related to the active user account"
+msgstr "Links relateret til den aktive brugerkonto"
 
 msgid "Administrative task links"
-msgstr "Administrative task links"
+msgstr "Links til administrative opgaver"
 
 msgid "Footer"
 msgstr "Sidefod"
 
 msgid "Site information links"
-msgstr "Site information links"
+msgstr "Links til informationen om sitet"
 
 msgid "Main navigation"
-msgstr "Main navigation"
+msgstr "Primær navigation"
 
 msgid "Site section links"
-msgstr "Site section links"
+msgstr "Links til sitets sektioner"
 
 msgid "Tools"
 msgstr "Værktøjer"
 
 msgid "User tool links, often added by modules"
-msgstr "User tool links, often added by modules"
+msgstr "Bruger værktøjslinks, som typisk tilføjes af moduler"
 
 msgid "Taxonomy term page"
-msgstr "Taxonomy term page"
+msgstr "Termside"
 
 msgid "Register"
-msgstr "Register"
+msgstr "Opret konto"
 
 msgid "Compact"
-msgstr "Compact"
+msgstr "Kompakt"
 
 msgid "User account"
-msgstr "User account"
+msgstr "Brugerkonto"
 
 msgid "Block the selected user(s)"
-msgstr "Block the selected user(s)"
+msgstr "Blokér de(n) valgte bruger(e)"
 
 msgid "Cancel the selected user account(s)"
-msgstr "Cancel the selected user account(s)"
+msgstr "Opsig de valgte brugerkonti"
 
 msgid "Unblock the selected user(s)"
-msgstr "Unblock the selected user(s)"
+msgstr "Fjern blokering af de(n) valgte bruger(e)"
 
 msgid "Account cancellation request for [user:display-name] at [site:name]"
-msgstr "Account cancellation request for [user:display-name] at [site:name]"
+msgstr ""
+"Anmodning om opsigelse af konto for [user:display-name] på "
+"[site:name]"
 
 msgid ""
 "[user:display-name]\n"
@@ -657,7 +249,7 @@ msgstr ""
 "--  [site:name] team"
 
 msgid "Replacement login information for [user:display-name] at [site:name]"
-msgstr "Replacement login information for [user:display-name] at [site:name]"
+msgstr "Ny login-information for [user:display-name] på [site:name]"
 
 msgid ""
 "[user:display-name],\n"
@@ -697,7 +289,7 @@ msgstr ""
 "--  [site:name] team"
 
 msgid "An administrator created an account for you at [site:name]"
-msgstr "An administrator created an account for you at [site:name]"
+msgstr "En administrator har oprettet en konto til dig på [site:name]"
 
 msgid ""
 "[user:display-name],\n"
@@ -746,7 +338,7 @@ msgstr ""
 "--  [site:name] team"
 
 msgid "Account details for [user:display-name] at [site:name]"
-msgstr "Account details for [user:display-name] at [site:name]"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
 
 msgid ""
 "[user:display-name],\n"
@@ -797,8 +389,8 @@ msgid ""
 "Account details for [user:display-name] at [site:name] (pending admin "
 "approval)"
 msgstr ""
-"Account details for [user:display-name] at [site:name] (pending admin "
-"approval)"
+"Kontoinformation for [user:display-name] på [site:name] (afventer "
+"godkendelse af administrator)"
 
 msgid ""
 "[user:display-name],\n"
@@ -833,7 +425,7 @@ msgstr ""
 "[user:edit-url]"
 
 msgid "Account details for [user:display-name] at [site:name] (approved)"
-msgstr "Account details for [user:display-name] at [site:name] (approved)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (godkendt)"
 
 msgid ""
 "[user:display-name],\n"
@@ -887,7 +479,7 @@ msgstr ""
 "--  [site:name] team"
 
 msgid "Account details for [user:display-name] at [site:name] (blocked)"
-msgstr "Account details for [user:display-name] at [site:name] (blocked)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
 
 msgid ""
 "[user:display-name],\n"
@@ -905,7 +497,7 @@ msgstr ""
 "--  [site:name] team"
 
 msgid "Account details for [user:display-name] at [site:name] (canceled)"
-msgstr "Account details for [user:display-name] at [site:name] (canceled)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (opsagt)"
 
 msgid ""
 "[user:display-name],\n"
@@ -937,47 +529,38 @@ msgstr "Gennemse"
 msgid "Please log in to access this submission."
 msgstr "Please login to access this submission."
 
-msgid "More"
-msgstr "More"
-
 msgid "Please log in to access the uploaded file."
 msgstr "Please login to access the uploaded file."
-
-msgid "Language"
-msgstr "Language"
-
-msgid "Size"
-msgstr "Size"
 
 msgid "Preview"
 msgstr "Gennemse"
 
 msgid "Content blocks"
-msgstr "Custom block library"
+msgstr "Brugerdefineret blokbibliotek"
 
 msgid "Find and manage content blocks."
-msgstr "Find and manage custom blocks."
+msgstr "Find og håndtér brugerdefinerede blokke."
 
 msgid "Default"
 msgstr "Master"
 
 msgid "Block description"
-msgstr "Block description"
+msgstr "Beskrivelse"
 
 msgid "Block type"
 msgstr "Bloktype"
 
 msgid "Updated"
-msgstr "Updated"
+msgstr "Opdateret"
 
 msgid "Operations"
 msgstr "Handlinger"
 
 msgid "Next ›"
-msgstr "Next ›"
+msgstr "Næste ›"
 
 msgid "‹ Previous"
-msgstr "‹ Previous"
+msgstr "‹ Forrige"
 
 msgid "Items per page"
 msgstr "Antal elementer"
@@ -1010,16 +593,16 @@ msgid "Page"
 msgstr "Side"
 
 msgid "Blocks"
-msgstr "Custom block library"
+msgstr "Brugerdefineret blokbibliotek"
 
 msgid "Create and edit content blocks."
 msgstr "Create and edit block content."
 
 msgid "Files"
-msgstr "Files"
+msgstr "Filer"
 
 msgid "Find and manage files."
-msgstr "Find and manage files."
+msgstr "Find og håndtér filer."
 
 msgid "Default"
 msgstr "Master"
@@ -1031,16 +614,16 @@ msgid "Size"
 msgstr "Størrelse"
 
 msgid "Temporary"
-msgstr "Temporary"
+msgstr "Midlertidig"
 
 msgid "Upload date"
-msgstr "Upload date"
+msgstr "Upload-dato"
 
 msgid "Changed date"
-msgstr "Changed date"
+msgstr "Ændringsdato"
 
 msgid "Used in"
-msgstr "Used in"
+msgstr "Brugt i"
 
 msgid "@count place"
 msgid_plural "@count places"
@@ -1075,40 +658,28 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "No files available."
-msgstr "No files available."
+msgstr "Ingen tilgængelige filer."
 
 msgid "Filename"
-msgstr "Filename"
+msgstr "Filnavn"
 
 msgid "Files overview"
-msgstr "Files overview"
+msgstr "Filoversigt"
 
 msgid "Entity type"
-msgstr "Entity type"
+msgstr "Entity-type"
 
 msgid "Registering module"
-msgstr "Registering module"
+msgstr "Registrerer modul"
 
 msgid "Use count"
-msgstr "Use count"
+msgstr "Brug antal"
 
 msgid "All"
 msgstr "Alle"
 
 msgid "File usage information for {{ arguments.fid }}"
-msgstr "File usage information for {{ arguments.fid }}"
-
-msgid "Delete media"
-msgstr "Delete media"
-
-msgid "Publish media"
-msgstr "Publish media"
-
-msgid "Save media"
-msgstr "Save media"
-
-msgid "Unpublish media"
-msgstr "Unpublish media"
+msgstr "Information om brug af filen {{ arguments.fid }}"
 
 msgid "Find and manage media."
 msgstr ""
@@ -1116,41 +687,23 @@ msgstr ""
 msgid "Action"
 msgstr "Handling"
 
-msgid "Media name"
-msgstr "Media name"
-
-msgid "Unpublished"
-msgstr "Unpublished"
-
-msgid "Published"
-msgstr "Published"
-
-msgid "« First"
-msgstr "« First"
-
-msgid "Last »"
-msgstr "Last »"
-
 msgid "No media available."
 msgstr "No content available."
 
 msgid "True"
 msgstr "Sandt"
 
-msgid "Published status"
-msgstr "Published status"
-
 msgid "Archive"
-msgstr "Archive"
+msgstr "Arkiv"
 
 msgid "All content, by month."
-msgstr "All content, by month."
+msgstr "Alt indhold, efter måned."
 
 msgid "Default"
 msgstr "Master"
 
 msgid "Monthly archive"
-msgstr "Monthly archive"
+msgstr "Månedsarkiv"
 
 msgid "Items per page"
 msgstr "Antal elementer"
@@ -1177,7 +730,7 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "Block"
-msgstr "Block"
+msgstr "Blok"
 
 msgid "Page"
 msgstr "Side"
@@ -1186,7 +739,7 @@ msgid "Content"
 msgstr "Indhold"
 
 msgid "Find and manage content."
-msgstr "Find and manage content."
+msgstr "Find og håndtér indhold."
 
 msgid "Default"
 msgstr "Master"
@@ -1237,7 +790,7 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "No content available."
-msgstr "No content available."
+msgstr "Der er intet indhold at vise."
 
 msgid "Published status"
 msgstr "Publiceringsstatus"
@@ -1249,13 +802,13 @@ msgid "Page"
 msgstr "Side"
 
 msgid "Find and manage content"
-msgstr "Find and manage content"
+msgstr "Find og håndtér indhold"
 
 msgid "Recent content"
-msgstr "Recent content"
+msgstr "Seneste indhold"
 
 msgid "Recent content."
-msgstr "Recent content."
+msgstr "Seneste indhold."
 
 msgid "Default"
 msgstr "Master"
@@ -1285,10 +838,10 @@ msgid "Block"
 msgstr "Blok"
 
 msgid "Glossary"
-msgstr "Glossary"
+msgstr "Ordliste"
 
 msgid "All content, by letter."
-msgstr "All content, by letter."
+msgstr "Alt indhold efter forbogstav."
 
 msgid "Default"
 msgstr "Master"
@@ -1300,7 +853,7 @@ msgid "Author"
 msgstr "Forfatter"
 
 msgid "Last update"
-msgstr "Last update"
+msgstr "Seneste opdatering"
 
 msgid "Items per page"
 msgstr "Antal elementer"
@@ -1327,7 +880,7 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "Attachment"
-msgstr "Attachment"
+msgstr "Bilag"
 
 msgid "Page"
 msgstr "Side"
@@ -1345,10 +898,10 @@ msgid "last »"
 msgstr "sidste »"
 
 msgid "Taxonomy term"
-msgstr "Taxonomy term"
+msgstr "Ord i ordforråd"
 
 msgid "Content belonging to a certain taxonomy term."
-msgstr "Content belonging to a certain taxonomy term."
+msgstr "Indhold som er knyttet til en bestemt term."
 
 msgid "Default"
 msgstr "Master"
@@ -1384,34 +937,34 @@ msgid "Page"
 msgstr "Side"
 
 msgid "People"
-msgstr "People"
+msgstr "Personer"
 
 msgid "Find and manage people interacting with your site."
-msgstr "Find and manage people interacting with your site."
+msgstr "Find og håndtér personer som bruger dit site."
 
 msgid "Default"
 msgstr "Master"
 
 msgid "Bulk update"
-msgstr "Bulk update"
+msgstr "Masseopdatering"
 
 msgid "Username"
-msgstr "Username"
+msgstr "Brugernavn"
 
 msgid "Blocked"
-msgstr "Blocked"
+msgstr "Blokeret"
 
 msgid "Active"
-msgstr "Active"
+msgstr "Aktiv"
 
 msgid "Roles"
-msgstr "Roles"
+msgstr "Roller"
 
 msgid "Member for"
-msgstr "Member for"
+msgstr "Medlem i"
 
 msgid "Last access"
-msgstr "Last access"
+msgstr "Seneste tilgang"
 
 msgid "Operations"
 msgstr "Handlinger"
@@ -1450,34 +1003,34 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "No people available."
-msgstr "No people available."
+msgstr "Ingen personer til rådighed."
 
 msgid "Name or email contains"
-msgstr "Name or email contains"
+msgstr "Navn eller e-mail indeholder"
 
 msgid "Role"
-msgstr "Role"
+msgstr "Rolle"
 
 msgid "Permission"
-msgstr "Permission"
+msgstr "Tilladelse"
 
 msgid "more"
-msgstr "more"
+msgstr "mere"
 
 msgid "Page"
 msgstr "Side"
 
 msgid "List"
-msgstr "List"
+msgstr "Vis"
 
 msgid "Manage user accounts, roles, and permissions."
-msgstr "Manage user accounts, roles, and permissions."
+msgstr "Håndtér brugerkonti, roller og tilladelser."
 
 msgid "Who's new"
-msgstr "Who's new"
+msgstr "Nye brugere"
 
 msgid "Shows a list of the newest user accounts on the site."
-msgstr "Shows a list of the newest user accounts on the site."
+msgstr "Viser en liste af de nyeste brugerkonti på sitet."
 
 msgid "Default"
 msgstr "Master"
@@ -1498,26 +1051,23 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "A list of new users"
-msgstr "A list of new users"
+msgstr "En liste af nye brugere"
 
 msgid "User"
-msgstr "User"
-
-msgid "Who's online block"
-msgstr "Who's online block"
+msgstr "Bruger"
 
 msgid ""
 "Shows the user names of the most recently active users, and the total "
 "number of active users."
 msgstr ""
-"Shows the user names of the most recently active users, and the total "
-"number of active users."
+"Viser navnene på de brugere, der senste har været aktive, og det "
+"totale antal af aktive brugere."
 
 msgid "Default"
 msgstr "Master"
 
 msgid "Who's online"
-msgstr "Who's online"
+msgstr "Hvem er online"
 
 msgid "Apply"
 msgstr "Udfør"
@@ -1535,7 +1085,7 @@ msgid "Desc"
 msgstr "Faldende"
 
 msgid "There are currently 0 users online."
-msgstr "There are currently 0 users online."
+msgstr "Der er i øjeblikket 0 brugere online."
 
 msgid "Last access"
 msgstr "Seneste tilgang"
@@ -1544,14 +1094,14 @@ msgid ""
 "A user is considered online for this long after they have last viewed "
 "a page."
 msgstr ""
-"A user is considered online for this long after they have last viewed "
-"a page."
+"En bruger bliver opfattet som online i dette tidsrum efter hun sidst "
+"har set en side."
 
 msgid "There are currently @total users online."
-msgstr "There are currently @total users online."
+msgstr "Der er i øjeblikket @total brugere online."
 
 msgid "A list of users that are currently logged in."
-msgstr "A list of users that are currently logged in."
+msgstr "En liste af indloggede brugere."
 
 msgid "Created"
 msgstr "Oprettet"
@@ -1560,535 +1110,12 @@ msgid "Action"
 msgstr "Handling"
 
 msgid "Update URL alias"
-msgstr "Update URL alias"
+msgstr "Opdatér alternativ URL"
 
 msgid "Update URL alias"
 msgstr "Opdatér alternativ URL"
 
 msgid "Revision"
 msgstr "Version"
-
-msgctxt "PHP date format"
-msgid "l, F j, Y - H:i"
-msgstr "l, j. F Y - H:i"
-
-msgctxt "PHP date format"
-msgid "D, m/d/Y - H:i"
-msgstr "D, d/m/Y - H:i"
-
-msgctxt "PHP date format"
-msgid "m/d/Y - H:i"
-msgstr "d/m/Y - H:i"
-
-msgid "User login"
-msgstr "User login"
-
-msgid "Search index"
-msgstr "Search index"
-
-msgid "Search result highlighting input"
-msgstr "Search result highlighting input"
-
-msgid "Large (480×480)"
-msgstr "Large (480×480)"
-
-msgid "Delete content"
-msgstr "Delete content"
-
-msgid ""
-"[user:display-name],\n"
-"\n"
-"A request to cancel your account has been "
-"made at [site:name].\n"
-"\n"
-"You may now cancel your account on "
-"[site:url-brief] by clicking this link or copying and pasting it into "
-"your browser:\n"
-"\n"
-"[user:cancel-url]\n"
-"\n"
-"NOTE: The cancellation of "
-"your account is not reversible.\n"
-"\n"
-"This link expires in one day and "
-"nothing will happen if it is not used.\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\r\n"
-"\r\n"
-"A request to cancel your account has "
-"been made at [site:name].\r\n"
-"\r\n"
-"You may now cancel your account on "
-"[site:url-brief] by clicking this link or copying and pasting it into "
-"your browser:\r\n"
-"\r\n"
-"[user:cancel-url]\r\n"
-"\r\n"
-"NOTE: The "
-"cancellation of your account is not reversible.\r\n"
-"\r\n"
-"This link "
-"expires in one day and nothing will happen if it is not "
-"used.\r\n"
-"\r\n"
-"--  [site:name] team"
-
-msgid ""
-"[user:display-name],\n"
-"\n"
-"Thank you for registering at [site:name]. "
-"Your application for an account is currently pending approval. Once it "
-"has been approved, you will receive another email containing "
-"information about how to log in, set your password, and other "
-"details.\n"
-"\n"
-"\n"
-"--  [site:name] team"
-msgstr ""
-"[user:display-name],\r\n"
-"\r\n"
-"Thank you for registering at "
-"[site:name]. Your application for an account is currently pending "
-"approval. Once it has been approved, you will receive another email "
-"containing information about how to log in, set your password, and "
-"other details.\r\n"
-"\r\n"
-"\r\n"
-"--  [site:name] team"
-
-msgid "Custom block library"
-msgstr "Custom block library"
-
-msgid "Find and manage custom blocks."
-msgstr "Find and manage custom blocks."
-
-msgid "All content promoted to the front page."
-msgstr "All content promoted to the front page."
-
-msgid "Welcome to [site:name]"
-msgstr "Welcome to [site:name]"
-
-msgid "Watchdog"
-msgstr "Watchdog"
-
-msgid "Recent log messages"
-msgstr "Recent log messages"
-
-msgid "Icon"
-msgstr "Icon"
-
-msgid "Severity"
-msgstr "Severity"
-
-msgid "No log messages available."
-msgstr "No log messages available."
-
-msgid "There are no custom blocks available."
-msgstr "There are no custom blocks available."
-
-msgid "Briefly describe the changes you have made."
-msgstr ""
-"Giv en kort beskrivelse af dine ændringer, hvis du har ændret i "
-"indholdet efter publicering."
-
-msgid "Confirm removal"
-msgstr "Bekræft sletning"
-
-msgid "Allowed types: @extensions."
-msgstr ""
-"Tilladte typer: @extensions. Hold gerne filernes navne korte, gerne "
-"under 20 bogstaver og uden symboler som +/- og lignende."
-
-msgid "Remove selected"
-msgstr "Fjern det valgte"
-
-msgid "Nodes"
-msgstr "Indhold"
-
-msgid "Document"
-msgstr "Document"
-
-msgid "File upload"
-msgstr "File upload"
-
-msgid "Image upload"
-msgstr "Image upload"
-
-msgid "Media library"
-msgstr "Medie bibliotek"
-
-msgid "A taxonomy to structure your media library"
-msgstr "En taksonomi der kan bruges til at strukturere mediebiblioteket"
-
-msgid "The tag will help you navigate in your media library"
-msgstr "The tag will help you navigate in your media library"
-
-msgid "Search for documents"
-msgstr "Search for documents"
-
-msgid "Search for images"
-msgstr "Search for images"
-
-msgid "Upload new image"
-msgstr "Upload new image"
-
-msgid "Upload new document"
-msgstr "Upload new document"
-
-msgid "Add another item"
-msgstr "Tilføj endnu et element"
-
-msgid "Attachments"
-msgstr "Vedhæftninger"
-
-msgid "Replies"
-msgstr "Bidrag"
-
-msgid "Block title"
-msgstr "Titel"
-
-msgid "Description field"
-msgstr "Beskrivelse"
-
-msgid "Reply"
-msgstr "Bidrag"
-
-msgid "Project not secure"
-msgstr "Initiativ ikke sikkert"
-
-msgid "Project revoked"
-msgstr "Initiativ tilbagekaldt"
-
-msgid "Project not supported"
-msgstr "Initiativ ikke understøttet"
-
-msgid "Your email address"
-msgstr ""
-"Din e-mailadresse (Obs. din e-mail vil ikke blive vist på "
-"deltag.aarhus.dk)"
-
-msgid ""
-"Email address for a given user. This field is normally not shown to "
-"users, so be cautious when using it."
-msgstr ""
-"E-mailadresse for en given bruger. Dette felt vises normalt ikke til "
-"brugere, så brug det med omtanke."
-
-msgctxt "Entity type group"
-msgid "Content"
-msgstr "Indhold"
-
-msgid "Email addresses to notify when updates are available"
-msgstr "E-mailadresser, der underrettes, når opdateringer er tilgængelige"
-
-msgid "This must be an external URL such as %url."
-msgstr "Skal være en ekstern URL som fx %url."
-
-msgid "Hearing tickets (@count)"
-msgstr "Høringssvar (@count)"
-
-msgid "Answer @number by @name"
-msgstr "Bidrag @number af @name"
-
-msgid "Note! Hearing deadline has passed."
-msgstr "Note! Hørings tidsfristen er forbi."
-
-msgid "Hearing reply by @name"
-msgstr "Høringssvar fra @name"
-
-msgid "Answer #@number by @name"
-msgstr "Bidrag #@number af @name"
-
-msgid "Project end"
-msgstr "Initiativ slut"
-
-msgid "Project finish"
-msgstr "Initiativ afslutning"
-
-msgid "Meeting"
-msgstr "Møde"
-
-msgid "Debate"
-msgstr "Debat"
-
-msgid "Hearing id"
-msgstr "Hørings-id"
-
-msgid "Select entities"
-msgstr "Vælg fil"
-
-msgid "Teaser/indledning"
-msgstr "Teaser/indledning"
-
-msgid "Kort tekst der vises i teasers og i toppen af indholdsviningen"
-msgstr "Kort tekst der vises i teasers og i toppen af indholdsvisningen"
-
-msgid "Beskrivelse af høringen."
-msgstr ""
-"Beskrivelse af høringen. Tænk gerne i korte og præcise afsnit, da "
-"mange vil læse materialet på sin mobil. "
-
-msgid "Vælg dokumenter der beskriver høringen."
-msgstr ""
-"Vælg dokumenter der skal tilføjes. Vær opmærksom på at dine "
-"dokumenter skal være webtilgængelige. Hvis du er i tvivl om hvad "
-"dette omhandler kan du læse mere her: "
-"https://digst.dk/digital-service/webtilgaengelighed/"
-
-msgid "Video embed"
-msgstr "Video"
-
-msgid ""
-"Tilføj video embed code.&#13;\n"
-"Det er redaktørens ansvar at videoen "
-"overholder kommunens GDPR retningslinjer. &#13;\n"
-"Hvis du er i tvivl "
-"kan du spørge den GDPR ansvarlige i din afdeling."
-msgstr ""
-"Du kan benytte videoer fra Youtube og Vimeo - Du skal dog være "
-"opmærksom på om videoer fra Vimeo sætter cookies. Grundet regler "
-"for Cookie lovgivningen kan du ikke selv uploade videoer, og du skal "
-"derfor sende linket til den video du vil bruge på support@itkdev.dk "
-"for at få hjælp. Vær desuden opmærksom på om videoen er "
-"webtilgængelig."
-
-msgid "Vælg kortvisning for høringen."
-msgstr ""
-"Vælg kortvisning for høringen. Hvis dette giver dig problemer skal "
-"du sørge for at benytte browseren: Chrome eller Microsoft edge"
-
-msgid "https://visplaner.plandata.dk/visplaner/lokalplaner.html"
-msgstr ""
-"Find evt. lokalplan-id'er på "
-"https://visplaner.plandata.dk/visplaner/lokalplaner.html"
-
-msgid "Vælg sagsbehandler for høringen."
-msgstr ""
-"Vælg sagsbehandler for høringen. \r\n"
-"OBS! Hvis du ikke kan finde "
-"dig selv på listen, skal du oprettes i sagsbehandlersystemet. "
-"Kontakt: mida@aarhus.dk"
-
-msgid ""
-"Start og slut dato og alle høringer for forløbet plottes automatisk "
-"ind på tidslinjen. Du kan bruge dette felt til at plotte flere "
-"relevante punkter ind."
-msgstr ""
-"<strong>Start og slut dato og alle høringer for forløbet plottes "
-"automatisk ind på tidslinjen. Du kan bruge nedenstående felt til at "
-"plotte flere relevante punkter ind.</strong>"
-
-msgid "Indtast eDoc-sagsnr. for høringen."
-msgstr ""
-"Indtast eDoc-sagsnr. for høringen. \r\n"
-"OBS! Tjek at du har indsat "
-"det korrekte sagsnr. Hvis nummeret er forkert bliver høringssvarene "
-"ikke arkiveret korrekt."
-
-msgid "media"
-msgstr "medie"
-
-msgid "Project gallery"
-msgstr "Projektgalleri"
-
-msgid "You can select up to @maximum @entity_type (@remaining left)."
-msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
-
-msgid "Beskrivelse af borgemødet."
-msgstr ""
-"Kort beskrivelse af begivenheden. Udvidet beskrivelse indsættes under "
-"'indhold' længere nede på siden."
-
-msgid "Vælg billeder der skal vises i teaservisningen."
-msgstr "Vælg billede der skal vises i oversigten"
-
-msgid "Start time"
-msgstr "Starttidspunkt"
-
-msgid "End time"
-msgstr "Sluttidspunkt"
-
-msgid "Number of spots"
-msgstr "Antal pladser"
-
-msgid "Vælg den projekttidslinje som høringen er tilknyttet."
-msgstr ""
-"Vælg den projekttidslinje som høringen er tilknyttet. En "
-"projekttidslinje viser de aktiviteter, der indgår i et overordnet "
-"projekt. \r\n"
-"OBS! Tidslinjen skal oprettes først, for at kunne "
-"fremsøges på listen."
-
-msgid "Select template event"
-msgstr "Vælg skabelon til dit møde"
-
-msgid "Select the template event to clone when creating the pretix event"
-msgstr ""
-"Vælg det event der passer til dit møde / arrangement. Har du behov "
-"for specielle tilpasninger til dit arrangement, kontakt: "
-"support@itkdev.dk"
-
-msgid "Synchronize event in pretix"
-msgstr "Synkroniser event i Pretix (Skal altid være slået til) "
-
-msgid ""
-"If set, the pretix event will be updated when changes are made to the "
-"dates on this node"
-msgstr ""
-"Når denne er valgt vil ændringer her på siden automatisk slå "
-"igennem i Pretix (Tilmeldingssystemet)"
-
-msgid ""
-"En beskrivelse tilknyttet til tidslinjen. Beskrivelsen vises kun i "
-"backend som eventuel hjælp til redaktørerne."
-msgstr ""
-"En beskrivelse tilknyttet til tidslinjen. Beskrivelsen vises kun til "
-"redaktører."
-
-msgid ""
-"Start og slut dato og alle høringer og borgermøde fra systemet "
-"plottes automatisk ind på tidslinjen.&#13;\n"
-"Du kan bruge dette felt "
-"til at plotte flere relevante punkter ind."
-msgstr ""
-"<strong>Start og slut dato og alle høringer og begivenheder fra "
-"systemet plottes automatisk ind på tidslinjen.&#13; Du kan bruge "
-"nedenstående felt til at plotte flere relevante punkter ind.</strong>"
-
-msgid "You can select one @entity_type."
-msgstr "Du kan kun vælge ét @entity_type."
-
-msgid "Check denne boks hvis du ønsker at skjule tilmelding i frontend"
-msgstr ""
-"Vælg denne hvis mødet er til en lukket gruppe af inviterede, og "
-"tilmelding ikke skal være muligt via hjemmesiden. Når mødet er "
-"oprettet vil du her finde et link du kan sende til de inviterede."
-
-msgid ""
-"Start typing the title of a piece of content to select it. You can "
-"also enter an internal path such as %add-node or an external URL such "
-"as %url. Enter %front to link to the front page. Enter %nolink to "
-"display link text only."
-msgstr ""
-"Skriv titlen på det indhold du gerne vil vælge. Du kan også "
-"indsætte en sti som fx %add-node eller en ekstern URL som fx %url. "
-"Skriv %front for at linke til forsiden. Skriv %nolink for at vise et "
-"tekst-link."
-
-msgid "Show pretix orders"
-msgstr "Se deltagerliste"
-
-msgid "Bemærk at du ikke kan ændre tilmeldingstypen senere."
-msgstr ""
-"<strong>Benyt tilmeldingssystem:</strong> Brug denne hvis du gerne vil "
-"have at borgeren tilmelder sig via systemet. <br>\r\n"
-"<strong>Benyt "
-"ikke tilmeldingssystem:</strong>  Brug denne hvis borgeren ikke "
-"behøver at tilmelde sig eller hvis du vil bruge dit eget system. "
-"<br>\r\n"
-"Bemærk at du ikke kan ændre tilmeldingstypen senere."
-
-msgid "Check this box if the meeting is cancelled"
-msgstr "Sæt kryds her hvis mødet er aflyst"
-
-msgid "Cancelled text"
-msgstr "Tekst omhandlende aflysning"
-
-msgid "Cancelled date"
-msgstr "Aflyst dato"
-
-msgid "Cancellation"
-msgstr "Aflysning"
-
-msgid "Vælg tidslinje som borgermødet er knyttet til."
-msgstr ""
-"Vælg den projekttidslinje som begivenheden er tilknyttet. En "
-"projekttidslinje viser de aktiviteter, der indgår i et overordnet "
-"projekt. <strong>OBS! Tidslinjen skal oprettes på oversigtssiden "
-"først, for at kunne fremsøges på listen</strong>."
-
-msgid "Name (@organization)"
-msgstr "Navn (@organization)"
-
-msgid "Email address (@organization)"
-msgstr ""
-"Email adresse (@organization) Obs. din e-mail vil ikke være synlig "
-"på deltag.aarhus.dk"
-
-msgid "Your postal code and city"
-msgstr ""
-"Dit postnummer og by (Obs. din adresse vil ikke blive vist på "
-"deltag.aarhus.dk)"
-
-msgid "Postal code and city (@organization)"
-msgstr ""
-"Postnummer og by (@organization) Obs. din e-mail vil ikke være synlig "
-"på deltag.aarhus.dk"
-
-msgid "Your street and number"
-msgstr ""
-"Dit vejnavn og nummer (Obs. din adresse vil ikke blive vist på "
-"deltag.aarhus.dk)"
-
-msgid "Street and number (@organization)"
-msgstr ""
-"Vejnavn og nummer (@organization) \r\n"
-"Obs. din adresse vil ikke være "
-"synlig på deltag.aarhus.dk"
-
-msgid "Select none"
-msgstr "Vælg ingen"
-
-msgid "Dagtilbud og skole"
-msgstr "Dagtilbud, skole og fritids- og ungdomsskoleområdet."
-
-msgid ""
-"Vælg områder som borgermødet dækker. Markér alle hvis "
-"borgermødet dækker hele kommunen."
-msgstr ""
-"Vælg områder som begivenheden dækker. Markér alle hvis "
-"begivenheden dækker hele kommunen."
-
-msgid "Borgermødet"
-msgstr "Begivenheden"
-
-msgid "You're currently authenticated as %name"
-msgstr "Du er logget ind som %name"
-
-msgid ""
-"Number of supporters: @number_of_supporters of "
-"@required_number_of_supporters"
-msgstr ""
-"Antal støtter: @number_of_supporters af "
-"@required_number_of_supporters"
-
-msgid ""
-"The time limit for how long we are allowed to keep the replies has "
-"been reached so we where obligated to delete them.The hearing replies "
-"were deleted on @"
-msgstr ""
-"<b>Høringssvarene er ikke længere synlige på "
-"høringsportalen</b>\r\n"
-"<p>Høringssvar bliver løbende slettet på "
-"deltag.aarhus.dk i takt med at høringer afsluttes. Det gør vi for at "
-"leve op til reglerne for GDPR og for at sikre persondata ikke ligger "
-"tilgængelig på høringsportalen i længere tid end, hvad der er "
-"nødvendigt.</p>\r\n"
-"<b>Du kan stadig få adgang til høringssvar, der "
-"ikke længere er synlige på høringsportalen.</b>\r\n"
-"<p>Hvis "
-"høringen handler om en sag, der er behandlet af Aarhus Byråd, kan du "
-"finde alle høringssvar, som bilag til den konkrete byrådssag. Du kan "
-"finde alle sager i byrådet med tilhørende bilag på Aarhus Kommunes "
-"hjemmeside – klik her:  <a "
-"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
-"- dagsordener og referater</a></p>\r\n"
-"<p>Hvis sagen ikke ligger som "
-"en byrådssag og du har behov for at få indblik i gamle høringssvar, "
-"kan det ske gennem en aktindsigtsanmodning. Læs om dine muligheder "
-"for at søge aktindsigt: <a "
-"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
 
 

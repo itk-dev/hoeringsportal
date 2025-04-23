@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-23 14:48+0200\n"
-"PO-Revision-Date: 2025-04-23 14:48+0200\n"
+"POT-Creation-Date: 2025-04-23 15:09+0200\n"
+"PO-Revision-Date: 2025-04-23 15:09+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "advancedqueue.advancedqueue_queue.default:label"
-msgid "Default"
+msgid "Master"
 msgstr ""
 
 msgctxt "advancedqueue.advancedqueue_queue.hoeringsportal_citizen_proposal_archiving:label"
@@ -109,11 +109,11 @@ msgid "Site branding"
 msgstr ""
 
 msgctxt "block.block.stark_local_actions:settings:label"
-msgid "Primary admin actions"
+msgid "Primære adminsitratorhandlinger"
 msgstr ""
 
 msgctxt "block.block.stark_local_tasks:settings:label"
-msgid "Tabs"
+msgid "Faner"
 msgstr ""
 
 msgctxt "block.block.stark_login:settings:label"
@@ -121,15 +121,15 @@ msgid "User login"
 msgstr ""
 
 msgctxt "block.block.stark_messages:settings:label"
-msgid "Status messages"
+msgid "Statusmeddelelser"
 msgstr ""
 
 msgctxt "block.block.stark_page_title:settings:label"
-msgid "Page title"
+msgid "Sidetitel"
 msgstr ""
 
 msgctxt "block.block.stark_tools:settings:label"
-msgid "Tools"
+msgid "Værktøjer"
 msgstr ""
 
 msgctxt "block.block.tabs:settings:label"
@@ -275,7 +275,7 @@ msgid "Afbrudt"
 msgstr ""
 
 msgctxt "core.date_format.fallback:label"
-msgid "Fallback date format"
+msgid "Reservedatoformat"
 msgstr ""
 
 msgctxt "core.date_format.hoeringsportal_date:label"
@@ -355,7 +355,7 @@ msgid "HTML Yearless date"
 msgstr ""
 
 msgctxt "core.date_format.long:label"
-msgid "Default long date"
+msgid "Standard lang dato"
 msgstr ""
 
 msgctxt "core.date_format.long:pattern"
@@ -363,7 +363,7 @@ msgid "l, j. F Y - H:i"
 msgstr ""
 
 msgctxt "core.date_format.medium:label"
-msgid "Default medium date"
+msgid "Standard mellem dato"
 msgstr ""
 
 msgctxt "core.date_format.medium:pattern"
@@ -371,7 +371,7 @@ msgid "D, d/m/Y - H:i"
 msgstr ""
 
 msgctxt "core.date_format.short:label"
-msgid "Default short date"
+msgid "Standard kort dato"
 msgstr ""
 
 msgctxt "core.date_format.short:pattern"
@@ -611,7 +611,7 @@ msgid "Image"
 msgstr ""
 
 msgctxt "core.entity_form_mode.user.register:label"
-msgid "Register"
+msgid "Opret konto"
 msgstr ""
 
 msgctxt "core.entity_view_display.node.public_meeting.default:third_party_settings:field_group:group_signup:label"
@@ -631,7 +631,7 @@ msgid "Token"
 msgstr ""
 
 msgctxt "core.entity_view_mode.block_content.full:label"
-msgid "Full"
+msgid "Fuld"
 msgstr ""
 
 msgctxt "core.entity_view_mode.entity_subqueue.token:label"
@@ -647,7 +647,7 @@ msgid "Content display"
 msgstr ""
 
 msgctxt "core.entity_view_mode.media.full:label"
-msgid "Full content"
+msgid "Fuldt indhold"
 msgstr ""
 
 msgctxt "core.entity_view_mode.media.material_display:label"
@@ -699,7 +699,7 @@ msgid "Search result"
 msgstr ""
 
 msgctxt "core.entity_view_mode.node.teaser:label"
-msgid "Teaser"
+msgid "Smagsprøve"
 msgstr ""
 
 msgctxt "core.entity_view_mode.paragraph.preview:label"
@@ -707,15 +707,15 @@ msgid "Gennemse"
 msgstr ""
 
 msgctxt "core.entity_view_mode.taxonomy_term.full:label"
-msgid "Taxonomy term page"
+msgid "Termside"
 msgstr ""
 
 msgctxt "core.entity_view_mode.user.compact:label"
-msgid "Compact"
+msgid "Kompakt"
 msgstr ""
 
 msgctxt "core.entity_view_mode.user.full:label"
-msgid "User account"
+msgid "Brugerkonto"
 msgstr ""
 
 msgctxt "core.entity_view_mode.user.token:label"
@@ -1959,7 +1959,7 @@ msgid "Hearing description"
 msgstr ""
 
 msgctxt "filter.format.plain_text:name"
-msgid "Plain text"
+msgid "Ren tekst"
 msgstr ""
 
 msgctxt "image.style.carousel_300x168:label"
@@ -1975,7 +1975,7 @@ msgid "Hero (1440w) - Crop"
 msgstr ""
 
 msgctxt "image.style.medium:label"
-msgid "Medium (330×330)"
+msgid "Mellem (220×220)"
 msgstr ""
 
 msgctxt "image.style.responsive_large_default:label"
@@ -2039,11 +2039,11 @@ msgid "Danish"
 msgstr ""
 
 msgctxt "language.entity.und:label"
-msgid "Not specified"
+msgid "Ikke angivet"
 msgstr ""
 
 msgctxt "language.entity.zxx:label"
-msgid "Not applicable"
+msgid "ikke relevant"
 msgstr ""
 
 msgctxt "media.type.document:label"
@@ -2629,35 +2629,35 @@ msgid "Unpublish media"
 msgstr ""
 
 msgctxt "system.action.node_make_sticky_action:label"
-msgid "Make content sticky"
+msgid "Gør indhold klæbrigt"
 msgstr ""
 
 msgctxt "system.action.node_make_unsticky_action:label"
-msgid "Make content unsticky"
+msgid "Fjern klæbrighed"
 msgstr ""
 
 msgctxt "system.action.node_promote_action:label"
-msgid "Promote content to front page"
+msgid "Vis indhold på forsiden"
 msgstr ""
 
 msgctxt "system.action.node_publish_action:label"
-msgid "Publish content"
+msgid "Udgiv indhold"
 msgstr ""
 
 msgctxt "system.action.node_save_action:label"
-msgid "Save content"
+msgid "Gem indhold"
 msgstr ""
 
 msgctxt "system.action.node_unpromote_action:label"
-msgid "Remove content from front page"
+msgid "Fjern indhold fra forsiden"
 msgstr ""
 
 msgctxt "system.action.node_unpublish_action:label"
-msgid "Unpublish content"
+msgid "Afpubliceer indhold"
 msgstr ""
 
 msgctxt "system.action.pathauto_update_alias_node:label"
-msgid "Update URL alias"
+msgid "Opdatér alternativ URL"
 msgstr ""
 
 msgctxt "system.action.pathauto_update_alias_user:label"
@@ -2689,11 +2689,11 @@ msgid "Add the public meeting editor role to the selected user(s)"
 msgstr ""
 
 msgctxt "system.action.user_block_user_action:label"
-msgid "Block the selected user(s)"
+msgid "Blokér de(n) valgte bruger(e)"
 msgstr ""
 
 msgctxt "system.action.user_cancel_user_action:label"
-msgid "Cancel the selected user account(s)"
+msgid "Opsig de valgte brugerkonti"
 msgstr ""
 
 msgctxt "system.action.user_remove_role_action.administrator:label"
@@ -2717,7 +2717,7 @@ msgid "Remove the public meeting editor role from the selected user(s)"
 msgstr ""
 
 msgctxt "system.action.user_unblock_user_action:label"
-msgid "Unblock the selected user(s)"
+msgid "Fjern blokering af de(n) valgte bruger(e)"
 msgstr ""
 
 msgctxt "system.action.webform_archive_action:label"
@@ -2762,16 +2762,16 @@ msgstr ""
 
 msgctxt "system.maintenance:message"
 msgid ""
-"@site is currently under maintenance. We should be back shortly. Thank "
-"you for your patience."
+"Vi er ved at opdatere @site. Vi er snart tilbage. Tak for din "
+"tålmodighed."
 msgstr ""
 
 msgctxt "system.menu.account:label"
-msgid "User account menu"
+msgid "Brugerkontomenu"
 msgstr ""
 
 msgctxt "system.menu.account:description"
-msgid "Links related to the active user account"
+msgid "Links relateret til den aktive brugerkonto"
 msgstr ""
 
 msgctxt "system.menu.admin:label"
@@ -2779,7 +2779,7 @@ msgid "Administration"
 msgstr ""
 
 msgctxt "system.menu.admin:description"
-msgid "Administrative task links"
+msgid "Links til administrative opgaver"
 msgstr ""
 
 msgctxt "system.menu.footer:label"
@@ -2787,15 +2787,15 @@ msgid "Sidefod"
 msgstr ""
 
 msgctxt "system.menu.footer:description"
-msgid "Site information links"
+msgid "Links til informationen om sitet"
 msgstr ""
 
 msgctxt "system.menu.main:label"
-msgid "Main navigation"
+msgid "Primær navigation"
 msgstr ""
 
 msgctxt "system.menu.main:description"
-msgid "Site section links"
+msgid "Links til sitets sektioner"
 msgstr ""
 
 msgctxt "system.menu.secondary-navigation:label"
@@ -2811,7 +2811,7 @@ msgid "Værktøjer"
 msgstr ""
 
 msgctxt "system.menu.tools:description"
-msgid "User tool links, often added by modules"
+msgid "Bruger værktøjslinks, som typisk tilføjes af moduler"
 msgstr ""
 
 msgctxt "system.site:name"
@@ -2883,7 +2883,9 @@ msgid "Type"
 msgstr ""
 
 msgctxt "user.mail:cancel_confirm:subject"
-msgid "Account cancellation request for [user:display-name] at [site:name]"
+msgid ""
+"Anmodning om opsigelse af konto for [user:display-name] på "
+"[site:name]"
 msgstr ""
 
 msgctxt "user.mail:cancel_confirm:body"
@@ -2910,7 +2912,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:password_reset:subject"
-msgid "Replacement login information for [user:display-name] at [site:name]"
+msgid "Ny login-information for [user:display-name] på [site:name]"
 msgstr ""
 
 msgctxt "user.mail:password_reset:body"
@@ -2935,7 +2937,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:register_admin_created:subject"
-msgid "An administrator created an account for you at [site:name]"
+msgid "En administrator har oprettet en konto til dig på [site:name]"
 msgstr ""
 
 msgctxt "user.mail:register_admin_created:body"
@@ -2965,7 +2967,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:register_no_approval_required:subject"
-msgid "Account details for [user:display-name] at [site:name]"
+msgid "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
 msgstr ""
 
 msgctxt "user.mail:register_no_approval_required:body"
@@ -2996,8 +2998,8 @@ msgstr ""
 
 msgctxt "user.mail:register_pending_approval:subject"
 msgid ""
-"Account details for [user:display-name] at [site:name] (pending admin "
-"approval)"
+"Kontoinformation for [user:display-name] på [site:name] (afventer "
+"godkendelse af administrator)"
 msgstr ""
 
 msgctxt "user.mail:register_pending_approval:body"
@@ -3016,8 +3018,8 @@ msgstr ""
 
 msgctxt "user.mail:register_pending_approval_admin:subject"
 msgid ""
-"Account details for [user:display-name] at [site:name] (pending admin "
-"approval)"
+"Kontoinformation for [user:display-name] på [site:name] (afventer "
+"godkendelse af administrator)"
 msgstr ""
 
 msgctxt "user.mail:register_pending_approval_admin:body"
@@ -3029,7 +3031,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:status_activated:subject"
-msgid "Account details for [user:display-name] at [site:name] (approved)"
+msgid "Kontoinformationer for [user:display-name] på [site:name] (godkendt)"
 msgstr ""
 
 msgctxt "user.mail:status_activated:body"
@@ -3061,7 +3063,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:status_blocked:subject"
-msgid "Account details for [user:display-name] at [site:name] (blocked)"
+msgid "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
 msgstr ""
 
 msgctxt "user.mail:status_blocked:body"
@@ -3075,7 +3077,7 @@ msgid ""
 msgstr ""
 
 msgctxt "user.mail:status_canceled:subject"
-msgid "Account details for [user:display-name] at [site:name] (canceled)"
+msgid "Kontoinformationer for [user:display-name] på [site:name] (opsagt)"
 msgstr ""
 
 msgctxt "user.mail:status_canceled:body"
@@ -3117,7 +3119,7 @@ msgid "Begivenhedsredaktør"
 msgstr ""
 
 msgctxt "user.settings:anonymous"
-msgid "Anonymous"
+msgid "Anonym"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:label"
@@ -3187,39 +3189,39 @@ msgid "Message: {{ message }}"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:fields:operations:label"
-msgid "Operations"
+msgid "Handlinger"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:pager:options:expose:items_per_page_label"
-msgid "Items per page"
+msgid "Antal elementer"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:pager:options:expose:items_per_page_options_all_label"
-msgid "- All -"
+msgid "- Alle -"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:pager:options:expose:offset_label"
-msgid "Offset"
+msgid "Forskydning"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:exposed_form:options:submit_button"
-msgid "Apply"
+msgid "Udfør"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:exposed_form:options:reset_button_label"
-msgid "Nulstil"
+msgid "Gendan"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:exposed_form:options:exposed_sorts_label"
-msgid "Sort by"
+msgid "Sortér efter"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:exposed_form:options:sort_asc_label"
-msgid "Asc"
+msgid "Stigende"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:exposed_form:options:sort_desc_label"
-msgid "Desc"
+msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:empty:area_text_custom:content"
@@ -3227,7 +3229,7 @@ msgid "No jobs found"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:arguments:queue_id:exception:title"
-msgid "All"
+msgid "Alle"
 msgstr ""
 
 msgctxt "views.view.advancedqueue_jobs:display:default:display_options:filters:type:expose:label"
@@ -3711,11 +3713,11 @@ msgid "Område"
 msgstr ""
 
 msgctxt "views.view.archive:label"
-msgid "Archive"
+msgid "Arkiv"
 msgstr ""
 
 msgctxt "views.view.archive:description"
-msgid "All content, by month."
+msgid "Alt indhold, efter måned."
 msgstr ""
 
 msgctxt "views.view.archive:display:default:display_title"
@@ -3723,7 +3725,7 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.archive:display:default:display_options:title"
-msgid "Monthly archive"
+msgid "Månedsarkiv"
 msgstr ""
 
 msgctxt "views.view.archive:display:default:display_options:pager:options:expose:items_per_page_label"
@@ -3763,7 +3765,7 @@ msgid "{{ arguments.created_year_month }}"
 msgstr ""
 
 msgctxt "views.view.archive:display:block_1:display_title"
-msgid "Block"
+msgid "Blok"
 msgstr ""
 
 msgctxt "views.view.archive:display:block_1:display_options:arguments:created_year_month:title"
@@ -3945,11 +3947,11 @@ msgid "Nodes Autocompletion Callback"
 msgstr ""
 
 msgctxt "views.view.block_content:label"
-msgid "Custom block library"
+msgid "Brugerdefineret blokbibliotek"
 msgstr ""
 
 msgctxt "views.view.block_content:description"
-msgid "Find and manage custom blocks."
+msgid "Find og håndtér brugerdefinerede blokke."
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_title"
@@ -3957,11 +3959,11 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:title"
-msgid "Custom block library"
+msgid "Brugerdefineret blokbibliotek"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:fields:info:label"
-msgid "Block description"
+msgid "Beskrivelse"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:fields:type:label"
@@ -3969,7 +3971,7 @@ msgid "Bloktype"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:fields:changed:label"
-msgid "Updated"
+msgid "Opdateret"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:fields:operations:label"
@@ -3977,11 +3979,11 @@ msgid "Handlinger"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:pager:options:tags:next"
-msgid "Next ›"
+msgid "Næste ›"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:pager:options:tags:previous"
-msgid "‹ Previous"
+msgid "‹ Forrige"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:pager:options:expose:items_per_page_label"
@@ -4021,7 +4023,7 @@ msgid "There are no custom blocks available."
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:filters:info:expose:label"
-msgid "Block description"
+msgid "Beskrivelse"
 msgstr ""
 
 msgctxt "views.view.block_content:display:default:display_options:filters:type:expose:label"
@@ -4033,7 +4035,7 @@ msgid "Side"
 msgstr ""
 
 msgctxt "views.view.block_content:display:page_1:display_options:menu:title"
-msgid "Custom block library"
+msgid "Brugerdefineret blokbibliotek"
 msgstr ""
 
 msgctxt "views.view.block_content:display:page_1:display_options:menu:description"
@@ -4185,7 +4187,7 @@ msgid "Indhold"
 msgstr ""
 
 msgctxt "views.view.content:description"
-msgid "Find and manage content."
+msgid "Find og håndtér indhold."
 msgstr ""
 
 msgctxt "views.view.content:display:default:display_title"
@@ -4269,7 +4271,7 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.content:display:default:display_options:empty:area_text_custom:content"
-msgid "No content available."
+msgid "Der er intet indhold at vise."
 msgstr ""
 
 msgctxt "views.view.content:display:default:display_options:filters:title:expose:label"
@@ -4393,15 +4395,15 @@ msgid "Indhold"
 msgstr ""
 
 msgctxt "views.view.content:display:page_1:display_options:tab_options:description"
-msgid "Find and manage content"
+msgid "Find og håndtér indhold"
 msgstr ""
 
 msgctxt "views.view.content_recent:label"
-msgid "Recent content"
+msgid "Seneste indhold"
 msgstr ""
 
 msgctxt "views.view.content_recent:description"
-msgid "Recent content."
+msgid "Seneste indhold."
 msgstr ""
 
 msgctxt "views.view.content_recent:display:default:display_title"
@@ -4409,7 +4411,7 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.content_recent:display:default:display_options:title"
-msgid "Recent content"
+msgid "Seneste indhold"
 msgstr ""
 
 msgctxt "views.view.content_recent:display:default:display_options:exposed_form:options:submit_button"
@@ -4445,11 +4447,11 @@ msgid "Blok"
 msgstr ""
 
 msgctxt "views.view.files:label"
-msgid "Files"
+msgid "Filer"
 msgstr ""
 
 msgctxt "views.view.files:description"
-msgid "Find and manage files."
+msgid "Find og håndtér filer."
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_title"
@@ -4457,7 +4459,7 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:title"
-msgid "Files"
+msgid "Filer"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:fid:label"
@@ -4481,7 +4483,7 @@ msgid "Status"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:status:settings:format_custom_false"
-msgid "Temporary"
+msgid "Midlertidig"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:status:settings:format_custom_true"
@@ -4489,15 +4491,15 @@ msgid "Permanent"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:created:label"
-msgid "Upload date"
+msgid "Upload-dato"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:changed:label"
-msgid "Changed date"
+msgid "Ændringsdato"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:count:label"
-msgid "Used in"
+msgid "Brugt i"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:fields:count:alter:path"
@@ -4549,11 +4551,11 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:empty:area_text_custom:content"
-msgid "No files available."
+msgid "Ingen tilgængelige filer."
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:filters:filename:expose:label"
-msgid "Filename"
+msgid "Filnavn"
 msgstr ""
 
 msgctxt "views.view.files:display:default:display_options:filters:filemime:expose:label"
@@ -4565,11 +4567,11 @@ msgid "Status"
 msgstr ""
 
 msgctxt "views.view.files:display:page_1:display_title"
-msgid "Files overview"
+msgid "Filoversigt"
 msgstr ""
 
 msgctxt "views.view.files:display:page_1:display_options:menu:title"
-msgid "Files"
+msgid "Filer"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_title"
@@ -4585,15 +4587,15 @@ msgid "Entity"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_options:fields:type:label"
-msgid "Entity type"
+msgid "Entity-type"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_options:fields:module:label"
-msgid "Registering module"
+msgid "Registrerer modul"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_options:fields:count:label"
-msgid "Use count"
+msgid "Brug antal"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_options:fields:count:format_plural_string"
@@ -4625,7 +4627,7 @@ msgid "Alle"
 msgstr ""
 
 msgctxt "views.view.files:display:page_2:display_options:arguments:fid:title"
-msgid "File usage information for {{ arguments.fid }}"
+msgid "Information om brug af filen {{ arguments.fid }}"
 msgstr ""
 
 msgctxt "views.view.form_list_active_projects:label"
@@ -4677,11 +4679,11 @@ msgid "Entity Reference"
 msgstr ""
 
 msgctxt "views.view.glossary:label"
-msgid "Glossary"
+msgid "Ordliste"
 msgstr ""
 
 msgctxt "views.view.glossary:description"
-msgid "All content, by letter."
+msgid "Alt indhold efter forbogstav."
 msgstr ""
 
 msgctxt "views.view.glossary:display:default:display_title"
@@ -4697,7 +4699,7 @@ msgid "Forfatter"
 msgstr ""
 
 msgctxt "views.view.glossary:display:default:display_options:fields:changed:label"
-msgid "Last update"
+msgid "Seneste opdatering"
 msgstr ""
 
 msgctxt "views.view.glossary:display:default:display_options:pager:options:expose:items_per_page_label"
@@ -4733,7 +4735,7 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.glossary:display:attachment_1:display_title"
-msgid "Attachment"
+msgid "Bilag"
 msgstr ""
 
 msgctxt "views.view.glossary:display:page_1:display_title"
@@ -4741,7 +4743,7 @@ msgid "Side"
 msgstr ""
 
 msgctxt "views.view.glossary:display:page_1:display_options:menu:title"
-msgid "Glossary"
+msgid "Ordliste"
 msgstr ""
 
 msgctxt "views.view.hearings_related_to_project:label"
@@ -5450,11 +5452,11 @@ msgid "Status"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:fields:status:settings:format_custom_false"
-msgid "Unpublished"
+msgid "Ikke udgivet"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:fields:status:settings:format_custom_true"
-msgid "Published"
+msgid "Udgivet"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:fields:changed:label"
@@ -5474,11 +5476,11 @@ msgid "‹ Previous"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:pager:options:tags:first"
-msgid "« First"
+msgid "« Første"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:pager:options:tags:last"
-msgid "Last »"
+msgid "Sidste »"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:pager:options:expose:items_per_page_label"
@@ -5522,15 +5524,15 @@ msgid "Sandt"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:filters:status:group_info:label"
-msgid "Published status"
+msgid "Publiceringsstatus"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:filters:status:group_info:group_items:1:title"
-msgid "Published"
+msgid "Udgivet"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:filters:status:group_info:group_items:2:title"
-msgid "Unpublished"
+msgid "Ikke udgivet"
 msgstr ""
 
 msgctxt "views.view.media:display:default:display_options:filters:bundle:expose:label"
@@ -5810,11 +5812,11 @@ msgid "Page"
 msgstr ""
 
 msgctxt "views.view.taxonomy_term:label"
-msgid "Taxonomy term"
+msgid "Ord i ordforråd"
 msgstr ""
 
 msgctxt "views.view.taxonomy_term:description"
-msgid "Content belonging to a certain taxonomy term."
+msgid "Indhold som er knyttet til en bestemt term."
 msgstr ""
 
 msgctxt "views.view.taxonomy_term:display:default:display_title"
@@ -5914,11 +5916,11 @@ msgid "Block"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:label"
-msgid "People"
+msgid "Personer"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:description"
-msgid "Find and manage people interacting with your site."
+msgid "Find og håndtér personer som bruger dit site."
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_title"
@@ -5926,15 +5928,15 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:title"
-msgid "People"
+msgid "Personer"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:user_bulk_form:label"
-msgid "Bulk update"
+msgid "Masseopdatering"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:name:label"
-msgid "Username"
+msgid "Brugernavn"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:status:label"
@@ -5942,15 +5944,15 @@ msgid "Status"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:status:settings:format_custom_false"
-msgid "Blocked"
+msgid "Blokeret"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:status:settings:format_custom_true"
-msgid "Active"
+msgid "Aktiv"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:roles_target_id:label"
-msgid "Roles"
+msgid "Roller"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:field_department:label"
@@ -5958,7 +5960,7 @@ msgid "Department"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:created:label"
-msgid "Member for"
+msgid "Medlem i"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:created:settings:future_format"
@@ -5970,7 +5972,7 @@ msgid "@interval"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:access:label"
-msgid "Last access"
+msgid "Seneste tilgang"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:fields:access:settings:future_format"
@@ -6034,11 +6036,11 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:empty:area_text_custom:content"
-msgid "No people available."
+msgid "Ingen personer til rådighed."
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:combine:expose:label"
-msgid "Name or email contains"
+msgid "Navn eller e-mail indeholder"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:status:group_info:label"
@@ -6046,23 +6048,23 @@ msgid "Status"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:status:group_info:group_items:1:title"
-msgid "Active"
+msgid "Aktiv"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:status:group_info:group_items:2:title"
-msgid "Blocked"
+msgid "Blokeret"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:roles_target_id:expose:label"
-msgid "Role"
+msgid "Rolle"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:filters:permission:expose:label"
-msgid "Permission"
+msgid "Tilladelse"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:default:display_options:use_more_text"
-msgid "more"
+msgid "mere"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:data_export_1:display_title"
@@ -6174,19 +6176,19 @@ msgid "Side"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:page_1:display_options:menu:title"
-msgid "List"
+msgid "Vis"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:page_1:display_options:menu:description"
-msgid "Find and manage people interacting with your site."
+msgid "Find og håndtér personer som bruger dit site."
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:page_1:display_options:tab_options:title"
-msgid "People"
+msgid "Personer"
 msgstr ""
 
 msgctxt "views.view.user_admin_people:display:page_1:display_options:tab_options:description"
-msgid "Manage user accounts, roles, and permissions."
+msgid "Håndtér brugerkonti, roller og tilladelser."
 msgstr ""
 
 msgctxt "views.view.video_display:label"
@@ -6642,11 +6644,11 @@ msgid "Review submissions."
 msgstr ""
 
 msgctxt "views.view.who_s_new:label"
-msgid "Who's new"
+msgid "Nye brugere"
 msgstr ""
 
 msgctxt "views.view.who_s_new:description"
-msgid "Shows a list of the newest user accounts on the site."
+msgid "Viser en liste af de nyeste brugerkonti på sitet."
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:default:display_title"
@@ -6654,7 +6656,7 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:default:display_options:title"
-msgid "Who's new"
+msgid "Nye brugere"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:default:display_options:exposed_form:options:submit_button"
@@ -6678,19 +6680,19 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:block_1:display_title"
-msgid "Who's new"
+msgid "Nye brugere"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:block_1:display_options:display_description"
-msgid "A list of new users"
+msgid "En liste af nye brugere"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:block_1:display_options:block_description"
-msgid "Who's new"
+msgid "Nye brugere"
 msgstr ""
 
 msgctxt "views.view.who_s_new:display:block_1:display_options:block_category"
-msgid "User"
+msgid "Bruger"
 msgstr ""
 
 msgctxt "views.view.who_s_online:label"
@@ -6699,8 +6701,8 @@ msgstr ""
 
 msgctxt "views.view.who_s_online:description"
 msgid ""
-"Shows the user names of the most recently active users, and the total "
-"number of active users."
+"Viser navnene på de brugere, der senste har været aktive, og det "
+"totale antal af aktive brugere."
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_title"
@@ -6708,7 +6710,7 @@ msgid "Master"
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:title"
-msgid "Who's online"
+msgid "Hvem er online"
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:exposed_form:options:submit_button"
@@ -6732,7 +6734,7 @@ msgid "Faldende"
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:empty:area_text_custom:content"
-msgid "There are currently 0 users online."
+msgid "Der er i øjeblikket 0 brugere online."
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:filters:access:expose:label"
@@ -6741,24 +6743,24 @@ msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:filters:access:expose:description"
 msgid ""
-"A user is considered online for this long after they have last viewed "
-"a page."
+"En bruger bliver opfattet som online i dette tidsrum efter hun sidst "
+"har set en side."
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:default:display_options:header:result:content"
-msgid "There are currently @total users online."
+msgid "Der er i øjeblikket @total brugere online."
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:who_s_online_block:display_title"
-msgid "Who's online"
+msgid "Hvem er online"
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:who_s_online_block:display_options:display_description"
-msgid "A list of users that are currently logged in."
+msgid "En liste af indloggede brugere."
 msgstr ""
 
 msgctxt "views.view.who_s_online:display:who_s_online_block:display_options:block_description"
-msgid "Who's online"
+msgid "Hvem er online"
 msgstr ""
 
 msgctxt "webform.settings:settings:default_submit_button_label"
@@ -6943,7 +6945,7 @@ msgid "{Empty}"
 msgstr ""
 
 msgctxt "webform.settings:element:default_more_title"
-msgid "More"
+msgid "Mere"
 msgstr ""
 
 msgctxt "webform.settings:element:default_section_title_tag"
@@ -7521,7 +7523,7 @@ msgid "Languages"
 msgstr ""
 
 msgctxt "webform.webform_options.languages:category"
-msgid "Language"
+msgid "Sprog"
 msgstr ""
 
 msgctxt "webform.webform_options.likert_agreement:label"
@@ -7835,7 +7837,7 @@ msgid ""
 msgstr ""
 
 msgctxt "webform.webform_options.size:label"
-msgid "Size"
+msgid "Størrelse"
 msgstr ""
 
 msgctxt "webform.webform_options.size:category"
