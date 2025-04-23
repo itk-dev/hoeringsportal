@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [4.10.0] - 2025-04-22
 
+* [PR-492](https://github.com/itk-dev/hoeringsportal/pull/492)
+  * Updated Danish translations of names of days
 * [PR-498](https://github.com/itk-dev/hoeringsportal/pull/498)
   Fix broken design on public meeting page
 * [PR-487](https://github.com/itk-dev/hoeringsportal/pull/487)
@@ -30,9 +32,6 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [4.9.0] - 2025-03-25
 
-* [PR-492](https://github.com/itk-dev/hoeringsportal/pull/492)
-  * Updated Danish translations of names of days
-  * Set Drush URI
 * [PR-484](https://github.com/itk-dev/hoeringsportal/pull/484)
   Added token to `arduino/setup-task`
 * [PR-483](https://github.com/itk-dev/hoeringsportal/pull/483)
