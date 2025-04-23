@@ -10,11 +10,12 @@
 #  themes/custom/hoeringsportal/templates/newsletter-bottom-link.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/block/block--system-branding-block.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/block/block--system-menu-block--secondary-navigation.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/components/base-card.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/components/citizen-proposal-support-counter.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/content/node--citizen-proposal--teaser.html.twig: n/a
-#  themes/custom/hoeringsportal/templates/content/node--list-display.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--hearing--teaser.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig: n/a
-#  themes/custom/hoeringsportal/templates/content/node--teaser.html.twig: n/a
+#  themes/custom/hoeringsportal/templates/content/node--list-display.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/dataset/item-list--search-results.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-citizen-proposal.html.twig: n/a
 #  themes/custom/hoeringsportal/templates/ds/ds-2col-stacked--node-project.html.twig: n/a
@@ -49,8 +50,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-03-28 11:02+0100\n"
-"PO-Revision-Date: 2025-03-28 11:02+0100\n"
+"POT-Creation-Date: 2025-04-23 14:50+0200\n"
+"PO-Revision-Date: 2025-04-23 14:50+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
@@ -200,12 +201,44 @@ msgstr ""
 msgid "Phone"
 msgstr "Telefonnummer"
 
+#: themes/custom/hoeringsportal/templates/components/base-card.html.twig:9
+msgid "Hearing"
+msgstr "Høring"
+
+#: themes/custom/hoeringsportal/templates/components/base-card.html.twig:12
+msgid "Project"
+msgstr "Project"
+
+#: themes/custom/hoeringsportal/templates/components/base-card.html.twig:15
+msgid "Public meeting"
+msgstr "Begivenhed"
+
+#: themes/custom/hoeringsportal/templates/components/base-card.html.twig:18
+msgid "Article"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/components/base-card.html.twig:21
+msgid "Citizen proposal"
+msgstr ""
+
 #: themes/custom/hoeringsportal/templates/components/citizen-proposal-support-counter.html.twig:32
 msgid "Progress"
 msgstr ""
 
-#: themes/custom/hoeringsportal/templates/content/node--citizen-proposal--teaser.html.twig:82
+#: themes/custom/hoeringsportal/templates/content/node--citizen-proposal--teaser.html.twig:11
 msgid "End date"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--hearing--teaser.html.twig:33
+msgid "replies"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--hearing--teaser.html.twig:52 themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:58
+msgid "Meeting has been held"
+msgstr ""
+
+#: themes/custom/hoeringsportal/templates/content/node--hearing--teaser.html.twig:56 themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:44
+msgid "Meeting has been canceled"
 msgstr ""
 
 #: themes/custom/hoeringsportal/templates/content/node--list-display.html.twig:72
@@ -215,34 +248,6 @@ msgstr "Initiativ"
 #: themes/custom/hoeringsportal/templates/content/node--list-display.html.twig:80
 msgid "Information page"
 msgstr "Information"
-
-#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:89
-msgid "Public meeting"
-msgstr "Begivenhed"
-
-#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:93;97 themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:104;108
-msgid "Finished"
-msgstr "Afsluttet"
-
-#: themes/custom/hoeringsportal/templates/content/node--public-meeting--teaser.html.twig:105
-msgid "Cancelled"
-msgstr "Aflyst"
-
-#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:73
-msgid "Project"
-msgstr "Project"
-
-#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:97
-msgid "Start date"
-msgstr "Start dato"
-
-#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:101
-msgid "Upcoming"
-msgstr "På vej"
-
-#: themes/custom/hoeringsportal/templates/content/node--teaser.html.twig:112
-msgid "Reply date"
-msgstr "Svarfrist"
 
 #: themes/custom/hoeringsportal/templates/dataset/item-list--search-results.html.twig:38
 msgid "Your search yielded no result"

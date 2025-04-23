@@ -7,7 +7,3 @@ core_version_requirement: ^8.8 || ^9 || ^10
 dependencies:
   - field
   - hoeringsportal_deskpro
-
-# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
-'interface translation project': hoeringsportal_data
-'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

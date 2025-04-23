@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "011c619e270a8c6ec460201a588ce374",
+    "content-hash": "fc20525da9052632a9aed5a22432d744",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2248,6 +2248,32 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/config_import_locale"
             }
+        },
+        {
+            "name": "drupal/config_translation_po",
+            "version": "dev-3439416-added-drush-command",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git",
+                "reference": "327e06a6c8485642b62a4f73c0681971fca60fb8"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3"
+            },
+            "type": "drupal-module",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Configuration Translations to po file",
+            "homepage": "https://www.drupal.org/project/config_translation_po",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "issues": "https://www.drupal.org/project/issues/config_translation_po",
+                "source": "https://git.drupalcode.org/project/config_translation_po"
+            },
+            "time": "2025-03-31T10:26:37+00:00"
         },
         {
             "name": "drupal/core",
@@ -5758,16 +5784,16 @@
         },
         {
             "name": "drush/drush",
-            "version": "13.5.1",
+            "version": "13.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drush-ops/drush.git",
-                "reference": "16076b24532eb27aaf9e2b8bca1e05a74871c713"
+                "reference": "570a05dce7aea9770f17306808804290764127ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drush-ops/drush/zipball/16076b24532eb27aaf9e2b8bca1e05a74871c713",
-                "reference": "16076b24532eb27aaf9e2b8bca1e05a74871c713",
+                "url": "https://api.github.com/repos/drush-ops/drush/zipball/570a05dce7aea9770f17306808804290764127ad",
+                "reference": "570a05dce7aea9770f17306808804290764127ad",
                 "shasum": ""
             },
             "require": {
@@ -5894,7 +5920,7 @@
                 "issues": "https://github.com/drush-ops/drush/issues",
                 "security": "https://github.com/drush-ops/drush/security/advisories",
                 "slack": "https://drupal.slack.com/messages/C62H9CWQM",
-                "source": "https://github.com/drush-ops/drush/tree/13.5.1"
+                "source": "https://github.com/drush-ops/drush/tree/13.6.0"
             },
             "funding": [
                 {
@@ -5902,7 +5928,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-04T11:38:40+00:00"
+            "time": "2025-04-22T12:14:13+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -15156,6 +15182,63 @@
             }
         },
         {
+            "name": "drupal/potx",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/potx.git",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/potx-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "59657c40cb0427edd6644b301441625cc5a57e35"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1720516288",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL"
+            ],
+            "authors": [
+                {
+                    "name": "Gábor Hojtsy",
+                    "homepage": "https://www.drupal.org/user/4166"
+                },
+                {
+                    "name": "herom",
+                    "homepage": "https://www.drupal.org/user/1866898"
+                },
+                {
+                    "name": "penyaskito",
+                    "homepage": "https://www.drupal.org/user/959536"
+                }
+            ],
+            "description": "Translation template extractor",
+            "homepage": "https://www.drupal.org/project/potx",
+            "support": {
+                "source": "https://git.drupalcode.org/project/potx"
+            }
+        },
+        {
             "name": "drupal/tracer",
             "version": "1.0.4",
             "source": {
@@ -20497,6 +20580,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "chx/drupal-issue-fork": 20,
+        "drupal/config_translation_po": 20,
         "drupal/content_fixtures": 20,
         "drupal/email_registration": 5,
         "drupal/entityqueue": 15,

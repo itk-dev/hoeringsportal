@@ -4,7 +4,52 @@ version: '3'
 dotenv: ['.env.local', '.env']
 
 includes:
-  translation: ./task/Taskfile.translation.yml
+  translation:
+    taskfile: ./task/Taskfile.translation.yml
+    vars:
+      TRANSLATION_MODULES:
+        # Run `ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this list
+        - aarhus_hero
+
+        # Only used for development.
+        # - hoeringsportal_base_fixtures
+
+        - hoeringsportal_citizen_proposal
+        - hoeringsportal_citizen_proposal_archiving
+        - hoeringsportal_config_settings
+        - hoeringsportal_content_access
+        - hoeringsportal_content_blocks
+        - hoeringsportal_data
+        - hoeringsportal_deskpro
+        - hoeringsportal_forms
+        - hoeringsportal_hearing
+        - hoeringsportal_openid_connect
+        - hoeringsportal_project_timeline
+        - hoeringsportal_public_meeting
+        - hoeringsportal_quicklinks
+        - hoeringsportal_test_delta_sync_fixtures
+
+        - itk_admin
+        - itk_admin_links
+
+        # - itk_media_entity
+        # - migrate_subject_data
+
+      TRANSLATION_THEMES:
+        # Run `ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this []
+        - hoeringsportal
+
+        # - hoeringsportal_admin
+
+      TRANSLATION_LANGUAGES:
+        - da
+
+      # During testing and development, you can override TRANSLATION_MODULES and TRANSLATION_THEMES to not process all modules and themes, e.g.
+      #
+      # TRANSLATION_MODULES:
+      #   - hoeringsportal_citizen_proposal
+      #
+      # TRANSLATION_THEMES: []
 
 vars:
   # https://taskfile.dev/reference/templating/
@@ -15,47 +60,6 @@ vars:
 
   PRETIX_URL: '{{.TASK_PRETIX_URL | default "http://pretix.hoeringsportal.local.itkdev.dk"}}'
   PRETIX_ORGANIZER: '{{.TASK_PRETIX_ORGANIZER | default "dpl-cms"}}'
-
-  TRANSLATION_MODULES:
-    # Run `ls web/modules/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this list
-    - aarhus_hero
-
-    # Only used for development.
-    # - hoeringsportal_base_fixtures
-
-    - hoeringsportal_citizen_proposal
-    - hoeringsportal_citizen_proposal_archiving
-    - hoeringsportal_config_settings
-    - hoeringsportal_content_access
-    - hoeringsportal_content_blocks
-    - hoeringsportal_data
-    - hoeringsportal_deskpro
-    - hoeringsportal_forms
-    - hoeringsportal_hearing
-    - hoeringsportal_openid_connect
-    - hoeringsportal_project_timeline
-    - hoeringsportal_public_meeting
-    - hoeringsportal_quicklinks
-    - hoeringsportal_test_delta_sync_fixtures
-
-    - itk_admin
-    - itk_admin_links
-
-    # - itk_media_entity
-    # - migrate_subject_data
-
-  TRANSLATION_THEMES:
-    # Run `ls web/themes/custom/*/*.info.yml | xargs basename -s '.info.yml'` to get this []
-    - hoeringsportal
-
-    # - hoeringsportal_admin
-
-  # # During testing and development, you can override TRANSLATION_MODULES and TRANSLATION_THEMES to not process all modules and themes, e.g.
-  # #
-  TRANSLATION_MODULES:
-    - hoeringsportal_citizen_proposal
-
-  TRANSLATION_THEMES: []
 
 tasks:
   default:
@@ -72,7 +76,7 @@ tasks:
       - task composer-install
       - task assets-build
       - task drush -- --yes site:install --existing-config
-      - task: translations:import
+      - task: translation:import
       - task drush -- --yes cache:rebuild
       - task site-open
       - task site-open-admin
@@ -85,7 +89,7 @@ tasks:
       - task composer-install
       - task assets-build
       - task drush -- deploy
-      - task: translations:import
+      - task: translation:import
       - task drush -- --yes cache:rebuild
     silent: true
 
@@ -285,21 +289,4 @@ tasks:
       - task drush -- --yes content-fixtures:load
       - task drush -- --yes pm:uninstall content_fixtures
       - task compose-up
-    silent: true
-
-  translations:import:
-    cmds:
-      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:import --type=customized --override=all da ../translations/custom-translations.da.po)'
-      - task drush -- php:eval "var_export(\Drupal::state()->get('locale.translation.formulae', []))"
-      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''da'']))->render(), range(0, 5)));"'
-      - 'task drush -- php:eval "var_export(array_map(static fn (\$count) => (new \Drupal\Core\StringTranslation\PluralTranslatableMarkup(\$count, ''1 item'', ''@count items'', options: [''langcode'' => ''en'']))->render(), range(0, 5)));"'
-    silent: true
-
-  translations:export:
-    cmds:
-      - task compose -- exec phpfpm bash -c '(cd web && ../vendor/bin/drush locale:export da --types=customized > ../translations/custom-translations.da.po)'
-      # Fix plurals spec in PO file
-      # https://drupalsun.com/eelke/2020/08/17/tale-mistranslated-plurals
-      # https://www.drupal.org/project/drupal/issues/3496223
-      - 'task compose -- exec phpfpm sed -i "s/Plural-Forms: nplurals=2; plural=(n > 1);/Plural-Forms: nplurals=2; plural=(n != 1);/" translations/custom-translations.da.po'
     silent: true

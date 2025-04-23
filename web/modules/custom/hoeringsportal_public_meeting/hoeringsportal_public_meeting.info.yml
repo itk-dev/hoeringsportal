@@ -3,7 +3,3 @@ type: module
 description: 'Stuff related to public meeting content type'
 package: Hoeringsportal
 core_version_requirement: ^8.8 || ^9 || ^10
-
-# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
-'interface translation project': hoeringsportal_public_meeting
-'interface translation server pattern': modules/custom/%project/translations/%project.%language.po

@@ -5,7 +5,3 @@ package: ITK
 core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:drupal_psr6_cache
-
-# https://git.drupalcode.org/project/drupal/-/blob/11.x/core/modules/locale/locale.api.php
-'interface translation project': hoeringsportal_openid_connect
-'interface translation server pattern': modules/custom/%project/translations/%project.%language.po
