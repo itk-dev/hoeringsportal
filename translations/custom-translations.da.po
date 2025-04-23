@@ -3,14 +3,26 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2025-04-10 11:32+0200\n"
-"PO-Revision-Date: 2025-04-10 11:32+0200\n"
+"POT-Creation-Date: 2025-04-23 13:40+0200\n"
+"PO-Revision-Date: 2025-04-23 13:40+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Block type"
+msgstr "Block type"
+
+msgid "Content type"
+msgstr "Content type"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Content"
+msgstr "Content"
 
 msgid "Primary admin actions"
 msgstr "Primary admin actions"
@@ -536,17 +548,11 @@ msgstr "Next ›"
 msgid "Block description"
 msgstr "Block description"
 
-msgid "Block type"
-msgstr "Block type"
-
 msgid "Updated"
 msgstr "Updated"
 
 msgid "Operations"
 msgstr "Operations"
-
-msgid "Content"
-msgstr "Content"
 
 msgid "Find and manage content."
 msgstr "Find and manage content."
@@ -559,9 +565,6 @@ msgstr "Last »"
 
 msgid "Title"
 msgstr "Titel"
-
-msgid "Content type"
-msgstr "Content type"
 
 msgid "Author"
 msgstr "Author"
@@ -778,9 +781,6 @@ msgstr "There are currently 0 users online."
 msgid "A list of users that are currently logged in."
 msgstr "A list of users that are currently logged in."
 
-msgid "Description"
-msgstr "Beskrivelse"
-
 msgid "Hero (1440×360)"
 msgstr "Hero (1440w) - Crop"
 
@@ -809,15 +809,8 @@ msgstr ""
 msgid "Remove selected"
 msgstr "Fjern det valgte"
 
-msgctxt "Long month name"
-msgid "July"
-msgstr "juli"
-
 msgid "Nodes"
 msgstr "Indhold"
-
-msgid "Jul"
-msgstr "jul"
 
 msgid "Document"
 msgstr "Document"
@@ -867,109 +860,11 @@ msgstr "Media name"
 msgid "Initiative"
 msgstr "Initiativ"
 
-msgid "Find and manage media."
-msgstr ""
-
 msgid "Project info"
 msgstr "Initiativ info"
 
 msgid "Add another item"
 msgstr "Tilføj endnu et element"
-
-msgctxt "Long month name"
-msgid "January"
-msgstr "januar"
-
-msgctxt "Long month name"
-msgid "February"
-msgstr "februar"
-
-msgctxt "Long month name"
-msgid "March"
-msgstr "marts"
-
-msgctxt "Long month name"
-msgid "April"
-msgstr "april"
-
-msgctxt "Long month name"
-msgid "May"
-msgstr "maj"
-
-msgctxt "Long month name"
-msgid "June"
-msgstr "juni"
-
-msgctxt "Long month name"
-msgid "August"
-msgstr "august"
-
-msgctxt "Long month name"
-msgid "September"
-msgstr "september"
-
-msgctxt "Long month name"
-msgid "October"
-msgstr "oktober"
-
-msgctxt "Long month name"
-msgid "November"
-msgstr "november"
-
-msgctxt "Long month name"
-msgid "December"
-msgstr "december"
-
-msgid "Jan"
-msgstr "jan"
-
-msgid "Feb"
-msgstr "feb"
-
-msgid "Mar"
-msgstr "mar"
-
-msgid "May"
-msgstr "maj"
-
-msgid "Jun"
-msgstr "jun"
-
-msgid "Aug"
-msgstr "aug"
-
-msgid "Sep"
-msgstr "sep"
-
-msgid "Oct"
-msgstr "okt"
-
-msgid "Nov"
-msgstr "nov"
-
-msgid "Dec"
-msgstr "dec"
-
-msgid "Sunday"
-msgstr "søndag"
-
-msgid "Monday"
-msgstr "mandag"
-
-msgid "Tuesday"
-msgstr "tirsdag"
-
-msgid "Wednesday"
-msgstr "onsdag"
-
-msgid "Thursday"
-msgstr "torsdag"
-
-msgid "Friday"
-msgstr "fredag"
-
-msgid "Saturday"
-msgstr "lørdag"
 
 msgid "Materials"
 msgstr "Materialer"
@@ -1031,46 +926,6 @@ msgstr ""
 msgctxt "Entity type group"
 msgid "Content"
 msgstr "Indhold"
-
-msgctxt "Abbreviated month name"
-msgid "Jan"
-msgstr "jan"
-
-msgctxt "Abbreviated month name"
-msgid "Feb"
-msgstr "feb"
-
-msgctxt "Abbreviated month name"
-msgid "May"
-msgstr "maj"
-
-msgctxt "Abbreviated month name"
-msgid "Jun"
-msgstr "jun"
-
-msgctxt "Abbreviated month name"
-msgid "Jul"
-msgstr "jul"
-
-msgctxt "Abbreviated month name"
-msgid "Aug"
-msgstr "aug"
-
-msgctxt "Abbreviated month name"
-msgid "Sep"
-msgstr "sep"
-
-msgctxt "Abbreviated month name"
-msgid "Oct"
-msgstr "okt"
-
-msgctxt "Abbreviated month name"
-msgid "Nov"
-msgstr "nov"
-
-msgctxt "Abbreviated month name"
-msgid "Dec"
-msgstr "dec"
 
 msgid "Email addresses to notify when updates are available"
 msgstr "E-mailadresser, der underrettes, når opdateringer er tilgængelige"
@@ -1296,17 +1151,11 @@ msgstr "Projektgalleri"
 msgid "Point"
 msgstr "Vælg punkt på kort"
 
-msgid "Available date"
-msgstr ""
-
 msgid "You can select up to @maximum @entity_type (@remaining left)."
 msgstr "Du kan vælge op til @maximum @entity_type (@remaining tilbage)."
 
 msgid "Advanced Queue jobs"
 msgstr "Advanced queue jobs"
-
-msgid "<pre>{{ payload }}</pre>"
-msgstr ""
 
 msgid "Available from"
 msgstr "Available date"
@@ -1584,9 +1433,6 @@ msgstr ""
 msgid "Show hearing tickets"
 msgstr "Vis indkomne svar"
 
-msgid "Published on"
-msgstr "Publiceret"
-
 msgid "l, F j, Y - H:i"
 msgstr "l, j. F Y - H:i"
 
@@ -1675,14 +1521,8 @@ msgstr ""
 "Du har allerede støttet dette borgerforslag d. @support_date. Du kan "
 "kun støtte et forslag en gang. "
 
-msgid "Reset"
-msgstr "Nulstil"
-
 msgid "Preview"
 msgstr "Gennemse"
-
-msgid "Reset"
-msgstr "Nulstil"
 
 msgid "Created"
 msgstr "Oprettet"
@@ -1830,5 +1670,1247 @@ msgstr "Søgning på %search_terms gav ingen resultater"
 
 msgid "Try with less words or to phrase it differently"
 msgstr "Prøv med færre eller andre søgeord "
+
+msgid "Primary admin actions"
+msgstr "Primære adminsitratorhandlinger"
+
+msgid "Tabs"
+msgstr "Faner"
+
+msgid "Status messages"
+msgstr "Statusmeddelelser"
+
+msgid "Page title"
+msgstr "Sidetitel"
+
+msgid "Tools"
+msgstr "Værktøjer"
+
+msgid "Anonymous"
+msgstr "Anonym"
+
+msgid "Hero (1440×360)"
+msgstr "Hero (1440w) - Crop"
+
+msgid "Advanced Queue jobs"
+msgstr "Advanced queue jobs"
+
+msgid "Message"
+msgstr "Høringssvar"
+
+msgid "Available from"
+msgstr "Available date"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Full"
+msgstr "Fuld"
+
+msgid ""
+"This question is for testing whether or not you are a human visitor "
+"and to prevent automated spam submissions."
+msgstr ""
+"Please type the text you see in the captcha image to prove you are "
+"human"
+
+msgid "Plain text"
+msgstr "Ren tekst"
+
+msgid "Medium (220×220)"
+msgstr "Mellem (220×220)"
+
+msgid "Not specified"
+msgstr "Ikke angivet"
+
+msgid "Not applicable"
+msgstr "ikke relevant"
+
+msgid "Full content"
+msgstr "Fuldt indhold"
+
+msgid "Teaser"
+msgstr "Smagsprøve"
+
+msgid "Make content sticky"
+msgstr "Gør indhold klæbrigt"
+
+msgid "Make content unsticky"
+msgstr "Fjern klæbrighed"
+
+msgid "Promote content to front page"
+msgstr "Vis indhold på forsiden"
+
+msgid "Publish content"
+msgstr "Udgiv indhold"
+
+msgid "Save content"
+msgstr "Gem indhold"
+
+msgid "Remove content from front page"
+msgstr "Fjern indhold fra forsiden"
+
+msgid "Unpublish content"
+msgstr "Afpubliceer indhold"
+
+msgid "‹ previous"
+msgstr "‹ forrige"
+
+msgid "next ›"
+msgstr "næste ›"
+
+msgid "« first"
+msgstr "« første"
+
+msgid "last »"
+msgstr "sidste »"
+
+msgid "From"
+msgstr "Fra"
+
+msgid "Created"
+msgstr "Oprettet"
+
+msgid "To"
+msgstr "Til"
+
+msgid "Original language"
+msgstr "Originalt sprog"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Fallback date format"
+msgstr "Reservedatoformat"
+
+msgid "Default long date"
+msgstr "Standard lang dato"
+
+msgid "l, F j, Y - H:i"
+msgstr "\\d. j. F Y"
+
+msgid "Default medium date"
+msgstr "Standard mellem dato"
+
+msgid "D, m/d/Y - H:i"
+msgstr "D, d/m/Y - H:i"
+
+msgid "Default short date"
+msgstr "Standard kort dato"
+
+msgid "m/d/Y - H:i"
+msgstr "d/m/Y - H:i"
+
+msgid ""
+"@site is currently under maintenance. We should be back shortly. Thank "
+"you for your patience."
+msgstr ""
+"Vi er ved at opdatere @site. Vi er snart tilbage. Tak for din "
+"tålmodighed."
+
+msgid "User account menu"
+msgstr "Brugerkontomenu"
+
+msgid "Links related to the active user account"
+msgstr "Links relateret til den aktive brugerkonto"
+
+msgid "Administrative task links"
+msgstr "Links til administrative opgaver"
+
+msgid "Footer"
+msgstr "Sidefod"
+
+msgid "Site information links"
+msgstr "Links til informationen om sitet"
+
+msgid "Main navigation"
+msgstr "Primær navigation"
+
+msgid "Site section links"
+msgstr "Links til sitets sektioner"
+
+msgid "Tools"
+msgstr "Værktøjer"
+
+msgid "User tool links, often added by modules"
+msgstr "Bruger værktøjslinks, som typisk tilføjes af moduler"
+
+msgid "Taxonomy term page"
+msgstr "Termside"
+
+msgid "Register"
+msgstr "Opret konto"
+
+msgid "Compact"
+msgstr "Kompakt"
+
+msgid "User account"
+msgstr "Brugerkonto"
+
+msgid "Block the selected user(s)"
+msgstr "Blokér de(n) valgte bruger(e)"
+
+msgid "Cancel the selected user account(s)"
+msgstr "Opsig de valgte brugerkonti"
+
+msgid "Unblock the selected user(s)"
+msgstr "Fjern blokering af de(n) valgte bruger(e)"
+
+msgid "Account cancellation request for [user:display-name] at [site:name]"
+msgstr ""
+"Anmodning om opsigelse af konto for [user:display-name] på "
+"[site:name]"
+
+msgid ""
+"[user:display-name]\n"
+"\n"
+"A request to cancel your account has been "
+"made at [site:name].\n"
+"\n"
+"You may now cancel your account on "
+"[site:url-brief] by clicking this link or copying and pasting it into "
+"your browser:\n"
+"\n"
+"[user:cancel-url]\n"
+"\n"
+"NOTE: The cancellation of "
+"your account is not reversible.\n"
+"\n"
+"This link expires in one day and "
+"nothing will happen if it is not used.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"A request to cancel your account has "
+"been made at [site:name].\r\n"
+"\r\n"
+"You may now cancel your account on "
+"[site:url-brief] by clicking this link or copying and pasting it into "
+"your browser:\r\n"
+"\r\n"
+"[user:cancel-url]\r\n"
+"\r\n"
+"NOTE: The "
+"cancellation of your account is not reversible.\r\n"
+"\r\n"
+"This link "
+"expires in one day and nothing will happen if it is not "
+"used.\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "Replacement login information for [user:display-name] at [site:name]"
+msgstr "Ny login-information for [user:display-name] på [site:name]"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"A request to reset the password for your "
+"account has been made at [site:name].\n"
+"\n"
+"You may now log in by "
+"clicking this link or copying and pasting it into your "
+"browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be "
+"used once to log in and will lead you to a page where you can set your "
+"password. It expires after one day and nothing will happen if it's not "
+"used.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"A request to reset the password for your "
+"account has been made at [site:name].\r\n"
+"\r\n"
+"You may now log in by "
+"clicking this link or copying and pasting it into your "
+"browser:\r\n"
+"\r\n"
+"[user:one-time-login-url]\r\n"
+"\r\n"
+"This link can "
+"only be used once to log in and will lead you to a page where you can "
+"set your password. It expires after one day and nothing will happen if "
+"it's not used.\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "An administrator created an account for you at [site:name]"
+msgstr "En administrator har oprettet en konto til dig på [site:name]"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"A site administrator at [site:name] has "
+"created an account for you. You may now log in by clicking this link "
+"or copying and pasting it into your "
+"browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be "
+"used once to log in and will lead you to a page where you can set your "
+"password.\n"
+"\n"
+"After setting your password, you will be able to log in "
+"at [site:login-url] in the future using:\n"
+"\n"
+"username: "
+"[user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"A site administrator at [site:name] has "
+"created an account for you. You may now log in by clicking this link "
+"or copying and pasting it into your "
+"browser:\r\n"
+"\r\n"
+"[user:one-time-login-url]\r\n"
+"\r\n"
+"This link can "
+"only be used once to log in and will lead you to a page where you can "
+"set your password.\r\n"
+"\r\n"
+"After setting your password, you will be "
+"able to log in at [site:login-url] in the future "
+"using:\r\n"
+"\r\n"
+"username: [user:name]\r\n"
+"password: Your "
+"password\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "Account details for [user:display-name] at [site:name]"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. "
+"You may now log in by clicking this link or copying and pasting it "
+"into your browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can "
+"only be used once to log in and will lead you to a page where you can "
+"set your password.\n"
+"\n"
+"After setting your password, you will be able "
+"to log in at [site:login-url] in the future using:\n"
+"\n"
+"username: "
+"[user:name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Thank you for registering at "
+"[site:name]. You may now log in by clicking this link or copying and "
+"pasting it into your "
+"browser:\r\n"
+"\r\n"
+"[user:one-time-login-url]\r\n"
+"\r\n"
+"This link can "
+"only be used once to log in and will lead you to a page where you can "
+"set your password.\r\n"
+"\r\n"
+"After setting your password, you will be "
+"able to log in at [site:login-url] in the future "
+"using:\r\n"
+"\r\n"
+"username: [user:name]\r\n"
+"password: Your "
+"password\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid ""
+"Account details for [user:display-name] at [site:name] (pending admin "
+"approval)"
+msgstr ""
+"Kontoinformation for [user:display-name] på [site:name] (afventer "
+"godkendelse af administrator)"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Thank you for registering at [site:name]. "
+"Your application for an account is currently pending approval. Once it "
+"has been approved, you will receive another email containing "
+"information about how to log in, set your password, and other "
+"details.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Thank you for registering at "
+"[site:name]. Your application for an account is currently pending "
+"approval. Once it has been approved, you will receive another email "
+"containing information about how to log in, set your password, and "
+"other details.\r\n"
+"\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid ""
+"[user:display-name] has applied for an account.\n"
+"\n"
+"[user:edit-url]"
+msgstr ""
+"[user:display-name] has applied for an "
+"account.\r\n"
+"\r\n"
+"[user:edit-url]"
+
+msgid "Account details for [user:display-name] at [site:name] (approved)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (godkendt)"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account at [site:name] has been "
+"activated.\n"
+"\n"
+"You may now log in by clicking this link or copying "
+"and pasting it into your "
+"browser:\n"
+"\n"
+"[user:one-time-login-url]\n"
+"\n"
+"This link can only be "
+"used once to log in and will lead you to a page where you can set your "
+"password.\n"
+"\n"
+"After setting your password, you will be able to log in "
+"at [site:login-url] in the future using:\n"
+"\n"
+"username: "
+"[user:account-name]\n"
+"password: Your password\n"
+"\n"
+"--  [site:name] "
+"team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Your account at [site:name] has been "
+"activated.\r\n"
+"\r\n"
+"You may now log in by clicking this link or "
+"copying and pasting it into your "
+"browser:\r\n"
+"\r\n"
+"[user:one-time-login-url]\r\n"
+"\r\n"
+"This link can "
+"only be used once to log in and will lead you to a page where you can "
+"set your password.\r\n"
+"\r\n"
+"After setting your password, you will be "
+"able to log in at [site:login-url] in the future "
+"using:\r\n"
+"\r\n"
+"username: [user:account-name]\r\n"
+"password: Your "
+"password\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "Account details for [user:display-name] at [site:name] (blocked)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (blokeret)"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been "
+"blocked.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Your account on [site:name] has been "
+"blocked.\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "Account details for [user:display-name] at [site:name] (canceled)"
+msgstr "Kontoinformationer for [user:display-name] på [site:name] (opsagt)"
+
+msgid ""
+"[user:display-name],\n"
+"\n"
+"Your account on [site:name] has been "
+"canceled.\n"
+"\n"
+"--  [site:name] team"
+msgstr ""
+"[user:display-name],\r\n"
+"\r\n"
+"Your account on [site:name] has been "
+"canceled.\r\n"
+"\r\n"
+"--  [site:name] team"
+
+msgid "Anonymous user"
+msgstr "Anonym bruger"
+
+msgid "Authenticated user"
+msgstr "Godkendt bruger"
+
+msgid "Please log in to access this form."
+msgstr "Please login to access this form."
+
+msgid "Preview"
+msgstr "Gennemse"
+
+msgid "Please log in to access this submission."
+msgstr "Please login to access this submission."
+
+msgid "Please log in to access the uploaded file."
+msgstr "Please login to access the uploaded file."
+
+msgid "Preview"
+msgstr "Gennemse"
+
+msgid "Content blocks"
+msgstr "Brugerdefineret blokbibliotek"
+
+msgid "Find and manage content blocks."
+msgstr "Find og håndtér brugerdefinerede blokke."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Block description"
+msgstr "Beskrivelse"
+
+msgid "Block type"
+msgstr "Bloktype"
+
+msgid "Updated"
+msgstr "Opdateret"
+
+msgid "Operations"
+msgstr "Handlinger"
+
+msgid "Next ›"
+msgstr "Næste ›"
+
+msgid "‹ Previous"
+msgstr "‹ Forrige"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "There are no content blocks available."
+msgstr "There are no custom blocks available."
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Blocks"
+msgstr "Brugerdefineret blokbibliotek"
+
+msgid "Create and edit content blocks."
+msgstr "Create and edit block content."
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Find and manage files."
+msgstr "Find og håndtér filer."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "Temporary"
+msgstr "Midlertidig"
+
+msgid "Upload date"
+msgstr "Upload-dato"
+
+msgid "Changed date"
+msgstr "Ændringsdato"
+
+msgid "Used in"
+msgstr "Brugt i"
+
+msgid "@count place"
+msgid_plural "@count places"
+msgstr[0] "1 place"
+msgstr[1] "@count places"
+
+msgid "Next ›"
+msgstr "Næste ›"
+
+msgid "‹ Previous"
+msgstr "‹ Forrige"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "No files available."
+msgstr "Ingen tilgængelige filer."
+
+msgid "Filename"
+msgstr "Filnavn"
+
+msgid "Files overview"
+msgstr "Filoversigt"
+
+msgid "Entity type"
+msgstr "Entity-type"
+
+msgid "Registering module"
+msgstr "Registrerer modul"
+
+msgid "Use count"
+msgstr "Brug antal"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "File usage information for {{ arguments.fid }}"
+msgstr "Information om brug af filen {{ arguments.fid }}"
+
+msgid "Action"
+msgstr "Handling"
+
+msgid "No media available."
+msgstr "No content available."
+
+msgid "True"
+msgstr "Sandt"
+
+msgid "Archive"
+msgstr "Arkiv"
+
+msgid "All content, by month."
+msgstr "Alt indhold, efter måned."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Monthly archive"
+msgstr "Månedsarkiv"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "Block"
+msgstr "Blok"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Content"
+msgstr "Indhold"
+
+msgid "Find and manage content."
+msgstr "Find og håndtér indhold."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Content type"
+msgstr "Indholdstype"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Unpublished"
+msgstr "Ikke udgivet"
+
+msgid "Published"
+msgstr "Udgivet"
+
+msgid "Updated"
+msgstr "Opdateret"
+
+msgid "Operations"
+msgstr "Handlinger"
+
+msgid "Next ›"
+msgstr "Næste ›"
+
+msgid "‹ Previous"
+msgstr "‹ Forrige"
+
+msgid "« First"
+msgstr "« Første"
+
+msgid "Last »"
+msgstr "Sidste »"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "No content available."
+msgstr "Der er intet indhold at vise."
+
+msgid "Published status"
+msgstr "Publiceringsstatus"
+
+msgid "Language"
+msgstr "Sprog"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "Find and manage content"
+msgstr "Find og håndtér indhold"
+
+msgid "Recent content"
+msgstr "Seneste indhold"
+
+msgid "Recent content."
+msgstr "Seneste indhold."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "No content available."
+msgstr "Der er intet indhold at vise."
+
+msgid "More"
+msgstr "Mere"
+
+msgid "Block"
+msgstr "Blok"
+
+msgid "Glossary"
+msgstr "Ordliste"
+
+msgid "All content, by letter."
+msgstr "Alt indhold efter forbogstav."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Last update"
+msgstr "Seneste opdatering"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "Attachment"
+msgstr "Bilag"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "next ›"
+msgstr "næste ›"
+
+msgid "‹ previous"
+msgstr "‹ forrige"
+
+msgid "« first"
+msgstr "« første"
+
+msgid "last »"
+msgstr "sidste »"
+
+msgid "Taxonomy term"
+msgstr "Ord i ordforråd"
+
+msgid "Content belonging to a certain taxonomy term."
+msgstr "Indhold som er knyttet til en bestemt term."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "All"
+msgstr "Alle"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "People"
+msgstr "Personer"
+
+msgid "Find and manage people interacting with your site."
+msgstr "Find og håndtér personer som bruger dit site."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Bulk update"
+msgstr "Masseopdatering"
+
+msgid "Username"
+msgstr "Brugernavn"
+
+msgid "Blocked"
+msgstr "Blokeret"
+
+msgid "Active"
+msgstr "Aktiv"
+
+msgid "Roles"
+msgstr "Roller"
+
+msgid "Member for"
+msgstr "Medlem i"
+
+msgid "Last access"
+msgstr "Seneste tilgang"
+
+msgid "Operations"
+msgstr "Handlinger"
+
+msgid "Next ›"
+msgstr "Næste ›"
+
+msgid "‹ Previous"
+msgstr "‹ Forrige"
+
+msgid "« First"
+msgstr "« Første"
+
+msgid "Last »"
+msgstr "Sidste »"
+
+msgid "Items per page"
+msgstr "Antal elementer"
+
+msgid "- All -"
+msgstr "- Alle -"
+
+msgid "Offset"
+msgstr "Forskydning"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "No people available."
+msgstr "Ingen personer til rådighed."
+
+msgid "Name or email contains"
+msgstr "Navn eller e-mail indeholder"
+
+msgid "Role"
+msgstr "Rolle"
+
+msgid "Permission"
+msgstr "Tilladelse"
+
+msgid "more"
+msgstr "mere"
+
+msgid "Page"
+msgstr "Side"
+
+msgid "List"
+msgstr "Vis"
+
+msgid "Manage user accounts, roles, and permissions."
+msgstr "Håndtér brugerkonti, roller og tilladelser."
+
+msgid "Who's new"
+msgstr "Nye brugere"
+
+msgid "Shows a list of the newest user accounts on the site."
+msgstr "Viser en liste af de nyeste brugerkonti på sitet."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "A list of new users"
+msgstr "En liste af nye brugere"
+
+msgid "User"
+msgstr "Bruger"
+
+msgid ""
+"Shows the user names of the most recently active users, and the total "
+"number of active users."
+msgstr ""
+"Viser navnene på de brugere, der senste har været aktive, og det "
+"totale antal af aktive brugere."
+
+msgid "Default"
+msgstr "Master"
+
+msgid "Who's online"
+msgstr "Hvem er online"
+
+msgid "Apply"
+msgstr "Udfør"
+
+msgid "Reset"
+msgstr "Gendan"
+
+msgid "Sort by"
+msgstr "Sortér efter"
+
+msgid "Asc"
+msgstr "Stigende"
+
+msgid "Desc"
+msgstr "Faldende"
+
+msgid "There are currently 0 users online."
+msgstr "Der er i øjeblikket 0 brugere online."
+
+msgid "Last access"
+msgstr "Seneste tilgang"
+
+msgid ""
+"A user is considered online for this long after they have last viewed "
+"a page."
+msgstr ""
+"En bruger bliver opfattet som online i dette tidsrum efter hun sidst "
+"har set en side."
+
+msgid "There are currently @total users online."
+msgstr "Der er i øjeblikket @total brugere online."
+
+msgid "A list of users that are currently logged in."
+msgstr "En liste af indloggede brugere."
+
+msgid "Created"
+msgstr "Oprettet"
+
+msgid "Action"
+msgstr "Handling"
+
+msgid "Update URL alias"
+msgstr "Opdatér alternativ URL"
+
+msgid "Update URL alias"
+msgstr "Opdatér alternativ URL"
+
+msgid "Revision"
+msgstr "Version"
+
+msgctxt "Long month name"
+msgid "April"
+msgstr "april"
+
+msgid "Wednesday"
+msgstr "onsdag"
+
+msgctxt "Long month name"
+msgid "July"
+msgstr "juli"
+
+msgid "Jul"
+msgstr "jul"
+
+msgctxt "Long month name"
+msgid "January"
+msgstr "januar"
+
+msgctxt "Long month name"
+msgid "February"
+msgstr "februar"
+
+msgctxt "Long month name"
+msgid "March"
+msgstr "marts"
+
+msgctxt "Long month name"
+msgid "May"
+msgstr "maj"
+
+msgctxt "Long month name"
+msgid "June"
+msgstr "juni"
+
+msgctxt "Long month name"
+msgid "August"
+msgstr "august"
+
+msgctxt "Long month name"
+msgid "September"
+msgstr "september"
+
+msgctxt "Long month name"
+msgid "October"
+msgstr "oktober"
+
+msgctxt "Long month name"
+msgid "November"
+msgstr "november"
+
+msgctxt "Long month name"
+msgid "December"
+msgstr "december"
+
+msgid "Jan"
+msgstr "jan"
+
+msgid "Feb"
+msgstr "feb"
+
+msgid "Mar"
+msgstr "mar"
+
+msgid "May"
+msgstr "maj"
+
+msgid "Jun"
+msgstr "jun"
+
+msgid "Aug"
+msgstr "aug"
+
+msgid "Sep"
+msgstr "sep"
+
+msgid "Oct"
+msgstr "okt"
+
+msgid "Nov"
+msgstr "nov"
+
+msgid "Dec"
+msgstr "dec"
+
+msgid "Sunday"
+msgstr "søndag"
+
+msgid "Monday"
+msgstr "mandag"
+
+msgid "Tuesday"
+msgstr "tirsdag"
+
+msgid "Thursday"
+msgstr "torsdag"
+
+msgid "Friday"
+msgstr "fredag"
+
+msgid "Saturday"
+msgstr "lørdag"
+
+msgctxt "Abbreviated month name"
+msgid "Jan"
+msgstr "jan"
+
+msgctxt "Abbreviated month name"
+msgid "Feb"
+msgstr "feb"
+
+msgctxt "Abbreviated month name"
+msgid "May"
+msgstr "maj"
+
+msgctxt "Abbreviated month name"
+msgid "Jun"
+msgstr "jun"
+
+msgctxt "Abbreviated month name"
+msgid "Jul"
+msgstr "jul"
+
+msgctxt "Abbreviated month name"
+msgid "Aug"
+msgstr "aug"
+
+msgctxt "Abbreviated month name"
+msgid "Sep"
+msgstr "sep"
+
+msgctxt "Abbreviated month name"
+msgid "Oct"
+msgstr "okt"
+
+msgctxt "Abbreviated month name"
+msgid "Nov"
+msgstr "nov"
+
+msgctxt "Abbreviated month name"
+msgid "Dec"
+msgstr "dec"
+
+msgid "Published on"
+msgstr "Publiceret"
 
 
