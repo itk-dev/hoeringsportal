@@ -32,54 +32,27 @@ msgstr ""
 "PO-Revision-Date: 2025-04-23 14:49+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module:21
-msgid "About"
-msgstr "Om"
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module:22 modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0 modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:159
-msgid "Deskpro integration"
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:308;338
+msgid "@message"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.install:353
-msgid "Batch finished"
+#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:230
+msgid "@message: @body"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0
-msgid "Høringsportal Deskpro"
-msgstr ""
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:97
+msgid "@ticket_ref by @person_name"
+msgstr "@ticket_ref af @person_name"
 
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0
-msgid "Hoeringsportal"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.links.task.yml:0
-msgid "Deskpro settings"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.permissions.yml:0
-msgid "Access Deskpro settings"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Synchronize hearing"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAddBlock.php:7 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAuthorBlock.php:7 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketBlock.php:7 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketTitleBlock.php:5 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketsBlock.php:7
-msgid "Deskpro"
-msgstr "Sagsbehandlersystem"
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Departments autocomplete"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Agents autocomplete"
-msgstr ""
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:90
+msgid "@ticket_ref by @person_name on behalf of @organization (@organization_type)"
+msgstr "@ticket_ref af @person_name på vegne af @organization (@organization_type)"
 
 #: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
 msgid "API"
@@ -89,8 +62,29 @@ msgstr ""
 msgid "API docs"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Departments"
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module:21
+msgid "About"
+msgstr "Om"
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.permissions.yml:0
+msgid "Access Deskpro settings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:16
+msgid "Add hearing ticket"
+msgstr "Tilføj høringssvar"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:78
+msgid "Add hearing ticket form"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:95
+msgid "Address"
+msgstr "Adresse"
+
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraint.php:7
+msgctxt "Validation"
+msgid "Agent email"
 msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
@@ -98,115 +92,19 @@ msgid "Agents"
 msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Hearings"
-msgstr "Hearings"
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0 modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketsBlock.php:7
-msgid "Hearing tickets"
-msgstr "Høringssvar"
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Tickets"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Ticket"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Ticket messages"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
-msgid "Ticket attachments"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:78
-msgid "Add hearing ticket form"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:84
-msgid "Intro text"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:93
-msgid "Consent text"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:108
-msgid "Confirmation after ticket submit"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:113
-msgid "Confirmation text shown after ticket is submitted."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:114
-msgid "Available tokens: @tokens"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:123
-msgid "Representation list"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:136
-msgid "Representation title (@title)"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:142
-msgid "Is available"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:147
-msgid "Require organization"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:166
-msgid "Deskpro url"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:173
-msgid "Deskpro api code key"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:181
-msgid "Deskpro ticket custom fields"
+msgid "Agents autocomplete"
 msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:222
 msgid "Available departments"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:225
-msgid "The departments that can be attached to hearings."
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:114
+msgid "Available tokens: @tokens"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:225
-msgid "Please enter a valid Deskpro url and api code key and save the form."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:231
-msgid "Languages"
-msgstr "Languages"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:232
-msgid "Map Drupal node language to Deskpro ticket language"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:256
-msgid "Select Deskpro ticket language for Drupal node language @language"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:265
-msgid "Default Deskpro ticket language"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:272
-msgid "Deskpro data token"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:275
-msgid "Token used for accessing the data api."
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.install:353
+msgid "Batch finished"
 msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:280
@@ -217,124 +115,103 @@ msgstr ""
 msgid "Cache ttl in seconds."
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:288
-msgid "Synchronization delay"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:291
-msgid "Synchronization delay in seconds."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:296
-msgid "Save"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:309
-msgid "Please enter a valid url."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:318
-msgid "This field is already used by @name."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:349
-msgid "Your settings have been saved."
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:77
-msgid "Your full name"
-msgstr "For- og efternavn"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:83
-msgid "Email address"
-msgstr "E-mailadresse"
-
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:89
 msgid "Confirm email address"
 msgstr "Bekræft e-mailadresse"
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:95
-msgid "Address"
-msgstr "Adresse"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:96
-msgid "Your address will not be shown on the website."
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:108
+msgid "Confirmation after ticket submit"
 msgstr ""
-"Din adresse vil ikke blive vist på hjemmesiden - se evt. betingelser "
-"nederst på siden"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:111
-msgid "Postal code and city"
-msgstr "Postnummer og by"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:122
-msgid "Street and number"
-msgstr "Vejnavn og nummer"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:137
-msgid "My address is secret"
-msgstr "Jeg har adressebeskyttelse"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:152
-msgid "I represent"
-msgstr "Jeg udtaler mig som"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:168 modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:26
-msgid "Organization"
-msgstr "Organisation"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:174
-msgid "Subject"
-msgstr "Emne"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:180
-msgid "Message"
-msgstr "Høringssvar"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:185
-msgid "Select a file"
-msgstr "Vælg en fil"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:201
-msgid "I have red the terms and give my consent"
-msgstr "Jeg har læst betingelserne og giver mit samtykke"
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:211
-msgid "Send"
-msgstr ""
-
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:231
-msgid "Your name cannot contain numbers."
-msgstr "Dit navn må ikke indeholde tal."
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:236
 msgid "Confirmation email does not match email."
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:253
-msgid "Please enter your postal code and city."
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:113
+msgid "Confirmation text shown after ticket is submitted."
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:256
-msgid "Please enter your street and number."
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:93
+msgid "Consent text"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:325
-msgid "Your hearing ticket has being submitted and will appear here in a few minutes."
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-title.html.twig:17
+msgid "Create hearing reply"
+msgstr "Skriv høringssvar"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:265
+msgid "Default Deskpro ticket language"
 msgstr ""
-"Dit høringssvar er indsendt og bliver vist her på siden inden for "
-"kort tid."
+
+#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:703
+msgid "Deleted hearing replies from hearing @label (@id): @result"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Departments"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Departments autocomplete"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAddBlock.php:7
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAuthorBlock.php:7
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketBlock.php:7
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketTitleBlock.php:5
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketsBlock.php:7
+msgid "Deskpro"
+msgstr "Sagsbehandlersystem"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:173
+msgid "Deskpro api code key"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:272
+msgid "Deskpro data token"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.module:22
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:159
+msgid "Deskpro integration"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.links.task.yml:0
+msgid "Deskpro settings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:181
+msgid "Deskpro ticket custom fields"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:166
+msgid "Deskpro url"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket.html.twig:57
+msgid "Download ticket as pdf"
+msgstr "Download høringssvar som pdf"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:83
+msgid "Email address"
+msgstr "E-mailadresse"
+
+#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:710
+msgid "Error deleting hearing replies on hearing @label (@id): @message"
+msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:337
 msgid "Error submitting hearing ticket"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:308;338
-msgid "@message"
-msgstr ""
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-title.html.twig:15
+msgid "Hearing reply"
+msgstr "Høringssvar"
 
-#: modules/custom/hoeringsportal_deskpro/src/Plugin/AdvancedQueue/JobType/SynchronizeTicket.php:12
-msgid "Update or create ticket"
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketBlock.php:7
+msgid "Hearing ticket"
 msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketAddBlock.php:7
@@ -345,66 +222,151 @@ msgstr "Hearing ticket add"
 msgid "Hearing ticket author"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketBlock.php:7
-msgid "Hearing ticket"
-msgstr ""
-
 #: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketTitleBlock.php:5
 msgid "Hearing ticket title"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Plugin/Validation/Constraint/AgentEmailContraint.php:7
-msgctxt "Validation"
-msgid "Agent email"
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/Block/HearingTicketsBlock.php:7
+msgid "Hearing tickets"
+msgstr "Høringssvar"
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Hearings"
+msgstr "Hearings"
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0
+msgid "Hoeringsportal"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:703
-msgid "Deleted hearing replies from hearing @label (@id): @result"
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.info.yml:0
+msgid "Høringsportal Deskpro"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:710
-msgid "Error deleting hearing replies on hearing @label (@id): @message"
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:201
+msgid "I have red the terms and give my consent"
+msgstr "Jeg har læst betingelserne og giver mit samtykke"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:152
+msgid "I represent"
+msgstr "Jeg udtaler mig som"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:84
+msgid "Intro text"
 msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/src/Service/HearingHelper.php:230
-msgid "@message: @body"
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:142
+msgid "Is available"
 msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:231
+msgid "Languages"
+msgstr "Languages"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:232
+msgid "Map Drupal node language to Deskpro ticket language"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:180
+msgid "Message"
+msgstr "Høringssvar"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:137
+msgid "My address is secret"
+msgstr "Jeg har adressebeskyttelse"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:14
 msgid "Name"
 msgstr "Navn"
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:16
-msgid "Sent d."
-msgstr "Indsendt"
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:168
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:26
+msgid "Organization"
+msgstr "Organisation"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:225
+msgid "Please enter a valid Deskpro url and api code key and save the form."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:309
+msgid "Please enter a valid url."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:253
+msgid "Please enter your postal code and city."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:256
+msgid "Please enter your street and number."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:111
+msgid "Postal code and city"
+msgstr "Postnummer og by"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:123
+msgid "Representation list"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:136
+msgid "Representation title (@title)"
+msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:21
 msgid "Represents"
 msgstr "Udtaler sig som"
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:32
-msgid "Ticket reference"
-msgstr "Sagsnummer"
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:147
+msgid "Require organization"
+msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-title.html.twig:15
-msgid "Hearing reply"
-msgstr "Høringssvar"
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:296
+msgid "Save"
+msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-title.html.twig:17
-msgid "Create hearing reply"
-msgstr "Skriv høringssvar"
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:256
+msgid "Select Deskpro ticket language for Drupal node language @language"
+msgstr ""
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket.html.twig:57
-msgid "Download ticket as pdf"
-msgstr "Download høringssvar som pdf"
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:185
+msgid "Select a file"
+msgstr "Vælg en fil"
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:16
-msgid "Add hearing ticket"
-msgstr "Tilføj høringssvar"
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:211
+msgid "Send"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:16
+msgid "Sent d."
+msgstr "Indsendt"
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:18
 msgid "Show hearing tickets"
 msgstr "Vis indkomne svar"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:122
+msgid "Street and number"
+msgstr "Vejnavn og nummer"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:174
+msgid "Subject"
+msgstr "Emne"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:288
+msgid "Synchronization delay"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:291
+msgid "Synchronization delay in seconds."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Synchronize hearing"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:225
+msgid "The departments that can be attached to hearings."
+msgstr ""
 
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:47
 msgid "The hearing replies were deleted on @date"
@@ -413,33 +375,60 @@ msgstr "Høringssvarene er blevet fjernet d. @date"
 #: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:48
 msgid "The time limit for how long we are allowed to keep the replies has been reached so we where obligated to delete them."
 msgstr ""
-"<b>Høringssvarene er ikke længere synlige på "
-"høringsportalen</b>\r\n"
-"<p>Høringssvar bliver løbende slettet på deltag.aarhus.dk i takt "
-"med at høringer afsluttes. Det gør vi for at leve op til reglerne "
-"for GDPR og for at sikre persondata ikke ligger tilgængelig på "
-"høringsportalen i længere tid end, hvad der er nødvendigt.</p>\r\n"
-"<b>Du kan stadig få adgang til høringssvar, der ikke længere er "
-"synlige på høringsportalen.</b>\r\n"
-"<p>Hvis høringen handler om en sag, der er behandlet af Aarhus "
-"Byråd, kan du finde alle høringssvar, som bilag til den konkrete "
-"byrådssag. Du kan finde alle sager i byrådet med tilhørende bilag "
-"på Aarhus Kommunes hjemmeside – klik her:  <a "
-"href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside "
-"- dagsordener og referater</a></p>\r\n"
-"<p>Hvis sagen ikke ligger som en byrådssag og du har behov for at få "
-"indblik i gamle høringssvar, kan det ske gennem en "
-"aktindsigtsanmodning. Læs om dine muligheder for at søge aktindsigt: "
-"<a "
-"href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
+"<b>Høringssvarene er ikke længere synlige på høringsportalen</b>\n"
+"<p>Høringssvar bliver løbende slettet på deltag.aarhus.dk i takt med at høringer afsluttes. Det gør vi for at leve op til reglerne for GDPR og for at sikre persondata ikke ligger tilgængelig på høringsportalen i længere tid end, hvad der er nødvendigt.</p>\n"
+"<b>Du kan stadig få adgang til høringssvar, der ikke længere er synlige på høringsportalen.</b>\n"
+"<p>Hvis høringen handler om en sag, der er behandlet af Aarhus Byråd, kan du finde alle høringssvar, som bilag til den konkrete byrådssag. Du kan finde alle sager i byrådet med tilhørende bilag på Aarhus Kommunes hjemmeside – klik her:  <a href=\"https://dagsordener.aarhus.dk/?request.kriterie.udvalgId=ca5d760a-c7dd-4ee8-b29b-41e51d8a94b7\">Forside - dagsordener og referater</a></p>\n"
+"<p>Hvis sagen ikke ligger som en byrådssag og du har behov for at få indblik i gamle høringssvar, kan det ske gennem en aktindsigtsanmodning. Læs om dine muligheder for at søge aktindsigt: <a href=\"https://aarhus.dk/demokrati/aabenhed/aktindsigt\">https://aarhus.dk/demokrati/aabenhed/aktindsigt</a></p>"
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:90
-msgid "@ticket_ref by @person_name on behalf of @organization (@organization_type)"
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:318
+msgid "This field is already used by @name."
 msgstr ""
-"@ticket_ref af @person_name på vegne af @organization "
-"(@organization_type)"
 
-#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-tickets.html.twig:97
-msgid "@ticket_ref by @person_name"
-msgstr "@ticket_ref af @person_name"
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Ticket"
+msgstr ""
 
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Ticket attachments"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Ticket messages"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/templates/block/hoeringsportal-hearing-ticket-author.html.twig:32
+msgid "Ticket reference"
+msgstr "Sagsnummer"
+
+#: modules/custom/hoeringsportal_deskpro/hoeringsportal_deskpro.routing.yml:0
+msgid "Tickets"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:275
+msgid "Token used for accessing the data api."
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Plugin/AdvancedQueue/JobType/SynchronizeTicket.php:12
+msgid "Update or create ticket"
+msgstr ""
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:96
+msgid "Your address will not be shown on the website."
+msgstr "Din adresse vil ikke blive vist på hjemmesiden - se evt. betingelser nederst på siden"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:77
+msgid "Your full name"
+msgstr "For- og efternavn"
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:325
+msgid "Your hearing ticket has being submitted and will appear here in a few minutes."
+msgstr "Dit høringssvar er indsendt og bliver vist her på siden inden for kort tid."
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/HearingTicketAddForm.php:231
+msgid "Your name cannot contain numbers."
+msgstr "Dit navn må ikke indeholde tal."
+
+#: modules/custom/hoeringsportal_deskpro/src/Form/DeskproSettingsForm.php:349
+msgid "Your settings have been saved."
+msgstr ""

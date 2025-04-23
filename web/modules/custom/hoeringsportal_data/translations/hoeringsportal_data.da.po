@@ -25,117 +25,18 @@ msgstr ""
 "PO-Revision-Date: 2025-04-23 14:49+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0
-msgid "Høringsportal data"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0
-msgid "Custom data stuff."
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:9 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:9
-msgid "Hoeringsportal"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "API"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0;0;0
-msgid "Hearings"
-msgstr "Hearings"
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "Hearing tickets"
-msgstr "Høringssvar"
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "Public meetings"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "Maps"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "Maps configuration"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
-msgid "GeoJSON hearings (v2)"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/assets/js/hearing-edit.js:0 modules/custom/hoeringsportal_data/build/hearing-edit.js:0
-msgid "Reset point on map"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Drush/Commands/DrushCommands.php:106
-msgid "No hearings found"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Helper/HearingHelper.php:117
-msgid "Error finding hearing whose replies must be deleted: @message"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldFormatter/LocalplanDefaultFormatter.php:8 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/LocalplanDefaultWidget.php:9
-msgid "Localplan default"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldFormatter/MapDefaultFormatter.php:8 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:11
-msgid "Map default"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:48 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:63 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:55
-msgid "Type"
-msgstr "Type"
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:52 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:67
-msgid "Data"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:9
-msgid "Local plan"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:71 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:71
-msgid "GeoJSON"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:75 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:38;145
-msgid "Local plan ids"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:79 modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:39;146
-msgid "Point"
-msgstr "Vælg punkt på kort"
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:9
-msgid "Map display"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:42;147
-msgid "Local plan ids from node"
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:73
-msgid "Use <a href=\"@url_with_data\">@url</a> and copy the generated GeoJSON code into this fields."
-msgstr ""
-
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:85
-msgid "localplanids"
-msgstr ""
-
 #: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:87
 msgid "<a href=\"@url\">@url</a>"
 msgstr ""
 
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:113
-msgid "Enter address or coordinates (e.g. \"56.1535557,10.2120222\")"
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "API"
 msgstr ""
 
 #: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:142
@@ -146,8 +47,66 @@ msgstr ""
 msgid "Available types: @types"
 msgstr ""
 
-#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:185
-msgid "Please select a point on the map"
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0
+msgid "Custom data stuff."
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:52
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:67
+msgid "Data"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:113
+msgid "Enter address or coordinates (e.g. \"56.1535557,10.2120222\")"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Helper/HearingHelper.php:117
+msgid "Error finding hearing whose replies must be deleted: @message"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:71
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:71
+msgid "GeoJSON"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "GeoJSON hearings (v2)"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "Hearing tickets"
+msgstr "Høringssvar"
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0;0;0
+msgid "Hearings"
+msgstr "Hearings"
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:9
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:9
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.info.yml:0
+msgid "Høringsportal data"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:9
+msgid "Local plan"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:75
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:38;145
+msgid "Local plan ids"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:42;147
+msgid "Local plan ids from node"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldFormatter/LocalplanDefaultFormatter.php:8
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/LocalplanDefaultWidget.php:9
+msgid "Localplan default"
 msgstr ""
 
 #: modules/custom/hoeringsportal_data/src/Plugin/Validation/Constraint/MapConfiguration.php:7
@@ -155,3 +114,55 @@ msgctxt "Validation"
 msgid "Map configuration"
 msgstr "Map configuration"
 
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldFormatter/MapDefaultFormatter.php:8
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:11
+msgid "Map default"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:9
+msgid "Map display"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "Maps"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "Maps configuration"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Drush/Commands/DrushCommands.php:106
+msgid "No hearings found"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:185
+msgid "Please select a point on the map"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:79
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:39;146
+msgid "Point"
+msgstr "Vælg punkt på kort"
+
+#: modules/custom/hoeringsportal_data/hoeringsportal_data.routing.yml:0
+msgid "Public meetings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/assets/js/hearing-edit.js:0
+#: modules/custom/hoeringsportal_data/build/hearing-edit.js:0
+msgid "Reset point on map"
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/LocalplanItem.php:48
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldType/MapItem.php:63
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:55
+msgid "Type"
+msgstr "Type"
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:73
+msgid "Use <a href=\"@url_with_data\">@url</a> and copy the generated GeoJSON code into this fields."
+msgstr ""
+
+#: modules/custom/hoeringsportal_data/src/Plugin/Field/FieldWidget/MapDefaultWidget.php:85
+msgid "localplanids"
+msgstr ""

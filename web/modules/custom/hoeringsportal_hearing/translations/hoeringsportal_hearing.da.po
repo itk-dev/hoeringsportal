@@ -17,6 +17,7 @@ msgstr ""
 "PO-Revision-Date: 2025-04-23 14:49+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,28 +27,36 @@ msgstr ""
 msgid "About"
 msgstr "Om"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:25
-msgid "Hearings"
-msgstr "Hearings"
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:27
+msgid "Add hearing reply"
+msgstr "Tilføj høringssvar"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:55
-msgid "Hearing deadline: @deadline"
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:33
+msgid "Example: <code>[gis:minimap:409c1dc9-b604-4f1e-9df9-2768d050acb4]</code>"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:26
+msgid "GIS data"
 msgstr ""
 
 #: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:59
 msgid "Hearing deadline has passed"
 msgstr "Høringsfristen er overskredet"
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
-msgid "Hoeringsportal hearing"
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:55
+msgid "Hearing deadline: @deadline"
 msgstr ""
 
-#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
-msgid "Stuff related to hearing content type"
-msgstr ""
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.module:25
+msgid "Hearings"
+msgstr "Hearings"
 
 #: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
 msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
+msgid "Hoeringsportal hearing"
 msgstr ""
 
 #: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
@@ -55,50 +64,41 @@ msgid "Hoeringsportal hearing fixtures"
 msgstr ""
 
 #: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
-msgid "Provides hearing fixtures for the site."
-msgstr ""
-
-#: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
 msgid "ITK"
-msgstr ""
-
-#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:26
-msgid "GIS data"
 msgstr ""
 
 #: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:32
 msgid "Insert GIS minimap by UUID"
 msgstr ""
 
-#: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:33
-msgid "Example: <code>[gis:minimap:409c1dc9-b604-4f1e-9df9-2768d050acb4]</code>"
-msgstr ""
-
 #: modules/custom/hoeringsportal_hearing/src/TokenHelper.php:82
 msgid "Invalid GIS map UUID: @map_uuid"
 msgstr "Ugyldigt GIS-kort-uuid: @map_uuid"
 
-#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:27
-msgid "Add hearing reply"
-msgstr "Tilføj høringssvar"
-
-#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:80
-msgid "The start date must not be in the past"
+#: modules/custom/hoeringsportal_hearing/modules/hoeringsportal_hearing_fixtures/hoeringsportal_hearing_fixtures.info.yml:0
+msgid "Provides hearing fixtures for the site."
 msgstr ""
 
-#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:84
-msgid "The reply deadline must not be in the past"
-msgstr ""
-
-#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:87
-msgid "The reply deadline must not be before the start date"
-msgstr ""
-
-#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:91
-msgid "The delete date must not be in the past"
+#: modules/custom/hoeringsportal_hearing/hoeringsportal_hearing.info.yml:0
+msgid "Stuff related to hearing content type"
 msgstr ""
 
 #: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:94
 msgid "The delete date must not be before the reply deadline"
 msgstr ""
 
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:91
+msgid "The delete date must not be in the past"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:87
+msgid "The reply deadline must not be before the start date"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:84
+msgid "The reply deadline must not be in the past"
+msgstr ""
+
+#: modules/custom/hoeringsportal_hearing/src/Helper/FormHelper.php:80
+msgid "The start date must not be in the past"
+msgstr ""

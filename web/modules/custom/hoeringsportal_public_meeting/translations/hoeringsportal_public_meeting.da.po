@@ -16,41 +16,58 @@ msgstr ""
 "PO-Revision-Date: 2025-04-23 14:50+0200\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:32
+msgid "Address"
+msgstr "Adresse"
+
+#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:14;20
+msgid "Date"
+msgstr "Dato"
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:370
+msgid "Hearing deadline has passed"
+msgstr "Høringsfristen er overskredet"
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
+msgid "Hoeringsportal public meeting"
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:37
+msgid "Last signup date"
+msgstr "Tilmeldingsfrist"
+
 #: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:110
 msgid "Note: If this public meeting is cancelled you should go to @cancelLink to cancel all orders."
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:28
+msgid "Place"
+msgstr "Lokation"
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:275
+msgid "Please enter a location"
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:281
+msgid "Please enter a start time"
 msgstr ""
 
 #: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:212;231
 msgid "Please enter a value!"
 msgstr ""
 
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:255
-msgid "The registration deadline must not be in the past."
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:265;294
-msgid "The meeting time must not be in the past."
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:268;297
-msgid "The registration deadline must not be after the meeting starts."
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:275
-msgid "Please enter a location"
-msgstr ""
-
 #: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:278
 msgid "Please enter an address"
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:281
-msgid "Please enter a start time"
 msgstr ""
 
 #: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:284
@@ -61,59 +78,42 @@ msgstr ""
 msgid "Please enter number of spots"
 msgstr ""
 
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:301
-msgid "The meeting end time must be after the start time."
-msgstr "Sluttidspunktet skal være efter starttidspunktet."
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:370
-msgid "Hearing deadline has passed"
-msgstr "Høringsfristen er overskredet"
+#: modules/custom/hoeringsportal_public_meeting/src/Plugin/Block/PublicMeetingSummaryBlock.php:10
+msgid "Public meeting"
+msgstr "Begivenhed"
 
 #: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:374
 msgid "Public meeting cancelled"
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
-msgid "Hoeringsportal public meeting"
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
-msgid "Stuff related to public meeting content type"
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
-msgid "Hoeringsportal"
 msgstr ""
 
 #: modules/custom/hoeringsportal_public_meeting/src/Plugin/Block/PublicMeetingSummaryBlock.php:10
 msgid "Public meeting summary"
 msgstr ""
 
-#: modules/custom/hoeringsportal_public_meeting/src/Plugin/Block/PublicMeetingSummaryBlock.php:10
-msgid "Public meeting"
-msgstr "Begivenhed"
-
-#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:14;20
-msgid "Date"
-msgstr "Dato"
-
-#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:17;23
-msgid "Time"
-msgstr ""
-
-#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:28
-msgid "Place"
-msgstr "Lokation"
-
-#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:32
-msgid "Address"
-msgstr "Adresse"
-
-#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:37
-msgid "Last signup date"
-msgstr "Tilmeldingsfrist"
-
 #: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:41
 msgid "Sign up for public meeting"
 msgstr "Tilmeld dig her"
 
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.info.yml:0
+msgid "Stuff related to public meeting content type"
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:301
+msgid "The meeting end time must be after the start time."
+msgstr "Sluttidspunktet skal være efter starttidspunktet."
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:265;294
+msgid "The meeting time must not be in the past."
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:268;297
+msgid "The registration deadline must not be after the meeting starts."
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/hoeringsportal_public_meeting.module:255
+msgid "The registration deadline must not be in the past."
+msgstr ""
+
+#: modules/custom/hoeringsportal_public_meeting/templates/hoeringsportal-public-meeting-summary.html.twig:17;23
+msgid "Time"
+msgstr ""
