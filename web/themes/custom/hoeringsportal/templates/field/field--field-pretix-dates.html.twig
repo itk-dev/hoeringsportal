@@ -36,79 +36,80 @@
  * @see template_preprocess_field()
  */
 #}
-<div class="row">
-  <div class="col">
-    {% for item in items %}
-      {% set variables = item.content['#variables'] %}
-      {% set node = variables['entity'] %}
-      {% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
-      {% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
-      {% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
-      {% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
-      {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      {% for item in items %}
+        {% set variables = item.content['#variables'] %}
+        {% set node = variables['entity'] %}
+        {% set meeting_cancelled = public_meeting_helper.isCancelled(node) %}
+        {% set meeting_has_been_held = public_meeting_helper.hasBeenHeld(node) %}
+        {% set registration_deadline_passed = public_meeting_helper.isDeadlinePassed(node) %}
+        {% set sign_up_url = public_meeting_helper.getPretixSignUpUrl(variables.data) %}
+        {% set availability = public_meeting_helper.getPretixAvailability(variables.data) %}
 
-      <div class="d-block d-lg-none bg-white p-3 signup-responsive">
-        <div>
-          <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
-          {{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}
-        </div>
-        <div>
-          <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
-          {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
-        </div>
-        <div>
-          <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
-          {{ variables.location }}
-        </div>
-        <div>
-          <h5 class="h5-responsive">{{ 'Address'|t }}</h5>
-          {{ variables.address }}
-        </div>
-        <div>
-          <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
-          {% if availability.available_number|default(false) %}
-            {{ availability.available_number }}/{{ availability.total_size }}
-          {% else %}
-            {{ variables.spots }}/{{ variables.spots }}
-          {% endif %}
-          <div class="mt-3">
-
-            {% if meeting_cancelled %}
-              <div class="pretix-alert meeting-has-been-cancelled">{{ 'Meeting has been cancelled'|t }}</div>
-            {% elseif meeting_has_been_held %}
-              <div class="pretix-alert meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
+        <div class="d-block d-lg-none bg-white p-3 signup-responsive">
+          <div>
+            <h5 class="h5-responsive">{{ 'Date'|t }}</h5>
+            {{ variables.time_from|date('U')|format_date('hoeringsportal_date_long') }}
+          </div>
+          <div>
+            <h5 class="h5-responsive">{{ 'Time'|t }}</h5>
+            {{ variables.time_from|date('U')|format_date('hoeringsportal_time') }}–{{ variables.time_to|date('U')|format_date('hoeringsportal_time') }}
+          </div>
+          <div>
+            <h5 class="h5-responsive">{{ 'Location'|t }}</h5>
+            {{ variables.location }}
+          </div>
+          <div>
+            <h5 class="h5-responsive">{{ 'Address'|t }}</h5>
+            {{ variables.address }}
+          </div>
+          <div>
+            <h5 class="h5-responsive">{{ 'Spots'|t }}</h5>
+            {% if availability.available_number|default(false) %}
+              {{ availability.available_number }}/{{ availability.total_size }}
             {% else %}
-              {% if registration_deadline_passed %}
-                {# @TODO: Design: styling of "alert" #}
-                <div class="pretix-alert pretix-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
-              {% elseif sign_up_url %}
-                <a href="{{ sign_up_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
-                  {{ 'Sign up'|t }}
-                  <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
-                </a>
-              {% endif %}
+              {{ variables.spots }}/{{ variables.spots }}
             {% endif %}
+            <div class="mt-3">
+              {% if meeting_cancelled %}
+                <div class="pretix-alert meeting-has-been-cancelled">{{ 'Meeting has been cancelled'|t }}</div>
+              {% elseif meeting_has_been_held %}
+                <div class="pretix-alert meeting-has-been-held">{{ 'Meeting has already been held'|t }}</div>
+              {% else %}
+                {% if registration_deadline_passed %}
+                  {# @TODO: Design: styling of "alert" #}
+                  <div class="pretix-alert pretix-alert-registration-deadline-passed">{{ 'Registration deadline passed'|t }}</div>
+                {% elseif sign_up_url %}
+                  <a href="{{ sign_up_url }}" class="btn btn-primary btn-sm public-meeting-sign-up" target="_blank">
+                    {{ 'Sign up'|t }}
+                    <span class="sr-only">({{ 'Opens in a new tab'|trans }})</span>
+                  </a>
+                {% endif %}
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
-    {% endfor %}
+      {% endfor %}
 
-    <table class="table d-none d-lg-table pb-5 pt-4">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">{{ 'Location'|t }}</th>
-          <th scope="col">{{ 'Date'|t }}</th>
-          <th scope="col">{{ 'Time'|t }}</th>
-          <th scope="col">{{ 'Spots'|t }}</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody class="bg-white">
-        {% for item in items %}
-          {{ item.content }}
-        {% endfor %}
-      </tbody>
-    </table>
+      <table class="table d-none d-lg-table pb-5 pt-4">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">{{ 'Location'|t }}</th>
+            <th scope="col">{{ 'Date'|t }}</th>
+            <th scope="col">{{ 'Time'|t }}</th>
+            <th scope="col">{{ 'Spots'|t }}</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          {% for item in items %}
+            {{ item.content }}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

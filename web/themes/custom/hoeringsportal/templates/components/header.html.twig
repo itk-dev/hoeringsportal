@@ -1,12 +1,17 @@
 {% if header['dynamic_block_field:node-hearing_warning'] is defined %}
   {{ header['dynamic_block_field:node-hearing_warning'] }}
 {% endif %}
+{% if header['dynamic_block_field:node-public_meeting_warning'] is defined %}
+  {{ header['dynamic_block_field:node-public_meeting_warning'] }}
+{% endif %}
 <div class="container">
   <div class="row">
     <div class="col-md-8 my-3 my-md-5">
       <h1 class="title underlined is-white hero__title">
         {% if header['dynamic_block_field:node-hearing_warning'] is defined %}
           {{ header|without('dynamic_block_field:node-hearing_warning') }}
+        {% elseif header['dynamic_block_field:node-public_meeting_warning'] is defined %}
+          {{ header|without('dynamic_block_field:node-public_meeting_warning') }}
         {% else %}
           {{ header }}
         {% endif %}
