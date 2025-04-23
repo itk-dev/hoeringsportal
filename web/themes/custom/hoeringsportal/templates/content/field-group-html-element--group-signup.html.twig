@@ -18,24 +18,31 @@
 
 {% if element.field_hidden_signup[0]['#markup'] != 1 %}
   <div class="signup">
-    <{{ wrapper_element }} {{ attributes }}>
-      {% if title %}
-      <{{ title_element }}{{ title_attributes }}>{{ title }}</{{ title_element }}>
-      {% endif %}
-      {% if collapsible %}
-      <div class="field-group-wrapper">
-      {% endif %}
-        {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
-          {{ element.field_registration_deadline }}
-          {{ element.field_pretix_dates }}
-        {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
-          {{ element.field_registration_deadline }}
-          {{ element.field_signup_link }}
-          {{ element.field_signup_text }}
-        {% endif %}
-      {% if collapsible %}
+      <div class="container px-md-0">
+        <div class="row py-md-3">
+          {% if title %}
+            <div class="col-md-8">
+              <{{ title_element }}{{ title_attributes }}>{{ title }}</{{ title_element }}>
+            </div>
+          {% endif %}
+
+          {% if collapsible %}
+            <div class="field-group-wrapper">
+          {% endif %}
+
+          {% if element.field_signup_selection[0]['#markup'] == 'pretix' %}
+            {{ element.field_registration_deadline }}
+            {{ element.field_pretix_dates }}
+          {% elseif element.field_signup_selection[0]['#markup'] == 'manual' %}
+            {{ element.field_registration_deadline }}
+            {{ element.field_signup_link }}
+            {{ element.field_signup_text }}
+          {% endif %}
+
+          {% if collapsible %}
+            </div>
+          {% endif %}
+        </div>
       </div>
-      {% endif %}
-    </{{ wrapper_element }}>
   </div>
 {% endif %}
