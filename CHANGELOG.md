@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [4.10.0] - 2025-04-22
 
+* [PR-487](https://github.com/itk-dev/hoeringsportal/pull/487)
+  Added statistics
 * [PR-428](https://github.com/itk-dev/hoeringsportal/pull/428)
   Upgraded to PHP 8.4
 * [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
