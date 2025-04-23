@@ -1672,7 +1672,7 @@ msgid "Try with less words or to phrase it differently"
 msgstr "Prøv med færre eller andre søgeord "
 
 msgid "Primary admin actions"
-msgstr "Primære adminsitratorhandlinger"
+msgstr "Primære administratorhandlinger"
 
 msgid "Tabs"
 msgstr "Faner"
