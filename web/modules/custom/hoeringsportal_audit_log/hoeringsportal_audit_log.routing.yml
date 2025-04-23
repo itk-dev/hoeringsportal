@@ -1,0 +1,7 @@
+hoeringsportal_audit_log.settings:
+  path: '/admin/config/audit_log'
+  defaults:
+    _form: '\Drupal\hoeringsportal_audit_log\Form\SettingsForm'
+    _title: 'Audit log'
+  requirements:
+    _permission: 'administer site configuration'

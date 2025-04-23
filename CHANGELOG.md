@@ -86,6 +86,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Added department access check.
 * [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
   Set correct Danish pluralization. Remove superfluous docker service.
+* [PR-447](https://github.com/itk-dev/hoeringsportal/pull/447)
+  * Add hoeringsportalen module for configuring [os2web_audit](https://github.com/OS2web/os2web_audit)
 * [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)
   Cleaned up archiving code and added web profiler
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)

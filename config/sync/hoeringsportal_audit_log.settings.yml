@@ -1,0 +1,92 @@
+logged_route_names: {  }
+types:
+  node:
+    citizen_proposal:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    hearing:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    landing_page:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    page_map:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    project:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    project_main_page:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    project_page:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    public_meeting:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+    static_page:
+      -
+        entity__dot__node__dot__canonical: 0
+        entity__dot__node__dot__delete_form: 0
+        entity__dot__node__dot__delete_multiple_form: 0
+        entity__dot__node__dot__edit_form: 0
+        entity__dot__node__dot__version_history: 0
+        entity__dot__node__dot__revision: 0
+        entity__dot__node__dot__display: 0
+  user:
+    user:
+      -
+        entity__dot__user__dot__canonical: 0
+        entity__dot__user__dot__edit_form: 0
+        entity__dot__user__dot__cancel_form: 0
+        entity__dot__user__dot__collection: 0
+        entity__dot__user__dot__display: 0
