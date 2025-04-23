@@ -34,7 +34,9 @@ final class ControllerListener implements EventSubscriberInterface {
   /**
    * Audit on route change, by configured routes.
    *
-   * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event The event to process.
+   * @param \Symfony\Component\HttpKernel\Event\ControllerEvent $event
+   *   The event
+   *   to process.
    */
   public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
@@ -42,7 +44,8 @@ final class ControllerListener implements EventSubscriberInterface {
     $routesThatShouldBeLogged = $this->configHelper->getRouteNames();
 
     if (in_array($currentRouteName, $routesThatShouldBeLogged)) {
-      // Early return, if the route is in config no need to do anything besides auditlog.
+      // Early return, if the route is in config no need to do anything besides
+      // auditlog.
       $this->logAuditMessage($pathInfo);
       return;
     }
@@ -52,7 +55,8 @@ final class ControllerListener implements EventSubscriberInterface {
       if ($routeParameter instanceof EntityInterface) {
         $entityTypeId = $routeParameter->getEntityTypeId();
         $nodeType = NULL;
-        // If it is a node, it has the getType, and we need the nodetype for the config.
+        // If it is a node, it has the getType, and we need the nodetype for the
+        // config.
         if ($entityTypeId === 'node') {
           /** @var \Drupal\node\Entity\Node $routeParameter */
           $nodeType = $routeParameter->getType();
@@ -68,7 +72,8 @@ final class ControllerListener implements EventSubscriberInterface {
   /**
    * Log the path and user email.
    *
-   * @param string $info The path info to include in the message.
+   * @param string $info
+   *   The path info to include in the message.
    */
   private function logAuditMessage($info): void {
     $request = $this->requestStack->getCurrentRequest();

@@ -23,11 +23,16 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Constructs a new form object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory A config factory for retrieving required config
-   *   objects.
-   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider The route provider service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager The entity type manager.
-   * @param \Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper $configHelper The configuration helper.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   *   A config
+   *   factory for retrieving required config objects.
+   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
+   *   The route
+   *   provider service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
+   * @param \Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper $configHelper
+   *   The configuration helper.
    */
   public function __construct(ConfigFactoryInterface $configFactory, protected RouteProviderInterface $routeProvider, protected EntityTypeManagerInterface $entityTypeManager, protected ConfigHelper $configHelper) {
     parent::__construct($configFactory);
@@ -82,8 +87,9 @@ final class SettingsForm extends ConfigFormBase {
       '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
     ];
 
-    // EntityType (implements EntityTypeInterface) contains meta data for entity types, e.g. node, taxonomy term. Below
-    // getDefinitions, return the current definitions in the Drupal installation, and their meta data.
+    // EntityType (implements EntityTypeInterface) contains meta data for entity
+    // types, e.g. node, taxonomy term. Below getDefinitions, return the current
+    // definitions in the Drupal installation, and their meta data.
 
     /** @var \Drupal\Core\Entity\EntityTypeInterface[] $definitions */
     $definitions = $this->entityTypeManager->getDefinitions();
@@ -94,23 +100,25 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
 
-    // In the helper, I have created a limit for which entity types that can be audited.
+    // In the helper, I have created a limit for which entity types that can be
+    // audited.
     $enabledAuditIds = $this->configHelper->getEnabledAuditIds();
     foreach ($definitions as $definitionId => $definition) {
       if (in_array($definitionId, $enabledAuditIds)) {
 
-        // If the entity type has a bundle (subtype/different types of content) E.g. for node it is "node_type", and for
-        // user NULL.
+        // If the entity type has a bundle (subtype/different types of content)
+        // E.g. for node it is "node_type", and for user NULL.
         $bundleEntityType = $definition->getBundleEntityType();
         if ($bundleEntityType) {
           $storage = $this->entityTypeManager->getStorage($bundleEntityType);
-          // If the entity type has a bundle, we use that as the types An example of a node_type in this project is a
-          // citizen_proposal.
+          // If the entity type has a bundle, we use that as the types An
+          // example of a node_type in this project is a citizen_proposal.
           $types = $storage->loadMultiple();
         }
         else {
-          // If the bundle is NULL, meaning there are no bundles, we have reached "the bottom" of the tree and therefore
-          // we use the definition as type.
+          // If the bundle is NULL, meaning there are no bundles, we have
+          // reached "the bottom" of the tree and therefore we use the
+          // definition as type.
           $types = [$definition];
         }
 
@@ -127,15 +135,17 @@ final class SettingsForm extends ConfigFormBase {
             '#collapsible' => TRUE,
           ];
 
-          // Below loops through the subtypes/bundles of the definition, and in the case where there are no bundles, it
-          // uses the definition.
+          // Below loops through the subtypes/bundles of the definition, and in
+          // the case where there are no bundles, it uses the definition.
           foreach ($types as $type) {
             $typeId = $type->id();
 
-            // For the entity type with bundles (e.g. node), the definitionId will have multiple entries (e.g.
-            // citizen_proposal, static_page) For the entity type without bundles, there will be one entry with a sub
-            // entry called the same E.g. user with the sub entry user (as both $definitionId and $typeId is user
-            // because they are the id of the same entity type)
+            // For the entity type with bundles (e.g. node), the definitionId
+            // will have multiple entries (e.g. citizen_proposal, static_page)
+            // For the entity type without bundles, there will be one entry with
+            // a sub entry called the same E.g. user with the sub entry user (as
+            // both $definitionId and $typeId is user because they are the id of
+            // the same entity type)
             $form['types'][$definitionId][$typeId] = [
               '#type' => 'fieldset',
               '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
@@ -144,14 +154,16 @@ final class SettingsForm extends ConfigFormBase {
 
             $options = [];
 
-            // Here, the routes for the entity types are created as checkboxes, so the user can check the routes that
-            // are supposed to be audit logged.
+            // Here, the routes for the entity types are created as checkboxes,
+            // so the user can check the routes that are supposed to be audit
+            // logged.
             foreach ($linkTemplates as $path) {
               $matches = $this->routeProvider->getRoutesByPattern($path)->all();
               if (count($matches) > 0) {
                 // RouteKey is the name we are interested in, e.g. canonical.
                 $routeKey = array_key_first($matches);
-                // RouteKey is the more human understandable name, e.g. '/node/{node}'.
+                // RouteKey is the more human understandable name, e.g.
+                // '/node/{node}'.
                 $routeValue = reset($matches)->getPath();
                 $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
               }
@@ -173,10 +185,13 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Get default values for checkboxes.
    *
-   * @param string $definitionId definitionId.
-   * @param string $typeId typeId.
+   * @param string $definitionId
+   *   definitionId.
+   * @param string $typeId
+   *   typeId.
    *
-   * @return array<string, string> Default values from config.
+   * @return array<string, string>
+   *   Default values from config.
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array {
     $configTypes = $this->configHelper->getConfiguration('types');
@@ -205,9 +220,11 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Split string by newline and trim each item.
    *
-   * @param string $input Input.
+   * @param string $input
+   *   Input.
    *
-   * @return array<int, string> Array from string, entries separated by end of line.
+   * @return array<int, string> Array from string, entries separated by end of
+   *   line.
    */
   private function fromStringToArray(string $input): array {
     return array_filter(array_map('trim', explode(PHP_EOL, $input)));
@@ -216,9 +233,11 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Makes the array into a newline separated string.
    *
-   * @param array<string, string> $input Input.
+   * @param array<string, string> $input
+   *   Input.
    *
-   * @return string String from array.
+   * @return string
+   *   String from array.
    */
   private function fromArrayToString(array $input): string {
     return implode(PHP_EOL, $input);
