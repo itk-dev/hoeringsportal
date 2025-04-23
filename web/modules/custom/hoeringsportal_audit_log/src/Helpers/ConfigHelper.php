@@ -103,7 +103,7 @@ class ConfigHelper {
    *   The current route.
    * @param string $entityTypeId
    *   The id of the entity type.
-   * @param string|mixed|null $bundleType
+   * @param string|null $bundleType
    *   The bundle type, if any.
    *
    * @return bool
