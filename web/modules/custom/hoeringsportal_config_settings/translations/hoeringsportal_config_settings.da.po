@@ -1,0 +1,256 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.install: n/a
+#  modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.info.yml: n/a
+#  modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.links.menu.yml: n/a
+#  modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.links.task.yml: n/a
+#  modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.routing.yml: n/a
+#  modules/custom/hoeringsportal_config_settings/src/Controller/PageController.php: n/a
+#  modules/custom/hoeringsportal_config_settings/src/Form/HearingSettingsForm.php: n/a
+#  modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-04-23 14:49+0200\n"
+"PO-Revision-Date: 2025-04-23 14:49+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:202
+msgid "Citizen proposal teaser default image"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:164
+msgid "Default images"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:131
+msgid "External references"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:47
+msgid "Footer"
+msgstr "Footer"
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:62
+msgid "Footer bottom links"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:55
+msgid "Footer bottom menu"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:68
+msgid "Footer text first column"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:92
+msgid "Footer text forth column"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:76
+msgid "Footer text seccond column"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:84
+msgid "Footer text third column"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:249
+msgid "Front page"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.routing.yml:0;0
+msgid "Frontpage"
+msgstr "Frontpage"
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.routing.yml:0
+msgid "General"
+msgstr "General"
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.links.task.yml:0
+msgid "General settings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.routing.yml:0
+msgid "Hearing"
+msgstr "Høring"
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/HearingSettingsForm.php:39
+msgid "Hearing deadline timer"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.links.task.yml:0
+msgid "Hearing settings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:176
+msgid "Hearing teaser default image"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:122
+msgid "Hearings overview page"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.info.yml:0
+msgid "Hoeringsportal admin"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:209
+msgid "Image used on citizen proposal teaser if hearing does not have an image attached"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:183
+msgid "Image used on hearing teaser if hearing does not have an image attached"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:222
+msgid "Image used on project teaser if hearing does not have an image attached"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:196
+msgid "Image used on public meeting teaser if hearing does not have an image attached"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:235
+msgid "Image used on static page teaser if hearing does not have an image attached"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:112
+msgid "Initiative overview page"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:135
+msgid "Links to external pages."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:293
+msgid "Login message"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:157
+msgid "Map of all hearings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:141
+msgid "Map of all hearings and meetings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:149
+msgid "Map of all projects"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:285
+msgid "Messages"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:279
+msgid "Newsletter iframe height"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:273
+msgid "Newsletter iframe source"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:264
+msgid "Newsletter node page"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Controller/PageController.php:54
+msgid "No user's manual url defined!"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:100
+msgid "Overview pages"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:240
+msgid "Pages"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:215
+msgid "Project teaser default image"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.info.yml:0
+msgid "Provides config settings and admin interface for hoeringsportalen"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:189
+msgid "Public meeting teaser default image"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.install:17
+msgid "Run \"drush migrate-subject-data\" after configuration import to add contact and more info values from taxonomy to nodes."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/HearingSettingsForm.php:48
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:300
+msgid "Save changes"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:168
+msgid "Set default images to use where editors have not provided or have the posibility to add an image."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:228
+msgid "Static page teaser default image"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:281
+msgid "The height of the iframe i.e 450px"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:268
+msgid "The node to attach the newsletter signup form to."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/HearingSettingsForm.php:43
+msgid "The number of hours before the deadline of a hearing the warning should appear."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:126
+msgid "The page used for an overview of hearings"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:116
+msgid "The page used for an overview of initiatives"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:104
+msgid "These references are used by the system when creating links automatically. Only change these if you create a new overview page."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:160
+msgid "Used when linking to a map of all hearings."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:152
+msgid "Used when linking to a map of all projects."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:144
+msgid "Used when linking to the map of all hearings and meetings."
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/hoeringsportal_config_settings.links.menu.yml:0;0
+msgid "User's manual"
+msgstr ""
+
+#: modules/custom/hoeringsportal_config_settings/src/Form/ItkGeneralSettingsForm.php:257
+msgid "User's manual url"
+msgstr ""

@@ -25,6 +25,7 @@
         "drupal/color_field": "^3.0",
         "drupal/config_ignore": "^3.2",
         "drupal/config_import_locale": "^2.0",
+        "drupal/config_translation_po": "dev-3439416-added-drush-command",
         "drupal/core": "^10.0",
         "drupal/core-composer-scaffold": "^10.0",
         "drupal/core-project-message": "^10.0",
@@ -84,6 +85,7 @@
         "drupal/content_fixtures": "dev-3498162-not-compatible-with",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
+        "drupal/potx": "^1.1",
         "drupal/webprofiler": "^10.3",
         "ergebnis/composer-normalize": "^2.44",
         "mglaman/phpstan-drupal": "^1.1",
@@ -102,7 +104,10 @@
         },
         "drupal": {
             "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "url": "https://packages.drupal.org/8",
+            "exclude": [
+                "drupal/config_translation_po"
+            ]
         },
         "asset-packagist": {
             "type": "composer",
@@ -188,6 +193,10 @@
                     "reference": "hotfix/change-psr-log-dependency"
                 }
             }
+        },
+        "drupal/config_translation_po": {
+            "type": "git",
+            "url": "https://git.drupalcode.org/issue/config_translation_po-3439416.git"
         }
     },
     "minimum-stability": "dev",

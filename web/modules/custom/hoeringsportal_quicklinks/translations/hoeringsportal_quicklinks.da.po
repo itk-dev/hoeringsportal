@@ -1,0 +1,37 @@
+# $Id$
+#
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/hoeringsportal_quicklinks/hoeringsportal_quicklinks.info.yml: n/a
+#  modules/custom/hoeringsportal_quicklinks/src/Plugin/Block/Quicklinks.php: n/a
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-04-23 14:50+0200\n"
+"PO-Revision-Date: 2025-04-23 14:50+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: modules/custom/hoeringsportal_quicklinks/hoeringsportal_quicklinks.info.yml:0
+msgid "Hoeringsportal"
+msgstr ""
+
+#: modules/custom/hoeringsportal_quicklinks/hoeringsportal_quicklinks.info.yml:0
+msgid "Hoeringsportal quicklinks"
+msgstr ""
+
+#: modules/custom/hoeringsportal_quicklinks/hoeringsportal_quicklinks.info.yml:0
+msgid "Provides quicklinks block"
+msgstr ""
+
+#: modules/custom/hoeringsportal_quicklinks/src/Plugin/Block/Quicklinks.php:7
+msgid "Quicklinks"
+msgstr ""

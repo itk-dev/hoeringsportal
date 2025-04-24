@@ -1,7 +1,5 @@
 name: ITK admin
 type: module
 description: 'Provides admin interface for certain settings'
-interface translation project: itk_admin
-interface translation server pattern: modules/custom/itk_admin/translations/itk_admin.%language.po
 core_version_requirement: ^8.8 || ^9 || ^10
 package: ITK

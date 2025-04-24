@@ -1,19 +1,66 @@
-# Danish translation of itk_admin strings
+# $Id$
 #
+# Danish translation of Drupal (general)
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  modules/custom/itk_admin/itk_admin.info.yml: n/a
+#  modules/custom/itk_admin/itk_admin.links.menu.yml: n/a
+#  modules/custom/itk_admin/itk_admin.links.task.yml: n/a
+#  modules/custom/itk_admin/itk_admin.routing.yml: n/a
+#  modules/custom/itk_admin/itk_admin.permissions.yml: n/a
+#  modules/custom/itk_admin/src/Form/AdminSettingsForm.php: n/a
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: ITK admin\n"
-"POT-Creation-Date: 2017-01-17 11:00+0000\n"
-"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
-"Language-Team: Danish\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2025-04-23 14:50+0200\n"
+"PO-Revision-Date: 2025-04-23 14:50+0200\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Danish <EMAIL@ADDRESS>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "@site_name settings"
-msgstr "@site_name indstillinger"
+#: modules/custom/itk_admin/src/Form/AdminSettingsForm.php:30
+msgid "@site_name settings."
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.permissions.yml:0
+msgid "Access itk admin settings."
+msgstr ""
+
+#: modules/custom/itk_admin/src/Form/AdminSettingsForm.php:49
+msgid "Configure"
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.info.yml:0
+msgid "ITK"
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.info.yml:0
+msgid "ITK admin"
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.info.yml:0
+msgid "Provides admin interface for certain settings"
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.links.task.yml:0
+#: modules/custom/itk_admin/itk_admin.routing.yml:0
+msgid "Settings"
+msgstr ""
+
+#: modules/custom/itk_admin/itk_admin.links.menu.yml:0
 msgid "Site specific settings"
 msgstr "Site specifikke indstillinger"
+
+#: modules/custom/itk_admin/itk_admin.links.menu.yml:0
+msgid "Sitespecific settings"
+msgstr ""
+
+#: modules/custom/itk_admin/src/Form/AdminSettingsForm.php:32
 msgid "These pages contain @site_name specific config settings."
 msgstr "Disse sider indeholder specifikke indstillinger til @site_name."

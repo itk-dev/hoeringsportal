@@ -45,3 +45,5 @@ private-files
 /playwright/.cache/
 
 config/sync/**/webform.webform.*
+
+web/*/custom/*/translations/*.*.mo
