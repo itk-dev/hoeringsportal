@@ -1,13 +1,12 @@
-logged_route_names: {  }
 types:
   node:
     citizen_proposal:
       -
+        entity__dot__node__dot__version_history: 0
         entity__dot__node__dot__canonical: 0
         entity__dot__node__dot__delete_form: 0
         entity__dot__node__dot__delete_multiple_form: 0
         entity__dot__node__dot__edit_form: 0
-        entity__dot__node__dot__version_history: 0
         entity__dot__node__dot__revision: 0
         entity__dot__node__dot__display: 0
     hearing:
@@ -90,3 +89,8 @@ types:
         entity__dot__user__dot__cancel_form: 0
         entity__dot__user__dot__collection: 0
         entity__dot__user__dot__display: 0
+routes_to_log:
+  url_pattern:
+    - '/^\/admin\/content\?title=&type=All&status=1$/'
+  routes:
+    - node.add

@@ -11,6 +11,8 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Settings form.
@@ -80,11 +82,12 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
 
-    $form['logged_pages']['logged_route_names'] = [
+    $routesToLog = $config->get('routes_to_log') ? Yaml::dump($config->get('routes_to_log')) : NULL;
+    $form['logged_pages']['routes_to_log'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
-      '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
-      '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
+      '#default_value' => $routesToLog,
+      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. The url patterns can look like this: <code>'/^\/admin\/content\?title=&type=All&status=1$/'</code>. The routes can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility."),
     ];
 
     // EntityType (implements EntityTypeInterface) contains meta data for entity
@@ -204,43 +207,34 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
+   * 
+   * @phpstan-param array<string, mixed> $form
+   * @phpstan-param \Drupal\Core\Form\FormStateInterface $form_state
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_log'];
+
+    try {
+      Yaml::parse($routesToLog);
+    }
+    catch (ParseException $e) {
+      $form_state->setError($form['logged_pages']['routes_to_log'], $this->t('The YAML is invalid: @error', ['@error' => $e->getMessage()]));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
    *
    * @phpstan-param array<mixed, mixed> $form
    */
-  public function submitForm(array &$form, FormStateInterface $formState): void {
-    $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
-    $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
-    $types = $formState->getValue('types');
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_log'] ? Yaml::parse($form_state->getValue('logged_pages')['routes_to_log']) : [];
+    $this->configHelper->setConfiguration('routes_to_log', $routesToLog);
+    $types = $form_state->getValue('types');
     $this->configHelper->setConfiguration('types', $types);
 
     $this->configHelper->saveConfig();
-    parent::submitForm($form, $formState);
-  }
-
-  /**
-   * Split string by newline and trim each item.
-   *
-   * @param string $input
-   *   Input.
-   *
-   * @return array<int, string> Array from string, entries separated by end of
-   *   line.
-   */
-  private function fromStringToArray(string $input): array {
-    return array_filter(array_map('trim', explode(PHP_EOL, $input)));
-  }
-
-  /**
-   * Makes the array into a newline separated string.
-   *
-   * @param array<string, string> $input
-   *   Input.
-   *
-   * @return string
-   *   String from array.
-   */
-  private function fromArrayToString(array $input): string {
-    return implode(PHP_EOL, $input);
+    parent::submitForm($form, $form_state);
   }
 
 }

@@ -89,11 +89,33 @@ class ConfigHelper {
   /**
    * Get route names.
    *
-   * @return array<string, string>
-   *   Array of route names.
+   * @return array<string, string>|null
+   *   Array of route names or NULL.
    */
-  public function getRouteNames() {
-    return $this->moduleConfig->get('logged_route_names');
+  public function getRouteNames() : ?array {
+    $routesToLog = $this->moduleConfig->get('routes_to_log');
+    if ($routesToLog && array_key_exists('routes', $routesToLog)) {
+      return $routesToLog['routes'];
+    }
+    else {
+      return NULL;
+    }
+  }
+
+  /**
+   * Get url patterns from config.
+   *
+   * @return array<string, string>|null
+   *   Array of url patterns or NULL.
+   */
+  public function getUrlPattern() : ?array {
+    $routesToLog = $this->moduleConfig->get('routes_to_log');
+    if ($routesToLog && array_key_exists('url_pattern', $routesToLog)) {
+      return $routesToLog['url_pattern'];
+    }
+    else {
+      return NULL;
+    }
   }
 
   /**

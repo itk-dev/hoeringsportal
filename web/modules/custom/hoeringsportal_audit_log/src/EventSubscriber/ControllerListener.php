@@ -40,10 +40,19 @@ final class ControllerListener implements EventSubscriberInterface {
    */
   public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
+    $requestUri = $event->getRequest()->getRequestUri();
+    $urlPatterns = $this->configHelper->getUrlPattern();
+
+    foreach ($urlPatterns as $urlPattern) {
+      if (preg_match($urlPattern, $requestUri)) {
+        $this->logAuditMessage($pathInfo);
+        return;
+      }
+    }
+
     $currentRouteName = $event->getRequest()->attributes->get('_route');
     $routesThatShouldBeLogged = $this->configHelper->getRouteNames();
-
-    if (in_array($currentRouteName, $routesThatShouldBeLogged)) {
+    if ($routesThatShouldBeLogged && in_array($currentRouteName, $routesThatShouldBeLogged)) {
       // Early return, if the route is in config no need to do anything besides
       // auditlog.
       $this->logAuditMessage($pathInfo);
@@ -92,6 +101,7 @@ final class ControllerListener implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       KernelEvents::CONTROLLER => [['onController', 1000]],
+      KernelEvents::RESPONSE => [['onResponse', 1000]],
     ];
   }
 
