@@ -89,7 +89,7 @@ types:
         entity__dot__user__dot__cancel_form: 0
         entity__dot__user__dot__collection: 0
         entity__dot__user__dot__display: 0
-routes_to_log:
+routes_to_audit:
   url_pattern:
     - '/^\/admin\/content\?title=&type=All&status=1$/'
   routes:

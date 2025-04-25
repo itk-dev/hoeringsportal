@@ -82,8 +82,8 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
 
-    $routesToLog = $config->get('routes_to_log') ? Yaml::dump($config->get('routes_to_log')) : NULL;
-    $form['logged_pages']['routes_to_log'] = [
+    $routesToLog = $config->get('routes_to_audit') ? Yaml::dump($config->get('routes_to_audit')) : NULL;
+    $form['logged_pages']['routes_to_audit'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $routesToLog,
@@ -212,13 +212,13 @@ final class SettingsForm extends ConfigFormBase {
    * @phpstan-param \Drupal\Core\Form\FormStateInterface $form_state
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void {
-    $routesToLog = $form_state->getValue('logged_pages')['routes_to_log'];
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'];
 
     try {
       Yaml::parse($routesToLog);
     }
     catch (ParseException $e) {
-      $form_state->setError($form['logged_pages']['routes_to_log'], $this->t('The YAML is invalid: @error', ['@error' => $e->getMessage()]));
+      $form_state->setError($form['logged_pages']['routes_to_audit'], $this->t('The YAML is invalid: @error', ['@error' => $e->getMessage()]));
     }
   }
 
@@ -228,8 +228,8 @@ final class SettingsForm extends ConfigFormBase {
    * @phpstan-param array<mixed, mixed> $form
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $routesToLog = $form_state->getValue('logged_pages')['routes_to_log'] ? Yaml::parse($form_state->getValue('logged_pages')['routes_to_log']) : [];
-    $this->configHelper->setConfiguration('routes_to_log', $routesToLog);
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'] ? Yaml::parse($form_state->getValue('logged_pages')['routes_to_audit']) : [];
+    $this->configHelper->setConfiguration('routes_to_audit', $routesToLog);
     $types = $form_state->getValue('types');
     $this->configHelper->setConfiguration('types', $types);
 
