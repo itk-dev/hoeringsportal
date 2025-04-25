@@ -82,16 +82,20 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
 
+    $configExample = <<<YAML
+      url_pattern:
+        - '/^\/admin\/content\?title=&type=All&status=1$/'
+      routes: {  }
+        - hoeringsportal_citizen_proposal.admin_supporter.
+    YAML;
+
     $routesToLog = $config->get('routes_to_audit') ? Yaml::dump($config->get('routes_to_audit')) : NULL;
     $form['logged_pages']['routes_to_audit'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $routesToLog,
-      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. The url patterns can look like this: <code>@example</code>. The routes can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.", [
-      '@example' => <<'YAML'
-- '…'
-- '@/admin/hest'      
-YAML,
+      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.", [
+      '@example' => $configExample,
       ]),
     ];
 
