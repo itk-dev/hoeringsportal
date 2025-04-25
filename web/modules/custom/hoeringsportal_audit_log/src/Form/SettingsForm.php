@@ -89,11 +89,12 @@ final class SettingsForm extends ConfigFormBase {
         - hoeringsportal_citizen_proposal.admin_supporter.
     YAML;
 
-    $routesToLog = $config->get('routes_to_audit') ? Yaml::dump($config->get('routes_to_audit')) : NULL;
+    $routesToAudit = $this->configHelper->getConfiguration('routes_to_audit');
+    $routesToAudit = $routesToAudit ? Yaml::dump($routesToAudit) : NULL;
     $form['logged_pages']['routes_to_audit'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
-      '#default_value' => $routesToLog,
+      '#default_value' => $routesToAudit,
       '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.", [
       '@example' => $configExample,
       ]),
