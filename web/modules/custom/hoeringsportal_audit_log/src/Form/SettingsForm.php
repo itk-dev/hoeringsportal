@@ -207,7 +207,7 @@ final class SettingsForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
-   * 
+   *
    * @phpstan-param array<string, mixed> $form
    * @phpstan-param \Drupal\Core\Form\FormStateInterface $form_state
    */
