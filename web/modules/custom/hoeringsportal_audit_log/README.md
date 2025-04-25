@@ -30,9 +30,9 @@ bundles, e.g.
 [`User`](https://api.drupal.org/api/drupal/core%21modules%21user%21src%21Entity%21User.php/class/User/9),
 these are then themselves the subtypes that can be logged.
 
-The second part is `routes_to_audit`, this is YAML and contains `url_pattern` and
-`routes`. The routes of pages that should be audit logged. The url pattern use
-the current URI, if the expression is matched it creates an audit log.
+The second part is `routes_to_audit`, this is YAML and contains `url_pattern`
+and `routes`. The routes of pages that should be audit logged. The url pattern
+use the current URI, if the expression is matched it creates an audit log.
 
 The second part is
 
@@ -136,5 +136,5 @@ routes_to_audit:
     - node.add
 ```
 
-The weird `__dot__` are because [Drupal will not accept dots in configuration
-keys](https://www.drupal.org/node/2297311).
+The weird `__dot__` (in the `types` section) is because [Drupal will not accept
+dots in configuration keys](https://www.drupal.org/node/2297311).
