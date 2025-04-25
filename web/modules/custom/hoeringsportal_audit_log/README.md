@@ -130,6 +130,7 @@ types:
         entity__dot__user__dot__display: 0
 routes_to_audit:
   url_pattern:
+  # https://www.php.net/manual/en/reference.pcre.pattern.syntax.php
     - '/^\/admin\/content\?title=&type=All&status=1$/'
   routes:
     - node.add
