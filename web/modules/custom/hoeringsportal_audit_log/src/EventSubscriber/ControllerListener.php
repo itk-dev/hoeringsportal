@@ -101,7 +101,6 @@ final class ControllerListener implements EventSubscriberInterface {
   public static function getSubscribedEvents(): array {
     return [
       KernelEvents::CONTROLLER => [['onController', 1000]],
-      KernelEvents::RESPONSE => [['onResponse', 1000]],
     ];
   }
 
