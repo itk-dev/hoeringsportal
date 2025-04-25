@@ -87,7 +87,12 @@ final class SettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $routesToLog,
-      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. The url patterns can look like this: <code>'/^\/admin\/content\?title=&type=All&status=1$/'</code>. The routes can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility."),
+      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. The url patterns can look like this: <code>@example</code>. The routes can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code>. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.", [
+      '@example' => <<'YAML'
+- '…'
+- '@/admin/hest'      
+YAML,
+      ]),
     ];
 
     // EntityType (implements EntityTypeInterface) contains meta data for entity
