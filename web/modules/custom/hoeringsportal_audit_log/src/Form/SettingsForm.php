@@ -95,8 +95,8 @@ final class SettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $routesToAudit,
-      '#description' => $this->t("Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.", [
-      '@example' => $configExample,
+      '#description' => $this->t('Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.', [
+        '@example' => $configExample,
       ]),
     ];
 
