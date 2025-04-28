@@ -108,8 +108,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: true
-            path: '/node/{{ nid }}/supporters'
+            make_link: false
+            path: ''
             absolute: false
             external: false
             replace_spaces: false
@@ -147,7 +147,7 @@ display:
           click_sort_column: value
           type: string
           settings:
-            link_to_entity: false
+            link_to_entity: true
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -171,8 +171,8 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: false
-            path: ''
+            make_link: true
+            path: '/node/{{ nid }}/supporters'
             absolute: false
             external: false
             replace_spaces: false
