@@ -26,8 +26,8 @@ hoeringsportal_citizen_proposal.citizen_proposal.proposal_approve:
     # so we disable caching here (https://www.drupal.org/docs/drupal-apis/routing-system/structure-of-routes).
     no_cache: TRUE
 
-hoeringsportal_citizen_proposal.proposal_admin:
-  path: '/admin/citizen_proposal'
+hoeringsportal_citizen_proposal.proposal_admin_settings:
+  path: '/admin/citizen_proposal/settings'
   defaults:
     _form: '\Drupal\hoeringsportal_citizen_proposal\Form\ProposalAdminForm'
     _title: 'Administer citizen proposal'
