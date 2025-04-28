@@ -13,7 +13,7 @@
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/spectrum": "^1.8",
         "chx/drupal-issue-fork": "dev-main",
-        "composer/installers": "^1.7",
+        "composer/installers": "^2.3",
         "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/allowed_formats": "^3.0",
