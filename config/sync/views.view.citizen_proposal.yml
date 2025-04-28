@@ -324,7 +324,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'edit any citizen_proposal content'
+          perm: 'administer citizen proposal'
       cache:
         type: tag
         options: {  }
