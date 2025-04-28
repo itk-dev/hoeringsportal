@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fad98b0f8b8ecde9024db4128e8b05b9",
+    "content-hash": "edfbf7ba7a200c26228cac9057819326",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -15061,14 +15061,20 @@
         },
         {
             "name": "drupal/content_fixtures",
-            "version": "dev-3498162-not-compatible-with",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
-                "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
-                "reference": "6efd813a5f7d3d7a6a0e1b7f0785ed1095ffb219"
+                "url": "https://git.drupalcode.org/project/content_fixtures.git",
+                "reference": "3.2.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/content_fixtures-3.2.0.zip",
+                "reference": "3.2.0",
+                "shasum": "355aa636d7f55c07128a92fd11405d35c2c855dc"
             },
             "require": {
-                "drupal/core": "^8.7.7 || ^9 || ^10",
+                "drupal/core": "^8.7.7 || ^9 || ^10 || ^11",
                 "drush/drush": "^9 || ^10 || ^11 || ^12 || ^13",
                 "php": ">=7.1.0"
             },
@@ -15078,23 +15084,36 @@
             },
             "type": "drupal-module",
             "extra": {
+                "drupal": {
+                    "version": "3.2.0",
+                    "datestamp": "1737128481",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                },
                 "drush": {
                     "services": {
-                        "drush.services.yml": "^9 || ^10 || ^11 || ^12"
+                        "drush.services.yml": "^9 || ^10 || ^11 || ^12 || ^13"
                     }
                 }
             },
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0+"
             ],
             "authors": [
                 {
                     "name": "Łukasz Zaroda",
+                    "homepage": "https://www.drupal.org/user/1890152",
                     "email": "luken@luken-tech.pl"
                 }
             ],
             "description": "Module privides an API for creating generators of dummy content in a way similar to the 'DoctrineFixturesBundle'.",
-            "time": "2025-01-08T12:00:10+00:00"
+            "homepage": "https://www.drupal.org/project/content_fixtures",
+            "support": {
+                "source": "https://git.drupalcode.org/project/content_fixtures"
+            }
         },
         {
             "name": "drupal/core-dev",
@@ -20627,7 +20646,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "chx/drupal-issue-fork": 20,
-        "drupal/content_fixtures": 20,
         "drupal/email_registration": 5,
         "drupal/entityqueue": 15,
         "drupal/flag": 15,
