@@ -93,7 +93,7 @@ class ConfigHelper {
    *   Array of route names or NULL.
    */
   public function getRouteNames() : ?array {
-    return (array) $this->moduleConfig->get('routes_to_audit')['routes'] ?? NULL;
+    return (array) ($this->moduleConfig->get('routes_to_audit')['routes'] ?? NULL);
   }
 
   /**
@@ -103,7 +103,7 @@ class ConfigHelper {
    *   Array of url patterns or NULL.
    */
   public function getUrlPattern() : ?array {
-    return (array) $this->moduleConfig->get('routes_to_audit')['url_pattern'] ?? NULL;
+    return (array) ($this->moduleConfig->get('routes_to_audit')['url_pattern'] ?? NULL);
   }
 
   /**
