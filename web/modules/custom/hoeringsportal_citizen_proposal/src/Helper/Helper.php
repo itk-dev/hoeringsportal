@@ -522,4 +522,167 @@ class Helper implements LoggerAwareInterface {
     return $node->field_vote_end->date->getTimestamp();
   }
 
+  /**
+   * Implements hook_views_data().
+   */
+  public function viewsData(): array {
+    return [
+      // Make our custom table available for views.
+      'hoeringsportal_citizen_proposal_support' => [
+        'table' => [
+          'group' => $this->t('Citizen proposal'),
+          'provider' => 'hoeringsportal_citizen_proposal',
+          'base' => [
+            'field' => 'id',
+            'title' => $this->t('Citizen proposal support'),
+            'help' => $this->t('Citizen proposal support related to citizen proposal nodes'),
+          ],
+        ],
+
+        'id' => [
+          'title' => $this->t('Id'),
+          'help' => $this->t('Citizen proposal support'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+
+        'node_id' => [
+          'title' => $this->t('Citizen proposal'),
+          'help' => $this->t('Citizen proposal'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+          'relationship' => [
+            'base' => 'node_field_data',
+            'id' => 'standard',
+            'base field' => 'nid',
+            'label' => $this->t('Citizen proposal'),
+          ],
+        ],
+
+        'user_identifier' => [
+          'title' => $this->t('User identifier'),
+          'help' => $this->t('User identifier'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'user_name' => [
+          'title' => $this->t('User name'),
+          'help' => $this->t('User name'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'user_email' => [
+          'title' => $this->t('User email'),
+          'help' => $this->t('User email'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'allow_email' => [
+          'title' => $this->t('Allow email'),
+          'help' => $this->t('Allow email'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+
+        'created' => [
+          'title' => $this->t('Created'),
+          'help' => $this->t('Created'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+      ],
+
+      // @todo Set up a reverse relation.
+      'node' => [
+        'hoeringsportal_citizen_proposal_support' => [
+          'title' => $this->t('Citizen proposal support (title)'),
+          'help' => $this->t('Citizen proposal support (help)'),
+          'relationship' => [
+            'group' => $this->t('Citizen proposal support (group)'),
+            'id' => 'entity_reverse',
+            'field_name' => 'hoeringsportal_citizen_proposal_support',
+            'field table' => 'hoeringsportal_citizen_proposal_support',
+            'field field' => 'node_id',
+            'base' => 'node_field_data',
+            'base field' => 'nid',
+            'label' => $this->t('Citizen proposal support (relationship)'),
+          ],
+        ],
+      ],
+    ];
+  }
+
 }
