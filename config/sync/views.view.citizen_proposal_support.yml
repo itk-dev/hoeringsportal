@@ -4,11 +4,11 @@ status: true
 dependencies:
   module:
     - csv_serialization
+    - hoeringsportal_citizen_proposal
     - node
     - rest
     - serialization
     - user
-    - view_custom_table
     - views_data_export
     - xls_serialization
 id: citizen_proposal_support
@@ -271,7 +271,7 @@ display:
       access:
         type: perm
         options:
-          perm: 'edit any citizen_proposal content'
+          perm: 'administer citizen proposal'
       cache:
         type: tag
         options: {  }
@@ -382,9 +382,9 @@ display:
           field: node_id
           relationship: none
           group_type: group
-          admin_label: 'Node id'
+          admin_label: 'Citizen proposal'
           plugin_id: standard
-          required: true
+          required: false
       header:
         result:
           id: result

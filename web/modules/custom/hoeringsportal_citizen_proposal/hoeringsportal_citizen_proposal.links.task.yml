@@ -1,6 +1,11 @@
-hoeringsportal_citizen_proposal.admin:
-  title: 'Citizen proposal'
-  route_name: hoeringsportal_citizen_proposal.proposal_admin
+hoeringsportal_citizen_proposal.citizen_proposals:
+  title: 'Citizen proposals'
+  route_name: view.citizen_proposal.page_1
+  base_route: system.admin_content
+
+hoeringsportal_citizen_proposal.admin_settings:
+  title: 'Citizen proposal settings'
+  route_name: hoeringsportal_citizen_proposal.proposal_admin_settings
   base_route: system.admin_content
 
 hoeringsportal_citizen_proposal.proposal_list:
