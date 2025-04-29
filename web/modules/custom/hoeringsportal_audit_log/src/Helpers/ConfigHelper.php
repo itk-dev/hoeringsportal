@@ -91,6 +91,7 @@ class ConfigHelper {
    * Get routes to audit from config.
    *
    * @return array<string, string>
+   *   routes to audit.
    */
   private function getRoutesToAudit() {
     try {
