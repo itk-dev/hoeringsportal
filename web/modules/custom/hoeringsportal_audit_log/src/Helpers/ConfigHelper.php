@@ -87,12 +87,12 @@ class ConfigHelper {
     return str_replace('.', '__dot__', $input);
   }
 
-    /**
+  /**
    * Get routes to audit from config.
    *
    * @return array<string, string>
    */
-  private function getRoutesToAudit(){
+  private function getRoutesToAudit() {
     try {
       $routesToAudit = Yaml::decode($this->moduleConfig->get('routes_to_audit'));
       return $routesToAudit;
