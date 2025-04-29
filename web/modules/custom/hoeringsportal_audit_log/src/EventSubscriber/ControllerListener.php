@@ -41,7 +41,7 @@ final class ControllerListener implements EventSubscriberInterface {
   public function onController(ControllerEvent $event): void {
     $pathInfo = $event->getRequest()->getPathInfo();
     $requestUri = $event->getRequest()->getRequestUri();
-    $urlPatterns = $this->configHelper->getUrlPattern();
+    $urlPatterns = $this->configHelper->getUrlPatterns();
 
     foreach ($urlPatterns as $urlPattern) {
       if (@preg_match($urlPattern, $requestUri)) {

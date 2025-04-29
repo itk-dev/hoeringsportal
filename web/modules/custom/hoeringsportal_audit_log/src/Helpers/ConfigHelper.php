@@ -102,7 +102,7 @@ class ConfigHelper {
    * @return array<string, string>
    *   Array of url patterns.
    */
-  public function getUrlPattern() : array {
+  public function getUrlPatterns() : array {
     return (array) ($this->moduleConfig->get('routes_to_audit')['url_pattern'] ?? NULL);
   }
 
