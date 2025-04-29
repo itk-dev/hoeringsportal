@@ -83,19 +83,18 @@ final class SettingsForm extends ConfigFormBase {
     ];
 
     $configExample = <<<YAML
-      url_pattern:
-        - '/^\/admin\/content\?title=&type=All&status=1$/'
-      routes: {  }
-        - hoeringsportal_citizen_proposal.admin_supporter.
-    YAML;
+url_pattern:
+  - '/^\/admin\/content\?title=&type=All&status=1$/'
+routes:
+  - hoeringsportal_citizen_proposal.admin_supporter
+YAML;
 
     $routesToAudit = $this->configHelper->getConfiguration('routes_to_audit');
-    $routesToAudit = $routesToAudit ? Yaml::dump($routesToAudit) : NULL;
     $form['logged_pages']['routes_to_audit'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
       '#default_value' => $routesToAudit,
-      '#description' => $this->t('Write the configuration in YAML. We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.', [
+      '#description' => $this->t('Write the configuration in YAML. <pre><code>@example</code></pre> We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.', [
         '@example' => $configExample,
       ]),
     ];
@@ -238,7 +237,7 @@ final class SettingsForm extends ConfigFormBase {
    * @phpstan-param array<mixed, mixed> $form
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
-    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'] ? Yaml::parse($form_state->getValue('logged_pages')['routes_to_audit']) : [];
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'] ? $form_state->getValue('logged_pages')['routes_to_audit'] : [];
     $this->configHelper->setConfiguration('routes_to_audit', $routesToLog);
     $types = $form_state->getValue('types');
     $this->configHelper->setConfiguration('types', $types);
