@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_audit_log\Helpers;
 
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 
@@ -54,10 +55,10 @@ class ConfigHelper {
    *
    * @param string $configName
    *   Config name.
-   * @param array<int, string> $config
+   * @param array<int, string>|string $config
    *   Config to set.
    */
-  public function setConfiguration(string $configName, array $config): void {
+  public function setConfiguration(string $configName, array|string $config): void {
     $this->moduleConfig->set($configName, $config);
   }
 
@@ -86,24 +87,39 @@ class ConfigHelper {
     return str_replace('.', '__dot__', $input);
   }
 
+    /**
+   * Get routes to audit from config.
+   *
+   * @return array<string, string>
+   */
+  private function getRoutesToAudit(){
+    try {
+      $routesToAudit = Yaml::decode($this->moduleConfig->get('routes_to_audit'));
+      return $routesToAudit;
+    }
+    catch (\Exception) {
+      return [];
+    }
+  }
+
   /**
    * Get route names.
    *
-   * @return array<string, string>|null
+   * @return array<int, string>|null
    *   Array of route names or NULL.
    */
   public function getRouteNames() : ?array {
-    return (array) ($this->moduleConfig->get('routes_to_audit')['routes'] ?? NULL);
+    return (array) ($this->getRoutesToAudit()['routes'] ?? NULL);
   }
 
   /**
    * Get url patterns from config.
    *
-   * @return array<string, string>
+   * @return array<int, string>
    *   Array of url patterns.
    */
-  public function getUrlPatterns() : array {
-    return (array) ($this->moduleConfig->get('routes_to_audit')['url_pattern'] ?? NULL);
+  public function getUrlPatterns() : ?array {
+    return (array) ($this->getRoutesToAudit()['url_pattern'] ?? NULL);
   }
 
   /**
