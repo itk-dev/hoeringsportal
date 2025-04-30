@@ -665,20 +665,25 @@ class Helper implements LoggerAwareInterface {
         ],
       ],
 
-      // @todo Set up a reverse relation.
-      'node' => [
+      // Set up relation to node (field data).
+      'node_field_data' => [
         'hoeringsportal_citizen_proposal_support' => [
-          'title' => $this->t('Citizen proposal support (title)'),
-          'help' => $this->t('Citizen proposal support (help)'),
+          'title' => $this->t('Supporters'),
+          'help' => $this->t('Proposal supporters. This will create 1 duplicate record for every comment. Usually if you need this it is better to create a supporter view.'),
           'relationship' => [
-            'group' => $this->t('Citizen proposal support (group)'),
-            'id' => 'entity_reverse',
-            'field_name' => 'hoeringsportal_citizen_proposal_support',
-            'field table' => 'hoeringsportal_citizen_proposal_support',
-            'field field' => 'node_id',
-            'base' => 'node_field_data',
-            'base field' => 'nid',
-            'label' => $this->t('Citizen proposal support (relationship)'),
+            'group' => $this->t('Citizen proposal'),
+            'label' => $this->t('Citizen proposal supporters'),
+            'base' => 'hoeringsportal_citizen_proposal_support',
+            'base field' => 'node_id',
+            'relationship field' => 'nid',
+            'id' => 'standard',
+            'extra' => [
+              // Make sure that we only join with citizen proposals.
+              [
+                'left_field' => 'type',
+                'value' => 'citizen_proposal',
+              ],
+            ],
           ],
         ],
       ],

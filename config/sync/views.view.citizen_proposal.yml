@@ -2,6 +2,8 @@ uuid: 09b9b3ef-a817-4274-801f-6edff1acd75f
 langcode: da
 status: true
 dependencies:
+  config:
+    - node.type.citizen_proposal
   module:
     - csv_serialization
     - hoeringsportal_citizen_proposal
@@ -16,8 +18,8 @@ label: 'Citizen proposals'
 module: views
 description: ''
 tag: ''
-base_table: hoeringsportal_citizen_proposal_support
-base_field: id
+base_table: node_field_data
+base_field: nid
 display:
   default:
     id: default
@@ -31,7 +33,7 @@ display:
           id: nid
           table: node_field_data
           field: nid
-          relationship: node_id
+          relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
@@ -97,7 +99,7 @@ display:
           id: title
           table: node_field_data
           field: title
-          relationship: node_id
+          relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
@@ -123,8 +125,8 @@ display:
             target: ''
             nl2br: false
             max_length: 0
-            word_boundary: true
-            ellipsis: true
+            word_boundary: false
+            ellipsis: false
             more_link: false
             more_link_text: ''
             more_link_path: ''
@@ -162,7 +164,7 @@ display:
           id: id
           table: hoeringsportal_citizen_proposal_support
           field: id
-          relationship: none
+          relationship: hoeringsportal_citizen_proposal_support
           group_type: count
           admin_label: ''
           plugin_id: numeric
@@ -215,11 +217,11 @@ display:
           format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
-        created_1:
-          id: created_1
+        created:
+          id: created
           table: node_field_data
           field: created
-          relationship: node_id
+          relationship: none
           group_type: group
           admin_label: ''
           entity_type: node
@@ -292,6 +294,73 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+        status:
+          id: status
+          table: node_field_data
+          field: status
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: status
+          plugin_id: field
+          label: Status
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: boolean
+          settings:
+            format: custom
+            format_custom_false: 'Ikke udgivet'
+            format_custom_true: Udgivet
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
       pager:
         type: mini
         options:
@@ -328,15 +397,35 @@ display:
       cache:
         type: tag
         options: {  }
-      empty:
-        area_text_custom:
-          id: area_text_custom
-          table: views
-          field: area_text_custom
-          plugin_id: text_custom
-      sorts: {  }
+      empty: {  }
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+          order: DESC
+          expose:
+            label: ''
+            field_identifier: ''
+          exposed: false
+          granularity: second
       arguments: {  }
-      filters: {  }
+      filters:
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+          value:
+            citizen_proposal: citizen_proposal
       style:
         type: table
         options:
@@ -347,8 +436,9 @@ display:
             nid: nid
             title: title
             id: id
-            created_1: created_1
-          default: created_1
+            created: created
+            status: status
+          default: created
           info:
             nid:
               sortable: false
@@ -371,9 +461,16 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            created_1:
+            created:
               sortable: true
               default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            status:
+              sortable: true
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -395,13 +492,14 @@ display:
           replica: false
           query_tags: {  }
       relationships:
-        node_id:
-          id: node_id
-          table: hoeringsportal_citizen_proposal_support
-          field: node_id
+        hoeringsportal_citizen_proposal_support:
+          id: hoeringsportal_citizen_proposal_support
+          table: node_field_data
+          field: hoeringsportal_citizen_proposal_support
           relationship: none
           group_type: group
-          admin_label: 'Citizen proposal'
+          admin_label: 'Citizen proposal supporters'
+          entity_type: node
           plugin_id: standard
           required: false
       group_by: true
@@ -424,6 +522,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
       tags: {  }
   data_export_1:
@@ -432,7 +531,6 @@ display:
     display_plugin: data_export
     position: 2
     display_options:
-      empty: {  }
       style:
         type: data_export
         options:
@@ -447,15 +545,13 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
-      defaults:
-        empty: false
       display_description: ''
       display_extenders: {  }
       path: admin/citizen-proposal/export
       displays:
         page_1: page_1
         default: '0'
-      filename: 'deltag-citizen-proposal-[date:raw].csv'
+      filename: 'deltag-citizen-proposal-[date:html_date].csv'
       automatic_download: true
       store_in_public_file_directory: false
       custom_redirect_path: false
@@ -467,6 +563,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - 'user.node_grants:view'
         - user.permissions
       tags: {  }
   data_export_2:
@@ -475,7 +572,6 @@ display:
     display_plugin: data_export
     position: 2
     display_options:
-      empty: {  }
       style:
         type: data_export
         options:
@@ -490,15 +586,13 @@ display:
             encoding: utf8
             utf8_bom: '0'
             use_serializer_encode_only: false
-      defaults:
-        empty: false
       display_description: ''
       display_extenders: {  }
       path: admin/citizen-proposal/export
       displays:
         page_1: page_1
         default: '0'
-      filename: 'deltag-citizen-proposal-[date:raw].xlsx'
+      filename: 'deltag-citizen-proposal-[date:html_date].xlsx'
       automatic_download: true
       store_in_public_file_directory: false
       custom_redirect_path: false
@@ -510,6 +604,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - 'user.node_grants:view'
         - user.permissions
       tags: {  }
   page_1:
@@ -518,9 +613,6 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      empty: {  }
-      defaults:
-        empty: false
       display_extenders: {  }
       path: admin/citizen-proposal
     cache_metadata:
@@ -529,5 +621,6 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'user.node_grants:view'
         - user.permissions
       tags: {  }
