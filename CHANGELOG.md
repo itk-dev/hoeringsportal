@@ -8,6 +8,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [4.10.0] - 2025-04-22
 
+* [PR-502](https://github.com/itk-dev/deltag.aarhus.dk/pull/502)
+  Updated citizen proposal overview
 * [PR-500](https://github.com/itk-dev/deltag.aarhus.dk/pull/500)
   Added citizen proposal overview
 * [PR-501](https://github.com/itk-dev/deltag.aarhus.dk/pull/501)
