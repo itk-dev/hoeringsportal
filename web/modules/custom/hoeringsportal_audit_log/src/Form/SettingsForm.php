@@ -208,7 +208,8 @@ YAML;
   private function getDefaultValues(string $definitionId, string $typeId) : array {
     $configTypes = $this->configHelper->getConfiguration('types');
     $defaultValues = [];
-    if (count($configTypes) > 0) {
+    
+    if ($configTypes && count($configTypes) > 0) {
       $defaultValues = reset($configTypes[$definitionId][$typeId]);
     }
     return $defaultValues;
