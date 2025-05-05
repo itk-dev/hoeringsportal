@@ -95,7 +95,7 @@ class ConfigHelper {
    */
   private function getRoutesToAudit() {
     try {
-      $routesToAudit=$this->moduleConfig->get('routes_to_audit');
+      $routesToAudit = $this->moduleConfig->get('routes_to_audit');
 
       if ($routesToAudit) {
         $routesToAudit = Yaml::decode($routesToAudit);
