@@ -67,8 +67,6 @@ final class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     // Form constructor.
     $form = parent::buildForm($form, $form_state);
-    // Default settings.
-    $config = $this->config(self::SETTINGS);
 
     $form['info'] = [
       '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [
@@ -203,7 +201,8 @@ YAML;
    * @param string $typeId
    *   typeId.
    *
-   * @return array<string, string>|bool Default values from config.
+   * @return array<string, string>|bool 
+   *   Default values from config.
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array|bool {
     $configTypes = $this->configHelper->getConfiguration('types');
