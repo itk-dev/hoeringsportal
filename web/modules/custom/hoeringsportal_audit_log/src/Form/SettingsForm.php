@@ -25,9 +25,11 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Constructs a new form object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory A config
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
+   *   A config
    *   factory for retrieving required config objects.
-   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider The route
+   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
+   *   The route
    *   provider service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
@@ -196,8 +198,10 @@ YAML;
   /**
    * Get default values for checkboxes.
    *
-   * @param string $definitionId definitionId.
-   * @param string $typeId typeId.
+   * @param string $definitionId
+   *   definitionId.
+   * @param string $typeId
+   *   typeId.
    *
    * @return array<string, string>|bool Default values from config.
    */
