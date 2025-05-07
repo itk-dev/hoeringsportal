@@ -119,6 +119,7 @@ class ConfigHelper {
     return (array) ($this->getRoutesToAudit()['routes'] ?? NULL);
   }
 
+  
   /**
    * Get url patterns from config.
    *
