@@ -6,6 +6,20 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [4.10.0] - 2025-04-22
+
+* [PR-502](https://github.com/itk-dev/deltag.aarhus.dk/pull/502)
+  Updated citizen proposal overview
+* [PR-500](https://github.com/itk-dev/deltag.aarhus.dk/pull/500)
+  Added citizen proposal overview
+* [PR-501](https://github.com/itk-dev/deltag.aarhus.dk/pull/501)
+  Updated composer packages and modules
+* [PR-492](https://github.com/itk-dev/hoeringsportal/pull/492)
+  * Updated Danish translations of names of days
+* [PR-498](https://github.com/itk-dev/hoeringsportal/pull/498)
+  Fix broken design on public meeting page
+* [PR-487](https://github.com/itk-dev/hoeringsportal/pull/487)
+  Added statistics
 * [PR-428](https://github.com/itk-dev/hoeringsportal/pull/428)
   Upgraded to PHP 8.4
 * [PR-494](https://github.com/itk-dev/hoeringsportal/pull/494)
@@ -87,6 +101,8 @@ Versioning](https://semver.org/spec/v2.0.0.html).
   Added department access check.
 * [PR-449](https://github.com/itk-dev/hoeringsportal/pull/449)
   Set correct Danish pluralization. Remove superfluous docker service.
+* [PR-447](https://github.com/itk-dev/hoeringsportal/pull/447)
+  * Add hoeringsportalen module for configuring [os2web_audit](https://github.com/OS2web/os2web_audit)
 * [PR-446](https://github.com/itk-dev/hoeringsportal/pull/446)
   Cleaned up archiving code and added web profiler
 * [PR-445](https://github.com/itk-dev/hoeringsportal/pull/445)
@@ -438,7 +454,8 @@ Updated drupal core 8.6.16
 
 Initial release
 
-[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.9.1...HEAD
+[Unreleased]: https://github.com/itk-dev/hoeringsportal/compare/4.10.0...HEAD
+[4.10.0]: https://github.com/itk-dev/hoeringsportal/compare/4.9.1...4.10.0
 [4.9.1]: https://github.com/itk-dev/hoeringsportal/compare/4.9.0...4.9.1
 [4.9.0]: https://github.com/itk-dev/hoeringsportal/compare/4.8.5...4.9.0
 [4.8.5]: https://github.com/itk-dev/hoeringsportal/compare/4.8.4...4.8.5

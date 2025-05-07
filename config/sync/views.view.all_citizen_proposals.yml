@@ -14,7 +14,7 @@ dependencies:
 id: all_citizen_proposals
 label: 'Alle borgerforslag'
 module: views
-description: 'En liste af alle høringer'
+description: 'En liste af alle borgerforslag'
 tag: ''
 base_table: node_field_data
 base_field: nid

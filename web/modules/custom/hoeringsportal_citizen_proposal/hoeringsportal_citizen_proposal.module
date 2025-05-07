@@ -68,3 +68,10 @@ function hoeringsportal_citizen_proposal_page_attachments(array &$page) {
 function hoeringsportal_citizen_proposal_node_presave(EntityInterface $entity) {
   Drupal::service(Helper::class)->nodeEntityPresave($entity);
 }
+
+/**
+ * Implements hook_views_data().
+ */
+function hoeringsportal_citizen_proposal_views_data() {
+  return Drupal::service(Helper::class)->viewsData();
+}

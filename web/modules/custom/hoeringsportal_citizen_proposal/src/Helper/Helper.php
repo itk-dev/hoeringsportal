@@ -522,4 +522,172 @@ class Helper implements LoggerAwareInterface {
     return $node->field_vote_end->date->getTimestamp();
   }
 
+  /**
+   * Implements hook_views_data().
+   */
+  public function viewsData(): array {
+    return [
+      // Make our custom table available for views.
+      'hoeringsportal_citizen_proposal_support' => [
+        'table' => [
+          'group' => $this->t('Citizen proposal'),
+          'provider' => 'hoeringsportal_citizen_proposal',
+          'base' => [
+            'field' => 'id',
+            'title' => $this->t('Citizen proposal support'),
+            'help' => $this->t('Citizen proposal support related to citizen proposal nodes'),
+          ],
+        ],
+
+        'id' => [
+          'title' => $this->t('Id'),
+          'help' => $this->t('Citizen proposal support'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+
+        'node_id' => [
+          'title' => $this->t('Citizen proposal'),
+          'help' => $this->t('Citizen proposal'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+          'relationship' => [
+            'base' => 'node_field_data',
+            'id' => 'standard',
+            'base field' => 'nid',
+            'label' => $this->t('Citizen proposal'),
+          ],
+        ],
+
+        'user_identifier' => [
+          'title' => $this->t('User identifier'),
+          'help' => $this->t('User identifier'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'user_name' => [
+          'title' => $this->t('User name'),
+          'help' => $this->t('User name'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'user_email' => [
+          'title' => $this->t('User email'),
+          'help' => $this->t('User email'),
+          'field' => [
+            'id' => 'standard',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'string',
+          ],
+          'argument' => [
+            'id' => 'string',
+          ],
+        ],
+
+        'allow_email' => [
+          'title' => $this->t('Allow email'),
+          'help' => $this->t('Allow email'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+
+        'created' => [
+          'title' => $this->t('Created'),
+          'help' => $this->t('Created'),
+          'field' => [
+            'id' => 'numeric',
+          ],
+          'sort' => [
+            'id' => 'standard',
+          ],
+          'filter' => [
+            'id' => 'numeric',
+          ],
+          'argument' => [
+            'id' => 'numeric',
+          ],
+        ],
+      ],
+
+      // Set up relation to node (field data).
+      'node_field_data' => [
+        'hoeringsportal_citizen_proposal_support' => [
+          'title' => $this->t('Supporters'),
+          'help' => $this->t('Proposal supporters. This will create 1 duplicate record for every comment. Usually if you need this it is better to create a supporter view.'),
+          'relationship' => [
+            'group' => $this->t('Citizen proposal'),
+            'label' => $this->t('Citizen proposal supporters'),
+            'base' => 'hoeringsportal_citizen_proposal_support',
+            'base field' => 'node_id',
+            'relationship field' => 'nid',
+            'id' => 'standard',
+            'extra' => [
+              // Make sure that we only join with citizen proposals.
+              [
+                'left_field' => 'type',
+                'value' => 'citizen_proposal',
+              ],
+            ],
+          ],
+        ],
+      ],
+    ];
+  }
+
 }

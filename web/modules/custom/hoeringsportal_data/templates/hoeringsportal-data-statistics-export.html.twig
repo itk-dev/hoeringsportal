@@ -1,0 +1,29 @@
+{% if data %}
+  {% set url_field = options.url_field|default('url') %}
+  {% set title_field = options.title_field|default('title') %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        {% for key in data|first|without(url_field)|keys %}
+          <th>{{ key }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    {% for row in data %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        {% for key, value in row|without(url_field) %}
+          <td>
+            {% if key == title_field and row[url_field] is defined %}
+              <a href="{{ row[url_field] }}">{{ value }}</a>
+            {% else %}
+              {{ value }}
+            {% endif %}
+          </td>
+        {% endfor %}
+      </tr>
+    {% endfor %}
+  </table>
+{% endif %}

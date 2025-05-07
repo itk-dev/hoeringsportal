@@ -100,10 +100,14 @@ tasks:
       # https://unix.stackexchange.com/questions/762992/bash-check-if-the-standard-input-contains-anything)
       - >-
         if [[ ! -t 0 ]]; then
-          task compose -- exec --no-TTY phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec --no-TTY phpfpm {{.DRUSH_SCRIPT}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         else
-          task compose -- exec phpfpm vendor/bin/drush --uri={{.BASE_URL}} {{.CLI_ARGS}};
+          task compose -- exec phpfpm {{.DRUSH_SCRIPT}} --uri={{.BASE_URL}} {{.CLI_ARGS}};
         fi
+    vars:
+      # Note: We use vendor/bin/drush.php (rather than vendor/bin/drush, say) to
+      # make debugging work for Drush commands.
+      DRUSH_SCRIPT: vendor/bin/drush.php
     silent: true
 
   database-dump:
@@ -221,8 +225,15 @@ tasks:
     silent: true
 
   code-analysis:
-    cmds:
-      - task composer -- code-analysis
+     cmds:
+       - task composer -- code-analysis
+       # Check some modules with a higher level.
+       #
+       # Note: The second `--` is needed to pass command line arguments (starting with `--`) to the composer script
+       # `code-analysis`
+       #
+       # @todo Update all our custom modules to resolve ‘level 6 (or 5) errors“
+       - task composer -- code-analysis -- --level=6 web/modules/custom/hoeringsportal_audit_log/
 
   docker-pull:
     desc: "Pull all development docker images"

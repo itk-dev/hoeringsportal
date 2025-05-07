@@ -13,7 +13,7 @@
         "bower-asset/jquery-simple-color": "^1.2",
         "bower-asset/spectrum": "^1.8",
         "chx/drupal-issue-fork": "dev-main",
-        "composer/installers": "^1.7",
+        "composer/installers": "^2.3",
         "cure53/dompurify": "^3.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/allowed_formats": "^3.0",
@@ -38,6 +38,7 @@
         "drupal/entityqueue": "^1.0@alpha",
         "drupal/field_group": "^3.0",
         "drupal/flag": "^4.0@alpha",
+        "drupal/hoeringsportal_audit_log": "^1.0",
         "drupal/hoeringsportal_citizen_proposal": "^1.0",
         "drupal/hoeringsportal_citizen_proposal_archiving": "^1.0",
         "drupal/hoeringsportal_data": "^1.0",
@@ -82,7 +83,7 @@
         "webflo/drupal-finder": "^1.0.0"
     },
     "require-dev": {
-        "drupal/content_fixtures": "dev-3498162-not-compatible-with",
+        "drupal/content_fixtures": "^3.2",
         "drupal/core-dev": "^10.0",
         "drupal/masquerade": "^2.0",
         "drupal/webprofiler": "^10.3",
@@ -96,11 +97,6 @@
         "drupal/drupal": "*"
     },
     "repositories": {
-        "drupal/content_fixtures": {
-            "type": "git",
-            "url": "https://git.drupalcode.org/issue/content_fixtures-3498162",
-            "//": "Content fixtures: Not compatible with Drush 13+ (https://www.drupal.org/project/content_fixtures/issues/3498162)"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
@@ -126,6 +122,16 @@
                 "symlink": false,
                 "versions": {
                     "drupal/hoeringsportal_deskpro": "1.0-dev"
+                }
+            }
+        },
+        "drupal/hoeringsportal_audit_log": {
+            "type": "path",
+            "url": "web/modules/custom/hoeringsportal_audit_log",
+            "options": {
+                "symlink": false,
+                "versions": {
+                    "drupal/hoeringsportal_audit_log": "1.0-dev"
                 }
             }
         },

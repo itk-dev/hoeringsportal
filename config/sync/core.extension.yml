@@ -41,6 +41,7 @@ module:
   field_ui: 0
   file: 0
   filter: 0
+  hoeringsportal_audit_log: 0
   hoeringsportal_citizen_proposal: 0
   hoeringsportal_citizen_proposal_archiving: 0
   hoeringsportal_config_settings: 0
@@ -82,6 +83,7 @@ module:
   node: 0
   openid_connect: 0
   options: 0
+  os2web_audit: 0
   page_cache: 0
   path: 0
   path_alias: 0
@@ -109,7 +111,6 @@ module:
   twig_tweak: 0
   update: 0
   user: 0
-  view_custom_table: 0
   view_unpublished: 0
   views_data_export: 0
   views_ui: 0
