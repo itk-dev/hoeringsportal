@@ -93,7 +93,7 @@ class ConfigHelper {
    * @return array<string, string>
    *   routes to audit.
    */
-  private function getRoutesToAudit() {
+  private function getRoutesToAudit() : array {
     try {
       $routesToAudit = $this->moduleConfig->get('routes_to_audit');
 
@@ -101,7 +101,8 @@ class ConfigHelper {
         $routesToAudit = Yaml::decode($routesToAudit);
         return $routesToAudit;
       }
-
+      
+      return [];
     }
     catch (\Exception) {
       return [];
