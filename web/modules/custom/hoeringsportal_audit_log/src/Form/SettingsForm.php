@@ -25,11 +25,9 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * Constructs a new form object.
    *
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
-   *   A config
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory A config
    *   factory for retrieving required config objects.
-   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider
-   *   The route
+   * @param \Drupal\Core\Routing\RouteProviderInterface $routeProvider The route
    *   provider service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    *   The entity type manager.
@@ -154,10 +152,10 @@ YAML;
             if (is_string($typeId)) {
               // For the entity type with bundles (e.g. node), the definitionId
               // will have multiple entries (e.g. citizen_proposal, static_page)
-              // For the entity type without bundles, there will be one entry with
-              // a sub entry called the same E.g. user with the sub entry user (as
-              // both $definitionId and $typeId is user because they are the id of
-              // the same entity type)
+              // For the entity type without bundles, there will be one entry
+              // with a sub entry called the same E.g. user with the sub entry
+              // user (as both $definitionId and $typeId is user because they
+              // are the id of the same entity type)
               assert(is_array($form['types'][$definitionId]));
               $form['types'][$definitionId][$typeId] = [
                 '#type' => 'fieldset',
@@ -167,9 +165,9 @@ YAML;
 
               $options = [];
 
-              // Here, the routes for the entity types are created as checkboxes,
-              // so the user can check the routes that are supposed to be audit
-              // logged.
+              // Here, the routes for the entity types are created as
+              // checkboxes, so the user can check the routes that are supposed
+              // to be audit logged.
               foreach ($linkTemplates as $path) {
                 $matches = $this->routeProvider->getRoutesByPattern($path)->all();
                 if (count($matches) > 0) {
@@ -198,13 +196,10 @@ YAML;
   /**
    * Get default values for checkboxes.
    *
-   * @param string $definitionId
-   *   definitionId.
-   * @param string $typeId
-   *   typeId.
+   * @param string $definitionId definitionId.
+   * @param string $typeId typeId.
    *
-   * @return array<string, string>|bool
-   *   Default values from config.
+   * @return array<string, string>|bool Default values from config.
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array|bool {
     $configTypes = $this->configHelper->getConfiguration('types');
