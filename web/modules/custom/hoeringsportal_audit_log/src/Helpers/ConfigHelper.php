@@ -115,7 +115,7 @@ class ConfigHelper {
    * @return array<int, string>|null
    *   Array of route names or NULL.
    */
-  public function getRouteNames() : ?array {
+  public function getRouteNames() : array {
     return (array) ($this->getRoutesToAudit()['routes'] ?? NULL);
   }
 
@@ -125,7 +125,7 @@ class ConfigHelper {
    * @return array<int, string>
    *   Array of url patterns.
    */
-  public function getUrlPatterns() : ?array {
+  public function getUrlPatterns() : array {
     return (array) ($this->getRoutesToAudit()['url_pattern'] ?? NULL);
   }
 
