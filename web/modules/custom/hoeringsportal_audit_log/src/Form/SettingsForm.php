@@ -151,42 +151,43 @@ YAML;
           // the case where there are no bundles, it uses the definition.
           foreach ($types as $type) {
             $typeId = $type->id();
+            if (is_string($typeId)) {
+              // For the entity type with bundles (e.g. node), the definitionId
+              // will have multiple entries (e.g. citizen_proposal, static_page)
+              // For the entity type without bundles, there will be one entry with
+              // a sub entry called the same E.g. user with the sub entry user (as
+              // both $definitionId and $typeId is user because they are the id of
+              // the same entity type)
+              assert(is_array($form['types'][$definitionId]));
+              $form['types'][$definitionId][$typeId] = [
+                '#type' => 'fieldset',
+                '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
+                '#tree' => TRUE,
+              ];
 
-            // For the entity type with bundles (e.g. node), the definitionId
-            // will have multiple entries (e.g. citizen_proposal, static_page)
-            // For the entity type without bundles, there will be one entry with
-            // a sub entry called the same E.g. user with the sub entry user (as
-            // both $definitionId and $typeId is user because they are the id of
-            // the same entity type)
-            $form['types'][$definitionId][$typeId] = [
-              '#type' => 'fieldset',
-              '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
-              '#tree' => TRUE,
-            ];
+              $options = [];
 
-            $options = [];
-
-            // Here, the routes for the entity types are created as checkboxes,
-            // so the user can check the routes that are supposed to be audit
-            // logged.
-            foreach ($linkTemplates as $path) {
-              $matches = $this->routeProvider->getRoutesByPattern($path)->all();
-              if (count($matches) > 0) {
-                // RouteKey is the name we are interested in, e.g. canonical.
-                $routeKey = array_key_first($matches);
-                // RouteKey is the more human understandable name, e.g.
-                // '/node/{node}'.
-                $routeValue = reset($matches)->getPath();
-                $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
+              // Here, the routes for the entity types are created as checkboxes,
+              // so the user can check the routes that are supposed to be audit
+              // logged.
+              foreach ($linkTemplates as $path) {
+                $matches = $this->routeProvider->getRoutesByPattern($path)->all();
+                if (count($matches) > 0) {
+                  // RouteKey is the name we are interested in, e.g. canonical.
+                  $routeKey = array_key_first($matches);
+                  // RouteKey is the more human understandable name, e.g.
+                  // '/node/{node}'.
+                  $routeValue = reset($matches)->getPath();
+                  $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
+                }
               }
+
+              $form['types'][$definitionId][$typeId][] = [
+                '#type' => 'checkboxes',
+                '#options' => $options,
+                '#default_value' => $this->getDefaultValues($definitionId, (string) $typeId),
+              ];
             }
-
-            $form['types'][$definitionId][$typeId][] = [
-              '#type' => 'checkboxes',
-              '#options' => $options,
-              '#default_value' => $this->getDefaultValues($definitionId, $typeId),
-            ];
-
           }
         }
       }
@@ -202,14 +203,14 @@ YAML;
    * @param string $typeId
    *   typeId.
    *
-   * @return array<string, string>
+   * @return array<string, string>|bool
    *   Default values from config.
    */
-  private function getDefaultValues(string $definitionId, string $typeId) : array {
+  private function getDefaultValues(string $definitionId, string $typeId) : array|bool {
     $configTypes = $this->configHelper->getConfiguration('types');
     $defaultValues = [];
 
-    if ($configTypes && count($configTypes) > 0) {
+    if ($configTypes && is_array($configTypes) && count($configTypes) > 1) {
       $defaultValues = reset($configTypes[$definitionId][$typeId]);
     }
     return $defaultValues;
