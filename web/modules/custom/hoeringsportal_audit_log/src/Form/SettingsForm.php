@@ -173,7 +173,7 @@ YAML;
                 if (count($matches) > 0) {
                   // RouteKey is the name we are interested in, e.g. canonical.
                   $routeKey = array_key_first($matches);
-                  // RouteKey is the more human understandable name, e.g.
+                  // RouteValue is the more human understandable name, e.g.
                   // '/node/{node}'.
                   $routeValue = reset($matches)->getPath();
                   $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
