@@ -101,7 +101,7 @@ class ConfigHelper {
         $routesToAudit = Yaml::decode($routesToAudit);
         return $routesToAudit;
       }
-      
+
       return [];
     }
     catch (\Exception) {
