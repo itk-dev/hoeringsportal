@@ -11,6 +11,8 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\DependencyInjection\AutowireTrait;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\hoeringsportal_audit_log\Helpers\ConfigHelper;
+use Symfony\Component\Yaml\Exception\ParseException;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Settings form.
@@ -65,8 +67,6 @@ final class SettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
     // Form constructor.
     $form = parent::buildForm($form, $form_state);
-    // Default settings.
-    $config = $this->config(self::SETTINGS);
 
     $form['info'] = [
       '#markup' => $this->t('This configuration handles <em>when</em> to create logs, <a href=":os2web_audit_settings_url">edit the <code>os2web_audit</code> configuration</a>.', [
@@ -80,11 +80,21 @@ final class SettingsForm extends ConfigFormBase {
       '#tree' => TRUE,
     ];
 
-    $form['logged_pages']['logged_route_names'] = [
+    $configExample = <<<YAML
+url_pattern:
+  - '/^\/admin\/content\?title=&type=All&status=1$/'
+routes:
+  - hoeringsportal_citizen_proposal.admin_supporter
+YAML;
+
+    $routesToAudit = $this->configHelper->getConfiguration('routes_to_audit');
+    $form['logged_pages']['routes_to_audit'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Route names'),
-      '#default_value' => $config->get('logged_route_names') ? $this->fromArrayToString($config->get('logged_route_names')) : NULL,
-      '#description' => $this->t('Route names (one per line) to log when users visit, they can look like this: <code>hoeringsportal_citizen_proposal.admin_supporter</code> or <code>node.add</code>, if in doubt, ask your friendly neighborhood programmer.'),
+      '#default_value' => $routesToAudit,
+      '#description' => $this->t('Write the configuration in YAML. <pre><code>@example</code></pre> We log when a user visits something matching the routes or the url patterns. If you find yourself in doubt on how to fill this text area, ask your friendly neighborhood programmer. With great power comes great responsibility.', [
+        '@example' => $configExample,
+      ]),
     ];
 
     // EntityType (implements EntityTypeInterface) contains meta data for entity
@@ -139,42 +149,43 @@ final class SettingsForm extends ConfigFormBase {
           // the case where there are no bundles, it uses the definition.
           foreach ($types as $type) {
             $typeId = $type->id();
+            if (is_string($typeId)) {
+              // For the entity type with bundles (e.g. node), the definitionId
+              // will have multiple entries (e.g. citizen_proposal, static_page)
+              // For the entity type without bundles, there will be one entry
+              // with a sub entry called the same E.g. user with the sub entry
+              // user (as both $definitionId and $typeId is user because they
+              // are the id of the same entity type)
+              assert(is_array($form['types'][$definitionId]));
+              $form['types'][$definitionId][$typeId] = [
+                '#type' => 'fieldset',
+                '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
+                '#tree' => TRUE,
+              ];
 
-            // For the entity type with bundles (e.g. node), the definitionId
-            // will have multiple entries (e.g. citizen_proposal, static_page)
-            // For the entity type without bundles, there will be one entry with
-            // a sub entry called the same E.g. user with the sub entry user (as
-            // both $definitionId and $typeId is user because they are the id of
-            // the same entity type)
-            $form['types'][$definitionId][$typeId] = [
-              '#type' => 'fieldset',
-              '#title' => $type instanceof EntityTypeInterface ? $type->getLabel() : $type->label(),
-              '#tree' => TRUE,
-            ];
+              $options = [];
 
-            $options = [];
-
-            // Here, the routes for the entity types are created as checkboxes,
-            // so the user can check the routes that are supposed to be audit
-            // logged.
-            foreach ($linkTemplates as $path) {
-              $matches = $this->routeProvider->getRoutesByPattern($path)->all();
-              if (count($matches) > 0) {
-                // RouteKey is the name we are interested in, e.g. canonical.
-                $routeKey = array_key_first($matches);
-                // RouteKey is the more human understandable name, e.g.
-                // '/node/{node}'.
-                $routeValue = reset($matches)->getPath();
-                $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
+              // Here, the routes for the entity types are created as
+              // checkboxes, so the user can check the routes that are supposed
+              // to be audit logged.
+              foreach ($linkTemplates as $path) {
+                $matches = $this->routeProvider->getRoutesByPattern($path)->all();
+                if (count($matches) > 0) {
+                  // RouteKey is the name we are interested in, e.g. canonical.
+                  $routeKey = array_key_first($matches);
+                  // RouteValue is the more human understandable name, e.g.
+                  // '/node/{node}'.
+                  $routeValue = reset($matches)->getPath();
+                  $options[$this->configHelper->escapeProviderId($routeKey)] = $routeValue;
+                }
               }
+
+              $form['types'][$definitionId][$typeId][] = [
+                '#type' => 'checkboxes',
+                '#options' => $options,
+                '#default_value' => $this->getDefaultValues($definitionId, (string) $typeId),
+              ];
             }
-
-            $form['types'][$definitionId][$typeId][] = [
-              '#type' => 'checkboxes',
-              '#options' => $options,
-              '#default_value' => $this->getDefaultValues($definitionId, $typeId),
-            ];
-
           }
         }
       }
@@ -190,13 +201,14 @@ final class SettingsForm extends ConfigFormBase {
    * @param string $typeId
    *   typeId.
    *
-   * @return array<string, string>
+   * @return array<string, string>|bool
    *   Default values from config.
    */
-  private function getDefaultValues(string $definitionId, string $typeId) : array {
+  private function getDefaultValues(string $definitionId, string $typeId) : array|bool {
     $configTypes = $this->configHelper->getConfiguration('types');
     $defaultValues = [];
-    if (count($configTypes) > 0) {
+
+    if ($configTypes && is_array($configTypes) && count($configTypes) > 1) {
       $defaultValues = reset($configTypes[$definitionId][$typeId]);
     }
     return $defaultValues;
@@ -205,42 +217,33 @@ final class SettingsForm extends ConfigFormBase {
   /**
    * {@inheritdoc}
    *
+   * @phpstan-param array<string, mixed> $form
+   * @phpstan-param \Drupal\Core\Form\FormStateInterface $form_state
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'];
+
+    try {
+      Yaml::parse($routesToLog);
+    }
+    catch (ParseException $e) {
+      $form_state->setError($form['logged_pages']['routes_to_audit'], $this->t('The YAML is invalid: @error', ['@error' => $e->getMessage()]));
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   *
    * @phpstan-param array<mixed, mixed> $form
    */
-  public function submitForm(array &$form, FormStateInterface $formState): void {
-    $loggedRouteNames = $formState->getValue('logged_pages')['logged_route_names'];
-    $this->configHelper->setConfiguration('logged_route_names', $this->fromStringToArray($loggedRouteNames));
-    $types = $formState->getValue('types');
+  public function submitForm(array &$form, FormStateInterface $form_state): void {
+    $routesToLog = $form_state->getValue('logged_pages')['routes_to_audit'] ? $form_state->getValue('logged_pages')['routes_to_audit'] : [];
+    $this->configHelper->setConfiguration('routes_to_audit', $routesToLog);
+    $types = $form_state->getValue('types');
     $this->configHelper->setConfiguration('types', $types);
 
     $this->configHelper->saveConfig();
-    parent::submitForm($form, $formState);
-  }
-
-  /**
-   * Split string by newline and trim each item.
-   *
-   * @param string $input
-   *   Input.
-   *
-   * @return array<int, string> Array from string, entries separated by end of
-   *   line.
-   */
-  private function fromStringToArray(string $input): array {
-    return array_filter(array_map('trim', explode(PHP_EOL, $input)));
-  }
-
-  /**
-   * Makes the array into a newline separated string.
-   *
-   * @param array<string, string> $input
-   *   Input.
-   *
-   * @return string
-   *   String from array.
-   */
-  private function fromArrayToString(array $input): string {
-    return implode(PHP_EOL, $input);
+    parent::submitForm($form, $form_state);
   }
 
 }

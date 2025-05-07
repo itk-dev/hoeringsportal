@@ -6,6 +6,9 @@ Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+* [PR-499](https://github.com/itk-dev/hoeringsportal/pull/499)
+  * Url pattern in audit log
+
 ## [4.10.0] - 2025-04-22
 
 * [PR-502](https://github.com/itk-dev/deltag.aarhus.dk/pull/502)

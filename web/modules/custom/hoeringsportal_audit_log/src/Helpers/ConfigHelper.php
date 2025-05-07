@@ -2,6 +2,7 @@
 
 namespace Drupal\hoeringsportal_audit_log\Helpers;
 
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\hoeringsportal_audit_log\Form\SettingsForm;
 
@@ -54,10 +55,10 @@ class ConfigHelper {
    *
    * @param string $configName
    *   Config name.
-   * @param array<int, string> $config
+   * @param array<int, string>|string $config
    *   Config to set.
    */
-  public function setConfiguration(string $configName, array $config): void {
+  public function setConfiguration(string $configName, array|string $config): void {
     $this->moduleConfig->set($configName, $config);
   }
 
@@ -87,13 +88,45 @@ class ConfigHelper {
   }
 
   /**
-   * Get route names.
+   * Get routes to audit from config.
    *
    * @return array<string, string>
-   *   Array of route names.
+   *   routes to audit.
    */
-  public function getRouteNames() {
-    return $this->moduleConfig->get('logged_route_names');
+  private function getRoutesToAudit() : array {
+    try {
+      $routesToAudit = $this->moduleConfig->get('routes_to_audit');
+
+      if ($routesToAudit) {
+        $routesToAudit = Yaml::decode($routesToAudit);
+        return $routesToAudit;
+      }
+
+      return [];
+    }
+    catch (\Exception) {
+      return [];
+    }
+  }
+
+  /**
+   * Get route names.
+   *
+   * @return array<int, string>
+   *   Array of route names or NULL.
+   */
+  public function getRouteNames() : array {
+    return (array) ($this->getRoutesToAudit()['routes'] ?? NULL);
+  }
+
+  /**
+   * Get url patterns from config.
+   *
+   * @return array<int, string>
+   *   Array of url patterns.
+   */
+  public function getUrlPatterns() : array {
+    return (array) ($this->getRoutesToAudit()['url_pattern'] ?? NULL);
   }
 
   /**
@@ -114,7 +147,7 @@ class ConfigHelper {
     $types = $this->getConfiguration('types');
 
     // If no types configuration exists, return an empty array immediately.
-    if (!$types) {
+    if (!$types && is_array($types)) {
       return FALSE;
     }
 
@@ -122,12 +155,18 @@ class ConfigHelper {
     // it in config if we dont, the configuration just has the entity type
     // twice. (e.g. user -> user)
     $typeId = $bundleType ?: $entityTypeId;
+    $escapedRoute = $this->escapeProviderId($currentRouteName);
 
-    $escapedRouteName = $this->escapeProviderId($currentRouteName);
+    $type = $types[$entityTypeId] ?? NULL;
 
-    // See if, in the config, the route name has the route name as value,
-    // instead of 0.
-    return reset($types[$entityTypeId][$typeId])[$escapedRouteName] === $escapedRouteName;
+    if (is_array($type) && is_array($type[$typeId])) {
+      $routeConfig = reset($type[$typeId]);
+      // See if, in the config, the route name has the route name as value,
+      // instead of 0.
+      return ($routeConfig[$escapedRoute] ?? NULL) === $escapedRoute;
+    }
+
+    return FALSE;
   }
 
 }
