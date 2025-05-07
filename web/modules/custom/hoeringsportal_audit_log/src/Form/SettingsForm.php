@@ -201,7 +201,7 @@ YAML;
    * @param string $typeId
    *   typeId.
    *
-   * @return array<string, string>|bool 
+   * @return array<string, string>|bool
    *   Default values from config.
    */
   private function getDefaultValues(string $definitionId, string $typeId) : array|bool {
